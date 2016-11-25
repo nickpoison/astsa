@@ -1,0 +1,13 @@
+# Remove the previous line if you edit this file
+
+importFrom("grDevices", "dev.new", "xy.coords", "gray")
+importFrom("graphics", "abline", "grid", "layout", "legend", "lines",
+             "par", "plot")
+importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",     
+             "is.tskernel", "kernapply", "kernel", "mvfft", "na.fail",
+             "na.omit", "na.pass", "nextn", "plot.ts", "qf",
+             "spec.taper", "ts", "ts.intersect", "ts.plot")
+
+# Export all names
+exportPattern(".")
+
