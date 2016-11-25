@@ -1,8 +1,8 @@
 Package: astsa
 Type: Package
 Title: Applied Statistical Time Series Analysis
-Version: 1.6
-Date:   2016-10-01
+Version: 1.7 
+Date:   xxxx-xx-xx
 Author: David Stoffer
 Maintainer: David Stoffer <stoffer@pitt.edu>
 Description: Contains data sets and scripts to accompany Time Series Analysis and Its Applications: With R Examples by Shumway and Stoffer, fourth edition. 

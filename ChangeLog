@@ -2,7 +2,7 @@
 Version 1.7 - ??
 ----------------------------
 
-+ fixed P0n in Ksmooth0 and 1 
++ fixed P0n in Ksmooth0 and Ksmooth1 
 + add box() after grid() on some graphics 
    because the grid was overplotting the box =(
 
@@ -10,7 +10,7 @@ Version 1.7 - ??
 Version 1.6 - October 2016
 ----------------------------
 
-+ added 3 new series, globtemp, globtempl, chicken
++ added 3 new series, globtemp, globtempl, chicken:
    updates to the global temperature deviation 
    series and the price of chicken 
 
