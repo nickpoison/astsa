@@ -1,1 +1,0 @@
-* Add model indicator (automatic or user input??) to sarima diagnostics plot
