@@ -42,8 +42,7 @@ D.S. Stoffer
 %}
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 %%\seealso{\code{\link{acf1}}
-%% ~~objects to See Also as \code{\link{help}}, ~~~
-}
+%% ~~objects to See Also as \code{\link{help}}, ~~~}
 \examples{
 acf2(rnorm(100))
 acf2(rnorm(100), 25)
