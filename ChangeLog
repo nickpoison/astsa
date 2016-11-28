@@ -6,6 +6,8 @@ Version 1.7 - ??
 + add box() after grid() on some graphics 
    because the grid was overplotting the box =(
 
+todo: allow title on sarima() diagnostic plots indicating orders
+
 ----------------------------
 Version 1.6 - October 2016
 ----------------------------
