@@ -8,7 +8,7 @@
 }
 \usage{
 sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, 
-       details = TRUE, xreg=NULL,
+       details = TRUE, xreg=NULL, Model=TRUE,
        tol = sqrt(.Machine$double.eps), 
        no.constant = FALSE)
 }
@@ -39,6 +39,8 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 %%     ~~Describe \code{S} here~~
 }
   \item{xreg}{Optionally, a vector or matrix of external regressors, which must have the same number of rows as xdata.
+}
+  \item{Model}{if TRUE (default), the model orders are printed on the diagnostic plot.
 }
   \item{details}{turns on or off the output from the nonlinear optimization routine, which is \code{optim}. The default is TRUE, use \code{details=FALSE} to turn off the output.
 %%     ~~Describe \code{details} here~~
