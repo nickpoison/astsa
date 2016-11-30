@@ -1,5 +1,5 @@
 sarima <-
-function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE)
+function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt(.Machine$double.eps),no.constant=FALSE)
 { 
   #
    layout = graphics::layout
@@ -38,6 +38,10 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,tol=sqrt(.Machine$d
     stdres <- rs/sqrt(fitit$sigma2)
     num <- sum(!is.na(rs))
      plot.ts(stdres,  main = "Standardized Residuals", ylab = "")
+	 if(Model){
+	 if (S<0) {title(paste( "Model: (", p, "," ,d, "," ,q, ")", sep=""), adj=0) }
+	 else {title(paste( "Model: (", p, "," ,d, "," ,q, ") ", "(", P, "," ,D, "," ,Q, ") [", S,"]",  sep=""), adj=0) }
+	           }
     alag <- 10+sqrt(num)
     ACF = stats::acf(rs, alag, plot=FALSE, na.action = na.pass)$acf[-1] 
     LAG = 1:alag/frequency(xdata)
