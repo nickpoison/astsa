@@ -33,8 +33,10 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.c
 #--
  fore=stats::predict(fitit, n.ahead, newxreg=nureg)  
 #-- graph:
-  U = fore$pred + 2*fore$se
-  L = fore$pred - 2*fore$se
+  U  = fore$pred + 2*fore$se
+  L  = fore$pred - 2*fore$se
+  U1 = fore$pred + fore$se
+  L1 = fore$pred - fore$se
    a=max(1,n-100)
   minx=min(xdata[a:n],L)
   maxx=max(xdata[a:n],U)
@@ -46,10 +48,20 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.c
   ts.plot(xdata,fore$pred, type="n", xlim=xllim, ylim=c(minx,maxx), ylab=xname) 
   grid(lty=1, col=gray(.9)); box()
   lines(xdata, type='o')
-  lines(fore$pred, col="red", type="o")
-  lines(U, col="blue", lty="dashed")
-  lines(L, col="blue", lty="dashed") 
+#  
+   xx = c(time(U), rev(time(U)))
+   yy = c(L, rev(U))
+   polygon(xx, yy, border=8, col=gray(.6, alpha=.2) ) 
+   yy1 = c(L1, rev(U1))
+   polygon(xx, yy1, border=8, col=gray(.6, alpha=.2) ) 
+   
+   lines(fore$pred, col="red", type="o")
+ # lines(U, col="red", lty=6)
+ # lines(L, col="red", lty=6) 
+ # lines(U1, col="blue", lty=6)
+ # lines(L1, col="blue", lty=6) 
 #
   return(fore)
 }
+
 
