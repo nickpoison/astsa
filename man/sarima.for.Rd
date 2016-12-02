@@ -48,7 +48,7 @@ sarima.for(xdata, n.ahead, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 %%     ~~Describe \code{no.constant} here~~
 }
 }
-\details{For example, \code{sarima.for(x,5,1,0,1)} will forecast five time points ahead for an ARMA(1,1) fit to x. The output prints the forecasts and the standard errors of the forecasts, and supplies a graphic of the forecast with +/- 2 prediction error bounds.
+\details{For example, \code{sarima.for(x,5,1,0,1)} will forecast five time points ahead for an ARMA(1,1) fit to x. The output prints the forecasts and the standard errors of the forecasts, and supplies a graphic of the forecast with +/- 1 and 2 prediction error bounds.
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{\item{pred }{the forecasts}
