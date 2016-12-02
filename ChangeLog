@@ -10,6 +10,8 @@ Version 1.7 - ??
 + added title option to sarima() diagnostic plots indicating 
    model orders (there by default)
 
++ added +/-1 MSPE bounds to sarima.for()
+
 ----------------------------
 Version 1.6 - October 2016
 ----------------------------
