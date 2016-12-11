@@ -2,11 +2,9 @@
 \alias{cpg}
 \docType{data}
 \title{Cost per GB
-%%   ~~ data name/kind ... ~~
 }
 \description{Median annual cost per gigabyte (GB) of storage.
 }
-%\usage{data("globtemp")}
 \format{
   The format is:
  Time-Series [1:29] from 1980 to 2008: -0.2 -0.11 -0.1 -0.2 -0.28 -0.31 -0.3 -0.33 -0.2 -0.11 ...
