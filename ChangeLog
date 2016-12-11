@@ -12,6 +12,8 @@ Version 1.7 - ??
 
 + added +/-1 MSPE bounds to sarima.for()
 
++ added data set cpg (cost per GB of storage)
+
 ----------------------------
 Version 1.6 - October 2016
 ----------------------------
