@@ -46,6 +46,7 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.c
    t2=xy.coords(fore$pred, y = NULL)$x 
    endd=t2[length(t2)]
    xllim=c(strt,endd)
+  par(mar=c(2.5, 2.5, 1, 1), mgp=c(1.6,.6,0))
   ts.plot(xdata,fore$pred, type="n", xlim=xllim, ylim=c(minx,maxx), ylab=xname) 
   grid(lty=1, col=gray(.9)); box()
   lines(xdata, type='o')
