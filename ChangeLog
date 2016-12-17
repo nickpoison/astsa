@@ -10,6 +10,8 @@ Version 1.7 - Dec 2016
 + added title option to sarima() diagnostic plots indicating 
    model orders (there by default)
 
++ added ptwise 99.9% conf bounds to QQ-plot
+
 + added +/-1 MSPE bounds to sarima.for() and changed graphic
 
 + added data set cpg (cost per GB of storage) for a problem
