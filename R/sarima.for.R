@@ -5,6 +5,7 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.c
    par = graphics::par
    plot = graphics::plot
    grid = graphics::grid
+   box = graphics::box
    abline = graphics::abline
    lines = graphics::lines
    frequency = stats::frequency

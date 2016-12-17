@@ -3,6 +3,7 @@ function(series, max.lag=NULL, ...){
   par = graphics::par
   plot = graphics::plot
   grid = graphics::grid
+  box = graphics::box
   abline = graphics::abline
   lines = graphics::lines
   frequency = stats::frequency
