@@ -56,11 +56,6 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.c
    polygon(xx, yy1, border=8, col=gray(.6, alpha=.2) ) 
    
    lines(fore$pred, col="red", type="o")
- # lines(U, col="red", lty=6)
- # lines(L, col="red", lty=6) 
- # lines(U1, col="blue", lty=6)
- # lines(L1, col="blue", lty=6) 
-#
   return(fore)
 }
 

@@ -28,8 +28,6 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
 #
   if (!is.null(xreg)) {fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), xreg=xreg, optim.control=list(trace=trc,REPORT=1,reltol=tol))
 }
-
-
 #
 #  replace tsdiag with a better version
     old.par <- par(no.readonly = TRUE)
@@ -48,7 +46,25 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
     L=2/sqrt(num)
      plot(LAG, ACF, type="h", ylim=c(min(ACF)-.1,min(1,max(ACF+.4))), main = "ACF of Residuals")
      abline(h=c(0,-L,L), lty=c(1,2,2), col=c(1,4,4))  
-    stats::qqnorm(stdres, main="Normal Q-Q Plot of Std Residuals"); stats::qqline(stdres, col=4) 
+    stats::qqnorm(stdres, main="Normal Q-Q Plot of Std Residuals")  #stats::qqline(stdres, col=4) 
+        ################qq error bnds - used CAR code ###########
+        good <- !is.na(stdres)
+        ord <- order(stdres[good])
+        ord.stdres <- stdres[good][ord]
+        PP <- ppoints(num)
+        z  <- qnorm(PP)
+        coe <- coef(MASS::rlm(ord.stdres~z))
+        a <- coe[1]
+        b <- coe[2]
+        abline(a,b,col=4)
+        SE <- (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
+        fit.value <- a + b*z
+        U <- fit.value+3.9*SE   # puts .0005 in tails
+        L <- fit.value-3.9*SE
+          xx <- c(z, rev(z))
+          yy <- c(L, rev(U))
+        polygon(xx, yy, border=NA, col=gray(.6, alpha=.2) )   
+        ############ end qq error bnds ##########################
     nlag <- ifelse(S<4, 20, 3*S)
     ppq <- p+q+P+Q
     pval <- numeric(nlag)
