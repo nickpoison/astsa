@@ -1,7 +1,7 @@
 # Imports
 
 importFrom("grDevices", "dev.new", "xy.coords", "gray")
-importFrom("graphics", "abline", "grid", "layout", "legend", "lines",
+importFrom("graphics", "abline", "box", "grid", "layout", "legend", "lines",
              "par", "plot")
 importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",     
              "is.tskernel", "kernapply", "kernel", "mvfft", "na.fail",
