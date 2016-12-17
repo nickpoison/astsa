@@ -6,9 +6,16 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
    par = graphics::par
    plot = graphics::plot
    grid = graphics::grid
+   title = graphics::title
+   polygon = graphics::polygon
    abline = graphics::abline
    lines = graphics::lines
    frequency = stats::frequency
+   coef = stats::coef
+   dnorm = stats::dnorm
+   ppoints = stats::ppoints
+   qnorm = stats::qnorm
+   time = stats::time
    na.pass = stats::na.pass
    #
  trc = ifelse(details==TRUE, 1, 0)
