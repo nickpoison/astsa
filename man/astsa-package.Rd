@@ -12,7 +12,7 @@ Includes data and scripts to accompany \emph{Time Series Analysis and Its Applic
 Package: \tab astsa\cr
 Type: \tab Package\cr
 Version: \tab 1.7\cr
-Date: \tab 2017-xx-xx\cr
+Date: \tab 2017-12-24\cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
