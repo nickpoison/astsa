@@ -68,7 +68,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
         qqfit <- a + b*z
         U <- qqfit+3.9*SE   # puts .0005 in tails
         L <- qqfit-3.9*SE
-		  z[1]=z[1]-.1      # extend plot -- misses the end otherwise
+          z[1]=z[1]-.1      # extend plot -- misses the end otherwise
           z[length(z)]= z[length(z)]+.1
           xx <- c(z, rev(z))
           yy <- c(L, rev(U))
