@@ -58,7 +58,7 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 \item{spec }{vector (for univariate series) or matrix (for multivariate series) of estimates of the spectral density at frequencies corresponding to freq.}
 \item{coh }{NULL for univariate series. For multivariate time series, a matrix containing the squared coherency between different series. Column i + (j - 1) * (j - 2)/2 of coh contains the squared coherency between columns i and j of x, where i < j.}
 \item{phase }{NULL for univariate series. For multivariate time series a matrix containing the cross-spectrum phase between different series. The format is the same as coh.}
-\item{Lh }{Number of frequencies (approximate) used in the band, as defined in (4.57) on page 204.}
+\item{Lh }{Number of frequencies (approximate) used in the band, as defined in Chapter 4.}
 \item{n.used }{Sample length used for the FFT}
 \item{series }{The name of the time series.}
 \item{snames }{For multivariate input, the names of the component series.}
