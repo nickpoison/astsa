@@ -54,7 +54,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
      plot(LAG, ACF, type="h", ylim=c(min(ACF)-.1,min(1,max(ACF+.4))), main = "ACF of Residuals")
      abline(h=c(0,-L,L), lty=c(1,2,2), col=c(1,4,4))  
     stats::qqnorm(stdres, main="Normal Q-Q Plot of Std Residuals")  #stats::qqline(stdres, col=4) 
-        ################qq error bnds - based on CAR code ###########
+        ################qq error bnds - based on CAR 'robust' option ###########
         sR <- !is.na(stdres)
         ord <- order(stdres[sR])
         ord.stdres <- stdres[sR][ord]
@@ -63,8 +63,6 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
         coe <- coef(MASS::rlm(ord.stdres~z))
         a <- coe[1]
         b <- coe[2]
-		b = diff(ord.stdres)/diff(z)
-		a = ord.stdres[1] - b*z[1]
         abline(a,b,col=4)
         SE <- (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
         qqfit <- a + b*z
