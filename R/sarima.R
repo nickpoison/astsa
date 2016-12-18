@@ -63,6 +63,8 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
         coe <- coef(MASS::rlm(ord.stdres~z))
         a <- coe[1]
         b <- coe[2]
+		b = diff(ord.stdres)/diff(z)
+		a = ord.stdres[1] - b*z[1]
         abline(a,b,col=4)
         SE <- (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
         qqfit <- a + b*z
