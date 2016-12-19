@@ -11,9 +11,6 @@
   The format is:
  Time-Series [1:827] from 1948 to 2017: 4 4.7 4.5 4 3.4 3.9 3.9 3.6 3.4 2.9 ...
 }
-\details{
-%%  ~~ If necessary, more details than the __description__ above ~~
-}
 \source{\url{https://data.bls.gov/timeseries/LNU04000000/}
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
