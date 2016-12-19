@@ -73,7 +73,7 @@
 
 + `sunspotz` man page emphasizes data are 2 times/year
 
-+ fixed estimate of cov(v_t) = R in `EM0` and `EM1` (t=1 part was missing)
++ fixed estimate of $cov(v\_t) = R$ in `EM0` and `EM1` (t=1 part was missing)
 
 + fixed typo in EMx missing code (0=observed, 1=missing)
 
