@@ -104,7 +104,6 @@ Version 1.2  - March 2014
 
 + `astsadata()` is gone, `LazyData: true` instead
  
-
 -------------------------
 Version 1.1  - July 2012
 -------------------------
@@ -118,7 +117,6 @@ Version 1.1  - July 2012
 + Added `astsadata.R` option to load all the data sets at once.
 
 + Changed `mvspec.R` so it could be used in place of `spec.pgram` and `spectrum`.  The defaults are similar now to `spec.prgram`, but the default is not to taper, forcing the user to think about it.  It also returns the book's more useful definition of bandwidth.  
-
 
 -------------------------
 Version 1.0  - June 2012
