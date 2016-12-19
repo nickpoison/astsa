@@ -15,7 +15,10 @@ Version 1.7 - Dec 2016
 + added +/-1 MSPE bounds to sarima.for() and changed graphic 
    params a little
 
-+ added data set cpg (cost per GB of storage) for a problem
++ added data set 'cpg' (cost per GB of storage) for a problem
+
++ added 'UnempRate' data set... US unemployment in percent unemployed
+   from 1948 to November 2016
 
 ----------------------------
 Version 1.6 - October 2016
