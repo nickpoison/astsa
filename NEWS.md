@@ -8,17 +8,16 @@
    because the grid was overplotting the box =(
    
 + added title option to `sarima()` diagnostic plots indicating 
-   model orders (there by default)
+   model orders (there by default) ... now if you fit a few models, 
+   it's easy to see which diagnostic plot goes with which model...
 
-+ added ptwise 99.9% conf bounds to QQ-plot
++ ... also added pointwise 99.9% confidence bounds to the innovations diagnostic QQ-plot based on asymptotic distn of iid normal order statistics
 
-+ added +/-1 root MSPE bounds to `sarima.for()` and changed graphic 
-   params a little - bnds are a gray swatch
++ now show ±1 and ±2 root MSPE bounds to `sarima.for()` and used transparaent ribbons to display all error bounds because you can't be too pretty
 
-+ added data set `cpg` (cost per GB of storage) for a problem
++ added time series `cpg` (annual median cost per GB of storage) for an easy regression with autocorrelated errors exercise
 
-+ added `UnempRate` data set... US unemployment in percent unemployed
-   from 1948 to November 2016
++ added time series `UnempRate`, which can be taken as an update to `unemp` (still there) - the data are monthly US unemployment rate (% unemployed) from 1948 to Nov 2016.
 
 ----------------------------
 ### Version 1.6 - October 2016 (on CRAN)
