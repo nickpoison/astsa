@@ -2,27 +2,27 @@
 ### Version 1.7 - Dec 2016
 ----------------------------
 
-+ fixed x0n and P0n in Ksmooth0 and Ksmooth1 (minor fix) 
++ fixed `x0n` and `P0n` in `Ksmooth0` and `Ksmooth1` (minor fix) 
 
-+ add box() after grid() on some graphics 
++ add `box()` after `grid()` on some graphics 
    because the grid was overplotting the box =(
    
-+ added title option to sarima() diagnostic plots indicating 
++ added title option to `sarima()` diagnostic plots indicating 
    model orders (there by default)
 
 + added ptwise 99.9% conf bounds to QQ-plot
 
-+ added +/-1 root MSPE bounds to sarima.for() and changed graphic 
++ added +/-1 root MSPE bounds to `sarima.for()` and changed graphic 
    params a little - bnds are a gray swatch
 
-+ added data set 'cpg' (cost per GB of storage) for a problem
++ added data set `cpg` (cost per GB of storage) for a problem
 
-+ added 'UnempRate' data set... US unemployment in percent unemployed
++ added `UnempRate` data set... US unemployment in percent unemployed
    from 1948 to November 2016
 
-
+----------------------------
 ### Version 1.6 - October 2016
-
+----------------------------
 
 + added 3 new series: 
 1. `globtemp` 
