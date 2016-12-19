@@ -79,35 +79,30 @@
 
 + `EM1` fixed so inputs are not allowed (and no longer included in the call):
 
-   * Inputs are not allowed. The script uses Ksmooth1, but everything 
+   * Inputs are not allowed. The script uses `Ksmooth1`, but everything 
      related to inputs are set equal to zero.  That was the original 
      intent of this script.
   
-   * It would be relatively easy to include estimates of 'Ups' and 'Gam' 
-     because conditional on the states, these are just regression coefficients.  
-     If you decide to alter EM1 to include estimates of the 'Ups' or 'Gam', feel 
-     free to notify me with a working example and I'll include it in the 
-     next update (assuming it's correct, of course). Instructors... this would be
-     an awesome class project.
+   * It would be relatively easy to include estimates of `Ups` and `Gam`  because conditional on the states, these are just regression coefficients. If you decide to alter `EM1` to include estimates of the `Ups` or `Gam`, feel free to notify me with a working example and I'll include it in the  next update (assuming it's correct, of course). Instructors... this would bean awesome class project.
 
 
 ---------------------------
 Version 1.2  - March 2014
 ---------------------------
 
-+ Fixed man page for the scripts 'stoch.reg' and for the 'Kfilter's and 'Ksmooth's
++ Fixed man page for the scripts `stoch.reg` and for the `Kfilter`s and `Ksmooth`s
 
-+ acf2 can take additional 'acf' arguments like na.action=na.omit ...
++ `acf2` can take additional `acf` arguments like `na.action=na.omit` ...
 
-+ acf2 max vertical axis was always 1; now it depends on data
++ `acf2` max vertical axis was always 1; now it depends on data
 
-+ acf2 now has grid lines
++ `acf2` now has grid lines
 
-+ FDR man entry corrected
++ `FDR` man entry corrected
 
-+ Kfilter1; changed Ups and Gam == 0 case to match Kfilter2's appropriate method
++ `Kfilter1`; changed `Ups` and `Gam == 0` case to match `Kfilter2`s appropriate method
 
-+ astsadata() is gone, 'LazyData: true' instead
++ `astsadata()` is gone, `LazyData: true` instead
  
 
 -------------------------
@@ -116,13 +111,13 @@ Version 1.1  - July 2012
 
 + Associated namespace with all 'base' function calls
  
-+ Added data set 'blood' (based on code in Example 6.1) as an mts object of the Jones data set with NA as missing data code. Example 6.9 still uses 0 for missing data.  
++ Added data set `blood` (based on code in Example 6.1) as an mts object of the Jones data set with `NA` as missing data code. Example 6.9 still uses 0 for missing data.  
 
-+ Added links to related data sets in some man pages (e.g., oil <-> gas ...)
++ Added links to related data sets in some man pages (e.g., `oil` <-> `gas` ...)
 
-+ Added 'astsadata.R' to load all the data sets at once.
++ Added `astsadata.R` option to load all the data sets at once.
 
-+ Changed 'mvspec.R' so it could be used in place of 'spec.pgram' and 'spectrum'.  The defaults are similar now to spec.prgram, but the default is not to taper, forcing the user to think about it.  It also returns the book's more useful definition of bandwidth.  
++ Changed `mvspec.R` so it could be used in place of `spec.pgram` and `spectrum`.  The defaults are similar now to `spec.prgram`, but the default is not to taper, forcing the user to think about it.  It also returns the book's more useful definition of bandwidth.  
 
 
 -------------------------
@@ -131,11 +126,11 @@ Version 1.0  - June 2012
 
 + astsa built from tsa3.rda with the following changes:
 
-       in astsa   is   in tsa3   
-      =========================
-      arma.spec()    spec.arma() 
-      lag1.plot()    lag.plot1() 
-      lag2.plot()    lag.plot2() 
+          in astsa | is |  in tsa3   
+         ----------|----|------------
+      `arma.spec()`|    |`spec.arma()` 
+      `lag1.plot()`|    |`lag.plot1()` 
+      `lag2.plot()`|    |`lag.plot2()` 
 
-  but arma.spec, lag1.plot, and lag2.plot are now included in tsa3.rda (which won't be updated again).      
+* `tsa3.rda` is gone    
 
