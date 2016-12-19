@@ -1,6 +1,6 @@
 ----------------------------
 ### Version 1.7 - Dec 2016
-----------------------------
+
 
 + fixed `x0n` and `P0n` in `Ksmooth0` and `Ksmooth1` (minor fix) 
 
@@ -22,7 +22,7 @@
 
 ----------------------------
 ### Version 1.6 - October 2016
-----------------------------
+
 
 + added 3 new series: 
 
@@ -35,7 +35,7 @@
 
 ----------------------------
 ### Version 1.5 - August 2016
-----------------------------
+
 
 + needed a minor fix to acf2, so while I'm here: 
 
@@ -48,7 +48,7 @@
 
 ---------------------------
 ### Version 1.4 - July 2016
----------------------------
+
 
 + `sarima` has a t-table now (no p-values)
 
@@ -63,7 +63,7 @@
 
 -------------------------
 ### Version 1.3  -  Nov 2014
--------------------------
+
 
 + `sarima` now allows inclusion of `xreg` to facilitate regression with autocorrelated errors 
 
@@ -87,7 +87,7 @@
 
 -------------------------
 Version 1.2  - March 2014
--------------------------
+
 
 + Fixed man page for the scripts `stoch.reg` and for the `Kfilter`s and `Ksmooth`s
 
@@ -105,7 +105,7 @@ Version 1.2  - March 2014
  
 -------------------------
 Version 1.1  - July 2012
--------------------------
+
 
 + Associated namespace with all 'base' function calls
  
@@ -119,7 +119,7 @@ Version 1.1  - July 2012
 
 -------------------------
 Version 1.0  - June 2012
--------------------------
+
 
 + astsa built from tsa3.rda with the following changes:
 
