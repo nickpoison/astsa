@@ -56,7 +56,7 @@
 
 + minor tweaks to `lag1.plot` and `lag2.plot` displays
 
-+ added `sp500w` ... an xts data set, S&P500 weekly returns
++ added `sp500w` ... an `xts` data set, S&P500 weekly returns
 
 + updated man pages for new edition
 
@@ -75,7 +75,7 @@
 
 + fixed estimate of $cov(v\_t) = R$ in `EM0` and `EM1` (t=1 part was missing)
 
-+ fixed typo in EMx missing code (0=observed, 1=missing)
++ fixed typo in `EMx` missing code (0=observed, 1=missing)
 
 + `EM1` fixed so inputs are not allowed (and no longer included in the call):
 
