@@ -86,7 +86,7 @@
    * It would be relatively easy to include estimates of `Ups` and `Gam`  because conditional on the states, these are just regression coefficients. If you decide to alter `EM1` to include estimates of the `Ups` or `Gam`, feel free to notify me with a working example and I'll include it in the  next update (assuming it's correct, of course). Instructors... this would bean awesome class project.
 
 -------------------------
-Version 1.2  - March 2014
+### Version 1.2  - March 2014
 
 
 + Fixed man page for the scripts `stoch.reg` and for the `Kfilter`s and `Ksmooth`s
@@ -104,8 +104,7 @@ Version 1.2  - March 2014
 + `astsadata()` is gone, `LazyData: true` instead
  
 -------------------------
-Version 1.1  - July 2012
-
+### Version 1.1  - July 2012
 
 + Associated namespace with all 'base' function calls
  
@@ -118,7 +117,7 @@ Version 1.1  - July 2012
 + Changed `mvspec.R` so it could be used in place of `spec.pgram` and `spectrum`.  The defaults are similar now to `spec.prgram`, but the default is not to taper, forcing the user to think about it.  It also returns the book's more useful definition of bandwidth.  
 
 -------------------------
-Version 1.0  - June 2012
+### Version 1.0  - June 2012
 
 
 + astsa built from tsa3.rda with the following changes:
