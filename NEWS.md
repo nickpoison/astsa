@@ -37,7 +37,7 @@
 
 + added `xts` dataset `djia` (Dow Jones) so don't need internet connection to use it (or Yahoo now that Verizon owns it - who knows what will happen???)
 
-+ listed p-values in `sarima` ttable because t-tables and p-values go together like horses and carriages, and were popular together around the same time.	
++ listed p-values in `sarima` `ttable` because t-tables and p-values go together like horses and carriages, and were popular together around the same time.	
 
 
 ---------------------------
