@@ -41,23 +41,22 @@
 
 + minor tweaks to acf2 and sarima.for displays
 
-+ added dataset 'djia' (Dow Jones) so don't need 
-   internet connection to use it
++ added dataset `djia` (Dow Jones) so don't need internet connection to use it
 
-+ gave in to peer pressure and listed p-values in sarima ttable
++ gave in to peer pressure and listed p-values in `sarima` ttable
 
 
 ---------------------------
 ### Version 1.4 - July 2016
 ---------------------------
 
-+ sarima has a t-table now (no p-values)
++ `sarima` has a t-table now (no p-values)
 
-+ data set 'ar1boot' is gone (example uses simulated data) 
++ data set `ar1boot` is gone (example uses simulated data) 
 
-+ minor tweaks to lag1.plot and lag2.plot displays
++ minor tweaks to `lag1.plot` and `lag2.plot` displays
 
-+ added 'sp500w' ... an xts data set, SP500 weekly returns
++ added `sp500w` ... an xts data set, S&P500 weekly returns
 
 + updated man pages for new edition
 
