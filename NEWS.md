@@ -30,7 +30,7 @@
 2. `globtempl`
 3. `chicken`
 
-* They are updates to the global temperature deviation series to 2015, 
+* 1 and 2 are updates to the global temperature deviation series to 2015, 
    globtemp-el is land only. 
    
 * The third set is the price of chicken - a good example of trend stationary. 
