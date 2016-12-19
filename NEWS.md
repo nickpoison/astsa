@@ -23,16 +23,9 @@
 ### Version 1.6 - October 2016 (on CRAN)
 
 
-+ added 3 new series: 
++ added series `globtemp` and `globtempl` ... they are updates to the global temperature deviation series `gtemp` and `gtemp2`, respectively.  `globtempℓ` is land only.  `gtemp` and `gtemp2` are still in astsa so as not to cause problems - the temperature data sets were reformulated in 2011 so the series do not match up in the overlapping time frame - see the help file for more info
 
-1. `globtemp` 
-2. `globtempl`
-3. `chicken`
-
-* 1 and 2 are updates to the global temperature deviation series to 2015, 
-   globtemp-el is land only. 
-   
-* The third set is the price of chicken - a good example of trend stationary. 
++ added new series `chicken`  ... the price of chicken, which is a decent example of trend stationarity 
 
 ----------------------------
 ### Version 1.5 - August 2016
