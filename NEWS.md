@@ -25,11 +25,13 @@
 ----------------------------
 
 + added 3 new series: 
+
 1. `globtemp` 
 2. `globtempl`
 3. `chicken`
-They are updates to the global temperature deviation series, 
-   'globtemp-el' is land only. The third set is the price of chicken. 
+
+* They are updates to the global temperature deviation series, 
+   globtemp-el is land only. The third set is the price of chicken. 
 
 ----------------------------
 ### Version 1.5 - August 2016
