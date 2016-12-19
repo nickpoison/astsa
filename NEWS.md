@@ -61,9 +61,9 @@
 + updated man pages for new edition
 
 
----------------------------
+-------------------------
 ### Version 1.3  -  Nov 2014
----------------------------
+-------------------------
 
 + `sarima` now allows inclusion of `xreg` to facilitate regression with autocorrelated errors 
 
@@ -86,9 +86,9 @@
    * It would be relatively easy to include estimates of `Ups` and `Gam`  because conditional on the states, these are just regression coefficients. If you decide to alter `EM1` to include estimates of the `Ups` or `Gam`, feel free to notify me with a working example and I'll include it in the  next update (assuming it's correct, of course). Instructors... this would bean awesome class project.
 
 
----------------------------
+-------------------------
 Version 1.2  - March 2014
----------------------------
+-------------------------
 
 + Fixed man page for the scripts `stoch.reg` and for the `Kfilter`s and `Ksmooth`s
 
