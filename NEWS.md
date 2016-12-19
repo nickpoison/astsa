@@ -1,5 +1,5 @@
 ----------------------------
-### Version 1.7 - Dec 2016
+### Version 1.7 - Dec 2016 (will be on CRAN by end of year)
 
 
 + fixed `x0n` and `P0n` in `Ksmooth0` and `Ksmooth1` (minor fix) 
@@ -21,7 +21,7 @@
    from 1948 to November 2016
 
 ----------------------------
-### Version 1.6 - October 2016
+### Version 1.6 - October 2016 (on CRAN)
 
 
 + added 3 new series: 
