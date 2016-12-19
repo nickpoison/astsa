@@ -37,9 +37,9 @@
 ### Version 1.5 - August 2016
 
 
-+ needed a minor fix to acf2, so while I'm here: 
++ needed a minor fix to `acf2`, so while I'm here: 
 
-+ minor tweaks to acf2 and sarima.for displays
++ minor tweaks to `acf2` and `sarima.for` displays
 
 + added dataset `djia` (Dow Jones) so don't need internet connection to use it
 
