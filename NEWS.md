@@ -1,5 +1,5 @@
 ----------------------------
-### Version 1.7 - Dec 2016 (will be on CRAN by end of year)
+### Version 1.7 - Dec 2016 
 
 
 + fixed `x0n` and `P0n` in `Ksmooth0` and `Ksmooth1` (minor fix) 
@@ -20,7 +20,7 @@
 + added time series `UnempRate`, which can be taken as an update to `unemp` (still there) - the data are monthly US unemployment rate (% unemployed) from 1948 to Nov 2016.
 
 ----------------------------
-### Version 1.6 - October 2016 (on CRAN)
+### Version 1.6 - October 2016 
 
 
 + added series `globtemp` and `globtempl` ... they are updates to the global temperature deviation series `gtemp` and `gtemp2`, respectively.  `globtempℓ` is land only.  `gtemp` and `gtemp2` are still in astsa so as not to cause problems - the temperature data sets were reformulated in 2011 so the series do not match up in the overlapping time frame - see the help file for more info
