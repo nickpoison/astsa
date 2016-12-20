@@ -13,7 +13,7 @@ Package: \tab astsa\cr
 Type: \tab Package\cr
 Version: \tab 1.7\cr
 Date: \tab 2016-12-24\cr
-License: \tab GPL-3\cr
+License: \tab GPL-2 | GPL-3\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
 }
