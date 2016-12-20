@@ -11,9 +11,9 @@
    model orders (there by default) ... now if you fit a few models, 
    it's easy to see which diagnostic plot goes with which model...
 
-+ ... also added pointwise 99.9% confidence bounds to the innovations diagnostic QQ-plot based on asymptotic distn of iid normal order statistics
++ ... also added pointwise 99.9% confidence bounds to the innovations diagnostic QQ-plot based on asymptotic distn of iid normal order statistics ... and some minor tweaks to the Q-stat plot
 
-+ now show ±1 and ±2 root MSPE bounds to `sarima.for()` and used transparaent ribbons to display all error bounds because you can't be too pretty
++ now show ±1 and ±2 root MSPE bounds to `sarima.for()` and used transparent ribbons to display all error bounds because you can't be too pretty
 
 + added time series `cpg` (annual median cost per GB of storage) for an easy regression with autocorrelated errors exercise
 
