@@ -74,7 +74,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
           yy <- c(L, rev(U))
         polygon(xx, yy, border=NA, col=gray(.6, alpha=.2) )   
         ############ end qq error bnds ##########################
-    nlag <- ifelse(S<4, 20, 3*S)
+    nlag <- ifelse(S<6, 20, 3*S)
     ppq <- p+q+P+Q
 	if (nlag <= ppq + 8) {nlag = ppq + 8}
     pval <- numeric(nlag)
