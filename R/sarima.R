@@ -47,7 +47,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
 	 if (S<0) {title(paste( "Model: (", p, "," ,d, "," ,q, ")", sep=""), adj=0) }
 	 else {title(paste( "Model: (", p, "," ,d, "," ,q, ") ", "(", P, "," ,D, "," ,Q, ") [", S,"]",  sep=""), adj=0) }
 	           }
-    alag <- 10+sqrt(num)
+    alag <- max(10+sqrt(num), 3*S)    
     ACF = stats::acf(rs, alag, plot=FALSE, na.action = na.pass)$acf[-1] 
     LAG = 1:alag/frequency(xdata)
     L=2/sqrt(num)
@@ -76,6 +76,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
         ############ end qq error bnds ##########################
     nlag <- ifelse(S<4, 20, 3*S)
     ppq <- p+q+P+Q
+	if (nlag <= ppq + 8) {nlag = ppq + 8}
     pval <- numeric(nlag)
     for (i in (ppq+1):nlag) {u <- stats::Box.test(rs, i, type = "Ljung-Box")$statistic
                              pval[i] <- stats::pchisq(u, i-ppq, lower.tail=FALSE)}            
