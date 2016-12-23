@@ -1,7 +1,5 @@
-[![Rdoc](http://www.rdocumentation.org/badges/version/astsa)](http://www.rdocumentation.org/packages/astsa) 
-
-----------------------------
-### Version 1.7 - Dec 2016 (should be on CRAN by Dec 25)
+ ----------------------------
+### Version 1.7 - Dec 2016 [![Rdoc](http://www.rdocumentation.org/badges/version/astsa)](http://www.rdocumentation.org/packages/astsa)
 
 
 + fixed `x0n` and `P0n` in `Ksmooth0` and `Ksmooth1` (minor fix) 
