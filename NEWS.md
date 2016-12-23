@@ -1,4 +1,6 @@
- ----------------------------
+_version 1.7 is the most current version and is on CRAN now_
+
+----------------------------
 ### Version 1.7 - Dec 2016  [![Rdoc](http://www.rdocumentation.org/badges/version/astsa)](http://www.rdocumentation.org/packages/astsa)
 
 
