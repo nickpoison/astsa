@@ -1,3 +1,5 @@
+[![Rdoc](http://www.rdocumentation.org/badges/version/astsa)](http://www.rdocumentation.org/packages/astsa) 
+
 ----------------------------
 ### Version 1.7 - Dec 2016 (should be on CRAN by Dec 25)
 
