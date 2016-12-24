@@ -1,7 +1,10 @@
+[![Rdoc](http://www.rdocumentation.org/badges/version/astsa)](http://www.rdocumentation.org/packages/astsa)   [![Research software impact](http://depsy.org/api/package/cran/astsa/badge.svg)](http://depsy.org/package/r/astsa) [![](http://cranlogs.r-pkg.org/badges/astsa)](http://cran.rstudio.com/web/packages/astsa/index.html)
+
+
 _version 1.7 is the most current version and is on CRAN now_
 
 ----------------------------
-### Version 1.7 - Dec 2016  [![Rdoc](http://www.rdocumentation.org/badges/version/astsa)](http://www.rdocumentation.org/packages/astsa)   [![Research software impact](http://depsy.org/api/package/cran/astsa/badge.svg)](http://depsy.org/package/r/astsa) [![](http://cranlogs.r-pkg.org/badges/astsa)](http://cran.rstudio.com/web/packages/astsa/index.html)
+### Version 1.7 - Dec 2016  
 
 
 + fixed `x0n` and `P0n` in `Ksmooth0` and `Ksmooth1` (minor fix) 
