@@ -5,7 +5,7 @@ Version: 1.7
 Date:   2016-12-24
 Author: David Stoffer
 Maintainer: David Stoffer <stoffer@pitt.edu>
-Description: Contains data sets and scripts to accompany Time Series Analysis and Its Applications: With R Examples by Shumway and Stoffer, fourth edition, ISBN: 978-3-319-52451-1. 
+Description: Contains data sets and scripts to accompany Time Series Analysis and Its Applications: With R Examples by Shumway and Stoffer, fourth edition. 
 URL: http://www.stat.pitt.edu/stoffer/tsa4/  
 Imports:  MASS
 License:  GPL (>= 2)
