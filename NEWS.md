@@ -1,5 +1,5 @@
 
-_version 1.7 is the most current version and is on CRAN now_
+_version 1.7 is the most current version and is on CRAN now_  - Nicky
 
 [![Rdoc](http://www.rdocumentation.org/badges/version/astsa)](http://www.rdocumentation.org/packages/astsa)   [![Research software impact](http://depsy.org/api/package/cran/astsa/badge.svg)](http://depsy.org/package/r/astsa) [![](http://cranlogs.r-pkg.org/badges/astsa)](http://cran.rstudio.com/web/packages/astsa/index.html)
 
