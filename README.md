@@ -1,5 +1,7 @@
 # astsa
-Working version of R package to accompany [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/) - Nicky
+<img src="http://www.stat.pitt.edu/stoffer/tsa4/NickyApproved.png">
+
+Working version of R package to accompany [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/) - _Nicky_ 
 
 * See the [News](https://github.com/nickpoison/astsa/blob/master/NEWS.md) for details about the state of the package
 
