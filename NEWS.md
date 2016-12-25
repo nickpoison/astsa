@@ -3,8 +3,6 @@ _version 1.7 is the most current version and is on CRAN now_
 
 [![Rdoc](http://www.rdocumentation.org/badges/version/astsa)](http://www.rdocumentation.org/packages/astsa)   [![Research software impact](http://depsy.org/api/package/cran/astsa/badge.svg)](http://depsy.org/package/r/astsa) [![](http://cranlogs.r-pkg.org/badges/astsa)](http://cran.rstudio.com/web/packages/astsa/index.html)
 
-_All right,_ Curtin shouted back. _If you are the police, where are your badges? Let's see them._
-
 _Badges, to god-damned hell with badges! We have no badges. In fact, we don't need badges. I don't have to show you any stinking badges, you god-damned cabrón and chinga tu madre!_
 
 From _The Treasure of the Sierra Madre_, by B. Traven
