@@ -7,8 +7,7 @@ _All right,_ Curtin shouted back. _If you are the police, where are your badges?
 
 _Badges, to god-damned hell with badges! We have no badges. In fact, we don't need badges. I don't have to show you any stinking badges, you god-damned cabrón and chinga tu madre!_
 
-From 
-The Treasure of the Sierra Madre, by B. Traven
+From _The Treasure of the Sierra Madre_, by B. Traven
 
 ----------------------------
 ### Version 1.7 - Dec 2016  
