@@ -1,7 +1,8 @@
 
 _version 1.7 is the most current version and is on CRAN now_  - Nicky
 
-[![Rdoc](http://www.rdocumentation.org/badges/version/astsa)](http://www.rdocumentation.org/packages/astsa)   [![Research software impact](http://depsy.org/api/package/cran/astsa/badge.svg)](http://depsy.org/package/r/astsa) [![](http://cranlogs.r-pkg.org/badges/astsa)](http://cran.rstudio.com/web/packages/astsa/index.html) <img src="https://img.shields.io/badge/NickyPoison-approved-ff69b4.svg?style=plastic">
+[![Rdoc](http://www.rdocumentation.org/badges/version/astsa)](http://www.rdocumentation.org/packages/astsa)   [![Research software impact](http://depsy.org/api/package/cran/astsa/badge.svg)](http://depsy.org/package/r/astsa) [![](http://cranlogs.r-pkg.org/badges/astsa)](http://cran.rstudio.com/web/packages/astsa/index.html) 
+<a href="https://github.com/nickpoison"><img src="https://img.shields.io/badge/NickyPoison-approved-ff69b4.svg?style=plastic"></a>
 
 _Badges, to god-damned hell with badges! We have no badges. In fact, we don't need badges. I don't have to show you any stinking badges, you god-damned cabrón and chinga tu madre!_
 
