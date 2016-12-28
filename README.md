@@ -5,5 +5,3 @@ Working version of R package to accompany [Time Series Analysis and Its Applicat
 
 * See the [News](https://github.com/nickpoison/astsa/blob/master/NEWS.md) for details about the state of the package
 
-* Should the [R board](https://www.r-project.org/foundation/board.html) adopt a _No Asshole Policy_ for members who deal with the public?   
-
