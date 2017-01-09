@@ -5,13 +5,13 @@
 \title{Applied Statistical Time Series Analysis
 }
 \description{
-Includes data and scripts to accompany \emph{Time Series Analysis and Its Applications: With R Examples} (4th ed) by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2017.
+Includes data and scripts to accompany \emph{Time Series Analysis and Its Applications: With R Examples} (4th ed) by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2017. Softcover ISBN: 978-3-319-52451-1; eBook ISBN 978-3-319-52452-8; DOI: 10.1007/978-3-319-52452-8.
 }
 \details{
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 1.71\cr
+Version: \tab 1.7.1\cr
 Date: \tab 2017-01-08\cr
 License: \tab GPL (>= 2)\cr
 LazyLoad: \tab yes\cr
