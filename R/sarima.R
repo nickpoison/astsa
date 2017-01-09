@@ -18,12 +18,12 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
    time = stats::time
    na.pass = stats::na.pass
    #
- trc = ifelse(details==TRUE, 1, 0)
- n = length(xdata)
-  if (is.null(xreg)) {
-  constant = 1:n 
-  xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL 
-  if (d==0 & D==0) {	  
+   trc = ifelse(details==TRUE, 1, 0)
+   n = length(xdata)
+   if (is.null(xreg)) {
+   constant = 1:n 
+   xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL 
+   if (d==0 & D==0) {	  
     fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
               xreg=xmean,include.mean=FALSE, optim.control=list(trace=trc,REPORT=1,reltol=tol))
 } else if (xor(d==1, D==1) & no.constant==FALSE) {
@@ -54,18 +54,18 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
      plot(LAG, ACF, type="h", ylim=c(min(ACF)-.1,min(1,max(ACF+.4))), main = "ACF of Residuals")
      abline(h=c(0,-L,L), lty=c(1,2,2), col=c(1,4,4))  
     stats::qqnorm(stdres, main="Normal Q-Q Plot of Std Residuals")  
-	    #stats::qqline(stdres, col=4) 
+        #stats::qqline(stdres, col=4) 
         ################ qq error bnds ###########
         sR <- !is.na(stdres)
         ord <- order(stdres[sR])
         ord.stdres <- stdres[sR][ord]
         PP <- ppoints(num)
         z  <- qnorm(PP)
-		   y <- quantile(ord.stdres, c(.25,.75), names = FALSE, type = 7, na.rm = TRUE)
-           x <- qnorm(c(.25,.75))
-        b <- diff(y)/diff(x)
-        a <- y[1L] - b * x[1L]
-        abline(a,b,col=4)
+         y <- quantile(ord.stdres, c(.25,.75), names = FALSE, type = 7, na.rm = TRUE)
+         x <- qnorm(c(.25,.75))
+         b <- diff(y)/diff(x)
+         a <- y[1L] - b * x[1L]
+        abline(a,b,col=4)  #qqline
         SE <- (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
         qqfit <- a + b*z
         U <- qqfit+3.9*SE   # puts .0005 in tails
