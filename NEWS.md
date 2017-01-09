@@ -6,6 +6,7 @@
 	 not to get too cute.
 
 
+
 ----------------------------
 ### Version 1.7 - Dec 2016  (on CRAN)
 
