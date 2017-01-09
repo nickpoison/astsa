@@ -1,7 +1,7 @@
 ----------------------------
 ### Version 1.71 - Jan 2017  (on GitHub)
 
-+  minor change to QQplot diagnostic plot... used to
++  minor change to diagnostic QQplot... used to
      depend on MASS until it gave warnings. Reminder
 	 not to get too cute.
 
