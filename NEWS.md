@@ -1,12 +1,13 @@
+----------------------------
+### Version 1.71 - Jan 2017  (on Github)
 
-_version 1.7 is the most current version and is on CRAN now_  - Nicky
-
-[![Rdoc](http://www.rdocumentation.org/badges/version/astsa)](http://www.rdocumentation.org/packages/astsa)   [![Research software impact](http://depsy.org/api/package/cran/astsa/badge.svg)](http://depsy.org/package/r/astsa) [![](http://cranlogs.r-pkg.org/badges/astsa)](http://cran.rstudio.com/web/packages/astsa/index.html) 
-<a href="https://github.com/nickpoison"><img src="https://img.shields.io/badge/NickyPoison-approved-ff69b4.svg?style=flat"></a>
++  minor change to QQplot diagnostic plot... used to
+     depend on MASS until it gave warnings. Reminder
+	 not to get too cute.
 
 
 ----------------------------
-### Version 1.7 - Dec 2016  
+### Version 1.7 - Dec 2016  (on CRAN)
 
 
 + fixed `x0n` and `P0n` in `Ksmooth0` and `Ksmooth1` (minor fix) 
