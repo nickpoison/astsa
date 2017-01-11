@@ -59,10 +59,10 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
         sR <- !is.na(stdres)
         ord <- order(stdres[sR])
         ord.stdres <- stdres[sR][ord]
-        PP <- ppoints(num)
-        z  <- qnorm(PP)
-         y <- quantile(ord.stdres, c(.25,.75), names = FALSE, type = 7, na.rm = TRUE)
-         x <- qnorm(c(.25,.75))
+        PP <- stats::ppoints(num)
+        z  <- stats::qnorm(PP)
+         y <- stats::quantile(ord.stdres, c(.25,.75), names = FALSE, type = 7, na.rm = TRUE)
+         x <- stats::qnorm(c(.25,.75))
          b <- diff(y)/diff(x)
          a <- y[1L] - b * x[1L]
         abline(a,b,col=4)  #qqline
