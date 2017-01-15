@@ -2,8 +2,8 @@
 ### Version 1.7-1 - Jan 2017  (on GitHub)
 
 +  minor change to `sarima` diagnostic QQplot... used to
-     depend on MASS until it gave warnings on some
-	 simple examples. Reminder not to get too cute.
+     depend on `MASS` package until it gave warnings on some
+	 simple examples. 
 
 
 
