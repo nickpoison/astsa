@@ -5,8 +5,8 @@
      depend on `MASS` package until it gave warnings on some
 	 simple examples. 
 
-+  some changes to `acf2` allowing changing the plot title, and
-     option not to produce a graphic (if you only want to see the
++  some changes to `acf2` that allows changing the plot title, and
+     an option not to produce a graphic (if you only want to see the
 	 values in a nice form)
 
 
