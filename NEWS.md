@@ -1,5 +1,5 @@
 ----------------------------
-### Version 1.7-1 - Jan 2017  (on GitHub)
+### Version 1.7-2 - Jan 2017  (on GitHub)
 
 +  minor change to `sarima` diagnostic QQplot... used to
      depend on `MASS` package until it gave warnings on some
