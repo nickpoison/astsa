@@ -7,7 +7,7 @@
 Produces a simultaneous plot (and a printout) of the sample ACF and PACF on the same scale. The zero lag value of the ACF is removed.
 }
 \usage{
-acf2(series, max.lag = NULL, ...)
+acf2(series, max.lag=NULL, plot=TRUE, main=paste("Series: ",deparse(substitute(series))), ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -15,6 +15,10 @@ acf2(series, max.lag = NULL, ...)
 }
   \item{max.lag}{
 Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 50}.
+}
+  \item{plot}{If FALSE, no graph is produced, but the values are still printed.
+}
+  \item{main}{Title of graphi; defaults to name of series.
 }
   \item{...}{ Addtional arguements passed to \code{acf} }
 }
@@ -45,7 +49,8 @@ D.S. Stoffer
 %% ~~objects to See Also as \code{\link{help}}, ~~~}
 \examples{
 acf2(rnorm(100))
-acf2(rnorm(100), 25)
+acf2(rnorm(100), 25, main='')  # no title
+acf2(rnorm(100), plot=FALSE)[,'ACF']  # print only ACF
 }
 %% ##--	or do  help(data=index)  for the standard data sets.
 %% 
