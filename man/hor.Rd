@@ -7,7 +7,7 @@
 }
 \format{
   The format is:
- Time-Series [1:136] from 1880 to 2009: 79  65.9  70.9  66.7  ...
+ Time-Series [1:136] from 1982 to 2015: 79  65.9  70.9  66.7  ...
 }
 \source{\url{http://dbedt.hawaii.gov/economic/qser/tourism/}
 }
