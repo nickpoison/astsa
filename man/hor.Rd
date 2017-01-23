@@ -14,4 +14,9 @@
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 }
+\examples{
+plot(hor, type='c')                            # plot data 
+text(hor, labels=1:4, col=c(1,4,2,6), cex=.9)  # add quarter labels
+}
 \keyword{datasets}
+
