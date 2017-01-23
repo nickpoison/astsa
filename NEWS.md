@@ -8,6 +8,9 @@
 +  some additons to `acf2` allowing a plot title change, and
      an option not to produce a graphic (if you only want to see the
 	 values in a nice form)
+	 
++  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
+    good for showing seasonal persistence
 
 
 ----------------------------
