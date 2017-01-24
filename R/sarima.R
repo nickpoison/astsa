@@ -88,7 +88,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
     on.exit(par(old.par))    
 #  end new tsdiag
 
-  dfree = n-length(fitit$coef)
+  dfree = fitit$nobs-length(fitit$coef)
   t.value=fitit$coef/sqrt(diag(fitit$var.coef)) 
   p.two = stats::pf(t.value^2, df1=1, df2=dfree, lower.tail = FALSE)   
   ttable = cbind(Estimate=fitit$coef, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
