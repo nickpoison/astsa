@@ -18,7 +18,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
    time = stats::time
    na.pass = stats::na.pass
    #
-   trc = ifelse(details==TRUE, 1, 0)
+   trc = ifelse(details, 1, 0)
    n = length(xdata)
    if (is.null(xreg)) {
    constant = 1:n 
@@ -37,6 +37,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
 }
 #
 #  replace tsdiag with a better version
+if(details){
     old.par <- par(no.readonly = TRUE)
     layout(matrix(c(1,2,4, 1,3,4), ncol=2))
     rs <- fitit$residuals
@@ -85,7 +86,8 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
      plot( (ppq+1):nlag, pval[(ppq+1):nlag], xlab = "lag", ylab = "p value", ylim = c(0, 
         1), main = "p values for Ljung-Box statistic")
      abline(h = 0.05, lty = 2, col = "blue")  
-    on.exit(par(old.par))    
+    on.exit(par(old.par)) 
+}	
 #  end new tsdiag
 
   dfree = fitit$nobs-length(fitit$coef)

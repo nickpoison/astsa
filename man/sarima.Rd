@@ -42,7 +42,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
   \item{Model}{if TRUE (default), the model orders are printed on the diagnostic plot.
 }
-  \item{details}{turns on or off the output from the nonlinear optimization routine, which is \code{optim}. The default is TRUE, use \code{details=FALSE} to turn off the output.
+  \item{details}{if FALSE, turns off the diagnostic plot and the output from the nonlinear optimization routine, which is \code{optim}. The default is TRUE. 
 %%     ~~Describe \code{details} here~~
 }
   \item{tol}{controls the relative tolerance (reltol in \code{optim}) used to assess convergence. The default is \code{sqrt(.Machine$double.eps)}, the R default. 

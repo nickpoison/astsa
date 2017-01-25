@@ -1,9 +1,10 @@
 ----------------------------
-### Version 1.7.4 - Jan 2017  (on GitHub)
+### Version 1.7.3 - Jan 2017  (on GitHub)
 
 +  minor change to `sarima` diagnostic QQplot... used to
      depend on `MASS` package until it gave warnings on some
-	 simple examples. 
+	 simple examples. Also fixed degrees of freedom calculation
+	 and made `details=FALSE` also shut off diagnostic plot.
 
 +  some additons to `acf2` allowing a plot title change, and
      an option not to produce a graphic (if you only want to see the
@@ -12,8 +13,6 @@
 +  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
     good for showing seasonal persistence
 	
-	
-+   fix  `sarima` deg of freedom
 
 
 ----------------------------
