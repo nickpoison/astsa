@@ -13,7 +13,9 @@
 +  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
     good for showing seasonal persistence
 	
-
+> To update the package to the most recent version, you just need the following two lines:<br/>
+>  `install.packages("devtools")`<br/>
+>  `devtools::install_github("nickpoison/astsa")`
 
 ----------------------------
 ### Version 1.7 - Dec 2016  (on CRAN)
