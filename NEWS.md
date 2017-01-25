@@ -7,7 +7,7 @@
 	 and made `details=FALSE` also shut off diagnostic plot.
 
 +  some additons to `acf2` allowing a plot title change, and
-     an option not to produce a graphic (if you only want to see the
+     an option not to produce a graphic (if you only want to use (or see) the
 	 values in a nice form)
 	 
 +  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
