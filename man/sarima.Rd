@@ -16,13 +16,13 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
   \item{xdata}{univariate time series
 %%     ~~Describe \code{xdata} here~~
 }
-  \item{p}{AR order
+  \item{p}{AR order (must be specified)
 %%     ~~Describe \code{p} here~~
 }
-  \item{d}{difference order
+  \item{d}{difference order (must be specified)
 %%     ~~Describe \code{d} here~~
 }
-  \item{q}{MA order
+  \item{q}{MA order (must be specified)
 %%     ~~Describe \code{q} here~~
 }
   \item{P}{SAR order; use only for seasonal models 
@@ -50,7 +50,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
   \item{no.constant}{controls whether or not sarima includes a constant in the model. In particular, if there is no differencing (d = 0 and D = 0) you get the mean estimate. If there is differencing of order one (either d = 1 or D = 1, but not both), a constant term is included in the model. These two conditions may be overridden (i.e., no constant will be included in the model) by setting this to TRUE; e.g., \code{sarima(x,1,1,0,no.constant=TRUE)}. Otherwise, no constant or mean term is included in the model.  If regressors are included (via \code{xreg}), this is ignored.
 }
 }
-\details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0)} will fit an ARIMA(2,1,0) model to the series in x, and \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0)*(0,1,1)_{12}} model to the series in x.  
+\details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The values p,d,q, must be specified as there is no default. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0)} will fit an ARIMA(2,1,0) model to the series in x, and \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0)*(0,1,1)_{12}} model to the series in x.  
 }
 \value{\item{fit }{the \code{arima} object}
 \item{degrees_of_freedom}{Error degrees of freedom}
