@@ -16,7 +16,7 @@ acf2(series, max.lag=NULL, plot=TRUE, main=paste("Series: ",deparse(substitute(s
   \item{max.lag}{
 Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 50}.
 }
-  \item{plot}{If FALSE, no graph is produced, but the values are still printed.
+  \item{plot}{If FALSE, no graph is produced but the values are still printed.
 }
   \item{main}{Title of graphic; defaults to name of series.
 }
