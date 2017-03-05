@@ -3,7 +3,8 @@
 
 +  minor change to `sarima` diagnostic QQplot... used to
      depend on `MASS` package until it gave warnings on some
-	 simple examples. Also fixed degrees of freedom calculation
+	 simple examples. Also changed degrees of freedom calculation (wasn't sure
+	 the commands I used to get it were correct... now I'm sure)
 	 and made `details=FALSE` also shut off diagnostic plot.
 
 +  some additons to `acf2` allowing a plot title change, and
