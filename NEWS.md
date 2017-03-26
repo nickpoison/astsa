@@ -4,8 +4,10 @@
 +  minor change to `sarima` diagnostic QQplot... used to
      depend on `MASS` package until it gave warnings on some
 	 simple examples. Also changed degrees of freedom calculation (wasn't sure
-	 the commands I used to get it were correct... now I'm sure)
-	 and made `details=FALSE` also shut off diagnostic plot.
+	 the commands I used to get it were correct... now I'm sure).
+	 I made `details=FALSE` also shut off the diagnostic plot, so if you run <br/>
+	 `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
+	 then everything (except the graphic) is stored in `dog` and you won't see any output.
 
 +  some additons to `acf2` allowing a plot title change, and
      an option not to produce a graphic (if you only want to use or see the
