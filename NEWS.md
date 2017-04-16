@@ -1,5 +1,10 @@
+> To update the package to the most recent version, you just need the following two lines:<br/>
+>  `install.packages("devtools")`<br/>
+>  `devtools::install_github("nickpoison/astsa")`
+
+
 ----------------------------
-### Version 1.7.3 - Jan 2017  (on GitHub)
+### Version 1.7.4 - Apr 2017  (on GitHub)
 
 +  minor change to `sarima` diagnostic QQplot... used to
      depend on `MASS` package until it gave warnings on some
@@ -8,6 +13,10 @@
 	 I made `details=FALSE` also shut off the diagnostic plot, so if you run <br/>
 	 `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
 	 then everything (except the graphic) is stored in `dog` and you won't see any output.
+	 
++  added `plot.all` option to `sarima.for` so that if TRUE, all the data are plotted in the graphic; otherwise,
+      only the last 100 observations are plotted.  The default is `plot.all=FALSE`  because it's easier to see 
+      the forecasts if only 100 observations are plotted.
 
 +  some additons to `acf2` allowing a plot title change, and
      an option not to produce a graphic (if you only want to use or see the
@@ -16,9 +25,7 @@
 +  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
     good for showing seasonal persistence
 	
-> To update the package to the most recent version, you just need the following two lines:<br/>
->  `install.packages("devtools")`<br/>
->  `devtools::install_github("nickpoison/astsa")`
+
 
 ----------------------------
 ### Version 1.7 - Dec 2016  (on CRAN)
