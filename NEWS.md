@@ -26,7 +26,7 @@
 	 values in a nice form)
 	 
 +  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
-    good for showing seasonal persistence - check this out [hawaii_occ_rate.r](https://github.com/nickpoison/tsa4/blob/master/hawaii_occ_rate.r), which unfortunately didn't make it in to edition 4 ... but it is in [tsaEZ](http://www.stat.pitt.edu/stoffer/tsa4/tsaEZ.pdf) in the seasonal ARIMA section of chapter 3.
+    good for showing seasonal persistence - check this out [hawaii_occ_rate.r](https://github.com/nickpoison/tsa4/blob/master/hawaii_occ_rate.r)
 	
 
 
