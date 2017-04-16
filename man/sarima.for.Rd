@@ -9,8 +9,8 @@
 }
 \usage{
 sarima.for(xdata, n.ahead, p, d, q, P = 0, D = 0, Q = 0, S = -1, 
-            tol = sqrt(.Machine$double.eps), no.constant = FALSE),
-            plot.all=FALSE
+            tol = sqrt(.Machine$double.eps), no.constant = FALSE,
+            plot.all=FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -49,7 +49,7 @@ sarima.for(xdata, n.ahead, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 %%     ~~Describe \code{no.constant} here~~
 }
   \item{plot.all}{if TRUE, all the data are plotted in the graphic; otherwise, only the last 100 observations are plotted in the graphic.
-%%     ~~Describe \code{S} here~~
+%%   
 }
 }
 
