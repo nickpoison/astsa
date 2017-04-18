@@ -148,11 +148,11 @@
 
 + astsa built from tsa3.rda with the following changes:
 
-          in astsa | is |  in tsa3   
-         ----------|----|------------
-      `arma.spec()`|    |`spec.arma()` 
-      `lag1.plot()`|    |`lag.plot1()` 
-      `lag2.plot()`|    |`lag.plot2()` 
+          in astsa | was |  in tsa3   
+         ----------|-----|------------
+       arma.spec() |     | spec.arma() 
+       lag1.plot() |     | lag.plot1() 
+       lag2.plot() |     | lag.plot2() 
 
 * `tsa3.rda` is gone    
 
