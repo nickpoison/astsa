@@ -10,5 +10,5 @@ importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",  "time",
 			 "dnorm", "quantile")
 
 # Export all names
-exportPattern(".")
+exportPattern("^[^\\.]")
 
