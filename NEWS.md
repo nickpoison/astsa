@@ -146,7 +146,7 @@
 ### Version 1.0  - June 2012
 
 
-+ astsa built from tsa3.rda with the following changes:
++ astsa built from tsa3.rda with the following changes
 
           in astsa | was |  in tsa3   
          ----------|-----|------------
