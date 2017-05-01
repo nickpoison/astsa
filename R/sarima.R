@@ -52,7 +52,7 @@ if(details){
     ACF = stats::acf(rs, alag, plot=FALSE, na.action = na.pass)$acf[-1] 
     LAG = 1:alag/frequency(xdata)
     L=2/sqrt(num)
-     plot(LAG, ACF, type="h", ylim=c(min(ACF)-.1,min(1,max(ACF+.4))), main = "ACF of Residuals")
+     plot(LAG, ACF, type="h", ylim=c(min(ACF)-.1,min(1,(ACF+.4)), main = "ACF of Residuals")
      abline(h=c(0,-L,L), lty=c(1,2,2), col=c(1,4,4))  
     stats::qqnorm(stdres, main="Normal Q-Q Plot of Std Residuals")  
         #stats::qqline(stdres, col=4) 
