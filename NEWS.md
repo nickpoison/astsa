@@ -18,7 +18,8 @@
 	*   made `details=FALSE` also shut off the diagnostic plot, so if you run <br/>
 	 `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
 	 then everything (except the graphic) is stored in `dog` and you won't see any output.
-	 +   added `plot.all` option to `sarima.for` so that if TRUE, all the data are plotted in the graphic; otherwise,
+	 
++   added `plot.all` option to `sarima.for` so that if TRUE, all the data are plotted in the graphic; otherwise,
       only the last 100 observations are plotted.  The default is `plot.all=FALSE`  because it's easier to see 
       the forecasts if only 100 observations are plotted.
 
