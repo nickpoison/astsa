@@ -1,7 +1,7 @@
 #### This is the changelog for `astsa` ...
 
 
-> To update the package to the most recent version, you just need the following two lines:<br/>
+To update the package to the most recent version, you just need the following two lines:
 >  `install.packages("devtools")`<br/>
 >  `devtools::install_github("nickpoison/astsa")`
 
