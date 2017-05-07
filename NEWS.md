@@ -7,7 +7,7 @@ To update the package to the most recent version, you just need the following tw
 
 
 ----------------------------
-### Version 1.7.4 - Apr 2017  (on GitHub)
+### Version 1.7.5 - Apr 2017  (on GitHub)
 
 +  minor changes to `sarima` 
      * diagnostic QQplot used to
@@ -29,6 +29,8 @@ To update the package to the most recent version, you just need the following tw
 	 
 +  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
     good for showing seasonal persistence - check this out [hawaii_occ_rate.r](https://github.com/nickpoison/tsa4/blob/master/hawaii_occ_rate.r)
+
++ added `acf1` giving the sample ACF of a series without the  zero lag... it operates like `acf2` but doesn't give the PACF.
 	
 
 
