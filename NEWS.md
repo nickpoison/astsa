@@ -7,7 +7,7 @@ To update the package to the most recent version, you just need the following tw
 
 
 ----------------------------
-### Version 1.7.5 - Apr 2017  (on GitHub)
+### Version 1.7.5 - May 2017  (on GitHub)
 
 +  minor changes to `sarima` 
      * diagnostic QQplot used to
