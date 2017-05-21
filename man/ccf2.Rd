@@ -22,7 +22,7 @@ Further arguments to be passed to the plot.
 }
 }
 \details{
-This will produce a graphic of the sample \code{corr[x(t-lag), y(t)]} from \code{-max.lag} to \code{max.lag}.
+This will produce a graphic of the sample \code{corr[x(t+lag), y(t)]} from \code{-max.lag} to \code{max.lag}.
 }
 \references{
 \url{http://www.stat.pitt.edu/stoffer/tsa4/}
