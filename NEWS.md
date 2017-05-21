@@ -7,7 +7,7 @@ To update the package to the most recent version, you just need the following tw
 
 
 ----------------------------
-### Version 1.7.5 - May 2017  (on GitHub)
+### Version 1.7.6 - May 2017  (on GitHub)
 
 +  minor changes to `sarima` 
      * diagnostic QQplot used to
@@ -32,7 +32,7 @@ To update the package to the most recent version, you just need the following tw
 
 + added `acf1` giving the sample ACF of a series without the  zero lag... it operates like `acf2` but doesn't give the PACF.
 	
-
++ added `ccf2` which plots the sample CCF of two series... it operates like `ccf` but the graphic is nicer.
 
 ----------------------------
 ### Version 1.7 - Dec 2016  (on CRAN)
