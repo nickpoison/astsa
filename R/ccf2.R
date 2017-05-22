@@ -1,5 +1,5 @@
 ccf2 <-  
-function (x, y, max.lag = NULL,  na.action = na.fail, ...)
+function (x, y, max.lag = NULL,  na.action = na.fail)
 {
   # ccf of 2 series - nicer graphic
   par = graphics::par
@@ -29,7 +29,7 @@ function (x, y, max.lag = NULL,  na.action = na.fail, ...)
 	 U = 2/sqrt(num)
 	 A = max(U, abs(acf.out$CCF)) +.02
 	 par(mar = c(2.5,2.5,1.5,0.8), mgp = c(1.5,0.6,0), cex.main=1, font.main=1)
-	 plot(acf.out$LAG, acf.out$CCF, type='n', ylab="CCF", xlab="LAG", ylim=c(-A,A), main=acf.out$snames, ...) 
+	 plot(acf.out$LAG, acf.out$CCF, type='n', ylab="CCF", xlab="LAG", ylim=c(-A,A), main=acf.out$snames) 
      grid(lty=1, col=gray(.9)); box()
 	 abline(h=c(0,-U,U), lty=c(1,2,2), col=c(1,4,4))
 	 abline(v=0, lty=2, col=gray(.5, alpha=.5))
