@@ -25,12 +25,13 @@ other graphical parameteres; see \link[graphics]{par}.
 D.S. Stoffer
 }
 \examples{
-plot(soi, col=4)
+tsplot(soi, col=4)
 #
-plot(soi, main="Southern Oscillation Index")
+tsplot(soi, main="Southern Oscillation Index")
 #
 par(mfrow=2:1)
-plot(soi); plot(rec)
+tsplot(soi, main="Title for Both")
+tsplot(rec)
 }
 \keyword{ ts }%  
 
