@@ -19,22 +19,22 @@ To update the package to the most recent version, you just need the following tw
 	 `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
 	 then everything (except the graphic) is stored in `dog` and you won't see any output.
 	 
-+   added `plot.all` option to `sarima.for` so that if TRUE, all the data are plotted in the graphic; otherwise,
+2.   added `plot.all` option to `sarima.for` so that if TRUE, all the data are plotted in the graphic; otherwise,
       only the last 100 observations are plotted.  The default is `plot.all=FALSE`  because it's easier to see 
       the forecasts if only 100 observations are plotted.
 
-+  some additons to `acf2` allowing a plot title change, and
+3.  some additons to `acf2` allowing a plot title change, and
      an option not to produce a graphic (if you only want to use or see the
 	 values in a nice form)
 	 
-+  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
+4.  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
     good for showing seasonal persistence - check this out [hawaii_occ_rate.r](https://github.com/nickpoison/tsa4/blob/master/hawaii_occ_rate.r)
 
-+ added `acf1` giving the sample ACF of a series without the  zero lag... it operates like `acf2` but doesn't give the PACF.
+5. added `acf1` giving the sample ACF of a series without the  zero lag... it operates like `acf2` but doesn't give the PACF.
 	
-+ added `ccf2`, which plots the sample CCF of two series... it operates like `ccf` but the graphic is nicer.
+6. added `ccf2`, which plots the sample CCF of two series... it operates like `ccf` but the graphic is nicer.
 
-+ added `tsplot` to give a nice plot of a univariate time series in one easy command ... works like `plot` for a `ts` object.
+7. added `tsplot` to give a nice plot of a univariate time series in one easy command ... works like `plot` for a `ts` object.
 
 
 ----------------------------
