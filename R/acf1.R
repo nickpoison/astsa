@@ -18,15 +18,12 @@ function(series, max.lag=NULL, main=paste("Series: ",deparse(substitute(series))
   L=-U
   minu=min(minA, L)-.01
   maxu=min(maxA+.2, 1)
-  old.par <- par(no.readonly = TRUE)
-  old.par <- par(no.readonly = TRUE)
-  par(mar = c(2.5,2.5,1.5,0.8), mgp = c(1.5,0.6,0), cex.main=1)
+  par(mar = c(2.5,2.5,1.5,0.5), mgp = c(1.5,0.6,0), cex.main=1)
   plot(LAG, ACF, type="n", ylim=c(minu,maxu), main=main)
     ###
     grid(lty=1, col=gray(.9)); box()
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
-    lines(LAG, ACF, type='h')
-  on.exit(par(old.par))    
+    lines(LAG, ACF, type='h')   
   return(round(ACF,2)) 
   }
 
