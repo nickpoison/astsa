@@ -7,9 +7,9 @@ To update the package to the most recent version, you just need the following tw
 
 
 ----------------------------
-### Version 1.7.6 - May 2017  (on GitHub)
+### Version 1.7.7 - May 2017  (on GitHub)
 
-+  minor changes to `sarima` 
+1.  minor changes to `sarima` 
      * diagnostic QQplot used to
      depend on `MASS` package until it gave warnings on some
 	 simple examples ... now it's done "inhouse"<br/>
@@ -32,7 +32,10 @@ To update the package to the most recent version, you just need the following tw
 
 + added `acf1` giving the sample ACF of a series without the  zero lag... it operates like `acf2` but doesn't give the PACF.
 	
-+ added `ccf2` which plots the sample CCF of two series... it operates like `ccf` but the graphic is nicer.
++ added `ccf2`, which plots the sample CCF of two series... it operates like `ccf` but the graphic is nicer.
+
++ added `tsplot` to give a nice plot of a univariate time series in one easy command ... works like `plot` for a `ts` object.
+
 
 ----------------------------
 ### Version 1.7 - Dec 2016  (on CRAN)
