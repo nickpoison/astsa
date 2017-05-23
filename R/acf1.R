@@ -23,7 +23,7 @@ function(series, max.lag=NULL, main=paste("Series: ",deparse(substitute(series))
     ###
     grid(lty=1, col=gray(.9)); box()
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
-    lines(LAG, ACF, type='h')   
+    lines(LAG, ACF, type='h', ...)   
   return(round(ACF,2)) 
   }
 

@@ -1,5 +1,5 @@
 ccf2 <-  
-function (x, y, max.lag = NULL, main=NULL, na.action = na.fail)
+function (x, y, max.lag = NULL, main=NULL, na.action = na.fail, ...)
 {
   # ccf of 2 series - nicer graphic
   par = graphics::par
@@ -33,5 +33,5 @@ function (x, y, max.lag = NULL, main=NULL, na.action = na.fail)
      grid(lty=1, col=gray(.9)); box()
 	 abline(h=c(0,-U,U), lty=c(1,2,2), col=c(1,4,4))
 	 abline(v=0, lty=2, col=gray(.5, alpha=.5))
-	 lines(acf.out$LAG, acf.out$CCF, type='h')
+	 lines(acf.out$LAG, acf.out$CCF, type='h', ...)
 }        

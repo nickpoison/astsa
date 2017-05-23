@@ -6,7 +6,7 @@
 Produces a nice graphic (and only a plot) of the sample CCF of two time series.
 }
 \usage{
-ccf2(x, y, max.lag = NULL, main=NULL, na.action = na.fail)
+ccf2(x, y, max.lag = NULL, main=NULL, na.action = na.fail, ... )
 }
 \arguments{
   \item{x, y}{Univariate time series.
@@ -19,6 +19,8 @@ Plot title. If NULL, uses x and y names.
 }
   \item{na.action}{
 Function to be called to handle missing values.
+}
+\item{...}{ Addtional arguements passed to \code{acf} }
 }
 }
 \details{
