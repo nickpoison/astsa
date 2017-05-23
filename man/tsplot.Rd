@@ -6,7 +6,7 @@
 Produces a nice plot of a univariate time series in one easy line.
 }
 \usage{
-tsplot(series, main = NULL, ylab = deparse(substitute(series)), ...)
+tsplot(series, main = NULL, ylab = deparse(substitute(series)), type='l', ...)
 }
 \arguments{
   \item{series}{
@@ -17,6 +17,9 @@ add a plot title - the default is no title.
 }
   \item{ylab}{
 y-axis label - the default is the name of the ts object.
+}
+  \item{type}{
+type of plot - the default is line.
 }
   \item{\dots}{
 other graphical parameteres; see \link[graphics]{par}.
