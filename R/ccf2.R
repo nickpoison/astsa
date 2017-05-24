@@ -23,7 +23,7 @@ function (x, y, max.lag = NULL, main=NULL, na.action = na.fail, ...)
     y <- c(rev(acf.out$acf[-1, 2, 1]), acf.out$acf[, 1, 2])
     acf.out$CCF <- array(y, dim = c(length(y), 1L, 1L))
     acf.out$LAG <- array(lag, dim = c(length(y), 1L, 1L))
-    acf.out$snames <- paste(acf.out$snames, "leads", collapse = "            ") 
+    acf.out$snames <- paste(acf.out$snames, collapse = " & ") 
     if (is.null(main)){main=acf.out$snames}
     #  better graphic
 	 U = 2/sqrt(num)
