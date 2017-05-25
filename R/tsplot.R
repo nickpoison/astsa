@@ -1,4 +1,4 @@
-tsplot <- function(series, main=NULL, ylab=deparse(substitute(series)), type='l', margins=0, ... ){
+tsplot <- function(series, main=NULL, ylab=deparse(substitute(series)), type='l', margins=.25, ... ){
   par = graphics::par
   plot = graphics::plot
   grid = graphics::grid

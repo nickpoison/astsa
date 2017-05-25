@@ -6,7 +6,7 @@
 Produces a nice plot of a univariate time series in one easy line.
 }
 \usage{
-tsplot(series, main = NULL, ylab = deparse(substitute(series)), type='l', margins=0, ...)
+tsplot(series, main = NULL, ylab = deparse(substitute(series)), type='l', margins=.25, ...)
 }
 \arguments{
   \item{series}{
@@ -22,7 +22,7 @@ y-axis label - the default is the name of the ts object.
 type of plot - the default is line.
 }
   \item{margins}{
-inches to add (or subtract) to the margins; start small. 
+inches to add (or subtract) to the margins. 
 }
   \item{\dots}{
 other graphical parameteres; see \link[graphics]{par}.
