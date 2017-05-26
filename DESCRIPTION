@@ -5,7 +5,7 @@ Version: 1.7.7
 Date:   2017-05-23
 Author: David Stoffer
 Maintainer: David Stoffer <stoffer@pitt.edu>
-Description: Includes data and scripts to accompany Time Series Analysis and Its Applications: With R Examples (4th ed), by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2017. Softcover ISBN: 978-3-319-52451-1; eBook ISBN: 978-3-319-52452-8; DOI: 10.1007/978-3-319-52452-8. 
+Description: Includes data and scripts to accompany Time Series Analysis and Its Applications: With R Examples (4th ed), by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2017. Softcover ISBN: 978-3-319-52451-1. 
 URL: http://www.stat.pitt.edu/stoffer/tsa4/  
 License:  GPL (>= 2)
 LazyLoad: yes
