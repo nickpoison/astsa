@@ -11,7 +11,7 @@ Grabs the current version of astsa from GitHub
 upastsa()
 }
 \details{
-Checks if 'devtools' is installed (installs if not there), then updates astsa to the most
+Checks if  'devtools' is installed (installs if not there), then updates astsa to the most
 recent version on GitHub. 
 }
 \references{
@@ -21,11 +21,17 @@ recent version on GitHub.
 D.S. Stoffer
 }
 \note{
-What does the A in CRAN stand for? The word \emph{asshole} is from the word \emph{arse}, which according to the Oxford English Dictionary has been in use since the 11th century to refer to the  buttocks of an animal. Starting roughly around 14th century it was used to refer to a person's buttocks.
+What does the A in CRAN stand for? The word \emph{asshole} is from the word \emph{arse}, 
+which according to the Oxford English Dictionary has been in use since the 11th century to 
+refer to the  buttocks of an animal. Starting roughly around 14th century it was used to 
+refer to a person's buttocks.
 
-Around 1500 the combined form 'arsehole' was first used in its literal form to refer to the anus. The metaphorical use that refers to the worst place in a region (e.g., "the asshole of the world") is first attested in print in 1865. Its use to refer to a despicable person is first record in 1933.
+Around 1500 the combined form \empharsehole} was first used in its literal form to refer 
+to the anus. The metaphorical use that refers to the worst place in a region 
+(e.g., "the asshole of the world") is first attested in print in 1865. Its use to refer 
+to a despicable person is first recorded in 1933.
 
-To the rest of the English speaking world, the word ass is still interpreted as donkey.
+To the rest of the English speaking world, the word \emph{ass} is still interpreted as donkey.
 }
 \examples{
 ## The function is currently defined as
