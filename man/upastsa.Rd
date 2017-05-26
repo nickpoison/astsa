@@ -8,7 +8,7 @@ Update astsa to the latest version.
 Grabs the current version of astsa from GitHub
 }
 \usage{
-upastsa()
+upastsa(check=TRUE)
 }
 \arguments{
   \item{check}{
