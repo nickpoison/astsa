@@ -38,14 +38,5 @@ to a despicable person is first recorded in 1933.
 
 To the rest of the English speaking world, the word \emph{ass} is still interpreted as donkey.
 }
-\examples{
-## The function is currently defined as
-function(check=TRUE){
-# check if devtools is installed
-if(check) {if (!'devtools' %in% installed.packages()[,1]) install.packages(devtools) } 
-# update astsa
-devtools::install_github("nickpoison/astsa")
-}
-}
 \keyword{ utilities } 
 
