@@ -10,6 +10,11 @@ Grabs the current version of astsa from GitHub
 \usage{
 upastsa()
 }
+\arguments{
+  \item{check}{
+if TRUE (default), checks if the package 'devtools' is installed.
+}
+}
 \details{
 Checks if  'devtools' is installed (installs if not there), then updates astsa to the most
 recent version on GitHub. 
@@ -26,7 +31,7 @@ which according to the Oxford English Dictionary has been in use since the 11th 
 refer to the  buttocks of an animal. Starting roughly around 14th century it was used to 
 refer to a person's buttocks.
 
-Around 1500 the combined form \empharsehole} was first used in its literal form to refer 
+Around 1500 the combined form \emph{arsehole} was first used in its literal form to refer 
 to the anus. The metaphorical use that refers to the worst place in a region 
 (e.g., "the asshole of the world") is first attested in print in 1865. Its use to refer 
 to a despicable person is first recorded in 1933.
@@ -35,12 +40,12 @@ To the rest of the English speaking world, the word \emph{ass} is still interpre
 }
 \examples{
 ## The function is currently defined as
-function () 
-{
-    if (!"devtools" \%in\% installed.packages()[, 1]) 
-        install.packages(devtools)
-    devtools::install_github("nickpoison/astsa")
-  }
+function(check=TRUE){
+# check if devtools is installed
+if(check) {if (!'devtools' %in% installed.packages()[,1]) install.packages(devtools) } 
+# update astsa
+devtools::install_github("nickpoison/astsa")
 }
-\keyword{ utilities }% use one of  RShowDoc("KEYWORDS")
+}
+\keyword{ utilities } 
 
