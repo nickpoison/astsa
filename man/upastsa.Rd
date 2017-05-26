@@ -15,7 +15,7 @@ Checks if 'devtools' is installed (installs if not there), then updates astsa to
 recent version on GitHub. 
 }
 \references{
-\url{http://www.stat.pitt.edu/stoffer/tsa4/
+\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \author{
 D.S. Stoffer
