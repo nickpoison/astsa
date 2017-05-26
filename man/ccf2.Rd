@@ -25,7 +25,6 @@ function to be called to handle missing values.
 }
 \item{...}{ additional arguments passed to \code{acf} }
 }
-}
 \details{
 This will produce a graphic of the sample \code{corr[x(t+lag), y(t)]} from \code{-max.lag} to \code{max.lag}.
 }
