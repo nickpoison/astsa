@@ -33,6 +33,13 @@ other graphical parameteres; see \link[graphics]{par}.
 \author{
 D.S. Stoffer
 }
+\note{ This script is meant to be used for demonstrations so that
+a nice time series plot can be produced in one quick and easy statement.
+You can use it to do tricks, but you might get warnings because I had to
+use 2 levels of graphics to avoid having the grid on top of the line.  For 
+example, \code{axes = FALSE} will work, but you will get a warning because
+it applies to one level and not the other. 
+}
 \examples{
 tsplot(soi, col=4)
 #
