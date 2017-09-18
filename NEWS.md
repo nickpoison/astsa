@@ -7,7 +7,7 @@ To update the package to the most recent version, you just need the following tw
 
 
 ----------------------------
-### Version 1.7.7 - May 2017  (on GitHub)
+### Version 1.7.8 - Sept 2017  (on GitHub)
 
 1.  minor changes to `sarima` 
      * diagnostic QQplot used to
@@ -35,6 +35,8 @@ To update the package to the most recent version, you just need the following tw
 6. added `ccf2`, which plots the sample CCF of two series... it operates like `ccf` but the graphic is nicer.
 
 7. added `tsplot` to give a nice plot of a univariate time series in one easy command ... works like `plot` for a `ts` object.
+
+8. updated `tsplot` so the time index can be changed.
 
 
 ----------------------------
