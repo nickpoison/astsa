@@ -52,7 +52,7 @@ par(mfrow=2:1)
 tsplot(soi, main="Title for Both")
 tsplot(rec)
 #
-tsplot(1:453, soi, ylab='SOI' xlab='Month')
+tsplot(1:453, soi, ylab='SOI', xlab='Month')
 }
 \keyword{ ts }%  
 
