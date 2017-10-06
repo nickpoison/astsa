@@ -1,5 +1,5 @@
 acf1 <-
-function(series, max.lag=NULL, main=paste("Series: ",deparse(substitute(series))), ...){
+function(series, max.lag=NULL, main=paste("Series: ",deparse(substitute(series))), na.action = na.pass, ...){
   par = graphics::par
   plot = graphics::plot
   grid = graphics::grid
@@ -10,7 +10,7 @@ function(series, max.lag=NULL, main=paste("Series: ",deparse(substitute(series))
   if (num > 49 & is.null(max.lag)) max.lag=ceiling(10+sqrt(num))
   if (num < 50 & is.null(max.lag))  max.lag=floor(5*log10(num))
   if (max.lag > (num-1)) stop("Number of lags exceeds number of observations")
-  ACF=stats::acf(series, max.lag, plot=FALSE, ...)$acf[-1]
+  ACF=stats::acf(series, max.lag, plot=FALSE, na.action = na.action, ...)$acf[-1]
   LAG=1:max.lag/stats::frequency(series)
   minA=min(ACF)
   maxA=max(ACF)

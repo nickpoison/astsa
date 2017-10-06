@@ -1,5 +1,5 @@
 ccf2 <-  
-function (x, y, max.lag = NULL, main=NULL, ylab="CCF", na.action = na.fail, ...)
+function (x, y, max.lag = NULL, main=NULL, ylab="CCF", na.action = na.pass, ...)
 {
   # ccf of 2 series - nicer graphic
   par = graphics::par

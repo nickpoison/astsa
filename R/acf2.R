@@ -1,11 +1,11 @@
 acf2 <-
-function(series, max.lag=NULL, plot=TRUE, main=paste("Series: ",deparse(substitute(series))), ...){
+function(series, max.lag=NULL, plot=TRUE, main=paste("Series: ",deparse(substitute(series))), na.action = na.pass, ...){
   num=length(series)
   if (num > 49 & is.null(max.lag)) max.lag=ceiling(10+sqrt(num))
   if (num < 50 & is.null(max.lag))  max.lag=floor(5*log10(num))
   if (max.lag > (num-1)) stop("Number of lags exceeds number of observations")
-  ACF=stats::acf(series, max.lag, plot=FALSE, ...)$acf[-1]
-  PACF=stats::pacf(series, max.lag, plot=FALSE, ...)$acf
+  ACF=stats::acf(series, max.lag, plot=FALSE, na.action = na.action,...)$acf[-1]
+  PACF=stats::pacf(series, max.lag, plot=FALSE, na.action = na.action, ...)$acf
   LAG=1:max.lag/stats::frequency(series)
  if(plot){
    par = graphics::par
