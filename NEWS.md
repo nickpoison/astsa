@@ -38,7 +38,7 @@ To update the package to the most recent version, you just need the following tw
 
 8. updated `tsplot` so the time index can be changed.
 
-9. changed `na.action` to `na.pass` in `acf1`, `acf2`, and `ccf`... these used to be `na.fail` which is the R stats package default
+9. changed `na.action` to `na.pass` in `acf1`, `acf2`, and `ccf2`... these used to be `na.fail` which is the R stats package default
 
 
 ----------------------------
