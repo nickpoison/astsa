@@ -7,7 +7,7 @@
 Produces a simultaneous plot (and a printout) of the sample ACF and PACF on the same scale. The zero lag value of the ACF is removed.
 }
 \usage{
-acf2(series, max.lag=NULL, plot=TRUE, main=paste("Series: ",deparse(substitute(series))), ...)
+acf2(series, max.lag=NULL, plot=TRUE, main=paste("Series: ",deparse(substitute(series))), na.action = na.pass, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,6 +19,8 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 50
   \item{plot}{If FALSE, no graph is produced but the values are still printed.
 }
   \item{main}{Title of graphic; defaults to name of series.
+}
+ \item{na.action}{How to handle missing data; default is \code{na.pass}
 }
   \item{...}{ Additional arguments passed to \code{acf} }
 }
