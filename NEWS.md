@@ -1,4 +1,4 @@
-#### This is the changelog for `astsa` ...
+## This is the changelog for `astsa` ...
 
 
 To update the package to the most recent version, you just need the following two lines:
@@ -7,7 +7,7 @@ To update the package to the most recent version, you just need the following tw
 
 
 ----------------------------
-### Version 1.7.8 - Sept 2017  (on GitHub)
+### Version 1.7.9 - Oct 2017  (on GitHub)
 
 1.  minor changes to `sarima` 
      * diagnostic QQplot used to
@@ -37,6 +37,8 @@ To update the package to the most recent version, you just need the following tw
 7. added `tsplot` to give a nice plot of a univariate time series in one easy command ... works like `plot` for a `ts` object.
 
 8. updated `tsplot` so the time index can be changed.
+
+9. changed `na.action` to `na.pass` in `acf1`, `acf2`, and `ccf`... these used to be `na.fail` which is the R stats package default
 
 
 ----------------------------
