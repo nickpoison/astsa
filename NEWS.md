@@ -9,15 +9,17 @@ To update the package to the most recent version, you just need the following tw
 ----------------------------
 ### Version 1.7.9 - Oct 2017  (on GitHub)
 
-1.7.1.  minor changes to `sarima` 
-     * diagnostic QQplot used to
+1.7.1.  minor changes to `sarima`   
+
+  + diagnostic QQplot used to
      depend on `MASS` package until it gave warnings on some
 	 simple examples ... now it's done "inhouse"<br/>
-	  *   changed degrees of freedom calculation (wasn't sure
++  changed degrees of freedom calculation (wasn't sure
 	 the commands I used to get it were correct... now I'm sure).
-	*   made `details=FALSE` also shut off the diagnostic plot, so if you run <br/>
-	 `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
++   made `details=FALSE` also shut off the diagnostic plot, so if you run<br/>
+ `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
 	 then everything (except the graphic) is stored in `dog` and you won't see any output.
+
 	 
 1.7.2.   added `plot.all` option to `sarima.for` so that if TRUE, all the data are plotted in the graphic; otherwise,
       only the last 100 observations are plotted.  The default is `plot.all=FALSE`  because it's easier to see 
