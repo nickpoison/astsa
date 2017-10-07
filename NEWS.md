@@ -9,7 +9,7 @@ To update the package to the most recent version, you just need the following tw
 ----------------------------
 ### Version 1.7.9 - Oct 2017  (on GitHub)
 
-1.  minor changes to `sarima` 
+1.7.1.  minor changes to `sarima` 
      * diagnostic QQplot used to
      depend on `MASS` package until it gave warnings on some
 	 simple examples ... now it's done "inhouse"<br/>
@@ -19,26 +19,26 @@ To update the package to the most recent version, you just need the following tw
 	 `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
 	 then everything (except the graphic) is stored in `dog` and you won't see any output.
 	 
-2.   added `plot.all` option to `sarima.for` so that if TRUE, all the data are plotted in the graphic; otherwise,
+1.7.2.   added `plot.all` option to `sarima.for` so that if TRUE, all the data are plotted in the graphic; otherwise,
       only the last 100 observations are plotted.  The default is `plot.all=FALSE`  because it's easier to see 
       the forecasts if only 100 observations are plotted.
 
-3.  some additons to `acf2` allowing a plot title change, and
+1.7.3.  some additons to `acf2` allowing a plot title change, and
      an option not to produce a graphic (if you only want to use or see the
 	 values in a nice form)
 	 
-4.  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
+1.7.4.  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
     good for showing seasonal persistence - check this out [hawaii_occ_rate.r](https://github.com/nickpoison/tsa4/blob/master/hawaii_occ_rate.r)
 
-5. added `acf1` giving the sample ACF of a series without the  zero lag... it operates like `acf2` but doesn't give the PACF.
+1.7.5. added `acf1` giving the sample ACF of a series without the  zero lag... it operates like `acf2` but doesn't give the PACF.
 	
-6. added `ccf2`, which plots the sample CCF of two series... it operates like `ccf` but the graphic is nicer.
+1.7.6. added `ccf2`, which plots the sample CCF of two series... it operates like `ccf` but the graphic is nicer.
 
-7. added `tsplot` to give a nice plot of a univariate time series in one easy command ... works like `plot` for a `ts` object.
+1.7.7. added `tsplot` to give a nice plot of a univariate time series in one easy command ... works like `plot` for a `ts` object.
 
-8. updated `tsplot` so the time index can be changed.
+1.7.8. updated `tsplot` so the time index can be changed.
 
-9. changed `na.action` to `na.pass` in `acf1`, `acf2`, and `ccf2`... these used to be `na.fail` which is the R stats package default
+1.7.9. changed `na.action` to `na.pass` in `acf1`, `acf2`, and `ccf2`... these used to be `na.fail` which is the R stats package default
 
 
 ----------------------------
