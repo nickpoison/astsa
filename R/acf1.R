@@ -1,5 +1,6 @@
 acf1 <-
-function(series, max.lag=NULL, main=paste("Series: ",deparse(substitute(series))), na.action = na.pass, ...){
+function(series, max.lag=NULL, main=paste("Series: ",deparse(substitute(series))), 
+         na.action = na.pass, ...){
   par = graphics::par
   plot = graphics::plot
   grid = graphics::grid

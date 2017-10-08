@@ -1,5 +1,6 @@
 acf2 <-
-function(series, max.lag=NULL, plot=TRUE, main=paste("Series: ",deparse(substitute(series))), na.action = na.pass, ...){
+function(series, max.lag=NULL, plot=TRUE, main=paste("Series: ",deparse(substitute(series))), 
+         na.action = na.pass, ...){
   num=length(series)
   if (num > 49 & is.null(max.lag)) max.lag=ceiling(10+sqrt(num))
   if (num < 50 & is.null(max.lag))  max.lag=floor(5*log10(num))
