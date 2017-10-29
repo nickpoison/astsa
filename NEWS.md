@@ -7,7 +7,7 @@ To update the package to the most recent version, you just need the following tw
 
 
 ----------------------------
-### Version 1.7.10 - Oct 2017  (on GitHub)
+### Version 1.7.11 - Oct 2017  (on GitHub)
 
 1.7.1.  minor changes to `sarima`   
 
@@ -42,8 +42,9 @@ To update the package to the most recent version, you just need the following tw
 
 1.7.9. changed `na.action` to `na.pass` in `acf1`, `acf2`, and `ccf2`... these used to be `na.fail` which is the R stats package default
 
-1.7.10. in `sarima.for`, added the option to include regressors in the forecast.
+1.7.10. in `sarima.for`, added the option to include regressors in the forecast
 
+1.7.11. added ARMAtoAR to give the pi-weights in the invertible representation of an ARMA model ... this is included purely for pedagogical reasons
 
 ----------------------------
 ### Version 1.7 - Dec 2016  (on CRAN)
