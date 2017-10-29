@@ -15,7 +15,7 @@ ARMAtoAR(ar = numeric(), ma = numeric(), lag.max)
 \value{
   A vector of coefficients.
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}}
 \examples{
 # From Section 3.1
 ARMAtoAR(ar=.9, ma=.5, 10)
