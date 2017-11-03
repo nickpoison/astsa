@@ -8,7 +8,7 @@ function(series, max.lag=NULL, main=paste("Series: ",deparse(substitute(series))
   lines = graphics::lines
   frequency = stats::frequency
   num=length(series)
-  if (num > 59 & is.null(max.lag))  lag.max = max(ceiling(10+sqrt(num)), 4*frequency(series)) 
+  if (num > 59 & is.null(max.lag))  max.lag = max(ceiling(10+sqrt(num)), 4*frequency(series)) 
   if (num < 60 & is.null(max.lag))  max.lag = floor(5*log10(num+5))
   if (max.lag > (num-1)) stop("Number of lags exceeds number of observations")
   ACF=stats::acf(series, max.lag, plot=FALSE, na.action = na.action, ...)$acf[-1]
