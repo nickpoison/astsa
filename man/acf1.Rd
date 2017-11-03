@@ -13,7 +13,7 @@ acf1(series, max.lag=NULL, main=paste("Series: ", deparse(substitute(series))),
   \item{series}{The data.  Does not have to be a time series object.
 }
   \item{max.lag}{
-Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 50}.
+Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60}.  If the series is seasonal, this will be at least 4 seasons by default.  
 }
   \item{main}{Title of graphic; defaults to name of series.
 }
