@@ -20,7 +20,7 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.c
   n=length(xdata)
 if (is.null(xreg)) {  
   constant=1:n
-  xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL
+  xmean = rep(1,n); # if(no.constant==TRUE) xmean=NULL
   if (d==0 & D==0) {
     fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
             xreg=xmean,include.mean=FALSE, optim.control=list(reltol=tol));
