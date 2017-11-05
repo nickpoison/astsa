@@ -14,9 +14,9 @@ To update the package to the most recent version, you just need the following tw
        
 + added `ARMAtoAR` to give the pi-weights in the invertible representation of an ARMA model ... this is included mainly for pedagogical reasons
    
-+ changed the `max.lag` default in `acf1` and `acf2` so that if the series is
++ changed the `max.lag` default in `acf1` and `acf2` so if the series is
 seasonal, you'll see at least 4 seasons by default ... I got tired of typing
-`acf2(soi, 48)` ... now `acf2(soi)` is the same.  
+`acf2(soi, 48)` in class ... now `acf2(soi)` is the same.  
 
 
 1.7.10. in `sarima.for`, added the option to include regressors in the forecast
