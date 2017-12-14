@@ -5,11 +5,11 @@
   Gives the \eqn{\pi}-weights in the invertible representation of an ARMA model.
 }
 \usage{
-ARMAtoAR(ar = numeric(), ma = numeric(), lag.max)
+ARMAtoAR(ar = 0, ma = 0, lag.max=20)
 }
 \arguments{
-  \item{ar}{numeric vector of AR coefficients}
-  \item{ma}{numeric vector of MA coefficients}
+  \item{ar}{vector of AR coefficients}
+  \item{ma}{vector of MA coefficients}
   \item{lag.max}{number of pi-weights desired}
 }
 \value{
