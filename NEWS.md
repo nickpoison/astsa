@@ -5,6 +5,14 @@ To update the package to the most recent version, you just need the following tw
 >  `install.packages("devtools")`<br/>
 >  `devtools::install_github("nickpoison/astsa")`
 
+------------------------------
+### Version 1.8 - Dec 2017 (GitHub and CRAN)
+
++ Version 1.8 should be on CRAN before 2018
+
++ Version 1.8 here on GitHub is essentially version 1.7.11 but with some minor
+changes you'd never notice. 
+
 
 ----------------------------
 ### Version 1.7.11 - Oct 2017  (on GitHub)
