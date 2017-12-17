@@ -8,11 +8,11 @@ To update the package to the most recent version, you just need the following tw
 ------------------------------
 ### Version 1.8 - Dec 2017 (GitHub and CRAN)
 
-+ Version 1.8 is on CRAN and here on GitHub
++ Version 1.8 is on CRAN and here on GitHub.
 
 + This version is essentially version 1.7.11 but with some minor
 changes to satisfy the CRANks ... they
-are things you'd never notice. 
+are things you'd never notice. Also, the one on GitHub is slightly improved, so call it v1.8.1. The changes are slight changes in the code that no one would notice from 39,000 feet.
 
 
 ----------------------------
