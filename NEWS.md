@@ -13,8 +13,7 @@ To update the package to the most recent version, you just need the following tw
 + Version 1.8.1 is here on GitHub.
 
 + These versions are essentially version 1.7.11 but with some minor
-changes to satisfy the CRANks ... they
-are things you'd never notice. Also, the one on GitHub is slightly improved, so call it v1.8.1. The changes are slight changes in the code that no one would notice from 39,000 feet.
+changes to satisfy the CRANks. Also, the   GitHub version is slightly improved, so call it v1.8.1. The changes are things no one would notice in places where no one looks.
 
 
 ----------------------------
