@@ -5,6 +5,16 @@ To update the package to the most recent version, you just need the following tw
 >  `install.packages("devtools")`<br/>
 >  `devtools::install_github("nickpoison/astsa")`
 
+
+------------------------------
+### Version 1.8.2 - Sept 2018 (GitHub)
+
+
+1.8.2 added `plot` option to `acf1` with default `TRUE`
+
+1.8.1 minor change to the way `acf2` calls `main` (cleaner)  
+
+
 ------------------------------
 ### Version 1.8 - Dec 2017 (GitHub and CRAN)
 
