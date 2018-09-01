@@ -6,13 +6,15 @@
 Produces a plot (and a printout) of the sample ACF. The zero lag value of the ACF is removed.
 }
 \usage{
-acf1(series, max.lag=NULL, main= NULL, na.action = na.pass, ...)
+acf1(series, max.lag=NULL, plot=TRUE, main= NULL, na.action = na.pass, ...)
 }
 \arguments{
   \item{series}{The data.  Does not have to be a time series object.
 }
   \item{max.lag}{
 Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60}.  If the series is seasonal, this will be at least 4 seasons by default.  
+}
+  \item{plot}{If FALSE, no graph is produced but the values are still printed.
 }
   \item{main}{Title of graphic; defaults to name of series.
 }
