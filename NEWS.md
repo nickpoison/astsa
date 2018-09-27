@@ -10,7 +10,11 @@ To update the package to the most recent version, you just need the following tw
 ### Version 1.8.2 - Sept 2018 (GitHub)
 
 
-1.8.2 added `plot` option to `acf1` with default `TRUE`
+1.8.2 
+
++ added source of data to `gnp` man page
++ added `plot` option to `acf1` with default `TRUE`
+
 
 1.8.1 minor change to the way `acf2` calls `main` (cleaner)  
 
