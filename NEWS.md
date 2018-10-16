@@ -12,7 +12,7 @@ To update the package to the most recent version, you just need the following tw
 
 1.8.2 
 
-+ added data set `salmon` (mothnly salman price)
++ added data set `salmon` 
 + added source of data to `gnp` man page
 + added `plot` option to `acf1` with default `TRUE`
 
