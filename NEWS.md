@@ -7,7 +7,7 @@ To update the package to the most recent version, you just need the following tw
 
 
 ------------------------------
-### Version 1.8.2 - Sept 2018 (GitHub)
+### Version 1.8.2 - Oct 2018 (GitHub)
 
 
 1.8.2 
