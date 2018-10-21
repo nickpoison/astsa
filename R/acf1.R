@@ -20,7 +20,7 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, na.action = na.pass, ...){
   L=-U
   minu=min(minA, L)-.01
   maxu=min(maxA+.2, 1)
-  par(mar = c(2.5,2.5,1.5,0.5), mgp = c(1.5,0.6,0), cex.main=1)
+  par(mar = c(2.5,2.5,1.5,0.5), mgp = c(1.5,0.6,0))
   plot(LAG, ACF, type="n", ylim=c(minu,maxu), main=main)
     ###
     grid(lty=1, col=gray(.9)); box()
