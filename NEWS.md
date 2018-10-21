@@ -14,7 +14,7 @@ To update the package to the most recent version, you just need the following tw
 
 + added data set `salmon` 
 + added source of data to `gnp` man page
-+ added `plot` option to `acf1` with default `TRUE`
++ added `plot` option to `acf1` with default `TRUE` and a few additional minor changes
 
 
 1.8.1 minor change to the way `acf2` calls `main` (cleaner)  
