@@ -1,16 +1,16 @@
 \name{gtemp}
 \alias{gtemp}
 \docType{data}
-\title{Global mean land-ocean temperature deviations
+\title{Global mean ocean temperature deviations - updated to 2017
 %%   ~~ data name/kind ... ~~
 }
-\description{This data file is old and is here only for compatibility.  See \code{\link{globtemp}} and \code{\link{glob_land}}. The original description is:  Global mean land-ocean temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2009.
+\description{Annual sea surface temperature anomalies averaged over the part of the ocean that is free of ice at all times (open ocean) fro 1880 to 2017.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 %\usage{data(gtemp)}
 \format{
   The format is:
- Time-Series [1:130] from 1880 to 2009: -0.28 -0.21 -0.26 -0.27 -0.32 -0.32 -0.29 -0.36 -0.27 -0.17 ...
+ Time-Series [1:138] from 1880 to 2009:  -0.05  0.01  0.00 -0.06 -0.15 ...
 }
 %%\details{
 %%%%  ~~ If necessary, more details than the __description__ above ~~
@@ -21,5 +21,5 @@
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
-\seealso{\code{\link{globtemp}}, \code{\link{globtempl}},  \code{\link{gtemp2}}}
+\seealso{\code{\link{gtemp_land}}, \code{\link{globtemp}}, \code{\link{globtempl}},  \code{\link{gtemp2}}}
 \keyword{datasets}
