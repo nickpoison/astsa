@@ -7,7 +7,13 @@ To update the package to the most recent version, you just need the following tw
 
 
 ------------------------------
-### Version 1.8.2 - Oct 2018 (GitHub)
+### Version 1.8.2 - Nov 2018 (GitHub)
+
+
+1.8.3 (adding some new data sets)
+
++ `gtemp_land`    land only - updated global temps to 2017
++ `gtemp_ocean`   open ocean only to 2017
 
 
 1.8.2 
