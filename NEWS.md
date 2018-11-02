@@ -10,20 +10,16 @@ To update the package to the most recent version, you just need the following tw
 ### Version 1.8.2 - Nov 2018 (GitHub)
 
 
-1.8.3 (adding some new data sets)
+1.8.2 (basically adding some new data sets)
 
 + `gtemp_land`    land only - updated global temps to 2017
 + `gtemp_ocean`   open ocean only to 2017
-
-
-1.8.2 
-
 + added data set `salmon` 
 + added source of data to `gnp` man page
 + added `plot` option to `acf1` with default `TRUE` and a few additional minor changes
 
 
-1.8.1 minor change to the way `acf2` calls `main` (cleaner)  
+1.8.1 minor change to the way `acf2` calls `main` (cleaner)  - this was done at the beginning of v1.8 - it just never made it to CRAN 
 
 
 ------------------------------
