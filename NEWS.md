@@ -5,7 +5,6 @@ To update the package to the most recent version, you just need the following tw
 >  `install.packages("devtools")`<br/>
 >  `devtools::install_github("nickpoison/astsa")`
 
-
 ------------------------------
 ### Version 1.8.2 - Nov 2018 (GitHub)
 
@@ -24,6 +23,8 @@ To update the package to the most recent version, you just need the following tw
 
 ------------------------------
 ### Version 1.8 - Dec 2017 (GitHub and CRAN)
+
+**Time Series Analysis and Its Applications With R Examples -- Edition 4 was written under this version, so you don't need more recent updates to get through the text. But as my mother used to say, *"It couldn't hurt!* **
 
 + Version 1.8 is on CRAN 
 
