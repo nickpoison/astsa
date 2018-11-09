@@ -1,5 +1,5 @@
-\name{gtemp}
-\alias{gtemp}
+\name{gtemp_ocean}
+\alias{gtemp_ocean}
 \docType{data}
 \title{Global mean ocean temperature deviations - updated to 2017
 %%   ~~ data name/kind ... ~~
