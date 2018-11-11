@@ -11,6 +11,7 @@ To update the package to the most recent version, you just need the following tw
 
 1.8.2 (basically adding some new data sets)
 
++ `Hare` and `Lynx` the 90-year data sets of snowshoe hare and lynx pelts purchased by the Hudson's Bay Company of Canada - note `Lynx` differs from the R data set `lynx`. 
 + `gtemp_land`    land only - updated global temps to 2017
 + `gtemp_ocean`   open ocean only to 2017
 + added data set `salmon` 
