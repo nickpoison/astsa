@@ -16,8 +16,7 @@ The data are in  units of one  thousand.
 \source{
 http://people.whitman.edu/~hundledr/courses/M250F03/M250.html
 }
-\references{
-{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \seealso{\code{\link{Lynx}}}
 \keyword{datasets}
