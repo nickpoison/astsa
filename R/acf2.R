@@ -16,16 +16,18 @@ function(series, max.lag=NULL, plot=TRUE, ylim=NULL, main=NULL,  na.action = na.
    abline = graphics::abline
    lines = graphics::lines
    frequency = stats::frequency
-  minA=min(ACF)  
-  maxA=max(ACF)
-  minP=min(PACF)
-  maxP=max(PACF)
-  U=2/sqrt(num)
-  L=-U
-  minu=min(minA,minP,L)-.01
-  maxu=min(max(maxA+.1, maxP+.1), 1)
   old.par <- par(no.readonly = TRUE)
-  if (is.null(ylim)) { ylim = c(minu,maxu) }
+  if (is.null(ylim)) { 
+	minA=min(ACF)  
+    maxA=max(ACF)
+	minP=min(PACF)
+	maxP=max(PACF)
+	U=2/sqrt(num)
+	L=-U
+	minu=min(minA,minP,L)-.01
+	maxu=min(max(maxA+.1, maxP+.1), 1)
+	ylim = c(minu,maxu)
+  }
   par(mfrow=c(2,1), mar = c(2.5,2.5,1.5,0.8), mgp = c(1.5,0.6,0), cex.main=1)
   plot(LAG, ACF, type="n", ylim=ylim, main=main)
     ###

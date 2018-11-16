@@ -14,13 +14,15 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
   abline = graphics::abline
   lines = graphics::lines
   frequency = stats::frequency
-  minA=min(ACF)
-  maxA=max(ACF)
-  U=2/sqrt(num)
-  L=-U
-  minu=min(minA, L)-.01
-  maxu=min(maxA+.2, 1)
-  if (is.null(ylim)) { ylim = c(minu,maxu) }
+  if (is.null(ylim)) { 
+	minA=min(ACF)
+	maxA=max(ACF)
+	U=2/sqrt(num)
+	L=-U
+	minu=min(minA, L)-.01
+	maxu=min(maxA+.2, 1)
+	ylim = c(minu,maxu) 
+ }
   par(mar = c(2.5,2.5,1.5,0.5), mgp = c(1.5,0.6,0))
   plot(LAG, ACF, type="n", ylim=ylim, main=main)
     ###
