@@ -1,5 +1,5 @@
 acf1 <-
-function(series, max.lag=NULL, plot=TRUE, main=NULL, na.action = na.pass, ...){
+function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.pass, ...){
   num=length(series)
   if (num > 59 & is.null(max.lag))  max.lag = max(ceiling(10+sqrt(num)), 4*frequency(series)) 
   if (num < 60 & is.null(max.lag))  max.lag = floor(5*log10(num+5))
@@ -20,8 +20,9 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, na.action = na.pass, ...){
   L=-U
   minu=min(minA, L)-.01
   maxu=min(maxA+.2, 1)
+  if (is.null(ylim)) { ylim = c(minu,maxu) }
   par(mar = c(2.5,2.5,1.5,0.5), mgp = c(1.5,0.6,0))
-  plot(LAG, ACF, type="n", ylim=c(minu,maxu), main=main)
+  plot(LAG, ACF, type="n", ylim=ylim, main=main)
     ###
     grid(lty=1, col=gray(.9)); box()
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
