@@ -14,11 +14,11 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
   abline = graphics::abline
   lines = graphics::lines
   frequency = stats::frequency
+  U=2/sqrt(num)
+  L=-U
   if (is.null(ylim)) { 
 	minA=min(ACF)
 	maxA=max(ACF)
-	U=2/sqrt(num)
-	L=-U
 	minu=min(minA, L)-.01
 	maxu=min(maxA+.2, 1)
 	ylim = c(minu,maxu) 

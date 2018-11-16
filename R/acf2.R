@@ -16,14 +16,14 @@ function(series, max.lag=NULL, plot=TRUE, ylim=NULL, main=NULL,  na.action = na.
    abline = graphics::abline
    lines = graphics::lines
    frequency = stats::frequency
+   	U=2/sqrt(num)
+	L=-U
   old.par <- par(no.readonly = TRUE)
   if (is.null(ylim)) { 
 	minA=min(ACF)  
     maxA=max(ACF)
 	minP=min(PACF)
 	maxP=max(PACF)
-	U=2/sqrt(num)
-	L=-U
 	minu=min(minA,minP,L)-.01
 	maxu=min(max(maxA+.1, maxP+.1), 1)
 	ylim = c(minu,maxu)
