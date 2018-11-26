@@ -4,7 +4,7 @@
 \title{Quarterly U.S. GNP
 %%   ~~ data name/kind ... ~~
 }
-\description{Quarterly U.S. GNP from 1947(1) to 2002(3).
+\description{Seasonally adjusted quarterly U.S. GNP from 1947(1) to 2002(3).
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \format{
