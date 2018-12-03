@@ -6,8 +6,9 @@ To update the package to the most recent version, you just need the following tw
 >  `devtools::install_github("nickpoison/astsa")`
 
 ------------------------------
-### Version 1.8.2 - Nov 2018 (GitHub)
+### Version 1.8.3 - Dec 2018 (GitHub)
 
+1.8.3 changed calculation of the ICs in `sarima` ... there will be a slight difference because I didn't remove the log(2&pi;) part.
 
 1.8.2 (basically adding some new data sets)
 
