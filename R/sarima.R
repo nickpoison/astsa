@@ -69,7 +69,7 @@ if(details){
         abline(a,b,col=4)  #qqline
         SE <- (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
         qqfit <- a + b*z
-        U <- qqfit+3.9*SE   # puts .0005 in tails
+        U <- qqfit+3.9*SE   # puts .00005 in tails
         L <- qqfit-3.9*SE
           z[1]=z[1]-.1      # extend plot -- misses the end otherwise
           z[length(z)]= z[length(z)]+.1
