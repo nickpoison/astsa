@@ -1,5 +1,5 @@
 mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
-    fast = TRUE, demean = FALSE, detrend = TRUE, plot = TRUE, 
+    fast = TRUE, demean = FALSE, detrend = TRUE, plot = TRUE, log='n',
     na.action = na.fail,...) 
 {
      #
@@ -109,7 +109,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
     if (plot) {
-        plot(spg.out, ...)
+        plot(spg.out, panel.first=grid(lty=1, col=gray(.9)), log = log, ...)
         return(invisible(spg.out))
     }
     else return(spg.out)
