@@ -7,7 +7,9 @@ To update the package to the most recent version, you just need the following tw
 >  `devtools::install_github("nickpoison/astsa")`
 
 ------------------------------
-### Version 1.8.4 - Dec 2018 (GitHub)
+### Version 1.8.5 - Dec 2018 (GitHub)
+
+1.8.5 `lag1.plot` and `lag2.plot` now have color option for the points with default `gray(.1)` for a little nicer display
 
 1.8.4 changed `mvspec` and `arma.spec` so the default is NOT to plot on a log scale and the graphics now have a grid 
 
