@@ -9,7 +9,7 @@
 }
 \usage{
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
-         fast = TRUE, demean = FALSE, detrend = TRUE, 
+         fast = TRUE, demean = FALSE, detrend = TRUE, log='n',
          plot = TRUE, na.action = na.fail, ...)
 }
 %- maybe also 'usage' specify other objects documented here.
@@ -38,6 +38,8 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
   \item{detrend }{if TRUE, series is detrended first; same as \code{spec.pgram} 
 %%     ~~Describe \code{detrend} here~~
 }
+  \item{log }{same as \code{spec.pgram} but default is \code{'no'}} 
+}
   \item{plot }{plot the estimate; same as \code{spec.pgram} 
 %%     ~~Describe \code{plot} here~~
 }
@@ -48,7 +50,7 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 %%     ~~Describe \code{\dots} here~~
 }
 }
-\details{This is \code{spec.pgram} with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}.  The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}. Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series.  Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
+\details{This is \code{spec.pgram} with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. The default for the plot is NOT to plot on a log scale and the graphic will have a grid. The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}. Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series.  Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
 %%  ~~ If necessary, more details than the description above ~~
 }
 \value{An object of class "spec", which is a list containing at least the following components:
