@@ -4,7 +4,7 @@
 \title{Spectral Density of an ARMA Model 
 %%  ~~function to do ... ~~
 }
-\description{Gives the ARMA spectrum (on a log scale), tests for causality, invertibility, and
+\description{Gives the ARMA spectrum, tests for causality, invertibility, and
 common zeros.  
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
@@ -30,7 +30,7 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, ...)
 }
 }
 \details{The basic call is \code{arma.spec(ar, ma)} where \code{ar} and \code{ma} are vectors
-containing the model parameters. Use \code{log="no"} if you do not want the plot on
+containing the model parameters. Use \code{log="yes"} if you want the plot on
 a log scale. If the model is not causal or invertible an error message is given. If
 there are common zeros, a spectrum will be displayed and a warning will be given;
 e.g., \code{arma.spec(ar= .9, ma= -.9)} will yield a warning and the plot will be the
@@ -61,7 +61,7 @@ spectrum of white noise.
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %}
 \examples{
-arma.spec(ar = c(1, -.9), ma = .8, log="no")
+arma.spec(ar = c(1, -.9), ma = .8)
 }
 %% ##---- Should be DIRECTLY executable !! ----
 %% ##-- ==>  Define data, use random,
