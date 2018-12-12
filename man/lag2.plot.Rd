@@ -8,7 +8,7 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE)
+lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -27,6 +27,8 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE)
   \item{smooth}{if TRUE, adds a lowess fit to each scatterplot
 %%     ~~Describe \code{smooth} here~~
 }
+  \item{col}{color of points; default is \code{gray(.1)}
+} 
 }
 %%\details{
 %%%%  ~~ If necessary, more details than the description above ~~
