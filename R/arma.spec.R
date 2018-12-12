@@ -1,5 +1,5 @@
 arma.spec <-
-function(ar=0,ma=0,var.noise=1,n.freq=500,  ...)
+function(ar=0, ma=0, var.noise=1, n.freq=500, log='n', ...)
 { 
      plot = graphics::plot     
 	 check <- 0
@@ -29,7 +29,7 @@ function(ar=0,ma=0,var.noise=1,n.freq=500,  ...)
     spec <- var.noise*((1 - cs.ma)^2 + sn.ma^2)/((1 - cs.ar)^2 + sn.ar^2)
     spg.out <- list(freq=freq, spec=spec)
     class(spg.out) <- "spec"
-    plot(spg.out, ci=0, ...)
+    plot(spg.out, ci=0, panel.first=grid(lty=1, col=gray(.9)), log = log, ...)
     return(invisible(spg.out))
 }
 
