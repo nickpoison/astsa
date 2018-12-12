@@ -38,7 +38,7 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
   \item{detrend }{if TRUE, series is detrended first; same as \code{spec.pgram} 
 %%     ~~Describe \code{detrend} here~~
 }
-  \item{log }{same as \code{spec.pgram} but default is \code{'no'}} 
+  \item{log }{same as \code{spec.pgram} but default is \code{'no'}
 }
   \item{plot }{plot the estimate; same as \code{spec.pgram} 
 %%     ~~Describe \code{plot} here~~
