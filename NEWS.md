@@ -1,3 +1,4 @@
+
 ## This is the changelog for `astsa` ...
 
 
@@ -8,7 +9,7 @@ To update the package to the most recent version, you just need the following tw
 ------------------------------
 ### Version 1.8.4 - Dec 2018 (GitHub)
 
-1.8.4 changed `mvspec` so the default is NOT to plot on a log scale and the graphic will have a grid
+1.8.4 changed `mvspec` and `arma.spec` so the default is NOT to plot on a log scale and the graphics now have a grid 
 
 1.8.3 changed calculation of the ICs in `sarima` ... there will be a slight difference because I didn't remove the log(2&pi;) part.
 
