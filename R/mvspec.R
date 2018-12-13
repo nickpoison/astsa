@@ -100,12 +100,8 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     for (k in 1:Nspec){
 		fxx[,,k]=pgram[k,,]
 	    }
-#======================== 
-#  output ease 
-if (nser == 1) {
- details <- round( cbind(frequency=freq, period=1/freq, spectrum=spec), 4)
-}
-
+#========================  
+    details <- round( cbind(frequency=freq, period=1/freq, spectrum=spec), 4)
 #=========================  
     spg.out <- list(freq = freq, spec = spec, coh = coh, phase = phase, 
         kernel = kernel, df = df, bandwidth = bandwidth,  
