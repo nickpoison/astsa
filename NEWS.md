@@ -11,7 +11,7 @@ To update the package to the most recent version, you just need the following tw
 
 1.8.5 `lag1.plot` and `lag2.plot` now have color option for the points with default `gray(.1)` for a little nicer display
 
-1.8.4 changed `mvspec` and `arma.spec` so the default is NOT to plot on a log scale and the graphics now have a grid 
+1.8.4 changed `mvspec` and `arma.spec` so the default is NOT to plot on a log scale and the graphics now have a grid ... also, for `mvspec`, added a `details` value, which is a matrix of *frequency, period, spectral ordinate*- e.g., `mvspec(soi)$details[1:45,]`
 
 1.8.3 changed calculation of the ICs in `sarima` ... there will be a slight difference because I didn't remove the log(2&pi;) part.
 
