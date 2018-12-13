@@ -58,7 +58,7 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 \item{fxx }{spectral matrix estimates; an array of dimensions \code{dim = c(p,p,nfreq)}}
 \item{freq }{vector of frequencies at which the spectral density is estimated.}
 \item{spec }{vector (for univariate series) or matrix (for multivariate series) of estimates of the spectral density at frequencies corresponding to freq.}
-\item{details }{for univariate series, a matrix with 3 columns: frequency, period, spectral ordinate}
+\item{details }{matrix with columns: frequency, period, spectral ordinate(s)}
 \item{coh }{NULL for univariate series. For multivariate time series, a matrix containing the squared coherency between different series. Column i + (j - 1) * (j - 2)/2 of coh contains the squared coherency between columns i and j of x, where i < j.}
 \item{phase }{NULL for univariate series. For multivariate time series a matrix containing the cross-spectrum phase between different series. The format is the same as coh.}
 \item{Lh }{Number of frequencies (approximate) used in the band, as defined in Chapter 4.}
