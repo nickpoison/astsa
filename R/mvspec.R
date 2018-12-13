@@ -100,10 +100,16 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     for (k in 1:Nspec){
 		fxx[,,k]=pgram[k,,]
 	    }
-#========================    
+#======================== 
+#  output ease 
+if (nser == 1) {
+ details <- round( cbind(frequency=freq, period=1/freq, spectrum=spec), 4)
+}
+
+#=========================  
     spg.out <- list(freq = freq, spec = spec, coh = coh, phase = phase, 
         kernel = kernel, df = df, bandwidth = bandwidth,  
-        fxx=fxx, Lh=Lh, n.used = N,
+        fxx=fxx, Lh=Lh, n.used = N, details=details,
         orig.n = N0, series = series, snames = colnames(x), method = ifelse(!is.null(kernel), 
             "Smoothed Periodogram", "Raw Periodogram"), taper = taper, 
         pad = pad, detrend = detrend, demean = demean)
