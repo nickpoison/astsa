@@ -1,10 +1,11 @@
-\name{co2}
-\alias{co2}
+\name{cardi}
+\alias{cardi}
 \docType{data}
 \title{Monthly Carbon Dioxide Levels at Mauna Loa
 }
 \description{
 Monthly mean carbon dioxide (in ppm) measured at Mauna Loa Observatory, Hawaii. 
+This is an update to \code{co2} in the datasets package.
 }
 \format{
   The format is:
