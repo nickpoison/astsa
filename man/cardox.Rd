@@ -1,5 +1,5 @@
-\name{cardi}
-\alias{cardi}
+\name{cardox}
+\alias{cardox}
 \docType{data}
 \title{Monthly Carbon Dioxide Levels at Mauna Loa
 }
