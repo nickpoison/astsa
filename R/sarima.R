@@ -1,4 +1,4 @@
-sarima <-
+sarima <-  
 function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt(.Machine$double.eps),no.constant=FALSE)
 { 
   #
@@ -40,6 +40,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
 if(details){
     old.par <- par(no.readonly = TRUE)
     layout(matrix(c(1,2,4, 1,3,4), ncol=2))
+	par(mar=c(2.2,2,1,.25)+.5, mgp=c(1.6,.6,0))
     rs <- fitit$residuals
     stdres <- rs/sqrt(fitit$sigma2)
     num <- sum(!is.na(rs))
@@ -83,7 +84,7 @@ if(details){
     pval <- numeric(nlag)
     for (i in (ppq+1):nlag) {u <- stats::Box.test(rs, i, type = "Ljung-Box")$statistic
                              pval[i] <- stats::pchisq(u, i-ppq, lower.tail=FALSE)}            
-     plot( (ppq+1):nlag, pval[(ppq+1):nlag], xlab = "lag", ylab = "p value", ylim = c(0, 
+     plot( (ppq+1):nlag, pval[(ppq+1):nlag], xlab = "LAG (H)", ylab = "p value", ylim = c(-.1, 
         1), main = "p values for Ljung-Box statistic")
      abline(h = 0.05, lty = 2, col = "blue")  
     on.exit(par(old.par)) 
