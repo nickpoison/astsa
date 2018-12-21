@@ -11,8 +11,9 @@ To update the package to the most recent version, you just need the following tw
 
 1.8.5 
 
-+ `lag1.plot` and `lag2.plot` now have color option for the points with default `gray(.1)` for a little nicer display. 
++ `lag1.plot` and `lag2.plot` now have color option for the points with default `gray(.1)` for a little nicer display 
 +  added `cardox` data set, an update to `co2` in the datasets package, which stopped in 1997 (now to the end of 2018) 
++ tweaked `sarima` residual analysis graphic so it has less white space - nothing else has changed
 
 
 1.8.4 changed `mvspec` and `arma.spec` so the default is NOT to plot on a log scale and the graphics now have a grid ... also, for `mvspec`, added a `details` value, which is a matrix of *frequency, period, spectral ordinate*- e.g., `mvspec(soi)$details[1:45,]`
