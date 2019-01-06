@@ -9,8 +9,8 @@ and forthcoming Chapman & Hall text (summer 2019) [Time Series A Data Analysis A
 I won't always push the latest version of the package to CRAN because sometimes it's a pain working with those people.  Consequently, the latest working version of the package will always be here. 
  
 
-* Version 1.8.5 on GitHub
+* Version 1.8.6 on GitHub
 * Version 1.8 on CRAN (Springer text written under this version)
-* At this point there are only minor differences between the versions. 
+* At this point there are only minor differences between the versions with the exception of new scripts and data sets.
 * See the [News](https://github.com/nickpoison/astsa/blob/master/NEWS.md) for further details about the state of the package and the changelog.
 

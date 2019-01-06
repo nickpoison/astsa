@@ -7,7 +7,9 @@ To update the package to the most recent version, you just need the following tw
 >  `devtools::install_github("nickpoison/astsa")`
 
 ------------------------------
-### Version 1.8.5 - Dec 2018 (GitHub)
+### Version 1.8.6 - Jan 2019 (GitHub)
+
+1.8.6 Added `ssm()` for fitting a simple univariate state space model. This will be used in the forthcoming text.
 
 1.8.5 
 
