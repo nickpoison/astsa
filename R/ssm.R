@@ -33,8 +33,8 @@ Xs = ts(as.vector(ks$xs), start=strt, freq=frq) + phat[2]
 Ps = ts(as.vector(ks$Ps), start=strt, freq=frq)
 estimate = est$par 
 u = cbind(estimate, SE) 
-if (fixphi){rownames(u)=c("alpha", "sigw", "sigv"); est$par[2:3] = abs(est$par[2:3]) 
- } else { rownames(u)=c("phi", "alpha", "sigw", "sigv"); est$par[3:4] = abs(est$par[3:4])
+if (fixphi){rownames(u)=c("alpha", "sigw", "sigv"); u = abs(u[2:3]) 
+ } else { rownames(u)=c("phi", "alpha", "sigw", "sigv"); u[3:4] = abs(u[3:4])
  }
 print(u)
 timserout = list(Xp=Xp, Pp=Pp, Xs=Xs, Ps=Ps)
