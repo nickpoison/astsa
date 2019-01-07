@@ -42,8 +42,10 @@ smoothers.
 \value{At the MLEs, these are returned invisibly:
 \item{Xp }{time series - state prediction, \eqn{x_t^t-1}}
 \item{Pp }{corresponding MSPEs, \eqn{P_t^t-1}}
+\item{Xf }{time series - state filter, \eqn{x_t^t}}
+\item{Pf }{corresponding MSEs, \eqn{P_t^t}}
 \item{Xs }{time series - state smoother, \eqn{x_t^n}}
-\item{Ps }{corresponding MSEs, \eqn{P_t^n }}
+\item{Ps }{corresponding MSEs, \eqn{P_t^n}}
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 }

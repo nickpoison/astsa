@@ -27,6 +27,8 @@ if (fixphi){ phat = c(phi, est$par)
 ks = Ksmooth1(num,y,A,x00,P00,phat[1],phat[2],0,phat[3],phat[4],rep(1,num))
 Xp = ts(as.vector(ks$xp), start=strt, freq=frq) 
 Pp = ts(as.vector(ks$Pp), start=strt, freq=frq)
+Xf = ts(as.vector(ks$xf), start=strt, freq=frq) 
+Pf = ts(as.vector(ks$Pf), start=strt, freq=frq)
 Xs = ts(as.vector(ks$xs), start=strt, freq=frq) 
 Ps = ts(as.vector(ks$Ps), start=strt, freq=frq)
 estimate = est$par 
@@ -35,6 +37,6 @@ if (fixphi){rownames(u)=c("alpha", "sigw", "sigv"); u[2:3,1] = abs(u[2:3,1])
  } else { rownames(u)=c("phi", "alpha", "sigw", "sigv"); u[3:4,1] = abs(u[3:4,1])
  }
 print(u)
-timserout = list(Xp=Xp, Pp=Pp, Xs=Xs, Ps=Ps)
+timserout = list(Xp=Xp, Pp=Pp, Xf=Xf, Pf=Pf, Xs=Xs, Ps=Ps)
 return(invisible(timserout))
 }
