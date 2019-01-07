@@ -31,7 +31,7 @@ Xs = ts(as.vector(ks$xs), start=strt, freq=frq)
 Ps = ts(as.vector(ks$Ps), start=strt, freq=frq)
 estimate = est$par 
 u = cbind(estimate, SE) 
-if (fixphi){rownames(u)=c("alpha", "sigw", "sigv"); u = abs(u[2:3]) 
+if (fixphi){rownames(u)=c("alpha", "sigw", "sigv"); u[2:3] = abs(u[2:3]) 
  } else { rownames(u)=c("phi", "alpha", "sigw", "sigv"); u[3:4] = abs(u[3:4])
  }
 print(u)
