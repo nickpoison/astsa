@@ -1,9 +1,9 @@
 ssm <-
 function(y, A, phi, alpha, sigw, sigv, fixphi=FALSE){
-strt = tsp(as.ts(y))[1]
-frq  = tsp(as.ts(y))[3]
+strt = stats::tsp(as.ts(y))[1]
+frq  = stats::tsp(as.ts(y))[3]
 x00 = mean(y[1:5])
-P00 = var(y) 
+P00 = stats::var(y) 
 num = length(y)
 B = A
 A = array(A, dim=c(1,1,num))
