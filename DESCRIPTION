@@ -2,10 +2,10 @@ Package: astsa
 Type: Package
 Title: Applied Statistical Time Series Analysis
 Version: 1.8.6
-Date:   2019-01-06
+Date:   2019-01-23
 Author: David Stoffer
 Maintainer: David Stoffer <stoffer@pitt.edu>
-Description: Data sets and scripts to accompany Time Series Analysis and Its Applications: With R Examples (4th ed), by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2017. <DOI:10.1007/978-3-319-52452-8> and Time Series:  A Data Analysis Approach Using R. Chapman-Hall (a forthcoming introductory text that is due in Summer 2019).
+Description: Data sets and scripts to accompany Time Series Analysis and Its Applications: With R Examples (4th ed), by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2017, <DOI:10.1007/978-3-319-52452-8>, and Time Series:  A Data Analysis Approach Using R. Chapman-Hall, 2019. <ISBN: 9780367221096>.
 URL: https://github.com/nickpoison/astsa, http://www.stat.pitt.edu/stoffer/tsa4/,  http://www.stat.pitt.edu/stoffer/tsda/  
 License:  GPL (>= 2)
 LazyLoad: yes
