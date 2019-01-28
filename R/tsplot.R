@@ -9,5 +9,6 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type='l', mar
   plot(x, y, type='n', main=main, ylab=ylab, xlab=xlab, ... ) 
   grid(lty=1, col=gray(.9))
   lines(x, y, type=type, ... )
+  box()
   }
   
