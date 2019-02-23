@@ -21,7 +21,7 @@ LazyData: \tab yes\cr
 \author{
 David Stoffer <stoffer@pitt.edu>
 }
-\references{See the webpage for the text: \url{http://www.stat.pitt.edu/stoffer/tsa4/} 
+\references{See the webpage for the texts: \url{http://www.stat.pitt.edu/stoffer/tsa4/} or \url{http://www.stat.pitt.edu/stoffer/tsda/}
 }
 \keyword{ package }
 \keyword{ ts }
