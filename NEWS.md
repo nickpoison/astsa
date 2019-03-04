@@ -7,7 +7,7 @@ To update the package to the most recent version, you just need the following tw
 >  `devtools::install_github("nickpoison/astsa")`
 
 ------------------------------
-### Version 1.8.6 - Mar 2019 (GitHub)
+### Version 1.8.7 - Mar 2019 (GitHub)
 
 1.8.7 Added `Grid()` combining `grid()` and `minor.ticks()` from Graphics and Hmisc packages.  So far it's only used in `tsplot()`, which is a change to that script ... if it stands the test of time, will add to other graphics scripts like `acf2()`.
 
