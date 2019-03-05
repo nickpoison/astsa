@@ -9,7 +9,7 @@ To update the package to the most recent version, you just need the following tw
 ------------------------------
 ### Version 1.8.7 - Mar 2019 (GitHub)
 
-1.8.7 Added `Grid()` combining `grid()` and `minor.ticks()` from Graphics and Hmisc packages.  So far it's only used in `tsplot()`, which is a change to that script ... if it stands the test of time, will add to other graphics scripts like `acf2()`.
+1.8.7 Added `Grid()` combining `grid(lty=1, col=gray(.9))` and `minor.ticks()` from Graphics and Hmisc packages.  It's used in most scripts that used to call `grid()`.
 
 1.8.6 Added `ssm()` for fitting a simple univariate state space model. This will be used in the forthcoming text.
 
