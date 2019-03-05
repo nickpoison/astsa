@@ -26,7 +26,7 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
   par(mar = c(2.5,2.5,1.5,0.5), mgp = c(1.5,0.6,0))
   plot(LAG, ACF, type="n", ylim=ylim, main=main)
     ###
-    grid(lty=1, col=gray(.9)); box()
+    Grid(); box()
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
     lines(LAG, ACF, type='h', ...) 
  }	

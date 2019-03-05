@@ -58,7 +58,7 @@ if (is.null(xreg)) {
    xllim=c(strt,endd)
   par(mar=c(2.5, 2.5, 1, 1), mgp=c(1.6,.6,0))
   ts.plot(xdata,fore$pred, type="n", xlim=xllim, ylim=c(minx,maxx), ylab=xname) 
-  grid(lty=1, col=gray(.9)); box()
+  Grid(); box()
   if(plot.all) {lines(xdata)} else {lines(xdata, type='o')}   
 #  
    xx = c(time(U), rev(time(U)))
@@ -66,7 +66,6 @@ if (is.null(xreg)) {
    polygon(xx, yy, border=8, col=gray(.6, alpha=.2) ) 
    yy1 = c(L1, rev(U1))
    polygon(xx, yy1, border=8, col=gray(.6, alpha=.2) ) 
-   
    lines(fore$pred, col="red", type="o")
   return(fore)
 }
