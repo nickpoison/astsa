@@ -13,6 +13,6 @@
 }
 \source{\url{http://ns1758.ca/winch/winchest.html}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \keyword{datasets}

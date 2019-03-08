@@ -34,7 +34,7 @@ if minor=TRUE, the number of minor tick marks on x-axis, y-axis.  minor=FALSE re
 other graphical parameteres; see \link[graphics]{par}.
 }
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \author{
 D.S. Stoffer

@@ -10,12 +10,6 @@
 \format{
   The format is:
   mts [1:508, 1:11] }
-%%  - attr(*, "dimnames")=List of 2
-%%   ..$ : NULL
-%%   ..$ : chr [1:11] "tmort" "rmort" "cmort" "tempr" ...
-%%  - attr(*, "tsp")= num [1:3] 1970 1980 52
-%%  - attr(*, "class")= chr [1:2] "mts" "ts"
-%% }
 \details{
 \tabular{ll}{
 columns are time series       \tab   with names \cr  
@@ -36,7 +30,7 @@ columns are time series       \tab   with names \cr
 %%\source{
 %%%%  ~~ reference to a publication or URL from which the data were obtained ~~
 %%}
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 %%  ~~ possibly secondary sources and usages ~~
 }
 \keyword{datasets}

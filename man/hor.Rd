@@ -11,7 +11,7 @@
 }
 \source{\url{http://dbedt.hawaii.gov/economic/qser/tourism/}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \examples{
 plot(hor, type='c')                            # plot data and

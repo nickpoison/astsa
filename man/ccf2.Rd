@@ -28,7 +28,7 @@ vertical axis label; default is 'CCF'.
 This will produce a graphic of the sample \code{corr[x(t+lag), y(t)]} from \code{-max.lag} to \code{max.lag}.
 }
 \references{
-\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \author{D.S. Stoffer
 }

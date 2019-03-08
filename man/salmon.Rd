@@ -14,6 +14,6 @@ Farm Bred Norwegian Salmon, export price, US Dollars per Kilogram
 }
 \source{\url{http://www.indexmundi.com/commodities/}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsda/}
 }
 \keyword{datasets}

@@ -74,7 +74,7 @@ The results are returned invisibly if plot is true.
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 %% ~put references to the literature/web site here ~
 }
 %\author{

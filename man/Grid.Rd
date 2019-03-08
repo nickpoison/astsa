@@ -1,9 +1,8 @@
 \name{Grid}
 \alias{Grid}
-\title{Better Add Grid to a Plot 
+\title{A Better Add Grid to a Plot 
 }
-\description{Grid adds a grid to an existing plot with major and minor ticks.  Works like R graphics grid() but the grid lines are 
-are solid and gray and minor ticks are produced by default.
+\description{Adds a grid to an existing plot with major and minor ticks.  Works like R graphics grid() but the grid lines are are solid and gray and minor ticks are produced by default.
 }
 \usage{
 Grid(nx = NULL, ny = nx, col = gray(0.9), lty = 1, lwd = par("lwd"), equilogs = TRUE, minor = TRUE, nxm = 2, nym = 2, tick.ratio = 0.5, ...)
@@ -38,7 +37,7 @@ other graphical parameters;
 }
 }
 \details{
-I combined the code for \code{grid()} in R graphics and \code{minor.tick()} from the Hmisc package, changed the default line type and color to make this script.  I made this script basically for instructional purposes so students don't have to watch me type for and additional 5 minutes to get a grid with solid lines, in darker gray, and with minor ticks on a plot.    
+I combined the code for \code{grid()} in R graphics and \code{minor.tick()} from the Hmisc package, and changed the default grid line type and color to make this script.  I made this script basically for instructional purposes so students don't have to watch me type for and additional 5 minutes to get a grid with solid lines, in darker gray, and with minor ticks on a plot.    
 }
 \references{
 The code for \code{grid()} in R graphics and \code{minor.tick()} from the Hmisc package were combined.

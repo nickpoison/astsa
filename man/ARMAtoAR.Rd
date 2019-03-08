@@ -15,9 +15,8 @@ ARMAtoAR(ar = 0, ma = 0, lag.max=20)
 \value{
   A vector of coefficients.
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 \examples{
-# From Section 3.1
 ARMAtoAR(ar=.9, ma=.5, 10)
 }
 \keyword{ts}

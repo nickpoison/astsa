@@ -10,17 +10,7 @@
 \format{
   The format is:  Time-Series [1:100]  with NA for missing values.
 }
-%%\details{
-%%  ~~ If necessary, more details than the __description__ above ~~
-%%}
-%%\source{
-%%  ~~ reference to a publication or URL from which the data were obtained ~~
-%%}
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
-%%  ~~ possibly secondary sources and usages ~~
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
-%% \examples{
-%% ## maybe str(ar1miss) ; plot(ar1miss) ...
-%% }
 \keyword{datasets}
 %% 

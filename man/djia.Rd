@@ -22,11 +22,11 @@
   ..$ : NULL\cr
   ..$ : chr [1:5] "Open" "High" "Low" "Close" ...
 }
-\source{The data were obtained as follows, and can be updated in a similar way.\cr
+\source{The data were obtained as follows:\cr
 \code{library(TTR) # install.packages('TTR') if you don't have it} \cr
 \code{djia  = getYahooData("^DJI", start=20060420, end=20160420, freq="daily")} 
-%%  ~~ reference to a publication or URL from which the data were obtained ~~
+Unfortunately, this does not work any more and has been replaced.
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}  and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \keyword{datasets}

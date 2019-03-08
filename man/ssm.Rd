@@ -47,7 +47,7 @@ smoothers.
 \item{Xs }{time series - state smoother, \eqn{x_t^n}}
 \item{Ps }{corresponding MSEs, \eqn{P_t^n}}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \author{D.S. Stoffer
 }

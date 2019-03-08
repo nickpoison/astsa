@@ -17,7 +17,7 @@
 \source{\url{https://research.stlouisfed.org/}
 %%%%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 %%  ~~ possibly secondary sources and usages ~~
 }
 %%\examples{
