@@ -1,5 +1,5 @@
 sarima <-  
-function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt(.Machine$double.eps),no.constant=FALSE)
+function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,fixed=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE)
 { 
   #
    layout = graphics::layout
@@ -25,15 +25,15 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,tol=sqrt
    xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL 
    if (d==0 & D==0) {	  
     fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
-              xreg=xmean,include.mean=FALSE, optim.control=list(trace=trc,REPORT=1,reltol=tol))
+              xreg=xmean,include.mean=FALSE,fixed=fixed,optim.control=list(trace=trc,REPORT=1,reltol=tol))
 } else if (xor(d==1, D==1) & no.constant==FALSE) {
     fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
-              xreg=constant,optim.control=list(trace=trc,REPORT=1,reltol=tol))
+              xreg=constant,fixed=fixed,optim.control=list(trace=trc,REPORT=1,reltol=tol))
 } else fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
-                     include.mean=!no.constant, optim.control=list(trace=trc,REPORT=1,reltol=tol))
+                     include.mean=!no.constant,fixed=fixed, optim.control=list(trace=trc,REPORT=1,reltol=tol))
 }
 #
-  if (!is.null(xreg)) {fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), xreg=xreg, optim.control=list(trace=trc,REPORT=1,reltol=tol))
+  if (!is.null(xreg)) {fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), xreg=xreg, fixed=fixed,optim.control=list(trace=trc,REPORT=1,reltol=tol))
 }
 #
 #  replace tsdiag with a better version
