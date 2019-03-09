@@ -18,6 +18,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,fixed=NU
    time = stats::time
    na.pass = stats::na.pass
    #
+   trans = ifelse (is.null(fixed), TRUE, FALSE)
    trc = ifelse(details, 1, 0)
    n = length(xdata)
    if (is.null(xreg)) {
@@ -25,15 +26,15 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,fixed=NU
    xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL 
    if (d==0 & D==0) {	  
     fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
-              xreg=xmean,include.mean=FALSE,fixed=fixed,optim.control=list(trace=trc,REPORT=1,reltol=tol))
+              xreg=xmean,include.mean=FALSE,fixed=fixed,trans=trans,optim.control=list(trace=trc,REPORT=1,reltol=tol))
 } else if (xor(d==1, D==1) & no.constant==FALSE) {
     fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
-              xreg=constant,fixed=fixed,optim.control=list(trace=trc,REPORT=1,reltol=tol))
+              xreg=constant,fixed=fixed,trans=trans,optim.control=list(trace=trc,REPORT=1,reltol=tol))
 } else fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
-                     include.mean=!no.constant,fixed=fixed, optim.control=list(trace=trc,REPORT=1,reltol=tol))
+                     include.mean=!no.constant,fixed=fixed,trans=trans, optim.control=list(trace=trc,REPORT=1,reltol=tol))
 }
 #
-  if (!is.null(xreg)) {fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), xreg=xreg, fixed=fixed,optim.control=list(trace=trc,REPORT=1,reltol=tol))
+  if (!is.null(xreg)) {fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), xreg=xreg, fixed=fixed,trans=trans,optim.control=list(trace=trc,REPORT=1,reltol=tol))
 }
 #
 #  replace tsdiag with a better version
@@ -91,10 +92,13 @@ if(details){
 }	
 #  end new tsdiag
   dfree = fitit$nobs-length(fitit$coef)
+  if(is.null(fixed){
   t.value=fitit$coef/sqrt(diag(fitit$var.coef)) 
   p.two = stats::pf(t.value^2, df1=1, df2=dfree, lower.tail = FALSE)   
   ttable = cbind(Estimate=fitit$coef, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
   ttable= round(ttable,4)
+  } else {ttable='Sorry -no t-table with fixed parameters'
+  }
   k = length(fitit$coef)
   BIC  = (log(n)*k - 2*fitit$loglik)/n 
   AIC  = (2*k - 2*fitit$loglik)/n
