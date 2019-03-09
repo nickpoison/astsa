@@ -8,7 +8,7 @@
 \usage{
 sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, 
        details = TRUE, xreg=NULL, Model=TRUE,
-       tol = sqrt(.Machine$double.eps), 
+       fixed=NULL, tol = sqrt(.Machine$double.eps), 
        no.constant = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -41,6 +41,8 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
   \item{Model}{if TRUE (default), the model orders are printed on the diagnostic plot.
 }
+  \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only NA entries in fixed will be varied. You may get a warning if any AR parameters are fixed.
+}  
   \item{details}{if FALSE, turns off the diagnostic plot and the output from the nonlinear optimization routine, which is \code{optim}. The default is TRUE. 
 %%     ~~Describe \code{details} here~~
 }
