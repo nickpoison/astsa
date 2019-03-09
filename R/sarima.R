@@ -92,7 +92,7 @@ if(details){
 }	
 #  end new tsdiag
   dfree = fitit$nobs-length(fitit$coef)
-  if(is.null(fixed){
+  if(is.null(fixed)){
   t.value=fitit$coef/sqrt(diag(fitit$var.coef)) 
   p.two = stats::pf(t.value^2, df1=1, df2=dfree, lower.tail = FALSE)   
   ttable = cbind(Estimate=fitit$coef, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
