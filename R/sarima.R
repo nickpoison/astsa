@@ -80,7 +80,7 @@ if(details){
         polygon(xx, yy, border=NA, col=gray(.6, alpha=.2) )   
         ############ end qq error bnds ##########################
     nlag <- ifelse(S<7, 20, 3*S)
-    ppq <- p+q+P+Q
+    ppq <- p+q+P+Q - sum(!is.na(fixed))   # decrease by number of fixed parameters
 	if (nlag < ppq + 8) {nlag = ppq + 8}
     pval <- numeric(nlag)
     for (i in (ppq+1):nlag) {u <- stats::Box.test(rs, i, type = "Ljung-Box")$statistic
@@ -91,15 +91,13 @@ if(details){
     on.exit(par(old.par)) 
 }	
 #  end new tsdiag
-  dfree = fitit$nobs-length(fitit$coef)
-  if(is.null(fixed)){
-  t.value=fitit$coef/sqrt(diag(fitit$var.coef)) 
+   coefs = fitit$coef[abs(fitit$coef)>0]  
+   dfree = fitit$nobs-length(coefs) 
+  t.value=coefs/sqrt(diag(fitit$var.coef)) 
   p.two = stats::pf(t.value^2, df1=1, df2=dfree, lower.tail = FALSE)   
-  ttable = cbind(Estimate=fitit$coef, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
+  ttable = cbind(Estimate=coefs, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
   ttable= round(ttable,4)
-  } else {ttable='Sorry -no t-table with fixed parameters'
-  }
-  k = length(fitit$coef)
+  k = length(coefs) 
   BIC  = (log(n)*k - 2*fitit$loglik)/n 
   AIC  = (2*k - 2*fitit$loglik)/n
   AICc = (n*AIC + ( (2*k^2+2*k)/(n-k-1) ))/n
