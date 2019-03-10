@@ -10,7 +10,7 @@
 \usage{
 sarima.for(xdata, n.ahead, p, d, q, P = 0, D = 0, Q = 0, S = -1, 
             tol = sqrt(.Machine$double.eps), no.constant = FALSE,
-            plot.all=FALSE, xreg = NULL, newxreg = NULL)
+            plot.all=FALSE, xreg = NULL, newxreg = NULL, fixed=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -58,8 +58,9 @@ is used, \code{newxreg} MUST be specified.
 \item{newxreg}{New values of \code{xreg} to be used for prediction. Must have at least \code{n.ahead} rows.
 %%   
 }
+\item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
 }
-
+}
 \details{For example, \code{sarima.for(x,5,1,0,1)} will forecast five time points ahead for an ARMA(1,1) fit to x. The output prints the forecasts and the standard errors of the forecasts, and supplies a graphic of the forecast with +/- 1 and 2 prediction error bounds.
 %%  ~~ If necessary, more details than the description above ~~
 }
