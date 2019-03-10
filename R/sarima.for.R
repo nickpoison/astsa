@@ -1,6 +1,6 @@
 sarima.for <-
 function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.constant=FALSE, plot.all=FALSE,
-         xreg = NULL, newxreg = NULL){ 
+         xreg = NULL, newxreg = NULL, fixed=NULL){ 
    #
    layout = graphics::layout
    par = graphics::par
@@ -15,6 +15,7 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.c
    ts.plot = stats::ts.plot
    xy.coords = grDevices::xy.coords
    #
+  trans = ifelse (is.null(fixed), TRUE, FALSE)
   xname=deparse(substitute(xdata))
   xdata=as.ts(xdata) 
   n=length(xdata)
@@ -23,20 +24,20 @@ if (is.null(xreg)) {
   xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL
   if (d==0 & D==0) {
     fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
-            xreg=xmean,include.mean=FALSE, optim.control=list(reltol=tol));
+            xreg=xmean,include.mean=FALSE,fixed=fixed,trans=trans,optim.control=list(reltol=tol));
     nureg=matrix(1,n.ahead,1);  if(no.constant==TRUE) nureg=NULL          
   } else if (xor(d==1, D==1) & no.constant==FALSE) {
     fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
-            xreg=constant,optim.control=list(reltol=tol));
+            xreg=constant,fixed=fixed,trans=trans,optim.control=list(reltol=tol));
     nureg=(n+1):(n+n.ahead)       
   } else { fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
-            optim.control=list(reltol=tol));
+            fixed=fixed,trans=trans,optim.control=list(reltol=tol));
           nureg=NULL   
   }
 }   
  if (!is.null(xreg)) {
         fitit = stats::arima(xdata, order = c(p, d, q), seasonal = list(order = c(P, 
-            D, Q), period = S), xreg = xreg)
+            D, Q), period = S), xreg = xreg, fixed=fixed, trans=trans)
 	nureg = newxreg		
 }
   
