@@ -41,7 +41,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
   \item{Model}{if TRUE (default), the model orders are printed on the diagnostic plot.
 }
-  \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only NA entries will be varied. No t-table will be produced if any parameters are fixed.
+  \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
 }  
   \item{details}{if FALSE, turns off the diagnostic plot and the output from the nonlinear optimization routine, which is \code{optim}. The default is TRUE. 
 %%     ~~Describe \code{details} here~~
@@ -70,6 +70,9 @@ sarima(log(AirPassengers),0,1,1,0,1,1,12)
 summary(dog$fit)  # fit has all the returned arima() values
 plot(resid(dog$fit))  # plot the innovations (residuals) 
 sarima(log(AirPassengers),0,1,1,0,1,1,12,details=FALSE)$BIC  # print model BIC only
+# fixed paramters
+x = arima.sim(list(order=c(2,0,0), ar=c(0,-.9)), n=200) + 50 
+sarima(x, 2,0,0, fixed=c(0,NA,NA))
 }
 \seealso{\code{\link{sarima.for}}}
 \keyword{ ts }
