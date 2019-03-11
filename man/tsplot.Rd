@@ -6,7 +6,7 @@
 Produces a nice plot of a univariate time series in one easy line.
 }
 \usage{
-tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type='l', margins=.25, minor=TRUE, nxm=4, nym=4, ... )
+tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type='l', margins=.25, minor=TRUE, nxm=2, nym=2, ... )
 }
 \arguments{
   \item{x, y}{

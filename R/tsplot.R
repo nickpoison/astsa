@@ -1,4 +1,4 @@
-tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type='l', margins=.25, minor=TRUE, nxm=4, nym=4, ... ){
+tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type='l', margins=.25, minor=TRUE, nxm=2, nym=2, ... ){
   par = graphics::par
   plot = graphics::plot
   lines = graphics::lines
