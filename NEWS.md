@@ -9,7 +9,7 @@ To update the package to the most recent version, you just need the following tw
 ------------------------------
 ### Version 1.8.8 - Mar 2019 (GitHub)
 
-1.8.8 Added ability to fix parameters (at 0) in `sarima()` and `sarima.for()`. Works just like it does in the stat package `arima()` but `transform.pars` is set to `FALSE` automatically if parameters are fixed.
+1.8.8 Added ability to fix parameters  in `sarima()` and `sarima.for()`. Works just like it does in the stat package `arima()` but `transform.pars` is set to `FALSE` automatically if parameters are fixed.
 
 1.8.7 Added `Grid()` combining `grid(lty=1, col=gray(.9))` and `minor.ticks()` from Graphics and Hmisc packages.  It's used in most scripts that used to call `grid()`.
 
