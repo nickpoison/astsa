@@ -100,6 +100,7 @@ if(details){
    ttable = cbind(Estimate=coefs, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
    ttable= round(ttable,4)
    k = length(coefs) 
+   n = n - (d + D)  # effective sample size
    BIC  = (log(n)*k - 2*fitit$loglik)/n 
    AIC  = (2*k - 2*fitit$loglik)/n
    AICc = (n*AIC + ( (2*k^2+2*k)/(n-k-1) ))/n
