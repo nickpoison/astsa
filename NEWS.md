@@ -9,7 +9,11 @@ To update the package to the most recent version, you just need the following tw
 ------------------------------
 ### Version 1.8.8 - Mar 2019 (GitHub)
 
-1.8.8 Added ability to fix parameters  in `sarima()` and `sarima.for()`. Works just like it does in the stat package `arima()` but `transform.pars` is set to `FALSE` automatically if parameters are fixed.
+1.8.8 
+
++ Added ability to fix parameters  in `sarima()` and `sarima.for()`. Works just like it does in the stat package `arima()` but `transform.pars` is set to `FALSE` automatically if parameters are fixed.
+
++ Removed the change in v1.8.3 ... the calculation of the ICs are back to the way they used to be, based on the adage *if it ain't broke don't fix it*.
 
 1.8.7 Added `Grid()` combining `grid(lty=1, col=gray(.9))` and `minor.ticks()` from Graphics and Hmisc packages.  It's used in most scripts that used to call `grid()`.
 
