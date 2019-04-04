@@ -58,7 +58,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 \value{\item{fit }{the \code{arima} object}
 \item{degrees_of_freedom}{Error degrees of freedom}
 \item{ttable }{a little t-table with two-sided p-values}
-\item{AIC }{value of the AIC}
+\item{AIC }{value of the AIC - all ICs are the values reported in \code{fit} divided by the essential number of observations (after differencing)}
 \item{AICc }{value of the AICc}
 \item{BIC }{value of the BIC}
 }
