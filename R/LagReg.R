@@ -147,7 +147,7 @@ b.neg = b[(M/2-1):1]	     # beta(-1), beta(-2) ...
 sig.s = which(abs(b.neg) >= threshold)
 if (length(sig.s) < 1) stop("threshold too large")
 b.neg.sig = b.neg[sig.s]  # The vector of significant beta's
-mat = cbind(sig.s-1, b.neg.sig)
+mat = cbind(sig.s, b.neg.sig)
 colnames(mat) = c("lag s", "beta(s)")
 
 
