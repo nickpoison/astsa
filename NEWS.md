@@ -11,6 +11,8 @@ To update the package to the most recent version, you just need the following tw
 
 1.8.8 
 
++ Fixed &beta; reporting for `LagReg()` when `inverse=TRUE`... it is correct in the text example.
+
 + Added ability to fix parameters  in `sarima()` and `sarima.for()`. Works just like it does in the stat package `arima()` but `transform.pars` is set to `FALSE` automatically if parameters are fixed.
 
 + Added a little explanation of how ICs are calculated in the `sarima()` man page.
