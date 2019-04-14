@@ -3,9 +3,9 @@ function(y, A, phi, alpha, sigw, sigv, fixphi=FALSE){
 strt = stats::tsp(as.ts(y))[1]
 frq  = stats::tsp(as.ts(y))[3]
 num = length(y)
-if (num < 20) stop("This script requires 20 or more observations")
+if (num < 20) { stop("This script requires at least 20 observations") }
 x00 = mean(y[1:5])
-P00 = stats::var(y[1:5]) 
+P00 = stats::var(jitter(y[1:5])) 
 A = array(A, dim=c(1,1,num))
 # function to calc likelihood
 Linn=function(para){
