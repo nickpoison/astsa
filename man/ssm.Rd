@@ -6,7 +6,8 @@
 Fits a simple univariate state space model, x[t] = alpha + phi x[t-1] + w[t],
 and y[t] = A x[t] + v[t].  The parameters alpha, phi, sigma[w] and sigma[v]
 are estimated; parameter phi may be fixed.  State predictions and smoothers
-and corresponding error variances are evaluated at the estimates.
+and corresponding error variances are evaluated at the estimates.  The sample
+size must be at least 20.
 }
 \usage{
 ssm(y, A, phi, alpha, sigw, sigv, fixphi = FALSE)
