@@ -5,7 +5,6 @@ frq  = stats::tsp(as.ts(y))[3]
 x00 = mean(y[1:5])
 P00 = stats::var(y) 
 num = length(y)
-B = A
 A = array(A, dim=c(1,1,num))
 # function to calc likelihood
 Linn=function(para){
