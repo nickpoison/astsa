@@ -7,6 +7,9 @@ To update the package to the most recent version, you just need the following tw
 >  `devtools::install_github("nickpoison/astsa")`
 
 ------------------------------
+##### Version 1.9 is coming to a CRAN near you soon.  I hope to get it out around the same time the new book is published.
+
+
 ### Version 1.8.8 - Mar 2019 (GitHub)
 
 1.8.8 
