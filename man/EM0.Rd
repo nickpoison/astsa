@@ -4,7 +4,7 @@
 \title{EM Algorithm for Time Invariant State Space Models 
 %%  ~~function to do ... ~~
 }
-\description{Estimation of the parameters in the model (6.1)--(6.2) via the EM algorithm.  
+\description{Estimation of the parameters in a simple state space via the EM algorithm.  
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{

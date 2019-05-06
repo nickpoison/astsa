@@ -21,7 +21,7 @@
 }
 \seealso{\code{\link{HCT}}, \code{\link{PLT}}, \code{\link{WBC}}}
 \examples{
-\dontrun{ plot(blood, type="o", pch=19)}
+plot(blood, type="o", pch=19)
 }
 %% data(HCT)
 %% ## maybe str(HCT) ; plot(HCT) ...

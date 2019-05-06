@@ -21,5 +21,5 @@
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
-\seealso{\code{\link{globtemp}}, \code{\link{globtempl}},  \code{\link{gtemp}}}
+\seealso{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{globtemp}}, \code{\link{globtempl}},  \code{\link{gtemp}}}
 \keyword{datasets}

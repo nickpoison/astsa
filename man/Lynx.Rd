@@ -10,8 +10,7 @@
   The format is:
  Time-Series [1:91] from 1845 to 1935: 30.1 45.1 49.1 39.5 21.2 ...
 }
-\note{This data set pairs with \code{\link{Hare}} and is different from  \code{\link{lynx}}.
-The data are in  units of one  thousand.
+\note{The data are in  units of one  thousand.  This data set pairs with \code{\link{Hare}} and is NOT the same as  \code{\link{lynx}}.
 }
 \source{
 http://people.whitman.edu/~hundledr/courses/M250F03/M250.html

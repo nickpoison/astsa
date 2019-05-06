@@ -102,7 +102,7 @@ dog$bandwidth  # bandwidth with time unit = year
 dog$bandwidth/frequency(mdeaths)  # ... with time unit = month
 plot(dog, plot.type="coherency")  # plot of squared coherency
 
-# analysis with details printed
+# analysis with some details printed
 mvspec(soi, spans=c(7,7), taper=.5)$details[1:45,]
 }
 \keyword{ ts }

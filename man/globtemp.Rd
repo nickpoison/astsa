@@ -1,10 +1,10 @@
 \name{globtemp}
 \alias{globtemp}
 \docType{data}
-\title{Global mean land-ocean temperature deviations - updated
+\title{Global mean land-ocean temperature deviations to 2015
 %%   ~~ data name/kind ... ~~
 }
-\description{Global mean land-ocean temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2015. This is an update of \code{gtemp}.
+\description{Global mean land-ocean temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2015. This was an update of \code{gtemp}, but \code{gtemp_land} and \code{gtemp_ocean} are the most recent updates.
 }
 %\usage{data("globtemp")}
 \format{
@@ -21,5 +21,5 @@ The differences are explained here: \url{http://www1.ncdc.noaa.gov/pub/data/ghcn
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
-\seealso{\code{\link{globtempl}}, \code{\link{gtemp}},  \code{\link{gtemp2}}}
+\seealso{\code{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{globtempl}}, \code{\link{gtemp}},  \code{\link{gtemp2}}}
 \keyword{datasets}
