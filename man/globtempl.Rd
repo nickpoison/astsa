@@ -22,5 +22,6 @@ The differences are explained here: \url{http://www1.ncdc.noaa.gov/pub/data/ghcn
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
-\seealso{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{globtemp}}, \code{\link{gtemp2}},  \code{\link{gtemp}}}
+\seealso{\code{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{globtemp}}, \code{\link{gtemp2}},  \code{\link{gtemp}}
+}
 \keyword{datasets}

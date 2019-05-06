@@ -20,7 +20,7 @@
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 %%  ~~ possibly secondary sources and usages ~~
 }
-\seealso{\link{gdp}}
+\seealso{\link{gdp}
 }
 \keyword{datasets}
 %%
