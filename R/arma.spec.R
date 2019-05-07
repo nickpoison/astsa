@@ -17,7 +17,7 @@ function(ar=0, ma=0, var.noise=1, n.freq=500, log='n', ...)
     ma.order <- length(ma) 
     # check (near) parameter redundancy [i.e. are any roots (approximately) equal]  
        for (i in 1:ar.order) {
-       if ( (ar == 0 & ar.order == 1) || (ma == 0 & ma.order ==1) ) break
+       if ( any( (ar == 0 & ar.order == 1) || (ma == 0 & ma.order ==1) ) ) break
        if(any(abs(z.ar[i]-z.ma[1:ma.order]) < 1e-03)) {cat("WARNING: Parameter Redundancy", "\n"); break}
        }
     #

@@ -14,7 +14,8 @@
 \details{Pairs with series \code{oil}
 %%  ~~ If necessary, more details than the __description__ above ~~
 }
-\source{\url{http://tonto.eia.doe.gov/dnav/pet/pet_pri_spt_s1_w.htm}
+\source{Data were obtained from the URL tonto.eia.doe.gov/dnav/pet/pet_pri_spt_s1_w.htm, but
+that site no longer exists.
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
