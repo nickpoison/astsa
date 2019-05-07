@@ -21,6 +21,8 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
 }
   \item{main}{Title of graphic; defaults to name of series.
 }
+  \item{ylim}{Specify limits for the y-axis.
+}
  \item{na.action}{How to handle missing data; default is \code{na.pass}
 }
   \item{...}{ Additional arguments passed to \code{acf} }
