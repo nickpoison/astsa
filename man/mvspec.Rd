@@ -9,8 +9,8 @@
 }
 \usage{
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
-         fast = TRUE, demean = FALSE, detrend = TRUE, log='n',
-         plot = TRUE, na.action = na.fail, ...)
+         fast = TRUE, demean = FALSE, detrend = TRUE, 
+         plot = TRUE, log='n', na.action = na.fail, ...)
 }
 %- maybe also 'usage' specify other objects documented here.
 \arguments{

@@ -7,7 +7,8 @@
 Produces a simultaneous plot (and a printout) of the sample ACF and PACF on the same scale. The zero lag value of the ACF is removed.
 }
 \usage{
-acf2(series, max.lag=NULL, plot=TRUE, main=NULL, na.action = na.pass, ...)
+acf2(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL,
+     na.action = na.pass, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

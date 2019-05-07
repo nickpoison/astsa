@@ -25,12 +25,12 @@ if (fixphi){ phat = c(phi, est$par)
 } else {phat = est$par}
 # run filter /smoother with estimates
 ks = Ksmooth1(num,y,A,x00,P00,phat[1],phat[2],0,phat[3],phat[4],rep(1,num))
-Xp = ts(as.vector(ks$xp), start=strt, freq=frq) 
-Pp = ts(as.vector(ks$Pp), start=strt, freq=frq)
-Xf = ts(as.vector(ks$xf), start=strt, freq=frq) 
-Pf = ts(as.vector(ks$Pf), start=strt, freq=frq)
-Xs = ts(as.vector(ks$xs), start=strt, freq=frq) 
-Ps = ts(as.vector(ks$Ps), start=strt, freq=frq)
+Xp = ts(as.vector(ks$xp), start=strt, frequency=frq) 
+Pp = ts(as.vector(ks$Pp), start=strt, frequency=frq)
+Xf = ts(as.vector(ks$xf), start=strt, frequency=frq) 
+Pf = ts(as.vector(ks$Pf), start=strt, frequency=frq)
+Xs = ts(as.vector(ks$xs), start=strt, frequency=frq) 
+Ps = ts(as.vector(ks$Ps), start=strt, frequency=frq)
 estimate = est$par 
 u = cbind(estimate, SE) 
 if (fixphi){rownames(u)=c("alpha", "sigw", "sigv"); u[2:3,1] = abs(u[2:3,1]) 

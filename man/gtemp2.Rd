@@ -4,7 +4,7 @@
 \title{Global Mean Surface Air Temperature Deviations
 %%   ~~ data name/kind ... ~~
 }
-\description{This data file is old and is here only for compatibility.  See \code{\link{globtemp}} and \code{\link{glob_land}}. The original description is:    Similar to \code{gtemp} but the data are based only on surface air temperature data obtained from meteorological stations. The data are temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2009.
+\description{This data file is old and is here only for compatibility.  See \code{\link{globtemp}} and \code{\link{gtemp_land}}. The original description is:    Similar to \code{gtemp} but the data are based only on surface air temperature data obtained from meteorological stations. The data are temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2009.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \usage{data(gtemp2)}
