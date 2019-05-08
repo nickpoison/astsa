@@ -7,7 +7,11 @@ To update the package to the most recent version, you just need the following tw
 >  `devtools::install_github("nickpoison/astsa")`
 
 ------------------------------
-##### Version 1.9 is coming to a CRAN near you soon.  I hope to get it out around the same time the new book is published.
+### Version 1.9  - May 2019 (GitHub and CRAN)
+
+This version is essentially version 1.8.8 but with changes made to pass the CRAN tests, which mainly deal with the man pages (help files). 
+
+For the Springer text, you can see the difference between v1.8 and v1.9 by looking at the v1.8.8 changelog.  Some scripts have added capabilities, but it won't change any data analysis. The only real difference will be slight numerical differences in the reported ICs in `sarima`.     
 
 
 ### Version 1.8.8 - Mar 2019 (GitHub)
