@@ -4,7 +4,7 @@
 \title{Global mean ocean temperature deviations - updated to 2017
 %%   ~~ data name/kind ... ~~
 }
-\description{Annual sea surface temperature anomalies averaged over the part of the ocean that is free of ice at all times (open ocean) fro 1880 to 2017.
+\description{Annual sea surface temperature anomalies averaged over the part of the ocean that is free of ice at all times (open ocean) from 1880 to 2017.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 %\usage{data(gtemp)}
