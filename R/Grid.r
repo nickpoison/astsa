@@ -1,5 +1,5 @@
 Grid <-
-function (nx = NULL, ny = nx, col = gray(.85), lty = 1, lwd = par("lwd"), equilogs = TRUE, 
+function (nx = NULL, ny = nx, col = gray(.9), lty = 1, lwd = par("lwd"), equilogs = TRUE, 
           minor = TRUE, nxm = 2, nym = 2, tick.ratio = 0.5, ...) 
 {
     if (is.null(nx) || (!is.na(nx) && nx >= 1)) {

@@ -9,7 +9,7 @@ To update the package to the most recent version, you just need the following tw
 ------------------------------
 ### Version 1.9  - May 2019 (GitHub and CRAN)
 
-This version is essentially version 1.8.8 but with changes made to pass the CRAN tests, which mainly deal with the man pages (help files). After CRAN submission: I just got new glasses and felt that the `Grid()` color looks better a little darker [now `gray(.85)`, was `gray(.9)`]. I also noticed and corrected a few typos in the man pages but I'm keeping the version number at 1.9.
+This version is essentially version 1.8.8 but with changes made to pass the CRAN tests, which mainly deal with the man pages (help files).  I also noticed and corrected a few typos in the man pages after the CRAN submission, but I'm keeping the version number at 1.9.
 
 For the Springer text, you can see the difference between v1.8 and v1.9 by looking at the changelog below v1.8.8.  Some scripts have added capabilities, but it won't change any data analysis. The only real difference will be slight numerical differences in the reported ICs in `sarima`.     
 
