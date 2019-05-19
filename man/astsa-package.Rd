@@ -11,9 +11,9 @@ Includes data and scripts to accompany \emph{Time Series Analysis and Its Applic
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 1.9\cr
-Date: \tab 2019-05-05\cr
-License: \tab GPL (>= 2)\cr
+Version: \tab 1.9+1\cr
+Date: \tab 2019-05-20\cr
+License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
 }

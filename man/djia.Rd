@@ -17,8 +17,8 @@
 }
 \source{The data were obtained as follows:\cr
 \code{library(TTR) # install.packages('TTR') if you don't have it} \cr
-\code{djia  = getYahooData("^DJI", start=20060420, end=20160420, freq="daily")} 
-Unfortunately, this does not work any more and has been replaced.
+\code{djia  = getYahooData("^DJI", start=20060420, end=20160420, freq="daily")} \cr
+Unfortunately, this does not work now.
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}  and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
