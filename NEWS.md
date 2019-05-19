@@ -233,10 +233,10 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 ### Version 1.0  - June 2012
 
 
-+ `astsa` built from `tsa3.rda` (which is gone now) with the following changes:<br/><br/>
++ `astsa` built from `tsa3.rda` (which is gone now) with the following changes:<br/>
 
 
-| in astsa | ~was~ | in tsa3 |
+| in astsa |  was  | in tsa3 |
 |:----------:|:---:|:--------:|
 |`arma.spec()` | ... | `spec.arma()` |
 |`lag1.plot()` | ... | `lag.plot1()` |
