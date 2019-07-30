@@ -21,8 +21,4 @@
 %%  ~~ possibly secondary sources and usages ~~
 }
 \seealso{\code{\link{blood}}, \code{\link{HCT}}, \code{\link{PLT}}}
-%%\examples{
-%%data(WBC)
-%%## maybe str(WBC) ; plot(WBC) ...
-%%}
 \keyword{datasets}
