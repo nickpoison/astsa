@@ -9,7 +9,7 @@ To update the package to the most recent version, you just need the following tw
 ------------------------------
 ### Version 1.9  - May 2019 (GitHub and CRAN)
 
-This version is essentially version 1.8.8 but with changes made to pass the CRAN tests, which mainly deal with the man pages (help files).  I also noticed and corrected a few typos in the man pages after the CRAN submission, but I'm keeping the version number at 1.9 (you might see a 1.9+1 in the GitHub version).
+This version is essentially version 1.8.8 but with changes made to pass the CRAN tests, which mainly deal with the man pages (help files).  I also noticed and corrected a few typos in the man pages after the CRAN submission, but I'm keeping the version number at 1.9 (you might see a 1.9.1 in the GitHub version).
 
 For the Springer text, you can see the difference between v1.8 and v1.9 by looking at the changelog below v1.8.8.  Some scripts have added capabilities, but it won't change any data analysis. The only real difference will be slight numerical differences in the reported ICs in `sarima`.     
 
