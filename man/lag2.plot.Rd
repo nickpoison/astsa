@@ -28,7 +28,8 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
 %%     ~~Describe \code{smooth} here~~
 }
   \item{col}{color of points; default is \code{gray(.1)}
-} 
+}
+  \item{...}{additional graphical arguments}   
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 %% ~put references to the literature/web site here ~
