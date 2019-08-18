@@ -9,9 +9,17 @@ To update the package to the most recent version, you just need the following tw
 ------------------------------
 ### Version 1.9  - May 2019 (GitHub and CRAN)
 
-This version is essentially version 1.8.8 but with changes made to pass the CRAN tests, which mainly deal with the man pages (help files).  I also noticed and corrected a few typos in the man pages after the CRAN submission, but I'm keeping the version number at 1.9 (you might see a 1.9.1 in the GitHub version).
+1.9.1 (GitHub)
 
-For the Springer text, you can see the difference between v1.8 and v1.9 by looking at the changelog below v1.8.8.  Some scripts have added capabilities, but it won't change any data analysis. The only real difference will be slight numerical differences in the reported ICs in `sarima`.     
++ added ... to `lag1.plot` and `lag2.plot` so you can change some of the graphical parameters such as `pch`; e.g., `lag1.plot(soi, 4, col=3, pch=20)` 
+
++ fixed some man pages
+
+1.9 (CRAN)
+
++ This version is essentially version 1.8.8 but with changes made to pass the CRAN tests, which mainly deal with the man pages (help files). 
+
++ For the Springer text, you can see the difference between v1.8 and v1.9 by looking at the changelog below v1.8.8.  Some scripts have added capabilities, but it won't change any data analysis. The only real difference will be slight numerical differences in the reported ICs in `sarima`.     
 
 -------------------------------------------
 ### Version 1.8.8 - Mar 2019 (GitHub)
