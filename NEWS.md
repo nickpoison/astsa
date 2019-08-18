@@ -11,9 +11,10 @@ To update the package to the most recent version, you just need the following tw
 
 1.9.1 (GitHub)
 
-+ added ... to `lag1.plot` and `lag2.plot` so you can change some of the graphical parameters such as `pch`; e.g., `lag1.plot(soi, 4, col=3, pch=20)` 
++ added ... to `lag1.plot` and `lag2.plot` so you can change some of the graphical parameters; e.g., `lag1.plot(soi, max.lag=4, pch=20, cex=1.5, col=rgb(0,.5,1,.5))
+`
 
-+ fixed some man pages
++ fixed some man pages (after cRan submission)
 
 1.9 (CRAN)
 
