@@ -17,13 +17,13 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type='l', mar
   prow = ceiling(nser/ncolm)
   oo<-options(warn=-1)
   culer = matrix(col, nser)
-  op<-par(mfrow = c(prow, ncolm), mar = c(2.5, 2.5, 1, .5), mgp = c(1.6,.6, 0), cex.lab=1.1, oma = c(0,0,3*topper,0))
+  op<-par(mfrow = c(prow, ncolm), mar = c(2, 2, .5, .25)+margins, mgp = c(1.6,.6, 0), cex.lab=1.1, oma = c(0,0,3*topper,0))
   if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
   if (is.null(ylab)) { ylab = NA }
   for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h,], type=type, ...)
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, ...)
 	} else {
-	tsplot(x, y[,h], ylab=ylab[h], col=culer[h,], type=type, ...)
+	tsplot(x, y[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, ...)
     }
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
