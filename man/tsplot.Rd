@@ -7,7 +7,7 @@ Produces a nice plot of univariate or multiple time series in one easy line.
 }
 \usage{
 tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type='l', margins=.25,
-        ncolm=1, minor=TRUE, nxm=2, nym=2, ... )
+        ncolm=1, minor=TRUE, nxm=2, nym=2, col=1, ... )
 }
 \arguments{
   \item{x, y}{
@@ -33,6 +33,9 @@ for multiple time series, the number of columns to plot.
 }
   \item{minor, nxm, nym}{
 if minor=TRUE, the number of minor tick marks on x-axis, y-axis.  minor=FALSE removes both or set either to 0 or 1 to remove.
+}
+ \item{col}{
+line color(s), can be a vector for multiple time series.
 }
   \item{\dots}{
 other graphical parameteres; see \link[graphics]{par}.
