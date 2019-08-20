@@ -21,9 +21,9 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type='l', mar
   if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
   if (is.null(ylab)) { ylab = NA }
   for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h,], ...)
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h,], type=type, ...)
 	} else {
-	tsplot(x, y[,h], ylab=ylab[h], col=culer[h,], ...)
+	tsplot(x, y[,h], ylab=ylab[h], col=culer[h,], type=type, ...)
     }
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
