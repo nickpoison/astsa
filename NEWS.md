@@ -7,12 +7,13 @@ To update the package to the most recent version, you just need the following tw
 >  `devtools::install_github("nickpoison/astsa")`
 
 ------------------------------
-### Version 1.9  - May/August 2019 (GitHub and CRAN)
+### Version 1.9  - May/October 2019 (GitHub and CRAN)
 
-1.9.1 (GitHub -August 2019)
+1.9.1 (GitHub - October 2019)
 
 + added the ability of `tsplot` to do multiple plots, for example,<br/> 
-`tsplot(eqexp[,1:8], col=rainbow(8), ncolm=2, lwd=2, main='EQs')`<br/> - there's no change for univariate time series.
+`tsplot(eqexp[,1:8], col=rainbow(8), ncolm=2, lwd=2, main='EQs')` in May 2019 <br/> - had to do a little fix in October <br/> - there's no change for univariate time series. 
+
 
 + added dots (...) to `lag1.plot` and `lag2.plot` so you can change some of the graphical parameters; e.g., `lag1.plot(soi, max.lag=4, pch=20, cex=1.5, col=rgb(0,.5,1,.5))
 `
