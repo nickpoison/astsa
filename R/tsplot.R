@@ -5,7 +5,6 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type='l', mar
   lines = graphics::lines
   nser  = max(NCOL(x), NCOL(y))
   topper = ifelse(is.null(main), 0, .5) 
-  old.par <- par(no.readonly = TRUE)  
   if (nser == 1) {
   if(is.null(ylab)) {ylab = ifelse(is.null(y), deparse(substitute(x)), deparse(substitute(y)))}
   par(mar=c(2.5,2.5,1+topper,.5)+margins, mgp=c(1.6,.6,0), cex.main=1.2)
@@ -26,6 +25,5 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type='l', mar
     }
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
-   } 
-on.exit(par(old.par))    
+   }    
 }
