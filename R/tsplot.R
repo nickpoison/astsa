@@ -5,7 +5,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type='l', mar
   lines = graphics::lines
   nser  = max(NCOL(x), NCOL(y))
   topper = ifelse(is.null(main), 0, .5) 
-  oo<-options()  
+  ## oo<-options()  
   if (nser == 1) {
   if(is.null(ylab)) {ylab = ifelse(is.null(y), deparse(substitute(x)), deparse(substitute(y)))}
   op<-par(mar=c(2.5,2.5,1+topper,.5)+margins, mgp=c(1.6,.6,0), cex.main=1.2)
@@ -15,7 +15,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type='l', mar
   box()
   } else {
   prow = ceiling(nser/ncolm)
-  oo<-options(warn=-1)
+  ## oo<-options(warn=-1)
   culer = matrix(col, nser)
   op<-par(mfrow = c(prow, ncolm), mar = c(2, 2, .5, .25)+margins, mgp = c(1.6,.6, 0), cex.lab=1.1, oma = c(0,0,3*topper,0))
   if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
@@ -28,5 +28,5 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type='l', mar
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
    } 
- par(op); options(oo)
+ par(op) ## options(oo)
 }
