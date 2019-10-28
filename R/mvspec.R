@@ -111,7 +111,10 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
     if (plot) {
-        plot(spg.out, panel.first=Grid(), log = log, ...)
+        plot(spg.out, type='n', sub=NA, axes=FALSE, ann=FALSE, log = log, ...) 
+		Grid()
+		par(new=TRUE)
+		plot(spg.out, log = log, ...) 
         return(invisible(spg.out))
     }
     else return(spg.out)
