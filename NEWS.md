@@ -9,7 +9,13 @@ To update the package to the most recent version, you just need the following tw
 ------------------------------
 ### Version 1.9  - May/October 2019 (GitHub and CRAN)
 
-1.9.1 (GitHub - October 2019)
+1.9.2 (GitHub - October 2019)
+
+Updated `mvspec` due to possible plot error  being caused by use of `panel.first` (tries to draw `grid` before `plot` is called on some machines or OS).  Note to self: avoid `panel.first` dumb ass.
+
+
+
+1.9.1 
 
 + added the ability of `tsplot` to do multiple plots, for example,<br/> 
 `tsplot(eqexp[,1:8], col=rainbow(8), ncolm=2, lwd=2, main='EQs')` <br/> - there's no change for univariate time series. 
