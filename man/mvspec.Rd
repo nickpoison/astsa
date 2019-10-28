@@ -44,7 +44,7 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 }
   \item{log }{same as \code{spec.pgram} but default is \code{'no'}
 }
-  \item{type }{plot type, defaults to \code{plot.spec} defaults
+  \item{type }{type of plot to be drawn, defaults to lines
 }
   \item{na.action }{same as \code{spec.pgram}
 %%     ~~Describe \code{na.action} here~~
