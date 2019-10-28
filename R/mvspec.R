@@ -13,11 +13,6 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
      kernapply  = stats::kernapply
      df.kernel  = stats:: df.kernel
 	 #
-	type0 <- 'n' 
-	type1 <- 'l'
-	if (!is.null(type)) {
-	    type1 <- type
-		}
     series <- deparse(substitute(x))
     x <- na.action(as.ts(x))
     xfreq <- frequency(x)
@@ -116,6 +111,8 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
     if (plot) {
+        type0 <- 'n' 
+        type1 <- ifelse(is.null(type), 'l', type) 
         plot(spg.out, type = type0, sub=NA, axes=FALSE, ann=FALSE, log = log, ...) 
 		Grid()
 		par(new=TRUE)
