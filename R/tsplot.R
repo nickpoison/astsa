@@ -1,16 +1,20 @@
-tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type='l', margins=.25, 
-                    ncolm=1, minor=TRUE, nxm=2, nym=2, col=1, ... ){
+tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
+                   margins=.25, ncolm=1, minor=TRUE, nxm=2, nym=2, col=1, ...)
+{
   par   = graphics::par
   plot  = graphics::plot
   lines = graphics::lines
   nser  = max(NCOL(x), NCOL(y))
   topper = ifelse(is.null(main), 0, .5) 
+  type0 <- 'n' 
+  type1 <- ifelse(is.null(type), 'l', type)
   if (nser == 1) {
   if(is.null(ylab)) {ylab = ifelse(is.null(y), deparse(substitute(x)), deparse(substitute(y)))}
   par(mar=c(2.5,2.5,1+topper,.5)+margins, mgp=c(1.6,.6,0), cex.main=1.2)
-  plot(x, y, type='n', main=main, ylab=ylab, xlab=xlab, ... ) 
+  plot(x, y, type = type0, axes=FALSE, ann=FALSE, main=NULL, ... )
   Grid(minor=minor, nxm=nxm, nym=nym)
-  lines(x, y, type=type, col=col, ... ) 
+  par(new=TRUE)
+  plot(x, y, type=type1, main=main, ylab=ylab, xlab=xlab, col=col, ... ) 
   box()
   } else {
   prow = ceiling(nser/ncolm)

@@ -6,8 +6,8 @@
 Produces a nice plot of univariate or multiple time series in one easy line.
 }
 \usage{
-tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type='l', margins=.25,
-        ncolm=1, minor=TRUE, nxm=2, nym=2, col=1, ... )
+tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
+        margins=.25, ncolm=1, minor=TRUE, nxm=2, nym=2, col=1, ...)
 }
 \arguments{
   \item{x, y}{
@@ -45,15 +45,6 @@ other graphical parameteres; see \link[graphics]{par}.
 }
 \author{
 D.S. Stoffer
-}
-\note{ This script is meant to be used for demonstrations so that
-a nice time series plot can be produced in one quick and easy statement.
-You can use it to do tricks, but you might get warnings because I had to
-use 2 levels of graphics to avoid having the grid on top of the line.  For 
-example, \code{axes = FALSE} will work, but you will get a warning because
-it applies to one level and not the other.  For multiple time series some
-options are limited, but there is no limit to the number of time series
-you can plot... you just need to use \code{ncolm} wisely.
 }
 \examples{
 tsplot(soi, col=4, main="Southern Oscillation Index")
