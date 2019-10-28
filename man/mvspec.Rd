@@ -10,7 +10,8 @@
 \usage{
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
          fast = TRUE, demean = FALSE, detrend = TRUE, 
-         plot = TRUE, log='n', na.action = na.fail, ...)
+         plot = TRUE, log='n', type = NULL, 
+         na.action = na.fail, ...)
 }
 %- maybe also 'usage' specify other objects documented here.
 \arguments{
@@ -38,10 +39,12 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
   \item{detrend }{if TRUE, series is detrended first; same as \code{spec.pgram} 
 %%     ~~Describe \code{detrend} here~~
 }
-  \item{log }{same as \code{spec.pgram} but default is \code{'no'}
-}
   \item{plot }{plot the estimate; same as \code{spec.pgram} 
 %%     ~~Describe \code{plot} here~~
+}
+  \item{log }{same as \code{spec.pgram} but default is \code{'no'}
+}
+  \item{type }{plot type, defaults to \code{plot.spec} defaults
 }
   \item{na.action }{same as \code{spec.pgram}
 %%     ~~Describe \code{na.action} here~~
