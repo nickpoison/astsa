@@ -9,7 +9,7 @@ common zeros.
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, log="n", ...)
+arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, log="n", type=NULL, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -26,6 +26,8 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, log="n", ...)
 %%     ~~Describe \code{n.freq} here~~
 }
  \item{log}{plot spectra on a log-scale; default is 'no'
+}
+ \item{type}{type of plot to be drawn, defaults to lines
 }
   \item{\dots}{additional arguments 
 %%     ~~Describe \code{\dots} here~~

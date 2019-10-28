@@ -11,8 +11,9 @@ To update the package to the most recent version, you just need the following tw
 
 1.9.2 (GitHub - October 2019)
 
-Updated `mvspec` due to possible plot error  being caused by use of `panel.first` (tries to draw `grid` before `plot` is called on some machines or OS).  Note to self: avoid `panel.first` dumb ass.
++ Updated `mvspec` due to possible plot error  being caused by use of `panel.first` (tries to draw `grid` before `plot` is called on some machines or OS).  Note to self: avoid `panel.first` dumb ass.
 
++ Updated `arma.spec` to avoid same problem as `mvspec`
 
 
 1.9.1 
