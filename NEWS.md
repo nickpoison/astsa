@@ -15,6 +15,7 @@ To update the package to the most recent version, you just need the following tw
 
 + Updated `arma.spec` to avoid same problem as `mvspec`
 
++ While I'm here, updated `tsplot` to avoid similar problems.
 
 1.9.1 
 
