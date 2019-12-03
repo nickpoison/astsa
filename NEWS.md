@@ -6,6 +6,11 @@ To update the package to the most recent version, you just need the following tw
 >  `install.packages("devtools")`<br/>
 >  `devtools::install_github("nickpoison/astsa")`
 
+Alternately, if you don't want `devtools` or if it gives you problems, you can install `astsa` as follows:
+> `install.packages('githubinstall')` <br/>
+> `githubinstall::githubinstall('astsa')`
+
+
 ------------------------------
 ### Version 1.9  - May/October 2019 (GitHub and CRAN)
 
