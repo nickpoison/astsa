@@ -28,7 +28,7 @@ Alternately, if you don't want `devtools` or if it gives you problems, you can i
 `tsplot(eqexp[,1:8], col=rainbow(8), ncolm=2, lwd=2, main='EQs')` <br/> - there's no change for univariate time series. 
 
 
-+ added dots (...) to `lag1.plot` and `lag2.plot` so you can change some of the graphical parameters; e.g., `lag1.plot(soi, max.lag=4, pch=20, cex=1.5, col=rgb(0,.5,1,.5))
++ added ellipses ( &hellip; ) to `lag1.plot` and `lag2.plot` so you can change some of the graphical parameters; e.g., `lag1.plot(soi, max.lag=4, pch=20, cex=1.5, col=rgb(0,.5,1,.5))
 `
 
 + fixed some man pages (after cRan submission)
