@@ -1,6 +1,8 @@
 
-## This is the changelog for `astsa` ...
+## This is the changelog for  ![astsa](https://www.stat.pitt.edu/stoffer/tsa4/images2/astsa_trans.gif =x75)
 
+
+<br/>
 
 To update the package to the most recent version, you just need the following two lines:
 >  `install.packages("devtools")`<br/>
