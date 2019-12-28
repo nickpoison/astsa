@@ -1,5 +1,5 @@
 
-## This is the changelog for  ![astsa](astsa.jpg =x75)
+## This is the changelog for astsa
 
 
 <br/>
