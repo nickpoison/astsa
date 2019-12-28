@@ -1,5 +1,5 @@
 
-## This is the changelog for  ![astsa](https://www.stat.pitt.edu/stoffer/tsa4/images2/astsa_trans.gif =x75)
+## This is the changelog for  ![astsa](astsa.jpg =x75)
 
 
 <br/>
