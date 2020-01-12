@@ -85,7 +85,7 @@ Alternately, if you don't want `devtools` or if it gives you problems, you can i
 ------------------------------
 ### Version 1.8 - Dec 2017 (GitHub and CRAN)
 
-<b> Time Series Analysis and Its Applications With R Examples -- Edition 4 was written under this version, so you don't need more recent updates to get through the text. But as my mother used to say, *"It couldn't hurt!"* </b>
+<b> Time Series Analysis and Its Applications With R Examples -- Edition 4 was written under this version, so you don't need more recent updates to get through the text. </b>
 
 + Version 1.8 is on CRAN 
 
@@ -269,6 +269,30 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 |`arma.spec()` | ... | `spec.arma()` |
 |`lag1.plot()` | ... | `lag.plot1()` |
 |`lag2.plot()` | ... | `lag.plot2()` |
+
+
+-----------------
+### Version 0.3 - 2010
+
+For the 3rd edition of the text, we included data and scripts as a compressed file
+called `tsa3.rda` and the basic version of ASTSA was abandoned.  Two years later,
+`tsa3.rda` was abandoned.
+
+
+-----------------
+### Version 0.2 - 2005
+
+The first edition of *Time Series Analysis and Its Applications* used 
+an updated version of the basic  `ASTSA` and it was distributed on the website for that
+version: [Edition 1 site](https://www.stat.pitt.edu/stoffer/xtra_stuff/tsa.html).
+It was then that we started writing R scripts to compensate for the fact that S and consequently R provided scripts for time series as an afterthought.  Still, much of the analysis in the text was done using Matlab.
+
  
+-----------------
+### Version 0.1 - 1988
+
+The first version of `ASTSA` was developed by R.H. Shumway for the new text *Applied Statistical Time Series Analysis* published by Prentice Hall. It was written in 16 bit visual studio and was distributed on a 5.25" floppy disk that was included with the text.  The package was written in Microsoft basic.
+ 
+The instruction manual has been preserved for historical purposes: [http://anson.ucdavis.edu/~shumway/astsaman.pdf](http://anson.ucdavis.edu/~shumway/astsaman.pdf)
     
 
