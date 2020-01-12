@@ -291,7 +291,7 @@ It was then that we started writing R scripts to compensate for the fact that S 
 -----------------
 ### Version 0.1 - 1988
 
-The first version of `ASTSA` was developed by R.H. Shumway for the new text *Applied Statistical Time Series Analysis* published by Prentice Hall. It was written in 16 bit visual studio and was distributed on a 5.25" floppy disk that was included with the text.  The package was written in Microsoft basic.
+The first version of `ASTSA` was developed by R.H. Shumway for the new text *Applied Statistical Time Series Analysis* published by Prentice Hall.  The package was written in Microsoft basic and was distributed on a 5.25" floppy disk that was included with the text. 
  
 The instruction manual has been preserved for historical purposes: [http://anson.ucdavis.edu/~shumway/astsaman.pdf](http://anson.ucdavis.edu/~shumway/astsaman.pdf)
     
