@@ -272,7 +272,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 
 
 -----------------
-### Version 0.3 - 2010
+### Version 0.4 - 2010
 
 For the 3rd edition of the text, we included data and scripts as a compressed file
 called `tsa3.rda` and the basic version of ASTSA was abandoned.  Two years later,
@@ -280,12 +280,20 @@ called `tsa3.rda` and the basic version of ASTSA was abandoned.  Two years later
 
 
 -----------------
-### Version 0.2 - 2005
+### Version 0.3 - 2005
+
+The second edition of the text, which included the subtitle  *With R Examples* was when we started
+giving R code in the text and writing R scripts to compensate for the fact that S and consequently R provided scripts for time series as an afterthought.  Still, much of the analysis in the text was done using Matlab.
+
+-----------------
+### Version 0.2 -  2000  
 
 The first edition of *Time Series Analysis and Its Applications* used 
 an updated version of the basic  `ASTSA` and it was distributed on the website for that
 version: [Edition 1 site](https://www.stat.pitt.edu/stoffer/xtra_stuff/tsa.html).
-It was then that we started writing R scripts to compensate for the fact that S and consequently R provided scripts for time series as an afterthought.  Still, much of the analysis in the text was done using Matlab.
+You had to extract the files to a floppy (3.5" by that time) and then install `ASTSA`.
+
+
 
  
 -----------------
