@@ -1,9 +1,9 @@
 \name{ccf2}
 \alias{ccf2}
-\title{Cross Correlation Plot
+\title{Cross Correlation
 }
 \description{
-Produces a nice graphic (and only a plot) of the sample CCF of two time series.
+Produces a nice graphic of the sample CCF of two time series.  The actual CCF values are returned invisibly.
 }
 \usage{
 ccf2(x, y, max.lag = NULL, main=NULL, ylab="CCF", na.action = na.pass, ... )
