@@ -29,7 +29,9 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
     Grid(); box()
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
     lines(LAG, ACF, type='h', ...) 
- }	
-  return(round(ACF,2)) 
+	return(round(ACF,2)) 
+ }	else {
+  return(ACF)
   }
+}
 

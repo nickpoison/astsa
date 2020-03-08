@@ -34,4 +34,7 @@ function (x, y, max.lag = NULL, main=NULL, ylab="CCF",
 	 abline(h=c(0,-U,U), lty=c(1,2,2), col=c(1,4,4))
 	 abline(v=0, lty=2, col=gray(.5, alpha=.5))
 	 lines(acf.out$LAG, acf.out$CCF, type='h', ...)
+	 LAG = -lag.max:lag.max
+	 CCF = round(acf.out$CCF,3)
+	 return(invisible(cbind(LAG, CCF)))
 }        

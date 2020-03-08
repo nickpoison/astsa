@@ -38,9 +38,11 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
     Grid(); box()
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
     lines(LAG, PACF, type='h')
-  on.exit(par(old.par))  
- } 
-  ACF<-round(ACF,2); PACF<-round(PACF,2)    
+    on.exit(par(old.par))
+    ACF<-round(ACF,2); PACF<-round(PACF,2)    
+    return(cbind(ACF, PACF)) 	
+  } else {
   return(cbind(ACF, PACF)) 
   }
+}  
 
