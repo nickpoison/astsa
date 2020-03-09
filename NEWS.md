@@ -16,6 +16,14 @@ You can also install `astsa` as follows:
 ------------------------------
 ### Version 1.9  - May/October 2019 (GitHub and CRAN)
 
+1.9.3 (GitHub - March 2020)
+
++ Updated correlation scripts: 
+
+   - for `acf1` and `acf2`, `plot=TRUE` prints rounded values, but if `plot=FALSE` the returned values are not rounded.
+
+    - and `ccf2`, the values are now returned invisibly.
+
 1.9.2 (GitHub - October 2019)
 
 + Updated `mvspec` due to possible plot error  being caused by use of `panel.first` (tries to draw `grid` before `plot` is called on some machines or OS).  Note to self: avoid `panel.first` dumb ass.
