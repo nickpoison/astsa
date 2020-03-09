@@ -14,7 +14,7 @@ You can also install `astsa` as follows:
 
 
 ------------------------------
-### Version 1.9  - May/October 2019 (GitHub and CRAN)
+### Version 1.9  - May 2019 / March 2020 (CRAN / GitHub)
 
 1.9.3 (GitHub - March 2020)
 
