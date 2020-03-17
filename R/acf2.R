@@ -40,7 +40,7 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
     lines(LAG, PACF, type='h')
     on.exit(par(old.par))
     ACF<-round(ACF,2); PACF<-round(PACF,2)    
-    return(cbind(ACF, PACF)) 	
+    return(rbind(ACF, PACF)) 	
   } else {
   return(cbind(ACF, PACF)) 
   }
