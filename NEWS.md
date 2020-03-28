@@ -20,7 +20,7 @@ You can also install `astsa` as follows:
 
 + Updated correlation scripts: 
 
-   - for `acf1` and `acf2`, `plot=TRUE` prints rounded values, but if `plot=FALSE` the returned values are not rounded.
+   - for `acf1` and `acf2`, `plot=TRUE` prints rounded values, but if `plot=FALSE` the returned values are not rounded by the scirpt.
 
     - and `ccf2`, the values are now returned invisibly.
 
