@@ -16,6 +16,10 @@ You can also install `astsa` as follows:
 ------------------------------
 ### Version 1.9  - May 2019 / March 2020 (CRAN / GitHub)
 
+1.9.4 (GitHub - March 2020)
+
++ Added the polio data (`polio`) set from the gamlss.data package.  It is used in Chapter 6 problems. I added it because gamlss.data has data sets with names that are the same as those in astsa. I hate to see package fights.
+
 1.9.3 (GitHub - March 2020)
 
 + Updated correlation scripts: 
