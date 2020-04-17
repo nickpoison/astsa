@@ -1,5 +1,6 @@
-tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
-                   margins=.25, ncolm=1, minor=TRUE, nxm=2, nym=2, col=1, ...)
+ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
+                   margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=2, 
+				   col=1, ...)
 {
   par   = graphics::par
   plot  = graphics::plot
@@ -19,7 +20,11 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
   } else {
   prow = ceiling(nser/ncolm)
   culer = matrix(col, nser)
+  if(byrow){
   par(mfrow = c(prow, ncolm), mar = c(2, 2, .5, .25)+margins, mgp = c(1.6,.6, 0), cex.lab=1.1, oma = c(0,0,3*topper,0))
+  } else {
+  par(mfcol = c(prow, ncolm), mar = c(2, 2, .5, .25)+margins, mgp = c(1.6,.6, 0), cex.lab=1.1, oma = c(0,0,3*topper,0))
+  }
   if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
   if (is.null(ylab)) { ylab = NA }
   for (h in 1:nser) {

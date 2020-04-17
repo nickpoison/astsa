@@ -53,6 +53,8 @@ lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1), ...)
 %}
 \examples{
 lag1.plot(soi, 9, col=4)
+lag1.plot(soi, max.lag=4, pch=20, cex=1.5, col=rgb(0,.5,1,.5))
 }
+\seealso{\code{\link{lag2.plot}}}
 \keyword{ ts }
 

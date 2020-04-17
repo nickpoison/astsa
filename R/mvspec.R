@@ -3,7 +3,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 	type = NULL, na.action = na.fail,...) 
 {
      #
-	 na.fail = stats::na.fail
+     na.fail = stats::na.fail
      as.ts = stats::as.ts
      frequency = stats::frequency
      is.tskernel = stats::is.tskernel
@@ -12,7 +12,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
      mvfft  = stats::mvfft
      kernapply  = stats::kernapply
      df.kernel  = stats:: df.kernel
-	 #
+    #
     series <- deparse(substitute(x))
     x <- na.action(as.ts(x))
     xfreq <- frequency(x)
@@ -65,12 +65,11 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
             j] <- kernapply(pgram[, i, j], kernel, circular = TRUE)
         df <- df.kernel(kernel)
         ######### bandwidth <- bandwidth.kernel(kernel)
-		Lh = 1/sum(kernel[-kernel$m:kernel$m]^2)    # this is Lh  - it gets divided by N below
-    }
-    else {
+        Lh = 1/sum(kernel[-kernel$m:kernel$m]^2)    # this is Lh  - it gets divided by N below
+    } else {
         df <- 2
         #########   bandwidth <- sqrt(1/12)    ############ fix this
-		Lh <- 1
+        Lh <- 1
     }
     df <- df/(u4/u2^2)
     df <- df * (N0/N)
@@ -102,7 +101,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 	    }
 #========================  
     details <- round( cbind(frequency=freq, period=1/freq, spectrum=spec), 4)
-#=========================  
+#======================== 
     spg.out <- list(freq = freq, spec = spec, coh = coh, phase = phase, 
         kernel = kernel, df = df, bandwidth = bandwidth,  
         fxx=fxx, Lh=Lh, n.used = N, details=details,
@@ -114,9 +113,9 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
         type0 <- 'n' 
         type1 <- ifelse(is.null(type), 'l', type) 
         plot(spg.out, type = type0, sub=NA, axes=FALSE, ann=FALSE, log = log, ...) 
-		Grid()
-		par(new=TRUE)
-		plot(spg.out, log = log, type = type1, ...) 
+        Grid()
+        par(new=TRUE)
+        plot(spg.out, log = log, type = type1, ...) 
         return(invisible(spg.out))
     }
     else return(spg.out)

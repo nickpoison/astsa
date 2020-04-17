@@ -38,7 +38,9 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
 %%  ~~who you are~~
 }
 \examples{
-lag2.plot(soi, rec, 8)
+lag2.plot(soi, rec, 3)
+lag2.plot(soi, rec, max.lag=8, pch=20, cex=1.5, col=rgb(0,.5,1,.5))
 }
+\seealso{\code{\link{lag1.plot}}}
 \keyword{ ts }
 %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

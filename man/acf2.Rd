@@ -17,7 +17,7 @@ acf2(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL,
   \item{max.lag}{
 Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60}. If the series is seasonal, this will be at least 4 seasons by default.  
 }
-   \item{plot}{If TRUE (default), a graph is produced and the values are rounded and listed. If FALSE, no graph is produced and the values are listed and not rounded.
+   \item{plot}{If TRUE (default), a graph is produced and the values are rounded and listed. If FALSE, no graph is produced and the values are listed but not rounded by the script.
 }
   \item{main}{Title of graphic; defaults to name of series.
 }
