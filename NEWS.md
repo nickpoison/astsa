@@ -16,6 +16,9 @@ You can also install `astsa` as follows:
 ------------------------------
 ### Version 1.9  - May 2019 / March 2020 (CRAN / GitHub)
 
+*I'm doing some updating and housecleaning, mainly on the man files, to get ready for a COVID-19 release to CRAN because of the plotting problems with Apple's OS.  The changes are here but I'm not giving it a number.*   <br/><br/>
+
+
 1.9.4 (GitHub - March 2020)
 
 + Added the polio data (`polio`) set from the gamlss.data package.  It is used in Chapter 6 problems. I added it because gamlss.data has data sets with names that are the same as those in astsa. I hate to see package fights.
