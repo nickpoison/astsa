@@ -7,7 +7,7 @@ Produces a nice plot of univariate or multiple time series in one easy line.
 }
 \usage{
 tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
-        margins=.25, ncolm=1, byrow=FALSE, minor=TRUE, nxm=2, nym=2,   
+        margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=2,   
         col=1, ...)
 }
 \arguments{
@@ -33,7 +33,7 @@ inches to add (or subtract) to the margins.
 for multiple time series, the number of columns to plot.
 }
  \item{byrow}{
-for multiple time series - if FALSE (default), plot series column wise; if TRUE, plot series row wise.
+for multiple time series - if TRUE (default), plot series row wise; if FALSE, plot series column wise.
 }
   \item{minor, nxm, nym}{
 if minor=TRUE, the number of minor tick marks on x-axis, y-axis.  minor=FALSE removes both or set either to 0 or 1 to remove.
