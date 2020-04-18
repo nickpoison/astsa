@@ -15,7 +15,7 @@ You can also install `astsa` as follows:
 -----------------------
 #### working on v1.10
 
-*I'm doing some updating and housecleaning, mainly on the man files, to get ready for a COVID-19 release to CRAN because of the plotting problems with Apple's OS. Except for `tsplot` all changes are in the man pages.  For `tsplot`, I added an arguement where you can plot row wise or column wise for multiple plots.*  
+*I'm doing some updating and housecleaning, mainly on the man files, to get ready for a COVID-19 release to CRAN because of the plotting problems with Apple's OS. Except for `tsplot` all changes are in the man pages.  For `tsplot`, I added an argument where you can plot row wise or column wise for multiple plots.*  
 
 
 
