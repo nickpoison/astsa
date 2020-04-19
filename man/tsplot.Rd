@@ -8,7 +8,7 @@ Produces a nice plot of univariate or multiple time series in one easy line.
 \usage{
 tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
         margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=2,   
-        col=1, ...)
+        col=1, gg=FALSE, ...)
 }
 \arguments{
   \item{x, y}{
@@ -40,6 +40,9 @@ if minor=TRUE, the number of minor tick marks on x-axis, y-axis.  minor=FALSE re
 }
  \item{col}{
 line color(s), can be a vector for multiple time series.
+}
+ \item{gg}{
+if TRUE, the plots have gray interiors with white grids (like a ggplot); default is FALSE
 }
   \item{\dots}{
 other graphical parameteres; see \link[graphics]{par}.
