@@ -5,7 +5,6 @@
 %%   ~~ data name/kind ... ~~
 }
 \description{Monthly live births (adjusted) in thousands for the United States, 1948-1979.
-This data set is extended to 2015 in \code{Births}.
 %%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \format{
@@ -25,5 +24,4 @@ This data set is extended to 2015 in \code{Births}.
 %% plot(birth)
 %% ## maybe str(birth) ; plot(birth) ...
 %%}
-\seealso{\code{\link{Births}}}
 \keyword{datasets}
