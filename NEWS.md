@@ -15,11 +15,13 @@ You can also install `astsa` as follows:
 -----------------------
 #### working on v1.10
 
-*I'm doing some updating and housecleaning, mainly on the man files, to get ready for a COVID-19 release to CRAN because of the plotting problems with Apple's OS. Except for `tsplot` all changes are in the man pages.*  
-
+*I'm doing some updating and housecleaning, mainly on the man files, to get ready for a COVID-19 release to CRAN because of the plotting problems with Apple's OS.
 
 + For `tsplot`, I added an argument (`byrow`) where you can plot row wise or 
-column wise for multiple plots. AND added an argument `gg` so if it's true the plot will *resemble* a ggplot ... e.g., `tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2)
+column wise for multiple plots. AND added an argument `gg` so if it's true the plot will *resemble* a ggplot ... e.g., `tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2)`
+
++ Added `Births` data set, which extends `birth` to 2015 (live births in the US).  Old data sets will always remain  to avoid any problems.
+
 ` <br/><br/>
 
 
