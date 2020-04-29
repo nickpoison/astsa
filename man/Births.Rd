@@ -1,16 +1,15 @@
 \name{birth}
 \alias{birth}
 \docType{data}
-\title{U.S. Monthly Live Births 
+\title{U.S. Monthly Live Births (extended)
 %%   ~~ data name/kind ... ~~
 }
-\description{Monthly live births (adjusted) in thousands for the United States, 1948-1979.
-This data set is extended to 2015 in \code{Births}.
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
+\description{Monthly live births (adjusted) in thousands for the United States, 1948-2015.
+This is an extension of the \code{birth} data set.
 }
 \format{
   The format is:
- Time-Series [1:373] from 1948 to 1979: 295 286 300 278 272 268 308 321 313 308 ...
+ Time-Series [1:816] from 1948 to 2015:  295.494 285.694 300.463 277.636 272.277 ...
 }
 %% \details{
 %% %%  ~~ If necessary, more details than the __description__ above ~~
@@ -25,5 +24,5 @@ This data set is extended to 2015 in \code{Births}.
 %% plot(birth)
 %% ## maybe str(birth) ; plot(birth) ...
 %%}
-\seealso{\code{\link{Births}}}
+\seealso{\code{\link{birth}}}
 \keyword{datasets}
