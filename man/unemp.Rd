@@ -26,5 +26,6 @@
 %%plot(unemp)
 %%## maybe str(unemp) ; plot(unemp) ...
 %%}
+\seealso{\code{\link{UnempRate}}}
 \keyword{datasets}
 %%
