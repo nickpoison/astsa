@@ -1,5 +1,5 @@
-\name{birth}
-\alias{birth}
+\name{Births}
+\alias{Births}
 \docType{data}
 \title{U.S. Monthly Live Births (extended)
 %%   ~~ data name/kind ... ~~
