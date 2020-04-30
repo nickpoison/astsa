@@ -20,8 +20,7 @@ You can also install `astsa` as follows:
 + For `tsplot`, I added an argument (`byrow`) where you can plot row wise or 
 column wise for multiple plots. AND added an argument `gg` so if it's true the plot will *resemble* a ggplot ... e.g., `tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2)`
 
-
-` <br/><br/>
+ <br/><br/>
 
 
 ------------------------------
