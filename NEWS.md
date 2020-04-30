@@ -1,7 +1,8 @@
 
 ## This is the changelog for 
 
-![astsa](astsa.gif)
+
+<img src="astsa.gif" alt="astsa"  height="100">
 
 
 <br/>
