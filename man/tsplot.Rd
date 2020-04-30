@@ -59,8 +59,6 @@ tsplot(soi, col=4, main="Southern Oscillation Index")
 tsplot(1:453, soi, ylab='SOI', xlab='Month')
 #
 tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2) 
-#
-tsplot(eqexp[,1:8], byrow=FALSE, ncolm=2, col=hcl.colors(8, 'Dark 3'), main='Earthquakes')
 }
 \keyword{ ts }%  
 

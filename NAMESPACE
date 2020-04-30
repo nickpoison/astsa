@@ -2,7 +2,8 @@
 
 importFrom("grDevices", "dev.new", "xy.coords", "gray")
 importFrom("graphics", "abline", "box", "grid", "layout", "legend", "lines",
-             "par", "plot", "title", "polygon", "axTicks", "axis")
+             "par", "plot", "title", "polygon", "axTicks", "axis", "mtext", 
+             "rect")
 importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",  "time",   
              "is.tskernel", "kernapply", "kernel", "mvfft", "na.fail",
              "na.omit", "na.pass", "nextn", "plot.ts", "qf", "ppoints",
@@ -10,5 +11,6 @@ importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",  "time",
              "dnorm", "quantile", "optim")
 
 # Export all names
+
 exportPattern("^[^\\.]")
 
