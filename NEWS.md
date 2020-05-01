@@ -16,18 +16,21 @@ You can also install `astsa` as follows:
 > `githubinstall::githubinstall('astsa')`
 
 -----------------------
-#### working on v1.10
+### Version 1.10 - May 2020 on CRAN and Github
 
-*I'm doing some updating and housecleaning, mainly on the man files, to get ready for a COVID-19 release to CRAN because of the plotting problems with Apple's OS.
+Since Version 1.9, see the updates 1.9.1-4 below.  The major change was to fix routines
+that produced graphics but  didn't work on Apple's OS. In addition, I made `tsplot` even more useful:
 
-+ For `tsplot`, I added an argument (`byrow`) where you can plot row wise or 
-column wise for multiple plots. AND added an argument `gg` so if it's true the plot will *resemble* a ggplot ... e.g., `tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2)`
 
- <br/><br/>
++ For `tsplot`, I added an argument (`byrow`) where you can plot row wise (`TRUE`) or 
+column wise (`FALSE`) for multiple plots. 
+
++ Also, for `tsplot`, added an argument `gg` so if it's true the plot will *resemble* a ggplot ... e.g., `tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2)`. 
+
 
 
 ------------------------------
-### Version 1.9  - May 2019 / March 2020 (CRAN / GitHub)
+### Versions 1.9  - May 2019 / March 2020 (CRAN / GitHub)
 
 
 
