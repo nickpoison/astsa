@@ -34,11 +34,11 @@ column wise (`FALSE`) for multiple plots.
 
 
 
-1.9.4 (GitHub - March 2020)
+1.9.4  
 
 + Added the polio data (`polio`) set from the gamlss.data package.  It is used in Chapter 6 problems. I added it because gamlss.data has data sets with names that are the same as those in astsa. I hate to see package fights.
 
-1.9.3 (GitHub - March 2020)
+1.9.3  
 
 + Updated correlation scripts: 
 
@@ -46,7 +46,7 @@ column wise (`FALSE`) for multiple plots.
 
     - and `ccf2`, the values are now returned invisibly.
 
-1.9.2 (GitHub - October 2019)
+1.9.2  
 
 + Updated `mvspec` due to possible plot error  being caused by use of `panel.first` (tries to draw `grid` before `plot` is called on some machines or OS).  Note to self: avoid `panel.first` dumb ass.
 
@@ -72,7 +72,7 @@ column wise (`FALSE`) for multiple plots.
 + For the Springer text, you can see the difference between v1.8 and v1.9 by looking at the changelog below v1.8.8.  Some scripts have added capabilities, but it won't change any data analysis. The only real difference will be slight numerical differences in the reported ICs in `sarima`.     
 
 -------------------------------------------
-### Version 1.8.8 - Mar 2019 (GitHub)
+### Versions 1.8 - Dec 2017 / Mar 2019 (CRAN / GitHub)
 
 1.8.8 
 
@@ -112,9 +112,6 @@ column wise (`FALSE`) for multiple plots.
 1.8.1 minor change to the way `acf2` calls `main` (cleaner)  - this was done at the beginning of v1.8 - it just never made it to CRAN 
 
 
-------------------------------
-### Version 1.8 - Dec 2017 (GitHub and CRAN)
-
 <b> Time Series Analysis and Its Applications With R Examples -- Edition 4 was written under this version, so you don't need more recent updates to get through the text. </b>
 
 + Version 1.8 is on CRAN 
@@ -126,7 +123,7 @@ changes to satisfy the CRANks. Also, the   GitHub version is slightly improved, 
 
 
 ----------------------------
-### Version 1.7.11 - Oct 2017  (on GitHub)
+### Versions 1.7 - Dec 2016 / Oct 2017  (CRAN / GitHub)
 
 
 1.7.11. 
@@ -173,11 +170,8 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
  `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
 	 then everything (except the graphic) is stored in `dog` and you won't see any output.
 
-	 
-
-----------------------------
-### Version 1.7 - Dec 2016  (on CRAN)
-
+	
+1.7  On CRAN Dec 2016
 
 + fixed `x0n` and `P0n` in `Ksmooth0` and `Ksmooth1` (minor fix) 
 
