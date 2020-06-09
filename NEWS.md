@@ -323,10 +323,12 @@ You had to extract the files to a floppy (3.5" by that time) and then install `A
 -----------------
 ### Version 0.1 - 1988
 
+<img src="astsa_v0.jpg" alt="floppy"  height="125">
+
 The first version of `ASTSA` was developed by R.H. Shumway for the new text *Applied Statistical Time Series Analysis* published by Prentice Hall.  The package was written in Microsoft basic and was distributed on a 5.25" floppy disk that was included with the text. 
  
 The instruction manual has been preserved for historical purposes: [http://anson.ucdavis.edu/~shumway/astsaman.pdf](http://anson.ucdavis.edu/~shumway/astsaman.pdf)
 
-<img src="astsa_v0.jpg" alt="floppy"  height="100">
+
     
 
