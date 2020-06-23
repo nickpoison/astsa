@@ -29,9 +29,9 @@
    if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
    if (is.null(ylab)) { ylab = NA }
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, ...)
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, ...)
 	} else {
-	tsplot(x, y[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, ...)
+	tsplot(x, y[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, ...)
     }
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
@@ -58,9 +58,9 @@
    if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
    if (is.null(ylab)) { ylab = NA }
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, gg=TRUE, ...)
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym,...)
 	} else {
-	tsplot(x, y[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, gg=TRUE, ...)
+	tsplot(x, y[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym, ...)
     }
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
