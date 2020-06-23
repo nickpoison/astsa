@@ -16,8 +16,14 @@ You can also install `astsa` as follows:
 > `githubinstall::githubinstall('astsa')`
 
 -----------------------
-### Version 1.10 - May 2020 on CRAN and Github
+### Versions 1.10 - May / June 2020 (CRAN / Github)
 
+
+1.10.1 (June 2020 - Github)
+
++ fixed `tsplot` - the minor ticks weren't changing on multiple plots
+
+1.10 (May 2020 - CRAN)
 Since Version 1.9, see the updates 1.9.1-4 below.  The major change was to fix routines
 that produced graphics but  didn't work on Apple's OS. In addition, I made `tsplot` even more useful:
 
