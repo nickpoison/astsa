@@ -21,6 +21,8 @@ You can also install `astsa` as follows:
 
 1.10.1 (June 2020 - Github)
 
++ added `spec.ic` which is similar to `spec.ar` but has option to base the AR spectral estimate on BIC and to `detrend` before the fit.
+
 + fixed `tsplot` - the minor ticks weren't changing on multiple plots
 
 1.10 (May 2020 - CRAN)
