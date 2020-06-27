@@ -35,10 +35,9 @@ additional arguments.
 }
 }
 \details{Uses \code{ar.yw} and \code{spec.ar} to fit the best AR model based on 
-pseudo AIC or BIC (no likelihood is calculated); see \seealso{\code{\link{ar}}}
-for details. The selected model is fit using MLE and the resulting AR spectrum
-is displayed.  The minimum centered AIC and BIC values and the spectral and 
-frequency ordinates are return silently.
+pseudo AIC or BIC (no likelihood is calculated). The selected model is fit using 
+MLE and the resulting AR spectrum is displayed.  The minimum centered AIC and BIC 
+values and the spectral and  frequency ordinates are return silently.
 }
 \value{
 \item{[[1]] }{Matrix with columns: ORDER, AIC, BIC}
@@ -50,9 +49,7 @@ frequency ordinates are return silently.
 \author{
 D.S. Stoffer 
 }
-\seealso{
-\seealso{\code{\link{ar}}}, \seealso{\code{\link{spec.ar}}}
-}
+\seealso{ \code{\link{ar}}, \code{\link{spec.ar}}}
 \examples{
 # AIC
 spec.ic(soi)  
