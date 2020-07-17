@@ -1,10 +1,11 @@
 spec.ic = 
 function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE, 
-           detrend=FALSE, ...){
+           detrend=FALSE, method=NULL, ...){
+  if (is.null(method)) {method='yw'}	   
   nme1 = paste("Series:", deparse(substitute(data)))	
   if (detrend) { data = resid(lm(data~time(data), na.action=NULL)); dmean = FALSE
   } else { dmean = TRUE } 		  
-  aic  = as.vector(stats::ar(data, order=order.max, aic=FALSE, demean=dmean)$aic) 
+  aic  = as.vector(stats::ar(data, order=order.max, aic=TRUE, method=method, demean=dmean)$aic) 
   bic  = aic - 2*(0L:order.max) + (0L:order.max)*log(length(data)) 
   bic  = bic - min(bic)  
   kmin = ifelse(BIC, which.min(bic)-1, which.min(aic)-1)
@@ -20,4 +21,4 @@ function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
   out2 = cbind(freq=u2$freq, spec=u2$spec) 
  return(invisible(list(out1, out2)))
 }
- 
+  

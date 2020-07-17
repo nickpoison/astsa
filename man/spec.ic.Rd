@@ -9,7 +9,7 @@ Fits an AR model to data and computes (and by default plots) the spectral
 }
 \usage{
 spec.ic(data, BIC = FALSE, order.max = 30, main = NULL, plot = TRUE, 
-         detrend = FALSE, ...)
+         detrend = FALSE, method=NULL, ...)
 }
 \arguments{
   \item{data}{
@@ -30,14 +30,19 @@ if TRUE (default) produces a graphic of the estimated AR spectrum.
   \item{detrend}{
 if TRUE, detrends the data first. Default is FALSE.
 }
+  \item{method}{method of estimation as specified in \code{\link{ar}}: character 
+       string specifying the method to fit the model. Must be one of the strings
+       in the default argument. Defaults to "yule-walker".
+}
   \item{\dots}{
 additional arguments.
 }
 }
-\details{Uses \code{ar.yw} and \code{spec.ar} to fit the best AR model based on 
-pseudo AIC or BIC (no likelihood is calculated). The selected model is fit using 
-MLE and the resulting AR spectrum is displayed.  The minimum centered AIC and BIC 
-values and the spectral and  frequency ordinates are return silently.
+\details{Uses \code{ar} to fit the best AR model based on pseudo AIC or BIC. 
+No likelihood is calculated unless \code{method='mle'} is used, however, the
+calculations are slow. The selected model is fit using MLE and the resulting 
+AR spectrum is displayed.  The minimum centered AIC and BIC 
+values and the spectral and frequency ordinates are return silently.
 }
 \value{
 \item{[[1]] }{Matrix with columns: ORDER, AIC, BIC}
@@ -53,7 +58,7 @@ D.S. Stoffer
 \examples{
 # AIC
 spec.ic(soi)  
-spec.ic(sunspotz, gg=TRUE, col=4, lwd=2)   
+spec.ic(sunspotz, method='burg', col=4)   
 # BIC after detrending on log scale
 spec.ic(soi, BIC=TRUE, detrend=TRUE, log='y')  
 # plot AIC and BIC without spectral estimate
