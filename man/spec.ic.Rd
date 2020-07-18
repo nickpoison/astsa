@@ -30,9 +30,9 @@ if TRUE (default) produces a graphic of the estimated AR spectrum.
   \item{detrend}{
 if TRUE, detrends the data first. Default is FALSE.
 }
-  \item{method}{method of estimation as specified in \code{\link{ar}}: character 
-       string specifying the method to fit the model. Must be one of the strings
-       in the default argument. Defaults to "yule-walker".
+  \item{method}{method of estimation - a character string specifying the 
+        method to fit the model chosen from the following:
+       "yule-walker", "burg", "ols", "mle", "yw". Defaults to "yule-walker".
 }
   \item{\dots}{
 additional arguments.
@@ -40,9 +40,8 @@ additional arguments.
 }
 \details{Uses \code{ar} to fit the best AR model based on pseudo AIC or BIC. 
 No likelihood is calculated unless \code{method='mle'} is used, however, the
-calculations are slow. The selected model is fit using MLE and the resulting 
-AR spectrum is displayed.  The minimum centered AIC and BIC 
-values and the spectral and frequency ordinates are return silently.
+calculations will be slow. The minimum centered AIC and BIC values and the 
+spectral and frequency ordinates are returned silently.
 }
 \value{
 \item{[[1]] }{Matrix with columns: ORDER, AIC, BIC}

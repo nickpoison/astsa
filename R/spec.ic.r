@@ -9,7 +9,7 @@ function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
   bic  = aic - 2*(0L:order.max) + (0L:order.max)*log(length(data)) 
   bic  = bic - min(bic)  
   kmin = ifelse(BIC, which.min(bic)-1, which.min(aic)-1)
-  u    = stats::ar.mle(data, order=kmin, aic=FALSE)
+  u    = stats::ar(data, order=kmin, aic=FALSE, method=method)
   u2   = stats::spec.ar(u, plot=FALSE)
  if (plot){
   nme2 = ifelse(BIC,'BIC','AIC')
