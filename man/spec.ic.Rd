@@ -45,7 +45,7 @@ spectral and frequency ordinates are returned silently.
 }
 \value{
 \item{[[1]] }{Matrix with columns: ORDER, AIC, BIC}
-\item{[[2]] }{Matrix with columns: spec, freq}
+\item{[[2]] }{Matrix with columns: freq, spec}
 }
 \references{
 \url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
