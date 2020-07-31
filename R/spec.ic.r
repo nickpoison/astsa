@@ -12,10 +12,10 @@ function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
   bic  = bic - min(bic)  
   kmin = ifelse(BIC, which.min(bic)-1, which.min(aic)-1)
   if (kmin < 1) { kmin=NULL 
-	if (plot){
-    if (is.null(main)) {main=paste(nme1,"  |  ",nme2," order = ",0)}
-    arma.spec(var.noise=var(data), main=main, ...)
-	}
+    if (plot){
+     if (is.null(main)) {main=paste(nme1,"  |  ",nme2," order = ",0)}
+     arma.spec(var.noise=var(data), main=main, ...)
+    }
   }	
   u    = stats::ar(data, order=kmin, aic=FALSE, method=method, demean=dmean)
   u2   = stats::spec.ar(u, plot=FALSE)
