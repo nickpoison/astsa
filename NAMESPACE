@@ -8,7 +8,7 @@ importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",  "time",
              "is.tskernel", "kernapply", "kernel", "mvfft", "na.fail", "lag",
              "na.omit", "na.pass", "nextn", "plot.ts", "qf", "ppoints",
              "spec.taper", "ts", "ts.intersect", "ts.plot", "qnorm", "coef",
-             "dnorm", "quantile", "optim", "ar", "spec.ar")
+             "dnorm", "quantile", "optim", "ar", "spec.ar", "filter")            
 
 # Export all names
 
