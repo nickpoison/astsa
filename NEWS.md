@@ -19,7 +19,9 @@ You can also install `astsa` as follows:
 ### Versions 1.10 - May / June 2020 (CRAN / Github)
 
 
-1.10.1 (July 2020 - Github)
+1.10.1 (Sept 2020 - Github)
+
++ added `plot` option in `sarima.for`.
 
 + added `spec.ic` which is similar to `spec.ar` but has option to base the AR spectral estimate on BIC and to `detrend` before the fit.
 
