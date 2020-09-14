@@ -1,19 +1,11 @@
 sarima.for <-
-function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),no.constant=FALSE, plot.all=FALSE,
+function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
+         no.constant=FALSE, plot=TRUE, plot.all=FALSE,
          xreg = NULL, newxreg = NULL, fixed=NULL){ 
    #
-   layout = graphics::layout
-   par = graphics::par
-   plot = graphics::plot
-   grid = graphics::grid
-   box = graphics::box
-   abline = graphics::abline
-   lines = graphics::lines
    frequency = stats::frequency
    na.pass = stats::na.pass
    as.ts = stats::as.ts
-   ts.plot = stats::ts.plot
-   xy.coords = grDevices::xy.coords
    #
   trans = ifelse (is.null(fixed), TRUE, FALSE)
   xname=deparse(substitute(xdata))
@@ -44,6 +36,15 @@ if (is.null(xreg)) {
 #--
  fore <- stats::predict(fitit, n.ahead, newxreg=nureg)  
 #-- graph:
+if (plot){
+   layout = graphics::layout
+   par = graphics::par
+   plot = graphics::plot
+   box = graphics::box
+   abline = graphics::abline
+   lines = graphics::lines
+   ts.plot = stats::ts.plot
+   xy.coords = grDevices::xy.coords
   U  = fore$pred + 2*fore$se
   L  = fore$pred - 2*fore$se
   U1 = fore$pred + fore$se
@@ -61,13 +62,13 @@ if (is.null(xreg)) {
   ts.plot(xdata,fore$pred, type="n", xlim=xllim, ylim=c(minx,maxx), ylab=xname) 
   Grid(); box()
   if(plot.all) {lines(xdata)} else {lines(xdata, type='o')}   
-#  
    xx = c(time(U), rev(time(U)))
    yy = c(L, rev(U))
    polygon(xx, yy, border=8, col=gray(.6, alpha=.2) ) 
    yy1 = c(L1, rev(U1))
    polygon(xx, yy1, border=8, col=gray(.6, alpha=.2) ) 
    lines(fore$pred, col="red", type="o")
+}   
   return(fore)
 }
 
