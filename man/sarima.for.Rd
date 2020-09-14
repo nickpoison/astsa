@@ -8,9 +8,9 @@
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-sarima.for(xdata, n.ahead, p, d, q, P = 0, D = 0, Q = 0, S = -1, 
-            tol = sqrt(.Machine$double.eps), no.constant = FALSE,
-            plot.all=FALSE, xreg = NULL, newxreg = NULL, fixed=NULL)
+sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
+         no.constant=FALSE, plot=TRUE, plot.all=FALSE,
+         xreg = NULL, newxreg = NULL, fixed=NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -48,6 +48,8 @@ sarima.for(xdata, n.ahead, p, d, q, P = 0, D = 0, Q = 0, S = -1,
    See  \code{\link{sarima}} for more details.
 %%     ~~Describe \code{no.constant} here~~
 }
+  \item(plot){if TRUE (default) the data (or some of it) and the forecasts and bounds are plotted
+}  
   \item{plot.all}{if TRUE, all the data are plotted in the graphic; otherwise, only the last 100 observations are plotted in the graphic.
 %%   
 }
