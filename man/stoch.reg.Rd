@@ -1,42 +1,28 @@
 \name{stoch.reg}
 \alias{stoch.reg}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{Frequency Domain Stochastic Regression
-%%  ~~function to do ... ~~
 }
 \description{Performs frequency domain stochastic regression discussed in Chapter 7.  
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
 stoch.reg(data, cols.full, cols.red, alpha, L, M, plot.which)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{data}{data matrix
-%%     ~~Describe \code{data} here~~
 }
   \item{cols.full}{specify columns of data matrix that are in the full model
-%%     ~~Describe \code{cols.full} here~~
 }
   \item{cols.red}{specify columns of data matrix that are in the reduced model (use NULL if there are no inputs in the reduced model) 
-%%     ~~Describe \code{cols.red} here~~
 }
   \item{alpha}{test size
-%%     ~~Describe \code{alpha} here~~
 }
   \item{L}{smoothing - see \code{spans} in \code{spec.pgram}
-%%     ~~Describe \code{L} here~~
 }
   \item{M}{number of points in the discretization of the integral
-%%     ~~Describe \code{M} here~~
 }
   \item{plot.which}{\code{coh} or \code{F.stat}, to plot either the squared-coherencies or the F-statistics, respectively
-%%     ~~Describe \code{plot.which} here~~
 }
 }
-%\details{
-%%  ~~ If necessary, more details than the description above ~~
-%}
 \value{\item{power.full }{spectrum under the full model}
 \item{power.red }{spectrum under the reduced model}
 \item{Betahat }{regression parameter estimates}
@@ -44,14 +30,9 @@ stoch.reg(data, cols.full, cols.red, alpha, L, M, plot.which)
 \item{coh }{coherency}
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
-%% ~put references to the literature/web site here ~
 }
 \author{D.S. Stoffer
-%%  ~~who you are~~
 }
 \note{The script is based on code that was contributed by Professor Doug Wiens, Department of Mathematical and Statistical Sciences, University of Alberta. 
-%%  ~~further notes~~
 }
 \keyword{ ts }
-%% %\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
-%% 

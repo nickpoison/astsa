@@ -2,10 +2,8 @@
 \alias{lap}
 \docType{data}
 \title{LA Pollution-Mortality Study
-%%   ~~ data name/kind ... ~~
 }
 \description{LA Pollution-Mortality Study (1970-1979, weekly data). 
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \format{
   The format is:
@@ -24,13 +22,8 @@ columns are time series       \tab   with names \cr
  (9) Hydrocarbons             \tab   \code{hycarb}\cr  
 (10) Ozone                    \tab   \code{o3}\cr  
 (11) Particulates             \tab   \code{part} \cr 
-%%  ~~ If necessary, more details than the __description__ above ~~
 }
 }
-%%\source{
-%%%%  ~~ reference to a publication or URL from which the data were obtained ~~
-%%}
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
-%%  ~~ possibly secondary sources and usages ~~
 }
 \keyword{datasets}

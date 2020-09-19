@@ -1,7 +1,6 @@
 \name{sarima}
 \alias{sarima}
 \title{Fit ARIMA Models
-%%  ~~function to do ... ~~
 }
 \description{Fits ARIMA models (including improved diagnostics) in a short command.  It can also be used to perform regression with autocorrelated errors. This is a front end to \code{arima()} with a different back door.
 }
@@ -11,31 +10,22 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
        fixed=NULL, tol = sqrt(.Machine$double.eps), 
        no.constant = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{xdata}{univariate time series
-%%     ~~Describe \code{xdata} here~~
 }
   \item{p}{AR order (must be specified)
-%%     ~~Describe \code{p} here~~
 }
   \item{d}{difference order (must be specified)
-%%     ~~Describe \code{d} here~~
 }
   \item{q}{MA order (must be specified)
-%%     ~~Describe \code{q} here~~
 }
   \item{P}{SAR order; use only for seasonal models 
-%%     ~~Describe \code{P} here~~
 }
   \item{D}{seasonal difference; use only for seasonal models 
-%%     ~~Describe \code{D} here~~
 }
   \item{Q}{SMA order; use only for seasonal models 
-%%     ~~Describe \code{Q} here~~
 }
   \item{S}{seasonal period; use only for seasonal models 
-%%     ~~Describe \code{S} here~~
 }
   \item{xreg}{Optionally, a vector or matrix of external regressors, which must have the same number of rows as xdata.
 }
@@ -44,10 +34,8 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
   \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
 }  
   \item{details}{if FALSE, turns off the diagnostic plot and the output from the nonlinear optimization routine, which is \code{optim}. The default is TRUE. 
-%%     ~~Describe \code{details} here~~
 }
   \item{tol}{controls the relative tolerance (reltol in \code{optim}) used to assess convergence. The default is \code{sqrt(.Machine$double.eps)}, the R default. 
-%%     ~~Describe \code{tol} here~~
 }
   \item{no.constant}{controls whether or not sarima includes a constant in the model. In particular, if there is no differencing (d = 0 and D = 0) you get the mean estimate. If there is differencing of order one (either d = 1 or D = 1, but not both), a constant term is included in the model. These two conditions may be overridden (i.e., no constant will be included in the model) by setting this to TRUE; e.g., \code{sarima(x,1,1,0,no.constant=TRUE)}. Otherwise, no constant or mean term is included in the model.  If regressors are included (via \code{xreg}), this is ignored.
 }

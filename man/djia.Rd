@@ -2,10 +2,8 @@
 \alias{djia}
 \docType{data}
 \title{Dow Jones Industrial Average
-%%   ~~ data name/kind ... ~~
 }
 \description{Daily DJIA values from April 2006 - April 2016
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 \format{
   The format is:
