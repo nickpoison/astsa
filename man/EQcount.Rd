@@ -2,7 +2,6 @@
 \alias{EQcount}
 \docType{data}
 \title{EQ Counts
-%%   ~~ data name/kind ... ~~
 }
 \description{Series of annual counts of major earthquakes (magnitude 7 and above) in the
 world between 1900 and 2006. }
@@ -14,5 +13,4 @@ world between 1900 and 2006. }
 }
 \source{Zucchini and MacDonald (2009). 
  Hidden Markov Models for Time Series: An Introduction using R.  CRC Press.
-%%  ~~ reference to a publication or URL from which the data were obtained ~~%
 }

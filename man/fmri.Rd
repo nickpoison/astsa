@@ -2,10 +2,8 @@
 \alias{fmri}
 \docType{data}
 \title{fMRI - complete data set
-%%   ~~ data name/kind ... ~~
 }
 \description{Data (as a vector list) from an fMRI experiment in pain, listed  by location and stimulus.  The data are BOLD signals when a stimulus was applied for 32 seconds and then stopped for 32 seconds. The signal period is 64 seconds and the sampling rate was one observation every 2 seconds for 256 seconds (\eqn{n = 128}).  The number of subjects under each condition varies.
-%%  ~~ A concise (1-5 lines) description of the dataset. ~~
 }
 
 
@@ -14,12 +12,7 @@
 The TREATMENTS or stimuli (and number of subjects in each condition) are [1] Awake-Brush (5 subjects), [2] Awake-Heat (4 subjects), [3] Awake-Shock (5 subjects), [4] Low-Brush (3 subjects), [5] Low-Heat (5 subjects), and [6] Low-Shock (4 subjects). Issue the command \code{summary(fmri)} for further details.  In particular, awake (Awake) or mildly anesthetized (Low) subjects  were subjected  levels of periodic brushing (Brush), application of heat (Heat), and mild shock (Shock) effects.
 
 As an example, \code{fmri$L1T6} (Location 1, Treatment 6) will show the data for the four subjects receiving the Low-Shock treatment at the Cortex 1 location; note that \code{fmri[[6]]} will display the same data. 
-%%  ~~ If necessary, more details than the __description__ above ~~
 }
-%%\source{
-%%%%  ~~ reference to a publication or URL from which the data were obtained ~~
-%%}
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
-%%  ~~ possibly secondary sources and usages ~~
 }
 \keyword{datasets}

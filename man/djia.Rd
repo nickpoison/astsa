@@ -9,8 +9,6 @@
   The format is:
  xts [1:2518, 1:5] 11279 11343 11347 11337 11283 ...\cr
  - attr(*, "class")= chr [1:2] "xts" "zoo"\cr
- - attr(*, "dimnames")=List of 2\cr
-  ..$ : NULL\cr
   ..$ : chr [1:5] "Open" "High" "Low" "Close" ...
 }
 \source{The data were obtained as follows:\cr
