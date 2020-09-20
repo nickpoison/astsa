@@ -84,6 +84,7 @@ column wise (`FALSE`) for multiple plots.
 -------------------------------------------
 ### Versions 1.8 - Dec 2017 / Mar 2019 (CRAN / GitHub)
 
+
 1.8.8 
 
 + Fixed &beta; reporting for `LagReg()` when `inverse=TRUE`... it is correct in the text example.
@@ -135,6 +136,8 @@ changes to satisfy the CRANks. Also, the   GitHub version is slightly improved, 
 ----------------------------
 ### Versions 1.7 - Dec 2016 / Oct 2017  (CRAN / GitHub)
 
+
+&starf; Just for historical record, version 1.7 was when CRAN maintainers got CRANky and started asking for arbirtary and stupid changes that no one would notice. I'm talking about asking to change one word in the DESCRIPTION file kind of stupid stuff.  This is when the GitHub versions started. 
 
 1.7.11. 
        
