@@ -43,7 +43,7 @@ additional arguments for \code{rand.gen}. Most usefully, the standard deviation 
 Will generate a time series of length n from the specified SARIMA model using simplified input. 
 }
 \value{
-\item{x }{a time series of length n from the specified SARIMA model with the specified frequency the model is seasonal}
+{a time series of length n from the specified SARIMA model with the specified frequency the model is seasonal}
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
@@ -71,6 +71,7 @@ y = sarima.sim(d=1, ma=-.8, D=1, sma=.8, S=12, n=120)
 acf2(diff(y)) 
 ## t-errors 
 y = sarima.sim(n=60, ar=c(0.9, -0.5), ma = c(-0.2, 0.2), sma=.9, S=12, 
-               rand.gen = function(n, ...) sqrt(0.2) * rt(n, df = 5))}
+               rand.gen = function(n, ...) sqrt(0.2) * rt(n, df = 5))
+}str
 \keyword{ ~ts}
 
