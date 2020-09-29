@@ -14,9 +14,9 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    SAR[seq(S, Po*S,by=S)] = -sar
    if (po>1) {
     AR = c(1,-ar) 
-} else {
-AR = 1
-}
+   } else {
+    AR = 1
+   }
    arnew = polyMul(AR, SAR)
    arnew = c(0, -arnew[-1])   # replace constant with a 0 
    } else {
@@ -28,9 +28,9 @@ AR = 1
    SMA[seq(S, Qo*S,by=S)] = sma
    if (qo>1) {
     MA = c(1,ma) 
-} else {
-MA = 1
-}
+   } else {
+    MA = 1
+   }
    manew = polyMul(MA, SMA)
    manew = c(0, manew[-1])
    } else {
