@@ -13,6 +13,6 @@ The Springer text was written under version 1.8 and the Chapman & Hall text was 
 I won't always push the latest version of the package to CRAN because sometimes it's a pain working with those people.</s> It looks like CRAN package processing is completely automated now... YES! We'll no longer be subjected to the whims of some CRANks.  I might start updating 
 the package on CRAN more often now, but the latest working version of the package will always be here.
  
-* Version 1.10 on GitHub and CRAN 
+* Versions 1.10+ on GitHub and CRAN 
 * See the [News](https://github.com/nickpoison/astsa/blob/master/NEWS.md) for further details about the state of the package and the changelog.
 
