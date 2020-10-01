@@ -16,7 +16,7 @@ You can also install `astsa` as follows:
 > `githubinstall::githubinstall('astsa')`
 
 -----------------------
-### Versions 1.10 - May / June 2020 (CRAN / Github)
+### Versions 1.10 - May / Sept 2020 (CRAN / Github)
 
 
 1.10.4 (Sept 2020 - Github)
