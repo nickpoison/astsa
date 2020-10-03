@@ -9,7 +9,7 @@ importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",  "time",
              "na.omit", "na.pass", "nextn", "plot.ts", "qf", "ppoints",
              "spec.taper", "ts", "ts.intersect", "ts.plot", "qnorm", "coef",
              "dnorm", "quantile", "optim", "ar", "spec.ar", "filter",
-             "arima.sim", "diffinv", "diff", "tsp")            
+             "arima.sim", "diffinv", "tsp")            
 
 # Export all names
 
