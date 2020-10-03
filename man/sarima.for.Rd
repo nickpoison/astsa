@@ -33,12 +33,11 @@ sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
   \item{no.constant}{controls whether or not a constant is included in the model. If \code{no.constant=TRUE}, no constant is included in the model.
    See  \code{\link{sarima}} for more details.
 }
-  \item(plot){if TRUE (default) the data (or some of it) and the forecasts and bounds are plotted
+  \item{plot}{if TRUE (default) the data (or some of it) and the forecasts and bounds are plotted
 }  
   \item{plot.all}{if TRUE, all the data are plotted in the graphic; otherwise, only the last 100 observations are plotted in the graphic.
 }
-\item{xreg}{Optionally, a vector or matrix of external regressors, which must have the same number of rows as the series.  If this
-is used, \code{newxreg} MUST be specified.
+\item{xreg}{Optionally, a vector or matrix of external regressors, which must have the same number of rows as the series.  If this is used, \code{newxreg} MUST be specified.
 }
 \item{newxreg}{New values of \code{xreg} to be used for prediction. Must have at least \code{n.ahead} rows.
 }

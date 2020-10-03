@@ -36,7 +36,6 @@ Kfilter2(num, y, A, mu0, Sigma0, Phi, Ups, Gam, Theta, cQ, cR,
   \item{input}{matrix or vector of inputs having the same row dimension as y; use \code{input = 0} if not needed
 }
 }
-}
 \value{
 \item{xp }{one-step-ahead prediction of the state}
 \item{Pp }{mean square prediction error}

@@ -25,7 +25,6 @@ Ksmooth0(num, y, A, mu0, Sigma0, Phi, cQ, cR)
   \item{cR}{Cholesky-type decomposition of observation error covariance matrix R -- see details below
 }
 }
-}
 \value{
 \item{xs }{state smoothers}
 \item{Ps }{smoother mean square error}

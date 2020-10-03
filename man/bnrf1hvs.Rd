@@ -9,5 +9,4 @@
   The format is:
  Time-Series [1:3741] from 1 to 3741: 1 4 3 2 4 4 3 4 4 4 ...
 }
-}
 \keyword{datasets}

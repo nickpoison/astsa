@@ -29,7 +29,6 @@ EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 100, tol = 0.001)
   \item{tol}{relative tolerance for determining convergence
 }
 }
-}
 \value{
 \item{Phi }{Estimate of Phi}
 \item{Q }{Estimate of Q}
@@ -49,6 +48,4 @@ EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 100, tol = 0.001)
   
   It would be relatively easy to include estimates of 'Ups' and 'Gam' because conditional on the states, these are just regression coefficients.  If you decide to alter EM1 to include estimates of the 'Ups' or 'Gam', feel free to notify me with a workable example and I'll include it in the next update.
 }
-
-
 \keyword{ ts }

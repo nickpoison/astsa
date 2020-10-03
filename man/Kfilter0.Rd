@@ -25,7 +25,6 @@ Kfilter0(num, y, A, mu0, Sigma0, Phi, cQ, cR)
   \item{cR}{Cholesky-type decomposition of observation error covariance matrix R -- see details below
 }
 }
-}
 \value{
 \item{xp }{one-step-ahead state prediction}
 \item{Pp }{mean square prediction error}
