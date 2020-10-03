@@ -15,7 +15,7 @@
 \source{
 http://people.whitman.edu/~hundledr/courses/M250F03/M250.html
 }
-\references{and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \seealso{\code{\link{Hare}}}
 \keyword{datasets}

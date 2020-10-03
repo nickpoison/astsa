@@ -10,11 +10,11 @@
   The format is:
  Time-Series [1:91] from 1845 to 1935: 19.6 19.6 19.6 12 28 ...
 }
-\note{This data set pairs with \code{\link{Lynx}}. 
+\note{This data set pairs with \code{\link{Lynx}}.  
 The data are in  units of one  thousand.
 }
-\source{
-http://people.whitman.edu/~hundledr/courses/M250F03/M250.html
+\source{From Odum's "Fundamentals of Ecology",  p. 191. 
+Data listed at \url{http://people.whitman.edu/~hundledr/courses/M250F03/LynxHare.txt}.
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
