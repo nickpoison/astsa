@@ -7,12 +7,14 @@ function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...),
     if (n <= 0L) 
         stop("'n' must be strictly positive")
     p <- length(model$ar)
+	if (p==1 && model$ar==0) p=0
     if (p) {
         minroots <- min(Mod(polyroot(c(1, -model$ar))))
         if (minroots <= 1) 
             stop("model is not causal")
     }
     q <- length(model$ma)
+	if (q==1 && model$ma==0) q=0
 	if (q) {
        minroots <- min(Mod(polyroot(c(1, model$ma))))
        if (minroots <= 1) 
