@@ -7,19 +7,19 @@ function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...),
     if (n <= 0L) 
         stop("'n' must be strictly positive")
     p <- length(model$ar)
-	if (p==1 && model$ar==0) p=0
-    if (p) {
+    if (p > 1) {
         minroots <- min(Mod(polyroot(c(1, -model$ar))))
         if (minroots <= 1) 
             stop("model is not causal")
     }
+	if (p==1 && abs(model$ar)>=1) { stop("model is not causal") }
     q <- length(model$ma)
-	if (q==1 && model$ma==0) q=0
-	if (q) {
+	if (q > 1) {
        minroots <- min(Mod(polyroot(c(1, model$ma))))
        if (minroots <= 1) 
        stop("model is not invertible")
 	}   
+    if (q==1 && abs(model$ma)>=1) { stop("model is not invertible") }
     if (is.na(n.start)) 
         n.start <- p + q + ifelse(p > 0, ceiling(6/log(minroots)), 
             0)
@@ -29,10 +29,8 @@ function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...),
     if (!is.null(ord <- model$order)) {
         if (length(ord) != 3L) 
             stop("'model$order' must be of length 3")
-		if (model$ar==0) p=1	
         if (p != ord[1L]) 
             stop("inconsistent specification of 'ar' order")
-		if (model$ma==0) q=1	
         if (q != ord[3L]) 
             stop("inconsistent specification of 'ma' order")
         d <- ord[2L]
