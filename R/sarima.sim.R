@@ -1,11 +1,15 @@
 sarima.sim <-
 function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
-          n=500, rand.gen=rnorm, ...){   
+          n=500, rand.gen=rnorm, ...){ 
+  if (length(ar)==1 && ar==0) ar=NULL
+  if (length(ma)==1 && ma==0) ma=NULL  
   po = length(ar)
   qo = length(ma)
  if (is.null(S)) {
   x = zarima_sim(list(order=c(po,d,qo), ar=ar, ma=ma), n=n, rand.gen=rand.gen, ...)
  } else {  
+  if (length(sar)==1 && sar==0) sar=NULL
+  if (length(sma)==1 && sma==0) sma=NULL 
   Po = length(sar)
   Qo = length(sma)
   if (Po > 0){

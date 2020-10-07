@@ -1,4 +1,4 @@
-zarima_sim <-
+ zarima_sim <-
 function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...), 
     n.start = NA, start.innov = rand.gen(n.start, ...), ...) 
 {
@@ -7,19 +7,17 @@ function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...),
     if (n <= 0L) 
         stop("'n' must be strictly positive")
     p <- length(model$ar)
-    if (p > 1) {
+    if (p) {
         minroots <- min(Mod(polyroot(c(1, -model$ar))))
         if (minroots <= 1) 
             stop("model is not causal")
     }
-	if (p==1 && abs(model$ar)>=1) { stop("model is not causal") }
     q <- length(model$ma)
-	if (q > 1) {
+	if (q) {
        minroots <- min(Mod(polyroot(c(1, model$ma))))
        if (minroots <= 1) 
        stop("model is not invertible")
 	}   
-    if (q==1 && abs(model$ma)>=1) { stop("model is not invertible") }
     if (is.na(n.start)) 
         n.start <- p + q + ifelse(p > 0, ceiling(6/log(minroots)), 
             0)
