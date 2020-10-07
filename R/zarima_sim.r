@@ -29,8 +29,10 @@ function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...),
     if (!is.null(ord <- model$order)) {
         if (length(ord) != 3L) 
             stop("'model$order' must be of length 3")
+		if (model$ar==0) p=1	
         if (p != ord[1L]) 
             stop("inconsistent specification of 'ar' order")
+		if (model$ma==0) q=1	
         if (q != ord[3L]) 
             stop("inconsistent specification of 'ma' order")
         d <- ord[2L]
