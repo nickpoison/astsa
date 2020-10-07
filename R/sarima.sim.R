@@ -4,7 +4,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
   po = length(ar)
   qo = length(ma)
  if (is.null(S)) {
-  x = zarima.sim(list(order=c(po,d,qo), ar=ar, ma=ma), n=n, rand.gen=rand.gen, ...)
+  x = zarima_sim(list(order=c(po,d,qo), ar=ar, ma=ma), n=n, rand.gen=rand.gen, ...)
  } else {  
   Po = length(sar)
   Qo = length(sma)
@@ -40,7 +40,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    maorder = length(manew)
    burnin = (D+5)*S
    num = n + burnin
-   x = zarima.sim(list(order=c(arorder,d,maorder), ar=arnew, ma=manew), n=num, rand.gen=rand.gen, ...)
+   x = zarima_sim(list(order=c(arorder,d,maorder), ar=arnew, ma=manew), n=num, rand.gen=rand.gen, ...)
   if (D > 0){
    x = stats::diffinv(x, lag=S, differences=D)
    }
