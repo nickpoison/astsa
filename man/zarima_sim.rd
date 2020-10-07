@@ -6,15 +6,14 @@
  It is here only to be used by \code{sarima.sim}.
 }
 \usage{
-arima_sim(model, n, rand.gen = rnorm, innov = rand.gen(n, \dots),
+zarima_sim(model, n, rand.gen = rnorm, innov = rand.gen(n, \dots),
           n.start = NA, start.innov = rand.gen(n.start, \dots),
           \dots)
 }
 \arguments{
   \item{model}{A list with component \code{ar} and/or \code{ma} giving
     the AR and MA coefficients respectively.  Optionally a component
-    \code{order} can be used.  An empty list gives an ARIMA(0, 0, 0)
-    model, that is white noise.}
+    \code{order} can be used.}
   \item{n}{length of output series, before un-differencing.  A strictly
     positive integer.}
   \item{rand.gen}{optional: a function to generate the innovations.}
@@ -38,11 +37,10 @@ arima_sim(model, n, rand.gen = rnorm, innov = rand.gen(n, \dots),
 \value{
   A time-series object of class \code{"ts"}.
 }
-\notes{\code{stats::arima.sim} reported a stationarity error for stationary 
-ARIMA models and did not check for invertibility. We could not perpetuate 
-the misinformation. Also, \code{stats::arima.sim} only simulated from 
-nonseasonal models.  Now you can use  \code{\link{sarima.sim}}, which calls
-this script.
+\note{This is here because \code{stats::arima.sim} reported a stationarity error
+for stationary ARIMA models and did not check for invertibility and we could not 
+perpetuate misinformation. Now you can use \code{\link{sarima.sim}} to simulate 
+from (seasonal) ARIMA models with simple syntax.
 }
 \seealso{
   \code{\link{sarima.sim}}
