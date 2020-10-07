@@ -50,7 +50,7 @@ Will generate a time series of length n from the specified SARIMA model using si
 \author{D.S. Stoffer
 }
 \note{
-The script uses \code{polyMul} to obtain the appropriate autoregessive and moving average polynomials from the specified model and feeds those into \code{astsa::arima_sim}. 
+The script uses \code{polyMul} to obtain the appropriate autoregessive and moving average polynomials from the specified model and feeds those into \code{zarima_sim}. 
 }
 \examples{
 ## AR(1)
