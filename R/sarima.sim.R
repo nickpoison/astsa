@@ -16,6 +16,10 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    SAR = rep(0, Po*S)
    SAR[1] = 1
    SAR[seq(S, Po*S,by=S)] = -sar
+    minroots <- min(Mod(SAR))
+    if (minroots <= 1) 
+      stop("model is not causal")
+    }
    if (po>1) {
     AR = c(1,-ar) 
    } else {
@@ -30,6 +34,10 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    SMA = rep(0, Qo*S)
    SMA[1] = 1
    SMA[seq(S, Qo*S,by=S)] = sma
+    minroots <- min(Mod(SMA))
+     if (minroots <= 1) 
+      stop("model is not invertible")
+    }
    if (qo>1) {
     MA = c(1,ma) 
    } else {
