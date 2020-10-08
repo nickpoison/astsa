@@ -16,15 +16,16 @@ You can also install `astsa` as follows:
 > `githubinstall::githubinstall('astsa')`
 
 -----------------------
-### Versions 1.10 - May / Sept 2020 (CRAN / Github)
+### Versions 1.10 - May / Oct 2020 (CRAN / Github)
 
 
 1.10.4 (Sept 2020 - Github)
 
 
 
-+ added `sarima.sim` to simulate data from (possibly seasonal) ARIMA models ... as usual, it has simplified `astsa` syntax - the model is specified by the parameters, no lists are needed.   The script uses `polyMul` (also added) to obtain the appropriate autoregessive and moving average polynomials from the specified model and feeds those into `zarima_sim` (also added), which is
-an improved version of `stats::sarima.sim`.  **TO DO: add a warning that the seasonal period has to be specified if it is not and `sar` or `sma` are specified.** 
++ added `sarima.sim` to simulate data from (possibly seasonal) ARIMA models ... as usual, it has simplified `astsa` syntax - the model is specified by the parameters, no lists are needed.  
+
+> The script uses `polyMul` (also added) to obtain the appropriate autoregessive and moving average polynomials from the specified model and feeds those into  `zarima_sim` (also added), which is an improved version of `stats::sarima.sim`. It took awhile to try to cover all possible errors, but we think we have it   covered now.  Let us know if you run into a problem.
 
 + added `plot` option in `sarima.for`.
 
