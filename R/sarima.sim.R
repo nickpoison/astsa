@@ -10,7 +10,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
        if (minroots <= 1) { stop("AR side is not causal") }
     }
   if (qo>0){	
-       minroots <- min(Mod(polyroot(c(1, model$ma))))
+       minroots <- min(Mod(polyroot(c(1, ma))))
        if (minroots <= 1) { stop("MA side is not invertible") }	
   }
  if (is.null(S)) {
