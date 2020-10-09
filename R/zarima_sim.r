@@ -10,13 +10,13 @@ function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...),
     if (p) {
         minroots <- min(Mod(polyroot(c(1, -model$ar))))
         if (minroots <= 1) 
-            stop("model 'ar' part is not causal")
+            stop("AR side is not causal")
     }
     q <- length(model$ma)
 	if (q) {
        minroots <- min(Mod(polyroot(c(1, model$ma))))
        if (minroots <= 1) 
-       stop("model 'ma' part is not invertible")
+       stop("MA side is not invertible")
 	}   
     if (is.na(n.start)) 
         n.start <- p + q + ifelse(p > 0, ceiling(6/log(minroots)), 
