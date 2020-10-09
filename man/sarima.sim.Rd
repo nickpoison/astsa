@@ -53,7 +53,7 @@ Will generate a time series of length n from the specified SARIMA model using si
 The script uses \code{polyMul} to obtain the appropriate autoregressive and moving average polynomials from the specified model and feeds those into \code{zarima_sim}.  The model autoregressive polynomial ('AR side' = AR x SAR) is checked for causality and the model moving average polynomial ('MA side' = MA x SMA) is checked invertibility.  The script stops and reports an error at the first violation of causality or invertibility; i.e., it will not report multiple errors.  
 }
 \examples{
-## AR(1)  
+## AR(1) [n = 500 is default]
 y = sarima.sim(ar=.9)
 ## ARIMA(0,1,1) with drift  
 tsplot(sarima.sim(ma=-.8, d=1, mean=.1))
@@ -66,7 +66,7 @@ points(sAR, pch=Months, cex=1.1, font=4, col=1:4)
 set.seed(111)
 tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.4, S=12, n=120))  
 ## t-errors 
-y = sarima.sim(n=60, ar=c(0.9, -0.5), ma= 2, sma=.9, S=12, rand.gen = function(n, ...) sqrt(0.2)*rt(n, df=5))
+y = sarima.sim(n=60, ar=c(1.5, -.75), sma=.9, S=12, rand.gen=function(n, ...) sqrt(.2)*rt(n, df=5))
 }
 \keyword{ ~ts}
 
