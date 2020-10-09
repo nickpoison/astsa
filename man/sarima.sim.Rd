@@ -62,8 +62,7 @@ Months = c("J","F","M","A","M","J","J","A","S","O","N","D")
 sAR = sarima.sim(sar=.9, S=12, n=36)
 tsplot(sAR, type='c')
 points(sAR, pch=Months, cex=1.1, font=4, col=1:4)
-## SARIMA(0,1,1)x(0,1,1)_12 - maybe AirPassengers
-set.seed(111)
+## SARIMA(0,1,1)x(0,1,1)_12 - B&J's favorite
 tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.4, S=12, n=120))  
 ## t-errors 
 y = sarima.sim(n=60, ar=c(1.5, -.75), sma=.9, S=12, rand.gen=function(n, ...) sqrt(.2)*rt(n, df=5))
