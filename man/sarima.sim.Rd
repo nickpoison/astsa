@@ -53,23 +53,20 @@ Will generate a time series of length n from the specified SARIMA model using si
 The script uses \code{polyMul} to obtain the appropriate autoregessive and moving average polynomials from the specified model and feeds those into \code{zarima_sim}. 
 }
 \examples{
-## AR(1)
-y = sarima.sim(ar=.9, n=100)
-tsplot(y)
-acf2(y)
+## AR(1)  
+y = sarima.sim(ar=.9)
 ## ARIMA(0,1,1) with drift  
-y = sarima.sim(ma=-.8, d=1, n=100, mean=.1)
+tsplot(sarima.sim(ma=-.8, d=1, mean=.1))
 ## SAR(1) example from text
-set.seed(666)
 Months = c("J","F","M","A","M","J","J","A","S","O","N","D")
 sAR = sarima.sim(sar=.9, S=12, n=36)
 tsplot(sAR, type='c')
 points(sAR, pch=Months, cex=1.1, font=4, col=1:4)
-## SARIMA(0,1,1)x(0,1,1)_12 the old standby
-y = sarima.sim(d=1, ma=-.8, D=1, sma=.8, S=12, n=120) 
-acf2(diff(y)) 
+## SARIMA(0,1,1)x(0,1,1)_12 - maybe AirPassengers
+set.seed(111)
+tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.4, S=12, n=120))  
 ## t-errors 
-y = sarima.sim(n=60, ar=c(0.9, -0.5), ma = c(-0.2, 0.2), sma=.9, S=12, rand.gen = function(n, ...) sqrt(0.2) * rt(n, df = 5))
+y = sarima.sim(n=60, ar=c(0.9, -0.5), ma= 2, sma=.9, S=12, rand.gen = function(n, ...) sqrt(0.2)*rt(n, df=5))
 }
 \keyword{ ~ts}
 
