@@ -50,7 +50,7 @@ Will generate a time series of length n from the specified SARIMA model using si
 \author{D.S. Stoffer
 }
 \note{
-The script uses \code{polyMul} to obtain the appropriate autoregessive and moving average polynomials from the specified model and feeds those into \code{zarima_sim}. 
+The script uses \code{polyMul} to obtain the appropriate autoregressive and moving average polynomials from the specified model and feeds those into \code{zarima_sim}.  The model autoregressive polynomial ('AR side' = AR x SAR) is checked for causality and the model moving average polynomial ('MA side' = MA x SMA) is checked invertibility.  The script stops and reports an error at the first violation of causality or invertibility; i.e., it will not report multiple errors.  
 }
 \examples{
 ## AR(1)  
