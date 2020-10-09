@@ -18,11 +18,7 @@ function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...),
       # if (minroots <= 1)                   # this is in sarima.sim
       # stop("MA side is not invertible")
 	}   
-    if (is.na(n.start)) 
-        n.start <- p + q + ifelse(p > 0, ceiling(6/log(minroots)), 
-            0)
-    if (n.start < p + q) 
-        stop("burn-in 'n.start' must be as long as 'ar + ma'")
+    if (is.na(n.start)) { n.start <- p + q + 50 }
     d <- 0
     if (!is.null(ord <- model$order)) {
         if (length(ord) != 3L) 
