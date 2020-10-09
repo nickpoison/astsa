@@ -5,6 +5,14 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
   if (length(ma)==1 && ma==0) ma=NULL  
   po = length(ar)
   qo = length(ma)
+  if (po>0) {
+       minroots <- min(Mod(polyroot(c(1, -ar))))
+       if (minroots <= 1) { stop("AR side is not causal") }
+    }
+  if (qo>0){	
+       minroots <- min(Mod(polyroot(c(1, model$ma))))
+       if (minroots <= 1) { stop("MA side is not invertible") }	
+  }
  if (is.null(S)) {
   if (length(sar)>0 || length(sma)>0) 
       { stop("the seasonal period 'S' is not specified") }
