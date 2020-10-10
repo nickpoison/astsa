@@ -20,6 +20,8 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
  } else {  
   if (length(sar)==1 && sar==0) sar=NULL
   if (length(sma)==1 && sma==0) sma=NULL 
+  if (D != round(D) || D < 0) 
+      { stop("seasonal difference order 'D' must be a positive integer") }
   Po = length(sar)
   Qo = length(sma)
   if (Po > 0){

@@ -7,36 +7,11 @@ function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...),
     if (n <= 0L) 
         stop("'n' must be strictly positive")
     p <- length(model$ar)
-    # if (p) {
-    #     minroots <- min(Mod(polyroot(c(1, -model$ar))))
-    #    # if (minroots <= 1)                  # this is in sarima.sim
-    #    #     stop("AR side is not causal")
-    # }
     q <- length(model$ma)
-	# if (q) {
-    #    minroots <- min(Mod(polyroot(c(1, model$ma))))
-    #   # if (minroots <= 1)                   # this is in sarima.sim
-    #   # stop("MA side is not invertible")
-	# }   
-	# if (is.na(n.start)) 
-    #     n.start <- p + q + ifelse(p > 0, ceiling(6/log(minroots)), 
-    #         0)
-    # if (n.start < p + q) 
-    #     stop("burn-in 'n.start' must be as long as 'ar + ma'")
-    if (is.na(n.start)) { n.start <- 50*(p+1) + q }
-    # d <- 0
-    # if (!is.null(ord <- model$order)) {  # this is generated in sarima.sim
-    #     if (length(ord) != 3L) 
-    #         stop("'model$order' must be of length 3")
-    #     if (p != ord[1L]) 
-    #         stop("inconsistent specification of 'ar' order")
-    #     if (q != ord[3L]) 
-    #         stop("inconsistent specification of 'ma' order")
-    #  }     
-	 d <- model$order[2L]
+    if (is.na(n.start)) { n.start <- 50 + p + q }
+	d <- model$order[2L]
         if (d != round(d) || d < 0) 
             stop("number of differences must be a positive integer")
-    #}
     if (!missing(start.innov) && length(start.innov) < n.start) 
         stop(sprintf(ngettext(n.start, "'start.innov' is too short: need %d point", 
             "'start.innov' is too short: need %d points"), 
