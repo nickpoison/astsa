@@ -2,8 +2,7 @@
 \alias{zarima_sim}
 \title{Support Script for ARIMA Simulation}
 \description{
- This is a stripped down version of  \code{stats::arima.sim}.
- It is here only to be used by \code{sarima.sim}. 
+ This is here only to be used by \code{sarima.sim}.
 }
 \usage{
 zarima_sim(model, n, rand.gen = rnorm, innov = rand.gen(n, \dots),
@@ -31,15 +30,15 @@ zarima_sim(model, n, rand.gen = rnorm, innov = rand.gen(n, \dots),
 }
 \details{
   \code{sarima.sim} uses this script to generate (seasonal) ARIMA models.  
-  The model is checked for causality and invertibility.  This is an improved
-  version of \code{stats::arima.sim}.
+   This is here only to support the simulation.
 }
 \value{
   A time-series object of class \code{"ts"}.
 }
-\note{Do NOT use this in place of \code{stats::arima.sim} because most of the
-error reporting was moved to \code{sarima.sim}.  Instead,  use 
-\code{\link{sarima.sim}} to simulate from (seasonal) ARIMA models with simple syntax.
+\note{This is similar to \code{stats::arima.sim}, but do NOT use this in its 
+place because it's not meant to be a stand alone script. Instead,  use 
+\code{\link{sarima.sim}} to simulate from (seasonal) ARIMA models with 
+simple syntax.
 }
 \seealso{
   \code{\link{sarima.sim}}
