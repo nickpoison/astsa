@@ -1,4 +1,6 @@
-zarima_sim <-
+##- This is a stripped down version of  stats::arima.sim -##
+##- It is here only to be used by sarima.sim -##
+.zarimasim <-
 function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...), 
     n.start = NA, start.innov = rand.gen(n.start, ...), ...) 
 {
