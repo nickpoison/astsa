@@ -44,4 +44,4 @@ error reporting was moved to \code{sarima.sim}.  Instead,  use
 \seealso{
   \code{\link{sarima.sim}}
 }
-\keyword{ts}
+\keyword{internal}
