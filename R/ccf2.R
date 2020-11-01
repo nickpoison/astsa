@@ -31,7 +31,7 @@ function (x, y, max.lag = NULL, main=NULL, ylab="CCF",
 	 par(mar = c(2.5,2.5,1.5,0.5), mgp = c(1.5,0.6,0), cex.main=1)
 	 plot(acf.out$LAG, acf.out$CCF, type='n', ylab=ylab, xlab="LAG", main=main, ...) 
      Grid(); box()
-	 abline(h=c(0,-U,U), lty=c(1,2,2), col=c(1,4,4))
+	 abline(h=c(0,-U,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
 	 abline(v=0, lty=2, col=gray(.5, alpha=.5))
 	 lines(acf.out$LAG, acf.out$CCF, type='h', ...)
 	 LAG = -lag.max:lag.max

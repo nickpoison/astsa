@@ -32,11 +32,11 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
   plot(LAG, ACF, type="n", ylim=ylim, main=main)
     ###
     Grid(); box()
-    abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
+    abline(h=c(0,L,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
     lines(LAG, ACF, type='h')
   plot(LAG, PACF, type="n", ylim=ylim)
     Grid(); box()
-    abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
+    abline(h=c(0,L,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
     lines(LAG, PACF, type='h')
     on.exit(par(old.par))
     ACF<-round(ACF,2); PACF<-round(PACF,2)    
