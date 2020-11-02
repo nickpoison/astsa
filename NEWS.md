@@ -15,11 +15,14 @@ You can also install `astsa` as follows:
 > `install.packages('githubinstall')` <br/>
 > `githubinstall::githubinstall('astsa')`
 
+Some notes on the installation.  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
+After successful installation, restart R and reload `astsa`.
+
 -----------------------
 ### Versions 1.10 - May / Oct 2020 (CRAN / Github)
 
 
-1.10.5 (Nov 2020 - Github)
+1.10.6 (Nov 2020 - Github)
 
 + Changed any script that used colors as numbers to color names (due to change in R v4 color changes), and while we're here,
 
