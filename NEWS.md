@@ -19,13 +19,15 @@ You can also install `astsa` as follows:
 ### Versions 1.10 - May / Oct 2020 (CRAN / Github)
 
 
-1.10.4 (Nov 2020 - Github)
+1.10.5 (Nov 2020 - Github)
 
++ Changed any script that used colors as numbers to color names (due to change in R v4 color changes), and while we're here,
 
++ added PACF option to `acf1` so you can see the PACF alone
 
 + added `sarima.sim` to simulate data from (possibly seasonal) ARIMA models ... as usual, it has simplified `astsa` syntax - the model is specified by the parameters, no lists are needed.  The script uses `polyMul` (also added) to obtain the appropriate autoregessive and moving average polynomials from the specified model.  
 
-+ added `plot` option in `sarima.for`. Also changed any script that used colors as numbers to color names (due to change in R v4 color changes).
++ added `plot` option in `sarima.for`. 
 
 + added `spec.ic` which is similar to `spec.ar` but has option to base the AR spectral estimate on BIC and to `detrend` before the fit.
 
