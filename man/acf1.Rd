@@ -6,7 +6,7 @@
 Produces a plot (and a printout) of the sample ACF. The zero lag value of the ACF is removed.
 }
 \usage{
-acf1(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, 
+acf1(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
      na.action = na.pass, ...)
 }
 \arguments{
@@ -20,6 +20,8 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
   \item{main}{Title of graphic; defaults to name of series.
 }
   \item{ylim}{Specify limits for the y-axis.
+}
+  \item{pacf}{If TRUE, the sample PACF is returned.
 }
   \item{na.action}{How to handle missing data; default is \code{na.pass}
 }
