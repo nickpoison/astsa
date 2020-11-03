@@ -1,9 +1,9 @@
 \name{acf1}
 \alias{acf1}
-\title{Plot and print ACF of a time series
+\title{Plot and print ACF or PACF of a time series
 }
 \description{
-Produces a plot (and a printout) of the sample ACF. The zero lag value of the ACF is removed.
+Produces a plot (and a printout) of the sample ACF or PACF. The zero lag value of the ACF is removed.
 }
 \usage{
 acf1(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
@@ -21,7 +21,7 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
 }
   \item{ylim}{Specify limits for the y-axis.
 }
-  \item{pacf}{If TRUE, the sample PACF is returned.
+  \item{pacf}{If TRUE, the sample PACF is returned instead of ACF.
 }
   \item{na.action}{How to handle missing data; default is \code{na.pass}
 }
@@ -29,7 +29,7 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
 }
 \value{\item{ACF}{The sample ACF}
 }
-\details{This is basically a wrapper for \code{acf()} provided in \code{tseries}. The zero lag (which is always 1) has been removed. The error bounds are approximate white noise bounds, \eqn{0 \pm 2/\sqrt{n}}; no other option is given.    
+\details{Will plot and print the sample ACF or PACF (if \code{pacf=TRUE}). The zero lag of the ACF (which is always 1) has been removed. If \code{plot=TRUE}, a graph is produced and the values are rounded and listed. If FALSE, no graph is produced and the values are listed but not rounded by the script.The error bounds are approximate white noise bounds, \eqn{0 \pm 2/\sqrt{n}}; no other option is given.    
 }
 \references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
 }
