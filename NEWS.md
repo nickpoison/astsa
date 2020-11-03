@@ -24,7 +24,7 @@ After successful installation, restart R and reload `astsa`.
 
 1.10.6 (Nov 2020 - Github)
 
-+ Changed any script that used colors as numbers to color names (due to change in R v4 color changes), and while we're here,
++ Changed any script that used colors as numbers to color names (due to change in R v4 palettes), and while we're here,
 
 + added PACF option to `acf1` so you can see the PACF alone
 
