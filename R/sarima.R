@@ -87,7 +87,7 @@ if(details){
                              pval[i] <- stats::pchisq(u, i-ppq, lower.tail=FALSE)}            
      plot( (ppq+1):nlag, pval[(ppq+1):nlag], xlab = "LAG (H)", ylab = "p value", ylim = c(-.1, 
         1), main = "p values for Ljung-Box statistic")
-     abline(h = 0.05, lty = 2, col = "blue")  
+     abline(h = 0.05, lty = 2, col = "dodgerblue3")  
     on.exit(par(old.par)) 
 }	
 #  end new tsdiag
