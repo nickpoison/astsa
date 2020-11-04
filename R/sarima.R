@@ -68,7 +68,7 @@ if(details){
          x <- stats::qnorm(c(.25,.75))
          b <- diff(y)/diff(x)
          a <- y[1L] - b * x[1L]
-        abline(a,b,col=4)  #qqline
+        abline(a,b,col='dodgerblue3')  #qqline
         SE <- (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
         qqfit <- a + b*z
         U <- qqfit+3.9*SE   # puts .00005 in tails
