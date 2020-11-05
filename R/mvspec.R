@@ -63,15 +63,15 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     if (!is.null(kernel)) {
         for (i in 1:ncol(x)) for (j in 1:ncol(x)) pgram[, i, 
             j] <- kernapply(pgram[, i, j], kernel, circular = TRUE)
-        df <- df.kernel(kernel)
+        # df <- df.kernel(kernel)
         ######### bandwidth <- bandwidth.kernel(kernel)
         Lh = 1/sum(kernel[-kernel$m:kernel$m]^2)    # this is Lh  - it gets divided by N below
     } else {
-        df <- 2
+        # df <- 2
         #########   bandwidth <- sqrt(1/12)    ############ fix this
         Lh <- 1
     }
-    df <- df/(u4/u2^2)
+    df <- 2*Lh    # df/(u4/u2^2)
     df <- df * (N0/N)
     bandwidth <- Lh*xfreq/N
     pgram <- pgram[2:(Nspec + 1), , , drop = FALSE]
