@@ -16,7 +16,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
  if (is.null(S)) {
   if (length(sar)>0 || length(sma)>0) 
       { stop("the seasonal period 'S' is not specified") }
-  x = zarima_sim(list(order=c(po,d,qo), ar=ar, ma=ma), n=n, rand.gen=rand.gen, ...)
+  x = .zarima_sim(list(order=c(po,d,qo), ar=ar, ma=ma), n=n, rand.gen=rand.gen, ...)
  } else {  
   if (length(sar)==1 && sar==0) sar=NULL
   if (length(sma)==1 && sma==0) sma=NULL 
@@ -60,7 +60,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    maorder = length(manew)
    burnin = (D+5)*S
    num = n + burnin
-   x = zarima_sim(list(order=c(arorder,d,maorder), ar=arnew, ma=manew), n=num, rand.gen=rand.gen, ...)
+   x = .zarima_sim(list(order=c(arorder,d,maorder), ar=arnew, ma=manew), n=num, rand.gen=rand.gen, ...)
   if (D > 0){
    x = stats::diffinv(x, lag=S, differences=D)
    }
