@@ -90,10 +90,10 @@ function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...),
 	d <- model$order[2L]
         if (d != round(d) || d < 0) 
             stop("number of differences must be a positive integer")
-    if (!missing(start.innov) && length(start.innov) < n.start) 
-        stop(sprintf(ngettext(n.start, "'start.innov' is too short: need %d point", 
-            "'start.innov' is too short: need %d points"), 
-            n.start), domain = NA)
+#    if (!missing(start.innov) && length(start.innov) < n.start) 
+#        stop(sprintf(ngettext(n.start, "'start.innov' is too short: need %d point", 
+#            "'start.innov' is too short: need %d points"), 
+#            n.start), domain = NA)
     x <- ts(c(start.innov[seq_len(n.start)], innov[1L:n]), start = 1 - 
         n.start)
     if (length(model$ma)) {
