@@ -28,7 +28,7 @@ After successful installation, restart R and reload `astsa`.
 
 + added PACF option to `acf1` so you can see the PACF alone
 
-+ added `sarima.sim` to simulate data from (possibly seasonal) ARIMA models ... as usual, it has simplified `astsa` syntax - the model is specified by the parameters, no lists are needed.  The script uses `polyMul` (also added) to obtain the appropriate autoregessive and moving average polynomials from the specified model.  
++ added `sarima.sim` to simulate data from (possibly seasonal) ARIMA models ... as usual, it has simplified `astsa` syntax - the model is specified by the parameters, no lists are needed.  The script uses `polyMul` (also added) to obtain the appropriate autoregessive and moving average polynomials from the specified model.  _The script works but it's still being tweaked a bit._
 
 + added `plot` option in `sarima.for`. 
 
