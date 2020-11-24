@@ -5,7 +5,7 @@
 \description{Simulate data from (seasonal) ARIMA models.
 }
 \usage{
-sarima.sim(ar = NULL, d = 0, ma = NULL, sar = NULL, D = 0, sma = NULL, S = NULL, n = 500, rand.gen = rnorm,  burnin=NA, ...)
+sarima.sim(ar = NULL, d = 0, ma = NULL, sar = NULL, D = 0, sma = NULL, S = NULL, n = 500, rand.gen = rnorm,  burnin = NA, ...)
 }
 \arguments{
   \item{ar}{
