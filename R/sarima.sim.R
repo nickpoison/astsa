@@ -17,12 +17,12 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    if (length(sar)>0 || length(sma)>0) 
        { stop("the seasonal period 'S' is not specified") }
   if (is.na(burnin)) burnin = 50 + po + qo + d 	   
-  if (burnin != round(burnin) || burnin < 1) { 	 
-       stop("'burnin' must be a positive integer")        
+  if (burnin != round(burnin) || burnin < 0) { 	 
+       stop("'burnin' must be a non-negative integer")        
    }
   num = n + burnin   
   x = .zarima_sim(list(order=c(po,d,qo), ar=ar, ma=ma), n=num, rand.gen=rand.gen, ...)
-  x = x[-(1:burnin)]
+  if (burnin>0) { x = x[-(1:burnin)] }
  } else {  
   if (length(sar)==1 && sar==0) sar=NULL
   if (length(sma)==1 && sma==0) sma=NULL 
@@ -67,15 +67,15 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    arorder = length(arnew)
    maorder = length(manew)
    if (is.na(burnin))  burnin = 50 + (D + Po + Qo)*S + d + po + qo
-   if (burnin != round(burnin) || burnin < 1) { 	 
-       stop("'burnin' must be a positive integer")        
+   if (burnin != round(burnin) || burnin < 0) { 	 
+       stop("'burnin' must be a non-negative integer")         
    }
    num = n + burnin
    x = .zarima_sim(list(order=c(arorder,d,maorder), ar=arnew, ma=manew), n=num, rand.gen=rand.gen, ...)
   if (D > 0){
    x = stats::diffinv(x, lag=S, differences=D)
    }
-  x = x[-(1:burnin)]
+  if (burnin > 0) { x = x[-(1:burnin)] }
   } 
 ###
 frq = ifelse(is.null(S),1,S)
