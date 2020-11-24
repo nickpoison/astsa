@@ -17,9 +17,8 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    if (length(sar)>0 || length(sma)>0) 
        { stop("the seasonal period 'S' is not specified") }
   if (is.na(burnin)) burnin = 50 + po + qo + d 	   
-  if (burnin < 50 + po + qo + d) { 
-        burnin = 50 + po + qo + d	
-        warning(paste("burnin was increased to ", burnin))        
+  if (burnin != round(burnin) || burnin < 1) { 	 
+       stop("'burnin' must be a positive integer")        
    }
   num = n + burnin   
   x = .zarima_sim(list(order=c(po,d,qo), ar=ar, ma=ma), n=num, rand.gen=rand.gen, ...)
@@ -68,9 +67,8 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    arorder = length(arnew)
    maorder = length(manew)
    if (is.na(burnin))  burnin = 50 + (D + Po + Qo)*S + d + po + qo
-   if (burnin < 50 + (D + Po + Qo)*S + d + po + qo) { 
-       burnin = 50 + (D + Po + Qo)*S + d + po + qo
-       warning(paste("burnin was increased to ", burnin))   
+   if (burnin != round(burnin) || burnin < 1) { 	 
+       stop("'burnin' must be a positive integer")        
    }
    num = n + burnin
    x = .zarima_sim(list(order=c(arorder,d,maorder), ar=arnew, ma=manew), n=num, rand.gen=rand.gen, ...)
