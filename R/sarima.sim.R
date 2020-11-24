@@ -97,7 +97,7 @@ function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...), ...)
     q <- length(model$ma)
 	d <- model$order[2L]
         if (d != round(d) || d < 0) 
-            stop("number of differences must be a positive integer")
+            stop("'d' must be a positive integer")
     x <- ts(innov)
 	if (length(model$ma)) {
         x <- filter(x, c(1, model$ma), sides = 1L)
