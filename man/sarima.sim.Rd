@@ -56,21 +56,25 @@ Will generate a time series of length n (defaults to 500) from the specified SAR
 \examples{
 ## AR(1) with mean 50 [n = 500 is default]
 y = sarima.sim(ar=.9) + 50
+
 ## ARIMA(0,1,1) with drift  
 tsplot(sarima.sim(ma=-.8, d=1, mean=.1))
+
 ## SAR(1) example from text
 Months = c("J","F","M","A","M","J","J","A","S","O","N","D")
 sAR = sarima.sim(sar=.9, S=12, n=36)
 tsplot(sAR, type='c')
 points(sAR, pch=Months, cex=1.1, font=4, col=1:4)
+
 ## SARIMA(0,1,1)x(0,1,1)_12 - B&J's favorite
 tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120))  
+
 ## infinite variance t-errors 
 tsplot(sarima.sim(ar=.9, rand.gen=function(n, ...){rt(n, df=2)}))
-## use your own innovations [suppose dog already exists]
+
+## use your own innovations [say 'dog']
 dog = rexp(150, rate=.5)*sign(runif(150,-1,1))
-x = sarima.sim(n=100, ar=.99, innov=dog, burnin=50)
-tsplot(x)
+tsplot(sarima.sim(n=100, ar=.99, innov=dog, burnin=50))
 }
 \keyword{ ~ts}
 
