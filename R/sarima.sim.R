@@ -89,6 +89,8 @@ return(x)
 function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...), ...)
 {
     filter = stats::filter
+	if (length(innov) < n)
+	   warning(paste("the number of innovations should be at least 'n + burnin' = ", n))
     if (n <= 0L) 
         stop("'n' must be strictly positive")
     p <- length(model$ar)
