@@ -4,7 +4,7 @@
 
 <img src="astsa.gif" alt="astsa"  height="100">
 
-
+**more than just data ...**  
 <br/>
 
 To update the package to the most recent version, you just need the following two lines:
@@ -24,11 +24,11 @@ After successful installation, restart R and reload `astsa`.
 
 1.10.6 (Nov 2020 - Github)
 
-+ Changed any script that used colors as numbers to color names (due to change in R v4 palettes), and while we're here,
++ added `sarima.sim` to simulate data from (possibly seasonal) ARIMA models ... as usual, it has simplified `astsa` syntax - the model is specified by the parameters, no lists are needed.  The script uses `polyMul` (also added) to obtain the appropriate autoregessive and moving average polynomials from the specified model.  _The script works but it's still being tweaked a bit - mostly to catch input mistakes._
+
++ Changed any script that used colors as numbers to color names (due to change in R v4 palettes).
 
 + added PACF option to `acf1` so you can see the PACF alone
-
-+ added `sarima.sim` to simulate data from (possibly seasonal) ARIMA models ... as usual, it has simplified `astsa` syntax - the model is specified by the parameters, no lists are needed.  The script uses `polyMul` (also added) to obtain the appropriate autoregessive and moving average polynomials from the specified model.  _The script works but it's still being tweaked a bit._
 
 + added `plot` option in `sarima.for`. 
 

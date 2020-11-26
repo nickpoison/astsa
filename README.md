@@ -4,7 +4,7 @@
 <img src="https://img.shields.io/badge/Latest Version-1.10.6-0077be.svg?style=flat"></a>
 
 
-**more than data**  
+**more than just data ...**  
 ... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the Chapman & Hall text  [Time Series A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/)... both by Shumway and Stoffer. 
 
 *Feel free to contact the maintainer if you have a request. The requests we've had so far have taken only a few minutes to code - it's the nice thing about GitHub - updates are painless.*
