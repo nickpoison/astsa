@@ -58,8 +58,9 @@ If \code{innov} is used to input the innovations and override \code{rand.gen}, b
 \note{The script uses \code{polyMul} to obtain the appropriate autoregressive and moving average polynomials from the specified model and feeds those into \code{.zarima_sim}.  The model autoregressive polynomial ('AR side' = AR x SAR) is checked for causality and the model moving average polynomial ('MA side' = MA x SMA) is checked invertibility.  The script stops and reports an error at the first violation of causality or invertibility; i.e., it will not report multiple errors.  
 }
 \examples{
-## AR(1) with mean 50 [n = 500 is default]
-y = sarima.sim(ar=.9) + 50
+## AR(2) with mean 50 [n = 500 is default]
+y = sarima.sim(ar=c(1.5,-.75)) + 50
+tsplot(y)
 
 ## ARIMA(0,1,1) with drift  
 tsplot(sarima.sim(ma=-.8, d=1, mean=.1))
