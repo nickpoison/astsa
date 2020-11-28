@@ -30,7 +30,7 @@ function (x, y, max.lag = NULL, main=NULL, ylab="CCF",
 	 U = 2/sqrt(num)
 	 par(mar = c(2.5,2.5,1.5,0.5), mgp = c(1.5,0.6,0), cex.main=1)
 	 plot(acf.out$LAG, acf.out$CCF, type='n', ylab=ylab, xlab="LAG", main=main, ...) 
-     Grid(); box()
+     Grid();  box(col='gray')
 	 abline(h=c(0,-U,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
 	 abline(v=0, lty=2, col=gray(.5, alpha=.5))
 	 lines(acf.out$LAG, acf.out$CCF, type='h', ...)
