@@ -8,12 +8,10 @@
 <br/>
 
 To update the package to the most recent version, you just need the following two lines:
->  `install.packages("devtools")`<br/>
->  `devtools::install_github("nickpoison/astsa")`
 
-You can also install `astsa` as follows:
-> `install.packages('githubinstall')` <br/>
-> `githubinstall::githubinstall('astsa')`
+> `install.packages("remotes")`<br/>
+> `remotes::install_github("nickpoison/astsa")`
+
 
 Some notes on the installation.  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
 After successful installation, restart R and reload `astsa`.
