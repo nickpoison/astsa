@@ -5,29 +5,30 @@
 \description{Simulate data from (seasonal) ARIMA models.
 }
 \usage{
-sarima.sim(ar = NULL, d = 0, ma = NULL, sar = NULL, D = 0, sma = NULL, S = NULL, n = 500, rand.gen = rnorm,  burnin = NA, ...)
+sarima.sim(ar = NULL, d = 0, ma = NULL, sar = NULL, D = 0, sma = NULL, S = NULL, 
+            n = 500, rand.gen = rnorm,  burnin = NA, ...)
 }
 \arguments{
   \item{ar}{
-coefficients of AR component (does not have to be specified if component not in the model)
+coefficients of AR component (does not have to be specified)
 }
   \item{d}{
-order of regular difference (does not have to be specified if component not in the model)
+order of regular difference (does not have to be specified)
 }
   \item{ma}{
-coefficients of MA component (does not have to be specified if component not in the model)
+coefficients of MA component (does not have to be specified)
 }
   \item{sar}{
-coefficients of SAR component (does not have to be specified if component not in the model)
+coefficients of SAR component (does not have to be specified)
 }
   \item{D}{
-order of seasonal difference (does not have to be specified if component not in the model)
+order of seasonal difference (does not have to be specified)
 }
   \item{sma}{
-coefficients of SMA component (does not have to be specified if component not in the model)
+coefficients of SMA component (does not have to be specified)
 }
   \item{S}{
-seasonal period (does not have to be specified if component not in the model)
+seasonal period (does not have to be specified)
 }
   \item{n}{
 desired sample size (defaults to 500)

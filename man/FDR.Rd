@@ -15,7 +15,7 @@ FDR(pvals, qlevel = 0.05)
 }
 \value{\item{fdr.id }{ NULL if no significant tests, or the index of the maximal p-value satisfying the FDR condition. }
 }
-\references{\url{http://www.stat.berkeley.edu/~paciorek/code/fdr/fdr.R} 
+\references{\url{https://www.stat.berkeley.edu/~paciorek/code/fdr/fdr.R} 
 }
 
 
