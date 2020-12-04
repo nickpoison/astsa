@@ -1,6 +1,10 @@
 spec.ic = 
 function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE, 
            detrend=FALSE, method=NULL, ...){
+  lm = stats::lm
+  resid = stats::resid
+  rnorm = stats::rnorm
+  var = stats::var  
   if (is.null(method)) {method='yw'}	   
   nme1 = paste("Series:", deparse(substitute(data)))
   nme2 = ifelse(BIC,'BIC','AIC')  
