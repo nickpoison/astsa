@@ -14,15 +14,26 @@ To update the package to the most recent version, you just need the following tw
 
 
 Some notes on the installation.  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
-After successful installation, restart R and reload `astsa`.
+After successful installation, you might have to restart R and reload `astsa`.
 
------------------------
-### Versions 1.10 - May / Oct 2020 (CRAN / Github)
+---
+---
+
+### Version 1.11 - Dec 2020  
+
+Version 1.10.6 is now version 1.11 here and on CRAN.  The changes
+from v1.10.6 to v1.11 were mainly to man pages to pass CRAN tests.
+ 
+
+---
+---
+
+### Versions 1.10 - May 2020 
 
 
 1.10.6 (Nov 2020 - Github)
 
-+ added `sarima.sim` to simulate data from (possibly seasonal) ARIMA models ... as usual, it has simplified `astsa` syntax - the model is specified by the parameters, no lists are needed.  The script uses `polyMul` (also added) to obtain the appropriate autoregessive and moving average polynomials from the specified model.  _The script works but it's still being tweaked a bit - mostly to catch input mistakes._
++ added `sarima.sim` to simulate data from (possibly seasonal) ARIMA models ... as usual, it has simplified `astsa` syntax - the model is specified by the parameters, no lists are needed.  The script uses `polyMul` (also added) to obtain the appropriate autoregessive and moving average polynomials from the specified model.  
 
 + Changed any script that used colors as numbers to color names (due to change in R v4 palettes).
 
@@ -47,7 +58,8 @@ column wise (`FALSE`) for multiple plots.
 
 
 ------------------------------
-### Versions 1.9  - May 2019 / March 2020 (CRAN / GitHub)
+
+### Versions 1.9 - May 2019  
 
 
 
@@ -89,7 +101,7 @@ column wise (`FALSE`) for multiple plots.
 + For the Springer text, you can see the difference between v1.8 and v1.9 by looking at the changelog below v1.8.8.  Some scripts have added capabilities, but it won't change any data analysis. The only real difference will be slight numerical differences in the reported ICs in `sarima`.     
 
 -------------------------------------------
-### Versions 1.8 - Dec 2017 / Mar 2019 (CRAN / GitHub)
+### Versions 1.8 - Dec 2017  
 
 
 1.8.8 
@@ -141,7 +153,7 @@ changes to satisfy the CRANks. Also, the   GitHub version is slightly improved, 
 
 
 ----------------------------
-### Versions 1.7 - Dec 2016 / Oct 2017  (CRAN / GitHub)
+### Versions 1.7 - Dec 2016  
 
 
 &starf; Just for historical record, version 1.7 was when CRAN maintainers got CRANky and started asking for arbirtary and stupid changes that no one would notice. I'm talking about asking to change one word in the DESCRIPTION file kind of stupid stuff.  This is when the GitHub versions started. 
