@@ -11,7 +11,8 @@
 }
 \details{
 The data were changed after 2011, so there are discrepancies between this data set and \code{gtemp}.  
-The differences are explained here: \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/v3/GHCNM-v3.2.0-FAQ.pdf}.
+The differences are explained in the following document:
+www1.ncdc.noaa.gov/pub/data/ghcn/v3/GHCNM-v3.2.0-FAQ.pdf.
 }
 \source{\url{https://data.giss.nasa.gov/gistemp/graphs/}
 }
