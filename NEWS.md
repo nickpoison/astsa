@@ -17,7 +17,7 @@ Some notes on the installation.  If `astsa` is loaded, then detach it first: `de
 After successful installation, you might have to restart R and reload `astsa`.
 
 **Alternately** I'm putting the latest CRAN version here.  You can download it and then use
-'Install package(s) from local files ...' with R: [astsa v1.11](astsa_1.11.tar.gz) 
+'Install package(s) from local files ...' with R: [astsa_1.11.tar.gz](astsa_1.11.tar.gz).  
 The link will open in a new page and you should see a download button.
 
 
