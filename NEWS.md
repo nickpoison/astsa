@@ -16,6 +16,9 @@ To update the package to the most recent version, you just need the following tw
 Some notes on the installation.  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
 After successful installation, you might have to restart R and reload `astsa`.
 
+**Alternately** I'm putting the latest CRAN version here.  You can download it and then use
+'Install package(s) from local files ...' with R: [astsa v1.11](astsa_1.11.tar.gz)
+
 ---
 ---
 
@@ -25,7 +28,6 @@ Version 1.10.6 is now version 1.11 here and on CRAN.  The changes
 from v1.10.6 to v1.11 were mainly to man pages to pass CRAN tests.
  
 
----
 ---
 
 ### Versions 1.10 - May 2020 
