@@ -15,10 +15,10 @@
 %%\details{
 %%%%  ~~ If necessary, more details than the __description__ above ~~
 %%}
-\source{\url{http://data.giss.nasa.gov/gistemp/graphs/}
+\source{\url{https://data.giss.nasa.gov/gistemp/graphs/}
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
 \seealso{\code{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{globtemp}}, \code{\link{globtempl}},  \code{\link{gtemp2}}}

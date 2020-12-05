@@ -16,10 +16,10 @@
 The data were changed after 2011, so there are discrepancies between this data set and \code{gtemp2}.  
 The differences are explained here: \url{http://www1.ncdc.noaa.gov/pub/data/ghcn/v3/GHCNM-v3.2.0-FAQ.pdf}.
 }
-\source{\url{http://data.giss.nasa.gov/gistemp/graphs/}
+\source{\url{https://data.giss.nasa.gov/gistemp/graphs/}
 %%  ~~ reference to a publication or URL from which the data were obtained ~~
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 %%  ~~ possibly secondary sources and usages ~~
 }
 \seealso{\code{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{globtemp}}, \code{\link{gtemp2}},  \code{\link{gtemp}}
