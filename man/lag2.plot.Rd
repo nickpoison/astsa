@@ -22,7 +22,7 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
 }
   \item{...}{additional graphical arguments}   
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \author{D.S. Stoffer
 }

@@ -12,7 +12,7 @@
 }
 \details{pairs with \code{saltemp}, temperature profiles on the same grid
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \seealso{\code{\link{saltemp}}}
 \keyword{datasets}

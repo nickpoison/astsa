@@ -11,6 +11,6 @@
 }
 \details{This is a data frame consisting of three columns (that are not time series objects). The data are an infrasonic signal from a nuclear explosion observed at sensors on a triangular array.
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} 
 }
 \keyword{datasets}

@@ -28,7 +28,7 @@ LagReg(input, output, L = c(3, 3), M = 40, threshold = 0,
   \item{beta}{Estimated coefficients}
   \item{fit}{The output series, the fitted values, and the residuals}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \author{D.S. Stoffer
 }

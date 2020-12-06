@@ -38,7 +38,7 @@ other graphical parameters;
 }
 }
 \details{
-I combined the code for \code{grid()} in the graphics package and \code{minor.tick()} from the Hmisc package, and changed the default grid line type and color.  I made this basically for instructional purposes so students don't have to watch me type for and additional 5 minutes to get a grid with solid lines and with minor ticks on a plot.    
+I combined the code for \code{grid()} in the graphics package and \code{minor.tick()} from the Hmisc package, and changed the default grid line type and color.     
 }
 \references{
 The code for \code{grid()} in R graphics and \code{minor.tick()} from the Hmisc package were combined.

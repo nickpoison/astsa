@@ -39,9 +39,9 @@ Ksmooth0(num, y, A, mu0, Sigma0, Phi, cQ, cR)
 \item{like }{the negative of the log likelihood}
 \item{Kn }{last value of the gain}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}\cr
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}\cr
 
-See also \url{http://www.stat.pitt.edu/stoffer/tsa4/chap6.htm} for an explanation of the difference between levels 0, 1, and 2.
+See also \url{https://www.stat.pitt.edu/stoffer/tsa4/chap6.htm} for an explanation of the difference between levels 0, 1, and 2.
 }
 \author{D.S. Stoffer
 }

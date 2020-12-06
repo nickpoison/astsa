@@ -12,6 +12,6 @@ Start = c(1749, 1)
 End = c(1978, 1) 
 Frequency = 2 
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}
 }
 \keyword{datasets}

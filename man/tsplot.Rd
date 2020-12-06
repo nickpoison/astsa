@@ -48,7 +48,7 @@ if TRUE, the plots have gray interiors with white grids (like a ggplot); default
 other graphical parameteres; see \link[graphics]{par}.
 }
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \author{
 D.S. Stoffer

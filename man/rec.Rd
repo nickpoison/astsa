@@ -3,8 +3,7 @@
 \docType{data}
 \title{Recruitment (number of new fish index)
 }
-\description{Recruitment (index of the number of new fish) for a period of 453 months ranging over the years 1950-1987.
-Recruitment is loosely defined as an indicator of new members of a population to the first life stage at which natural mortality stabilizes near adult levels.
+\description{Recruitment (index of the number of new fish) for a period of 453 months ranging over the years 1950-1987. Recruitment is loosely defined as an indicator of new members of a population to the first life stage at which natural mortality stabilizes near adult levels.
 }
 \usage{data(rec)}
 \format{
@@ -13,9 +12,9 @@ Recruitment is loosely defined as an indicator of new members of a population to
 }
 \details{can pair with \code{soi} (Southern Oscillation Index)
 }
-\source{Data furnished by Dr. Roy Mendelssohn of the Pacific Fisheries Environmental Laboratory, NOAA (personal communication).
+\source{Data furnished by Dr. Roy Mendelssohn of the Pacific Fisheries Environmental Laboratory, NOAA (personal communication). Further discussion of the concept of Recruitment may be found here: derekogle.com/fishR/examples/oldFishRVignettes/StockRecruit.pdf
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \seealso{\code{\link{soi}}}
 \keyword{datasets}

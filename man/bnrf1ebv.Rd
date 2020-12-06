@@ -10,6 +10,6 @@
   The format is:
  Time-Series [1:3954] from 1 to 3954: 1 4 3 3 1 1 3 1 3 1 ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \keyword{datasets}

@@ -13,6 +13,6 @@ Poultry (chicken), Whole bird spot price, Georgia docks, US cents per pound
 }
 \source{\url{https://www.indexmundi.com/commodities/}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \keyword{datasets}

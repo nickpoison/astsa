@@ -52,7 +52,7 @@ If \code{innov} is used to input the innovations and override \code{rand.gen}, b
 \value{
 {a time series of length n from the specified SARIMA model with the specified frequency if the model is seasonal}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \author{D.S. Stoffer
 }

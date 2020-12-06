@@ -21,7 +21,8 @@ LazyData: \tab yes\cr
 \author{
 David Stoffer <stoffer@pitt.edu>
 }
-\references{See the webpages for the texts: \url{http://www.stat.pitt.edu/stoffer/tsa4/} or \url{http://www.stat.pitt.edu/stoffer/tsda/}
+\references{The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \keyword{ package }
 \keyword{ ts }

@@ -14,9 +14,9 @@
 The data are in  units of one  thousand.
 }
 \source{From Odum's "Fundamentals of Ecology",  p. 191. 
-Data listed at \url{http://people.whitman.edu/~hundledr/courses/M250F03/LynxHare.txt}.
+Data listed at: people.whitman.edu/~hundledr/courses/M250F03/LynxHare.txt.
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \seealso{\code{\link{Lynx}}}
 \keyword{datasets}

@@ -32,7 +32,7 @@ SVfilter(num, y, phi0, phi1, sQ, alpha, sR0, mu1, sR1)
 \item{Pp }{mean square prediction error of the volatility}
 \item{like }{the negative of the log likelihood at the given parameter values}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \author{D.S. Stoffer
 }

@@ -29,7 +29,7 @@ stoch.reg(data, cols.full, cols.red, alpha, L, M, plot.which)
 \item{eF }{pointwise (by frequency) F-tests}
 \item{coh }{coherency}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \author{D.S. Stoffer
 }

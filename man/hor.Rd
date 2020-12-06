@@ -9,9 +9,9 @@
   The format is:
  Time-Series [1:136] from 1982 to 2015: 79  65.9  70.9  66.7  ...
 }
-\source{\url{http://dbedt.hawaii.gov/economic/qser/tourism/}
+\source{\url{https://dbedt.hawaii.gov/economic/qser/tourism/}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \examples{
 plot(hor, type='c')                            # plot data and

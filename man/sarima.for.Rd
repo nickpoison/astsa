@@ -2,7 +2,7 @@
 \alias{sarima.for}
 \title{ARIMA Forecasting
 }
-\description{ARIMA forecasting - this is a wrapper for R's \code{predict.Arima}.
+\description{ARIMA forecasting.
 }
 \usage{
 sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
@@ -49,7 +49,7 @@ sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
 \value{\item{pred }{the forecasts}
       \item{se }{the prediction (standard) errors}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 
 \seealso{\code{\link{sarima}}}

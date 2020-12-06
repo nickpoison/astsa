@@ -13,6 +13,6 @@ The TREATMENTS or stimuli (and number of subjects in each condition) are [1] Awa
 
 As an example, \code{fmri$L1T6} (Location 1, Treatment 6) will show the data for the four subjects receiving the Low-Shock treatment at the Cortex 1 location; note that \code{fmri[[6]]} will display the same data. 
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \keyword{datasets}

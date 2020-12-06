@@ -34,7 +34,7 @@ spectrum of white noise.
 \value{ \item{freq }{frequencies - returned invisibly}
  \item{spec }{ spectral ordinates - returned invisibly }
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \author{D.S. Stoffer
 }

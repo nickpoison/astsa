@@ -12,6 +12,6 @@
 
 The column names are: \code{EQ1, EQ2,...,EQ8; EX1, EX2,...,EX8; NZ}.  The first 1024 observations correspond to the P wave, the second 1024 observations correspond to the S wave.
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \keyword{datasets}

@@ -11,6 +11,6 @@
 }
 \details{This data set is also included with the R distribution as \code{JohnsonJohnson}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \keyword{datasets}

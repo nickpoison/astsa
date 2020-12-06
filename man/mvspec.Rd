@@ -56,23 +56,23 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 
 The results are returned invisibly if plot is true.
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 
 \examples{
-# univariate example
-plot(co2)   # co2 is an R data set
-mvspec(co2, spans=c(5,5), taper=.5)
+# real raw periodogram
+mvspec(soi)
+mvspec(soi, log='y')  # on a log scale
+
+# smooth and some details printed
+mvspec(soi, spans=c(7,7), taper=.5)$details[1:45,]
 
 # multivariate example
 ts.plot(mdeaths, fdeaths, col=1:2)   # an R data set, male/female monthly deaths ...
 dog = mvspec(cbind(mdeaths,fdeaths), spans=c(3,3), taper=.1)
 dog$fxx        # look a spectral matrix estimates
 dog$bandwidth  # bandwidth with time unit = year
-dog$bandwidth/frequency(mdeaths)  # ... with time unit = month
+dog$df         # degrees of freedom
 plot(dog, plot.type="coherency")  # plot of squared coherency
-
-# analysis with some details printed
-mvspec(soi, spans=c(7,7), taper=.5)$details[1:45,]
 }
 \keyword{ ts }

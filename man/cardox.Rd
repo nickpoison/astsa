@@ -17,6 +17,6 @@ This is an update to \code{co2} in the datasets package.
 \source{\url{https://www.esrl.noaa.gov/gmd/ccgg/trends/}
 }
 \references{
-\url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \keyword{datasets}

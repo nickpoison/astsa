@@ -12,7 +12,7 @@
 }
 \source{Jones, R.H. (1984). Fitting multivariate models to unequally spaced data. In \emph{Time Series Analysis of Irregularly Observed Data}, pp. 158-188. E. Parzen, ed. Lecture Notes in Statistics, 25, New York: Springer-Verlag.
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \seealso{\code{\link{HCT}}, \code{\link{PLT}}, \code{\link{WBC}}}
 \examples{

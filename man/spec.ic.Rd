@@ -48,7 +48,7 @@ spectral and frequency ordinates are returned silently.
 \item{[[2]] }{Matrix with columns: freq, spec}
 }
 \references{
-\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \author{
 D.S. Stoffer 
@@ -58,8 +58,10 @@ D.S. Stoffer
 # AIC
 spec.ic(soi)  
 spec.ic(sunspotz, method='burg', col=4)   
+
 # BIC after detrending on log scale
 spec.ic(soi, BIC=TRUE, detrend=TRUE, log='y')  
+
 # plot AIC and BIC without spectral estimate
 tsplot(0:30, spec.ic(soi, plot=FALSE)[[1]][,2:3], type='o', xlab='order', nxm=5)  
 }

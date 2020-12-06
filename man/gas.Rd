@@ -11,10 +11,9 @@
 }
 \details{Pairs with series \code{oil}
 }
-\source{Data were obtained from the URL tonto.eia.doe.gov/dnav/pet/pet_pri_spt_s1_w.htm, but
-that site no longer exists.
+\source{Data were obtained from the URL: www.eia.doe.gov/dnav/pet/pet_pri_spt_s1_w.htm
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \seealso{\code{\link{oil}}}
 \keyword{datasets}

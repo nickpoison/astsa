@@ -8,6 +8,6 @@
 \format{An 'xts' object on 2003-01-03 to 2012-09-28; 
   Indexed by objects of class: [Date] TZ: UTC
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \keyword{datasets}

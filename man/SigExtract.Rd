@@ -23,7 +23,7 @@ SigExtract(series, L = c(3, 3), M = 50, max.freq = 0.05)
 }
 \value{Returns plots of (1) the original and filtered series, (2) the estiamted spectra of each series, (3)  the filter coefficients and the desired and attained frequency response function.  The filtered series is returned invisibly.
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \author{D.S. Stoffer
 }

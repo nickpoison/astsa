@@ -12,10 +12,10 @@
 }
 \note{The data are in  units of one  thousand.  This data set pairs with \code{\link{Hare}} and is NOT the same as  \code{\link{lynx}}.
 }
-\source{
+\source{From Odum's "Fundamentals of Ecology",  p. 191.
 http://people.whitman.edu/~hundledr/courses/M250F03/M250.html
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \seealso{\code{\link{Hare}}}
 \keyword{datasets}

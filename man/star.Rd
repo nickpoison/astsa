@@ -12,6 +12,6 @@ The Calculus of Observations, a Treatise on Numerical Mathematics, by E.T. Whitt
   The format is:
  Time-Series [1:600] from 1 to 600: 25 28 31 32 33 33 32 ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}
 }
 \keyword{datasets}

@@ -9,7 +9,7 @@
   The format is:
  Time-Series [1:508] from 1970 to 1980: 97.8 104.6 94.4 98 95.8 ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \seealso{\code{\link{lap}}}
 \keyword{datasets}

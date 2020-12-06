@@ -39,7 +39,7 @@ EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, max.iter = 100, tol = 0.001)
 \item{niter }{number of iterations to convergence}
 \item{cvg }{relative tolerance at convergence}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \author{D.S. Stoffer
 }

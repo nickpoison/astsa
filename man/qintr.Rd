@@ -13,7 +13,7 @@
 }
 \source{Newbold, P. and T. Bos (1985). \emph{Stochastic Parameter Regression Models}. Beverly Hills: Sage.
 }
-\references{See \url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{See \url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \seealso{\code{\link{qinfl}}}
 \keyword{datasets}

@@ -11,6 +11,6 @@
 }
 \details{The median annual cost of hard drives used in computers. The data are retail prices per GB taken from a sample of manufacturers.   
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \keyword{datasets}

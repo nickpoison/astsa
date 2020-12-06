@@ -11,7 +11,7 @@
 }
 \source{\url{https://data.bls.gov/timeseries/LNU04000000/}
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/} and \url{http://www.stat.pitt.edu/stoffer/tsda/} 
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
 \seealso{\code{\link{unemp}}}
 \keyword{datasets}

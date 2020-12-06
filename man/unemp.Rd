@@ -10,7 +10,7 @@
   The format is:
  Time-Series [1:372] from 1948 to 1979: 235 281 265 241 201 ...
 }
-\references{\url{http://www.stat.pitt.edu/stoffer/tsa4/}
+\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
 }
 \seealso{\code{\link{UnempRate}}}
 \keyword{datasets}
