@@ -27,8 +27,6 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
 }
   \item{...}{ Additional arguments passed to \code{acf} }
 }
-\value{\item{ACF}{The sample ACF}
-}
 \details{Will plot and print the sample ACF or PACF (if \code{pacf=TRUE}). The zero lag of the ACF (which is always 1) has been removed. If \code{plot=TRUE}, a graph is produced and the values are rounded and listed. If FALSE, no graph is produced and the values are listed but not rounded by the script. The error bounds are approximate white noise bounds, \eqn{0 \pm 2/\sqrt{n}}; no other option is given.    
 }
 \references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
