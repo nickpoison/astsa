@@ -54,12 +54,15 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
 \examples{
 sarima(log(AirPassengers),0,1,1,0,1,1,12)
+
 (dog <- sarima(log(AirPassengers),0,1,1,0,1,1,12))
 summary(dog$fit)  # fit has all the returned arima() values
+
 plot(resid(dog$fit))  # plot the innovations (residuals) 
 sarima(log(AirPassengers),0,1,1,0,1,1,12,details=FALSE)$BIC  # print model BIC only
+
 # fixed parameters
-x = arima.sim(list(order=c(2,0,0), ar=c(0,-.9)), n=200) + 50 
+x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
 sarima(x, 2,0,0, fixed=c(0,NA,NA))
 }
 \seealso{\code{\link{sarima.for}}}
