@@ -14,7 +14,8 @@ To update the package to the most recent version, you just need the following tw
 
 
 Some notes on the installation.  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
-After successful installation, you might have to restart R and reload `astsa`.
+After successful installation, don't forget to reload  `astsa`. If you get an error,
+just restart R and reload `astsa`.
 
 **Alternately** I'm putting the latest CRAN version here.  You can download it and then use
 'Install package(s) from local files ...' with R: [astsa_1.11.tar.gz](astsa_1.11.tar.gz).  
@@ -26,8 +27,9 @@ The link will open in a new page and you should see a download button.
 
 ### Version 1.11 - Dec 2020  
 
-Version 1.10.6 is now version 1.11 here and on CRAN.  The changes
-from v1.10.6 to v1.11 were mainly to man pages to pass CRAN tests.
+The main change from v1.10 to v1.11 was to add a  simulation script for
+seasonal ARIMA models. Version 1.11 here and on CRAN is v1.10.6 but with changes
+to some man pages to pass CRAN tests.  We're still working on some man for next time.
  
 
 ---
