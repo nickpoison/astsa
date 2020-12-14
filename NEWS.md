@@ -29,7 +29,7 @@ The link will open in a new page and you should see a download button.
 
 The main change from v1.10 to v1.11 was to add a  simulation script for
 seasonal ARIMA models. Version 1.11 here and on CRAN is v1.10.6 but with changes
-to some man pages to pass CRAN tests.  We're still working on some man for next time.
+to some man pages to pass CRAN tests.  We're still putting lipstick on some man pages.
  
 
 ---
