@@ -28,7 +28,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
   if (length(sma)==1 && sma==0) sma=NULL 
   if (S <= po)
       { stop("AR order should be less than seasonal order 'S'") } 
-   if (S <= qo)
+  if (S <= qo)
       { stop("MA order should be less than seasonal order 'S'") } 	  
   if (D != round(D) || D < 0) 
       { stop("seasonal difference order 'D' must be a positive integer") }	  
@@ -49,7 +49,8 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    }
    arnew = polyMul(AR, SAR)
    arnew = c(0, arnew[-1]) 
-   if (po>0) {arnew[1:(S-1)] = c(arnew[2:(S-1)],0)}   
+   if (po>0 && arnew[S-1]==0)  {arnew[1:(S-1)] = c(arnew[2:(S-1)],0)}  
+   if (abs(arnew[S-1])>0) {arnew = arnew[-1]}   
    } else {
    arnew = ar
    }
@@ -66,7 +67,8 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    }
    manew = polyMul(MA, SMA)
    manew = c(0, manew[-1])
-   if (qo>0) {manew[1:(S-1)] = c(manew[2:(S-1)],0)} 
+   if (qo>0 && arnew[S-1]==0) {manew[1:(S-1)] = c(manew[2:(S-1)],0)} 
+   if (abs(manew[S-1])>0) {manew = manew[-1]}
    } else {
    manew = ma
    }  
