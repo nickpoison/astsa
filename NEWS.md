@@ -18,21 +18,24 @@ After successful installation, don't forget to reload  `astsa`. If you get an er
 just restart R and reload `astsa`.
 
 **Alternately** I'm putting the latest CRAN version here.  You can download it and then use
-'Install package(s) from local files ...' with R: [astsa_1.11.tar.gz](astsa_1.11.tar.gz).  
+'Install package(s) from local files ...' with R: [astsa_1.12.tar.gz](astsa_1.12.tar.gz).  
 The link will open in a new page and you should see a download button.
 
 
 ---
 ---
+### Version 1.12 - Dec 2020
 
-### Version 1.11 - Dec 2020  
+ The main change  was to add a  simulation script `sarima.sim` for
+seasonal ARIMA models. 
 
-**don't update here - `sarima.sim` needs to be fixed ... I'll do it before Xmas**
+---
+###### Version 1.11 -- in the garbage
 
-The main change from v1.10 to v1.11 was to add a  simulation script for
-seasonal ARIMA models. Version 1.11 here and on CRAN is v1.10.6 but with changes
-to some man pages to pass CRAN tests.  We're still putting lipstick on some man pages.
- 
+Forget this version... 
+In v1.10.6 and v1.11, the `sarima.sim` code had bloopers because we weren't 
+counting from 0 when forming the seasonal polynomials.  The non-seasonal
+stuff was still ok and hasn't changed. It's fixed now and in v1.12.  
 
 ---
 
