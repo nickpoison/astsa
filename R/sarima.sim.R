@@ -36,6 +36,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    SAR = rep(0, Po*S)
    SAR[1] = 1
    SAR[seq(S, Po*S,by=S)] = -sar
+   }
     minroots <- min(Mod(polyroot(SAR)))
     if (minroots <= 1) { stop("AR side is not causal") }
    if (po>0) {
@@ -52,6 +53,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    SMA = rep(0, Qo*S)
    SMA[1] = 1
    SMA[seq(S, Qo*S,by=S)] = sma
+   }
     minroots <- min(Mod(polyroot(SMA)))
      if (minroots <= 1) { stop("MA side is not invertible") }
    if (qo>0) {
