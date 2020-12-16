@@ -27,6 +27,8 @@ The link will open in a new page and you should see a download button.
 
 ### Version 1.11 - Dec 2020  
 
+** don't update here - `sarima.sim` needs to be fixed ... I'll do it before Xmas **
+
 The main change from v1.10 to v1.11 was to add a  simulation script for
 seasonal ARIMA models. Version 1.11 here and on CRAN is v1.10.6 but with changes
 to some man pages to pass CRAN tests.  We're still putting lipstick on some man pages.
