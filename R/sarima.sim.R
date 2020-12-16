@@ -37,9 +37,8 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
   if (S > 0 && Po + Qo + D < 1) 
      { stop("S > 0 but no seasonal parameters are specified") }
   if (Po > 0){
-   SAR = rep(0, Po*S)
-   SAR[1] = 1
-   SAR[seq(S, Po*S,by=S)] = -sar
+   SAR = c(1, rep(0, Po*S))
+   SAR[seq(S+1, Po*S+1, by=S)] = -sar
     minroots <- min(Mod(polyroot(SAR)))
     if (minroots <= 1) { stop("AR side is not causal") }
    if (po>0) {
@@ -48,16 +47,13 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
     AR = 1
    }
    arnew = polyMul(AR, SAR)
-   arnew = c(0, arnew[-1]) 
-   if (po>0 && arnew[S-1]==0)  {arnew[1:(S-1)] = c(arnew[2:(S-1)],0)}  
-   if (abs(arnew[S-1])>0) {arnew = arnew[-1]}   
+   arnew = -arnew[-1]
    } else {
    arnew = ar
    }
   if (Qo > 0){
-   SMA = rep(0, Qo*S)
-   SMA[1] = 1
-   SMA[seq(S, Qo*S,by=S)] = sma
+   SMA = c(1, rep(0, Qo*S))
+   SMA[seq(S+1, Qo*S+1, by=S)] = sma
     minroots <- min(Mod(polyroot(SMA)))
      if (minroots <= 1) { stop("MA side is not invertible") }
    if (qo>0) {
@@ -66,9 +62,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
     MA = 1
    }
    manew = polyMul(MA, SMA)
-   manew = c(0, manew[-1])
-   if (qo>0 && arnew[S-1]==0) {manew[1:(S-1)] = c(manew[2:(S-1)],0)} 
-   if (abs(manew[S-1])>0) {manew = manew[-1]}
+   manew = manew[-1]
    } else {
    manew = ma
    }  
