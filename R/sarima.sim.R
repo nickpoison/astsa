@@ -26,10 +26,10 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
  } else {  
   if (length(sar)==1 && sar==0) sar=NULL
   if (length(sma)==1 && sma==0) sma=NULL 
-  if (S < po)
-      { stop("AR order bigger than seasonal order 'S'") } 
-   if (S < qo)
-      { stop("MA order bigger than seasonal order 'S'") } 	  
+  if (S <= po)
+      { stop("AR order should be less than seasonal order 'S'") } 
+   if (S <= qo)
+      { stop("MA order should be less than seasonal order 'S'") } 	  
   if (D != round(D) || D < 0) 
       { stop("seasonal difference order 'D' must be a positive integer") }	  
   Po = length(sar)
