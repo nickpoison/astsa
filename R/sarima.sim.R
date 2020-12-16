@@ -26,8 +26,12 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
  } else {  
   if (length(sar)==1 && sar==0) sar=NULL
   if (length(sma)==1 && sma==0) sma=NULL 
+  if (S < po)
+      { stop("AR order bigger than seasonal order 'S'") } 
+   if (S < qo)
+      { stop("MA order bigger than seasonal order 'S'") } 	  
   if (D != round(D) || D < 0) 
-      { stop("seasonal difference order 'D' must be a positive integer") }
+      { stop("seasonal difference order 'D' must be a positive integer") }	  
   Po = length(sar)
   Qo = length(sma)
   if (S > 0 && Po + Qo + D < 1) 
@@ -36,7 +40,6 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    SAR = rep(0, Po*S)
    SAR[1] = 1
    SAR[seq(S, Po*S,by=S)] = -sar
-   }
     minroots <- min(Mod(polyroot(SAR)))
     if (minroots <= 1) { stop("AR side is not causal") }
    if (po>0) {
@@ -45,7 +48,8 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
     AR = 1
    }
    arnew = polyMul(AR, SAR)
-   arnew = c(0, -arnew[-1])   # replace constant with a 0 
+   arnew = c(0, arnew[-1]) 
+   if (po>0) {arnew[1:(S-1)] = c(arnew[2:(S-1)],0)}   
    } else {
    arnew = ar
    }
@@ -53,7 +57,6 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    SMA = rep(0, Qo*S)
    SMA[1] = 1
    SMA[seq(S, Qo*S,by=S)] = sma
-   }
     minroots <- min(Mod(polyroot(SMA)))
      if (minroots <= 1) { stop("MA side is not invertible") }
    if (qo>0) {
@@ -63,6 +66,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    }
    manew = polyMul(MA, SMA)
    manew = c(0, manew[-1])
+   if (qo>0) {manew[1:(S-1)] = c(manew[2:(S-1)],0)} 
    } else {
    manew = ma
    }  
