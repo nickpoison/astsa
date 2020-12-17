@@ -25,15 +25,16 @@ just restart R and reload `astsa`.
 ### Version 1.12 - Dec 2020
 
  The main change  was to add a  simulation script `sarima.sim` for
-seasonal ARIMA models. v1.12 is here and soon on CRAN
+seasonal ARIMA models. v1.12 is here and on CRAN soon.
 
 ---
-###### Version 1.11 -- in the garbage
+#### Version 1.11 -- in the garbage
 
 Forget this version... 
 In v1.10.6 and v1.11, the `sarima.sim` code had bloopers because we weren't 
-counting from 0 when forming the seasonal polynomials.  The non-seasonal
-stuff was still ok and hasn't changed. It's fixed now and in v1.12.  
+counting from (power) 0 when multiplying the nonseasonal  with the seasonal polynomials. 
+The pure nonseasonal or pure seasonal stuff was ok though (in case you used
+it) and nothing will change in these cases. 
 
 ---
 
