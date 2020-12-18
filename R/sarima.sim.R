@@ -81,7 +81,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
   } 
 ###
 frq = ifelse(is.null(S),1,S)
-x = ts(x, start=0, frequency=frq)
+x = ts(x[1:n], start=0, frequency=frq)
 return(x)
 }
 
