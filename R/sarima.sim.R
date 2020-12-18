@@ -22,7 +22,6 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    }
   num = n + burnin   
   x = .zarima_sim(list(order=c(po,d,qo), ar=ar, ma=ma), n=num, rand.gen=rand.gen, ...)
-#  if (burnin>0) { x = x[-(1:burnin)] }
  } else {  
   if (length(sar)==1 && sar==0) sar=NULL
   if (length(sma)==1 && sma==0) sma=NULL 
@@ -77,7 +76,6 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
   if (D > 0){
    x = stats::diffinv(x, lag=S, differences=D)
    }
-#  if (burnin > 0) { x = x[-(1:burnin)] }
   } 
 ###
 frq = ifelse(is.null(S),1,S)
