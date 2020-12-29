@@ -24,10 +24,10 @@ You can also install the package directly from the archive:
 ---
 ### Version 1.12 - Dec 2020
 
- The main change  was to add a  simulation script `sarima.sim` for
-seasonal ARIMA models. v1.12 is here and on CRAN.  The version here is
-slightly updated with some streamlining of code- there are no output/input changes
-though.
+1.12.1  `sarima.sim` output used to start at time `0` - now the start
+time is up to the user (with default `t0=0`).
+
+1.12 (CRAN - Dec 2020) The main change  was to add a  simulation script `sarima.sim` for seasonal ARIMA models.    
 
 ---
 #### Version 1.11 -- in the garbage
