@@ -1,6 +1,6 @@
 sarima.sim <-
 function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
-          n=500, rand.gen=rnorm, burnin=NA, ...){ 
+          n=500, rand.gen=rnorm, burnin=NA, t0=0, ...){ 
   if (length(ar)==1 && ar==0) ar=NULL
   if (length(ma)==1 && ma==0) ma=NULL  
   po = length(ar)
@@ -79,7 +79,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
   } 
 ###
 frq = ifelse(is.null(S),1,S)
-x = ts(x[(burnin+1):(burnin+n)], start=0, frequency=frq)
+x = ts(x[(burnin+1):(burnin+n)], start=t0, frequency=frq)
 return(x)
 }
 
