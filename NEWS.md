@@ -18,25 +18,21 @@ After successful installation, don't forget to reload  `astsa`. If you get an er
 
 
 You can also install the package directly from the archive:
-[astsa_1.12.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.12.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ 
+[astsa_1.12.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.12.1.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ 
 
 ---
 ---
-### Version 1.12 - Dec 2020
+### Versions 1.12 - Dec 2020
 
-1.12.1  `sarima.sim` output used to start at time `0` - now the start
+1.12.1 (GitHub) `sarima.sim` output used to start at time `0` - now the start
 time is up to the user (with default `t0=0`).
 
-1.12 (CRAN - Dec 2020) The main change  was to add a  simulation script `sarima.sim` for seasonal ARIMA models.    
+1.12 (on CRAN - Dec 2020) The main change  was to add a  simulation script `sarima.sim` for seasonal ARIMA models.    
 
 ---
 #### Version 1.11 -- in the garbage
 
-Forget this version... 
-In v1.10.6 and v1.11, the `sarima.sim` code had bloopers because we weren't 
-counting from (power) 0 when multiplying the nonseasonal  with the seasonal polynomials. 
-The pure nonseasonal or pure seasonal stuff was ok though (in case you used
-it) and nothing will change in these cases. 
+&nbsp;&nbsp; keep moving ... nothing to see here 
 
 ---
 
