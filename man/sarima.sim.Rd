@@ -82,5 +82,5 @@ tsplot(sarima.sim(ar=.9, rand.gen=function(n, ...) rt(n, df=2) ))
 dog = rexp(150, rate=.5)*sign(runif(150,-1,1))
 tsplot(sarima.sim(n=100, ar=.99, innov=dog, burnin=50))
 }
-\keyword{ ~ts}
+\keyword{ ts}
 
