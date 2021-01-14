@@ -64,7 +64,7 @@ tsplot(1:453, soi, ylab='SOI', xlab='Month')
 tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2) 
 #
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
-tsplot(x, col=1:8, main='No LLN for Cauchy Mean', spaghetti=TRUE)
+tsplot(x, col=1:100, main='No LLN For You', spaghetti=TRUE)
 }
 \keyword{ ts }%  
 

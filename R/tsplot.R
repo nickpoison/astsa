@@ -64,21 +64,22 @@
 	tsplot(x, y[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym, ...)
     }
     }  	
-   mtext(text=main, line=-.5, outer=TRUE, font=2) 
-   }    
-}
+   mtext(text=main, line=-.5, outer=TRUE, font=2)   
+  }
+}   
 } else {  # when spaghetti is TRUE
-    if(is.null(y)) {series = as.ts(x)} else {series = as.ts(y)} 
-    par(mar=c(2.5,2.5,1+topper,.5)+margins, mgp=c(1.6,.6,0), cex.main=1.2)
-    stats::ts.plot(series, type=type0,  main=NULL, cex.lab=0)
-	Grid(minor=minor, nxm=nxm, nym=nym)
-	 if(gg){ 
-	    brdr = par("usr")        
-        rect(brdr[1], brdr[3], brdr[2], brdr[4], col=gray(.9,.9), border='white')         
-        Grid(minor=minor, nxm=nxm, nym=nym, col='white') 
-     }		
-    par(new=TRUE)
-    stats::ts.plot(series, main=main, ylab=ylab, xlab=xlab, col=col, type=type1, ... ) 
-    box(col='gray')
+    nser  = max(NCOL(x), NCOL(y))
+	if (nser < 2 ) stop("Hey! You can't have a spaghetti dinner with only 1 noodle.")
+	culer = matrix(col, nser)
+    if(is.null(y)) {
+	  ylim=c(min(x), max(x))
+	  if (is.null(ylab)) { ylab = NA }
+	  tsplot(x[,1], ylab=ylab, col=culer[1,], type=type1, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, ylim=ylim, ...)
+	   for (h in 2:nser) { lines(x[,h], col=culer[h,], type=type1) }
+    } else {
+	  ylim=c(min(y), max(y))
+	  tsplot(y[,1], ylab=ylab, col=culer[1,], type=type1, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, ylim=ylim, ...)
+	   for (h in 2:nser) { lines(y[,h], col=culer[h,], type=type1) }
+	}
 }
 }
