@@ -24,6 +24,11 @@ You can also install the package directly from the archive:
 ---
 ### Versions 1.12 - Dec 2020
 
+1.12.1 (GitHub Jan-2021) 
+Updated `tsplot` to allow for spaghetti plots:<br/>
+`x <- replicate(100, cumsum(rcauchy(1000))/1:1000)`<br/>
+`tsplot(x, col=1:8, main=':(', spaghetti=TRUE`)
+
 1.12.1 (GitHub) `sarima.sim` output used to start at time `0` - now the start
 time is up to the user (with default `t0=0`).
 

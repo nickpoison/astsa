@@ -1,6 +1,6 @@
  tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
                    margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=2, 
-				   col=1, gg=FALSE, ...)
+				   col=1, gg=FALSE, spaghetti=FALSE, ...)
 {
   par   = graphics::par
   plot  = graphics::plot
@@ -9,6 +9,7 @@
   topper = ifelse(is.null(main), 0, .5) 
   type0 <- 'n' 
   type1 <- ifelse(is.null(type), 'l', type)
+ if(!spaghetti){ 
  if(!gg){
   if (nser == 1) {
    if(is.null(ylab)) {ylab = ifelse(is.null(y), deparse(substitute(x)), deparse(substitute(y)))}
@@ -65,5 +66,19 @@
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
    }    
+}
+} else {  # when spaghetti is TRUE
+    if(is.null(y)) {series = as.ts(x)} else {series = as.ts(y)} 
+    par(mar=c(2.5,2.5,1+topper,.5)+margins, mgp=c(1.6,.6,0), cex.main=1.2)
+    stats::ts.plot(series, type=type0,  main=NULL, cex.lab=0)
+	Grid(minor=minor, nxm=nxm, nym=nym)
+	 if(gg){ 
+	    brdr = par("usr")        
+        rect(brdr[1], brdr[3], brdr[2], brdr[4], col=gray(.9,.9), border='white')         
+        Grid(minor=minor, nxm=nxm, nym=nym, col='white') 
+     }		
+    par(new=TRUE)
+    stats::ts.plot(series, main=main, ylab=ylab, xlab=xlab, col=col, type=type1, ... ) 
+    box(col='gray')
 }
 }
