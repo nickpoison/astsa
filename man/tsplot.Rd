@@ -45,7 +45,7 @@ line color(s), can be a vector for multiple time series.
 if TRUE, the plots have gray interiors with white grids (like a ggplot); default is FALSE
 }
   \item{spaghetti}{
-if TRUE, will produce a spaghetti plot for the series in 'x'
+if TRUE, will produce a spaghetti plot for the series in 'x' and the y-axis limits can't be changed.
 }
   \item{\dots}{
 other graphical parameteres; see \link[graphics]{par}.
@@ -64,7 +64,7 @@ tsplot(1:453, soi, ylab='SOI', xlab='Month')
 tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2) 
 #
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
-tsplot(x, col=1:100, main='No LLN For You', spaghetti=TRUE)
+tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
 }
 \keyword{ ts }%  
 

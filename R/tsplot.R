@@ -9,7 +9,7 @@
   topper = ifelse(is.null(main), 0, .5) 
   type0 <- 'n' 
   type1 <- ifelse(is.null(type), 'l', type)
- if(!spaghetti){ 
+ if(!spaghetti || nser < 2){ 
  if(!gg){
   if (nser == 1) {
    if(is.null(ylab)) {ylab = ifelse(is.null(y), deparse(substitute(x)), deparse(substitute(y)))}
@@ -21,7 +21,7 @@
    box(col='gray')
   } else {
    prow = ceiling(nser/ncolm)
-   culer = matrix(col, nser)
+   culer = rep(col, nser)
    if(byrow){
    par(mfrow = c(prow, ncolm),  cex.lab=1.1, oma = c(0,0,3*topper,0))
    } else {
@@ -30,9 +30,9 @@
    if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
    if (is.null(ylab)) { ylab = NA }
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, ...)
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, ...)
 	} else {
-	tsplot(x, y[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, ...)
+	tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, ...)
     }
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
@@ -50,7 +50,7 @@
    box(col=gray(1))
   } else {
    prow = ceiling(nser/ncolm)
-   culer = matrix(col, nser)
+   culer = rep(col, nser)
    if(byrow){
    par(mfrow = c(prow, ncolm), cex.lab=1.1, oma = c(0,.25,3*topper,0), tcl=-.2, las=1, cex.axis=.9)
    } else {
@@ -59,27 +59,25 @@
    if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
    if (is.null(ylab)) { ylab = NA }
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym,...)
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym,...)
 	} else {
-	tsplot(x, y[,h], ylab=ylab[h], col=culer[h,], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym, ...)
+	tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym, ...)
     }
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2)   
   }
 }   
-} else {  # when spaghetti is TRUE
-    nser  = max(NCOL(x), NCOL(y))
-	if (nser < 2 ) stop("Hey! You can't have a spaghetti dinner with only 1 noodle.")
-	culer = matrix(col, nser)
+} else {  # when spaghetti is TRUE and nser > 1
+	culer = rep(col, nser)
     if(is.null(y)) {
 	  ylim=c(min(x), max(x))
 	  if (is.null(ylab)) { ylab = NA }
-	  tsplot(x[,1], ylab=ylab, col=culer[1,], type=type1, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, ylim=ylim, ...)
-	   for (h in 2:nser) { lines(x[,h], col=culer[h,], type=type1) }
+	  tsplot(x[,1], ylab=ylab, col=culer[1], type=type1, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, ylim=ylim, ...)
+	   for (h in 2:nser) { lines(x[,h], col=culer[h], type=type1) }
     } else {
-	  ylim=c(min(y), max(y))
-	  tsplot(y[,1], ylab=ylab, col=culer[1,], type=type1, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, ylim=ylim, ...)
-	   for (h in 2:nser) { lines(y[,h], col=culer[h,], type=type1) }
+	  ylim=c(min(x), max(x))
+	  tsplot(y[,1], ylab=ylab, col=culer[1], type=type1, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, ylim=ylim, ...)
+	   for (h in 2:nser) { lines(y[,h], col=culer[h], type=type1) }
 	}
 }
 }
