@@ -30,8 +30,10 @@ You can also install the package directly from the archive:
 `x <- replicate(100, cumsum(rcauchy(1000))/1:1000)`<br/>
 `tsplot(x, col=1:8, main=':(', spaghetti=TRUE`)
  
-<!--
-+ I changed the color palette a little when the package is attached. It's the ggplot2 palette (which is close to the new default palette) but with the "blue [4]" being dodgerblue3. You can revert back by issuing `palette("default")`.  -->
+
++ I changed the color palette a little when the package is attached. It's 
+a hybrid of the 'default' and 'ggplot2' palettes... the main changes are blue
+and yellow are a bit darker. You can revert back by issuing `palette("default")`. 
 
 1.12.1 (GitHub) `sarima.sim` output used to start at time `0` - now the start
 time is up to the user (with default `t0=0`).
