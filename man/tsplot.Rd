@@ -45,7 +45,7 @@ line color(s), can be a vector for multiple time series.
 if TRUE, the plots have gray interiors with white grids (like a ggplot); default is FALSE
 }
   \item{spaghetti}{
-if TRUE, will produce a spaghetti plot for the series in 'x'.
+if TRUE, will produce a spaghetti plot (all series on same plot).
 }
   \item{\dots}{
 other graphical parameteres; see \link[graphics]{par}.

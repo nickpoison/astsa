@@ -68,18 +68,18 @@
   }
 }   
 } else {  # when spaghetti is TRUE and nser > 1
-	culer = rep(col, nser)
-    if(is.null(y)) {
+	culer = rep(col, ceiling(nser/length(col)))
+	if (is.null(ylab)) { ylab = NA }
+    if (is.null(y)) {
 	  u = x[,1]
 	  u[1:2] =  c(min(x), max(x))
-	  if (is.null(ylab)) { ylab = NA }
 	  tsplot(u, ylab=ylab,  type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, ...)
 	   for (h in 1:nser) { lines(x[,h], col=culer[h], type=type1, ...) }
     } else {
 	  u = y[,1]
 	  u[1:2] =  c(min(y), max(y))
-	  tsplot(u, ylab=ylab, type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, ...)
-	   for (h in 1:nser) { lines(y[,h], col=culer[h], type=type1, ...) }
+	  tsplot(x, u, ylab=ylab, type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, ...)
+	   for (h in 1:nser) { lines(x, y[,h], col=culer[h], type=type1, ...) }
 	}
 }
 }
