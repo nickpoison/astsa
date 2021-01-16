@@ -25,17 +25,16 @@ a color vector of length 8 with the astsa color palette at the chosen transparen
 D.S.Stoffer
 }
 \examples{
-par(mfrow=1:2)
-palette(astsa.col(.7))
-pie(rep(1,8), col=1:8, main='astsa palette - some transparency')
-# return to normal
-palette(astsa.col(1))
-pie(rep(1,8), col=1:8, main='original astsa palette')
+par(mfrow=c(1,3))
+pie(rep(1,8), col=1:8, main='astsa palette')
+pie(rep(1,8), col=astsa.col(.7), main='transparency')
+pie(rep(1,9), col=astsa.col(.5)[2:4], main='redundancy', labels=rep(c('2','3','4'),3))
+
 
 # plotting 2 series that touch (in a nice way)
 palette(astsa.col(.6))
 tsplot(cbind(gtemp_land, gtemp_ocean), col=c(4,2), lwd=2, spaghetti=TRUE, type='o', pch=20, ylab="Global Temperature Deviations")
-palette(astsa.col(1))
+palette(astsa.col(1))  # reset to original palette
 legend('topleft', legend=c("Land Only", "Ocean Only"), col=c(4,2), lwd=2, pch=20, bty='n')  
 
 
