@@ -18,7 +18,7 @@ After successful installation, don't forget to reload  `astsa`. If you get an er
 
 
 You can also install the package directly from the archive:
-[astsa_1.12.2.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.12.2.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ 
+[astsa_1.12.2.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.12.2.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 ---
 ---
@@ -31,9 +31,15 @@ You can also install the package directly from the archive:
 `tsplot(x, col=1:8, main=':(', spaghetti=TRUE`)
  
 
-+ Changed color palette when the package is attached. 
-The changes are some colors are darker... you can revert back by issuing `palette("default")` or unloading the package. 
-To view them: `pie(rep(1,8), col=1:8)`
++ The package now has its own color palette, which is
+a bit darker than the new default R4 palette.
+You can revert back using  `palette("default")`. 
+To view it with some tricks:<br/>
+`par(mfrow=1:2)` <br/>
+`pie(rep(1,8), col=1:8, main='astsa palette')`<br/>
+`pie(rep(1,8), col=adjustcolor(1:8,.7), main='with some transparency')`
+
+
 
 1.12.1 (GitHub) `sarima.sim` output used to start at time `0` - now the start
 time is up to the user (with default `t0=0`).
