@@ -31,13 +31,13 @@ You can also install the package directly from the archive:
 `tsplot(x, col=1:8, main=':(', spaghetti=TRUE`)
  
 
-+ The package now has its own color palette, which is
-a bit darker than the new default R4 palette.
-You can revert back using  `palette("default")`. 
-To view it with some tricks:<br/>
-`par(mfrow=1:2)` <br/>
-`pie(rep(1,8), col=1:8, main='astsa palette')`<br/>
-`pie(rep(1,8), col=adjustcolor(1:8,.7), main='with some transparency')`
++ ** I spent too much time fixing colors. **
+ The package now has its own color palette that is attached
+when the package is attached. It is a bit darker than the 
+new default R4 palette. You can revert back using  `palette("default")`. 
+
++ In addition, added `astsa.col` script that can adjust opacity
+easily - see the examples on its man page. 
 
 
 
