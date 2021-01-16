@@ -1,6 +1,7 @@
 # Imports
 
-importFrom("grDevices", "dev.new", "xy.coords", "gray", "palette", "rgb")
+importFrom("grDevices", "dev.new", "xy.coords", "gray", "palette", "rgb",
+            "adjustcolor")
 importFrom("graphics", "abline", "box", "grid", "layout", "legend", "lines",
              "par", "plot", "title", "polygon", "axTicks", "axis", "mtext", 
              "rect")
