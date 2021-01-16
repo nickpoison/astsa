@@ -61,7 +61,7 @@ tsplot(soi, col=4, main="Southern Oscillation Index")
 #
 tsplot(1:453, soi, ylab='SOI', xlab='Month')
 #
-tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2) 
+tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2) 
 #
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
