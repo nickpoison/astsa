@@ -31,9 +31,7 @@ You can also install the package directly from the archive:
 `tsplot(x, col=1:8, main=':(', spaghetti=TRUE`)
  
 
-+ I changed the color palette a little when the package is attached. It's 
-a hybrid of the 'default' and 'ggplot2' palettes... the main changes are blue
-and yellow are a bit darker. You can revert back by issuing `palette("default")`. 
++ Changed to color palette when the package is attached. The main changes are blue and yellow are a bit darker. You can revert back by issuing `palette("default")` or unloading the package.
 
 1.12.1 (GitHub) `sarima.sim` output used to start at time `0` - now the start
 time is up to the user (with default `t0=0`).
