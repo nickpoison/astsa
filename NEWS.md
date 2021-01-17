@@ -31,7 +31,7 @@ You can also install the package directly from the archive:
 `tsplot(x, col=1:8, main=':(', spaghetti=TRUE`)
  
 
-+ ** I spent too much time fixing colors. **
++ **I spent too much time fixing colors.**
  The package now has its own color palette that is attached
 when the package is attached. It is a bit darker than the 
 new default R4 palette. You can revert back using  `palette("default")`. 
