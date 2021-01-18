@@ -33,7 +33,7 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
   par(mar = c(2.5,2.5,1.5,0.5), mgp = c(1.5,0.6,0))
   plot(LAG, ACF, type="n", ylim=ylim, main=main, ylab=Ylab)
     ###
-    Grid();  box(col='gray')
+    Grid();  box(col='gray62')
     abline(h=c(0,L,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
     lines(LAG, ACF, type='h', ...) 
 	return(round(ACF,2)) 

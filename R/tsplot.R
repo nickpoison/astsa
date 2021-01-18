@@ -18,7 +18,7 @@
    Grid(minor=minor, nxm=nxm, nym=nym)
    par(new=TRUE)
    plot(x, y, type=type1, main=main, ylab=ylab, xlab=xlab, col=col, ... ) 
-   box(col='gray')
+   box(col='gray62')
   } else {
    prow = ceiling(nser/ncolm)
    culer = rep(col, nser)

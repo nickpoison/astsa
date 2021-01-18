@@ -60,7 +60,7 @@ if (plot){
    xllim=c(strt,endd)
   par(mar=c(2.5, 2.5, 1, 1), mgp=c(1.6,.6,0))
   ts.plot(xdata,fore$pred, type="n", xlim=xllim, ylim=c(minx,maxx), ylab=xname) 
-  Grid(); box()
+  Grid(); box(col='gray62')
   if(plot.all) {lines(xdata)} else {lines(xdata, type='o')}   
    xx = c(time(U), rev(time(U)))
    yy = c(L, rev(U))

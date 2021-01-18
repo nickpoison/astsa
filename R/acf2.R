@@ -31,11 +31,11 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
   par(mfrow=c(2,1), mar = c(2.5,2.5,1.5,0.8), mgp = c(1.5,0.6,0), cex.main=1)
   plot(LAG, ACF, type="n", ylim=ylim, main=main)
     ###
-    Grid();  box(col='gray')
+    Grid();  box(col='gray62')
     abline(h=c(0,L,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
     lines(LAG, ACF, type='h', ...)
   plot(LAG, PACF, type="n", ylim=ylim)
-    Grid();  box(col='gray')
+    Grid();  box(col='gray62')
     abline(h=c(0,L,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
     lines(LAG, PACF, type='h', ...)
     on.exit(par(old.par))
