@@ -31,10 +31,8 @@ barplot(rep(1,8), col=astsa.col(.7), main='transparency', names=1:8)
 barplot(rep(1,8), col=astsa.col(.5)[3:6], main='redundancy', names=rep(3:6,2))
 
 
-# plotting 2 series that touch (in a nice way)
-palette(astsa.col(.6))
-tsplot(cbind(gtemp_land, gtemp_ocean), col=c(4,2), lwd=2, spaghetti=TRUE, type='o', pch=20, ylab="Global Temperature Deviations")
-palette(astsa.col(1))  # reset to original palette
+# plotting 2 series that touch (but in a nice way)
+tsplot(cbind(gtemp_land, gtemp_ocean), col=astsa.col(.6)[c(4,2)], lwd=2, spaghetti=TRUE, type='o', pch=20, ylab="Global Temperature Deviations")
 legend('topleft', legend=c("Land Only", "Ocean Only"), col=c(4,2), lwd=2, pch=20, bty='n')  
 
 
