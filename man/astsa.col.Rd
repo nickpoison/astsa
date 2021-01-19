@@ -28,7 +28,7 @@ D.S.Stoffer
 par(mfrow=c(3,1))
 barplot(rep(1,8), col=1:8, main='astsa palette', names=1:8)
 barplot(rep(1,8), col=astsa.col(.7), main='transparency', names=1:8)
-barplot(rep(1,8), col=astsa.col(.5)[3:6], main='redundancy', names=rep(3:6,2))
+barplot(rep(1,8), col=astsa.col(.5)[3:6], main='pastelity', names=rep(3:6,2))
 
 
 # plotting 2 series that touch (but in a nice way)
