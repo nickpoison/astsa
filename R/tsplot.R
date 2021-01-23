@@ -43,7 +43,7 @@
    par(mar=c(2.5,2.6,1+topper,.5)+margins, mgp=c(1.8,.6,0), cex.main=1.2,  tcl=-.2, las=1, cex.axis=.9)    
    plot(x, y, type = type0, axes=FALSE, ann=FALSE, main=NULL, ... )
    brdr = par("usr")        
-   rect(brdr[1], brdr[3], brdr[2], brdr[4], col=gray(.9,.9), border='white')         
+   rect(brdr[1], brdr[3], brdr[2], brdr[4], col=gray(.92), border='white')         
    Grid(minor=minor, nxm=nxm, nym=nym, col='white')
    par(new=TRUE)
    plot(x, y, type=type1, main=main, ylab=ylab, xlab=xlab, col=col, ... ) 
