@@ -2,14 +2,12 @@ ccf2 <-
 function (x, y, max.lag = NULL, main=NULL, ylab="CCF", 
           na.action = na.pass, ...)
 {
-  # ccf of 2 series - nicer graphic
   par = graphics::par
-  plot = graphics::plot
-  grid = graphics::grid
+  acf = stats::acf
   abline = graphics::abline
-  lines = graphics::lines
   frequency = stats::frequency
   ts.intersect = stats::ts.intersect
+  as.ts = stats::as.ts
   lag.max = max.lag
   if (is.matrix(x) || is.matrix(y)) { stop("univariate time series only") }
     X <- ts.intersect(as.ts(x), as.ts(y))
@@ -28,12 +26,9 @@ function (x, y, max.lag = NULL, main=NULL, ylab="CCF",
     if (is.null(main)){main=acf.out$snames}
     #  better graphic
 	 U = 2/sqrt(num)
-	 par(mar = c(2.5,2.5,1.5,0.5), mgp = c(1.5,0.6,0), cex.main=1)
-	 plot(acf.out$LAG, acf.out$CCF, type='n', ylab=ylab, xlab="LAG", main=main, ...) 
-     Grid();  box(col='gray62')
+	 tsplot(acf.out$LAG, acf.out$CCF, type='h', ylab=ylab, xlab="LAG", main=main, ...) 
 	 abline(h=c(0,-U,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
 	 abline(v=0, lty=2, col=gray(.5, alpha=.5))
-	 lines(acf.out$LAG, acf.out$CCF, type='h', ...)
 	 LAG = -lag.max:lag.max
 	 CCF = round(acf.out$CCF,3)
 	 return(invisible(cbind(LAG, CCF)))
