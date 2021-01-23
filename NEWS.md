@@ -39,6 +39,9 @@ You can revert back using  `palette("default")`.
 + In addition, added `astsa.col` script that can adjust opacity
 easily - see the examples on its man page. 
 
++ Improvements to `acf1`, `acf2`, and `ccf2` employing the power of
+`tsplot` to give  some kickass displays. For example,
+`acf2(soi, col=4, lwd=3, gg=TRUE)`.
 
 
 1.12.1 (GitHub) `sarima.sim` output used to start at time `0` - now the start
