@@ -38,7 +38,11 @@ D.S. Stoffer
 }
 \examples{
 acf2(rnorm(100))
+
 acf2(rnorm(100), 25, main='')  # no title
+
 acf2(rnorm(100), plot=FALSE)[,'ACF']  # print only ACF
+
+acf2(soi, col=2:7, lwd=4, gg=TRUE)  # mother's day present
 }
 \keyword{ts}

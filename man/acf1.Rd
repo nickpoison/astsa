@@ -39,6 +39,10 @@ D.S. Stoffer
 }
 \examples{
 acf1(rnorm(100))
+
 acf1(sarima.sim(ar=.9), pacf=TRUE)
+
+# show it to your mom:
+acf1(soi, col=6, lwd=4, gg=TRUE) 
 }
 \keyword{ts}

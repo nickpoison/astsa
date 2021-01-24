@@ -36,5 +36,8 @@ This will produce a graphic of the sample \code{corr[x(t+lag), y(t)]} from \code
 \examples{
 ( ccf2(soi, rec) )   # now you see it
 ccf2(soi, rec)       # now you don't
+
+# happy birthday mom
+ccf2(soi, rec, col=rainbow(36, v=.8), lwd=4)
 }
 \keyword{ ts } 
