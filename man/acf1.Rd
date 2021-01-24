@@ -25,7 +25,8 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
 }
   \item{na.action}{How to handle missing data; default is \code{na.pass}
 }
-  \item{...}{ Additional arguments passed to \code{acf} }
+  \item{...}{ Additional arguments passed to \code{\link{tsplot}}
+}  
 }
 \value{\item{ACF}{The sample ACF or PACF}
 }

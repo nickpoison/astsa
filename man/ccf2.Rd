@@ -22,7 +22,8 @@ vertical axis label; default is 'CCF'.
 }
   \item{na.action}{ how to handle missing values; default is \code{na.pass}
 }
-\item{...}{ additional arguments passed to \code{acf} }
+\item{...}{ additional arguments passed to \code{\link{tsplot}}
+}
 }
 \details{
 This will produce a graphic of the sample \code{corr[x(t+lag), y(t)]} from \code{-max.lag} to \code{max.lag}. Also, the (rounded to 3 digits) values of the CCF are returned invisibly.
