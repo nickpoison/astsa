@@ -21,9 +21,10 @@ lag1.plot(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1),
 }
   \item{bgl}{background of the ACF legend; default is \code{'white'}
 }
-  \item{lwl}{width of lowess line; default is 1}
+  \item{lwl}{width of lowess line; default is 1
 }
-  \item{...}{additional graphical arguments}
+  \item{...}{additional graphical arguments
+}
 }
 \references{\url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/} 
 }
