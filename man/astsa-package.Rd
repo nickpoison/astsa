@@ -2,7 +2,7 @@
 \alias{astsa-package}
 \alias{astsa}
 \docType{package}
-\title{Applied Statistical Time Series Analysis
+\title{Applied Statistical Time Series Analysis (more than just data)
 }
 \description{
 Includes data and scripts to accompany \emph{Time Series Analysis and Its Applications: With R Examples} (4th ed) by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2017. Softcover ISBN: 978-3319524511; eBook ISBN 978-3319524528; DOI: 10.1007/978-3319524528, and \emph{Time Series:  A Data Analysis Approach Using R},  Chapman-Hall, 2019. ISBN: 978-0367221096.
@@ -11,8 +11,8 @@ Includes data and scripts to accompany \emph{Time Series Analysis and Its Applic
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 1.12.2\cr
-Date: \tab 2020-01-13\cr
+Version: \tab 1.12.5\cr
+Date: \tab 2020-02-17\cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr

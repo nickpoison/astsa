@@ -24,7 +24,9 @@ You can also install the package directly from the archive:
 ---
 ### Versions 1.12 - Dec 2020
 
-1.12.2 (GitHub - Jan-2021) 
+1.12.5 (GitHub - Feb 2021) 
+
++ Prettified  `lag1.plot` and `lag2.plot` and added a few more options, but no need to change existing code.
 
 + Updated `tsplot` to allow for spaghetti plots:<br/>
 `x <- replicate(100, cumsum(rcauchy(1000))/1:1000)`<br/>
@@ -37,7 +39,7 @@ multiple time series. It is a bit darker than the new default R4 palette.
 You can revert back using  `palette("default")`. 
 
 + In addition, added `astsa.col` script that can adjust opacity
-easily - see the examples on its man page. 
+easily - examples on its man page. 
 
 + Improvements to `acf1`, `acf2`, and `ccf2` employing the power of
 `tsplot` to give  some kickass displays. For example,
