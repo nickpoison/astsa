@@ -38,8 +38,7 @@ when the package is attached. The palette is  especially  suited for plotting
 multiple time series. It is a bit darker than the new default R4 palette.
 You can revert back using  `palette("default")`. 
 
-+ In addition, added `astsa.col` script that can adjust opacity
-easily - examples on its man page. 
++ In addition, added `astsa.col` script to easily adjust opacity of the astsa color palette - examples on its man page. 
 
 + Improvements to `acf1`, `acf2`, and `ccf2` employing the power of
 `tsplot` to give  some kickass displays. For example,

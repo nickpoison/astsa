@@ -32,7 +32,7 @@ lag1.plot(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1),
 }
 \examples{
 lag1.plot(log(varve), max.lag=9)
-lag1.plot(soi, 12, cex=1, pch=19, col=astsa.col(.3)[4], gg=TRUE, corr=FALSE)
+lag1.plot(soi, 12, cex=1, pch=19, col=astsa.col(4, .3), gg=TRUE, corr=FALSE)
 }
 \seealso{\code{\link{lag2.plot}}}
 \keyword{ ts }
