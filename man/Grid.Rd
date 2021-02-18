@@ -37,9 +37,6 @@ ratio of lengths of minor tick marks to major tick marks. The length of major ti
 other graphical parameters; 
 }
 }
-\details{
-I combined the code for \code{grid()} in the graphics package and \code{minor.tick()} from the Hmisc package, and changed the default grid line type and color.     
-}
 \references{
 The code for \code{grid()} in R graphics and \code{minor.tick()} from the Hmisc package were combined.
 }
