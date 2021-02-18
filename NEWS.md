@@ -26,16 +26,17 @@ You can also install the package directly from the archive:
 
 1.12.5 (GitHub - Feb 2021) 
 
-+ Prettified  `lag1.plot` and `lag2.plot` and added a few more options, but no need to change existing code.
++ Prettified  `lag1.plot` and `lag2.plot` using the awesome power
+of `tsplot` and added a few more options, but no need to change existing code.
 
 + Updated `tsplot` to allow for spaghetti plots:<br/>
 `x <- replicate(100, cumsum(rcauchy(1000))/1:1000)`<br/>
-`tsplot(x, col=1:8, main=':(', spaghetti=TRUE`)
+`tsplot(x, col=1:8, spaghetti=TRUE`)
  
 
 + The package now has its own color palette that is attached
 when the package is attached. The palette is  especially  suited for plotting
-multiple time series. It is a bit darker than the new default R4 palette.
+ time series. It is a bit darker than the new default R4 palette.
 You can revert back using  `palette("default")`. 
 
   - In addition, added `astsa.col` script to easily adjust opacity of the astsa color palette - examples on its man page. 
@@ -45,10 +46,10 @@ You can revert back using  `palette("default")`.
 `acf2(soi, col=4, lwd=3, gg=TRUE)`.
 
 
-1.12.1 (GitHub) `sarima.sim` output used to start at time `0` - now the start
++ `sarima.sim` output used to start at time `0` - now the start
 time is up to the user (with default `t0=0`).
 
-1.12 (on CRAN - Dec 2020) The main change  was to add a  simulation script `sarima.sim` for seasonal ARIMA models.    
+1.12 (CRAN - Dec 2020) The main change  was to add a  simulation script `sarima.sim` for seasonal ARIMA models.    
 
 ---
 #### Version 1.11 -- in the garbage
