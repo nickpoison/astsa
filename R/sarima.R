@@ -31,6 +31,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    polygon = graphics::polygon
    abline = graphics::abline
    lines = graphics::lines
+   title = graphics::title
    frequency = stats::frequency
    coef = stats::coef
    dnorm = stats::dnorm
