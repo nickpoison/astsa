@@ -26,8 +26,9 @@ You can also install the package directly from the archive:
 
 1.12.5 (GitHub - Feb 2021) 
 
-+ Prettified  `lag1.plot` and `lag2.plot` using the awesome power
-of `tsplot` and added a few more options, but no need to change existing code.
+>_new changes are related to better colors the easy way with an astsa palette and replacing code that used `plot` to `tsplot` ... there's no need to change any existing code - but the option is there to make things look purty._
+
++ Prettified  `lag1.plot`,  `lag2.plot`, `sarima`, and `sarima.for`, using the awesome power of `tsplot` (and added a few more options), but no need to change existing code.
 
 + Updated `tsplot` to allow for spaghetti plots:<br/>
 `x <- replicate(100, cumsum(rcauchy(1000))/1:1000)`<br/>

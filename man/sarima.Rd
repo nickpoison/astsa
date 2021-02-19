@@ -64,6 +64,9 @@ sarima(log(AirPassengers),0,1,1,0,1,1,12,details=FALSE)$BIC  # print model BIC o
 # fixed parameters
 x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
 sarima(x, 2,0,0, fixed=c(0,NA,NA))
+
+# fun with diagnostics
+sarima(log(AirPassengers),0,1,1,0,1,1,12, gg=TRUE, col=4)
 }
 \seealso{\code{\link{sarima.for}}}
 \keyword{ ts }

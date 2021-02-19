@@ -1,16 +1,12 @@
 sarima.for <-
 function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
          no.constant=FALSE, plot=TRUE, plot.all=FALSE,
-         xreg = NULL, newxreg = NULL, fixed=NULL){ 
-   #
-   frequency = stats::frequency
-   na.pass = stats::na.pass
-   as.ts = stats::as.ts
-   #
+         xreg = NULL, newxreg = NULL, fixed=NULL, ...){ 
+#
   trans = ifelse (is.null(fixed), TRUE, FALSE)
-  xname=deparse(substitute(xdata))
-  xdata=as.ts(xdata) 
-  n=length(xdata)
+  xname = deparse(substitute(xdata))
+  xdata = as.ts(xdata) 
+  n = length(xdata)
 if (is.null(xreg)) {  
   constant=1:n
   xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL
@@ -32,42 +28,37 @@ if (is.null(xreg)) {
             D, Q), period = S), xreg = xreg, fixed=fixed, trans=trans)
 	nureg = newxreg		
 }
-  
 #--
- fore <- stats::predict(fitit, n.ahead, newxreg=nureg)  
+fore <- stats::predict(fitit, n.ahead, newxreg=nureg)  
 #-- graph:
 if (plot){
-   layout = graphics::layout
-   par = graphics::par
-   plot = graphics::plot
-   box = graphics::box
-   abline = graphics::abline
-   lines = graphics::lines
-   ts.plot = stats::ts.plot
-   xy.coords = grDevices::xy.coords
+  lines = graphics::lines
+  polygon = graphics::polygon
+  xy.coords = grDevices::xy.coords
+  time = stats::time
+  tsp  = stats::tsp
   U  = fore$pred + 2*fore$se
   L  = fore$pred - 2*fore$se
   U1 = fore$pred + fore$se
   L1 = fore$pred - fore$se
-   if(plot.all)  {a=1} else  {a=max(1,n-100)}
-  minx=min(xdata[a:n],L)
-  maxx=max(xdata[a:n],U)
-   t1=xy.coords(xdata, y = NULL)$x 
+  if(plot.all)  {a=1} else  {a=max(1,n-100)}
+  minx = min(xdata[a:n],L)
+  maxx = max(xdata[a:n],U)
+   t1 = xy.coords(xdata, y = NULL)$x 
    if(length(t1)<101) strt=t1[1] else strt=t1[length(t1)-100]
    t2=xy.coords(fore$pred, y = NULL)$x 
    endd=t2[length(t2)]
    if(plot.all)  {strt=time(xdata)[1]} 
    xllim=c(strt,endd)
-  par(mar=c(2.5, 2.5, 1, 1), mgp=c(1.6,.6,0))
-  ts.plot(xdata,fore$pred, type="n", xlim=xllim, ylim=c(minx,maxx), ylab=xname) 
-  Grid(); box(col='gray62')
-  if(plot.all) {lines(xdata)} else {lines(xdata, type='o')}   
+   typel = ifelse(plot.all, 'l', 'o')
+   xdatanew = ts(c(xdata,fore$pred), start=tsp(xdata)[1],  frequency=tsp(xdata)[3])
+  tsplot(xdatanew, type=typel, xlim=xllim, ylim=c(minx,maxx), ylab=xname, ...)    
    xx = c(time(U), rev(time(U)))
    yy = c(L, rev(U))
    polygon(xx, yy, border=8, col=gray(.6, alpha=.2) ) 
    yy1 = c(L1, rev(U1))
    polygon(xx, yy1, border=8, col=gray(.6, alpha=.2) ) 
-   lines(fore$pred, col="red", type="o")
+   lines(fore$pred, col=2, type="o")
 }   
   return(fore)
 }

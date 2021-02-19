@@ -55,6 +55,10 @@ sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
 \seealso{\code{\link{sarima}}}
 \examples{
 sarima.for(log(AirPassengers),12,0,1,1,0,1,1,12) 
+
+# fun with the graphic 
+sarima.for(log(AirPassengers),12,0,1,1,0,1,1,12, gg=TRUE, col=4, main='arf') 
+
 #  with regressors:
 nummy   = length(soi)
 n.ahead = 24 
