@@ -15,26 +15,26 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
    abline = graphics::abline
    par = graphics::par
    	U = 2/sqrt(num)
-	L = -U
-  old.par <- par(no.readonly = TRUE)
-  if (is.null(ylim)) { 
-	minA=min(ACF)  
+    L = -U
+   old.par <- par(no.readonly = TRUE)
+   if (is.null(ylim)) { 
+    minA=min(ACF)  
     maxA=max(ACF)
-	minP=min(PACF)
-	maxP=max(PACF)
-	minu=min(minA,minP,L)-.01
-	maxu=min(max(maxA+.1, maxP+.1), 1)
-	ylim = c(minu,maxu)
-  }
+    minP=min(PACF)
+    maxP=max(PACF)
+    minu=min(minA,minP,L)-.01
+    maxu=min(max(maxA+.1, maxP+.1), 1)
+    ylim = c(minu,maxu)
+   }
   par(mfrow=c(2,1), cex.main=1) 
-    tsplot(LAG, ACF, ylim=ylim, main=main, xlab='LAG', ylab='ACF', type='h', ...)
-    abline(h=c(0,L,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
-    tsplot(LAG, PACF, ylim=ylim, main=NULL, xlab='LAG', ylab='PACF', type='h', ...)
-    abline(h=c(0,L,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
-    on.exit(par(old.par))
-    ACF  <- round(ACF,2) 
-	PACF <- round(PACF,2)    
-    return(rbind(ACF, PACF)) 	
+   tsplot(LAG, ACF, ylim=ylim, main=main, xlab='LAG', ylab='ACF', type='h', ...)
+    abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
+   tsplot(LAG, PACF, ylim=ylim, main=NULL, xlab='LAG', ylab='PACF', type='h', ...)
+    abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
+   on.exit(par(old.par))
+   ACF  <- round(ACF,2) 
+   PACF <- round(PACF,2)    
+  return(rbind(ACF, PACF)) 	
   } else {
   return(cbind(ACF, PACF)) 
   }

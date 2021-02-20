@@ -20,15 +20,15 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
   U = 2/sqrt(num)
   L = -U
   if (is.null(ylim)) { 
-	minA = min(ACF)
-	maxA = max(ACF)
-	minu = min(minA, L)-.01
-	maxu = min(maxA+.2, 1)
-	ylim = c(minu,maxu) 
+   minA = min(ACF)
+   maxA = max(ACF)
+   minu = min(minA, L)-.01
+   maxu = min(maxA+.2, 1)
+   ylim = c(minu,maxu) 
  }
   Ylab = ifelse(pacf, 'PACF', 'ACF')
   tsplot(LAG, ACF, ylim=ylim, main=main, xlab='LAG', ylab=Ylab, type='h', ...)
-  abline(h=c(0,L,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
+  abline(h=c(0,L,U), lty=c(1,2,2), col=c(1,4,4))
   return(round(ACF, 2)) 
  } else {
   return(ACF)
