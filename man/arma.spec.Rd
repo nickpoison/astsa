@@ -3,7 +3,7 @@
 \title{Spectral Density of an ARMA Model 
 }
 \description{Gives the ARMA spectrum, tests for causality, invertibility, and
-common zeros.  
+ common zeros.  
 }
 \usage{
 arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, log="n", type=NULL, ...)
@@ -27,7 +27,7 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, log="n", type=NULL, ...)
 \details{The basic call is \code{arma.spec(ar, ma)} where \code{ar} and \code{ma} are vectors
 containing the model parameters. Use \code{log="yes"} if you want the plot on
 a log scale. If the model is not causal or invertible an error message is given. If
-there are common zeros, a spectrum will be displayed and a warning will be given;
+there are approximate common zeros, a spectrum will be displayed and a warning will be given;
 e.g., \code{arma.spec(ar= .9, ma= -.9)} will yield a warning and the plot will be the
 spectrum of white noise. 
 }
@@ -40,6 +40,10 @@ spectrum of white noise.
 }
 \examples{
 arma.spec(ar = c(1, -.9), ma = .8)
+
+arma.spec(ar = c(1, -.9), main='AR(2)', gg=TRUE, col=5, lwd=2)
 }
 \keyword{ts}
+
+
 
