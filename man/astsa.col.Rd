@@ -10,7 +10,8 @@ Modifies the opacity level of the astsa color palette.
 astsa.col(col = 1, alpha = 1)
 }
 \arguments{
-  \item{col}{vector of colors (default is 1 or 'black')
+  \item{col}{numerical vector representing colors (default is 1 or 'black') 
+             - see Examples
 }  
   \item{alpha}{
 factor in [0,1] setting the opacity (default is 1) 
