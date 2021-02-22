@@ -51,7 +51,16 @@ You can revert back using  `palette("default")`.
 + `sarima.sim` output used to start at time `0` - now the start
 time is up to the user (with default `t0=0`).
 
-1.12 (CRAN - Dec 2020) The main change  was to add a  simulation script `sarima.sim` for seasonal ARIMA models.    
+1.12 (CRAN - Dec 2020) The main change  was to add a  simulation script `sarima.sim` for seasonal ARIMA models.   
+
+So a duck goes in to a bar and asks the bartender, _How do I simulate
+a seasonal ARIMA model of the kind Box and Jenkins were hot for?_ 
+The bartender says, _If you want to easily generate data from a seasonal ARIMA model, why don't you use `sarima.sim` from `astsa`?_ The duck replies, _Quack!_
+The bartender grabs the duck by its palmate feet, and just when the duck thinks
+the bartender will toss him in the oven, the bartender pulls out a magic marker and writes this code on the duck's foot:<br/>
+`set.seed(101010)` <br/>
+`y = sarima.sim(ma=-.4, sma=-.6, d=1, D=1, S=12, n=120)` <br/>
+`tsplot(y, col=4)`
 
 ---
 #### Version 1.11 -- in the garbage
