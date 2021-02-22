@@ -56,7 +56,8 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
     tsplot(LAG, ACF, type="h", ylim=c(min(ACF)-.1,min(1,max(ACF+.4))), main = "ACF of Residuals", ...)
      abline(h=c(0,-L,L), lty=c(1,2,2), col=c(1,4,4))  
     u = qqnorm(stdres, main="Normal Q-Q Plot of Std Residuals", plot.it=FALSE)
-    tsplot(u$x, u$y, type='p', ylim=c(-4,4), ylab="Sample Quantiles", xlab="Theoretical Quantiles", main="Normal Q-Q Plot",  ...)	
+	lwr = min(-4, min(stdres)); upr = max(4, max(stdres))
+    tsplot(u$x, u$y, type='p', ylim=c(lwr,upr), ylab="Sample Quantiles", xlab="Theoretical Quantiles", main="Normal Q-Q Plot",  ...)	
       ################ qq error bnds ###########
        sR  <- !is.na(stdres)
        ord <- order(stdres[sR])
