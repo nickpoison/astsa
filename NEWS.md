@@ -24,10 +24,13 @@ You can also install the package directly from the archive:
 ---
 ### Versions 1.12 - Dec 2020
 
-1.12.5 (GitHub - Feb 2021) 
+1.12.6 (GitHub - Feb 2021) 
 
->_new changes are related to better colors for plotting time series with
+>_many new changes are related to better colors for plotting time series with
 the introduction of an astsa palette and replacing code that used `plot` to `tsplot` ... there's no need for the user to change any existing code - but the options are there now to make things look purty._
+
++ Updated `Grid`, `tsplot` and `sarima.sim`. Now, `Grid` and `tsplot` will produce grid lines at the minor ticks.  These can be shut off individually on either axis.  For `sarima.sim`, allowed seasonal period without having to specify 
+other seasonal parameters - doing so gives a warning whereas it used to stop the execution.  There's an example of the advantage of this in its man page.
 
 + Prettified  `arma.spec`, `lag1.plot`,  `lag2.plot`, `sarima`, and `sarima.for`, using the awesome power of `tsplot`, but no need to change existing code.
 

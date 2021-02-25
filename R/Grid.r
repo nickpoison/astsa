@@ -1,6 +1,7 @@
 Grid <-
-function (nx = NULL, ny = nx, col = gray(.9), lty = 1, lwd = par("lwd"), equilogs = TRUE, 
-          minor = TRUE, nxm = 2, nym = 2, tick.ratio = 0.5, ...) 
+function (nx = NULL, ny = nx, col = gray(.9), lty = 1, lwd = par("lwd"), 
+          equilogs = TRUE,  minor = TRUE, nxm = 2, nym = 2, tick.ratio = 0.5, 
+		  mx.grid = TRUE, my.grid =TRUE, ...) 
 {
     if (is.null(nx) || (!is.na(nx) && nx >= 1)) {
         log <- par("xlog")
@@ -58,10 +59,14 @@ function (nx = NULL, ny = nx, col = gray(.9), lty = 1, lwd = par("lwd"), equilog
                         seq(low.minor, hi.minor, by = distance.between.minor), 
                         labels = FALSE, tcl = par("tcl") * tick.ratio),
                         add.args);
+						
+	if (w == "x" && isTRUE(mx.grid)) abline(v=seq(low.minor, hi.minor, by = distance.between.minor), col=col)
+    if (w == "y" && isTRUE(my.grid)) abline(h=seq(low.minor, hi.minor, by = distance.between.minor), col=col)	
 	do.call(axis, axis.args);
     }
-   if (nx > 1) 
-    ax("x", nx, tick.ratio = tick.ratio, x.args)
+   if (nx > 1){ 
+    ax("x", nx, tick.ratio = tick.ratio, x.args) 
+   }
    if (ny > 1) 
     ax("y", ny, tick.ratio = tick.ratio, y.args)
   invisible()}

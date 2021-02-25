@@ -34,7 +34,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
   Po = length(sar)
   Qo = length(sma)
   if (S > 0 && Po + Qo + D < 1) 
-     { stop("S > 0 but no seasonal parameters are specified") }
+     { warning("S > 0 but no seasonal parameters are specified") }
   if (Po > 0){
    SAR = c(1, rep(0, Po*S))
    SAR[seq(S+1, Po*S+1, by=S)] = -sar

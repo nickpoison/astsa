@@ -84,6 +84,11 @@ tsplot(sarima.sim(ar=.9, rand.gen=function(n, ...) rt(n, df=2) ))
 ## use your own innovations
 dog = rexp(150, rate=.5)*sign(runif(150,-1,1))
 tsplot(sarima.sim(n=100, ar=.99, innov=dog, burnin=50))
+
+## generate seasonal data but no P, D or Q 
+## gives a warning to make sure you're doing it on purpose
+tsplot(sarima.sim(ar=c(1.5,-.75), n=144, S=12), ylab='doggy', xaxt='n')
+mtext(seq(0,144,12), side=1, line=.5, at=0:12)
 }
 \keyword{ ts}
 
