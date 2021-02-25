@@ -1,5 +1,5 @@
 tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
-                  margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=2, 
+                  margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=1, 
 				  xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, ...)
 {
   par   = graphics::par
