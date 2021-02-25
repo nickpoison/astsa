@@ -1,7 +1,7 @@
 ## astsa &mdash; applied statistical time series analysis
 <a href="https://github.com/nickpoison"><img src="https://img.shields.io/badge/NickyPoison-approved-ff69b4.svg?style=flat"></a>&nbsp;&nbsp;
 <a href="https://github.com/nickpoison/astsa/blob/master/NEWS.md">
-<img src="https://img.shields.io/badge/Latest Version-1.12.5-0077be.svg?style=flat"></a>
+<img src="https://img.shields.io/badge/Latest Version-1.12.6-0077be.svg?style=flat"></a>
 
 
 **more than just data ...**  
@@ -14,6 +14,6 @@ The Springer text was written under version 1.8 and the Chapman & Hall text was 
 
 We won't always push the latest version of the package to CRAN, but the latest working version of the package will always be here.
  
-* Version 1.12.5 on GitHub now and v1.12 CRAN  
+* Version 1.12.6 on GitHub now and v1.12 CRAN  
 * See the [News](https://github.com/nickpoison/astsa/blob/master/NEWS.md) for further details about the state of the package and the changelog.
 
