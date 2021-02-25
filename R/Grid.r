@@ -1,7 +1,7 @@
 Grid <-
 function (nx = NULL, ny = nx, col = gray(.9), lty = 1, lwd = par("lwd"), 
           equilogs = TRUE,  minor = TRUE, nxm = 2, nym = 2, tick.ratio = 0.5, 
-		  mx.grid = TRUE, my.grid =TRUE, ...) 
+		  xm.grid = TRUE, ym.grid = TRUE, ...) 
 {
     if (is.null(nx) || (!is.na(nx) && nx >= 1)) {
         log <- par("xlog")
@@ -38,7 +38,7 @@ function (nx = NULL, ny = nx, col = gray(.9), lty = 1, lwd = par("lwd"),
         abline(h = at, col = col, lty = lty, lwd = lwd)
     }
 ##	
-	if(minor){nx = nxm; ny = nym; x.args = list(); y.args = list() 
+   if(minor){nx = nxm; ny = nym; x.args = list(); y.args = list() 
     ax <- function(w, n, tick.ratio, add.args) {
     range <- par("usr")[if (w == "x") 1 : 2  else 3 : 4]
     tick.pos <- if (w == "x") par("xaxp") else par("yaxp")
@@ -60,8 +60,8 @@ function (nx = NULL, ny = nx, col = gray(.9), lty = 1, lwd = par("lwd"),
                         labels = FALSE, tcl = par("tcl") * tick.ratio),
                         add.args);
 						
-	if (w == "x" && isTRUE(mx.grid)) abline(v=seq(low.minor, hi.minor, by = distance.between.minor), col=col)
-    if (w == "y" && isTRUE(my.grid)) abline(h=seq(low.minor, hi.minor, by = distance.between.minor), col=col)	
+	if (w == "x" && isTRUE(xm.grid)) abline(v=seq(low.minor, hi.minor, by = distance.between.minor), col=col)
+    if (w == "y" && isTRUE(ym.grid)) abline(h=seq(low.minor, hi.minor, by = distance.between.minor), col=col)	
 	do.call(axis, axis.args);
     }
    if (nx > 1){ 

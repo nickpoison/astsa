@@ -6,7 +6,7 @@
 }
 \usage{
 Grid(nx = NULL, ny = nx, col = gray(0.9), lty = 1, lwd = par("lwd"), equilogs = TRUE, 
-    minor = TRUE, nxm = 2, nym = 2, tick.ratio = 0.5, mx.grid = TRUE, my.grid = TRUE, ...)
+    minor = TRUE, nxm = 2, nym = 2, tick.ratio = 0.5, xm.grid = TRUE, ym.grid = TRUE, ...)
 }
 \arguments{
   \item{nx, ny}{
@@ -33,7 +33,7 @@ number of intervals in which to divide the area between major tick marks on the 
   \item{tick.ratio}{
 ratio of lengths of minor tick marks to major tick marks. The length of major tick marks is retrieved from par("tck").
 }
-  \item{mx.grid, my.grid}{
+  \item{xm.grid, ym.grid}{
 if TRUE (default), adds grid lines at minor x-axis, y-axis ticks.
 }
  \item{\dots}{
