@@ -18,7 +18,7 @@ After successful installation, don't forget to reload  `astsa`. If you get an er
 
 
 You can also install the package directly from the archive:
-[astsa_1.12.5.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.12.5.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+[astsa_1.12.6.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.12.6.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 ---
 ---
