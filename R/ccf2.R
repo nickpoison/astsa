@@ -27,8 +27,8 @@ function (x, y, max.lag = NULL, main=NULL, ylab="CCF",
     #  better graphic
 	 U = 2/sqrt(num)
 	 tsplot(acf.out$LAG, acf.out$CCF, type='h', ylab=ylab, xlab="LAG", main=main, ...) 
-	 abline(h=c(0,-U,U), lty=c(1,2,2), col=c('black','dodgerblue3','dodgerblue3'))
-	 abline(v=0, lty=2, col=gray(.5, alpha=.5))
+	 abline(h=c(0,-U,U), lty=c(1,2,2), col=c(8,4,4))
+	 abline(v=0, lty=2, col=astsa.col(8,.6))
 	 LAG = -lag.max:lag.max
 	 CCF = round(acf.out$CCF,3)
 	 return(invisible(cbind(LAG, CCF)))
