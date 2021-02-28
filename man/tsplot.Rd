@@ -46,7 +46,7 @@ if TRUE (default), adds grid lines at minor x-axis, y-axis ticks.
 line color(s), can be a vector for multiple time series.
 }
  \item{gg}{
-if TRUE, the plots have gray interiors with white grids (like a ggplot); default is FALSE
+if TRUE, will produce a gray graphic interior with white grid lines; default is FALSE
 }
   \item{spaghetti}{
 if TRUE, will produce a spaghetti plot (all series on same plot).
