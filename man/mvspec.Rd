@@ -8,7 +8,7 @@
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
          fast = TRUE, demean = FALSE, detrend = TRUE, 
          plot = TRUE, log='n', type = NULL, 
-         na.action = na.fail, ...)
+         na.action = na.fail, nxm=2, nym=1, ...)
 }
 \arguments{
   \item{x }{univariate or multivariate time series (i.e., the p columns of x are time series)
@@ -34,6 +34,9 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
   \item{type }{type of plot to be drawn, defaults to lines
 }
   \item{na.action }{same as \code{spec.pgram}
+}
+ \item{nxm, nym}{
+the number of minor tick mark divisions on x-axis, y-axis; the default is one minor tick on the x-axis and none on the y-axis.
 }
   \item{\dots }{additional arguments; same as \code{spec.pgram}
 }

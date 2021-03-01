@@ -1,6 +1,6 @@
 mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
     fast = TRUE, demean = FALSE, detrend = TRUE, plot = TRUE, log='n',
-	type = NULL, na.action = na.fail,...) 
+	type = NULL, na.action = na.fail, nxm=2, nym=1, ...) 
 {
      #
      na.fail = stats::na.fail
@@ -113,7 +113,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
         type0 <- 'n' 
         type1 <- ifelse(is.null(type), 'l', type) 
         plot(spg.out, type = type0, sub=NA, axes=FALSE, ann=FALSE, log = log, ...) 
-        Grid()
+        Grid(nxm=nxm, nym=nym)
         par(new=TRUE)
         plot(spg.out, log = log, type = type1, ...) 
         return(invisible(spg.out))

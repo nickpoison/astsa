@@ -29,12 +29,14 @@ You can also install the package directly from the archive:
 >_many new changes are related to better colors for plotting time series with
 the introduction of an astsa palette and replacing code that used `plot` to `tsplot` ... there's no need for the user to change any existing code - but the options are there now to make things look purty._
 
-+ Updated `Grid`, `tsplot` and `sarima.sim`. Now, `Grid` and `tsplot` will produce grid lines at the minor ticks.  These can be shut off individually on either axis.  
++ Updated `Grid`, `tsplot`, `sarima.sim`, and `mvspec`. 
+
+    - `Grid` and `tsplot` will produce grid lines at the minor ticks.  These can be shut off individually on either axis.  
 
    - For `sarima.sim`, now allow seasonal period without having to specify 
 other seasonal parameters - doing so gives a message to make sure you're doing it on purpose,  whereas it used to stop the execution.  There's an example of the advantage of this in its man page.
   
-    - For `tsplot`, by default now, there is one minor tick on the x-axis and none on the y-axis. 
+    - For `tsplot` and `mvspec`, by default now, there is one minor tick on the x-axis and none on the y-axis. 
 
 + Prettified  `arma.spec`, `lag1.plot`,  `lag2.plot`, `sarima`, and `sarima.for`, using the awesome power of `tsplot`, but no need to change existing code.
 
