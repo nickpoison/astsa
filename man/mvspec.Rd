@@ -35,12 +35,12 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 }
   \item{na.action }{same as \code{spec.pgram}
 }
- \item{nxm, nym}{
+  \item{nxm, nym }{
 the number of minor tick mark divisions on x-axis, y-axis; the default is one minor tick on the x-axis and none on the y-axis.
 }
-item{main }{title of the graphics; default is same as \code{spec.pgram}
+ \item{main }{title of the graphics; default is same as \code{spec.pgram}
 }
-  \item{\dots }{additional arguments; same as \code{spec.pgram}
+ \item{\dots }{additional arguments; same as \code{spec.pgram}
 }
 }
 \details{This is \code{spec.pgram} from the stats package with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. The default for the plot is NOT to plot on a log scale and the graphic will have a grid. The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}.  Also, the bandwidth is no longer displayed in the graphic.  Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series.  Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
