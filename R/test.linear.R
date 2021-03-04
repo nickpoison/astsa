@@ -32,7 +32,8 @@ lamhat = mean(Test)
  }
 u    = seq(0, .5, length.out = nrow(Tst))
 cm.c = cm.colors(201);  clrs = rev(cm.c[c(94:50, 121, 141, 161, 181, 201)]) 
-if(color==FALSE)  clrs = rev(gray(c(400:356/400, .7, .6, .5, .4, .3)))        
+if(color==FALSE)  clrs = rev(gray(c(400:356/400, .7, .6, .5, .4, .3)))  
+par(mar=c(4,4,3,1)+.1, mgp=c(1.6,.6,0))      
 filled.contour(u,u,Tst,  col=clrs, nlevels=50, zlim=c(0,1), 
                key.title = {par(cex.main=.75); title(main="p-value")})
 mtext(expression(omega[1]), side=1, line=2,    adj=.4, cex=1.2)  
