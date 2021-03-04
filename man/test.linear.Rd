@@ -8,14 +8,14 @@
 test.linear(series, color = TRUE, detrend = FALSE)
 }
 \arguments{
-  \item{series}{ the time series (univariate only)
+  \item{series }{ the time series (univariate only)
 }
-  \item{color}{ if FALSE, the graphic is produced in gray scale
+  \item{color }{ if FALSE, the graphic is produced in gray scale
 }
-  \item{detrend}{ if TRUE, the series is detrended first)
+  \item{detrend }{ if TRUE, the series is detrended first
 }
 }
-\value{\item{prob }{matrix of tail probabilities - returned invisibly}
+\value{\item{prob }{ matrix of tail probabilities - returned invisibly}
 }
 \references{Hinich, M. and Wolinsky, M. (2005). Normalizing bispectra. \emph{Journal of Statistical Planning and Inference}, 130, 405--411.
 }
