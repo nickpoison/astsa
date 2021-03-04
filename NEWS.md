@@ -18,13 +18,18 @@ After successful installation, don't forget to reload  `astsa`. If you get an er
 
 
 You can also install the package directly from the archive:
-[astsa_1.12.6.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.12.6.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+[astsa_1.12.7.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.12.7.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 ---
 ---
 ### Versions 1.12 - Dec 2020
 
-1.12.6 (GitHub - Feb 2021) 
+1.12.7 (GitHub - March 2021) 
+
++ Added `test.linear`, a script to test the null hypothesis that the data are generated from a linear process with iid innovations. The code is based on 
+[Normalized Bispectra](http://www.la.utexas.edu/hinich/files/Statistics/Normbispec.pdf) and a script from [Nonlinear Time Series](https://www.stat.pitt.edu/stoffer/nltsa/).
+
+
 
 >_many new changes are related to better colors for plotting time series with
 the introduction of an astsa palette and replacing code that used `plot` to `tsplot` ... there's no need for the user to change any existing code - but the options are there now to make things look purty._
