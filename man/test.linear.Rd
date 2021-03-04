@@ -2,7 +2,7 @@
 \alias{test.linear}
 \title{Test Linearity of a Time Series via Normalized Bispectrum 
 }
-\description{Produces a plot of the normalized bispectra of a series.  Smaller tail probabilities indicate departure from linearity.
+\description{Produces a plot of the exceedance probabilities of a normalized bispectra of a series under the assumption the model is a linear process with iid innovations.  Smaller tail probabilities indicate departure from linearity.
 }
 \usage{
 test.linear(x.data, color = TRUE)
