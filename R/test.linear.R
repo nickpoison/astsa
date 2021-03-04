@@ -1,9 +1,15 @@
 test.linear <-
-function(series, color=TRUE){
-x = series
+function(series, color=TRUE, detrend=FALSE){
+if (NCOL(series)>1){stop("univariate series only")}
+x = series - mean(series)
 N = length(x)       # data length
 L = floor(N^.49)    # block width
 P = floor(N/L)      # number of blocks
+if (detrend) {
+   t     <- 1:N - (N + 1)/2
+   sumt2 <- N * (N^2 - 1)/12
+   x     <- x - sum(x*t)*t/sumt2
+    }
 #  dft for each block
 X = matrix(NA, L, P)
  for (p in 1:P) {
@@ -33,7 +39,7 @@ lamhat = mean(Test)
 u    = seq(0, .5, length.out = nrow(Tst))
 cm.c = cm.colors(201);  clrs = rev(cm.c[c(94:50, 121, 141, 161, 181, 201)]) 
 if(color==FALSE)  clrs = rev(gray(c(400:356/400, .7, .6, .5, .4, .3)))  
-par(mar=c(4,4,3,1)+.1, mgp=c(1.6,.6,0))      
+par(mar=c(4,4,3,1)+.1)      
 filled.contour(u,u,Tst,  col=clrs, nlevels=50, zlim=c(0,1), 
                key.title = {par(cex.main=.75); title(main="p-value")})
 mtext(expression(omega[1]), side=1, line=2,    adj=.4, cex=1.2)  
