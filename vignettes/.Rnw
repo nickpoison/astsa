@@ -1,0 +1,6 @@
+\documentclass{article}
+\usepackage{pdfpages}
+%\VignetteIndexEntry{Version 1.12}
+\begin{document}
+\includepdf[pages=-, fitpaper=true]{astsa.pdf}
+\end{document}
