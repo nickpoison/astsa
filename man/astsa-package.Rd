@@ -23,7 +23,7 @@ David Stoffer <stoffer@pitt.edu>
 }
 \references{The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  Although parts the texts could be considered  manuals for the package (or the other way around), we have put up a nice little demonstration at \url{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa.pdf}
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
 }
 \keyword{ package }
 \keyword{ ts }
