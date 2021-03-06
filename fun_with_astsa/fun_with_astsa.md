@@ -9,11 +9,13 @@ Remember to load `astsa` at the start of a session.
 
 -----
 ------
-##### Table of Contents  
+ 
+### Table of Contents  
   * [1. Data](#1-data)
   * [2. Plotting](#2-plotting)
   * [3. Correlations](#3-correlations)
-  * [4. ARIMA Simulation](#4--arima-simulation)
+  * [4. ARIMA Simulation](#4-arima-simulation)
+  * [5. ARIMA Estimation](#5-arima-estimation)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -201,11 +203,11 @@ ccf2(cmort, part)
 
 -----
 
-## 4.  ARIMA Simulation
+## 4. ARIMA Simulation
 
 You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via 
 
-> **`sarima.sim`**
+> **`sarima.sim()`**
 
 The syntax are simple and we'll demonstrate with a couple of examples. There are more examples in the help file (`?sarima.sim`).  For example, you can input your own innovations or generate non-normal innovations (the default is normal).
 
@@ -222,6 +224,126 @@ set.seed(101010)
 tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120), col=4, ylab='')  
 </code></pre>
 <img src="figs/sarima.sim.png" alt="sarima.sim"  width="700">
+
+-----
+
+## 5. ARIMA Estimation
+
+Fitting ARIMA models to data is a breeze with the modern script
+
+> **`sarima()`**
+
+It can do everything for you but you have to choose the model. 
+
+Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK; see [Issue 2 of the R time series issues page](https://www.stat.pitt.edu/stoffer/tsa4/Rissues.htm). Originally, `astsa` had a version of automatic fitting of models, but IT DOESN'T WORK, so it was scrapped.  The bottom line is, if you don't know what you're doing, then why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
+
+As with everything else, there are many examples on the help page (`?sarima`) and we'll do a couple here.
+
++ Everyone else does it, so why don't we.  Here's a seasonal ARIMA fit to the AirPassenger data set (for the millionth time).
+
+<pre><code>
+sarima(log(AirPassengers),0,1,1,0,1,1,12, gg=TRUE, col=4)
+</code></pre>
+and the partial output including the residual diagnostic plot is:
+<pre>
+Coefficients:
+          ma1     sma1
+      -0.4018  -0.5569
+s.e.   0.0896   0.0731
+
+sigma^2 estimated as 0.001348:  log likelihood = 244.7,  aic = -483.4
+
+$degrees_of_freedom
+[1] 129
+
+$ttable
+     Estimate     SE t.value p.value
+ma1   -0.4018 0.0896 -4.4825       0
+sma1  -0.5569 0.0731 -7.6190       0
+
+$AIC
+[1] -3.404219
+
+$AICc
+[1] -3.403611
+
+$BIC
+[1] -3.343475
+</pre>
+
+<img src="figs/airpass.png" alt="airpass"  width="700">
+
+You can shut off the diagnostics using `details=FALSE`
+<pre><code>
+ sarima(log(AirPassengers),0,1,1,0,1,1,12, details=FALSE)
+</code></pre>
+
+
++ You can fix parameters too, for example
+<pre><code>
+x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
+sarima(x, 2,0,0, fixed=c(0,NA,NA))
+</code></pre> 
+with partial output
+<pre>
+Coefficients:
+      ar1      ar2    xmean
+        0  -0.8829  49.9881
+s.e.    0   0.0317   0.0381
+
+sigma^2 estimated as 1.02:  log likelihood = -287.3,  aic = 580.59
+
+$degrees_of_freedom
+[1] 198
+
+$ttable
+      Estimate     SE   t.value p.value
+ar2    -0.8829 0.0317  -27.8093       0
+xmean  49.9881 0.0381 1311.6366       0
+
+$AIC
+[1] 2.902961
+
+$AICc
+[1] 2.903265
+
+$BIC
+[1] 2.952436
+</pre>
+
++ And one more with exogenous variables - this is the regression
+of `Lynx` on `Hare` lagged one year with AR(2) errors.
+
+<pre><code>
+pp = ts.intersect(Lynx, HareL1 = lag(Hare,-1), dframe=TRUE)
+sarima(pp$Lynx, 2,0,0, xreg=pp$HareL1)
+</code></pre>
+with partial output
+<pre>
+
+sigma^2 estimated as 59.57:  log likelihood = -312.8,  aic = 635.59
+
+$degrees_of_freedom
+[1] 86
+
+$ttable
+          Estimate     SE t.value p.value
+ar1         1.3258 0.0732 18.1184  0.0000
+ar2        -0.7143 0.0731 -9.7689  0.0000
+intercept  25.1319 2.5469  9.8676  0.0000
+xreg        0.0692 0.0318  2.1727  0.0326
+
+$AIC
+[1] 7.062148
+
+$AICc
+[1] 7.067377
+
+$BIC
+[1] 7.201026
+</pre>
+
+<img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="700">
 
 
 
