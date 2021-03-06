@@ -154,25 +154,27 @@ The first two also print the values; the third one returns the values invisibly.
 + The individual sample ACF or PACF
 <pre><code>
 acf1(soi)
-  <span style="color:blue"> [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...</span>
+  ```diff [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...```
 
 </code></pre>
 <img src="figs/acf1.png" alt="acf1"  width="700">
 
 <pre><code>
 acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)
- <span style="color:blue">   [1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...</span>
+ ```diff   [1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...```
 </code></pre>
 <img src="figs/pacf1.png" alt="pacf1"  width="700">
 
 + Sample ACF and PACF at the same time
 <pre><code>
-acf2(diff(log(varve))) <span style="color:blue">
+acf2(diff(log(varve)))
+</code></pre>
+  ```diff
         [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] ...
    ACF  -0.4 -0.04 -0.06  0.01  0.00  0.04 -0.04  0.04  0.01 ...
-   PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 ...</span>
+   PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 ...```
 
-</code></pre>
+
 <img src="figs/acf2.png" alt="acf2"  width="700">
 
 + and the sample CCF
