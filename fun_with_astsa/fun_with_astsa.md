@@ -113,12 +113,12 @@ And you can get more information on any individual set using the `help()` comman
 > **`astsa.col()`** 
 
 is included to easily adjust opacity of the palette.  For example,
-<pre><code>
+```r
 par(mfrow=c(3,1))
 barplot(rep(1,8), col=1:8, main='astsa palette', names=1:8)
 barplot(rep(1,8), col=astsa.col(1:8, .7), main='transparency', names=1:8)
 barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2))
-</code></pre> 
+```
 <img src="figs/palette.png" alt="palette"  width="700">
 
 - For plotting time series and just about anything else, you can use
