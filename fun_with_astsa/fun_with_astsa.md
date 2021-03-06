@@ -16,9 +16,8 @@ Remember to load `astsa` at the start of a session.
   * [3. Correlations](#3-correlations)
   * [4. ARIMA Simulation](#4-arima-simulation)
   * [5. ARIMA Estimation](#5-arima-estimation)
-
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
+  * [6. Forecasting](#6-forecasting)
+  * [7. Spectral Analysis](#7-spectral-analysis)
 
 
 
@@ -170,7 +169,8 @@ sample ACF and PACF in a multifigure plot and both on the same scale.  The graph
 The first two also print the values; the third one returns the values invisibly.
 
 
-+ The individual sample ACF or PACF
++ The individual sample ACF or PACF  
+
 ```r
 acf1(soi)
   [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...
@@ -178,21 +178,23 @@ acf1(soi)
 <img src="figs/acf1.png" alt="acf1"  width="700">
 
 ```r
-acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)
+acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)  
    [1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...
 ```
 <img src="figs/pacf1.png" alt="pacf1"  width="700">
 
 + Sample ACF and PACF at the same time
+
 ```r
-acf2(diff(log(varve)))
+acf2(diff(log(varve)))  
         [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] ...
    ACF  -0.4 -0.04 -0.06  0.01  0.00  0.04 -0.04  0.04  0.01 ...
    PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 ... 
 ```
 <img src="figs/acf2.png" alt="acf2"  width="700">
 
-+ and the sample CCF
++ and the sample CCF  
+
 ```r
 ccf2(cmort, part)
 ```
@@ -208,14 +210,16 @@ You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via
 
 The syntax are simple and we'll demonstrate with a couple of examples. There are more examples in the help file (`?sarima.sim`).  For example, you can input your own innovations or generate non-normal innovations (the default is normal).
 
-+ First an AR(2) with a mean of 50 (n=500 is the default sample size)
++ First an AR(2) with a mean of 50 (n=500 is the default sample size)  
+
 ```r
 y = sarima.sim(ar=c(1.5,-.75)) + 50
 tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
 ```
 <img src="figs/ar2sim.png" alt="ar2sim"  width="700">
 
-+ Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite
++ Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite  
+
 ```r
 set.seed(101010)
 tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120), col=4, ylab='')  
@@ -241,8 +245,9 @@ As with everything else, there are many examples on the help page (`?sarima`) an
 ```r
 sarima(log(AirPassengers),0,1,1,0,1,1,12, gg=TRUE, col=4)
 ```
-and the partial output including the residual diagnostic plot is:
-<pre>
+and the partial output including the residual diagnostic plot is:  
+
+```r
 Coefficients:
           ma1     sma1
       -0.4018  -0.5569
@@ -266,23 +271,26 @@ $AICc
 
 $BIC
 [1] -3.343475
-</pre>
+```
 
 <img src="figs/airpass.png" alt="airpass"  width="700">
 
-You can shut off the diagnostics using `details=FALSE`
+You can shut off the diagnostics using `details=FALSE` 
+
 ```r
  sarima(log(AirPassengers),0,1,1,0,1,1,12, details=FALSE)
 ```
 
 
-+ You can fix parameters too, for example
++ You can fix parameters too, for example  
+
 ```r
 x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
 sarima(x, 2,0,0, fixed=c(0,NA,NA))
+```
+with output   
 
-
-
+```r
 Coefficients:
       ar1      ar2    xmean
         0  -0.8829  49.9881
@@ -311,13 +319,13 @@ $BIC
 + And one more with exogenous variables - this is the regression
 of `Lynx` on `Hare` lagged one year with AR(2) errors.
 
-<pre><code>
+```r
 pp = ts.intersect(Lynx, HareL1 = lag(Hare,-1), dframe=TRUE)
 sarima(pp$Lynx, 2,0,0, xreg=pp$HareL1)
-</code></pre>
+```
 with partial output
-<pre>
 
+```r
 sigma^2 estimated as 59.57:  log likelihood = -312.8,  aic = 635.59
 
 $degrees_of_freedom
@@ -338,9 +346,62 @@ $AICc
 
 $BIC
 [1] 7.201026
-</pre>
+```
 
 <img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="700">
+
+-----
+
+## 6. Forecasting
+
+Forecasting your fitted ARIMA model is as simple as using
+
+> **`sarima.for()`**
+
+You get a graphic showing  ± 1 and 2 root mean square prediction errors and the predictions and standard errors are printed.   The syntax are similar to `sarima` but the 
+number of periods to forecast, `n.ahead`, has to be specified.
+
+
++ Here's a simple example.  We'll generate some data from an ARIMA(1,1,), forecast some of it and then compare the forecasts to the actual values.
+
+```r
+set.seed(12345)
+x <- sarima.sim(ar=.9, d=1, n=150)
+y <- window(x, start=1, end=100)
+sarima.for(y, n.ahead=50, p=1, d=1, q=0, plot.all=TRUE)
+text(85, 375, "PAST"); text(115, 375, "FUTURE")
+abline(v=100, lty=2, col=4)
+lines(x)
+```
+with partial output  
+
+```r
+$pred
+Time Series:
+Start = 101 
+End = 150 
+Frequency = 1 
+ [1] 242.3821 241.3023 240.5037 239.9545 239.6264 239.4945 239.5364 ...
+
+$se
+Time Series:
+Start = 101 
+End = 150 
+Frequency = 1 
+ [1]  1.136849  2.427539  3.889295  5.459392  7.096606  8.772528 10.466926 ...  
+```
+<img src="figs/fore1.png" alt="fore1"  width="700">
+
++ Notice the `plot.all=TRUE` in the previous example. If you leave that off, the graphic show the final 100 observations and the forecasts to make it easier to see what's going on.
+
+```r
+sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
+```
+<img src="figs/foreCO2.png" alt="foreCO2"  width="700">
+
+
+-----
+## 7. Spectral Analysis
 
 
 
