@@ -126,30 +126,30 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2))
 > **`tsplot()`**
 
 Notice there are minor ticks and a grid by default. Here are some examples.
-<pre><code>
+```r
 par(mfrow=c(2,1))
 tsplot(soi, col=4, lwd=2)
 tsplot(soi, col=4, lwd=2, gg=TRUE)
-</code></pre>
+```
 <img src="figs/tsplot1.png" alt="tsplot"  width="700">
 
 Two at a time:
-<pre><code>
+```r
 tsplot(cbind(mortality=cmort, particulates=part), col=4:5, lwd=2, main='LA Pollution')
-</code></pre>
+```
 <img src="figs/lapollution.png" alt="lapollution"  width="700">
 
 
 Do you like spaghetti?
-<pre><code>
+```r
 tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2), ylab=expression(Number~~~(""%*% 1000)), spaghetti=TRUE)
 legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
-</code></pre>
+```
 <img src="figs/lynxhare.png" alt="tsplot"  width="700">
-<pre><code>
+```r
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample mean", xlab="sample size")
-</code></pre>
+```
 <img src="figs/tsplot2.png" alt="tsplot"  width="700">
 
 
@@ -171,37 +171,31 @@ The first two also print the values; the third one returns the values invisibly.
 
 
 + The individual sample ACF or PACF
-<pre><code>
+```r
 acf1(soi)
-</code></pre>
-and output
-
-```diff
-+  [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...
+  [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...
 ```
 <img src="figs/acf1.png" alt="acf1"  width="700">
 
-<pre><code>
+```r
 acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)
-  
-[1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...
-</code></pre>
+   [1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...
+```
 <img src="figs/pacf1.png" alt="pacf1"  width="700">
 
 + Sample ACF and PACF at the same time
-<pre><code>
+```r
 acf2(diff(log(varve)))
-
         [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] ...
    ACF  -0.4 -0.04 -0.06  0.01  0.00  0.04 -0.04  0.04  0.01 ...
    PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 ... 
-</code></pre>
+```
 <img src="figs/acf2.png" alt="acf2"  width="700">
 
 + and the sample CCF
-<pre><code>
+```r
 ccf2(cmort, part)
-</code></pre>
+```
 <img src="figs/ccf2.png" alt="ccf2"  width="700">
 
 -----
@@ -215,17 +209,17 @@ You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via
 The syntax are simple and we'll demonstrate with a couple of examples. There are more examples in the help file (`?sarima.sim`).  For example, you can input your own innovations or generate non-normal innovations (the default is normal).
 
 + First an AR(2) with a mean of 50 (n=500 is the default sample size)
-<pre><code>
+```r
 y = sarima.sim(ar=c(1.5,-.75)) + 50
 tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
-</code></pre>
+```
 <img src="figs/ar2sim.png" alt="ar2sim"  width="700">
 
 + Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite
-<pre><code>
+```r
 set.seed(101010)
 tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120), col=4, ylab='')  
-</code></pre>
+```
 <img src="figs/sarima.sim.png" alt="sarima.sim"  width="700">
 
 -----
@@ -244,9 +238,9 @@ As with everything else, there are many examples on the help page (`?sarima`) an
 
 + Everyone else does it, so why don't we.  Here's a seasonal ARIMA fit to the AirPassenger data set (for the millionth time).
 
-<pre><code>
+```r
 sarima(log(AirPassengers),0,1,1,0,1,1,12, gg=TRUE, col=4)
-</code></pre>
+```
 and the partial output including the residual diagnostic plot is:
 <pre>
 Coefficients:
@@ -277,18 +271,18 @@ $BIC
 <img src="figs/airpass.png" alt="airpass"  width="700">
 
 You can shut off the diagnostics using `details=FALSE`
-<pre><code>
+```r
  sarima(log(AirPassengers),0,1,1,0,1,1,12, details=FALSE)
-</code></pre>
+```
 
 
 + You can fix parameters too, for example
-<pre><code>
+```r
 x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
 sarima(x, 2,0,0, fixed=c(0,NA,NA))
-</code></pre> 
-with partial output
-<pre>
+
+
+
 Coefficients:
       ar1      ar2    xmean
         0  -0.8829  49.9881
@@ -312,7 +306,7 @@ $AICc
 
 $BIC
 [1] 2.952436
-</pre>
+```
 
 + And one more with exogenous variables - this is the regression
 of `Lynx` on `Hare` lagged one year with AR(2) errors.
