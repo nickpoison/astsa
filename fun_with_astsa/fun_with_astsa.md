@@ -124,7 +124,8 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2))
 
 > **`tsplot()`**
 
-Notice there are minor ticks and a grid by default. Here are some examples.
+- Notice there are minor ticks and a grid by default. Here are some examples.
+
 ```r
 par(mfrow=c(2,1))
 tsplot(soi, col=4, lwd=2)
@@ -132,23 +133,29 @@ tsplot(soi, col=4, lwd=2, gg=TRUE)
 ```
 <img src="figs/tsplot1.png" alt="tsplot"  width="700">
 
-Two at a time:
+- Two at a time:
+
 ```r
 tsplot(cbind(mortality=cmort, particulates=part), col=4:5, lwd=2, main='LA Pollution')
 ```
 <img src="figs/lapollution.png" alt="lapollution"  width="700">
 
 
-Do you like spaghetti?
+- Do you like spaghetti?
+
 ```r
 tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2), ylab=expression(Number~~~(""%*% 1000)), spaghetti=TRUE)
 legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
 ```
 <img src="figs/lynxhare.png" alt="tsplot"  width="700">
+
+- And the land where the LLN ceases to exist:
+
 ```r
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample mean", xlab="sample size")
 ```
+
 <img src="figs/tsplot2.png" alt="tsplot"  width="700">
 
 
@@ -275,7 +282,7 @@ $BIC
 
 <img src="figs/airpass.png" alt="airpass"  width="700">
 
-You can shut off the diagnostics using `details=FALSE` 
++ You can shut off the diagnostics using `details=FALSE` 
 
 ```r
  sarima(log(AirPassengers),0,1,1,0,1,1,12, details=FALSE)
