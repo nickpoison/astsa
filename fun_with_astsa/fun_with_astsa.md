@@ -9,6 +9,18 @@ Remember to load `astsa` at the start of a session.
 
 -----
 ------
+
+##### Table of Contents  
+[Data Sets](#data)  
+[Graphics and Plotting](#graphics)
+[Correlation Functions](#correlation)
+
+
+-----
+-----
+
+
+<a name="data"/>
 ## 1. Data
 
 There are lots of fun data sets included in `astsa`. Here's a list obtained by issuing the command
@@ -86,7 +98,7 @@ And you can get more information on any individual set using the `help()` comman
 
 -----
 
-
+<a name="graphics"/>
 ## 2. Plotting
 
  - When `astsa` is loaded, the astsa palette is attached.  The palette is  especially  suited for plotting  time series and it is a bit darker than the new default R4 palette. You can revert back using  `palette("default")`.  Also,  
@@ -138,7 +150,7 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 -----
 
 
-
+<a name="correlation"/>
 ## 3. Correlations
 
 There are three basic correlation scripts in `astsa`.  They are
