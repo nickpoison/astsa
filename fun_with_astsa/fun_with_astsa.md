@@ -174,7 +174,7 @@ The first two also print the values; the third one returns the values invisibly.
 <pre><code>
 acf1(soi)
 
-  [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...
+  *[1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...*
 </code></pre>
 <img src="figs/acf1.png" alt="acf1"  width="700">
 
