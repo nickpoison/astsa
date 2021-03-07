@@ -113,13 +113,14 @@ And you can get more information on any individual set using the `help()` comman
 > **`astsa.col()`** 
 
 is included to easily adjust opacity of the palette.  For example,
+
 ```r
 par(mfrow=c(3,1))
 barplot(rep(1,8), col=1:8, main='astsa palette', names=1:8)
 barplot(rep(1,8), col=astsa.col(1:8, .7), main='transparency', names=1:8)
 barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2))
 ```
-<img src="figs/palette.png" alt="palette"  width="700">
+<img src="figs/palette.png" alt="palette"  width="600">
 
 - For plotting time series and just about anything else, you can use
 
@@ -132,14 +133,14 @@ par(mfrow=c(2,1))
 tsplot(soi, col=4, lwd=2)
 tsplot(soi, col=4, lwd=2, gg=TRUE)
 ```
-<img src="figs/tsplot1.png" alt="tsplot"  width="700">
+<img src="figs/tsplot1.png" alt="tsplot"  width="600">
 
 - Two at a time:
 
 ```r
 tsplot(cbind(mortality=cmort, particulates=part), col=4:5, lwd=2, main='LA Pollution')
 ```
-<img src="figs/lapollution.png" alt="lapollution"  width="700">
+<img src="figs/lapollution.png" alt="lapollution"  width="600">
 
 
 - Do you like spaghetti?
@@ -148,7 +149,7 @@ tsplot(cbind(mortality=cmort, particulates=part), col=4:5, lwd=2, main='LA Pollu
 tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2), ylab=expression(Number~~~(""%*% 1000)), spaghetti=TRUE)
 legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
 ```
-<img src="figs/lynxhare.png" alt="tsplot"  width="700">
+<img src="figs/lynxhare.png" alt="tsplot"  width="600">
 
 - And the land where the LLN ceases to exist:
 
@@ -157,7 +158,7 @@ x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample mean", xlab="sample size")
 ```
 
-<img src="figs/tsplot2.png" alt="tsplot"  width="700">
+<img src="figs/tsplot2.png" alt="tsplot"  width="600">
 
 
 
@@ -184,14 +185,14 @@ acf1(soi)
 
   [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...
 ```
-<img src="figs/acf1.png" alt="acf1"  width="700">
+<img src="figs/acf1.png" alt="acf1"  width=600>
 
 ```r  
 acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)  
 
    [1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...
 ```
-<img src="figs/pacf1.png" alt="pacf1"  width="700">
+<img src="figs/pacf1.png" alt="pacf1"  width="600">
 
 + Sample ACF and PACF at the same time
 
@@ -202,14 +203,14 @@ acf2(diff(log(varve)))
    ACF  -0.4 -0.04 -0.06  0.01  0.00  0.04 -0.04  0.04  0.01 ...
    PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 ... 
 ```
-<img src="figs/acf2.png" alt="acf2"  width="700">
+<img src="figs/acf2.png" alt="acf2"  width="600">
 
 + and the sample CCF  
 
 ```r
 ccf2(cmort, part)
 ```
-<img src="figs/ccf2.png" alt="ccf2"  width="700">
+<img src="figs/ccf2.png" alt="ccf2"  width="600">
 
 -----
 
@@ -227,7 +228,7 @@ The syntax are simple and we'll demonstrate with a couple of examples. There are
 y = sarima.sim(ar=c(1.5,-.75)) + 50
 tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
 ```
-<img src="figs/ar2sim.png" alt="ar2sim"  width="700">
+<img src="figs/ar2sim.png" alt="ar2sim"  width="600">
 
 + Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite  
 
@@ -235,7 +236,7 @@ tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
 set.seed(101010)
 tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120), col=4, lwd=2, gg=TRUE, ylab='')  
 ```
-<img src="figs/sarima.sim.png" alt="sarima.sim"  width="700">
+<img src="figs/sarima.sim.png" alt="sarima.sim"  width="600">
 
 -----
 
@@ -284,7 +285,7 @@ $BIC
 [1] -3.343475
 ```
 
-<img src="figs/airpass.png" alt="airpass"  width="700">
+<img src="figs/airpass.png" alt="airpass"  width="600">
 
 + You can shut off the diagnostics using `details=FALSE` 
 
@@ -359,7 +360,7 @@ $BIC
 [1] 7.201026
 ```
 
-<img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="700">
+<img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="600">
 
 -----
 
@@ -401,14 +402,14 @@ End = 150
 Frequency = 1 
  [1]  1.136849  2.427539  3.889295  5.459392  7.096606  8.772528 10.466926 ...  
 ```
-<img src="figs/fore1.png" alt="fore1"  width="700">
+<img src="figs/fore1.png" alt="fore1"  width="600">
 
 + Notice the `plot.all=TRUE` in the previous example. If you leave that off, the graphic show the final 100 observations and the forecasts to make it easier to see what's going on.
 
 ```r
 sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 ```
-<img src="figs/foreCO2.png" alt="foreCO2"  width="700">
+<img src="figs/foreCO2.png" alt="foreCO2"  width="600">
 
 
 -----
@@ -437,7 +438,7 @@ x3 = 6*cos(2*pi*1:100*40/100) + 7*sin(2*pi*1:100*40/100)
 x  = x1 + x2 + x3
 mvspec(x,  col=4, lwd=2, type='o', pch=20)
 ```
-<img src="figs/periodogram.png" alt="periodogram"  width="700">
+<img src="figs/periodogram.png" alt="periodogram"  width="600">
 
 + You can smooth in the usual way and get the CIs on the log-plot:
 
@@ -447,7 +448,7 @@ sois  = mvspec(soi, spans=c(7,7), taper=.1, col=4, lwd=2)
 soisl = mvspec(soi, spans=c(7,7), taper=.5, col=4, lwd=2, log='y')
 ```
 
-<img src="figs/soispec.png" alt="soispec"  width="700">
+<img src="figs/soispec.png" alt="soispec"  width="600">
 
 + and you can get the usual information
 
@@ -486,7 +487,7 @@ and easily locate the peaks
 mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitment")
 ```
 
-<img src="figs/coher.png" alt="coher"  width="700">
+<img src="figs/coher.png" alt="coher"  width="600">
 
 
 #### parametric spectral analysis
@@ -494,17 +495,54 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 BIC estimate after detrending
 
 ```r
-spec.ic(soi, BIC=TRUE, detrend=TRUE, col=4, lwd=2)  
+u <- spec.ic(soi, BIC=TRUE, detrend=TRUE, col=4, lwd=2)  
 ```
 
-<img src="figs/spec.bic.png" alt="spec.bic"  width="700">
+<img src="figs/spec.bic.png" alt="spec.bic"  width="600">
 
-Plot AIC and BIC without the spectral estimate (both pick order 15):
+Print and plot AIC and BIC (both pick order 15):
 
 ```r
-tsplot(0:30, spec.ic(soi, plot=FALSE)[[1]][,2:3], type='o', col=2:3, xlab='order', nxm=5)  
+u[[1]]   # notice the values are adjusted by the min
+
+      ORDER         AIC        BIC
+ [1,]     0 272.6937023 210.955320
+ [2,]     1  82.1484043  24.525915
+ [3,]     2  84.1441892  30.637592
+ [4,]     3  85.5926277  36.201922
+ [5,]     4  80.4715619  35.196749
+ [6,]     5  70.7822012  29.623280
+ [7,]     6  69.5898661  32.546837
+ [8,]     7  71.5718647  38.644728
+ [9,]     8  71.4320021  42.620757
+[10,]     9  63.2815353  38.586183
+[11,]    10  49.9872355  29.407775
+[12,]    11  40.7220194  24.258451
+[13,]    12  41.0928139  28.745138
+[14,]    13  37.0833413  28.851557
+[15,]    14   8.7779160   4.662024
+[16,]    15   0.0000000   0.000000  
+[17,]    16   0.4321663   4.548058
+[18,]    17   0.8834736   9.115258
+[19,]    18   0.9605224  13.308199
+[20,]    19   2.9348253  19.398394
+[21,]    20   4.7475516  25.327012
+[22,]    21   6.7012637  31.396616
+[23,]    22   7.1553956  35.966641
+[24,]    23   4.6428297  37.569967
+[25,]    24   5.8610042  42.904033
+[26,]    25   6.5000325  47.658954
+[27,]    26   2.8918549  48.166668
+[28,]    27   4.2581518  53.648857
+[29,]    28   5.5960927  59.102690
+[30,]    29   6.3765400  63.999030
+[31,]    30   2.6978096  64.436191 
 ```
-<img src="figs/aicbic.png" alt="aicbic"  width="700">
+
+```r
+tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRUE)  
+```
+<img src="figs/aicbic.png" alt="aicbic"  width="600">
 
 
 -----
@@ -525,7 +563,7 @@ and more details can be found in its help file (`?test.linear`).    Chi-squared 
 ```r
 test.linear(soi) 
 ```
-<img src="figs/test_soi.png" alt="test_soi"  width="700">
+<img src="figs/test_soi.png" alt="test_soi"  width="600">
 
 + Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange (NYSE) from February 2, 1984 to December 31, 1991
 
@@ -533,8 +571,8 @@ test.linear(soi)
 test.linear(nyse) 
 tsplot(nyse, col=4) 
 ```
-<img src="figs/test_nyse.png" alt="test_nyse"  width="700">
-<img src="figs/nyse.png" alt="nyse"  width="700">
+<img src="figs/test_nyse.png" alt="test_nyse"  width="600">
+<img src="figs/nyse.png" alt="nyse"  width="600">
 
 
 ## 9. State Space Models
