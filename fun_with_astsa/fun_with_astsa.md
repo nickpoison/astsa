@@ -420,7 +420,7 @@ Nonparametric spectral analysis done with
 
 and parametric spectral analysis with
 
-> **`spec.ic`**
+> **`spec.ic()`**
 
 `mvspec` was originally just a way to  get the multivariate spectral density estimateout of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
 
