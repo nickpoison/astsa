@@ -18,7 +18,8 @@ Remember to load `astsa` at the start of a session.
   * [5. ARIMA Estimation](#5-arima-estimation)
   * [6. Forecasting](#6-forecasting)
   * [7. Spectral Analysis](#7-spectral-analysis)
-
+  * [8. Testing for Linearity](#8-linearity-test)
+  * [9. State Space Models and Kalman Filtering](#9-state-space)
 
 
 
@@ -479,3 +480,37 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 ```
 
 <img src="figs/coher.png" alt="coher"  width="700">
+
+-----
+## 8. Linearity Test
+
+Linear time series models are built on the linear process, where it is assumed that a series <i>X<sub>t</sub></i> can be generated as
+
+<i>X<sub>t</sub> = &sum; &psi;<sub>j</sub> Z<sub>t - j</sub></i> where  &sum; | &psi;<sub>j</sub> | < &infin;
+
+where <i>Z<sub>t</sub></i> is an iid sequence of random variables with at least finite fourth moments.  This assumption can be tested using the bispectrum, which  is constant under the null hypothesis  that the data are from a linear process with i.i.d. innovations.  The workhorse here is
+
+> *`test.linear()`*
+
+and more details can be found in its help file (`?test.linear`).    Chi-squared test statistics are formed in blocks to measure departures from the null hypothesis and the corresponding p-values are displayed in a graphic and returned invisibly.
+
++ First an example of a linear process where the graphic suggests a constant bispectrum.
+
+```r
+test.linear(soi) 
+```
+<img src="figs/test_soi.png" alt="test_soi"  width="700">
+
++ Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange.
+
+```r
+test.linear(nyse) 
+tsplot(nyse)      # not shown, but have a look anyway (it's free)
+```
+<img src="figs/test_nyse.png" alt="test_nyse"  width="700">
+
+
+## 9. State Space Models
+
+
+
