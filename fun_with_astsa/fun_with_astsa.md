@@ -19,6 +19,8 @@ Remember to load `astsa` at the start of a session.
   * [6. Forecasting](#6-forecasting)
   * [7. Spectral Analysis](#7-spectral-analysis)
      * [Nonparametric](#nonparametric-spectral-analysis)
+     * [Parametric](#parametric-spectral-analysis)
+     * [Spectral Matrices](#more-multivariate-spectra)     
   * [8. Testing for Linearity](#8-linearity-test)
   * [9. State Space Models and Kalman Filtering](#9-state-space)
 
@@ -136,12 +138,12 @@ tsplot(soi, col=4, lwd=2, gg=TRUE)
 ```
 <img src="figs/tsplot1.png" alt="tsplot"  width="600">
 
-- Two at a time:
+- Many in one swell foop:
 
 ```r
-tsplot(cbind(mortality=cmort, particulates=part), col=4:5, lwd=2, main='LA Pollution')
+tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2) 
 ```
-<img src="figs/lapollution.png" alt="lapollution"  width="600">
+<img src="figs/climhyd.png" alt="climhyd"  width="600">
 
 
 - Do you like spaghetti?
@@ -548,12 +550,39 @@ tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRU
 
 #### more multivariate spectra
 
+The data frame `econ5` was used to consider the effect of quarterly GNP, consumption, and government and private investment on  U.S. unemployment. `mvspec` plot the individual spectra by default and you can extract the spectral matrices as `fxx`, an array of dimensions `dim = c(p,p,nfreq)`.
+Here, <i>p = 5</i>:
+
 ```r
 gr = diff(log(ts(econ5))) 
 gr = ts(apply(gr,2,scale), start= 1948, freq=4) 
 tsplot(gr, ncol=2, col=2:6, lwd=2, byrow=FALSE) 
-gr.spec = mvspec(gr, spans=c(7,7), detrend=FALSE, taper=.25, col=2:6, lwd=c(2,2,2,4,2), main='spectra')
-round(gr.spec$fxx, 3)
+gr.spec = mvspec(gr, spans=c(7,7), detrend=FALSE, taper=.25, col.=2:6, lwd=2, main='spectra')
+round(gr.spec$fxx, 2) 
+```
+<img src="figs/econ5.png" alt="econ5"  width="600">
+
+And a sample of the output of the last line giving the matrix estimate.
+
+```r
+, , 49
+
+              [,1]          [,2]          [,3]          [,4]          [,5]
+[1,]  0.097+0.000i -0.048+0.042i -0.053+0.080i  0.032-0.037i -0.027+0.033i
+[2,] -0.048-0.042i  0.129+0.000i  0.100-0.039i -0.052+0.012i  0.111+0.000i
+[3,] -0.053-0.080i  0.100+0.039i  0.232+0.000i -0.041+0.001i  0.023+0.079i
+[4,]  0.032+0.037i -0.052-0.012i -0.041-0.001i  0.051+0.000i -0.049+0.008i
+[5,] -0.027-0.033i  0.111+0.000i  0.023-0.079i -0.049-0.008i  0.157+0.000i
+
+, , 50
+
+              [,1]          [,2]          [,3]          [,4]          [,5]
+[1,]  0.093+0.000i -0.054+0.045i -0.053+0.081i  0.030-0.034i -0.033+0.035i
+[2,] -0.054-0.045i  0.124+0.000i  0.112-0.041i -0.048+0.010i  0.100+0.008i
+[3,] -0.053-0.081i  0.112+0.041i  0.240+0.000i -0.034+0.009i  0.027+0.085i
+[4,]  0.030+0.034i -0.048-0.010i -0.034-0.009i  0.050+0.000i -0.043+0.015i
+[5,] -0.033-0.035i  0.100-0.008i  0.027-0.085i -0.043-0.015i  0.146+0.000i
+
 ```
 
 
