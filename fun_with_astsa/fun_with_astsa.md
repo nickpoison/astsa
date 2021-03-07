@@ -488,7 +488,7 @@ Linear time series models are built on the linear process, where it is assumed t
 
 <i>X<sub>t</sub> = &sum; &psi;<sub>j</sub> Z<sub>t - j</sub></i> where  &sum; | &psi;<sub>j</sub> | < &infin;
 
-where <i>Z<sub>t</sub></i> is an iid sequence of random variables with at least finite fourth moments.  This assumption can be tested using the bispectrum, which  is constant under the null hypothesis  that the data are from a linear process with i.i.d. innovations.  The workhorse here is
+where <i>Z<sub>t</sub></i> is an iid sequence of random variables with at least finite third moments.  This assumption can be tested using the bispectrum, which  is constant under the null hypothesis  that the data are from a linear process with i.i.d. innovations.  The workhorse here is
 
 > *`test.linear()`*
 
