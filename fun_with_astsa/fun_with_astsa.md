@@ -180,12 +180,14 @@ The first two also print the values; the third one returns the values invisibly.
 
 ```r
 acf1(soi)
+
   [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...
 ```
 <img src="figs/acf1.png" alt="acf1"  width="700">
 
-```r
+```r  
 acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)  
+
    [1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...
 ```
 <img src="figs/pacf1.png" alt="pacf1"  width="700">
@@ -194,6 +196,7 @@ acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)
 
 ```r
 acf2(diff(log(varve)))  
+
         [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] ...
    ACF  -0.4 -0.04 -0.06  0.01  0.00  0.04 -0.04  0.04  0.01 ...
    PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 ... 
@@ -229,7 +232,7 @@ tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
 
 ```r
 set.seed(101010)
-tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120), col=4, ylab='')  
+tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120), col=4, lwd=2, gg=TRUE, ylab='')  
 ```
 <img src="figs/sarima.sim.png" alt="sarima.sim"  width="700">
 
@@ -410,8 +413,69 @@ sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 -----
 ## 7. Spectral Analysis
 
+Spectral analysis in `astsa` is done with
 
+> **`mvspec()`**
 
+It was originally just a way to  get the multivariate spectral density estimate
+out of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
 
++ The first thing is, if you want the periodogram, you got it (tapering is not done automatically because you're old enough to do it by yourself):
 
+```r
+x1 = 2*cos(2*pi*1:100*5/100)  + 3*sin(2*pi*1:100*5/100)
+x2 = 4*cos(2*pi*1:100*10/100) + 5*sin(2*pi*1:100*10/100)
+x3 = 6*cos(2*pi*1:100*40/100) + 7*sin(2*pi*1:100*40/100)
+x  = x1 + x2 + x3
+mvspec(x,  col=4, lwd=2, type='o', pch=20)
+```
+<img src="figs/periodogram.png" alt="periodogram"  width="700">
 
++ You can smooth in the usual way and get the CIs on the log-plot:
+
+```r
+par(mfrow=c(2,1))
+sois  = mvspec(soi, spans=c(7,7), taper=.1, col=4, lwd=2)
+soisl = mvspec(soi, spans=c(7,7), taper=.5, col=4, lwd=2, log='y')
+```
+
+<img src="figs/soispec.png" alt="soispec"  width="700">
+
++ and you can get the usual information
+
+```r
+c(sois$df, sois$bandwidth)
+
+  [1] 17.4261799  0.2308103
+```
+
+and easily locate the peaks
+
+```r
+ sois$details[1:45,]
+
+      frequency  period spectrum
+
+ [8,]     0.200  5.0000   0.0461
+ [9,]     0.225  4.4444   0.0489
+[10,]     0.250  4.0000   0.0502  <- here
+[11,]     0.275  3.6364   0.0490
+[12,]     0.300  3.3333   0.0451
+[13,]     0.325  3.0769   0.0403
+[14,]     0.350  2.8571   0.0361
+
+[38,]     0.950  1.0526   0.1253
+[39,]     0.975  1.0256   0.1537
+[40,]     1.000  1.0000   0.1675  <- here
+[41,]     1.025  0.9756   0.1538
+[42,]     1.050  0.9524   0.1259
+[43,]     1.075  0.9302   0.0972
+
+```
++ and cross-spectra  
+
+```r
+mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitment")
+```
+
+<img src="figs/coher.png" alt="coher"  width="700">
