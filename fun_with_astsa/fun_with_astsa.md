@@ -501,13 +501,14 @@ test.linear(soi)
 ```
 <img src="figs/test_soi.png" alt="test_soi"  width="700">
 
-+ Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange.
++ Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange (NYSE) from February 2, 1984 to December 31, 1991
 
 ```r
 test.linear(nyse) 
-tsplot(nyse)      # not shown, but have a look anyway (it's free)
+tsplot(nyse, col=4) 
 ```
 <img src="figs/test_nyse.png" alt="test_nyse"  width="700">
+<img src="figs/nyse.png" alt="nyse"  width="700">
 
 
 ## 9. State Space Models
