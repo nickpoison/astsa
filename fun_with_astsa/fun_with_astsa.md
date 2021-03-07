@@ -18,6 +18,7 @@ Remember to load `astsa` at the start of a session.
   * [5. ARIMA Estimation](#5-arima-estimation)
   * [6. Forecasting](#6-forecasting)
   * [7. Spectral Analysis](#7-spectral-analysis)
+     * [Nonparametric](#nonparametric-spectral-analysis)
   * [8. Testing for Linearity](#8-linearity-test)
   * [9. State Space Models and Kalman Filtering](#9-state-space)
 
@@ -415,7 +416,7 @@ sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 -----
 ## 7. Spectral Analysis
 
-Nonparametric spectral analysis done with
+Nonparametric spectral analysis is done with
 
 > **`mvspec()`** 
 
@@ -423,7 +424,7 @@ and parametric spectral analysis with
 
 > **`spec.ic`**
 
-`mvspec` was originally just a way to  get the multivariate spectral density estimateout of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
+`mvspec` was originally just a way to  get the multivariate spectral density estimate out of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
 
 `spec.ic` is similar to `spec.ar` but the option to use BIC instead of AIC is available.  Also, you can use the script to compare  AIC and BIC for AR fits to the data.
 
@@ -543,6 +544,18 @@ u[[1]]   # notice the values are adjusted by the min
 tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRUE)  
 ```
 <img src="figs/aicbic.png" alt="aicbic"  width="600">
+
+
+#### more multivariate spectra
+
+```r
+gr = diff(log(ts(econ5))) 
+gr = ts(apply(gr,2,scale), start= 1948, freq=4) 
+tsplot(gr, ncol=2, col=2:6, lwd=2, byrow=FALSE) 
+gr.spec = mvspec(gr, spans=c(7,7), detrend=FALSE, taper=.25, col=2:6, lwd=c(2,2,2,4,2), main='spectra')
+round(gr.spec$fxx, 3)
+```
+
 
 
 -----
