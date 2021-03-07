@@ -414,12 +414,19 @@ sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 -----
 ## 7. Spectral Analysis
 
-Spectral analysis in `astsa` is done with
+Nonparametric spectral analysis done with
 
-> **`mvspec()`**
+> **`mvspec()`** 
 
-It was originally just a way to  get the multivariate spectral density estimate
-out of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
+and parametric spectral analysis with
+
+> **`spec.ic`**
+
+`mvspec` was originally just a way to  get the multivariate spectral density estimateout of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
+
+`spec.ic` is similar to `spec.ar` but the option to use BIC instead of AIC is available.  Also, you can use the script to compare  AIC and BIC for AR fits to the data.
+
+#### nonparametric spectral analysis
 
 + The first thing is, if you want the periodogram, you got it (tapering is not done automatically because you're old enough to do it by yourself):
 
@@ -481,6 +488,25 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 
 <img src="figs/coher.png" alt="coher"  width="700">
 
+
+#### parametric spectral analysis
+
+BIC estimate after detrending
+
+```r
+spec.ic(soi, BIC=TRUE, detrend=TRUE, col=4, lwd=2)  
+```
+
+<img src="figs/spec.bic.png" alt="spec.bic"  width="700">
+
+Plot AIC and BIC without the spectral estimate (both pick order 15):
+
+```r
+tsplot(0:30, spec.ic(soi, plot=FALSE)[[1]][,2:3], type='o', col=2:3, xlab='order', nxm=5)  
+```
+<img src="figs/aicbic.png" alt="aicbic"  width="700">
+
+
 -----
 ## 8. Linearity Test
 
@@ -490,7 +516,7 @@ Linear time series models are built on the linear process, where it is assumed t
 
 where <i>Z<sub>t</sub></i> is an iid sequence of random variables with at least finite third moments.  This assumption can be tested using the bispectrum, which  is constant under the null hypothesis  that the data are from a linear process with i.i.d. innovations.  The workhorse here is
 
-> *`test.linear()`*
+> **`test.linear()`**
 
 and more details can be found in its help file (`?test.linear`).    Chi-squared test statistics are formed in blocks to measure departures from the null hypothesis and the corresponding p-values are displayed in a graphic and returned invisibly.
 
