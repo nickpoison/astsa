@@ -22,7 +22,7 @@ LazyData: \tab yes\cr
 David Stoffer <stoffer@pitt.edu>
 }
 \references{You can find demonstrations of  astsa capabilities at  
-\url{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}.
+\href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
 The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
 
