@@ -1,4 +1,4 @@
-# astsa vignette
+# astsa demonstrations
 
 
 ##### we'll demonstrate some of the capabilities of `astsa` ... if you haven't installed it yet, [head over to the News page for installation instructions](https://github.com/nickpoison/astsa/blob/master/NEWS.md).
@@ -33,7 +33,7 @@ Remember to load `astsa` at the start of a session.
 
 ## 1. Data  
 
-&#x1F535; There are lots of fun data sets included in `astsa`. Here's a list obtained by issuing the command
+There are lots of fun data sets included in `astsa`. Here's a list obtained by issuing the command
 
 > **`data(package = "astsa")`**
 
@@ -111,7 +111,7 @@ And you can get more information on any individual set using the `help()` comman
 
 ## 2. Plotting
 
- - When `astsa` is loaded, the astsa palette is attached.  The palette is  especially  suited for plotting  time series and it is a bit darker than the new default R4 palette. You can revert back using  `palette("default")`.  Also,  
+When `astsa` is loaded, the astsa palette is attached.  The palette is  especially  suited for plotting  time series and it is a bit darker than the new default R4 palette. You can revert back using  `palette("default")`.  Also,  
 
 > **`astsa.col()`** 
 
@@ -125,11 +125,11 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2))
 ```
 <img src="figs/palette.png" alt="palette"  width="600">
 
-- For plotting time series and just about anything else, you can use
+&#x1F535; For plotting time series and just about anything else, you can use
 
 > **`tsplot()`**
 
-- Notice there are minor ticks and a grid by default. Here are some examples.
+&#x1F535; Notice there are minor ticks and a grid by default. Here are some examples.
 
 ```r
 par(mfrow=c(2,1))
@@ -138,7 +138,7 @@ tsplot(soi, col=4, lwd=2, gg=TRUE)
 ```
 <img src="figs/tsplot1.png" alt="tsplot"  width="600">
 
-- Many in one swell foop:
+&#x1F535; Many in one swell foop:
 
 ```r
 tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2) 
@@ -146,7 +146,7 @@ tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2)
 <img src="figs/climhyd.png" alt="climhyd"  width="600">
 
 
-- Do you like spaghetti?
+&#x1F535; Do you like spaghetti?
 
 ```r
 tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2), ylab=expression(Number~~~(""%*% 1000)), spaghetti=TRUE)
@@ -154,7 +154,7 @@ legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="
 ```
 <img src="figs/lynxhare.png" alt="tsplot"  width="600">
 
-- And the land where the LLN ceases to exist:
+&#x1F535; And the land where the LLN ceases to exist:
 
 ```r
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
@@ -181,7 +181,7 @@ sample ACF and PACF in a multifigure plot and both on the same scale.  The graph
 The first two also print the values; the third one returns the values invisibly.
 
 
-+ The individual sample ACF or PACF  
+&#x1F535; The individual sample ACF or PACF  
 
 ```r
 acf1(soi)
@@ -197,7 +197,7 @@ acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)
 ```
 <img src="figs/pacf1.png" alt="pacf1"  width="600">
 
-+ Sample ACF and PACF at the same time
+&#x1F535; Sample ACF and PACF at the same time
 
 ```r
 acf2(diff(log(varve)))  
@@ -208,7 +208,7 @@ acf2(diff(log(varve)))
 ```
 <img src="figs/acf2.png" alt="acf2"  width="600">
 
-+ and the sample CCF  
+&#x1F535; and the sample CCF  
 
 ```r
 ccf2(cmort, part)
@@ -225,7 +225,7 @@ You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via
 
 The syntax are simple and we'll demonstrate with a couple of examples. There are more examples in the help file (`?sarima.sim`).  For example, you can input your own innovations or generate non-normal innovations (the default is normal).
 
-+ First an AR(2) with a mean of 50 (n=500 is the default sample size)  
+&#x1F535; First an AR(2) with a mean of 50 (n=500 is the default sample size)  
 
 ```r
 y = sarima.sim(ar=c(1.5,-.75)) + 50
@@ -233,7 +233,7 @@ tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
 ```
 <img src="figs/ar2sim.png" alt="ar2sim"  width="600">
 
-+ Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite  
+&#x1F535; Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite  
 
 ```r
 set.seed(101010)
@@ -255,7 +255,7 @@ Don't use black boxes like `auto.arima` from the `forecast` package because IT D
 
 As with everything else, there are many examples on the help page (`?sarima`) and we'll do a couple here.
 
-+ Everyone else does it, so why don't we.  Here's a seasonal ARIMA fit to the AirPassenger data set (for the millionth time).
+&#x1F535; Everyone else does it, so why don't we.  Here's a seasonal ARIMA fit to the AirPassenger data set (for the millionth time).
 
 ```r
 sarima(log(AirPassengers),0,1,1,0,1,1,12, gg=TRUE, col=4)
@@ -290,14 +290,14 @@ $BIC
 
 <img src="figs/airpass.png" alt="airpass"  width="600">
 
-+ You can shut off the diagnostics using `details=FALSE` 
+&#x1F535; You can shut off the diagnostics using `details=FALSE` 
 
 ```r
  sarima(log(AirPassengers),0,1,1,0,1,1,12, details=FALSE)
 ```
 
 
-+ You can fix parameters too, for example  
+&#x1F535; You can fix parameters too, for example  
 
 ```r
 x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
@@ -331,7 +331,7 @@ $BIC
 [1] 2.952436
 ```
 
-+ And one more with exogenous variables - this is the regression
+&#x1F535; And one more with exogenous variables - this is the regression
 of `Lynx` on `Hare` lagged one year with AR(2) errors.
 
 ```r
@@ -377,7 +377,7 @@ You get a graphic showing  ± 1 and 2 root mean square prediction errors and the
 number of periods to forecast, `n.ahead`, has to be specified.
 
 
-+ Here's a simple example.  We'll generate some data from an ARIMA(1,1,), forecast some of it and then compare the forecasts to the actual values.
+&#x1F535; Here's a simple example.  We'll generate some data from an ARIMA(1,1,), forecast some of it and then compare the forecasts to the actual values.
 
 ```r
 set.seed(12345)
@@ -407,7 +407,7 @@ Frequency = 1
 ```
 <img src="figs/fore1.png" alt="fore1"  width="600">
 
-+ Notice the `plot.all=TRUE` in the previous example. If you leave that off, the graphic show the final 100 observations and the forecasts to make it easier to see what's going on.
+&#x1F535; Notice the `plot.all=TRUE` in the previous example. If you leave that off, the graphic show the final 100 observations and the forecasts to make it easier to see what's going on.
 
 ```r
 sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
@@ -432,7 +432,7 @@ and parametric spectral analysis with
 
 #### nonparametric spectral analysis
 
-+ The first thing is, if you want the periodogram, you got it (tapering is not done automatically because you're old enough to do it by yourself):
+&#x1F535; The first thing is, if you want the periodogram, you got it (tapering is not done automatically because you're old enough to do it by yourself):
 
 ```r
 x1 = 2*cos(2*pi*1:100*5/100)  + 3*sin(2*pi*1:100*5/100)
@@ -443,7 +443,7 @@ mvspec(x,  col=4, lwd=2, type='o', pch=20)
 ```
 <img src="figs/periodogram.png" alt="periodogram"  width="600">
 
-+ You can smooth in the usual way and get the CIs on the log-plot:
+&#x1F535; You can smooth in the usual way and get the CIs on the log-plot:
 
 ```r
 par(mfrow=c(2,1))
@@ -453,7 +453,7 @@ soisl = mvspec(soi, spans=c(7,7), taper=.5, col=4, lwd=2, log='y')
 
 <img src="figs/soispec.png" alt="soispec"  width="600">
 
-+ and you can get the usual information
+&#x1F535; and you can get the usual information
 
 ```r
 c(sois$df, sois$bandwidth)
@@ -484,7 +484,7 @@ and easily locate the peaks
 [43,]     1.075  0.9302   0.0972
 
 ```
-+ and cross-spectra  
+&#x1F535; and cross-spectra  
 
 ```r
 mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitment")
@@ -495,7 +495,7 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 
 #### parametric spectral analysis
 
-BIC estimate after detrending
+&#x1F535; Based on BIC   after detrending (default is `BIC=FALSE`)
 
 ```r
 u <- spec.ic(soi, BIC=TRUE, detrend=TRUE, col=4, lwd=2)  
@@ -503,7 +503,7 @@ u <- spec.ic(soi, BIC=TRUE, detrend=TRUE, col=4, lwd=2)
 
 <img src="figs/spec.bic.png" alt="spec.bic"  width="600">
 
-Print and plot AIC and BIC (both pick order 15):
+&#x1F535; Print and plot AIC and BIC (both pick order 15):
 
 ```r
 u[[1]]   # notice the values are adjusted by the min
@@ -550,8 +550,7 @@ tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRU
 
 #### more multivariate spectra
 
-The data frame `econ5` was used to consider the effect of quarterly GNP, consumption, and government and private investment on  U.S. unemployment. `mvspec` plot the individual spectra by default and you can extract the spectral matrices as `fxx`, an array of dimensions `dim = c(p,p,nfreq)`.
-Here, <i>p = 5</i>:
+&#x1F535; The data frame `econ5` was used to consider the effect of quarterly GNP, consumption, and government and private investment on  U.S. unemployment. `mvspec` plot the individual spectra by default and you can extract the spectral matrices as `fxx`, an array of dimensions `dim = c(p,p,nfreq)`. Here, <i>p = 5</i>:
 
 ```r
 gr = diff(log(ts(econ5))) 
@@ -562,7 +561,8 @@ round(gr.spec$fxx, 2)
 ```
 <img src="figs/econ5.png" alt="econ5"  width="600">
 
-And a sample of the output of the last line giving the matrix estimate.
+And a sample of the output of the last line giving the matrix estimate. The numbers at top
+refer to frequency ordinate:
 
 ```r
 , , 49
@@ -600,14 +600,14 @@ where <i>Z<sub>t</sub></i> is an iid sequence of random variables with at least 
 
 and more details can be found in its help file (`?test.linear`).    Chi-squared test statistics are formed in blocks to measure departures from the null hypothesis and the corresponding p-values are displayed in a graphic and returned invisibly.
 
-+ First an example of a linear process where the graphic suggests a constant bispectrum.
+&#x1F535; First an example of a linear process where the graphic suggests a constant bispectrum.
 
 ```r
 test.linear(soi) 
 ```
 <img src="figs/test_soi.png" alt="test_soi"  width="600">
 
-+ Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange (NYSE) from February 2, 1984 to December 31, 1991
+&#x1F535; Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange (NYSE) from February 2, 1984 to December 31, 1991
 
 ```r
 test.linear(nyse) 
