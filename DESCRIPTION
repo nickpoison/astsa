@@ -10,3 +10,5 @@ URL: https://github.com/nickpoison/astsa, https://www.stat.pitt.edu/stoffer/tsa4
 License:  GPL-3
 LazyLoad: yes
 LazyData: yes
+Suggests: R.rsp
+VignetteBuilder: R.rsp
