@@ -33,7 +33,7 @@ Remember to load `astsa` at the start of a session.
 
 ## 1. Data  
 
-There are lots of fun data sets included in `astsa`. Here's a list obtained by issuing the command
+&#x1F535; There are lots of fun data sets included in `astsa`. Here's a list obtained by issuing the command
 
 > **`data(package = "astsa")`**
 
