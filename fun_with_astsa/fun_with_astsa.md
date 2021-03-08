@@ -620,4 +620,76 @@ tsplot(nyse, col=4)
 ## 9. State Space Models
 
 
+ There are a number of levels of Kalman filtering and smoothing in `astsa`. The most basic script is made for beginners,
 
+> **`ssm()`**
+
+The more general and flexible scripts are the
+
+> **`Kfilter_`** and **`Ksmooth_`**
+
+which we'll discuss in a bit.
+
+&#x1F535; For an introduction, consider a univariate model. 
+We write the **states** as _x<sub>t</sub>_ and the **observations** as _y<sub>t</sub>_.
+ 
+_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/> 
+
+where  _w<sub>t</sub> ~ iid N<sub>p</sub>(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N<sub>q</sub>(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
+
+&#x1F535; Let's try fitting the model to the global temperature series. You have to give initial estimates and then the script fits the model via MLE.
+
+```r
+u = ssm(gtemp_land, A=1, alpha=.01, phi=1, sigw=.01, sigv=.1)
+```
+with output (estimates and standard errors) 
+
+```r
+        estimate          SE
+phi   1.01350314 0.009171042
+alpha 0.01270687 0.003749046
+sigw  0.04252969 0.010688521
+sigv  0.14902612 0.010685375
+```
+
+and a nice picture (the data, the smoother with &#177;2 root MSPEs)  
+
+```r
+tsplot(gtemp_land, col=4, type="o", pch=20, ylab="Temperature Deviations")
+lines(u$Xs, col=6, lwd=2)
+ xx = c(time(u$Xs), rev(time(u$Xs)))
+ yy = c(u$Xs-2*sqrt(u$Ps), rev(u$Xs+2*sqrt(u$Ps)))
+polygon(xx, yy, border=8, col=gray(.6, alpha=.25) )
+```
+<img src="figs/ssm.png" alt="ssm"  width="600">
+
+
+&#x1F535; You can fix &phi;=1 in this case if you believe the series is taking a random walk with drift:
+
+```r
+ssm(gtemp_land, A=1, alpha=.01, phi=1, sigw=.01, sigv=.1, fixphi=TRUE)
+
+##-- output --##
+initial  value -79.270104 
+iter   2 value -158.182337
+iter   3 value -160.835289
+
+iter  17 value -172.310970
+iter  18 value -172.312005
+iter  19 value -172.326951
+iter  20 value -172.326965
+iter  20 value -172.326965
+iter  20 value -172.326965
+final  value -172.326965 
+converged
+
+        estimate          SE
+alpha 0.01356630 0.004279108
+sigw  0.04930987 0.011151130
+sigv  0.14727510 0.010881612
+```
+
+
+<br/><br/><br/><br/>
+
+#### To be continued ...
