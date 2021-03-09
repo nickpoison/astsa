@@ -22,7 +22,7 @@ Remember to load `astsa` at the start of a session.
      * [Parametric](#parametric-spectral-analysis)
      * [Spectral Matrices](#more-multivariate-spectra)     
   * [8. Testing for Linearity](#8-linearity-test)
-  * [9. State Space Models and Kalman Filtering](#9-state-space)
+  * [9. State Space Models and Kalman Filtering](#9-state-space-models)
 
 
 
