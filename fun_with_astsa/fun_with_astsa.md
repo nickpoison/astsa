@@ -394,7 +394,7 @@ You get a graphic showing  ± 1 and 2 root mean square prediction errors and the
 number of periods to forecast, `n.ahead`, has to be specified.
 
 
-&#x1F535; Here's a simple example.  We'll generate some data from an ARIMA(1,1,), forecast some of it and then compare the forecasts to the actual values.
+&#x1F535; Here's a simple example.  We'll generate some data from an ARIMA(1,1,0), forecast some of it and then compare the forecasts to the actual values.
 
 ```r
 set.seed(12345)
