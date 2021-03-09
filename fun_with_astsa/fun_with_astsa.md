@@ -518,7 +518,7 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 
 #### parametric spectral analysis
 
-&#x1F535; Based on BIC   after detrending (default is `BIC=FALSE`)
+&#x1F535; Based on BIC after detrending (default is using AIC with `BIC=FALSE`)
 
 ```r
 u <- spec.ic(soi, BIC=TRUE, detrend=TRUE, col=4, lwd=2)  
