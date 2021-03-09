@@ -7,6 +7,9 @@ Remember to load `astsa` at the start of a session.
 
 > **`library(astsa)`**
 
+it's more than just data ...
+
+
 -----
 ------
  
