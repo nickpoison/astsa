@@ -167,8 +167,11 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 <img src="figs/tsplot2.png" alt="tsplot"  width="600">
 
 
-&#x1F535; There are also **lag plots** for one series and for two series. First, 
-for one series  
+&#x1F535; There are also **lag plots** for one series and for two series.
+By default, the graphic displays the sample ACF or CCF and a `lowess` fit.
+They can be turned off individually (`?lag1.plot` or `?lag2.plot` for more info).
+
+First,  for one series  
 
 ```r
 lag1.plot(soi, 12, col=astsa.col(4, .3), pch=20, cex=2)
