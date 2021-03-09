@@ -6,7 +6,7 @@
 }
 \usage{
 lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1), 
-           bgl ='white', lwl=1, ...)
+           lwl=1, bgl ='white', box.col=8, ...)
 } 
 \arguments{
   \item{series1}{first series (the one that gets lagged)
@@ -21,11 +21,11 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
 }
   \item{col}{color of points; default is \code{gray(.1)}
 }
-  \item{bgl}{background of the CCF legend; default is \code{'white'}
-}
   \item{lwl}{width of lowess line; default is 1
 }
-  \item{...}{additional graphical arguments
+  \item{bgl}{background of the ACF legend; default is \code{'white'}
+}
+  \item{box.col}{color of the border of the ACF legend; default is \code{'gray(62)'}
 }   
 }
 \references{You can find demonstrations of  astsa capabilities at  
