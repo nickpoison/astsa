@@ -1,4 +1,4 @@
-# astsa demonstrations
+# fun with astsa
 
 
 ##### we'll demonstrate some of the capabilities of `astsa` ... if you haven't installed it yet, [head over to the News page for installation instructions](https://github.com/nickpoison/astsa/blob/master/NEWS.md).
