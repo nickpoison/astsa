@@ -652,9 +652,9 @@ We write the **states** as _x<sub>t</sub>_ and the **observations** as _y<sub>t<
  
 _x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/> 
 
-where  _w<sub>t</sub> ~ iid N<sub>p</sub>(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N<sub>q</sub>(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
+where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
 
-&#x1F535; Let's try fitting the model to the global temperature series. You have to give initial estimates and then the script fits the model via MLE. The initial values of (&mu;<sub>0</sub>, &sigma;<sub>0</sub>) are chosen for the user.
+&#x1F535; Let's try fitting the model to the global temperature series. You have to give initial estimates and then the script fits the model via MLE. The initial values of &mu;<sub>0</sub> and &sigma;<sub>0</sub> are chosen automatically.
 
 ```r
 u = ssm(gtemp_land, A=1, alpha=.01, phi=1, sigw=.01, sigv=.1)
