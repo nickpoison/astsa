@@ -115,7 +115,7 @@ When `astsa` is loaded, the astsa palette is attached.  The palette is  especial
 
 > **`astsa.col()`** 
 
-is included to easily adjust opacity of the palette.  For example,
+is included to easily adjust the opacity of the colors.  For example,
 
 ```r
 par(mfrow=c(3,1))
@@ -144,7 +144,7 @@ tsplot(soi, col=4, lwd=2, gg=TRUE)
 &#x1F535; Many in one swell foop:
 
 ```r
-tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2) 
+tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2) 
 ```
 <img src="figs/climhyd.png" alt="climhyd"  width="600">
 
@@ -580,7 +580,7 @@ tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRU
 gr = diff(log(ts(econ5))) 
 gr = ts(apply(gr,2,scale), start= 1948, freq=4) 
 tsplot(gr, ncol=2, col=2:6, lwd=2, byrow=FALSE) 
-gr.spec = mvspec(gr, spans=c(7,7), detrend=FALSE, taper=.25, col.=2:6, lwd=2, main='spectra')
+gr.spec = mvspec(gr, spans=c(7,7), detrend=FALSE, taper=.25, col=2:6, lwd=2, main='spectra')
 round(gr.spec$fxx, 2) 
 ```
 <img src="figs/econ5.png" alt="econ5"  width="600">
@@ -618,7 +618,7 @@ Linear time series models are built on the linear process, where it is assumed t
 
 <i>X<sub>t</sub> = &sum; &psi;<sub>j</sub> Z<sub>t - j</sub></i> where  &sum; | &psi;<sub>j</sub> | < &infin;
 
-where <i>Z<sub>t</sub></i> is an iid sequence of random variables with at least finite third moments.  This assumption can be tested using the bispectrum, which  is constant under the null hypothesis  that the data are from a linear process with i.i.d. innovations.  The workhorse here is
+where <i>Z<sub>t</sub></i> is a sequence of i.i.d. random variables with at least finite third moments.  This assumption can be tested using the bispectrum, which  is constant under the null hypothesis  that the data are from a linear process with i.i.d. innovations.  The workhorse here is
 
 > **`test.linear()`**
 
