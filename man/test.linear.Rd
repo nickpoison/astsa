@@ -17,11 +17,19 @@ test.linear(series, color = TRUE, detrend = FALSE)
 }
 \value{\item{prob }{ matrix of tail probabilities - returned invisibly}
 }
-\references{Hinich, M. and Wolinsky, M. (2005). Normalizing bispectra. \emph{Journal of Statistical Planning and Inference}, 130, 405--411.
+\references{You can find demonstrations of  astsa capabilities at  
+\href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
+
+The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
+
+In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
+
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
 }
 \author{D.S. Stoffer
 }
-\note{The null hypothesis is that the data are from a linear process with i.i.d. innovations. Under the null hypothesis, the bispectrum is constant over all frequencies.  Chi-squared test statistics are formed in blocks to measure departures from the null hypothesis and the corresponding p-values are displayed in a graphic and returned invisibly.
+\note{The null hypothesis is that the data are from a linear process with i.i.d. innovations. Under the null hypothesis, the bispectrum is constant over all frequencies.  Chi-squared test statistics are formed in blocks to measure departures from the null hypothesis and the corresponding p-values are displayed in a graphic and returned invisibly. Details are in 
+    Hinich, M. and Wolinsky, M. (2005). Normalizing bispectra. \emph{Journal of Statistical Planning and Inference}, 130, 405--411.
 }
 \examples{
 test.linear(nyse)  # :(

@@ -28,7 +28,14 @@ LagReg(input, output, L = c(3, 3), M = 40, threshold = 0,
   \item{beta}{Estimated coefficients}
   \item{fit}{The output series, the fitted values, and the residuals}
 }
-\references{\url{https://www.stat.pitt.edu/stoffer/tsa4/}
+\references{You can find demonstrations of  astsa capabilities at  
+\href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
+
+The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
+
+In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
+
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
 }
 \author{D.S. Stoffer
 }

@@ -129,6 +129,9 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2))
 
 > **`tsplot()`**
 
+
+
+
 &#x1F535; Notice there are minor ticks and a grid by default. Here are some examples.
 
 ```r
@@ -164,6 +167,20 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 <img src="figs/tsplot2.png" alt="tsplot"  width="600">
 
 
+&#x1F535; There are also **lag plots** for one series and for two series. First, 
+for one series  
+
+```r
+lag1.plot(soi, 12, col=astsa.col(4, .3), pch=20, cex=2)
+```
+<img src="figs/lag1plot.png" alt="lag1plot"  width="600">
+
+and for two series (the first one gets lagged)
+
+```r
+lag2.plot(soi, rec, 8)
+```
+<img src="figs/lag2plot.png" alt="lag2plot"  width="600">
 
 -----
 
