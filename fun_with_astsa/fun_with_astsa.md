@@ -477,7 +477,7 @@ and parametric spectral analysis with
 
 `spec.ic` is similar to `spec.ar` but the option to use BIC instead of AIC is available.  Also, you can use the script to compare  AIC and BIC for AR fits to the data.
 
-#### nonparametric spectral analysis
+### nonparametric spectral analysis
 
 &#x1F535; The first thing is, if you want the periodogram, you got it (tapering is not done automatically because you're old enough to do it by yourself):
 
@@ -540,7 +540,7 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 <img src="figs/coher.png" alt="coher"  width="600">
 
 
-#### parametric spectral analysis
+### parametric spectral analysis
 
 &#x1F535; Based on BIC after detrending (default is using AIC with `BIC=FALSE`)
 
@@ -595,7 +595,7 @@ tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRU
 <img src="figs/aicbic.png" alt="aicbic"  width="600">
 
 
-#### more multivariate spectra
+### more multivariate spectra
 
 &#x1F535; The data frame `econ5` was used to consider the effect of quarterly GNP, consumption, and government and private investment on  U.S. unemployment. `mvspec` plot the individual spectra by default and you can extract the spectral matrices as `fxx`, an array of dimensions `dim = c(p,p,nfreq)`. Here, <i>p = 5</i>:
 
@@ -735,7 +735,35 @@ alpha 0.01356630 0.004279108
 sigw  0.04930987 0.011151130
 sigv  0.14727510 0.010881612
 ```
+<br/>
 
+&#x1F535; For general models, there are  three levels are called <code>Kfilter0/Ksmooth0</code>, <code>Kfilter1/Ksmooth1</code>, <code>Kfilter2/Ksmooth2</code>. For various models, each script provides the Kalman filter/smoother, the innovations and the corresponding variance-covariance matrices, and the value of the innovations likelihood at the location of the parameter values passed to the script. MLE is then accomplished by calling the script that runs the filter. <i>The model is specified by passing the model parameters.</i>   		
+	  
+    
+Level 0 is for the case of a fixed measurement matrix and no inputs; i.e., if  _A<sub>t</sub> = A_ for all _t_, and there are no inputs,
+ then use the code at level 0.      If the measurement matrices are time varying or there
+    are inputs, use the  code at a higher level (1 or 2).
+    Many of the examples in the text can be done at level 0.
+    Level 1 allows for time varying measurement matrices and inputs, and level 2 adds
+    the possibility of correlated noise processes.
+    The models for each case are (_x_ is state, _y_ is observation, and _t = 1, ..., n_):
+   
+ 
+    &diams; Level 0: &nbsp;  x<sub>t</sub> = &Phi; x<sub>t-1</sub> + w<sub>t</sub>, &nbsp;       
+          y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>, &nbsp; &nbsp; w<sub>t</sub> ~ iid N<sub>p</sub>(0, Q) &perp;   v<sub>t</sub> ~ iid N<sub>q</sub>(0, R) &perp; x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>) 
+
+     &diams; Level 1: &thinsp;  &thinsp;  x<sub>t</sub> = &Phi; x<sub>t-1</sub> +  &Upsilon; u<sub>t</sub> + w<sub>t</sub>, 
+     &nbsp;   y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> +  &Gamma; u<sub>t</sub> + v<sub>t</sub>, &nbsp; &nbsp;
+       u<sub>t</sub> are r-dimensional inputs, etc. 
+
+     &diams; Level 2: &nbsp;  x<sub>t+1</sub> = &Phi; x<sub>t</sub> +  &Upsilon; u<sub>t+1</sub> + &Theta; w<sub>t</sub>, &nbsp;
+      y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> +  &Gamma; u<sub>t</sub> + v<sub>t</sub>, &nbsp; &nbsp; 
+      cov(w<sub>s</sub>, v<sub>t</sub>) = S &delta;<sub>s</sub><span style="position:relative; left: -.9ex; bottom: 2pt"><sup>t</sup></span>,       
+      &Theta; is p &times; m, and w<sub>t</sub> is m-dimensional, etc.
+      
+    
+    
+    
 
 <br/><br/><br/><br/>
 
