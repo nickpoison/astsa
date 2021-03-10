@@ -235,7 +235,7 @@ acf2(diff(log(varve)))
 ```
 <img src="figs/acf2.png" alt="acf2"  width="600">
 
-&#x1F535; If you just want the values, use `plot=FALSE`
+&#x1F535; If you just want the values, use `plot=FALSE` (works for `acf1` too)
 ```r
 acf2(diff(log(varve)), plot=FALSE)  
 
