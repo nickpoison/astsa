@@ -235,6 +235,25 @@ acf2(diff(log(varve)))
 ```
 <img src="figs/acf2.png" alt="acf2"  width="600">
 
+&#x1F535; If you just want the values, use `plot=FALSE`
+```r
+acf2(diff(log(varve)), plot=FALSE)  
+
+                ACF         PACF
+ [1,] -0.3974306333 -0.397430633
+ [2,] -0.0444811551 -0.240404406
+ [3,] -0.0637310878 -0.228393075
+ [4,]  0.0092043800 -0.175778181
+ [5,] -0.0029272130 -0.148565114
+ [6,]  0.0353209520 -0.080800502
+
+[33,] -0.0516758878 -0.017946464
+[34,] -0.0308370865 -0.021854959
+[35,]  0.0431050489  0.010867281
+[36,] -0.0503025493 -0.068574763
+```
+
+
 &#x1F535; and the sample CCF  
 
 ```r
@@ -287,7 +306,7 @@ As with everything else, there are many examples on the help page (`?sarima`) an
 ```r
 sarima(log(AirPassengers),0,1,1,0,1,1,12, gg=TRUE, col=4)
 ```
-and the partial output including the residual diagnostic plot is:  
+and the partial output including the residual diagnostic plot is (`AIC` is basically `aic` divided by the sample size):  
 
 ```r
 Coefficients:
