@@ -667,15 +667,10 @@ tsplot(nyse, col=4)
 ## 9. State Space Models
 
 
- There are a number of levels of Kalman filtering and smoothing in `astsa`. The most basic script is made for beginners,
+ There are a number of levels of Kalman filtering and smoothing in `astsa`. The most basic script is 
 
 > **`ssm()`**
 
-The more general and flexible scripts are the
-
-> **`Kfilter_`** and **`Ksmooth_`**
-
-which we'll discuss in a bit.
 
 &#x1F535; For an introduction, consider a univariate model. 
 We write the **states** as _x<sub>t</sub>_ and the **observations** as _y<sub>t</sub>_.
@@ -699,7 +694,8 @@ sigw  0.04252969 0.010688521
 sigv  0.14902612 0.010685375
 ```
 
-and a nice picture (the data, the smoother with &#177;2 root MSPEs)  
+and a nice picture - the data [_y<sub>t</sub>_], the smoothers [E_(x<sub>t</sub>_ | _y<sub>1</sub>,..., y<sub>n</sub>_)] and  &#177;2 root MSPEs.  The smoothers are
+in `Xs` and the MSPEs are in `Ps`: 
 
 ```r
 tsplot(gtemp_land, col=4, type="o", pch=20, ylab="Temperature Deviations")
@@ -737,14 +733,25 @@ sigv  0.14727510 0.010881612
 ```
 <br/>
 
-&#x1F535; For general models, there are three levels are called <code>Kfilter0/Ksmooth0</code>, <code>Kfilter1/Ksmooth1</code>, <code>Kfilter2/Ksmooth2</code>. 
+&#x1F535; For general models, there are three levels are called
 
-+ For various models, each script provides the Kalman filter/smoother, the innovations and the corresponding variance-covariance matrices, and the value of the innovations likelihood at the location of the parameter values passed to the script. MLE is then accomplished by calling the script that runs the filter.  
+> **`Kfilter0()/Ksmooth0()`**, **`Kfilter1()/Ksmooth1()`**, **`Kfilter2()/Ksmooth2()`** 
 
-+ Many examples can be found in the Springer text and the [R code may be found on the website for the text - expand Chapter 6](https://www.stat.pitt.edu/stoffer/tsa4/Rexamples.htm/).  
++ For various models, each script provides the 
+
+<ol>
+<li> Kalman filter</li>
+<li> Kalman smoother</li>
+<li> Innovations and the corresponding variance-covariance matrices</li>
+<li> The value of the innovations likelihood at the location of the parameter values passed to the script
+</ol>  
+
++ MLE is  accomplished by calling the script that runs the filter. 
+
++ Many examples can be found in the Springer text, Chapter 6, and the [R code may be found on the website for the text](https://www.stat.pitt.edu/stoffer/tsa4/Rexamples.htm/) - just expand Chapter 6  
 
 + Further explanations are also given on a [special page on Kalman filtering and
-smoothing](https://www.stat.pitt.edu/stoffer/tsa4/chap6.htm).
+smoothing](https://www.stat.pitt.edu/stoffer/tsa4/chap6.htm) for the text.
 
 
 <br/><br/><br/><br/><br/>
