@@ -733,6 +733,21 @@ sigv  0.14727510 0.010881612
 ```
 <br/>
 
+&#x1F535; The output of `ssm()` gives the predictors  [`Xp`] and MSPE [`Pp`], the 
+filtered values [`Xf` and `Pf`]  and the smoothers [`Xs` and `Ps`]:
+
+```r
+str(u) 
+
+List of 6
+ $ Xp: Time-Series [1:138] from 1880 to 2017: -0.591 -0.602 -0.538 -0.511 -0.537 ...
+ $ Pp: Time-Series [1:138] from 1880 to 2017: 0.02441 0.01375 0.01053 0.00915 0.00846 ...
+ $ Xf: Time-Series [1:138] from 1880 to 2017: -0.606 -0.544 -0.516 -0.543 -0.615 ...
+ $ Pf: Time-Series [1:138] from 1880 to 2017: 0.01163 0.00849 0.00714 0.00648 0.00613 ...
+ $ Xs: Time-Series [1:138] from 1880 to 2017: -0.595 -0.588 -0.593 -0.607 -0.621 ...
+ $ Ps: Time-Series [1:138] from 1880 to 2017: 0.00432 0.0038 0.0035 0.00333 0.00324 ...
+ ```
+
 &#x1F535; For general models, there are three levels are called
 
 > **`Kfilter0()/Ksmooth0()`**, **`Kfilter1()/Ksmooth1()`**, **`Kfilter2()/Ksmooth2()`** 
@@ -740,7 +755,7 @@ sigv  0.14727510 0.010881612
 + For various models, each script provides the 
 
 <ol>
-<li> Kalman filter</li>
+<li> Kalman filter   and/or</li>
 <li> Kalman smoother</li>
 <li> Innovations and the corresponding variance-covariance matrices</li>
 <li> The value of the innovations likelihood at the location of the parameter values passed to the script
