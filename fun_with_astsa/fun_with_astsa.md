@@ -680,7 +680,7 @@ which we'll discuss in a bit.
 &#x1F535; For an introduction, consider a univariate model. 
 We write the **states** as _x<sub>t</sub>_ and the **observations** as _y<sub>t</sub>_.
  
-_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/> 
+&emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/> 
 
 where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
 
@@ -737,21 +737,16 @@ sigv  0.14727510 0.010881612
 ```
 <br/>
 
-&#x1F535; For general models, there are  three levels are called <code>Kfilter0/Ksmooth0</code>, <code>Kfilter1/Ksmooth1</code>, <code>Kfilter2/Ksmooth2</code>. For various models, each script provides the Kalman filter/smoother, the innovations and the corresponding variance-covariance matrices, and the value of the innovations likelihood at the location of the parameter values passed to the script. MLE is then accomplished by calling the script that runs the filter. <i>The model is specified by passing the model parameters.</i>   
-In what follows, _x_ is p-dimensional state, _y_ is q-dimensional observation, and _t = 1, ..., n_.		
-	  
-    
-&#x1F535; First, **Level 0** is for the case of a fixed measurement matrix and no inputs.     
+&#x1F535; For general models, there are three levels are called <code>Kfilter0/Ksmooth0</code>, <code>Kfilter1/Ksmooth1</code>, <code>Kfilter2/Ksmooth2</code>. 
 
-   
-  _x<sub>t</sub> = &Phi; x<sub>t-1</sub> + w<sub>t</sub>_ and _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_  where 
-_w<sub>t</sub> ~ iid N<sub>p</sub>(0, Q)_ &perp;   _v<sub>t</sub> ~ iid N<sub>q</sub>(0, R)_ &perp; _x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>)_
++ For various models, each script provides the Kalman filter/smoother, the innovations and the corresponding variance-covariance matrices, and the value of the innovations likelihood at the location of the parameter values passed to the script. MLE is then accomplished by calling the script that runs the filter.  
 
-   
-    
-    
-    
++ Many examples can be found in the Springer text and the [R code may be found on the website for the text - expand Chapter 6](https://www.stat.pitt.edu/stoffer/tsa4/Rexamples.htm/).  
 
-<br/><br/><br/><br/>
++ Further explanations are also given on a [special page on Kalman filtering and
+smoothing](https://www.stat.pitt.edu/stoffer/tsa4/chap6.htm).
+
+
+<br/><br/><br/><br/><br/>
 
 #### To be continued ...
