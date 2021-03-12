@@ -17,8 +17,7 @@ Some notes on the installation...  If `astsa` is loaded, then detach it first: `
 After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
 
-You can also install the package directly from the archive:
-[astsa_1.12.7.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.12.7.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+
 
 
 You can find a short guide to  astsa scripts right here at [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
