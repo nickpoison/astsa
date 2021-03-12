@@ -31,8 +31,6 @@ Ksmooth1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input)
   \item{input}{matrix or vector of inputs having the same row dimension as y; use \code{input = 0} if not needed 
 }
 }
-\details{Practically, the script only requires that Q or R may be reconstructed as 
-}
 \value{
 \item{xs }{state smoothers}
 \item{Ps }{smoother mean square error}
@@ -57,5 +55,7 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
 }
 \author{D.S. Stoffer
+}
+\details{\code{cQ} and \code{cR} are the Cholesky-type decompositions of \code{Q} and \code{R}. In particular, \code{Q = t(cQ)%*%cQ} and \code{R = t(cR)%*%cR} is all that is required (assuming \code{Q} and \code{R} are valid covariance matrices). 
 }
 \keyword{ ts }

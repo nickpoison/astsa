@@ -26,6 +26,7 @@ it's more than just data ...
      * [Spectral Matrices](#more-multivariate-spectra)     
   * [8. Testing for Linearity](#8-linearity-test)
   * [9. State Space Models and Kalman Filtering](#9-state-space-models)
+  * [10. EM Algorithm](#10-em-algorithm)
 
 
 
@@ -126,7 +127,7 @@ barplot(rep(1,8), col=1:8, main='astsa palette', names=1:8)
 barplot(rep(1,8), col=astsa.col(1:8, .7), main='transparency', names=1:8)
 barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2))
 ```
-<img src="figs/palette.png" alt="palette"  width="600">
+<img src="figs/palette.png" alt="palette"  width="700">
 
 &#x1F535; For plotting time series and just about anything else, you can use
 
@@ -142,14 +143,14 @@ par(mfrow=c(2,1))
 tsplot(soi, col=4, lwd=2)
 tsplot(soi, col=4, lwd=2, gg=TRUE)
 ```
-<img src="figs/tsplot1.png" alt="tsplot"  width="600">
+<img src="figs/tsplot1.png" alt="tsplot"  width="700">
 
 &#x1F535; Many in one swell foop:
 
 ```r
 tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2) 
 ```
-<img src="figs/climhyd.png" alt="climhyd"  width="600">
+<img src="figs/climhyd.png" alt="climhyd"  width="700">
 
 
 &#x1F535; Do you like spaghetti?
@@ -159,7 +160,7 @@ tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2), 
          spaghetti=TRUE)
 legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
 ```
-<img src="figs/lynxhare.png" alt="tsplot"  width="600">
+<img src="figs/lynxhare.png" alt="tsplot"  width="700">
 
 &#x1F535; And the land where the LLN ceases to exist:
 
@@ -168,7 +169,7 @@ x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample mean", xlab="sample size")
 ```
 
-<img src="figs/tsplot2.png" alt="tsplot"  width="600">
+<img src="figs/tsplot2.png" alt="tsplot"  width="700">
 
 
 &#x1F535; There are also lag plots for one series and for two series using
@@ -183,14 +184,14 @@ First,  for one series
 ```r
 lag1.plot(soi, 12, col=astsa.col(4, .3), pch=20, cex=2)
 ```
-<img src="figs/lag1plot.png" alt="lag1plot"  width="600">
+<img src="figs/lag1plot.png" alt="lag1plot"  width="700">
 
 and for two series (the first one gets lagged)
 
 ```r
 lag2.plot(soi, rec, 8)
 ```
-<img src="figs/lag2plot.png" alt="lag2plot"  width="600">
+<img src="figs/lag2plot.png" alt="lag2plot"  width="700">
 
 -----
 
@@ -222,7 +223,7 @@ acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)
 
    [1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...
 ```
-<img src="figs/pacf1.png" alt="pacf1"  width="600">
+<img src="figs/pacf1.png" alt="pacf1"  width="700">
 
 &#x1F535; Sample ACF and PACF at the same time
 
@@ -233,7 +234,7 @@ acf2(diff(log(varve)))
    ACF  -0.4 -0.04 -0.06  0.01  0.00  0.04 -0.04  0.04  0.01 ...
    PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 ... 
 ```
-<img src="figs/acf2.png" alt="acf2"  width="600">
+<img src="figs/acf2.png" alt="acf2"  width="700">
 
 &#x1F535; If you just want the values, use `plot=FALSE` (works for `acf1` too)
 ```r
@@ -259,7 +260,7 @@ acf2(diff(log(varve)), plot=FALSE)
 ```r
 ccf2(cmort, part)
 ```
-<img src="figs/ccf2.png" alt="ccf2"  width="600">
+<img src="figs/ccf2.png" alt="ccf2"  width="700">
 
 -----
 
@@ -277,7 +278,7 @@ The syntax are simple and we'll demonstrate with a couple of examples. There are
 y = sarima.sim(ar=c(1.5,-.75)) + 50
 tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
 ```
-<img src="figs/ar2sim.png" alt="ar2sim"  width="600">
+<img src="figs/ar2sim.png" alt="ar2sim"  width="700">
 
 &#x1F535; Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite  
 
@@ -286,7 +287,7 @@ set.seed(101010)
 x = sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120) + 100
 tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')  
 ```
-<img src="figs/sarima.sim.png" alt="sarima.sim"  width="600">
+<img src="figs/sarima.sim.png" alt="sarima.sim"  width="700">
 
 -----
 
@@ -335,7 +336,7 @@ $BIC
 [1] -3.343475
 ```
 
-<img src="figs/airpass.png" alt="airpass"  width="600">
+<img src="figs/airpass.png" alt="airpass"  width="700">
 
 &#x1F535; You can shut off the diagnostics using `details=FALSE` 
 
@@ -410,7 +411,7 @@ $BIC
 [1] 7.201026
 ```
 
-<img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="600">
+<img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="700">
 
 -----
 
@@ -452,14 +453,14 @@ End = 150
 Frequency = 1 
  [1]  1.136849  2.427539  3.889295  5.459392  7.096606  8.772528 10.466926 ...  
 ```
-<img src="figs/fore1.png" alt="fore1"  width="600">
+<img src="figs/fore1.png" alt="fore1"  width="700">
 
 &#x1F535; Notice the `plot.all=TRUE` in the previous example. If you leave that off, the graphic show the final 100 observations and the forecasts to make it easier to see what's going on.
 
 ```r
 sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 ```
-<img src="figs/foreCO2.png" alt="foreCO2"  width="600">
+<img src="figs/foreCO2.png" alt="foreCO2"  width="700">
 
 
 -----
@@ -488,7 +489,7 @@ x3 = 6*cos(2*pi*1:100*40/100) + 7*sin(2*pi*1:100*40/100)
 x  = x1 + x2 + x3
 mvspec(x,  col=4, lwd=2, type='o', pch=20)
 ```
-<img src="figs/periodogram.png" alt="periodogram"  width="600">
+<img src="figs/periodogram.png" alt="periodogram"  width="700">
 
 &#x1F535; You can smooth in the usual way and get the CIs on the log-plot:
 
@@ -498,7 +499,7 @@ sois  = mvspec(soi, spans=c(7,7), taper=.1, col=4, lwd=2)
 soisl = mvspec(soi, spans=c(7,7), taper=.5, col=4, lwd=2, log='y')
 ```
 
-<img src="figs/soispec.png" alt="soispec"  width="600">
+<img src="figs/soispec.png" alt="soispec"  width="700">
 
 &#x1F535; and you can get the usual information
 
@@ -537,7 +538,7 @@ and easily locate the peaks
 mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitment")
 ```
 
-<img src="figs/coher.png" alt="coher"  width="600">
+<img src="figs/coher.png" alt="coher"  width="700">
 
 
 ### parametric spectral analysis
@@ -548,7 +549,7 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 u <- spec.ic(soi, BIC=TRUE, detrend=TRUE, col=4, lwd=2)  
 ```
 
-<img src="figs/spec.bic.png" alt="spec.bic"  width="600">
+<img src="figs/spec.bic.png" alt="spec.bic"  width="700">
 
 &#x1F535; Print and plot AIC and BIC (both pick order 15):
 
@@ -592,7 +593,7 @@ u[[1]]   # notice the values are adjusted by the min
 ```r
 tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRUE)  
 ```
-<img src="figs/aicbic.png" alt="aicbic"  width="600">
+<img src="figs/aicbic.png" alt="aicbic"  width="700">
 
 
 ### more multivariate spectra
@@ -606,7 +607,7 @@ tsplot(gr, ncol=2, col=2:6, lwd=2, byrow=FALSE)
 gr.spec = mvspec(gr, spans=c(7,7), detrend=FALSE, taper=.25, col=2:6, lwd=2, main='spectra')
 round(gr.spec$fxx, 2) 
 ```
-<img src="figs/econ5.png" alt="econ5"  width="600">
+<img src="figs/econ5.png" alt="econ5"  width="700">
 
 And a sample of the output of the last line giving the matrix estimate. The numbers at top
 refer to frequency ordinate:
@@ -652,7 +653,7 @@ and more details can be found in its help file (`?test.linear`).    Chi-squared 
 ```r
 test.linear(soi) 
 ```
-<img src="figs/test_soi.png" alt="test_soi"  width="600">
+<img src="figs/test_soi.png" alt="test_soi"  width="700">
 
 &#x1F535; Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange (NYSE) from February 2, 1984 to December 31, 1991
 
@@ -660,8 +661,8 @@ test.linear(soi)
 test.linear(nyse) 
 tsplot(nyse, col=4) 
 ```
-<img src="figs/test_nyse.png" alt="test_nyse"  width="600">
-<img src="figs/nyse.png" alt="nyse"  width="600">
+<img src="figs/test_nyse.png" alt="test_nyse"  width="700">
+<img src="figs/nyse.png" alt="nyse"  width="700">
 
 
 ## 9. State Space Models
@@ -704,7 +705,7 @@ lines(u$Xs, col=6, lwd=2)
  yy = c(u$Xs-2*sqrt(u$Ps), rev(u$Xs+2*sqrt(u$Ps)))
 polygon(xx, yy, border=8, col=gray(.6, alpha=.25) )
 ```
-<img src="figs/ssm.png" alt="ssm"  width="600">
+<img src="figs/ssm.png" alt="ssm"  width="700">
 
 
 &#x1F535; You can fix &phi;=1 in this case if you believe the series is taking a random walk with drift:
@@ -768,7 +769,133 @@ List of 6
 + Further explanations are also given on a [special page on Kalman filtering and
 smoothing](https://www.stat.pitt.edu/stoffer/tsa4/chap6.htm) for the text.
 
+## 10. EM Algorithm
 
-<br/><br/><br/><br/><br/>
+To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) there are two scripts
 
-#### To be continued ...
+> **`EM0()`** and **`EM1()`**
+
+that follower the Kalman filtering scripts, `EM0` does the EM Algorithm for Time Invariant State Space Models, and `EM1` does the EM Algorithm for General State Space Models.
+
+&#x1F535; We'll do an example for the general set up using the data in `blood` containing the daily blood work of a patient for 90 days and where there are many missing observations after the first month.
+
+
+```r
+tsplot(blood, type='o', col=c(6,4,2), lwd=2, pch=19, cex=1)
+```
+<img src="figs/blood.png" alt="blood"  width="700">
+
++ First the set up. 
+ 
+&emsp;&emsp;_x<sub>t</sub> =   &Phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> + v<sub>t</sub>_ 
+
+where _A<sub>t</sub>_ is 3x3 identity when observed, and 0 matrix when missing.
+The errors are  _w<sub>t</sub> ~ iid N<sub>3</sub>(0, Q)_ &perp;   _v<sub>t</sub> ~ iid N<sub>3</sub>(0, V)_ &perp; _x<sub>0</sub> ~ N<sub>3</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>)_.  We'll take all parameter matrices to be diagonal.
+
+
+
+
+```r
+y    = cbind(WBC, PLT, HCT)      # variables in blood with 0s instead of NAs
+num  = nrow(y)       
+A    = array(0, dim=c(3,3,num))  # creates num 3x3 zero matrices
+for(k in 1:num) if (y[k,1] > 0) A[,,k]= diag(1,3) # measurement matrices for observed
+
+```
+
++ Next, run the EM Algorithm by specifying model parameters. You can specify the max number of iterations and relative tolerance, too.
+ 
+```r
+# Initial values 
+mu0    = matrix(0,3,1) 
+Sigma0 = diag(c(.1,.1,1) ,3)
+Phi    = diag(1,3)
+cQ     = diag(c(.1,.1,1), 3)
+cR     = diag(c(.1,.1,1), 3)  
+(em = EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, 100, .001))    
+``` 
+
+Note that, as in the `Kfilter_` and `Ksmooth_` scripts, 
+`cQ` and `cR` are the Cholesky-type decompositions of `Q` and `R`. In particular, `Q = t(cQ)%*%cQ` and `R = t(cR)%*%cR` is all that is required (assuming `Q` and `R` are valid covariance matrices).  In this example, the covariance matrix `R` is diagonal, so the elements of `cR` are the standard deviations.
+
+The (partial) output is
+
+```r
+iteration    -loglikelihood 
+     1           68.28328 
+     2          -183.9361 
+     3          -194.2051 
+     4          -197.5444 
+     5          -199.7442 
+
+    20          -220.2935 
+    21          -221.1649 
+    22          -221.9869 
+    23          -222.762 
+    24          -223.4924 
+    25          -224.1805 
+   
+    40          -230.6582 
+    41          -230.9019 
+    42          -231.1289 
+
+# estimates below
+
+$Phi
+            [,1]        [,2]        [,3]
+[1,]  0.98052698 -0.03494377 0.008287009
+[2,]  0.05279121  0.93299479 0.005464917
+[3,] -1.46571679  2.25780951 0.795200344
+
+$Q
+             [,1]         [,2]       [,3]
+[1,]  0.013786772 -0.001724166 0.01882951
+[2,] -0.001724166  0.003032109 0.03528162
+[3,]  0.018829510  0.035281625 3.61897901
+
+$R
+            [,1]      [,2]      [,3]
+[1,] 0.007124671 0.0000000 0.0000000
+[2,] 0.000000000 0.0168669 0.0000000
+[3,] 0.000000000 0.0000000 0.9724247
+
+$mu0
+          [,1]
+[1,]  2.119269
+[2,]  4.407390
+[3,] 23.905038
+
+$Sigma0
+              [,1]          [,2]          [,3]
+[1,]  4.553949e-04 -5.249215e-05  0.0005877626
+[2,] -5.249215e-05  3.136928e-04 -0.0001199788
+[3,]  5.877626e-04 -1.199788e-04  0.1677365489
+
+$cvg
+[1] 0.0009832656  # relative tolerance of -loglikelihood at convergence
+```
+
++ Now  plot the results.
+
+```r
+par(mfrow=c(3,1))
+tsplot(WBC, type='p', pch=19, ylim=c(1,5), col=6, lwd=2, cex=1)
+lines(y1s) 
+  xx = c(time(WBC), rev(time(WBC)))  # same for all
+  yy = c(y1s-p1, rev(y1s+p1))
+polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))  
+
+tsplot(PLT, type='p', ylim=c(3,6), pch=19, col=4, lwd=2, cex=1)
+lines(y2s)
+  yy = c(y2s-p2, rev(y2s+p2))
+polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))  
+
+tsplot(HCT, type='p', pch=19, ylim=c(20,40), col=2, lwd=2, cex=1)
+lines(y3s)
+  yy = c(y3s-p3, rev(y3s+p3))
+polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))  
+```
+
+<img src="figs/blood2.png" alt="blood2"  width="700">
+
+
