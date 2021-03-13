@@ -50,6 +50,6 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 }
 \author{D.S. Stoffer
 }
-\details{\code{cQ} and \code{cR} are the Cholesky-type decompositions of \code{Q} and \code{R}. In particular, \code{Q = t(cQ)%*%cQ} and \code{R = t(cR)%*%cR} is all that is required (assuming \code{Q} and \code{R} are valid covariance matrices). 
+\details{\code{cQ} and \code{cR} are the Cholesky-type decompositions of \code{Q} and \code{R}. In particular, \code{Q = t(cQ)\%*\%cQ} and \code{R = t(cR)\%*\%cR} is all that is required (assuming \code{Q} and \code{R} are valid covariance matrices). 
 }
 \keyword{ ts}
