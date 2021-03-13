@@ -44,7 +44,7 @@ There are lots of fun data sets included in `astsa`. Here's a list obtained by i
 And you can get more information on any individual set using the `help()` command, e.g.
 `help(cardox)` or `?cardox`
 
------
+
 |Data sets in package ‘astsa’|                         |
 |----------|-------------|
 |EQ5                         | Seismic Trace of Earthquake number 5                        |
@@ -664,6 +664,7 @@ tsplot(nyse, col=4)
 <img src="figs/test_nyse.png" alt="test_nyse"  width="700">
 <img src="figs/nyse.png" alt="nyse"  width="700">
 
+-----
 
 ## 9. State Space Models
 
