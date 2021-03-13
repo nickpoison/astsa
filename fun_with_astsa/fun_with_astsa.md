@@ -878,6 +878,18 @@ $cvg
 + Now  plot the results.
 
 ```r
+# Run smoother at the estimates
+ks  = Ksmooth1(num, y, A, em$mu0, em$Sigma0, em$Phi, 0, 0, chol(em$Q), chol(em$R), 0)
+
+# Pull out the values
+y1s = ks$xs[1,,] 
+y2s = ks$xs[2,,] 
+y3s = ks$xs[3,,]
+p1  = 2*sqrt(ks$Ps[1,1,]) 
+p2  = 2*sqrt(ks$Ps[2,2,]) 
+p3  = 2*sqrt(ks$Ps[3,3,])
+
+# plots 
 par(mfrow=c(3,1))
 tsplot(WBC, type='p', pch=19, ylim=c(1,5), col=6, lwd=2, cex=1)
 lines(y1s) 
