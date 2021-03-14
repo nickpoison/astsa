@@ -10,7 +10,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
   topper = ifelse(is.null(main), 0, .5) 
   type0 <- 'n' 
   type1 <- ifelse(is.null(type), 'l', type)
-  if (is.null(pch)) pch=c(1)
+  pch   =  rep(pch, nser)
  if(!spaghetti || nser < 2){ 
  if(!gg){
   if (nser == 1) {
