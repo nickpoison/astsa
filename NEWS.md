@@ -44,7 +44,9 @@ the introduction of an astsa palette and replacing code that used `plot` to `tsp
 other seasonal parameters - doing so gives a message to make sure you're doing it on purpose,  whereas it used to stop the execution.  There's an example of the advantage of this in its man page.
   
     - For `tsplot` and `mvspec`, by default now, there is one minor tick on the x-axis and none on the y-axis.  Also, `mvspec` doesn't display the bandwidth
-on the axis - it's still there in the CI if the plot is on log-scale and it's still part of the "spec" object 
+on the axis - it's still there in the CI if the plot is on log-scale and it's still part of the "spec" object.
+
+   - Also, updated `tsplot` so multiple series can have different plot symbols (`pch`), e.g., `tsplot(blood, type='o', col=2:4, pch=2:4, cex=2)`
 
 + Prettified  `arma.spec`, `lag1.plot`,  `lag2.plot`, `sarima`, and `sarima.for`, using the awesome power of `tsplot`, but no need to change existing code.
 
