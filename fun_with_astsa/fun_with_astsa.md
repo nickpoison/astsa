@@ -153,12 +153,12 @@ tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2)
 <img src="figs/climhyd.png" alt="climhyd"  width="700">
 
 
-&#x1F535; Do you like spaghetti?
+&#x1F535; Do you like `spaghetti` (you can shorten it to `spag` or even `spaghet`):
 
 ```r
-tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=0,
+tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),
           ylab=expression(Number~~~(""%*% 1000)),  spaghetti=TRUE)
-legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=0, bty="n")
+legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
 ```
 <img src="figs/lynxhare.png" alt="lynxhare"  width="700">
 

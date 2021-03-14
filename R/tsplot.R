@@ -1,6 +1,7 @@
 tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
-                  margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=1, 
-				  xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, ...)
+                    margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=1, 
+                    xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, 
+                    pch=NULL, ...)
 {
   par   = graphics::par
   plot  = graphics::plot
@@ -9,15 +10,16 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
   topper = ifelse(is.null(main), 0, .5) 
   type0 <- 'n' 
   type1 <- ifelse(is.null(type), 'l', type)
+  if (is.null(pch)) pch=c(1)
  if(!spaghetti || nser < 2){ 
  if(!gg){
   if (nser == 1) {
    if(is.null(ylab)) {ylab = ifelse(is.null(y), deparse(substitute(x)), deparse(substitute(y)))}
    par(mar=c(2.5,2.5,1+topper,.5)+margins, mgp=c(1.6,.6,0), cex.main=1.2)
-   plot(x, y, type = type0, axes=FALSE, ann=FALSE, main=NULL, ... )
+   plot(x, y, type = type0, axes=FALSE, ann=FALSE, main=NULL, pch=pch, ... )
    Grid(minor=minor, nxm=nxm, nym=nym, xm.grid=xm.grid, ym.grid=ym.grid)
    par(new=TRUE)
-   plot(x, y, type=type1, main=main, ylab=ylab, xlab=xlab, col=col, ... ) 
+   plot(x, y, type=type1, main=main, ylab=ylab, xlab=xlab, col=col, pch=pch, ... ) 
    box(col='gray62')
   } else {
    prow = ceiling(nser/ncolm)
@@ -30,9 +32,9 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
    if (is.null(ylab)) { ylab = NA }
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, ...)
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, pch=pch[h], ...)
 	} else {
-	tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, ...)
+	tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, pch=pch[h], ...)
     }
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
@@ -59,9 +61,9 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
    if (is.null(ylab)) { ylab = NA }
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym,...)
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym, pch=pch[h], ...)
 	} else {
-	tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym, ...)
+	tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym, pch=pch[h], ...)
     }
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2)   
@@ -73,13 +75,13 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
     if (is.null(y)) {
 	  u = x[,1]
 	  u[1:2] =  c(min(x), max(x))
-	  tsplot(u, ylab=ylab,  type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, ...)
-	   for (h in 1:nser) { lines(x[,h], col=culer[h], type=type1, ...) }
+	  tsplot(u, ylab=ylab,  type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, pch=pch[1], ...)
+	   for (h in 1:nser) { lines(x[,h], col=culer[h], type=type1, pch=pch[h], ...) }
     } else {
 	  u = y[,1]
 	  u[1:2] =  c(min(y), max(y))
-	  tsplot(x, u, ylab=ylab, type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, ...)
-	   for (h in 1:nser) { lines(x, y[,h], col=culer[h], type=type1, ...) }
+	  tsplot(x, u, ylab=ylab, type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, pch=pch[1], ...)
+	   for (h in 1:nser) { lines(x, y[,h], col=culer[h], type=type1, pch=pch[h], ...) }
 	}
 }
 }
