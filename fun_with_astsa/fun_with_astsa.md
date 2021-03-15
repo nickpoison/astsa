@@ -217,7 +217,7 @@ acf1(soi)
 
   [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...
 ```
-<img src="figs/acf1.png" alt="acf1"  width=600>
+<img src="figs/acf1.png" alt="acf1"  width="700">
 
 ```r  
 acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)  
