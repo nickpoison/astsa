@@ -17,9 +17,9 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, log="n", type=NULL, ...)
 }
   \item{n.freq}{number of frequencies
 }
- \item{log}{plot spectra on a log-scale; default is 'no'
+  \item{log}{plot spectra on a log-scale; default is 'no'
 }
- \item{type}{type of plot to be drawn, defaults to lines
+  \item{type}{type of plot to be drawn, defaults to lines
 }
   \item{\dots}{additional arguments 
 }
@@ -51,6 +51,3 @@ arma.spec(ar = c(1, -.9), ma = .8)
 arma.spec(ar = c(1, -.9), main='AR(2)', gg=TRUE, col=5, lwd=2)
 }
 \keyword{ts}
-
-
-
