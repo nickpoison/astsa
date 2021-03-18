@@ -362,7 +362,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 -------------------------
 ### Version 1.1  - July 2012
 
-+ Associated namespace with all 'base' function calls
++ Associated namespace with all but 'base' function calls
  
 + Added data set `blood` (based on code in Example 6.1) as an mts object of the Jones data set with `NA` as missing data code. Example 6.9 still uses 0 for missing data.  
 
