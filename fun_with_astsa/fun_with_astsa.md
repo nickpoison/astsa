@@ -772,7 +772,7 @@ List of 6
 smoothing](https://www.stat.pitt.edu/stoffer/tsa4/chap6.htm) for the text.
 
 &#x1F535; We'll give an example of using `Kfiler1()` and `Ksmooth1()` on the data set `WBC`, which is the daily white blood cell count of a patient for 3 months. 
-There are many missing values after the first month and they are coded as `0` in the data file.  We'll fit a state model and then display the smoother estimates.
+There are many missing values after the first month and they are coded as `0` in the data file.  We'll fit a state space model and then display the smoother estimates.
 The model is like the previous model,
 
 &emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> + v<sub>t</sub>_<br/>
