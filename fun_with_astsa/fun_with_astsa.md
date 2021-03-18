@@ -675,14 +675,15 @@ tsplot(nyse, col=4)
 > **`ssm()`**
 
 
-&#x1F535; For an introduction, consider a univariate model. 
+&#x1F535; First, consider a simple univariate model. 
 We write the **states** as _x<sub>t</sub>_ and the **observations** as _y<sub>t</sub>_.
  
 &emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/> 
 
 where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
 
-&#x1F535; Let's try fitting the model to the global temperature series. You have to give initial estimates and then the script fits the model via MLE. The initial values of &mu;<sub>0</sub> and &sigma;<sub>0</sub> are chosen automatically.
+&#x1F535; We'll fit the model to one of the global temperature series.
+To use the script, you have to give initial estimates and then the script fits the model via MLE. The initial values of &mu;<sub>0</sub> and &sigma;<sub>0</sub> are chosen automatically.
 
 ```r
 u = ssm(gtemp_land, A=1, alpha=.01, phi=1, sigw=.01, sigv=.1)
@@ -798,7 +799,7 @@ Linn=function(para){
 phi = 1; alpha = 0;  sigw = .1;  sigv = .01
 init.par = c(phi,alpha,sigw,sigv)
 x00 = 2     # initial state parameters
-P00 = .05   # keep these fixed
+P00 = .05   # keep these fixed (not necessary)
 est = optim(init.par, Linn, NULL, method="BFGS", hessian=TRUE, control=list(trace=1,REPORT=1)) 
 SE = sqrt(diag(solve(est$hessian))) 
 
