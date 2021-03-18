@@ -771,6 +771,74 @@ List of 6
 + Further explanations are also given on a [special page on Kalman filtering and
 smoothing](https://www.stat.pitt.edu/stoffer/tsa4/chap6.htm) for the text.
 
+&#x1F535; We'll give an example of using `Kfiler1()` and `Ksmooth1()` on the data set `WBC`, which is the daily white blood cell count of a patient for 3 months. 
+There are many missing values after the first month and they are coded as `0` in the data file.  We'll fit a state model and then display the smoother estimates.
+The model is like the previous model,
+
+&emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> + v<sub>t</sub>_<br/>
+
+but now _A<sub>t</sub> =_ 0 or 1 depending on whether an observation is missing or not.
+
+```r
+y     = WBC
+num   = length(y)
+A     = ifelse(WBC>0, 1, 0)
+A     = array(A, dim=c(1,1,num))  # measurement matrices must be an array
+input = rep(1,num)
+
+#  function to calculate likelihood
+Linn=function(para){
+   phi=para[1]; alpha = para[2];  sigw = para[3];  sigv = para[4]
+   kf = Kfilter1(num,y,A,x00,P00,phi,alpha,0,sigw,sigv,input)  # ?Kfilter1 for details
+ return(kf$like)  # returns -loglike
+}
+
+# Estimation
+# initial parameters
+phi = 1; alpha = .0;  sigw = .1;  sigv = .01
+init.par = c(phi,alpha,sigw,sigv)
+x00 = 2     # initial state parameters
+P00 = .05   # keep these fixed
+est = optim(init.par, Linn, NULL, method="BFGS", hessian=TRUE, control=list(trace=1,REPORT=1)) 
+SE = sqrt(diag(solve(est$hessian))) 
+
+ ##--  some output --##
+ #  initial  value -213.802860
+ #  iter   2 value -301.268549
+ #  
+ #  iter  27 value -1498.920633
+ #  iter  28 value -1566.562235
+ #  iter  29 value -1645.965583
+ #  iter  29 value -1419.901686
+ #  iter  29 value -1479.781053
+ #  final  value -1645.9
+
+u = cbind(estimate = est$par, SE)
+rownames(u)=c("phi", "alpha", "sigw", "sigv")
+round(u,3)
+
+#        estimate    SE
+#  phi      0.946 0.028
+#  alpha    0.194 0.096
+#  sigw     0.160 0.016
+#  sigv     0.000 0.000  
+
+phat = u[,1]  # final parameter estimats
+# run filter /smoother with estimates
+ks = Ksmooth1(num,y,A,x00,P00,phat[1],phat[2],0,phat[3],phat[4],input)
+
+# plot the results - data are solid points, smoother are blue circles
+# gray swatch is 95% pointwise intervals 
+tsplot(ks$xs, type='o', col=4, ylim=c(1,5), ylab="WBC", xlab="day")
+points(WBC, pch=19)
+ xx = c(time(WBC), rev(time(WBC)))
+ yy = c(ks$xs-2*sqrt(ks$Ps), rev(ks$xs+2*sqrt(ks$Ps)))
+polygon(xx, yy, border=8, col=gray(.6, alpha=.2) )
+```
+
+<img src="figs/WBCss.png" alt="WBCss"  width="700">
+
+
 ## 10. EM Algorithm
 
 To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) there are two scripts
@@ -779,7 +847,8 @@ To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat
 
 that follow the Kalman filtering scripts, `EM0` does the EM Algorithm for Time Invariant State Space Models, and `EM1` does the EM Algorithm for General State Space Models.
 
-&#x1F535; We'll do an example for the general set up using the data in `blood` containing the daily blood work of a patient for 90 days and where there are many missing observations after the first month.
+&#x1F535; We'll do an example for the general set up using the data in `blood` containing the daily blood work of a patient for 90 days and where there are many missing observations after the first month.  This is an extension of the 
+previous analysis of `WBC`.
 
 
 ```r
