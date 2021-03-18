@@ -788,14 +788,14 @@ input = rep(1,num)
 
 #  function to calculate likelihood
 Linn=function(para){
-   phi=para[1]; alpha = para[2];  sigw = para[3];  sigv = para[4]
+   phi = para[1]; alpha = para[2];  sigw = para[3];  sigv = para[4]
    kf = Kfilter1(num,y,A,x00,P00,phi,alpha,0,sigw,sigv,input)  # ?Kfilter1 for details
  return(kf$like)  # returns -loglike
 }
 
 # Estimation
 # initial parameters
-phi = 1; alpha = .0;  sigw = .1;  sigv = .01
+phi = 1; alpha = 0;  sigw = .1;  sigv = .01
 init.par = c(phi,alpha,sigw,sigv)
 x00 = 2     # initial state parameters
 P00 = .05   # keep these fixed
@@ -827,7 +827,7 @@ phat = u[,1]  # final parameter estimats
 # run filter /smoother with estimates
 ks = Ksmooth1(num,y,A,x00,P00,phat[1],phat[2],0,phat[3],phat[4],input)
 
-# plot the results - data are solid points, smoother are blue circles
+# plot the results - data are solid points, smoothers are blue circles and a line
 # gray swatch is 95% pointwise intervals 
 tsplot(ks$xs, type='o', col=4, ylim=c(1,5), ylab="WBC", xlab="day")
 points(WBC, pch=19)
