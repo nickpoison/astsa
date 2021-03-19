@@ -1,5 +1,10 @@
 # fun with astsa
 
+<script type="text/javascript" charset="utf-8" 
+src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,
+https://vincenttam.github.io/javascripts/MathJaxLocal.js"></script>
+
+
 
 ##### we'll demonstrate some of the capabilities of `astsa` ... if you haven't installed it yet, [head over to the News page for installation instructions](https://github.com/nickpoison/astsa/blob/master/NEWS.md).
 
@@ -7,7 +12,7 @@ Remember to load `astsa` at the start of a session.
 
 > **`library(astsa)`**
 
-it's more than just data ...
+it's more than just data ... 
 
 
 -----
@@ -639,9 +644,11 @@ refer to frequency ordinate:
 -----
 ## 8. Linearity Test
 
-Linear time series models are built on the linear process, where it is assumed that a series <i>X<sub>t</sub></i> can be generated as
+Linear time series models are built on the linear process, where it is assumed that a univariate series <i>X<sub>t</sub></i> can be generated as
 
-<i>X<sub>t</sub> = &sum; &psi;<sub>j</sub> Z<sub>t - j</sub></i> where  &sum; | &psi;<sub>j</sub> | < &infin;
+<i>X<sub>t</sub> = &mu; + &sum; &psi;<sub>j</sub> Z<sub>t - j</sub></i> where  &sum; | &psi;<sub>j</sub> | < &infin;
+
+\[ X_t = \mu + \sum_{j=0}^\infty \psi_j Z_{t-j} \quad \text{with}\quad \sum_{j=0}^\infty |\psi_j | < \infty\,,\]
 
 where <i>Z<sub>t</sub></i> is a sequence of i.i.d. random variables with at least finite third moments.  This assumption can be tested using the bispectrum, which  is constant under the null hypothesis  that the data are from a linear process with i.i.d. innovations.  The workhorse here is
 
