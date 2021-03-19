@@ -488,8 +488,11 @@ x1 = 2*cos(2*pi*1:100*5/100)  + 3*sin(2*pi*1:100*5/100)
 x2 = 4*cos(2*pi*1:100*10/100) + 5*sin(2*pi*1:100*10/100)
 x3 = 6*cos(2*pi*1:100*40/100) + 7*sin(2*pi*1:100*40/100)
 x  = x1 + x2 + x3
-mvspec(x,  col=4, lwd=2, type='o', pch=20)
+tsplot(x, col=5, lwd=2, gg=TRUE) 
+mvspec(x, col=4, lwd=2, type='o', pch=20)
 ```
+
+<img src="figs/cosum.png" alt="cosum"  width="700">
 <img src="figs/periodogram.png" alt="periodogram"  width="700">
 
 &#x1F535; You can smooth in the usual way and get the CIs on the log-plot:
