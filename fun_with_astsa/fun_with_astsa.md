@@ -699,7 +699,7 @@ sigw  0.04252969 0.010688521
 sigv  0.14902612 0.010685375
 ```
 
-and a nice picture - the data [_y<sub>t</sub>_], the smoothers E(_x<sub>t</sub>_ | _y<sub>1</sub> ,..., y<sub>n</sub>_)] and  &#177;2 root MSPEs.  The smoothers are
+and a nice picture - the data [_y<sub>t</sub>_], the smoothers [ E(_x<sub>t</sub>_ | _y<sub>1</sub> ,..., y<sub>n</sub>_) ] and  &#177;2 root MSPEs.  The smoothers are
 in `Xs` and the MSPEs are in `Ps`: 
 
 ```r
