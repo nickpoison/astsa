@@ -160,7 +160,7 @@ tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),
           ylab=expression(Number~~~(""%*% 1000)),  spaghetti=TRUE)
 legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
 ```
-<img src="figs/lynxhare.png" alt="lynxhare"  width="700">
+<img src="figs/lynxhare.png" alt="lynxhare"  width="700" height="400">
 
 
 &#x1F535; And the land where the LLN ceases to exist:
@@ -170,7 +170,7 @@ x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample mean", xlab="sample size")
 ```
 
-<img src="figs/tsplot2.png" alt="tsplot"  width="700">
+<img src="figs/tsplot2.png" alt="tsplot"  width="700" height="400">
 
 
 &#x1F535; There are also lag plots for one series and for two series using
@@ -217,14 +217,14 @@ acf1(soi)
 
   [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...
 ```
-<img src="figs/acf1.png" alt="acf1"  width="700">
+<img src="figs/acf1.png" alt="acf1"  width="700" height="400">
 
 ```r  
 acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)  
 
    [1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...
 ```
-<img src="figs/pacf1.png" alt="pacf1"  width="700">
+<img src="figs/pacf1.png" alt="pacf1"  width="700" height="400">
 
 &#x1F535; Sample ACF and PACF at the same time
 
@@ -261,7 +261,7 @@ acf2(diff(log(varve)), plot=FALSE)
 ```r
 ccf2(cmort, part)
 ```
-<img src="figs/ccf2.png" alt="ccf2"  width="700">
+<img src="figs/ccf2.png" alt="ccf2"  width="700" height="400">
 
 -----
 
@@ -279,7 +279,7 @@ The syntax are simple and we'll demonstrate with a couple of examples. There are
 y = sarima.sim(ar=c(1.5,-.75)) + 50
 tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
 ```
-<img src="figs/ar2sim.png" alt="ar2sim"  width="700">
+<img src="figs/ar2sim.png" alt="ar2sim"  width="700" height="400">
 
 &#x1F535; Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite  
 
@@ -288,7 +288,7 @@ set.seed(101010)
 x = sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120) + 100
 tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')  
 ```
-<img src="figs/sarima.sim.png" alt="sarima.sim"  width="700">
+<img src="figs/sarima.sim.png" alt="sarima.sim"  width="700" height="400">
 
 -----
 
@@ -454,14 +454,14 @@ End = 150
 Frequency = 1 
  [1]  1.136849  2.427539  3.889295  5.459392  7.096606  8.772528 10.466926 ...  
 ```
-<img src="figs/fore1.png" alt="fore1"  width="700">
+<img src="figs/fore1.png" alt="fore1"  width="700" height="400">
 
 &#x1F535; Notice the `plot.all=TRUE` in the previous example. If you leave that off, the graphic show the final 100 observations and the forecasts to make it easier to see what's going on.
 
 ```r
 sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 ```
-<img src="figs/foreCO2.png" alt="foreCO2"  width="700">
+<img src="figs/foreCO2.png" alt="foreCO2"  width="700" height="400">
 
 
 -----
@@ -493,7 +493,7 @@ mvspec(x, col=4, lwd=2, type='o', pch=20)
 ```
 
 <img src="figs/cosum.png" alt="cosum"  width="700">
-<img src="figs/periodogram.png" alt="periodogram"  width="700">
+<img src="figs/periodogram.png" alt="periodogram"  width="700" height="400">
 
 &#x1F535; You can smooth in the usual way and get the CIs on the log-plot:
 
@@ -542,7 +542,7 @@ and easily locate the peaks
 mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitment")
 ```
 
-<img src="figs/coher.png" alt="coher"  width="700">
+<img src="figs/coher.png" alt="coher"  width="700" height="400">
 
 
 ### parametric spectral analysis
@@ -553,7 +553,7 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 u <- spec.ic(soi, BIC=TRUE, detrend=TRUE, col=4, lwd=2)  
 ```
 
-<img src="figs/spec.bic.png" alt="spec.bic"  width="700">
+<img src="figs/spec.bic.png" alt="spec.bic"  width="700" height="400">
 
 &#x1F535; Print and plot AIC and BIC (both pick order 15):
 
@@ -658,7 +658,7 @@ and more details can be found in its help file (`?test.linear`).    Chi-squared 
 ```r
 test.linear(soi) 
 ```
-<img src="figs/test_soi.png" alt="test_soi"  width="700">
+<img src="figs/test_soi.png" alt="test_soi"  width="700" height="400">
 
 &#x1F535; Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange (NYSE) from February 2, 1984 to December 31, 1991
 
@@ -666,7 +666,7 @@ test.linear(soi)
 test.linear(nyse) 
 tsplot(nyse, col=4) 
 ```
-<img src="figs/test_nyse.png" alt="test_nyse"  width="700">
+<img src="figs/test_nyse.png" alt="test_nyse"  width="700" height="400">
 <img src="figs/nyse.png" alt="nyse"  width="700">
 
 -----
@@ -712,7 +712,7 @@ lines(u$Xs, col=6, lwd=2)
  yy = c(u$Xs-2*sqrt(u$Ps), rev(u$Xs+2*sqrt(u$Ps)))
 polygon(xx, yy, border=8, col=gray(.6, alpha=.25) )
 ```
-<img src="figs/ssm.png" alt="ssm"  width="700">
+<img src="figs/ssm.png" alt="ssm"  width="700" height="400">
 
 
 &#x1F535; You can fix &phi;=1 in this case if you believe the series is taking a random walk with drift:
@@ -841,7 +841,7 @@ points(WBC, pch=19)
 polygon(xx, yy, border=8, col=gray(.6, alpha=.2) )
 ```
 
-<img src="figs/WBCss.png" alt="WBCss"  width="700">
+<img src="figs/WBCss.png" alt="WBCss"  width="700" height="400">
 
 
 ## 10. EM Algorithm
