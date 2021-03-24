@@ -605,8 +605,8 @@ tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRU
 &#x1F535; The data frame `econ5` was used to consider the effect of quarterly GNP, consumption, and government and private investment on  U.S. unemployment. In this case, `mvspec` will plot the individual spectra by default and you can extract the spectral matrices as `fxx`, an array of dimensions `dim = c(p,p,nfreq)` as well as plot coherencies and phases. Here, <i>p = 5</i>:
 
 ```r
-gr = diff(log(ts(econ5))) 
-gr = ts(apply(gr,2,scale), start= 1948, freq=4) 
+gr = diff(log(econ5)) 
+gr = scale(gr)  # for comparable spectra
 tsplot(gr, ncol=2, col=2:6, lwd=2, byrow=FALSE) 
 gr.spec = mvspec(gr, spans=c(7,7), detrend=FALSE, taper=.25, col=2:6, lwd=2, main='spectra')
 round(gr.spec$fxx, 2) 
