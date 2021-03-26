@@ -129,6 +129,10 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2))
 ```
 <img src="figs/palette.png" alt="palette"  width="700">
 
+and, if you have to plot a bunch of lines on top of each other (but in a nice way) transparency can work for you:
+<img src="figs/read_me_now.png" alt="read_me_now"  width="700">
+
+
 &#x1F535; For plotting time series and just about anything else, you can use
 
 > **`tsplot()`**
