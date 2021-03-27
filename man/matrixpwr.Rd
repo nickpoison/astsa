@@ -1,6 +1,5 @@
 \name{matrixpwr}
 \alias{matrixpwr}
-
 \title{
 Powers of a Square Matrix
 }
@@ -9,6 +8,8 @@ Computes powers of a square matrix.
 }
 \usage{
 matrixpwr(A, power)
+
+A \%^\% power
 }
 \arguments{
   \item{A}{
@@ -21,6 +22,9 @@ numeric
 \details{
 Raises matrix to the specified power. The matrix must be square
 and if \code{power < 0}, the matrix must be nonsingular.
+
+Note that \code{\%^\%} is defined as
+\code{"\%^\%" <- function(A, power) matrixpwr(A, power) }
 }
 \value{
 Returns matrix raised to the given power.
@@ -40,12 +44,11 @@ D.S. Stoffer
 }
 \examples{
 # 2-state Markov transition matrix to steady state
-P = matrix(c(.7,.4,.3,.6), 2)    
-matrixpwr(P, 50)    
+P = matrix(c(.7,.4,.3,.6), 2)       
 P \%^\% 50
 
 # Inverse square root
 Q = var(econ5)
-matrixpwr(Q, -.5) 
+Q \%^\% -.5
 }
 \keyword{ math }
