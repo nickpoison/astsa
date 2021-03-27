@@ -5,7 +5,7 @@
 Computes powers of a matrix
 }
 \usage{
-{A \%^\% power}
+{matrixpwr(A, power)}
 }
 \arguments{
   \item{A}{
@@ -36,10 +36,10 @@ D.S. Stoffer
 \examples{
 # 2-state Markov transition matrix to steady state
 P = matrix(c(.7,.4,.3,.6), 2)    
-{ P \%^\% 50 }     
+matrixpwr(P, 50)     
 
 # Inverse square root
 Q = var(econ5)
-{Q \%^\%-.5} 
+matrixpwr(Q, -.5) 
 }
 \keyword{ math }

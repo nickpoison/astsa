@@ -14,5 +14,3 @@ function(A, power){
     with(eigen(A), vectors %*% (values^power * solve(vectors))) 
    }
 }
-
-"%^%" <- function(A, power) matrixpwr(A, power) 
