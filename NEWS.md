@@ -28,14 +28,18 @@ You can find a short guide to  astsa scripts right here at [FUN WITH ASTSA](http
 ---
 ### Versions 1.12 - Dec 2020
 
-1.12.7 (GitHub - March 2021) 
+1.12.8 (GitHub - March 2021) 
 
-+ I need powers of matrices enough where I thought I'd include it in `astsa`. The function is like an operator and it works fine, but I can't seem to get the man page to show up in the help system because the function is not a word. So consider this pending.  Some examples:
++ I need powers of matrices enough where I thought I'd include it in `astsa`.  The script is calle `matrixpwr()` but I've defined an operator so it can be used in an obvious fashion:
+
+> `"%^%" <- function(A, power) matrixpwr(A, power) `
+
+ Some examples:
 ```r
 var(econ5)%^%-.5   # inverse square root
 
 P = matrix(c(.7,.4,.3,.6), 2) # 2 state Markov transition matrix
-P%^%50                        # steady state 
+P %^% 50                      # steady state 
 ```
 
 + Added `test.linear`, a script to test the null hypothesis that the data are generated from a linear process with iid innovations. 
