@@ -32,7 +32,7 @@ You can find a short guide to  astsa scripts right here at [FUN WITH ASTSA](http
 
 + I need powers of matrices enough where I thought I'd include it in `astsa`. The function is like an operator and it works fine, but I can't seem to get the man page to show up in the help system because the function is not a word. So consider this pending.  Some examples:
 ```r
-var(econ5)^-.5   # inverse square root
+var(econ5)%^%-.5   # inverse square root
 
 P = matrix(c(.7,.4,.3,.6), 2) # 2 state Markov transition matrix
 P%^%50                        # steady state 
