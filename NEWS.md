@@ -8,10 +8,10 @@
 <br/>
 
 To update the package to the most recent version, you just need the following two lines:
-
-> `install.packages("remotes")`<br/>
-> `remotes::install_github("nickpoison/astsa")`
-
+```r
+install.packages("remotes")
+remotes::install_github("nickpoison/astsa")
+```
 
 Some notes on the installation...  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
 After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
@@ -54,14 +54,18 @@ other seasonal parameters - doing so gives a message to make sure you're doing i
     - For `tsplot` and `mvspec`, by default now, there is one minor tick on the x-axis and none on the y-axis.  Also, `mvspec` doesn't display the bandwidth
 on the axis - it's still there in the CI if the plot is on log-scale and it's still part of the "spec" object.
 
-   - Also, updated `tsplot` so multiple series can have different plot symbols (`pch`), e.g., `tsplot(blood, type='o', col=2:4, pch=2:4, cex=2)`
+   - Also, updated `tsplot` so multiple series can have different plot symbols (`pch`), e.g., 
+   ```r 
+   tsplot(blood, type='o', col=2:4, pch=2:4, cex=2)
+   ```
 
 + Prettified  `arma.spec`, `lag1.plot`,  `lag2.plot`, `sarima`, and `sarima.for`, using the awesome power of `tsplot`, but no need to change existing code.
 
-+ Updated `tsplot` to allow for spaghetti plots:<br/>
-`x <- replicate(100, cumsum(rcauchy(1000))/1:1000)`<br/>
-`tsplot(x, col=1:8, spaghetti=TRUE`)
- 
++ Updated `tsplot` to allow for spaghetti plots:
+```r
+x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
+tsplot(x, col=1:8, spaghetti=TRUE`)
+``` 
 
 + The package now has its own color palette that is attached
 when the package is attached. The palette is  especially  suited for plotting
@@ -120,8 +124,10 @@ that produced graphics but  didn't work on Apple's OS. In addition, I made `tspl
 + For `tsplot`, I added an argument (`byrow`) where you can plot row wise (`TRUE`) or 
 column wise (`FALSE`) for multiple plots. 
 
-+ Also, for `tsplot`, added an argument `gg` so if it's true the plot will *resemble* a ggplot ... e.g., `tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2)`. 
-
++ Also, for `tsplot`, added an argument `gg` so if it's true the plot will *resemble* a ggplot ... e.g., 
+```r
+tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2) 
+```
 
 
 ------------------------------
