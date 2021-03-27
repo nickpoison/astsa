@@ -1,4 +1,4 @@
-\name{\%^\%}
+\name{matrixpwr}
 \title{Powers of a Square Matrix
 }
 \description{

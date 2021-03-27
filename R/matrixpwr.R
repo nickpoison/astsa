@@ -1,4 +1,4 @@
-"%^%" <-
+matrixpwr <-
 function(A, power){
    if (!is.matrix(A))  stop("object not a matrix") 
    if (abs( nrow(A) - ncol(A) ) > 0 ) stop("matrix must be square") 
@@ -14,3 +14,5 @@ function(A, power){
     with(eigen(A), vectors %*% (values^power * solve(vectors))) 
    }
 }
+
+"%^%" <- function(A, power) matrixpwr(A, power) 
