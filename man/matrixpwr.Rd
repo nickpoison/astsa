@@ -42,6 +42,7 @@ D.S. Stoffer
 # 2-state Markov transition matrix to steady state
 P = matrix(c(.7,.4,.3,.6), 2)    
 matrixpwr(P, 50)    
+P \%^\% 50
 
 # Inverse square root
 Q = var(econ5)
