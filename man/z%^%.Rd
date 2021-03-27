@@ -5,7 +5,7 @@
 Computes powers of a matrix
 }
 \usage{
-A \%^\% power
+\verb{A %^% power}
 }
 \arguments{
   \item{A}{
@@ -34,14 +34,12 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 D.S. Stoffer 
 }
 \examples{
-\dontrun{
-# Markov transition matrix
-P = matrix(c(.7,.4,.3,.6), 2) # one step
-P\%^\%50                      # 50 step transition
+# 2-state Markov transition matrix to steady state
+P = matrix(c(.7,.4,.3,.6), 2)    
+\verb{ P %^% 50 }     
 
 # Inverse square root
 Q = var(econ5)
-Q\%^\%-.5
-}
+\verb{Q %^%-.5} 
 }
 \keyword{ math }
