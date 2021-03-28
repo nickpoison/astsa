@@ -1,10 +1,13 @@
 \name{matrixpwr}
 \alias{matrixpwr}
+\alias{\%^\%}
 \title{
 Powers of a Square Matrix
 }
 \description{
-Computes powers of a square matrix.
+\code{matrixpwr} computes powers of a square matrix, including negative powers for nonsingular matrices.
+
+\code{\%^\%} is a more intuitive interface as a binary operator.
 }
 \usage{
 matrixpwr(A, power)
