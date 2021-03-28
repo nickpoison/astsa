@@ -16,7 +16,7 @@ A \%^\% power
 square matrix
 }
   \item{power}{
-numeric
+single numeric
 }
 }
 \details{
