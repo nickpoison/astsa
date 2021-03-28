@@ -7,7 +7,7 @@ Powers of a Square Matrix
 \description{
 \code{matrixpwr} computes powers of a square matrix, including negative powers for nonsingular matrices.
 
-\code{\%^\%} is a more intuitive interface as a binary operator.
+\code{\%^\%} is a more intuitive interface as an operator.
 }
 \usage{
 matrixpwr(A, power)
@@ -16,7 +16,7 @@ A \%^\% power
 }
 \arguments{
   \item{A}{
-square matrix
+a square matrix
 }
   \item{power}{
 single numeric
@@ -28,6 +28,8 @@ and if \code{power < 0}, the matrix must be nonsingular.
 
 Note that \code{\%^\%} is defined as
 \code{"\%^\%" <- function(A, power) matrixpwr(A, power) }
+
+If \code{power = 0}, the identity matrix is returned.
 }
 \value{
 Returns matrix raised to the given power.

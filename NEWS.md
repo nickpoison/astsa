@@ -30,9 +30,8 @@ You can find a short guide to  astsa scripts right here at [FUN WITH ASTSA](http
 
 1.12.8 (GitHub - March 2021) 
 
-+ I need powers of matrices enough where I thought I'd include it in `astsa`.  The script is calle `matrixpwr()` but I've defined an operator so it can be used in an obvious fashion:
-
-> `"%^%" <- function(A, power) matrixpwr(A, power) `
++ I need powers of matrices enough where I thought I'd include it in `astsa`.  The script is called `matrixpwr` 
+and includes `%^%` as a more intuitive operator.
 
  Some examples:
 ```r
