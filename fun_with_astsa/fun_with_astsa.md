@@ -7,7 +7,7 @@ Remember to load `astsa` at the start of a session.
 
 > **`library(astsa)`**
 
-it's more than just data ... 
+it's more than just data ...
 
 
 -----
@@ -21,6 +21,7 @@ it's more than just data ...
   * [5. ARIMA Estimation](#5-arima-estimation)
   * [6. Forecasting](#6-forecasting)
   * [7. Spectral Analysis](#7-spectral-analysis)
+     * [ARMA Spectrum](#arma-spectral-density)
      * [Nonparametric](#nonparametric-spectral-analysis)
      * [Parametric](#parametric-spectral-analysis)
      * [Spectral Matrices](#more-multivariate-spectra)     
@@ -40,7 +41,7 @@ it's more than just data ...
 
 ## 1. Data  
 
-There are lots of fun data sets included in `astsa`. Here's a list obtained by issuing the command
+&#x1F4A1; There are lots of fun data sets included in `astsa`. Here's a list obtained by issuing the command
 
 > **`data(package = "astsa")`**
 
@@ -118,11 +119,11 @@ And you can get more information on any individual set using the `help()` comman
 
 ## 2. Plotting
 
-When `astsa` is loaded, the astsa palette is attached.  The palette is  especially  suited for plotting  time series and it is a bit darker than the new default R4 palette. You can revert back using  `palette("default")`.  Also,  
+&#x1F4A1; When `astsa` is loaded, the astsa palette is attached.  The palette is  especially  suited for plotting  time series and it is a bit darker than the new default R4 palette. You can revert back using  `palette("default")`.  Also,  
 
 > **`astsa.col()`** 
 
-is included to easily adjust the opacity of the colors. Notice each color display has diagonal lines behind it to demonstrate opacity.
+is included to easily adjust the opacity of the colors. **Notice each color display has diagonal lines behind it to demonstrate opacity.**
 
 ```r
 par(mfrow=c(3,1))
@@ -187,7 +188,7 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 <img src="figs/tsplot2.png" alt="tsplot"  width="700" height="400">
 
 
-&#x1F535; There are also lag plots for one series and for two series using
+&#x1F4A1; There are also lag plots for one series and for two series using
 
 > **`lag1.plot()`** or **`lag2.plot()`**
 
@@ -214,7 +215,7 @@ lag2.plot(soi, rec, 8)
 
 ## 3. Correlations
 
-There are three basic correlation scripts in `astsa`.  They are
+&#x1F4A1; There are three basic correlation scripts in `astsa`.  They are
 
 
 > **`acf1()`**, **`acf2()`,** and **`ccf2()`** 
@@ -281,7 +282,7 @@ ccf2(cmort, part)
 
 ## 4. ARIMA Simulation
 
-You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via 
+&#x1F4A1; You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via 
 
 > **`sarima.sim()`**
 
@@ -308,13 +309,14 @@ tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 
 ## 5. ARIMA Estimation
 
-Fitting ARIMA models to data is a breeze with the modern script
+&#x1F4A1; Fitting ARIMA models to data is a breeze with the modern script
 
 > **`sarima()`**
 
 It can do everything for you but you have to choose the model. 
 
-Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK; see [Issue 2 of the R time series issues page](https://www.stat.pitt.edu/stoffer/tsa4/Rissues.htm). Originally, `astsa` had a version of automatic fitting of models, but IT DOESN'T WORK, so it was scrapped.  The bottom line is, if you don't know what you're doing, then why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
+&#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK; see [Issue 2 of the R time series issues page](https://www.stat.pitt.edu/stoffer/tsa4/Rissues.htm). Originally, `astsa` had a version of automatic fitting of models, but IT DOESN'T WORK, so it was scrapped. 
+ The bottom line is, here, __AI = As if__, and if you don't know what you're doing, why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
 
 As with everything else, there are many examples on the help page (`?sarima`) and we'll do a couple here.
 
@@ -432,7 +434,7 @@ $BIC
 
 ## 6. Forecasting
 
-Forecasting your fitted ARIMA model is as simple as using
+&#x1F4A1;  Forecasting your fitted ARIMA model is as simple as using
 
 > **`sarima.for()`**
 
@@ -480,6 +482,8 @@ sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 
 -----
 ## 7. Spectral Analysis
+
+&#x1F4A1;  There are a few scripts that help with spectral analysis.
 
 The spectral density of an ARMA model can be obtained using
 
@@ -678,7 +682,7 @@ refer to frequency ordinate:
 -----
 ## 8. Linearity Test
 
-Linear time series models are built on the linear process, where it is assumed that a univariate series <i>X<sub>t</sub></i> can be generated as
+&#x1F4A1;  Linear time series models are built on the linear process, where it is assumed that a univariate series <i>X<sub>t</sub></i> can be generated as
 
 &emsp;&emsp; <i>X<sub>t</sub> = &mu; + &sum; &psi;<sub>j</sub> Z<sub>t - j</sub></i> where  &sum; | &psi;<sub>j</sub> | < &infin;
 
@@ -710,7 +714,7 @@ tsplot(nyse, col=4)
 ## 9. State Space Models
 
 
- There are a number of levels of Kalman filtering and smoothing in `astsa`. The most basic script is 
+ &#x1F4A1;  There are a number of levels of Kalman filtering and smoothing in `astsa`. The most basic script is 
 
 > **`ssm()`**
 
@@ -882,7 +886,7 @@ polygon(xx, yy, border=8, col=gray(.6, alpha=.2) )
 
 ## 10. EM Algorithm
 
-To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) there are two scripts
+&#x1F4A1;  To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) there are two scripts
 
 > **`EM0()`** and **`EM1()`**
 
@@ -1025,7 +1029,7 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 ## 11. Arithmetic
 
-The package has a few scripts to help with items related to time series and stochastic processes. 
+&#x1F4A1; The package has a few scripts to help with items related to time series and stochastic processes. 
 
 ### ARMAtoAR
 
