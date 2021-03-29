@@ -1,7 +1,7 @@
 # fun with astsa
 
 
-##### we'll demonstrate some of the capabilities of `astsa` ... if you haven't installed it yet, [head over to the News page for installation instructions](https://github.com/nickpoison/astsa/blob/master/NEWS.md).
+##### we'll demonstrate some of the capabilities of `astsa` ... to install it, [head over to the News page for installation instructions](https://github.com/nickpoison/astsa/blob/master/NEWS.md) and follow the instructions.
 
 Remember to load `astsa` at the start of a session.
 
