@@ -27,7 +27,10 @@ it's more than just data ...
   * [8. Testing for Linearity](#8-linearity-test)
   * [9. State Space Models and Kalman Filtering](#9-state-space-models)
   * [10. EM Algorithm](#10-em-algorithm)
-
+  * [11. Arithmetic](#11-arithmetic)
+     * [ARMAtoAR](#armatoar)
+     * [Matrix Powers](#matrix-powers)
+     * [Polynomial Multiplication](#polynomial-multiplication)
 
 
 -----
@@ -478,21 +481,38 @@ sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 -----
 ## 7. Spectral Analysis
 
+The spectral density of an ARMA model can be obtained using
+
+> **`arma.spec()`**
+
 Nonparametric spectral analysis is done with
 
 > **`mvspec()`** 
 
-and parametric spectral analysis with
+and parametric spectral analysis with  
 
 > **`spec.ic`**
 
-`mvspec` was originally just a way to  get the multivariate spectral density estimate out of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
+### ARMA Spectral Density
 
-`spec.ic` is similar to `spec.ar` but the option to use BIC instead of AIC is available.  Also, you can use the script to compare  AIC and BIC for AR fits to the data.
+
+&#x1F4A1;  `arma.spec` tests for causality, invertibility, and common zeros. If the model is not causal or invertible an error message is given. If there are approximate common zeros, a spectrum will be displayed and a warning will be given; e.g., `arma.spec(ar= .9, ma= -.9)` will yield a warning and the plot will be the spectrum of white noise. For example (the frequency and spectral ordinates are returned invisibly)
+
+```r
+arma.spec(ar = c(1.5, -.75), ma = c(-.8,.4), col=4, lwd=2)
+```
+and the graphic can be on log-scale (`log='y'`) or decibels (`log='dB')`.
+
+
+<img src="figs/arma_spec.png" alt="arma_spec"  width="700">
+
+
 
 ### nonparametric spectral analysis
 
-&#x1F535; The first thing is, if you want the periodogram, you got it (tapering is not done automatically because you're old enough to do it by yourself):
+&#x1F4A1; `mvspec` was originally just a way to  get the multivariate spectral density estimate out of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
+
+&#x1F535; If you want the periodogram, you got it (tapering is not done automatically because you're old enough to do it by yourself):
 
 ```r
 x1 = 2*cos(2*pi*1:100*5/100)  + 3*sin(2*pi*1:100*5/100)
@@ -557,6 +577,11 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 
 
 ### parametric spectral analysis
+
+
+
+
+&#x1F4A1; `spec.ic` is similar to `spec.ar` but the option to use BIC instead of AIC is available.  Also, you can use the script to compare  AIC and BIC for AR fits to the data.
 
 &#x1F535; Based on BIC after detrending (default is using AIC with `BIC=FALSE`)
 
@@ -996,5 +1021,137 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 ```
 
 <img src="figs/blood2.png" alt="blood2"  width="700">
+
+
+## 11. Arithmetic
+
+The package has a few scripts to help with items related to time series and stochastic processes. 
+
+### ARMAtoAR
+
+&#x1F535;  R `stats` has an `ARMAtoMA` script to help visualize the causal form of a model.  To help visualize the _invertible_ form of a model, `astsa` includes an `ARMAtoAR` script.  For example,
+```r
+# ARMA(2, 2) in invertible form [rounded for your pleasure]
+ARMAtoMA(ar = c(1.5, -.75), ma = c(-.8,.4), 50)
+
+  [1]  0.7000  0.7000  0.5250  0.2625  0.0000 -0.1969 -0.2953 -0.2953 -0.2215 -0.1107
+ [11]  0.0000  0.0831  0.1246  0.1246  0.0934  0.0467  0.0000 -0.0350 -0.0526 -0.0526 ...
+```
+giving some of the &psi;-weights in the _x<sub>t</sub> = &sum;&psi;<sub>j</sub> w<sub>t-j</sub>_ representation of the model (_w<sub>t</sub>_ is white noise). If you want to go the other way, use
+```r
+ARMAtoAR(ar = c(1.5, -.75), ma = c(-.8,.4), 50) 
+
+  [1] -0.7000 -0.2100  0.1120  0.1736  0.0941  0.0058 -0.0330 -0.0287 -0.0098  0.0037
+ [11]  0.0068  0.0040  0.0005 -0.0012 -0.0012 -0.0004  0.0001  0.0003  0.0002  0.0000 ...
+```
+giving some of the &pi;-weights in the _w<sub>t</sub> = &sum;&pi;<sub>j</sub> x<sub>t-j</sub>_ representation of the model.
+
+&#x1F4A1; As a side note, you can check if a model is causal and invertible using `arma.spec()` from `astsa`, and if you're not careful
+```r
+arma.spec(ar = c(1.5, -.75), ma = c(-.8,-.4))
+
+  WARNING: Model Not Invertible 
+  Error in arma.spec(ar = c(1.5, -0.75), ma = c(-0.8, -0.4)) : Try Again
+```
+
+### Matrix Powers
+
+&#x1F535;  I have to compute _Q<sup>-1/2</sup>_ where _Q_ is a variance-covariance matrix  when calculating the [_spectral envelope_](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full) so I built in a script called `matrixpwr` that computes powers of a square matrix, including negative powers for nonsingular matrices.
+Also, `%^%` is available as a more intuitive operator. For example,
+
+```r
+var(econ5)^-.5  # rounded for you pleasure
+
+          unemp   gnp consum govinv prinv
+   unemp  0.586 0.036  0.042  0.092 0.094
+   gnp    0.036 0.001  0.001  0.003 0.003
+   consum 0.042 0.001  0.002  0.004 0.004
+   govinv 0.092 0.003  0.004  0.007 0.007
+   prinv  0.094 0.003  0.004  0.007 0.007
+
+```
+
+&#x1F535; But also, if you're playing with Markov Chains, you can learn about long run distributions by raising the transition matrix to a large power.  Here's a demonstration of convergence in a 2 state MC:
+
+```r
+( P = matrix(c(.7,.5,.3,.5), 2) )  # 1 step transitions
+  
+       [,1] [,2]
+  [1,]  0.7  0.3
+  [2,]  0.5  0.5
+
+( P %^% 5 )  # 5 step transitions
+  
+          [,1]    [,2]
+  [1,] 0.62512 0.37488
+  [2,] 0.62480 0.37520
+
+( P %^% 50 )  # 50 step transitions
+
+        [,1]  [,2]
+  [1,] 0.625 0.375
+  [2,] 0.625 0.375
+```
+_&pi;(1)_ = 5/(3+5) and _&pi;(2)_ = 3/(3+5) and almost there in 5 steps.  
+
+A note - if you use it in an expression, surround the operation with parentheses:
+```r
+c(.5,.5) %*% (P%^%50)  # toss a coin for initial state (which doesn't matter)
+
+        [,1]  [,2]
+  [1,] 0.625 0.375
+
+# but this draws an error because %*% is first
+c(1,0) %*% P%^%50
+```
+
+### Polynomial Multiplication 
+
+&#x1F535;  The script `sarima.sim` uses `polyMult` when simulating data from seasonal ARIMA models. 
+It might help to see what happens with a multiplicative model such as<br/>
+_&emsp; &emsp; (1 - 1.5B<sup>1</sup> + .75B<sup>2</sup>)&times;(1 - .9B<sup>12</sup>) x<sub>t</sub>   =w<sub>t</sub>_<br/>
+which is an ARIMA(2,0,0)&times;(1,0,0)<sub>12</sub> model.  You can add MA and SMA parts to your liking in the same manner.  Here's the AR polynomial on the left (`ARpoly`) and then the AR coefficients when on the right (`ARparm`):
+
+```r
+ar = c(1, -1.5, .75)
+sar = c(1, rep(0,11), .9)
+AR = polyMul(ar,sar)
+( ARpoly = cbind(order=0:14, ARpoly=AR) ) 
+  
+        order ARpoly
+   [1,]     0  1.000
+   [2,]     1 -1.500
+   [3,]     2  0.750
+   [4,]     3  0.000
+   [5,]     4  0.000
+   [6,]     5  0.000
+   [7,]     6  0.000
+   [8,]     7  0.000
+   [9,]     8  0.000
+  [10,]     9  0.000
+  [11,]    10  0.000
+  [12,]    11  0.000
+  [13,]    12  0.900
+  [14,]    13 -1.350
+  [15,]    14  0.675
+
+( ARparm = cbind(order=1:14, ARparm=-AR[-1]) )
+  
+       order ARparm
+  [1,]     1  1.500
+  [2,]     2 -0.750
+  [3,]     3  0.000
+  [4,]     4  0.000
+  [5,]     5  0.000
+  [6,]     6  0.000
+  [7,]     7  0.000
+  [8,]     8  0.000
+  [9,]     9  0.000
+ [10,]    10  0.000
+ [11,]    11  0.000
+ [12,]    12 -0.900
+ [13,]    13  1.350
+ [14,]    14 -0.675
+```
 
 

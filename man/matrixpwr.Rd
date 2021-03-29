@@ -52,6 +52,9 @@ D.S. Stoffer
 P = matrix(c(.7,.4,.3,.6), 2)       
 P \%^\% 50
 
+# surround with parentheses if used in an expression
+c(.5,.5) \%*\% (P\%^\%50)
+
 # Inverse square root
 Q = var(econ5)
 Q \%^\% -.5
