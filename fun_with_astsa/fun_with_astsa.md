@@ -115,7 +115,7 @@ And you can get more information on any individual set using the `help()` comman
 |unemp                       | U.S. Unemployment                                           |
 |varve                       | Annual Varve Series                                         |
 
-<p align="right">[top](#table-of-contents)</p>
+[top](#table-of-contents)
 -----
 
 
@@ -213,7 +213,7 @@ lag2.plot(soi, rec, 8)
 ```
 <img src="figs/lag2plot.png" alt="lag2plot"  width="700">
 
-<p align="right">[top](#table-of-contents)</p>
+[top](#table-of-contents)
 -----
 
 
