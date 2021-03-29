@@ -1037,7 +1037,7 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 &#x1F535;  R `stats` has an `ARMAtoMA` script to help visualize the causal form of a model.  To help visualize the _invertible_ form of a model, `astsa` includes an `ARMAtoAR` script.  For example,
 ```r
-# ARMA(2, 2) in invertible form [rounded for your pleasure]
+# ARMA(2, 2) in causal form [rounded for your pleasure]
 ARMAtoMA(ar = c(1.5, -.75), ma = c(-.8,.4), 50)
 
   [1]  0.7000  0.7000  0.5250  0.2625  0.0000 -0.1969 -0.2953 -0.2953 -0.2215 -0.1107
@@ -1045,6 +1045,7 @@ ARMAtoMA(ar = c(1.5, -.75), ma = c(-.8,.4), 50)
 ```
 giving some of the &psi;-weights in the _x<sub>t</sub> = &sum;&psi;<sub>j</sub> w<sub>t-j</sub>_ representation of the model (_w<sub>t</sub>_ is white noise). If you want to go the other way, use
 ```r
+# ARMA(2, 2) in invertible form [rounded for your pleasure]
 ARMAtoAR(ar = c(1.5, -.75), ma = c(-.8,.4), 50) 
 
   [1] -0.7000 -0.2100  0.1120  0.1736  0.0941  0.0058 -0.0330 -0.0287 -0.0098  0.0037
