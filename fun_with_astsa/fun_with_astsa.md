@@ -1111,7 +1111,7 @@ c(1,0) %*% P%^%50
 
 ### Polynomial Multiplication 
 
-&#x1F535;  The script `sarima.sim` uses `polyMult` when simulating data from seasonal ARIMA models. 
+&#x1F535;  The script `sarima.sim` uses `polyMul` when simulating data from seasonal ARIMA models. 
 It might help to see what happens with a multiplicative model such as<br/>
 _&emsp; &emsp; (1 - 1.5B<sup>1</sup> + .75B<sup>2</sup>)&times;(1 - .9B<sup>12</sup>) x<sub>t</sub>   =w<sub>t</sub>_<br/>
 which is an ARIMA(2,0,0)&times;(1,0,0)<sub>12</sub> model.  You can add MA and SMA parts to your liking in the same manner.  Here's the AR polynomial on the left (`ARpoly`) and then the AR coefficients when on the right (`ARparm`):
