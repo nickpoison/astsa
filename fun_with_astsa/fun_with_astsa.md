@@ -123,7 +123,7 @@ And you can get more information on any individual set using the `help()` comman
 
 > **`astsa.col()`** 
 
-is included to easily adjust the opacity of the colors. **Notice each color display has diagonal lines behind it to demonstrate opacity.**
+is included to easily adjust the opacity of the colors. 
 
 ```r
 par(mfrow=c(3,1))
@@ -140,6 +140,8 @@ barplot(rep(1,8), density=10, angle=c(45, -45))
 par(new=TRUE)
 barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2))
 ```
+**Notice each color display has diagonal lines behind it to demonstrate opacity.**
+
 <img src="figs/palette.png" alt="palette"  width="700">
 
 
