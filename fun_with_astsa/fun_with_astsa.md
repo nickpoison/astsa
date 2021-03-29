@@ -1067,15 +1067,14 @@ arma.spec(ar = c(1.5, -.75), ma = c(-.8,-.4))
 Also, `%^%` is available as a more intuitive operator. For example,
 
 ```r
-var(econ5)^-.5  # rounded for you pleasure
+var(econ5)%^%-.5  # rounded for you pleasure
 
-          unemp   gnp consum govinv prinv
-   unemp  0.586 0.036  0.042  0.092 0.094
-   gnp    0.036 0.001  0.001  0.003 0.003
-   consum 0.042 0.001  0.002  0.004 0.004
-   govinv 0.092 0.003  0.004  0.007 0.007
-   prinv  0.094 0.003  0.004  0.007 0.007
-
+          [,1]   [,2]   [,3]   [,4]   [,5]
+   [1,]  1.073  0.005 -0.017  0.006  0.021
+   [2,]  0.005  0.017 -0.019 -0.009 -0.010
+   [3,] -0.017 -0.019  0.026  0.006  0.004
+   [4,]  0.006 -0.009  0.006  0.025  0.006
+   [5,]  0.021 -0.010  0.004  0.006  0.033
 ```
 
 &#x1F535; But also, if you're playing with Markov Chains, you can learn about long run distributions by raising the transition matrix to a large power.  Here's a demonstration of convergence in a 2 state MC:
