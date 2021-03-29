@@ -12,6 +12,7 @@ it's more than just data ...
 
 -----
 ------ 
+
 ### Table of Contents
   
   * [1. Data](#1-data)
@@ -115,7 +116,8 @@ And you can get more information on any individual set using the `help()` comman
 |unemp                       | U.S. Unemployment                                           |
 |varve                       | Annual Varve Series                                         |
 
-[top](#table-of-contents)
+[<sub>top</sub>](#table-of-contents)
+
 -----
 
 
@@ -213,7 +215,8 @@ lag2.plot(soi, rec, 8)
 ```
 <img src="figs/lag2plot.png" alt="lag2plot"  width="700">
 
-[top](#table-of-contents)
+[<sub>top</sub>](#table-of-contents)
+
 -----
 
 
@@ -281,7 +284,10 @@ acf2(diff(log(varve)), plot=FALSE)
 ```r
 ccf2(cmort, part)
 ```
+
 <img src="figs/ccf2.png" alt="ccf2"  width="700" height="400">
+
+[<sub>top</sub>](#table-of-contents)
 
 -----
 
@@ -310,9 +316,10 @@ set.seed(101010)
 x = sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120) + 100
 tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')  
 ```
+
 <img src="figs/sarima.sim.png" alt="sarima.sim"  width="700" height="400">
 
------
+
 
 ### ARIMA Estimation
 
@@ -437,7 +444,7 @@ $BIC
 
 <img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="700">
 
------
+
 
 ### Forecasting
 
@@ -486,8 +493,10 @@ sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 ```
 <img src="figs/foreCO2.png" alt="foreCO2"  width="700" height="400">
 
+[<sub>top</sub>](#table-of-contents)
 
 -----
+
 ## 5. Spectral Analysis
 
 &#x1F4A1;  There are a few scripts that help with spectral analysis.
@@ -684,9 +693,10 @@ refer to frequency ordinate:
 
 ```
 
-
+[<sub>top</sub>](#table-of-contents)
 
 -----
+
 ## 6. Linearity Test
 
 &#x1F4A1;  Linear time series models are built on the linear process, where it is assumed that a univariate series <i>X<sub>t</sub></i> can be generated as
@@ -715,6 +725,8 @@ tsplot(nyse, col=4)
 ```
 <img src="figs/test_nyse.png" alt="test_nyse"  width="700" height="400">
 <img src="figs/nyse.png" alt="nyse"  width="700">
+
+[<sub>top</sub>](#table-of-contents)
 
 -----
 
@@ -890,6 +902,9 @@ polygon(xx, yy, border=8, col=gray(.6, alpha=.2) )
 
 <img src="figs/WBCss.png" alt="WBCss"  width="700" height="400">
 
+[<sub>top</sub>](#table-of-contents)
+
+---
 
 ## 8. EM Algorithm
 
@@ -1033,6 +1048,9 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 <img src="figs/blood2.png" alt="blood2"  width="700">
 
+[<sub>top</sub>](#table-of-contents)
+
+---
 
 ## 9. Arithmetic
 
@@ -1119,7 +1137,7 @@ c(1,0) %*% P%^%50
 ### Polynomial Multiplication 
 
 &#x1F535;  The script `sarima.sim` uses `polyMul` when simulating data from seasonal ARIMA models. 
-It might help to see what happens with a multiplicative model such as<br/>
+For folks who may have forgotten the stuff they learned about polynomials in 2nd grade math, it might help to see what happens with a multiplicative model such as<br/>
 _&emsp; &emsp; (1 - 1.5B<sup>1</sup> + .75B<sup>2</sup>)&times;(1 - .9B<sup>12</sup>) x<sub>t</sub>   =w<sub>t</sub>_<br/>
 which is an ARIMA(2,0,0)&times;(1,0,0)<sub>12</sub> model.  You can add MA and SMA parts to your liking in the same manner.  Here's the AR polynomial on the left (`ARpoly`) and then the AR coefficients when on the right (`ARparm`):
 
