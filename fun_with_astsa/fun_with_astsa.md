@@ -11,24 +11,25 @@ it's more than just data ...
 
 
 -----
-------
- 
-### Table of Contents  
+------ 
+### Table of Contents
+  
   * [1. Data](#1-data)
   * [2. Plotting](#2-plotting)
   * [3. Correlations](#3-correlations)
-  * [4. ARIMA Simulation](#4-arima-simulation)
-  * [5. ARIMA Estimation](#5-arima-estimation)
-  * [6. Forecasting](#6-forecasting)
-  * [7. Spectral Analysis](#7-spectral-analysis)
+  * [4. ARIMA](#4-arima)
+     * [ARIMA Simulation](#arima-simulation)
+     * [ARIMA Estimation](#arima-estimation)
+     * [Forecasting](#forecasting)
+  * [5. Spectral Analysis](#5-spectral-analysis)
      * [ARMA Spectrum](#arma-spectral-density)
      * [Nonparametric](#nonparametric-spectral-analysis)
      * [Parametric](#parametric-spectral-analysis)
      * [Spectral Matrices](#more-multivariate-spectra)     
-  * [8. Testing for Linearity](#8-linearity-test)
-  * [9. State Space Models and Kalman Filtering](#9-state-space-models)
-  * [10. EM Algorithm](#10-em-algorithm)
-  * [11. Arithmetic](#11-arithmetic)
+  * [6. Testing for Linearity](#6-linearity-test)
+  * [7. State Space Models and Kalman Filtering](#7-state-space-models)
+  * [8. EM Algorithm](#8-em-algorithm)
+  * [9. Arithmetic](#9-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
@@ -114,6 +115,7 @@ And you can get more information on any individual set using the `help()` comman
 |unemp                       | U.S. Unemployment                                           |
 |varve                       | Annual Varve Series                                         |
 
+<p align="right">[top](#table-of-contents)</p>
 -----
 
 
@@ -211,6 +213,7 @@ lag2.plot(soi, rec, 8)
 ```
 <img src="figs/lag2plot.png" alt="lag2plot"  width="700">
 
+<p align="right">[top](#table-of-contents)</p>
 -----
 
 
@@ -282,7 +285,9 @@ ccf2(cmort, part)
 
 -----
 
-## 4. ARIMA Simulation
+## 4. ARIMA 
+
+### ARIMA Simulation
 
 &#x1F4A1; You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via 
 
@@ -309,7 +314,7 @@ tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 
 -----
 
-## 5. ARIMA Estimation
+### ARIMA Estimation
 
 &#x1F4A1; Fitting ARIMA models to data is a breeze with the modern script
 
@@ -434,7 +439,7 @@ $BIC
 
 -----
 
-## 6. Forecasting
+### Forecasting
 
 &#x1F4A1;  Forecasting your fitted ARIMA model is as simple as using
 
@@ -483,7 +488,7 @@ sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 
 
 -----
-## 7. Spectral Analysis
+## 5. Spectral Analysis
 
 &#x1F4A1;  There are a few scripts that help with spectral analysis.
 
@@ -682,7 +687,7 @@ refer to frequency ordinate:
 
 
 -----
-## 8. Linearity Test
+## 6. Linearity Test
 
 &#x1F4A1;  Linear time series models are built on the linear process, where it is assumed that a univariate series <i>X<sub>t</sub></i> can be generated as
 
@@ -713,7 +718,7 @@ tsplot(nyse, col=4)
 
 -----
 
-## 9. State Space Models
+## 7. State Space Models
 
 
  &#x1F4A1;  There are a number of levels of Kalman filtering and smoothing in `astsa`. The most basic script is 
@@ -886,7 +891,7 @@ polygon(xx, yy, border=8, col=gray(.6, alpha=.2) )
 <img src="figs/WBCss.png" alt="WBCss"  width="700" height="400">
 
 
-## 10. EM Algorithm
+## 8. EM Algorithm
 
 &#x1F4A1;  To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) there are two scripts
 
@@ -1029,7 +1034,7 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 <img src="figs/blood2.png" alt="blood2"  width="700">
 
 
-## 11. Arithmetic
+## 9. Arithmetic
 
 &#x1F4A1; The package has a few scripts to help with items related to time series and stochastic processes. 
 
