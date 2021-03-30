@@ -330,7 +330,7 @@ tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 It can do everything for you but you have to choose the model. 
 
 &#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK; see [Issue 2 of the R time series issues page](https://www.stat.pitt.edu/stoffer/tsa4/Rissues.htm). Originally, `astsa` had a version of automatic fitting of models, but IT DOESN'T WORK, so it was scrapped. 
- The bottom line is, here, __AI = As if__, and if you don't know what you're doing, why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
+ The bottom line is, here, `AI = As if`, and if you don't know what you're doing, why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
 
 As with everything else, there are many examples on the help page (`?sarima`) and we'll do a couple here.
 
