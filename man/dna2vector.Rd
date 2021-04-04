@@ -21,14 +21,16 @@ The particular alphabet  being used. The default is \code{alphabet=c("A", "C", "
 
     The indicator vectors (as a matrix) are returned invisibly in case the user forgets to put the results in an object wherein the screen would scroll displaying the entire sequence.  In other words, the user should do something like \code{xdata = dna2vector(data)} where \code{data} is the original sequence.
     
-    As an example, if the DNA sequence is in a FASTA file, say \code{sequence.fasta}, remove the first line which will look like \code{>V01555.2 ... }. Then the following will read the data into the session, create the indicator sequence and save it as a compressed R data file:
-      
-    \code{fileName <- 'sequence.fasta'  # name of FASTA file \cr
-          myseq <- readChar(fileName, file.info(fileName)$size) # input the sequence \cr
-          xdata <- dna2vector(myseq)  # convert it to indicators \cr
-          save(xdata, file='myseq.rda') # save the file as a compressed file \cr 
-          load('myseq.rda')  # now you have xdata again # load it when needed again\cr
+    As an example, if the DNA sequence is in a FASTA file, say \code{sequence.fasta}, remove the first line which will look like \code{>V01555.2 ... }. Then the following code can be used to read the data into the session, create the indicator sequence and save it as a compressed R data file:
+    
+   \preformatted{  
+    \code{fileName <- 'sequence.fasta'  # name of FASTA file  
+          myseq <- readChar(fileName, file.info(fileName)$size) # input the sequence  
+          xdata <- dna2vector(myseq)  # convert it to indicators 
+          save(xdata, file='myseq.rda') # save the file as a compressed file  
+          load('myseq.rda')  # now you have xdata again # load it when needed again 
           }
+   }       
 }
 \value{matrix of indicator vectors; returned invisibly
 }
