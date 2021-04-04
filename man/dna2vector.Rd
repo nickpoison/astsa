@@ -22,15 +22,14 @@ The particular alphabet  being used. The default is \code{alphabet=c("A", "C", "
     The indicator vectors (as a matrix) are returned invisibly in case the user forgets to put the results in an object wherein the screen would scroll displaying the entire sequence.  In other words, the user should do something like \code{xdata = dna2vector(data)} where \code{data} is the original sequence.
     
     As an example, if the DNA sequence is in a FASTA file, say \code{sequence.fasta}, remove the first line which will look like \code{>V01555.2 ... }. Then the following code can be used to read the data into the session, create the indicator sequence and save it as a compressed R data file:
-    
-   \preformatted{  
-    \code{fileName <- 'sequence.fasta'  # name of FASTA file  
-          myseq <- readChar(fileName, file.info(fileName)$size) # input the sequence  
-          xdata <- dna2vector(myseq)  # convert it to indicators 
-          save(xdata, file='myseq.rda') # save the file as a compressed file  
-          load('myseq.rda')  # now you have xdata again # load it when needed again 
-          }
-   }       
+       
+\preformatted{  
+  fileName <- 'sequence.fasta'      # name of FASTA file  
+  data     <- readChar(fileName, file.info(fileName)$size)  # input the sequence  
+  myseq    <- dna2vector(data)      # convert it to indicators 
+  save(myseq, file='myseq.rda')     # save the file as a compressed file  
+  load('myseq.rda')                 # load 'myseq' when needed 
+}  
 }
 \value{matrix of indicator vectors; returned invisibly
 }
@@ -44,9 +43,6 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 
 The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}. 
 }
-\note{The Epstein Barr sequence in various forms may be found at
-\url{https://www.ncbi.nlm.nih.gov/nuccore/V01555.2}
-}
 \author{
 D.S. Stoffer 
 }
@@ -54,8 +50,7 @@ D.S. Stoffer
  \code{\link{specenv}}
 }
 \examples{
-# Epstein-Barr virus (entire sequence included in \code{astsa})
-load("EBV.rda")
+# Epstein-Barr virus (entire sequence included in astsa)
 xdata = dna2vector(EBV)
 
 # part of EBV with  1, 2, 3, 4 for "A", "C", "G", "T"
@@ -66,14 +61,12 @@ xdata = dna2vector(bnrf1ebv)
 data <- 
 c("1 agaattcgtc ttgctctatt cacccttact tttcttcttg cccgttctct ttcttagtat
   61 gaatccagta tgcctgcctg taattgttgc gccctacctc ttttggctgg cggctattgc")
-  
 xdata = dna2vector(data, alphabet=c('a', 'c', 'g', 't')) 
 
 # raw FASTA sequence
 data <- 
-c("AGAATTCGTCTTGCTCTATTCACCCTTACTTTTCTTCTTGCCCGTTCTCTTTCTTAGTATGAATCCAGTA
-TGCCTGCCTGTAATTGTTGCGCCCTACCTCTTTTGGCTGGCGGCTATTGCCGCCTCGTGTTTCACGGCCT")
-
+ c("AGAATTCGTCTTGCTCTATTCACCCTTACTTTTCTTCTTGCCCGTTCTCTTTCTTAGTATGAATCCAGTA
+    TGCCTGCCTGTAATTGTTGCGCCCTACCTCTTTTGGCTGGCGGCTATTGCCGCCTCGTGTTTCACGGCCT")
 xdata = dna2vector(data) 
 }
 \keyword{ manip }

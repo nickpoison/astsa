@@ -34,13 +34,13 @@ if (plot){
 # threshold
 m = xspec$kernel$m
 etainv = sqrt(sum(xspec$kernel[-m:m]^2))
-if (is.na(significance)) { thresh=0 
+if (is.na(significance)) { thresh=0
  } else {
 thresh = 100*(2/num)*exp(qnorm(1-significance)*etainv)*rep(1,nfreq)
  }
 ylimm = c(0, max(max(100*specenv), thresh))
 tsplot(frequency, 100*specenv, type="l", ylab="Spectral Envelope (%)", xlab="frequency", ylim=ylimm)
-lines(frequency, thresh, lty="dashed", col="blue")
+if (any(thresh > 0)) lines(frequency, thresh, lty="dashed", col="blue")
 }
 # details 
 output = cbind(frequency, specenv, beta)
