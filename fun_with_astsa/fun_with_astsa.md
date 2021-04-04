@@ -34,7 +34,7 @@ it's more than just data ...
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
-
+  * [10. DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
 
 -----
 -----
@@ -1194,6 +1194,11 @@ AR = polyMul(ar,sar)
 ```
 
 [<sub>top</sub>](#table-of-contents)
+---
+
+### DNA and the Spectral Envelope
+
+&#x1F4CC; 	 coming soon 
 
 ----
 ----

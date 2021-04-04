@@ -26,26 +26,26 @@ You can find a short guide to  astsa scripts right here at [FUN WITH ASTSA](http
 
 ---
 ---
-### Versions 1.12 - Dec 2020
+### Versions 1.12 - started Dec 2020
 
-1.12.8 (GitHub - March 2021) 
+1.12.9 (GitHub - April 2021) 
 
-+ I need powers of matrices enough where I thought I'd include it in `astsa`.  The script is called `matrixpwr` 
-and includes `%^%` as a more intuitive operator.
++ Added `specenv`, `dna2vector`, and the data set `EBV`.  
 
- Some examples:
-```r
-var(econ5)%^%-.5   # inverse square root
+    - `specenv` calculates the spectral envelope defined in [original paper](https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf), summarized in  [Statistical Science](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full) and discussed in Chapter 7 of [Time Series Analysis and Its Applications: With R Examples](https://www.stat.pitt.edu/stoffer/tsa4/). 
 
-P = matrix(c(.7,.4,.3,.6), 2) # 2 state Markov transition matrix
-P %^% 50                      # steady state 
-```
+    - `specenv` accepts only indicators, so `dna2vector` is a way to preprocess a DNA sequence (such as a FASTA file).
+
+    - `EBV` is the entire Epstein-Barr sequence as a character vector. It's not useful on its own, but thru `dna2vector`, different regions can be explored.
+
+
+
++ We needed powers of matrices enough where we thought we'd include it in `astsa`.  The script is called `matrixpwr` and includes `%^%` as a more intuitive operator.
+For example, `var(econ5)%^%-.5` to calculate an inverse square root matrix.
+
 
 + Added `test.linear`, a script to test the null hypothesis that the data are generated from a linear process with iid innovations. 
 
-
->_many new changes are related to better colors for plotting time series with
-the introduction of an astsa palette and replacing code that used `plot` to `tsplot` ... there's no need for the user to change any existing code - but the options are there now to make things look purty._
 
 + Updated `Grid`, `tsplot`, `sarima.sim`, and `mvspec`. 
 
@@ -57,18 +57,13 @@ other seasonal parameters - doing so gives a message to make sure you're doing i
     - For `tsplot` and `mvspec`, by default now, there is one minor tick on the x-axis and none on the y-axis.  Also, `mvspec` doesn't display the bandwidth
 on the axis - it's still there in the CI if the plot is on log-scale and it's still part of the "spec" object.
 
-   - Also, updated `tsplot` so multiple series can have different plot symbols (`pch`), e.g., 
-   ```r 
-   tsplot(blood, type='o', col=2:4, pch=2:4, cex=2)
-   ```
+   - Also, updated `tsplot` so multiple series can have different plot symbols (`pch`), e.g., `tsplot(blood, type='o', col=2:4, pch=2:4, cex=2)`
 
 + Prettified  `arma.spec`, `lag1.plot`,  `lag2.plot`, `sarima`, and `sarima.for`, using the awesome power of `tsplot`, but no need to change existing code.
 
-+ Updated `tsplot` to allow for spaghetti plots:
-```r
-x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
-tsplot(x, col=1:8, spaghetti=TRUE`)
-``` 
++ Updated `tsplot` to allow for spaghetti plots:<br/>
+`x <- replicate(100, cumsum(rcauchy(1000))/1:1000)`<br/>
+`tsplot(x, col=1:8, spaghetti=TRUE)`
 
 + The package now has its own color palette that is attached
 when the package is attached. The palette is  especially  suited for plotting
@@ -127,10 +122,7 @@ that produced graphics but  didn't work on Apple's OS. In addition, I made `tspl
 + For `tsplot`, I added an argument (`byrow`) where you can plot row wise (`TRUE`) or 
 column wise (`FALSE`) for multiple plots. 
 
-+ Also, for `tsplot`, added an argument `gg` so if it's true the plot will *resemble* a ggplot ... e.g., 
-```r
-tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2) 
-```
++ Also, for `tsplot`, added an argument `gg` so if it's true the plot will have a g-gray interior ... e.g., `tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2)`
 
 
 ------------------------------
