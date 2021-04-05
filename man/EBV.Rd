@@ -3,7 +3,7 @@
 \docType{data}
 \title{Entire Epstein-Barr Virus (EBV) Nucleotide Sequence
 }
-\description{EBV nucleotide sequence - 172281 BP as a single string
+\description{EBV nucleotide sequence - 172281 bp as a single string
 }
 \format{
   The format is:
@@ -18,5 +18,10 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 
 The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
 }
+\note{EBV is not useful on its own, but using  `dna2vector`, different regions can be explored. For example, \code{ebv = dna2vector(EBV)} 
+}
 \source{\url{https://www.ncbi.nlm.nih.gov/nuccore/V01555.2}
 }
+\seealso{\code{\link{dna2vector}}
+}
+\keyword{datasets}

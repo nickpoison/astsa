@@ -7,7 +7,8 @@ Spectral Envelope
 Computes the spectral envelope of a categorical sequence.
 }
 \usage{
-specenv(xdata, section = NULL, spans = NULL, significance = 1e-04, plot = TRUE)
+specenv(xdata, section = NULL, spans = NULL, significance = 1e-04, 
+         plot = TRUE, ylim = NULL, ...)
 }
 \arguments{
   \item{xdata}{
@@ -27,6 +28,12 @@ significance threshold exhibited in plot - default is .0001; set to NA to cancel
   \item{plot}{
 if TRUE (default) a graphic of the spectral envelope is produced
 }
+  \item{ylim}{
+limits of the spectral envelope axis; if NULL (default), a suitable range is calculated.
+}
+  \item{\dots}{
+other graphical parameters.
+}
 }
 \details{
 Calculates the spectral envelope defined in \url{https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf} and summarized in \url{https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full}.  The concept is also discussed in Chapter 7 of Time Series Analysis and Its Applications: With R Examples: \url{https://www.stat.pitt.edu/stoffer/tsa4/}.
@@ -35,7 +42,7 @@ The input \code{xdata} must be a matrix of indicators. Otherwise, the data shoul
 }
 \value{
 By default, will produce a graph of the spectral envelope and an approximate significance threshold.
-A matrix containing: frequency, spectral envelope ordinates, and scaling of the categories in the order of the categories in the alphabet.  
+A matrix containing: frequency, spectral envelope ordinates, and scaling of the categories in the order of the categories in the alphabet is returned invisibly.
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

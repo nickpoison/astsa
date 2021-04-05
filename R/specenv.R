@@ -1,5 +1,5 @@
 specenv <-
-function(xdata, section=NULL, spans=NULL, significance=.0001, plot=TRUE){
+function(xdata, section=NULL, spans=NULL, significance=.0001, plot=TRUE, ylim=NULL, ...){
  # data check 
   if ( !is.matrix(xdata) || !all(xdata %in% c(0,1)) || !all(rowSums(xdata)==1) ) 
      stop("Input must be indicators, use 'dna2vector' to preprocess the data.")
@@ -38,8 +38,8 @@ if (is.na(significance)) { thresh=0
  } else {
 thresh = 100*(2/num)*exp(qnorm(1-significance)*etainv)*rep(1,nfreq)
  }
-ylimm = c(0, max(max(100*specenv), thresh))
-tsplot(frequency, 100*specenv, type="l", ylab="Spectral Envelope (%)", xlab="frequency", ylim=ylimm)
+if (is.null(ylim)) ylim = c(0, max(max(100*specenv), thresh))
+tsplot(frequency, 100*specenv, type="l", ylab="Spectral Envelope (%)", xlab="frequency", ylim=ylim, ...)
 if (any(thresh > 0)) lines(frequency, thresh, lty="dashed", col="blue")
 }
 # details 

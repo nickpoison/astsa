@@ -1194,11 +1194,155 @@ AR = polyMul(ar,sar)
 ```
 
 [<sub>top</sub>](#table-of-contents)
+
 ---
 
 ### DNA and the Spectral Envelope
 
-&#x1F4CC; 	 coming soon 
+&#x1F4A1;  There are 2 scripts to accomplish spectral analysis of DNA sequences,
+
+> **`specenv`** and **`dna2vector`** 
+
+and then there are a few data files,
+
+> **`bnrf1ebv`**, **`bnrf1hvs`**, and **`EBV`**.
+
+&#x1F535;  The first and second files are the nucleotide sequence of the BNRF1  gene (3741 bp) of the Epstein-Barr virus (EBV) and of the herpesvirus saimiri (HVS) using the coding 1=A, 2=C, 3=G, 4=T.   EBV is the FASTA file of the entire Epstein-Barr virus sequence taken from [NCBI]( https://www.ncbi.nlm.nih.gov/nuccore/V01555.2),  172281 bp.  It's not useful on its own, but using  `dna2vector`, different regions can be explored. For example, 
+
+```r
+# EBV looks like "AGAATTCGTCTTG ...", one very long string
+ebv = dna2vector(EBV)
+head(ebv)
+
+       [,1] [,2] [,3] [,4]
+  [1,]    1    0    0    0
+  [2,]    0    0    1    0
+  [3,]    1    0    0    0
+  [4,]    1    0    0    0
+  [5,]    0    0    0    1
+  [6,]    0    0    0    1
+```
+
+&#x1F535;  To use `specenv`, the input sequence has to be a matrix of indicators like the output above.  That's where `dna2vector` comes in.  There are many examples in the help file (`?dna2vector`), but here's a few to whet the appetite. 
+
+ 	
+&#129002; Let's say you download a DNA sequence as a FASTA file called `sequence.fasta`.
+It will look something like this:
+```r
+>HSBGPG Human gene for bone gla protein (BGP)
+GGCAGATTCCCCCTAGACCCGCCCGCACCATGGTCAGGCATGCCCCTCCTCATCGCTGGGCACAGCCCAGAGGGT
+ATAAACAGTGCTGGAGGCTGGCGGGGCAGGCCAGCTGAGTCCTGAGCAGCAGCCCAGCGCAGCCACCGAGACACC
+ATGAGAGCCCTCACACTCCTCGCCCTATTGGCCCTGGCCGCACTTTGCATCGCTGGCCAGGCAGGTGAGTGCCCC
+```
+
+Remove the first line using a text editor. If the file is in the working directory,
+the following code can be used to read the data into the session, create the indicator sequence and save it as a compressed R data file:
+
+```r
+  fileName <- 'sequence.fasta'      # name of FASTA file  
+  data     <- readChar(fileName, file.info(fileName)$size)  # input the sequence  
+  bone    <- dna2vector(data)       # convert it to indicators 
+  save(bone, file='bone.rda')       # save the file as a compressed file  
+  load('bone.rda')                  # and load 'bone' when you need it           
+ ```
+
+&#129002; Here are some other examples using `dna2vector`, which takes two arguments, 
+`data` and `alphabet`.  Of course `data` is the object that contains the sequence data, and `alphabet` is the particular alphabet used in the file, which defaults to ` alphabet = c("A", "C", "G", "T")` for strings and `alphabet = 1:4` for numeric data such as `bnrf1ebv`.
+
+```r
+####################################################################
+## gene BNRF1 of EBV with  1, 2, 3, 4 for "A", "C", "G", "T"      ##
+## remember 'bnrf1ebv' is a data set in astsa and it is a numeric ##
+####################################################################
+xdata = dna2vector(bnrf1ebv)
+# note:
+head(bnrf1ebv)
+   [1] 1 4 3 3 1 
+# and
+head(xdata)
+        [,1] [,2] [,3] [,4]
+   [1,]    1    0    0    0
+   [2,]    0    0    0    1
+   [3,]    0    0    1    0
+   [4,]    0    0    1    0
+   [5,]    1    0    0    0
+
+
+##########################
+## raw GenBank sequence ##
+##########################
+data <- 
+c("1 agaattcgtc ttgctctatt cacccttact tttcttcttg cccgttctct ttcttagtat
+  61 gaatccagta tgcctgcctg taattgttgc gccctacctc ttttggctgg cggctattgc")
+xdata = dna2vector(data, alphabet=c('a', 'c', 'g', 't')) 
+head(xdata)
+   
+        [,1] [,2] [,3] [,4]
+   [1,]    1    0    0    0
+   [2,]    0    0    1    0
+   [3,]    1    0    0    0
+   [4,]    1    0    0    0
+   [5,]    0    0    0    1
+
+##########################
+##  raw FASTA sequence  ##
+##########################
+data <- 
+ c("AGAATTCGTCTTGCTCTATTCACCCTTACTTTTCTTCTTGCCCGTTCTCTTTCTTAGTATGAATCCAGTA
+    TGCCTGCCTGTAATTGTTGCGCCCTACCTCTTTTGGCTGGCGGCTATTGCCGCCTCGTGTTTCACGGCCT")
+xdata = dna2vector(data) 
+head(xdata)
+
+       [,1] [,2] [,3] [,4]
+  [1,]    1    0    0    0
+  [2,]    0    0    1    0
+  [3,]    1    0    0    0
+  [4,]    1    0    0    0
+  [5,]    0    0    0    1
+```
+
+&#x1F4A1;  `specenv` calculates the spectral envelope defined in [the original paper](https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf), summarized in  [Statistical Science](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full) and discussed in Chapter 7 of [Time Series Analysis and Its Applications: With R Examples](https://www.stat.pitt.edu/stoffer/tsa4/). 
+
+By default, it produces a graph of the spectral envelope and an approximate significance threshold and invisibly return a matrix containing: _frequency, spectral envelope ordinates, and scaling of the categories_ in the order of the categories in the alphabet.  
+
+&#129002; A very simple run is something like this
+```r
+xdata = dna2vector(bnrf1ebv)
+u = specenv(xdata, spans=c(7,7))  # graphic below
+head(u)  # output - coefs are scalings in order of 'alphabet' (A C G T here)
+
+          freq     specenv    coef[1]    coef[2]    coef[3] coef[4]
+  [1,] 0.00025 0.002034738 -0.5014652 -0.5595067 -0.6599128       0
+  [2,] 0.00050 0.001929567 -0.5162806 -0.5557567 -0.6516047       0
+  [3,] 0.00075 0.001747429 -0.5402356 -0.5498484 -0.6370339       0
+  [4,] 0.00100 0.001587832 -0.5716387 -0.5398917 -0.6178560       0
+  [5,] 0.00125 0.001511232 -0.6025964 -0.5307763 -0.5959481       0
+```
+
+<img src="figs/specenv1.png" alt="specenv1"  width="700">
+
+&#129002; One more example... you can specify a section (`section = start:end`) to work on and the significance threshold (or turn it off `significance = NA`), plus other options.
+Here's one for a section of the EBV.
+
+```r
+xdata = dna2vector(EBV)
+u = specenv(xdata, spans=c(7,7), section=50000:52000)  # repeat section
+round(head(u), 3)  # output 
+
+         freq specenv coef[1] coef[2] coef[3] coef[4]
+   [1,] 0.000   0.055   0.520  -0.529  -0.671       0
+   [2,] 0.001   0.047   0.519  -0.531  -0.671       0
+   [3,] 0.001   0.037   0.514  -0.536  -0.669       0
+   [4,] 0.002   0.026   0.507  -0.547  -0.667       0
+   [5,] 0.002   0.017   0.493  -0.564  -0.662       0
+```
+
+<img src="figs/specenv2.png" alt="specenv2"  width="700">
+
+[<sub>top</sub>](#table-of-contents)
+
 
 ----
+&#128584; &#128585; &#128586;  &emsp; THAT'S A WRAP  &emsp;  &#128584; &#128585;  &#128586; 
+
 ----
