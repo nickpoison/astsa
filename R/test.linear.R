@@ -36,6 +36,7 @@ lamhat = mean(Test)
    Tst[k1,k2] = pchisq(Test[k1,k2], df=2, ncp=lamhat, lower.tail=FALSE)
   }
  }
+# plot
 u    = seq(0, .5, length.out = nrow(Tst))
 cm.c = cm.colors(201);  clrs = rev(cm.c[c(94:50, 121, 141, 161, 181, 201)]) 
 if(color==FALSE)  clrs = rev(gray(c(400:356/400, .7, .6, .5, .4, .3)))  
@@ -45,6 +46,7 @@ filled.contour(u,u,Tst,  col=clrs, nlevels=50, zlim=c(0,1),
 mtext(expression(omega[1]), side=1, line=2,    adj=.4, cex=1.2)  
 mtext(expression(omega[2]), side=2, line=2.75, adj=.5, cex=1.2, las=1)
 title("Normalized BiSpectrum", adj =.35, line=1, cex.main=1.2) 
+# values
 test.out = list(prob=Tst)
 return(invisible(test.out))
 }
