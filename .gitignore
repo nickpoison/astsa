@@ -31,5 +31,3 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
-/R/mvspec_old.R
-/README.rmd
