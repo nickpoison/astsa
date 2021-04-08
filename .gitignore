@@ -32,3 +32,4 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 /R/mvspec_old.R
+/README.rmd
