@@ -53,6 +53,7 @@ And you can get more information on any individual set using the `help()` comman
 
 |Data sets in package ‘astsa’|                         |
 |----------|-------------|
+|EBV                         | Entire Epstein-Barr Virus (EBV) Nucleotide Sequence         |
 |EQ5                         | Seismic Trace of Earthquake number 5                        |
 |EQcount                     | EQ Counts                                                   |
 |EXP6                        | Seismic Trace of Explosion number 6                         |
