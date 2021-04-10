@@ -6,7 +6,8 @@
  common zeros.  
 }
 \usage{
-arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, log="n", type=NULL, ...)
+arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, log="n", 
+          main='from specified model', ...)
 }
 \arguments{
   \item{ar}{vector of AR parameters
@@ -19,7 +20,7 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, log="n", type=NULL, ...)
 }
   \item{log}{plot spectra on a log-scale; default is 'no'
 }
-  \item{type}{type of plot to be drawn, defaults to lines
+  \item{main}{title of graphic
 }
   \item{\dots}{additional arguments 
 }

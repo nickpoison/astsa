@@ -36,7 +36,7 @@ other graphical parameters.
 }
 }
 \details{
-Calculates the spectral envelope defined in \url{https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf} and summarized in \url{https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full}.  The concept is also discussed in Chapter 7 of Time Series Analysis and Its Applications: With R Examples: \url{https://www.stat.pitt.edu/stoffer/tsa4/}.
+Calculates the spectral envelope defined in \kbd{https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf} and summarized in \kbd{https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full}.  The concept is also discussed in Chapter 7 of Time Series Analysis and Its Applications: With R Examples: \kbd{https://www.stat.pitt.edu/stoffer/tsa4/}.
 
 The input \code{xdata} must be a matrix of indicators. Otherwise, the data should be preprocessed using \code{\link{dna2vector}}.
 }

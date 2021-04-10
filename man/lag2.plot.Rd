@@ -26,6 +26,8 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
   \item{bgl}{background of the ACF legend; default is \code{'white'}
 }
   \item{box.col}{color of the border of the ACF legend; default is \code{'gray(62)'}
+}
+  \item{\dots}{additional graphical parameters
 }   
 }
 \references{You can find demonstrations of  astsa capabilities at  
