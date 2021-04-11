@@ -134,16 +134,13 @@ is included to easily adjust the opacity of the colors.
 par(mfrow=c(3,1))
 
 barplot(rep(1,8), density=10, angle=c(45, -45))
-par(new=TRUE)
-barplot(rep(1,8), col=1:8, main='astsa palette', names=1:8)
+barplot(rep(1,8), col=1:8, main='astsa palette', names=1:8, add=TRUE)
 
 barplot(rep(1,8),density=10, angle=c(45, -45))
-par(new=TRUE)
-barplot(rep(1,8), col=astsa.col(1:8, .7), main='transparency', names=1:8)
+barplot(rep(1,8), col=astsa.col(1:8, .7), main='transparency', names=1:8, add=TRUE)
 
 barplot(rep(1,8), density=10, angle=c(45, -45))
-par(new=TRUE)
-barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2))
+barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2), add=TRUE)
 ```
 **Notice each color display has diagonal lines behind it to demonstrate opacity.**
 
