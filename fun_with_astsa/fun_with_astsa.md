@@ -285,6 +285,9 @@ ccf2(cmort, part)
 
 <img src="figs/ccf2.png" alt="ccf2"  width="700" height="400">
 
+&#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).
+
+
 [<sub>top</sub>](#table-of-contents)
 
 -----
