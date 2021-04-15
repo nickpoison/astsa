@@ -332,7 +332,7 @@ It can do everything for you but you have to choose the model.
 
 &#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK; see [Using an automated process to select the order of an ARMA time series model returns the true data generating process less than half the time even with simple data generating processes; and with more complex models the chance of success comes down nearly to zero even with long sample sizes.](http://freerangestats.info/blog/2015/09/30/autoarima-success-rates)
 
-<img src="figs/blackbox.jpg" alt="blackbox"  width="700" height="400">
+<img src="figs/blackbox.png" alt="blackbox"  width="700" height="400">
 
 
 Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T WORK and was scrapped. 
