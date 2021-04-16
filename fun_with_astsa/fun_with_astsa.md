@@ -1157,7 +1157,7 @@ which is an ARIMA(2,0,0)&times;(1,0,0)<sub>12</sub> model.  You can add MA and S
 
 ```r
 ar = c(1, -1.5, .75)
-sar = c(1, rep(0,11), .9)
+sar = c(1, rep(0,11), -.9)
 AR = polyMul(ar,sar)
 ( ARpoly = cbind(order=0:14, ARpoly=AR) ) 
   
@@ -1174,10 +1174,15 @@ AR = polyMul(ar,sar)
   [10,]     9  0.000
   [11,]    10  0.000
   [12,]    11  0.000
-  [13,]    12  0.900
-  [14,]    13 -1.350
-  [15,]    14  0.675
+  [13,]    12 -0.900
+  [14,]    13  1.350
+  [15,]    14 -0.675
 
+```
+which is
+&emsp; x<sub>t</sub> -1.5  x<sub>t-1</sub> +.75  x<sub>t-2</sub> - .9  x<sub>t-12</sub>
+           + 1.35  x<sub>t-13</sub> - .675  x<sub>t-14</sub> =  w<sub>t</sub> , &emsp; or            
+```r
 ( ARparm = cbind(order=1:14, ARparm=-AR[-1]) )
   
        order ARparm
@@ -1192,10 +1197,15 @@ AR = polyMul(ar,sar)
   [9,]     9  0.000
  [10,]    10  0.000
  [11,]    11  0.000
- [12,]    12 -0.900
- [13,]    13  1.350
- [14,]    14 -0.675
+ [12,]    12  0.900
+ [13,]    13 -1.350
+ [14,]    14  0.675
 ```
+which is
+&emsp; x<sub>t</sub> = 1.5  x<sub>t-1</sub> -.75  x<sub>t-2</sub> + .9  x<sub>t-12</sub>
+           -1.35  x<sub>t-13</sub> + .675  x<sub>t-14</sub> =  w<sub>t</sub> .
+
+&#129313;  That **was** fun!          
 
 [<sub>top</sub>](#table-of-contents)
 
