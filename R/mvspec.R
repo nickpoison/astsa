@@ -94,14 +94,11 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     }
     for (i in 1:nser) spec[, i] <- spec[, i]/u2
     spec <- drop(spec)
-#========================
-    fxx=array(NA, dim=c(nser,nser,Nspec))
-    for (k in 1:Nspec){
-		fxx[,,k]=pgram[k,,]
-	    }
-#========================  
+##== rearrange pgram for more useful display
+	fxx = base::aperm(pgram, c(2,3,1))	
+##== show details to help find peaks 
     details <- round( cbind(frequency=freq, period=1/freq, spectrum=spec), 4)
-#======================== 
+##== output
     spg.out <- list(freq = freq, spec = spec, coh = coh, phase = phase, 
         kernel = kernel, df = df, bandwidth = bandwidth,  
         fxx=fxx, Lh=Lh, n.used = N, details=details,
