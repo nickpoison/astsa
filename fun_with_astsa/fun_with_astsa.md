@@ -116,6 +116,8 @@ And you can get more information on any individual set using the `help()` comman
 |tempr                       | Temperatures from the LA pollution study                    |
 |unemp                       | U.S. Unemployment                                           |
 |varve                       | Annual Varve Series                                         |
+| | 
+
 
 [<sub>top</sub>](#table-of-contents)
 
@@ -517,12 +519,12 @@ Nonparametric spectral analysis is done with
 
 and parametric spectral analysis with  
 
-> **`spec.ic`**
+> **`spec.ic()`**
 
 ### ARMA Spectral Density
 
 
-&#x1F4A1;  `arma.spec` tests for causality, invertibility, and common zeros. If the model is not causal or invertible an error message is given. If there are approximate common zeros, a spectrum will be displayed and a warning will be given; e.g., `arma.spec(ar= .9, ma= -.9)` will yield a warning and the plot will be the spectrum of white noise. For example (the frequency and spectral ordinates are returned invisibly)
+&#x1F4A1;  `arma.spec` tests for causality, invertibility, and common zeros. If the model is not causal or invertible an error message is given. If there are approximate common zeros, a spectrum will be displayed and a warning will be given.  The frequency and spectral ordinates are returned invisibly.
 
 ```r
 arma.spec(ar = c(1.5, -.75), ma = c(-.8,.4), col=4, lwd=2)
@@ -540,6 +542,22 @@ abline(v=1:6/12, lty=2, col=7)  # lines at the seasonal frequencies
 ```
 
 <img src="figs/arma_spec_season.png" alt="arma_spec_season"  width="700">
+
+Some goofs
+```r
+arma.spec(ar=10, ma=20)
+
+   WARNING: Model Not Causal 
+   WARNING: Model Not Invertible
+   Error in arma.spec(ar = 10, ma = 20) : Try Again
+```   
+```r
+arma.spec(ar= .9, ma= -.9, main="It's White Noise, Dingus")
+ 
+   WARNING: Parameter Redundancy
+```
+
+<img src="figs/dingus.png" alt="dingus"  width="700">
 
 
 ### nonparametric spectral analysis
