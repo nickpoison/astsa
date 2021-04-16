@@ -364,6 +364,8 @@ Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T W
 <br/>
 Ok - back to our regularly scheduled program, `sarima()`.
 As with everything else, there are many examples on the help page (`?sarima`) and we'll do a couple here.
+<br/><br/>
+
 
 &#x1F535; Everyone else does it, so why don't we.  Here's a seasonal ARIMA fit to the AirPassenger data set (for the millionth time).
 
