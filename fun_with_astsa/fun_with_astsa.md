@@ -340,6 +340,29 @@ It can do everything for you but you have to choose the model.
 Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T WORK and was scrapped. 
  The bottom line is, if you don't know what you're doing (aka _ZERO KNOWLEDGE_), why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
 
+> DON'T BELIEVE IT?? OK... HERE YOU GO:
+
+```r
+    set.seed(666)
+    x = rnorm(1000)          # WHITE NOISE 
+    forecast::auto.arima(x)  # BLACK BOX
+      
+      # partial output 
+      Series: x
+      ARIMA(2,0,1) with zero mean
+      
+      Coefficients:
+                ar1      ar2     ma1
+            -0.9744  -0.0477  0.9509
+      s.e.   0.0429   0.0321  0.0294
+      
+      sigma^2 estimated as 0.9657:  log likelihood=-1400
+      AIC=2808.01   AICc=2808.05   BIC=2827.64
+````
+> YOU LOSE - an ARMA(2,1) ??
+
+<br/>
+Ok - back to our regularly scheduled program, `sarima()`.
 As with everything else, there are many examples on the help page (`?sarima`) and we'll do a couple here.
 
 &#x1F535; Everyone else does it, so why don't we.  Here's a seasonal ARIMA fit to the AirPassenger data set (for the millionth time).
