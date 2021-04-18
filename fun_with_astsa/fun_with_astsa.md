@@ -564,11 +564,11 @@ and the graphic can be on log-scale (`log='y'`) or decibels (`log='dB')`.
 and if you want to do a seasonal model, you have to be a little creative; e.g., _x<sub>t</sub>= .4 x<sub>t-12</sub> + w<sub>t</sub> + .5 w<sub>t-1</sub>_
 
 ```r
-arma.spec(ar=c(rep(0,11),.4), ma=.5, col=5, lwd=3, nxm=0)
-abline(v=1:6/12, lty=2, col=7)  # lines at the seasonal frequencies
+arma.spec(ar=c(rep(0,11),.4), ma=.5, col=5, lwd=3, frequency=12)  
 ```
 
 <img src="figs/arma_spec_season.png" alt="arma_spec_season"  width="700">
+
 
 Some goofs
 ```r
