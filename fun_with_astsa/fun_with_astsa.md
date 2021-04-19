@@ -603,7 +603,7 @@ mvspec(x, col=4, lwd=2, type='o', pch=20)
 ```
 
 <img src="figs/cosum.png" alt="cosum"  width="700">
-<img src="figs/periodogram.png" alt="periodogram"  width="700" height="400">
+<img src="figs/periodogram.png" alt="periodogram" width="700">
 
 &#x1F535; You can smooth in the usual way and get the CIs on the log-plot:
 
