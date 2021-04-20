@@ -1248,7 +1248,7 @@ which is
 ```
 which is
 &emsp; x<sub>t</sub> = 1.5  x<sub>t-1</sub> -.75  x<sub>t-2</sub> + .9  x<sub>t-12</sub>
-           -1.35  x<sub>t-13</sub> + .675  x<sub>t-14</sub> =  w<sub>t</sub> .
+           -1.35  x<sub>t-13</sub> + .675  x<sub>t-14</sub> +  w<sub>t</sub> .
 
 &#129313;  That **was** fun!          
 
