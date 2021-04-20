@@ -894,72 +894,84 @@ List of 6
 + Further explanations are also given on a [special page on Kalman filtering and
 smoothing](https://www.stat.pitt.edu/stoffer/tsa4/chap6.htm) for the text.
 
-&#x1F535; We'll give an example of using `Kfiler1()` and `Ksmooth1()` on the data set `WBC`, which is the daily white blood cell count of a patient for 3 months. 
-There are many missing values after the first month and they are coded as `0` in the data file.  We'll fit a state space model and then display the smoother estimates.
-The model is like the previous model,
+&#x1F535; We'll give an example of using `Kfiler0()` on some generated data.
+The model is a simple AR(1) plus noise:
 
-&emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> + v<sub>t</sub>_<br/>
+&emsp;&emsp;_x<sub>t</sub> =  &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = x<sub>t</sub> + v<sub>t</sub>_<br/>
 
-but now _A<sub>t</sub> =_ 0 or 1 depending on whether an observation is missing or not.
 
 ```r
-y     = WBC
-num   = length(y)
-A     = ifelse(WBC>0, 1, 0)
-A     = array(A, dim=c(1,1,num))  # measurement matrices must be an array
-input = rep(1,num)
+# Generate Data
+set.seed(999)
+num  = 100
+N    = num+1
+x    = sarima.sim(n=N, ar=.8)      # state x[0], x[1], ..., x[100]
+y    = ts(x[-1] + rnorm(num,0,1))  # obs         y[1], ..., y[100]   
 
-#  function to calculate likelihood
+
+# Function to evaluate the likelihood 
 Linn=function(para){
-   phi = para[1]; alpha = para[2];  sigw = para[3];  sigv = para[4]
-   kf = Kfilter1(num,y,A,x00,P00,phi,alpha,0,sigw,sigv,input)  # ?Kfilter1 for details
- return(kf$like)  # returns -loglike
-}
+  phi = para[1]; sigw = para[2]; sigv = para[3]   
+  kf = Kfilter0(num, y, A=1,mu0=0, Sigma0=10, phi, sigw, sigv)
+  return(kf$like)   
+  }
 
-# Estimation
-# initial parameters
-phi = 1; alpha = 0;  sigw = .1;  sigv = .01
-init.par = c(phi,alpha,sigw,sigv)
-x00 = 2     # initial state parameters
-P00 = .05   # keep these fixed (not necessary)
-est = optim(init.par, Linn, NULL, method="BFGS", hessian=TRUE, control=list(trace=1,REPORT=1)) 
-SE = sqrt(diag(solve(est$hessian))) 
+# Estimation  
+init.par = c(.1, 1, 1)   # initial parameter values
+(est = optim(init.par, Linn, gr=NULL, method="BFGS", hessian=TRUE, control=list(trace=1,REPORT=1)))      
+   
+   # output from numerical optimization 
+   initial  value 115.748358 
+   iter   2 value 98.291352
+   iter   3 value 94.054737
+   iter   4 value 93.454266
+   iter   5 value 92.192204
+   iter   6 value 91.398541
+   iter   7 value 91.368801
+   iter   8 value 91.365538
+   iter   9 value 91.365527
+   iter   9 value 91.365526
+   iter   9 value 91.365525
+   final  value 91.365525
+   converged
+   $par
+   [1] 0.7653691 1.0408250 0.9348492
+   
+   $value
+   [1] 91.36552
+   
+   $counts
+   function gradient
+         28        9 
+   
+   $convergence
+   [1] 0
+   
+   $message
+   NULL
+   
+   $hessian
+             [,1]     [,2]     [,3]
+   [1,] 178.81837 46.95386 -8.64152
+   [2,]  46.95386 60.71263 38.88109
+   [3,]  -8.64152 38.88109 65.62742
 
- ##--  some output --##
- #  initial  value -213.802860
- #  iter   2 value -301.268549
- #  
- #  iter  27 value -1498.920633
- #  iter  28 value -1566.562235
- #  iter  29 value -1645.965583
- #  iter  29 value -1419.901686
- #  iter  29 value -1479.781053
- #  final  value -1645.9
+# nice display of the results   
+SE = sqrt(diag(solve(est$hessian)))
+cbind(estimate=c(phi=est$par[1],sigw=est$par[2],sigv=est$par[3]), SE)
 
-u = cbind(estimate = est$par, SE)
-rownames(u)=c("phi", "alpha", "sigw", "sigv")
-round(u,3)
+         estimate         SE
+   phi  0.7653691 0.09726158   # actual phi = .8
+  sigw  1.0408250 0.21121288   # actual sigw = 1
+  sigv  0.9348492 0.18193356   # actual sigv = 1
 
-#        estimate    SE
-#  phi      0.946 0.028
-#  alpha    0.194 0.096
-#  sigw     0.160 0.016
-#  sigv     0.000 0.000  
+# and maybe plot the data with the smoother
+ks =  Ksmooth0(num, y, A=1,mu0=0, Sigma0=10, est$par[1], est$par[2], est$par[3])
+tsplot(y, type='o', col=4, pch=20)
+lines(ks$xs, col=6, lwd=2)
 
-phat = u[,1]  # final parameter estimats
-# run filter /smoother with estimates
-ks = Ksmooth1(num,y,A,x00,P00,phat[1],phat[2],0,phat[3],phat[4],input)
+<img src="figs/ksmoo.png" alt="ksmoo"  width="700">
 
-# plot the results - data are solid points, smoothers are blue circles and a line
-# gray swatch is 95% pointwise intervals 
-tsplot(ks$xs, type='o', col=4, ylim=c(1,5), ylab="WBC", xlab="day")
-points(WBC, pch=19)
- xx = c(time(WBC), rev(time(WBC)))
- yy = c(ks$xs-2*sqrt(ks$Ps), rev(ks$xs+2*sqrt(ks$Ps)))
-polygon(xx, yy, border=8, col=gray(.6, alpha=.2) )
-```
-
-<img src="figs/WBCss.png" alt="WBCss"  width="700" height="400">
 
 [<sub>top</sub>](#table-of-contents)
 
