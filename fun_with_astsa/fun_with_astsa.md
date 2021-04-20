@@ -912,7 +912,7 @@ y    = ts(x[-1] + rnorm(num,0,1))  # obs         y[1], ..., y[100]
 # Function to evaluate the likelihood 
 Linn=function(para){
   phi = para[1]; sigw = para[2]; sigv = para[3]   
-  kf = Kfilter0(num, y, A=1,mu0=0, Sigma0=10, phi, sigw, sigv)
+  kf = Kfilter0(num, y, A=1, mu0=0, Sigma0=10, phi, sigw, sigv)
   return(kf$like)   
   }
 
@@ -969,6 +969,7 @@ cbind(estimate=c(phi=est$par[1],sigw=est$par[2],sigv=est$par[3]), SE)
 ks =  Ksmooth0(num, y, A=1,mu0=0, Sigma0=10, est$par[1], est$par[2], est$par[3])
 tsplot(y, type='o', col=4, pch=20)
 lines(ks$xs, col=6, lwd=2)
+```
 
 <img src="figs/ksmoo.png" alt="ksmoo"  width="700">
 
