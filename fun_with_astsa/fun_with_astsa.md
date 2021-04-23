@@ -34,7 +34,9 @@ it's more than just data ...
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
-  * [10. DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
+  * [10. The Spectral Envelope](#10-the-spectral-envelope)   
+     * [DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
+     * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)
 
 -----
 -----
@@ -779,6 +781,8 @@ test.linear(soi)
 &#x1F535; Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange (NYSE) from February 2, 1984 to December 31, 1991
 
 ```r
+# many other packages have a 'nyse' data set
+# nyse = astsa::nyse  # if you have one of those other packages loaded
 test.linear(nyse) 
 tsplot(nyse, col=4) 
 ```
@@ -1268,6 +1272,7 @@ which is
 [<sub>top</sub>](#table-of-contents)
 
 ---
+## 10. The Spectral Envelope
 
 ### DNA and the Spectral Envelope
 
@@ -1410,6 +1415,35 @@ round(head(u), 3)  # output
 ```
 
 <img src="figs/specenv2.png" alt="specenv2"  width="700">
+
+
+### Optimal Transformations and the Spectral Envelope
+
+The script
+
+> **`specenv()`** 
+
+can also be used to find optimal transformations of real-valued time series.
+For example, we've seen the NYSE returns are nonlinear.
+
+```r
+x = astsa::nyse    
+# possible transformations include absolute value and squared value
+xdata = cbind(x, abs(x), x^2)  
+par(mfrow=2:1)
+u = specenv(xdata, real=TRUE,  spans=c(3,3))
+# peak at freq = .001 so let's
+# plot the optimal transform 
+beta = u[2, 3:5]  # scalings
+b = beta/beta[2]  # makes abs(x) coef=1
+gopt = function(x) { b[1]*x+b[2]*abs(x)+b[3]*x^2 }
+ curve(gopt, -.2, .2, col=4, lwd=2, panel.first=Grid(nym=0))
+gabs = function(x) { b[2]*abs(x) } # corresponding to |x|
+ curve(gabs, -.2, .2, add=TRUE, col=6)
+legend('bottomright', lty=1, col=c(4,6), legend=c('optimal', 'absolute value'), bg='white') 
+```
+
+<img src="figs/SEnyse.png" alt="specenv2"  width="700">
 
 [<sub>top</sub>](#table-of-contents)
 

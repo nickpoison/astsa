@@ -8,7 +8,7 @@ Computes the spectral envelope of categorical-valued or real-valued time series.
 }
 \usage{
 specenv(xdata, section = NULL, spans = NULL, significance = 1e-04, 
-         plot = TRUE, ylim = NULL, continuous = FALSE, ...)
+         plot = TRUE, ylim = NULL, real = FALSE, ...)
 }
 \arguments{
   \item{xdata}{For categorical-valued sequences, a matrix with rows that are indicators 
@@ -32,7 +32,7 @@ if TRUE (default) a graphic of the spectral envelope is produced
   \item{ylim}{
 limits of the spectral envelope axis; if NULL (default), a suitable range is calculated.
 }
-  \item{continuous}{ FALSE (default) for categorical-valued sequences and TRUE for
+  \item{real}{ FALSE (default) for categorical-valued sequences and TRUE for
 real-valued sequences.  
 }
   \item{\dots}{
@@ -40,9 +40,9 @@ other graphical parameters.
 }
 }
 \details{
-Calculates the spectral envelope for categorical-valued series defined in \kbd{https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf} and summarized in \kbd{https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full}.   Alternately, calculates the spectral envelope for real-valued series defined in \kbd{https://www.sciencedirect.com/science/article/abs/pii/S0378375896000444}.
+Calculates the spectral envelope for categorical-valued series as discussed in \kbd{https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf} and summarized in \kbd{https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full}.   Alternately, calculates the spectral envelope for real-valued series as discussed in \kbd{https://www.sciencedirect.com/science/article/abs/pii/S0378375896000444}.
 
-These concepts are also discussed in Section 7.9 (Chapter 7) of  Time Series Analysis and Its Applications: With R Examples: \kbd{https://www.stat.pitt.edu/stoffer/tsa4/}.
+These concepts are also presented (with examples) in Section 7.9 (Chapter 7) of  Time Series Analysis and Its Applications: With R Examples: \kbd{https://www.stat.pitt.edu/stoffer/tsa4/}.
 
 For categorical-valued series, the input  \code{xdata} must be a matrix of indicators which is perhaps a sequence preprocessed using \code{\link{dna2vector}}.
 
@@ -50,7 +50,7 @@ For real-valued series, the input \code{xdata} should be a matrix whose columns 
 }
 \value{
 By default, will produce a graph of the spectral envelope and an approximate significance threshold.
-A matrix containing: frequency, spectral envelope ordinates, and scaling of the categories in the order of the categories in the alphabet is returned invisibly.
+A matrix containing: frequency, spectral envelope ordinates, and (1) the scalings of the categories in the order of the categories in the alphabet or (2) the coefficients of the transformations, is returned invisibly.
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

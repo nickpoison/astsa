@@ -1,8 +1,8 @@
 specenv <-
 function(xdata, section=NULL, spans=NULL, significance=.0001, plot=TRUE, ylim=NULL, 
-          continuous=FALSE, ...){           
+          real=FALSE, ...){           
  # data check 
-  if (continuous) {
+  if (real) {
    if (ncol(xdata)<2)  stop("For continuous data, the input 'xdata' must be a matrix")
    if (is.null(section)) { x = xdata } else {
      if (!all(diff(section))==1) 
@@ -36,7 +36,7 @@ for (k in 1:nfreq){
   b = Q%*%ev$vectors[,1]      # beta at freq k/n 
   beta[k,] = b/sqrt(sum(b^2)) # helps to normalize beta
 } 
-if (!continuous){  
+if (!real){  
 beta = cbind(beta, 0)  # add 0s for last state
 } 
 frequency = xspec$freq
