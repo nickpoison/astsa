@@ -1,14 +1,24 @@
 specenv <-
-function(xdata, section=NULL, spans=NULL, significance=.0001, plot=TRUE, ylim=NULL, ...){
+function(xdata, section=NULL, spans=NULL, significance=.0001, plot=TRUE, ylim=NULL, 
+          continuous=FALSE, ...){           
  # data check 
-  if ( !is.matrix(xdata) || !all(xdata %in% c(0,1)) || !all(rowSums(xdata)==1) ) 
+  if (continuous) {
+   if (ncol(xdata)<2)  stop("For continuous data, the input 'xdata' must be a matrix")
+   if (is.null(section)) { x = xdata } else {
+     if (!all(diff(section))==1) 
+       stop("'section' must be consecutive indices of the form 'start:finish'") 
+     x = xdata[section,] 
+	 }	 
+  } else {
+   if ( !is.matrix(xdata) || !all(xdata %in% c(0,1)) || !all(rowSums(xdata)==1) ) 
      stop("Input must be indicators, use 'dna2vector' to preprocess the data.")
-  if  (is.null(section)) { x = xdata[,-ncol(xdata)] 
+   if  (is.null(section)) { x = xdata[,-ncol(xdata)] 
     } else {
       if (!all(diff(section))==1) 
        stop("'section' must be consecutive indices of the form 'start:finish'") 
       x = xdata[section,-ncol(xdata)]
-    } 
+    }
+   }       
 xspec = mvspec(x, spans=spans, detrend=FALSE, plot=FALSE)  
 fxxr  = Re(xspec$fxx)  # fxxr is real(fxx) 
 Var   = stats::var(x)  # var-cov matrix 
@@ -25,8 +35,10 @@ for (k in 1:nfreq){
   specenv[k] = ev$values[1]   # spec env at freq k/n is max evalue
   b = Q%*%ev$vectors[,1]      # beta at freq k/n 
   beta[k,] = b/sqrt(sum(b^2)) # helps to normalize beta
-}  
-beta = cbind(beta, 0) # add 0s for last state
+} 
+if (!continuous){  
+beta = cbind(beta, 0)  # add 0s for last state
+} 
 frequency = xspec$freq
 
 # graphics  

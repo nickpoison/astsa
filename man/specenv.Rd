@@ -4,19 +4,20 @@
 Spectral Envelope
 }
 \description{
-Computes the spectral envelope of a categorical sequence.
+Computes the spectral envelope of categorical-valued or real-valued time series.
 }
 \usage{
 specenv(xdata, section = NULL, spans = NULL, significance = 1e-04, 
-         plot = TRUE, ylim = NULL, ...)
+         plot = TRUE, ylim = NULL, continuous = FALSE, ...)
 }
 \arguments{
-  \item{xdata}{
-a matrix with rows that are indicators of the categories represented by the columns,
-possibly a sequence converted using \code{\link{dna2vector}} 
+  \item{xdata}{For categorical-valued sequences, a matrix with rows that are indicators 
+of the categories represented by the columns, possibly a sequence converted using 
+\code{\link{dna2vector}}.  For real-valued sequences, a matrix with at least two 
+rows that are various transformations of the data. 
 }
   \item{section}{
-of the form \code{start:end} where \code{start} < \code{end} are non-negative integers;  
+of the form \code{start:end} where \code{start < end} are non-negative integers;  
 specifies the section used in the analysis - default is the entire sequence.
 }
   \item{spans}{
@@ -31,14 +32,21 @@ if TRUE (default) a graphic of the spectral envelope is produced
   \item{ylim}{
 limits of the spectral envelope axis; if NULL (default), a suitable range is calculated.
 }
+  \item{continuous}{ FALSE (default) for categorical-valued sequences and TRUE for
+real-valued sequences.  
+}
   \item{\dots}{
 other graphical parameters.
 }
 }
 \details{
-Calculates the spectral envelope defined in \kbd{https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf} and summarized in \kbd{https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full}.  The concept is also discussed in Chapter 7 of Time Series Analysis and Its Applications: With R Examples: \kbd{https://www.stat.pitt.edu/stoffer/tsa4/}.
+Calculates the spectral envelope for categorical-valued series defined in \kbd{https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf} and summarized in \kbd{https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full}.   Alternately, calculates the spectral envelope for real-valued series defined in \kbd{https://www.sciencedirect.com/science/article/abs/pii/S0378375896000444}.
 
-The input \code{xdata} must be a matrix of indicators. Otherwise, the data should be preprocessed using \code{\link{dna2vector}}.
+These concepts are also discussed in Section 7.9 (Chapter 7) of  Time Series Analysis and Its Applications: With R Examples: \kbd{https://www.stat.pitt.edu/stoffer/tsa4/}.
+
+For categorical-valued series, the input  \code{xdata} must be a matrix of indicators which is perhaps a sequence preprocessed using \code{\link{dna2vector}}.
+
+For real-valued series, the input \code{xdata} should be a matrix whose columns are various transformations of the univariate series.
 }
 \value{
 By default, will produce a graph of the spectral envelope and an approximate significance threshold.
@@ -60,10 +68,23 @@ D.S. Stoffer
 \code{\link{dna2vector}}
 }
 \examples{
+# a DNA sequence
 data  = bnrf1ebv
 xdata = dna2vector(data)
 u = specenv(xdata, section=1:1000, spans=c(7,7))
 head(u)  # scalings are for A, C, G, and last one T=0 always
+
+# a real-valued series (nyse returns)
+x = astsa::nyse    
+xdata = cbind(x, abs(x), x^2)
+u = specenv(xdata, continuous=TRUE,  spans=c(3,3))
+# plot optimal transform at freq = .001
+beta = u[2, 3:5]
+b = beta/beta[2]  # makes abs(x) coef=1
+gopt = function(x) { b[1]*x+b[2]*abs(x)+b[3]*x^2 }
+curve(gopt, -.2, .2, col=4, lwd=2, panel.first=Grid())
+g2 = function(x) { b[2]*abs(x) } # corresponding to |x|
+curve(g2, -.2,.2, add=TRUE, col=6)
 }
 \keyword{ ts }
 
