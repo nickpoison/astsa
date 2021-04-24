@@ -30,11 +30,10 @@ You can also install `astsa` from the archive
 
 1.12.9 (GitHub - April 2021) 
 
-+ Added scripts for the analysis of DNA sequences and other categorical time series: `specenv`, `dna2vector`, and the data set `EBV`.  
++ Added scripts for the analysis of DNA sequences and other categorical time series: `specenv`, `dna2vector`, and the data set `EBV`.  And `specenv` can also handle real-valued series; see the examples included in the man page for `specenv` or in  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
-    - `specenv` calculates the spectral envelope defined in the [original paper](https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf), summarized in  [Statistical Science](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full) and discussed in Chapter 7 of [Time Series Analysis and Its Applications: With R Examples](https://www.stat.pitt.edu/stoffer/tsa4/). 
 
-    - `specenv` accepts only indicators, so `dna2vector` is a way to preprocess a DNA sequence (such as a FASTA file) or other categorical time series.
+    - `dna2vector` is used to preprocess a categorical sequence.
 
     - `EBV` is the entire Epstein-Barr sequence as a long single string. It's not useful on its own, but thru `dna2vector`, different regions can be explored via `specenv`.
 
