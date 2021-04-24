@@ -40,7 +40,7 @@ other graphical parameters.
 }
 }
 \details{
-Calculates the spectral envelope for categorical-valued series as discussed in \kbd{https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf} and summarized in \kbd{https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full}.   Alternately, calculates the spectral envelope for real-valued series as discussed in \kbd{https://www.sciencedirect.com/science/article/abs/pii/S0378375896000444}.
+Calculates the spectral envelope for categorical-valued series as discussed in \kbd{https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf} and summarized in \kbd{https://doi.org/10.1214/ss/1009212816}.   Alternately, calculates the spectral envelope for real-valued series as discussed in \kbd{https://doi.org/10.1016/S0378-3758(96)00044-4}.
 
 These concepts are also presented (with examples) in Section 7.9 (Chapter 7) of  Time Series Analysis and Its Applications: With R Examples: \kbd{https://www.stat.pitt.edu/stoffer/tsa4/}.
 
