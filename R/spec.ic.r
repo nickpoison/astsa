@@ -18,7 +18,7 @@ function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
   if (kmin < 1){
     freq = seq.int(0, 0.5, length.out = 500)*frequency(data)
     spec = var(data)*rep(1,500)
-    out2 = cbind(freq,spec)
+    out2 = cbind(freq, spec)
     if (plot){
      if (is.null(main)) {main=paste(nme1,"  |  ",nme2," order = ",0)} 
      tsplot(freq, spec, ylab='AR Spectrum', xlab='Frequency', margins=.5, 
@@ -27,7 +27,7 @@ function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
    } else {
     u    = stats::ar(data, order=kmin, aic=FALSE, method=method, demean=dmean)
     u2   = stats::spec.ar(u, plot=FALSE)	
-    out2 = cbind(freq=u2$freq, spec=u2$spec) 
+    out2 = cbind(freq=u2$freq, spec=c(u2$spec)) 
     if(plot){
      if (is.null(main)) {main = paste(nme1,"  |  ",nme2," order = ", kmin, sep="")}
      tsplot(u2$freq, u2$spec, ylab='AR Spectrum', xlab='Frequency', margins=.5, 
