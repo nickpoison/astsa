@@ -9,6 +9,7 @@ function(series, L=c(3,3), M=50, max.freq=.05){
 ##                               
 ######################################
 ts     = stats::ts
+tsp    = stats::tsp
 par    = graphics::par
 plot   = graphics::plot
 dev.new = grDevices::dev.new
@@ -32,6 +33,7 @@ M = 2*floor(M/2)           # make sure M  is even
 
 
 # Compute the spectrum
+tspar = tsp(series)
 series = ts(series, frequency = 1)  # This script assumes frequency = 1 (so 0 < nu < .5)
 spectra = stats::spec.pgram(series, spans=L, plot = FALSE)
 
@@ -97,19 +99,23 @@ A.theoretical[k] = A(fr.N[k])
 series.filt = stats::filter(series, a, sides = 2) # The filtered series
 old.par <- par(no.readonly = TRUE)
 par(mfrow=c(2,1))
-plot.ts(series, main = "Original series")
-plot.ts(series.filt, main = "Filtered series")
+# put back time and frequency parameters for plotting
+series = ts(series, start=tspar[1], frequency=tspar[3])
+series.filt = ts(series.filt, start=tspar[1], frequency=tspar[3])
+tsplot(series, main = "Original series")
+tsplot(series.filt, main = "Filtered series")
 
 dev.new()
 par(mfrow=c(2,1))
-stats::spectrum(series, spans=L, log="no", main = "Spectrum of original series")
-stats::spectrum(na.omit(series.filt), spans=L, log="no", main = "Spectrum of filtered series")
+mvspec(series, spans=L, log="no", main = "Spectrum of original series")
+mvspec(na.omit(series.filt), spans=L, log="no", main = "Spectrum of filtered series")
 
 
 dev.new()
+fr.N = fr.N*tspar[3]  # for plotting
 par(mfrow=c(2,1))
-plot(S, a, xlab = "s", ylab = "a(s)", main = "Filter coefficients")
-plot(fr.N, A.theoretical, type = "l", lty = 2, xlab = "freq", ylab = "freq. response", 
+tsplot(S, a, xlab = "s", ylab = "a(s)", main = "Filter coefficients")
+tsplot(fr.N, A.theoretical, type = "l", lty = 2, xlab = "freq", ylab = "freq. response", 
     main = "Desired and attained frequency response functions")
 lines(fr.N, A.attained, lty = 1, col = 2)
 on.exit(par(old.par))

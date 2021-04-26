@@ -30,6 +30,8 @@ You can also install `astsa` from the archive
 
 1.12.9 (GitHub - April 2021) 
 
++ Minor updates to `tsplot`, `SigExtract` and  `LagReg` to improve the displays.
+
 + Added scripts for the analysis of DNA sequences and other categorical time series: `specenv`, `dna2vector`, and the data set `EBV`.  And `specenv` can also handle real-valued series; see the examples included in the man page for `specenv` or in  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
 

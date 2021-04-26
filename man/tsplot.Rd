@@ -9,7 +9,7 @@ Produces a nice plot of univariate or multiple time series in one easy line.
 tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
         margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=1,   
         xm.grid=TRUE, ym.grid =TRUE, col=1, gg=FALSE, spaghetti=FALSE, 
-        pch=NULL, ...)
+        pch=NULL, lty=1, ...)
 }
 \arguments{
   \item{x, y}{
@@ -54,6 +54,9 @@ if TRUE, will produce a spaghetti plot (all series on same plot).
 }
  \item{pch}{
 plot symbols (default is 1, circle); can be a vector for multiple plots.
+}
+ \item{lty}{
+line type (default is 1, solid line); can be a vector for multiple plots.
 }
   \item{\dots}{
 other graphical parameteres; see \link[graphics]{par}.

@@ -1,7 +1,7 @@
 tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
                     margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=1, 
                     xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, 
-                    pch=NULL, ...)
+                    pch=NULL, lty=1, ...)
 {
   par   = graphics::par
   plot  = graphics::plot
@@ -11,6 +11,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
   type0 <- 'n' 
   type1 <- ifelse(is.null(type), 'l', type)
   pch   =  rep(pch, nser)
+  lty   =  rep(lty, nser)
  if(!spaghetti || nser < 2){ 
  if(!gg){
   if (nser == 1) {
@@ -32,9 +33,9 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
    if (is.null(ylab)) { ylab = NA }
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, pch=pch[h], ...)
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], ...)
 	} else {
-	tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, pch=pch[h], ...)
+	tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], ...)
     }
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
@@ -61,9 +62,9 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
    if (is.null(ylab)) { ylab = NA }
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym, pch=pch[h], ...)
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], ...)
 	} else {
-	tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym, pch=pch[h], ...)
+	tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], ...)
     }
     }  	
    mtext(text=main, line=-.5, outer=TRUE, font=2)   
@@ -71,17 +72,18 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
 }   
 } else {  # when spaghetti is TRUE and nser > 1
 	culer = rep(col, ceiling(nser/length(col)))
+    lty = rep(lty, ceiling(nser/length(lty)))
 	if (is.null(ylab)) { ylab = NA }
     if (is.null(y)) {
 	  u = x[,1]
 	  u[1:2] =  c(min(x), max(x))
 	  tsplot(u, ylab=ylab,  type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, pch=pch[1], ...)
-	   for (h in 1:nser) { lines(x[,h], col=culer[h], type=type1, pch=pch[h], ...) }
+	   for (h in 1:nser) { lines(x[,h], col=culer[h], type=type1, pch=pch[h], lty=lty[h], ...) }
     } else {
 	  u = y[,1]
 	  u[1:2] =  c(min(y), max(y))
 	  tsplot(x, u, ylab=ylab, type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, pch=pch[1], ...)
-	   for (h in 1:nser) { lines(x, y[,h], col=culer[h], type=type1, pch=pch[h], ...) }
+	   for (h in 1:nser) { lines(x, y[,h], col=culer[h], type=type1, pch=pch[h], lty=lty[h], ...) }
 	}
 }
 }

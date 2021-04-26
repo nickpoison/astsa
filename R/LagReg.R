@@ -30,8 +30,9 @@ cat("INPUT:",name.in,"OUTPUT:",name.out, "  L =",L, "   M =",M, "\n\n")
 
 # Compute the spectra
 # Note the order: cbind(output, input) - this is necessary in order that the phase have the right sign.
-spectra = stats::spectrum(ts(cbind(output, input)), spans=L , plot = FALSE)
 
+## --> spectra = stats::spectrum(ts(cbind(output, input)), spans=L , plot = FALSE) 
+spectra = mvspec(ts(cbind(output, input)), spans=L , plot = FALSE)
 
 N = 2*length(spectra$freq)  # This will be T'.
 
@@ -43,7 +44,7 @@ sampled.indices = (N/M)*(1:(M/2))  # These are the indices of the frequencies we
 fr.N = spectra$freq
 fr.M = fr.N[sampled.indices]  # These will be the frequencies we want
 
-## Restrict the output of 'spectrum' to the frequencies we want:
+## Restrict spectra to the frequencies we want:
 
 coh.N = spectra$coh
 coh.M = coh.N[sampled.indices]
@@ -59,7 +60,7 @@ input.spec.M = input.spec.N[sampled.indices]
 
 
 
-## B = sqrt(coherence*spectrum(y)/spectrum(x))*exp(1i*phase); here 'x' = input, 'y' = output:
+
 
 B = sqrt(coh.M*output.spec.M/input.spec.M)*exp(1i*phase.M)
 
@@ -88,9 +89,9 @@ cat(b.neg, fill=TRUE,"\n\n")
 old.par <- graphics::par(no.readonly = TRUE)
 
 graphics::par(mfrow=c(3,1))
-graphics::plot(S, b, type = "h", xlab = "s", ylab = "beta(s)", main = "coefficients beta(s)")
+tsplot(S, b, type = "h", xlab = "s", ylab = "beta(s)", main = "coefficients beta(s)")
 graphics::abline(h=0)
-stats::ccf(output, input, lag.max = M/2-1, main = "cross-correlations", ylab = "CCF")
+ccf2(output, input, max.lag = M/2-1) 
 
 ######################################################
 ##                  start cases                     ##
@@ -128,7 +129,7 @@ y = datax[,1]  + mean.out  # This is the original output series, for comparison
 alpha = mean.out - mean.in*sum(b.pos.sig)  # the constant (just for the output)
 
 MSE = sum((y-yhat)^2)/length(y)
-stats::ts.plot(y, yhat, lty=2:1, col=c(1,4), main = "Output (dotted line) and predicted (by the input) values \n based on the impulse-response analysis")
+tsplot(cbind(y, yhat), spaghetti=TRUE, lty=2:1, col=c(1,4), main = "Output (- - -) and predicted by input (---) based on impulse-response analysis")
 
 cat("\n", "The prediction equation is", "\n",
 name.out,"(t) = alpha + sum_s[ beta(s)*",name.in,"(t-s) ], where alpha = ", alpha, "\n",
@@ -165,7 +166,7 @@ y = datax[,1] + mean.out  # This is the original output series, for comparison
 alpha = mean.out - mean.in*sum(b.neg.sig)  # the constant (just for the output)
 
 MSE = sum((y-yhat)^2)/length(y)
-stats::ts.plot(y, yhat, lty=2:1, col=c(1,4), main = "Output (dotted line) and predicted (by the input) values \n based on the impulse-response analysis")
+tsplot(cbind(y, yhat), spaghetti=TRUE, lty=2:1, col=c(1,4), main="Output (- - -) and predicted by input (---)  based on impulse-response analysis")
 
 
 cat("\n", "The prediction equation is", "\n",
