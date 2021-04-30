@@ -5,7 +5,9 @@
 <img src="astsa.gif" alt="astsa"  height="100">
 
 **more than just data ...**  
-<br/>
+
+... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/)... both by Shumway and Stoffer. 
+
 
 To update the package to the most recent version, you just need the following two lines:
 ```r
@@ -21,6 +23,10 @@ You can also install `astsa` from the archive
 
 
 > You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
+
+
+
+
 
 
 
