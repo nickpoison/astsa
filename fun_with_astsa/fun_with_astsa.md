@@ -893,7 +893,7 @@ List of 6
 
 + MLE is  accomplished by calling the script that runs the filter. 
 
-+ Many examples can be found in the Springer text, Chapter 6, and the [R code may be found on the website for the text](https://www.stat.pitt.edu/stoffer/tsa4/Rexamples.htm/) - just expand Chapter 6  
++ Many examples can be found in the Springer text, Chapter 6, and the [R code may be found here in `tsa4`](https://github.com/nickpoison/tsa4/blob/master/textRcode.md) - just go Chapter 6  
 
 + Further explanations are also given on a [special page on Kalman filtering and
 smoothing](https://www.stat.pitt.edu/stoffer/tsa4/chap6.htm) for the text.
