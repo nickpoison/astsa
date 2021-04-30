@@ -77,7 +77,7 @@ head(u)  # scalings are for A, C, G, and last one T=0 always
 # a real-valued series (nyse returns)
 x = astsa::nyse    
 xdata = cbind(x, abs(x), x^2)
-u = specenv(xdata, continuous=TRUE,  spans=c(3,3))
+u = specenv(xdata, real=TRUE,  spans=c(3,3))
 # plot optimal transform at freq = .001
 beta = u[2, 3:5]
 b = beta/beta[2]  # makes abs(x) coef=1
