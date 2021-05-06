@@ -19,7 +19,7 @@ Some notes on the installation...  If `astsa` is loaded, then detach it first: `
 After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
 You can also install `astsa` from the archive 
-[astsa_1.12.9.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.12.9.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+[astsa_1.13.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.13.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
 > You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
@@ -32,9 +32,18 @@ You can also install `astsa` from the archive
 
 ---
 ---
+### Version 1.13 - May 2021
+
++ Getting ready for a CRAN release.   
+
+
+---
+
 ### Versions 1.12 - started Dec 2020
 
-1.12.9 (GitHub - April 2021) 
+1.12.9 (GitHub - May 2021) 
+
++ Added `scatter.hist` to draw a scatterplot with marginal histograms - never really liked other versions.
 
 + Minor updates to `tsplot`, `SigExtract` and  `LagReg` to improve the displays.
 

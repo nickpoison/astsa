@@ -36,7 +36,7 @@ it's more than just data ...
      * [Polynomial Multiplication](#polynomial-multiplication)
   * [10. The Spectral Envelope](#10-the-spectral-envelope)   
      * [DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
-     * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)
+     * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)     
 
 -----
 -----
@@ -216,6 +216,16 @@ and for two series (the first one gets lagged)
 lag2.plot(soi, rec, 8)
 ```
 <img src="figs/lag2plot.png" alt="lag2plot"  width="700">
+
+
+&#x1F4A1; Sometimes it's nice to have a scatterplot with marginal histograms...
+
+```r
+scatter.hist(tempr, cmort, hist.col=astsa.col(5,.4), pt.col=5, pt.size=1.5, reset=FALSE)
+lines(lowess(tempr, cmort), col=6, lwd=2)
+```
+
+<img src="figs/scatterhist.png" alt="scatterhist"  width="700">
 
 [<sub>top</sub>](#table-of-contents)
 
