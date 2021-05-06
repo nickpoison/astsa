@@ -7,7 +7,9 @@ Scatterplot with Marginal Histograms
 Draws a scatterplot with histograms in the margins.
 }
 \usage{
-scatter.hist(x, y, xlab = NULL, ylab = NULL, title = NULL, pt.size = 1, hist.col = gray(0.82), pt.col = gray(0.1, 0.25), pch = 19, reset.par = TRUE, ...)
+scatter.hist(x, y, xlab = NULL, ylab = NULL, title = NULL, pt.size = 1, 
+              hist.col = gray(0.82), pt.col = gray(0.1, 0.25), pch = 19, 
+              reset.par = TRUE, ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
