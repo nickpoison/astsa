@@ -68,6 +68,7 @@ D.S. Stoffer
 \code{\link{dna2vector}}
 }
 \examples{
+\dontrun{
 # a DNA sequence
 data  = bnrf1ebv
 xdata = dna2vector(data)
@@ -85,6 +86,7 @@ gopt = function(x) { b[1]*x+b[2]*abs(x)+b[3]*x^2 }
 curve(gopt, -.2, .2, col=4, lwd=2, panel.first=Grid())
 g2 = function(x) { b[2]*abs(x) } # corresponding to |x|
 curve(g2, -.2,.2, add=TRUE, col=6)
+}
 }
 \keyword{ ts }
 
