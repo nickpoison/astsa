@@ -4,7 +4,7 @@ importFrom("grDevices", "cm.colors", "dev.new", "xy.coords", "gray", "palette",
              "rgb", "adjustcolor")
 importFrom("graphics", "abline", "box", "filled.contour", "grid", "layout", 
              "legend", "lines", "par", "plot", "title", "polygon", "axTicks", 
-             "axis", "mtext", "rect", "hist", "barplot")
+             "axis", "mtext", "rect", "hist", "barplot", "text")
 importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",  "time",   
              "is.tskernel", "kernapply", "kernel", "mvfft", "na.fail", "lag",
              "lm", "na.omit", "na.pass", "nextn", "plot.ts", "qf", "ppoints",
