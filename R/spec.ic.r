@@ -6,7 +6,7 @@ function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
   rnorm = stats::rnorm
   var = stats::var  
   if (is.null(method)) {method='yw'}	   
-  nme1 = deparse(substitute(data))
+  nme1 = paste('Series:', deparse(substitute(data)))
   nme2 = ifelse(BIC,'BIC','AIC')  
   if (detrend) { data = resid(lm(data~time(data), na.action=NULL)); dmean = FALSE
    } else { dmean = TRUE } 	

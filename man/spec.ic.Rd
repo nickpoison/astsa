@@ -61,6 +61,7 @@ D.S. Stoffer
 }
 \seealso{ \code{\link{ar}}, \code{\link{spec.ar}}}
 \examples{
+\dontrun{
 # AIC
 spec.ic(soi)  
 spec.ic(sunspotz, method='burg', col=4)   
@@ -70,4 +71,5 @@ spec.ic(soi, BIC=TRUE, detrend=TRUE, log='y')
 
 # plot AIC and BIC without spectral estimate
 tsplot(0:30, spec.ic(soi, plot=FALSE)[[1]][,2:3], type='o', xlab='order', nxm=5)  
+}
 }
