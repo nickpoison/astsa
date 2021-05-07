@@ -6,7 +6,7 @@ function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
   rnorm = stats::rnorm
   var = stats::var  
   if (is.null(method)) {method='yw'}	   
-  nme1 = paste("Series:", deparse(substitute(data)))
+  nme1 = deparse(substitute(data))
   nme2 = ifelse(BIC,'BIC','AIC')  
   if (detrend) { data = resid(lm(data~time(data), na.action=NULL)); dmean = FALSE
    } else { dmean = TRUE } 	
@@ -22,7 +22,7 @@ function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
     if (plot){
      if (is.null(main)) {main=paste(nme1,"  |  ",nme2," order = ",0)} 
      tsplot(freq, spec, ylab='AR Spectrum', xlab='Frequency', margins=.5, 
-         main=main, cex.axis=.85, las=0, cex.main=1, , cex.lab=.9, ...)
+         main=main, cex.axis=.85, las=0, cex.main=1, cex.lab=.9, ...)
     }  	  
    } else {
     u    = stats::ar(data, order=kmin, aic=FALSE, method=method, demean=dmean)
