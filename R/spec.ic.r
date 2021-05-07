@@ -22,7 +22,7 @@ function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
     if (plot){
      if (is.null(main)) {main=paste(nme1,"  |  ",nme2," order = ",0)} 
      tsplot(freq, spec, ylab='AR Spectrum', xlab='Frequency', margins=.5, 
-         main=main, cex.axis=.85, las=0, ...)
+         main=main, cex.axis=.85, las=0, cex.main=1, , cex.lab=.9, ...)
     }  	  
    } else {
     u    = stats::ar(data, order=kmin, aic=FALSE, method=method, demean=dmean)
@@ -31,7 +31,7 @@ function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
     if(plot){
      if (is.null(main)) {main = paste(nme1,"  |  ",nme2," order = ", kmin, sep="")}
      tsplot(u2$freq, u2$spec, ylab='AR Spectrum', xlab='Frequency', margins=.5, 
-         main=main, cex.axis=.85, las=0, ...) 
+         main=main, cex.axis=.85, las=0, cex.main=1, cex.lab=.9, ...) 
     }
    }		 
  out1 = cbind(ORDER=(0L:order.max), AIC=aic, BIC=bic)
