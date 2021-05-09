@@ -14,8 +14,8 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
  if(plot){
    abline = graphics::abline
    par = graphics::par
-   	U = 2/sqrt(num)
-    L = -U
+   U = (-1/num) + (2/sqrt(num))
+   L = (-1/num) - (2/sqrt(num))
    old.par <- par(no.readonly = TRUE)
    if (is.null(ylim)) { 
     minA=min(ACF)  

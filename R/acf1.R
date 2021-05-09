@@ -17,8 +17,8 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
   LAG = (1:max.lag)/frequency(series)
  if(plot){ 
   abline = graphics::abline
-  U = 2/sqrt(num)
-  L = -U
+  U = (-1/num) + (2/sqrt(num))
+  L = (-1/num) - (2/sqrt(num))
   if (is.null(ylim)) { 
    minA = min(ACF)
    maxA = max(ACF)
