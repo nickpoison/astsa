@@ -213,7 +213,7 @@ lag1.plot(soi, 12, col=astsa.col(4, .3), pch=20, cex=2)
 and for two series (the first one gets lagged)
 
 ```r
-lag2.plot(soi, rec, 8)
+lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, bgl='transparent', lwl=2, gg=T, box.col=gray(1))
 ```
 <img src="figs/lag2plot.png" alt="lag2plot"  width="700">
 
