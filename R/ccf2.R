@@ -1,6 +1,6 @@
 ccf2 <-  
-function (x, y, max.lag = NULL, main=NULL, ylab="CCF", 
-          na.action = na.pass, ...)
+function (x, y, max.lag = NULL, main = NULL, ylab = "CCF", plot = TRUE,
+          na.action = na.pass, type = c("correlation", "covariance"), ...)
 {
   par = graphics::par
   acf = stats::acf
@@ -9,6 +9,7 @@ function (x, y, max.lag = NULL, main=NULL, ylab="CCF",
   ts.intersect = stats::ts.intersect
   as.ts = stats::as.ts
   lag.max = max.lag
+  type =  match.arg(type)
   if (is.matrix(x) || is.matrix(y)) { stop("univariate time series only") }
     X <- ts.intersect(as.ts(x), as.ts(y))
 	num = nrow(X)
@@ -16,7 +17,7 @@ function (x, y, max.lag = NULL, main=NULL, ylab="CCF",
     if (num < 50 & is.null(lag.max))  lag.max=floor(5*log10(num))
     if (lag.max > (num-1)) stop("Number of lags exceeds number of observations")
     colnames(X) <- c(deparse(substitute(x))[1L], deparse(substitute(y))[1L])
-    acf.out <- acf(X, lag.max = lag.max, plot = FALSE, type = "correlation", 
+    acf.out <- acf(X, lag.max = lag.max, plot = FALSE, type =  type, 
         na.action = na.action)
     lag <- c(rev(acf.out$lag[-1, 2, 1]), acf.out$lag[, 1, 2])
     y <- c(rev(acf.out$acf[-1, 2, 1]), acf.out$acf[, 1, 2])
@@ -25,11 +26,17 @@ function (x, y, max.lag = NULL, main=NULL, ylab="CCF",
     acf.out$snames <- paste(acf.out$snames, collapse = " & ") 
     if (is.null(main)){main=acf.out$snames}
     #  better graphic
+  if (plot){ 
 	 U = 2/sqrt(num)
 	 tsplot(acf.out$LAG, acf.out$CCF, type='h', ylab=ylab, xlab="LAG", main=main, ...) 
-	 abline(h=c(0,-U,U), lty=c(1,2,2), col=c(8,4,4))
+	 if (type == "correlation") { abline(h=c(0,-U,U), lty=c(1,2,2), col=c(8,4,4))
+    } else { abline(h=0, col=8)
+    }
 	 abline(v=0, lty=2, col=astsa.col(8,.6))
 	 LAG = -lag.max:lag.max
 	 CCF = round(acf.out$CCF,3)
 	 return(invisible(cbind(LAG, CCF)))
+  } else {
+  return(cbind(LAG=-lag.max:lag.max, CCF=acf.out$CCF)) 
+  }
 }        
