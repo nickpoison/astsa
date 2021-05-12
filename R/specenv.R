@@ -6,11 +6,11 @@ function(xdata, section=NULL, spans=NULL, significance=.0001, plot=TRUE, ylim=NU
    if (ncol(xdata)<2)  stop("For continuous data, the input 'xdata' must be a matrix")
    if (is.null(section)) { x = xdata } else {
      if (!all(diff(section))==1) 
-       stop("'section' must be consecutive indices of the form 'start:finish'") 
+       stop("'section' must be consecutive indices of the form 'start:end'") 
      x = xdata[section,] 
 	 }	 
   } else {
-   if ( !is.matrix(xdata) || !all(xdata %in% c(0,1)) || !all(rowSums(xdata)==1) ) 
+   if ( !is.matrix(xdata) || !all(xdata %in% c(0,1)) || !all(base::rowSums(xdata)==1) ) 
      stop("Input must be indicators, use 'dna2vector' to preprocess the data.")
    if  (is.null(section)) { x = xdata[,-ncol(xdata)] 
     } else {
