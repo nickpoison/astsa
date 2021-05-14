@@ -34,7 +34,7 @@ You can also install `astsa` from the archive
 ---
 ### Version 1.13 - May 2021
 
-+ Getting ready for a CRAN release.   
++ Is here and on CRAN (soon).   There are lots of additions to the package that are listed below.
 
 
 ---
@@ -96,10 +96,6 @@ You can revert back using  `palette("default")`.
 + `sarima.sim` output used to start at time `0` - now the start
 time is up to the user (with default `t0=0`).
 
-So a duck goes in to a bar and asks the bartender, _How do I simulate
-a seasonal ARIMA model of the kind Box and Jenkins were hot for?_ 
-The bartender says, _If you want to easily generate data from a seasonal ARIMA model, why don't you use `sarima.sim` from `astsa`?_ 
-The duck replies, "Wow, that's great! Now get me a beer and put it on my bill."<br/>
 
 
 
@@ -107,7 +103,7 @@ The duck replies, "Wow, that's great! Now get me a beer and put it on my bill."<
 
 
 ---
-#### Version 1.11 -- in the garbage
+#### <s>Version 1.11</s> -- in the garbage
 
 &nbsp;&nbsp; keep moving ... nothing to see here 
 
@@ -238,9 +234,7 @@ changes to satisfy the CRANks. Also, the   GitHub version is slightly improved, 
 
 ----------------------------
 ### Versions 1.7 - Dec 2016  
-
-
-&starf; Just for historical record, version 1.7 was when CRAN maintainers got CRANky and started asking for arbirtary and stupid changes that no one would notice. I'm talking about asking to change one word in the DESCRIPTION file kind of stupid stuff.  This is when the GitHub versions started. 
+&starf; Just for historical record, version 1.7 was when CRAN maintainers got CRANky and started asking for arbitrary changes that no one would notice. I'm talking about asking to change one word in the DESCRIPTION file kind of stupid stuff.  This is when the GitHub versions started. 
 
 1.7.11. 
        
