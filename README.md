@@ -2,7 +2,7 @@
 
 **more than just data ...**  
 
-... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/)... both by Shumway and Stoffer. 
+... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series: A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/). 
 
 
 We won't always push the latest version of the package to CRAN, but the latest working version of the package will always be at Github.
@@ -13,7 +13,10 @@ We won't always push the latest version of the package to CRAN, but the latest w
 [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md)
 
 
-* The updated [code fot the Spinger text](https://github.com/nickpoison/tsa4/blob/master/textRcode.md) is here in [tsa4](https://github.com/nickpoison/tsa4).
+* The updated [code for the graduate level text](https://github.com/nickpoison/tsa4/blob/master/textRcode.md) is here: [TSA4](https://github.com/nickpoison/tsa4).
+
+* The updated [code for the data science text](https://github.com/nickpoison/tsda/blob/master/Rcode.md) is here: [TSDA](https://github.com/nickpoison/tsda).
+
 
 * [<img src="figs/gplv3.png" alt="license"> astsa license](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
