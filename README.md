@@ -15,4 +15,6 @@ We won't always push the latest version of the package to CRAN, but the latest w
 
 * The updated [code fot the Spinger text](https://github.com/nickpoison/tsa4/blob/master/textRcode.md) is here in [tsa4](https://github.com/nickpoison/tsa4).
 
+* the [astsa license](https://www.gnu.org/licenses/gpl-3.0.en.html)
+
 The Springer text was written under version 1.8 and the Chapman & Hall text was written under version 1.9. Later versions will work for both texts with only some minor changes that won't affect any of the data analysis. 
