@@ -2,7 +2,7 @@
 ## This is the changelog for 
 
 
-<img src="astsa.gif" alt="astsa"  height="100">
+<img src="figs/astsa.gif" alt="astsa"  height="100">
 
 **more than just data ...**  
 
@@ -433,7 +433,7 @@ You had to extract the files to a floppy (3.5" by that time) and then install `A
 -----------------
 ### Version 0.1 - 1988
 
-<img src="astsa_v0.jpg" alt="floppy"  height="250">
+<img src="figs/astsa_v0.jpg" alt="floppy"  height="300">
 
 The first version of `ASTSA` was developed by R.H. Shumway for the new text *Applied Statistical Time Series Analysis* published by Prentice Hall.  The package was written in Microsoft basic and was distributed on a 5.25" floppy disk that was included with the text. 
  
