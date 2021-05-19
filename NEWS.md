@@ -8,11 +8,10 @@
 
 ... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/)... both by Shumway and Stoffer. 
 
-
-To update the package to the most recent version, you just need the following two lines:
+The GitHub version is updated before the CRAN version (but they are the same right now).   To update the package to the most recent version, you just need the following two lines (the package moved recently due to some cleaning):
 ```r
 install.packages("remotes")
-remotes::install_github("nickpoison/astsa")
+remotes::install_github("nickpoison/astsa/astsa_build")
 ```
 
 Some notes on the installation...  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
@@ -34,7 +33,7 @@ You can also install `astsa` from the archive
 ---
 ### Version 1.13 - May 2021
 
-+ Is here and on CRAN (soon).   There are lots of additions to the package that are listed below.
++ Is here and on CRAN.   There are lots of additions to the package that are listed below.
 
 
 ---
