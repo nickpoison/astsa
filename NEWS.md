@@ -10,7 +10,7 @@
 
 The GitHub version is updated before the CRAN version (but they are the same right now).   To update the package to the most recent version, you just need the following two lines (the package moved recently due to some cleaning):
 ```r
-install.packages("remotes")
+install.packages("remotes")   # if you don't have the package already
 remotes::install_github("nickpoison/astsa/astsa_build")
 ```
 
