@@ -100,7 +100,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    ttable = cbind(Estimate=coefs, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
    ttable= round(ttable,4)
    k = length(coefs) 
-   n = n - (d + D)  # effective sample size
+   n = n - (d + D*S)  # effective sample size
    BIC  = stats::BIC(fitit)/n
    AIC  = stats::AIC(fitit)/n
    AICc = (n*AIC + ( (2*k^2+2*k)/(n-k-1) ))/n
