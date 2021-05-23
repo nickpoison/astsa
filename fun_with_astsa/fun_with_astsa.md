@@ -814,7 +814,6 @@ tsplot(nyse, col=4)
 &#x1F535; First, consider a simple univariate model. 
 We write the **states** as _x<sub>t</sub>_ and the **observations** as _y<sub>t</sub>_.
  
-$$ x_t = \alpha + \beta y_t + \xi_t $$
 
 &emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/> 
 
