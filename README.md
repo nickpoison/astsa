@@ -1,6 +1,8 @@
 ## astsa &mdash; applied statistical time series analysis
 
-**more than just data ...**  
+
+
+> The package is now in the folder [astsa_build](https://github.com/nickpoison/astsa/tree/master/astsa_build)
 
 ... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series: A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/). 
 
