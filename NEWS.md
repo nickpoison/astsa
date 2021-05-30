@@ -257,8 +257,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 
 1.7.5. added `acf1` giving the sample ACF of a series without the  zero lag... it operates like `acf2` but doesn't give the PACF
 	
-1.7.4.  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms) ... 
-    good for showing seasonal persistence - check this out [hawaii_occ_rate.r](https://github.com/nickpoison/tsa4/blob/master/hawaii_occ_rate.r)
+1.7.4.  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms)
 
 1.7.3.  some additons to `acf2` allowing a plot title change, and
      an option not to produce a graphic (if you only want to use or see the
