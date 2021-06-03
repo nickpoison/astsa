@@ -1021,6 +1021,7 @@ The errors are  _w<sub>t</sub> ~ iid N<sub>3</sub>(0, Q)_ &perp;   _v<sub>t</sub
 
 ```r
 y    = cbind(WBC, PLT, HCT)      # variables in blood with 0s instead of NAs
+#  y = blood;  y[is.na(y)] = 0   # this works too
 num  = nrow(y)       
 A    = array(0, dim=c(3,3,num))  # creates num 3x3 zero matrices
 for(k in 1:num) if (y[k,1] > 0) A[,,k]= diag(1,3) # measurement matrices for observed
