@@ -1001,8 +1001,7 @@ lines(ks$xs, col=6, lwd=2)
 
 that follow the Kalman filtering scripts, `EM0` does the EM Algorithm for Time Invariant State Space Models, and `EM1` does the EM Algorithm for General State Space Models.
 
-&#x1F535; We'll do an example for the general set up using the data in `blood` containing the daily blood work of a patient for 90 days and where there are many missing observations after the first month.  This is an extension of the 
-previous analysis of `WBC`.
+&#x1F535; We'll do an example for the general set up using the data in `blood` containing the daily blood work of a patient for 90 days and where there are many missing observations after the first month.  
 
 
 ```r
