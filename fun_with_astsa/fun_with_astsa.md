@@ -371,7 +371,8 @@ forecast::auto.arima(x)  # BLACK BOX
      sigma^2 estimated as 0.9657:  log likelihood=-1400
      AIC=2808.01   AICc=2808.05   BIC=2827.64
 ````
-> YOU LOSE - an ARMA(2,1) ??
+> WTF ... an ARMA(2,1) ??  BUT, if you KNOW what you are doing, you realize the model
+is basically overparametrized white noise.    
 
 &nbsp;
 
