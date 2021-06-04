@@ -33,6 +33,8 @@ You can also install `astsa` from the archive
 ---
 ### Version 1.13 - May 2021
 
++ (June) Made some minor fixes to `tplot-spaghetti` and `sarima` - the version number isn't changing ... but the GitHub version is better (almost always true).
+
 + Is here and on CRAN.   There are lots of additions to the package that are listed below.
 
 
