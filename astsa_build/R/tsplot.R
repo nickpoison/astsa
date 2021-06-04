@@ -77,12 +77,12 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
 	if (is.null(ylab)) { ylab = NA }
     if (is.null(y)) {
 	  u = x[,1]
-	  u[1:2] =  c(min(x), max(x))
+	  u[1:2] =  c(min(x, na.rm=TRUE), max(x, na.rm=TRUE))
 	  tsplot(u, ylab=ylab,  type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, pch=pch[1], margins=margins, ...)
 	   for (h in 1:nser) { lines(x[,h], col=culer[h], type=type1, pch=pch[h], lty=lty[h], lwd=lwd[h], ...) }
     } else {
 	  u = y[,1]
-	  u[1:2] =  c(min(y), max(y))
+	  u[1:2] =  c(min(y, na.rm=TRUE), max(y, na.rm=TRUE))
 	  tsplot(x, u, ylab=ylab, type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, main=main, pch=pch[1], margins=margins, ...)
 	   for (h in 1:nser) { lines(x, y[,h], col=culer[h], type=type1, pch=pch[h], lty=lty[h], lwd=lwd[h], ...) }
 	}
