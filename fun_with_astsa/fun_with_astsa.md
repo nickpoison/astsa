@@ -792,7 +792,7 @@ test.linear(soi)
 &#x1F535; Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange (NYSE) from February 2, 1984 to December 31, 1991
 
 ```r
-# many other packages have a 'nyse' data set
+# other packages have an 'nyse' data set
 # nyse = astsa::nyse  # if you have one of those other packages loaded
 test.linear(nyse) 
 tsplot(nyse, col=4) 
