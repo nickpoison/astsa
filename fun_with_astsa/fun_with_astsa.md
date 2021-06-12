@@ -53,7 +53,7 @@ And you can get more information on any individual set using the `help()` comman
 `help(cardox)` or `?cardox`
 
 
-|Data sets in package ‘astsa’|                         |
+|Name|     Title                     |
 |----------|-------------|
 |EBV                         | Entire Epstein-Barr Virus (EBV) Nucleotide Sequence         |
 |EQ5                         | Seismic Trace of Earthquake number 5                        |
@@ -118,7 +118,7 @@ And you can get more information on any individual set using the `help()` comman
 |tempr                       | Temperatures from the LA pollution study                    |
 |unemp                       | U.S. Unemployment                                           |
 |varve                       | Annual Varve Series                                         |
-| | 
+
 
 
 [<sub>top</sub>](#table-of-contents)
