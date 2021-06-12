@@ -1226,13 +1226,13 @@ _&pi;(1)_ = 5/(3+5) and _&pi;(2)_ = 3/(3+5) and almost there in 5 steps.
 
 A note - if you use it in an expression, surround the operation with parentheses:
 ```r
-c(.5,.5) %*% (P%^%50)  # toss a coin for initial state (which doesn't matter)
+c(.5,.5) %*% ( P %^% 50 )  # toss a coin for initial state
 
         [,1]  [,2]
   [1,] 0.625 0.375
 
 # but this draws an error because %*% is first
-c(1,0) %*% P%^%50
+c(.5,.5) %*% P %^% 50
 ```
 
 ### Polynomial Multiplication 
