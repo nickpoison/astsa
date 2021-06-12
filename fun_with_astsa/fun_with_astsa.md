@@ -1174,11 +1174,12 @@ arma.spec(ar = c(1.5, -.75), ma = c(-.8,-.4))
 
 ### Matrix Powers
 
-&#x1F535;  I have to compute _Q<sup>-1/2</sup>_ where _Q_ is a variance-covariance matrix  when calculating the [_spectral envelope_](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full) so I built in a script called `matrixpwr` that computes powers of a square matrix, including negative powers for nonsingular matrices.
+&#x1F535;  We  compute _&Sigma;<sup>&nbsp;-&frac12;</sup>_ where _&Sigma;_ is a variance-covariance matrix  when calculating the [_spectral envelope_](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full) 
+so we built in a script called `matrixpwr` that computes powers of a square matrix, including negative powers for nonsingular matrices.
 Also, `%^%` is available as a more intuitive operator. For example,
 
 ```r
-var(econ5)%^%-.5  # rounded for you pleasure
+var(econ5)%^%-.5  # rounded here (not by the script) for you pleasure
 
           [,1]   [,2]   [,3]   [,4]   [,5]
    [1,]  1.073  0.005 -0.017  0.006  0.021
@@ -1186,6 +1187,18 @@ var(econ5)%^%-.5  # rounded for you pleasure
    [3,] -0.017 -0.019  0.026  0.006  0.004
    [4,]  0.006 -0.009  0.006  0.025  0.006
    [5,]  0.021 -0.010  0.004  0.006  0.033
+```
+where
+
+```r
+round(var(econ5), 1)
+
+        unemp      gnp   consum   govinv    prinv
+ unemp    2.9    782.4    565.4    117.4    114.2
+ gnp    782.4 661297.3 449876.0 111333.5 117830.4
+ consum 565.4 449876.0 307483.0  74977.9  79860.3
+ govinv 117.4 111333.5  74977.9  20780.9  19381.8
+ prinv  114.2 117830.4  79860.3  19381.8  22126.5
 ```
 
 &#x1F535; But also, if you're playing with Markov Chains, you can learn about long run distributions by raising the transition matrix to a large power.  Here's a demonstration of convergence in a 2 state MC:

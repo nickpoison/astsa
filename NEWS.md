@@ -8,20 +8,20 @@
 
 ... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/)... both by Shumway and Stoffer. 
 
-The GitHub version is updated before the CRAN version.   To update the package to the most recent version, you just need the following two lines (the package files were moved to *astsa_build* recently due to some cleaning):
+The GitHub version is updated before the CRAN version.   To update the package to the most recent working version, you just need the following two lines:
 ```r
 install.packages("remotes")   # if you don't have the package already
 remotes::install_github("nickpoison/astsa/astsa_build")
 ```
 
-Some notes on the installation...  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
+If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
 After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
-You can also install `astsa` from the archive 
+> You can also install `astsa` from the archive 
 [astsa_1.13.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.13.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
-> You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
+You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
 
 
@@ -33,7 +33,8 @@ You can also install `astsa` from the archive
 ---
 ### Version 1.13 - May 2021
 
-+ (June) Did some minor fixes to `tsplot-spaghetti` and `sarima` - the version number isn't changing ... but the GitHub version is better.
++ (June) Did some minor fixes to `tsplot-spaghetti` and `sarima` - 
+this will eventually be  v1.13.1, but the version number hasn't changed yet.
 
 + Is here and on CRAN.   There are lots of additions to the package that are listed below.
 
