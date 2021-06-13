@@ -1,8 +1,7 @@
 arma.spec <-
 function(ar=0, ma=0, var.noise=1, n.freq=500, log='n', main='from specified model', 
           frequency=1, ...)
-{ 
-     plot = graphics::plot     
+{  
      check <- 0
     # check causality
      ar.poly <- c(1, -ar)
