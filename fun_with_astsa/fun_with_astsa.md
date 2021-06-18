@@ -780,7 +780,8 @@ where <i>Z<sub>t</sub></i> is a sequence of i.i.d. random variables with at leas
 
 > **`test.linear()`**
 
-and more details can be found in its help file (`?test.linear`).    Chi-squared test statistics are formed in blocks to measure departures from the null hypothesis and the corresponding p-values are displayed in a graphic and returned invisibly.
+and more details can be found in its help file (`?test.linear`).    Chi-squared test statistics are formed in blocks to measure departures from the null hypothesis and the corresponding p-values are displayed in a graphic and returned invisibly - 
+[details in this paper](https://www.la.utexas.edu/hinich/files/Statistics/Normbispec.pdf).
 
 &#x1F535; First an example of a linear process where the graphic suggests a constant bispectrum.
 
