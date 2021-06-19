@@ -1,13 +1,17 @@
-# fun with astsa
+# fun with astsa 
+
+[![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
 
 
-##### we'll demonstrate some of the capabilities of `astsa` ... to install it, [head over to the News page for installation instructions](https://github.com/nickpoison/astsa/blob/master/NEWS.md) and follow the instructions.
+##### we'll demonstrate some of the capabilities of `astsa` ... the [News page  has additional installation information](https://github.com/nickpoison/astsa/blob/master/NEWS.md).
 
 Remember to load `astsa` at the start of a session.
 
 > **`library(astsa)`**
 
 it's more than just data ...
+
+
 
 
 -----
