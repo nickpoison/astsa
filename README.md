@@ -1,5 +1,6 @@
 ## astsa &mdash; applied statistical time series analysis
 
+[![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
 
 
 > The package is now in the folder [astsa_build](https://github.com/nickpoison/astsa/tree/master/astsa_build)
