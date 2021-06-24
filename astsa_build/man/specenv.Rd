@@ -14,7 +14,7 @@ specenv(xdata, section = NULL, spans = NULL, significance = 1e-04,
   \item{xdata}{For categorical-valued sequences, a matrix with rows that are indicators 
 of the categories represented by the columns, possibly a sequence converted using 
 \code{\link{dna2vector}}.  For real-valued sequences, a matrix with at least two 
-rows that are various transformations of the data. 
+columns that are various transformations of the data. 
 }
   \item{section}{
 of the form \code{start:end} where \code{start < end} are non-negative integers;  
