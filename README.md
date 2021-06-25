@@ -21,6 +21,4 @@ We won't always push the latest version of the package to CRAN, but the latest w
 * The updated [code for the data science text](https://github.com/nickpoison/tsda/blob/master/Rcode.md) is here: [TSDA](https://github.com/nickpoison/tsda).
 
 
-* [<img src="fun_with_astsa/figs/gplv3.png" alt="license"> astsa license](https://www.gnu.org/licenses/gpl-3.0.en.html)
-
 The Springer text was written under version 1.8 and the Chapman & Hall text was written under version 1.9. Later versions will work for both texts with only some minor changes that won't affect any of the data analysis. 
