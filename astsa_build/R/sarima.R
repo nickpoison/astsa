@@ -20,8 +20,8 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
                    xreg=constant, fixed=fixed, trans=trans,
                    optim.control=list(trace=trc, REPORT=1, reltol=tol))
     } else fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
-                         include.mean=!no.constant, fixed=fixed, trans=trans, 
-                         optim.control=list(trace=trc, REPORT=1, reltol=tol))
+                   include.mean=!no.constant, fixed=fixed, trans=trans, 
+                   optim.control=list(trace=trc, REPORT=1, reltol=tol))
   }
 #
   if (!is.null(xreg)) {
@@ -56,12 +56,9 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
 	 if (S<0) {title(paste( "Model: (", p, "," ,d, "," ,q, ")", sep=""), adj=0) }
 	 else {title(paste( "Model: (", p, "," ,d, "," ,q, ") ", "(", P, "," ,D, "," ,Q, ") [", S,"]",  sep=""), adj=0) }
 	}
-    alag  <- max(10+sqrt(num), 3*S)    
-    ACF   = acf(rs, alag, plot=FALSE, na.action = na.pass)$acf[-1] 
-    LAG   = 1:alag/frequency(xdata)
-    L     = 2/sqrt(num)
-    tsplot(LAG, ACF, type="h", ylim=c(min(ACF)-.1,min(1,max(ACF+.4))), main = "ACF of Residuals", ...)
-      abline(h=c(0,-L,L), lty=c(1,2,2), col=c(1,4,4))  
+    alag  <- max(10+sqrt(num), 3*S) 
+    acf1(rs, alag, main = "ACF of Residuals", ...)   
+#    
     u = qqnorm(stdres, plot.it=FALSE)
 	  lwr = min(-4, min(stdres)); upr = max(4, max(stdres))
     tsplot(u$x, u$y, type='p', ylim=c(lwr,upr), ylab="Sample Quantiles", xlab="Theoretical Quantiles",  
