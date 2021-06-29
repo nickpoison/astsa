@@ -573,8 +573,6 @@ and parametric spectral analysis with
 ```r
 arma.spec(ar = c(1.5, -.75), ma = c(-.8,.4), col=4, lwd=2)
 ```
-and the graphic can be on log-scale (`log='y'`) or decibels (`log='dB')`.
-
 
 <img src="figs/arma_spec.png" alt="arma_spec"  width="700">
 
