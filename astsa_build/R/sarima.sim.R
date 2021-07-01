@@ -1,6 +1,7 @@
 sarima.sim <-
 function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
-          n=500, rand.gen=rnorm, burnin=NA, t0=0, ...){ 
+          n=500, rand.gen=rnorm, innov=rand.gen(n, ...),
+          burnin=NA, t0=0, ...){ 
   if (length(ar)==1 && ar==0) ar=NULL
   if (length(ma)==1 && ma==0) ma=NULL  
   po = length(ar)
@@ -86,7 +87,7 @@ return(x)
 
 ##
 .zarima_sim <-
-function (model, n, rand.gen = rnorm, innov = rand.gen(n, ...), ...)
+function (model, n, rand.gen = rand.gen, innov = rand.gen(n, ...), ...)
 {
     filter = stats::filter
 	if (length(innov) < n)

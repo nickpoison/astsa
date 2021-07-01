@@ -6,7 +6,8 @@
 }
 \usage{
 sarima.sim(ar = NULL, d = 0, ma = NULL, sar = NULL, D = 0, sma = NULL, S = NULL, 
-            n = 500, rand.gen = rnorm,  burnin = NA, t0=0, ...)
+            n = 500, rand.gen = rnorm, innov=rand.gen(n, ...), burnin = NA, 
+            t0 = 0, ...)
 }
 \arguments{
   \item{ar}{
@@ -35,6 +36,9 @@ desired sample size (defaults to 500)
 }
   \item{rand.gen}{
 optional; a function to generate the innovations (defaults to normal)
+}
+  \item{innov}{	
+an optional times series of innovations. If not provided, rand.gen is used.
 }
   \item{burnin}{length of burn-in (a non-negative integer). If \code{NA} (the default) a reasonable value is selected.
 }
