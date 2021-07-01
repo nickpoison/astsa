@@ -1,7 +1,7 @@
 sarima.sim <-
 function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
-          n=500, rand.gen=rnorm, innov=rand.gen(n, ...),
-          burnin=NA, t0=0, ...){ 
+          n=500, rand.gen=rnorm, innov=NULL, burnin=NA, t0=0, ...)
+{ 
   if (length(ar)==1 && ar==0) ar=NULL
   if (length(ma)==1 && ma==0) ma=NULL  
   po = length(ar)
@@ -22,7 +22,8 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
        stop("'burnin' must be a non-negative integer")        
    }
   num = n + burnin   
-  x = .zarima_sim(list(order=c(po,d,qo), ar=ar, ma=ma), n=num, rand.gen=rand.gen, ...)
+  if (is.null(innov)) innov = rand.gen(num, ...)
+  x = .zarima_sim(list(order=c(po,d,qo), ar=ar, ma=ma), n=num, rand.gen=rand.gen, innov=innov, ...)
  } else {  
   if (length(sar)==1 && sar==0) sar=NULL
   if (length(sma)==1 && sma==0) sma=NULL 
@@ -73,7 +74,8 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
        stop("'burnin' must be a non-negative integer")         
    }
    num = n + burnin
-   x = .zarima_sim(list(order=c(arorder,d,maorder), ar=arnew, ma=manew), n=num, rand.gen=rand.gen, ...)
+   if (is.null(innov)) innov = rand.gen(num, ...)
+   x = .zarima_sim(list(order=c(arorder,d,maorder), ar=arnew, ma=manew), n=num, rand.gen=rand.gen, innov=innov, ...)
   if (D > 0){
    x = stats::diffinv(x, lag=S, differences=D)
    }
@@ -87,7 +89,7 @@ return(x)
 
 ##
 .zarima_sim <-
-function (model, n, rand.gen = rand.gen, innov = rand.gen(n, ...), ...)
+function(model, n, rand.gen = rand.gen, innov = innov, ...)
 {
     filter = stats::filter
 	if (length(innov) < n)

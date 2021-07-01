@@ -6,8 +6,7 @@
 }
 \usage{
 sarima.sim(ar = NULL, d = 0, ma = NULL, sar = NULL, D = 0, sma = NULL, S = NULL, 
-            n = 500, rand.gen = rnorm, innov=rand.gen(n, ...), burnin = NA, 
-            t0 = 0, ...)
+            n = 500, rand.gen = rnorm, innov = NULL, burnin = NA, t0 = 0, ...)
 }
 \arguments{
   \item{ar}{
