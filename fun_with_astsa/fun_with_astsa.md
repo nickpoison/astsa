@@ -911,7 +911,7 @@ List of 6
 + Many examples can be found in the Springer text, Chapter 6, and the [R code may be found here in `tsa4`](https://github.com/nickpoison/tsa4/blob/master/textRcode.md) - just go Chapter 6  
 
 + Further explanations are also given on a [special page on Kalman filtering and
-smoothing](https://www.stat.pitt.edu/stoffer/tsa4/chap6.htm) for the text.
+smoothing](https://github.com/nickpoison/tsa4/blob/master/chap6.md) for the text.
 
 &#x1F535; We'll give an example of using `Kfiler0()` on some generated data.
 The model is a simple AR(1) plus noise:
