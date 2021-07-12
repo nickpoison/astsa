@@ -893,25 +893,16 @@ List of 6
  $ Ps: Time-Series [1:138] from 1880 to 2017: 0.00432 0.0038 0.0035 0.00333 0.00324 ...
  ```
 
-&#x1F535; For general models, there are three levels are called
+&#x1F535; For general models, there are three levels of filtering and smoothing,
 
 > **`Kfilter0()/Ksmooth0()`**, **`Kfilter1()/Ksmooth1()`**, **`Kfilter2()/Ksmooth2()`** 
 
-+ For various models, each script provides the 
-
-<ol>
-<li> Kalman filter   and/or</li>
-<li> Kalman smoother</li>
-<li> Innovations and the corresponding variance-covariance matrices</li>
-<li> The value of the innovations likelihood at the location of the parameter values passed to the script
-</ol>  
-
-+ MLE is  accomplished by calling the script that runs the filter. 
-
-+ Many examples can be found in the Springer text, Chapter 6, and the [R code may be found here in `tsa4`](https://github.com/nickpoison/tsa4/blob/master/textRcode.md) - just go Chapter 6  
-
-+ Further explanations are also given on a [special page on Kalman filtering and
+Further explanations are also given on a [special page on Kalman filtering and
 smoothing](https://github.com/nickpoison/tsa4/blob/master/chap6.md) for the text.
+
+MLE is accomplished via  the `Kfilter_()`s, each of  which returns the value
+of -log.likelihood of the innovations.
+
 
 &#x1F535; We'll give an example of using `Kfiler0()` on some generated data.
 The model is a simple AR(1) plus noise:
@@ -929,9 +920,9 @@ y    = ts(x[-1] + rnorm(num,0,1))  # obs         y[1], ..., y[100]
 
 
 # Function to evaluate the likelihood 
-Linn=function(para){
+Linn  = function(para){
   phi = para[1]; sigw = para[2]; sigv = para[3]   
-  kf = Kfilter0(num, y, A=1, mu0=0, Sigma0=10, phi, sigw, sigv)
+  kf  = Kfilter0(num, y, A=1, mu0=0, Sigma0=10, phi, sigw, sigv)
   return(kf$like)   
   }
 
