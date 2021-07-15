@@ -5,7 +5,7 @@
 \title{Applied Statistical Time Series Analysis (more than just data)
 }
 \description{
-Includes data and scripts to accompany \emph{Time Series Analysis and Its Applications: With R Examples} (4th ed) by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2017. Softcover ISBN: 978-3319524511; eBook ISBN 978-3319524528; DOI: 10.1007/978-3319524528, and \emph{Time Series:  A Data Analysis Approach Using R},  Chapman-Hall, 2019. <DOI:10.1201/9780429273285>.
+Includes data and scripts to accompany \emph{Time Series Analysis and Its Applications: With R Examples} (4th ed) by R.H. Shumway and D.S. Stoffer, Springer Texts in Statistics, 2017 <DOI:10.1007/978-3-319-52452-8> and \emph{Time Series:  A Data Analysis Approach Using R},  Chapman-Hall, 2019 <DOI:10.1201/9780429273285>.
 }
 \details{
 \tabular{ll}{
