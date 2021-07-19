@@ -3,7 +3,7 @@
 <img src="fun_with_astsa/figs/astsa.gif" alt="astsa"  height="100">
 
 
-> The package is now in the folder [astsa_build](https://github.com/nickpoison/astsa/tree/master/astsa_build) [![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
+> The package is now in the folder [astsa_build](https://github.com/nickpoison/astsa/tree/master/astsa_build) 
 
 ... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series: A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/). 
 
@@ -22,3 +22,6 @@ We won't always push the latest version of the package to CRAN, but the latest w
 
 
 The Springer text was written under version 1.8 and the Chapman & Hall text was written under version 1.9. Later versions will work for both texts with only some minor changes that won't affect any of the data analysis. 
+
+
+[![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
