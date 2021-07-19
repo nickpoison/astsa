@@ -2,6 +2,8 @@
 
 [![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
 
+<img src="fun_with_astsa/figs/astsa.gif" alt="astsa"  height="100">
+
 
 > The package is now in the folder [astsa_build](https://github.com/nickpoison/astsa/tree/master/astsa_build)
 
