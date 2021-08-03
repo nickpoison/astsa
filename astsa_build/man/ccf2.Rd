@@ -26,7 +26,7 @@ if TRUE (default) a graphic is produced and the values are returned invisibly. O
 }
   \item{na.action}{ how to handle missing values; default is \code{na.pass}
 }
-  \item{type}{ default is cross-correlation; othen option is cross-covariance
+  \item{type}{ default is cross-correlation; an option is cross-covariance
 }
   \item{\dots}{ additional arguments passed to \code{\link{tsplot}}
 }
