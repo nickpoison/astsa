@@ -35,6 +35,8 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 + v1.13.1 (July 2021) Some minor improvements  to `tsplot-spaghetti`, `sarima.sim`, `sarima`, and `arma.spec`.
 
+    + Also some man page updates (adding sources and subtracting typos).
+
 + v1.13 is on CRAN.   There are lots of additions to the package that are listed below.
 
 
