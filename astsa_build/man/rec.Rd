@@ -12,7 +12,7 @@
 }
 \details{can pair with \code{soi} (Southern Oscillation Index)
 }
-\source{Data furnished by Dr. Roy Mendelssohn of the Pacific Fisheries Environmental Laboratory, NOAA (personal communication). Further discussion of the concept of Recruitment may be found here: derekogle.com/fishR/examples/oldFishRVignettes/StockRecruit.pdf
+\source{Data furnished by Dr. Roy Mendelssohn of the Pacific Fisheries Environmental Laboratory, NOAA (personal communication). Further discussion of the concept of Recruitment may be found here: \kbd{derekogle.com/fishR/examples/oldFishRVignettes/StockRecruit.pdf}
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
