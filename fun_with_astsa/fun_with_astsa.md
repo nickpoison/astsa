@@ -242,11 +242,9 @@ lines(lowess(tempr, cmort), col=6, lwd=2)
 &#x1F4A1; There are three basic correlation scripts in `astsa`.  They are
 
 
-> **`acf1()`**, **`acf2()`,** and **`ccf2()`** 
+> **`acf1()`**, **`acf2()`,**  **`ccf2()`**, and **`acfm()`** 
 
-The first one will give the sample ACF or PACF of a series.  The second one gives both the
-sample ACF and PACF in a multifigure plot and both on the same scale.  The graphics do not display the lag 0 value because it is always 1.  The third one plots the sample CCF.
-The first two also print the values; the third one returns the values invisibly.
+The first one will give the sample ACF or PACF of a series.  The second one gives both the sample ACF and PACF in a multifigure plot and both on the same scale.  The graphics do not display the lag 0 value because it is always 1.  The third one plots the sample CCF. The first two also print the values; the third one returns the values invisibly.  The last one will give a grid of plots of the sample ACFs and CCFs.
 
 
 &#x1F535; The individual sample ACF or PACF  
@@ -257,6 +255,10 @@ acf1(soi)
   [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...
 ```
 <img src="figs/acf1.png" alt="acf1"  width="700" height="400">
+
+Since version 1.13.2, the LAG axis label indicates the frequency of 
+the data unless it is 1.  This way, you can see that the tick at LAG 1 
+corresponds to 12 (months) and so on. 
 
 ```r  
 acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)  
@@ -305,6 +307,16 @@ ccf2(cmort, part)
 
 &#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).
 
+
+&#x1F535; For multiple series, you can look at all sample ACFs (diagonal)
+and CCFs (off-diagonal) simultaneously:
+
+```r
+acfm(diff(log(econ5)))
+```
+<img src="figs/acfm.png" alt="acfm"  width="700">
+
+Column-wise, the top series leads and row-wise, the side series lags.
 
 [<sub>top</sub>](#table-of-contents)
 
