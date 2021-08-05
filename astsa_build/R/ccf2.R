@@ -14,21 +14,22 @@ function (x, y, max.lag = NULL, main = NULL, ylab = "CCF", plot = TRUE,
     X <- ts.intersect(as.ts(x), as.ts(y))
 	num = nrow(X)
 	if (num > 49 & is.null(lag.max))  lag.max= max(ceiling(10+sqrt(num)), 3*frequency(X))
-    if (num < 50 & is.null(lag.max))  lag.max=floor(5*log10(num))
-    if (lag.max > (num-1)) stop("Number of lags exceeds number of observations")
-    colnames(X) <- c(deparse(substitute(x))[1L], deparse(substitute(y))[1L])
-    acf.out <- acf(X, lag.max = lag.max, plot = FALSE, type =  type, 
-        na.action = na.action)
-    lag <- c(rev(acf.out$lag[-1, 2, 1]), acf.out$lag[, 1, 2])
-    y <- c(rev(acf.out$acf[-1, 2, 1]), acf.out$acf[, 1, 2])
-    acf.out$CCF <- array(y, dim = c(length(y), 1L, 1L))
-    acf.out$LAG <- array(lag, dim = c(length(y), 1L, 1L))
-    acf.out$snames <- paste(acf.out$snames, collapse = " & ") 
-    if (is.null(main)){main=acf.out$snames}
-    #  better graphic
+  if (num < 50 & is.null(lag.max))  lag.max=floor(5*log10(num))
+  if (lag.max > (num-1)) stop("Number of lags exceeds number of observations")
+  colnames(X) <- c(deparse(substitute(x))[1L], deparse(substitute(y))[1L])
+  acf.out <- acf(X, lag.max = lag.max, plot = FALSE, type =  type, na.action = na.action)
+  lag <- c(rev(acf.out$lag[-1, 2, 1]), acf.out$lag[, 1, 2])
+  y <- c(rev(acf.out$acf[-1, 2, 1]), acf.out$acf[, 1, 2])
+  acf.out$CCF <- array(y, dim = c(length(y), 1L, 1L))
+  acf.out$LAG <- array(lag, dim = c(length(y), 1L, 1L))
+  acf.out$snames <- paste(acf.out$snames, collapse = " & ") 
+  if (is.null(main)){main=acf.out$snames}
+  #  better graphic
   if (plot){ 
+   frequency = frequency(X)  
+   Xlab = ifelse(frequency>1, paste('LAG', expression('\u00F7'), frequency), 'LAG')
 	 U = 2/sqrt(num)
-	 tsplot(acf.out$LAG, acf.out$CCF, type='h', ylab=ylab, xlab="LAG", main=main, ...) 
+	 tsplot(acf.out$LAG, acf.out$CCF, type='h', ylab=ylab, xlab=Xlab, main=main, ...) 
 	 if (type == "correlation") { abline(h=c(0,-U,U), lty=c(1,2,2), col=c(8,4,4))
     } else { abline(h=0, col=8)
     }

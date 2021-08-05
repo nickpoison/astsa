@@ -10,7 +10,8 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
   if (is.null(main)) {main = paste("Series: ",deparse(substitute(series)))}
   ACF  = acf(series, max.lag, plot=FALSE, na.action = na.action,...)$acf[-1]
   PACF = pacf(series, max.lag, plot=FALSE, na.action = na.action, ...)$acf
-  LAG  = (1:max.lag)/frequency(series)
+  frequency = frequency(series)
+  LAG  = (1:max.lag)/frequency
  if(plot){
    abline = graphics::abline
    par = graphics::par
@@ -27,9 +28,10 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action = na.p
     ylim = c(minu,maxu)
    }
   par(mfrow=c(2,1), cex.main=1) 
-   tsplot(LAG, ACF, ylim=ylim, main=main, xlab='LAG', ylab='ACF', type='h', ...)
+   Xlab = ifelse(frequency>1, paste('LAG', expression('\u00F7'), frequency), 'LAG')
+   tsplot(LAG, ACF, ylim=ylim, main=main, xlab=Xlab, ylab='ACF', type='h', ...)
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(8,4,4))
-   tsplot(LAG, PACF, ylim=ylim, main=NULL, xlab='LAG', ylab='PACF', type='h', ...)
+   tsplot(LAG, PACF, ylim=ylim, main=NULL, xlab=Xlab, ylab='PACF', type='h', ...)
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(8,4,4))
    on.exit(par(old.par))
    ACF  <- round(ACF,2) 

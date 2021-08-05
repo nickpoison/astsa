@@ -33,6 +33,13 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ### Versions 1.13 - May 2021
 
++ v1.13.2 (Aug 2021) Added `acfm` for multiple time series. Produces a matrix of plots of sample ACFs on the diagonal and sample CCFs on the off-diagonals. It's just a nicer version of `acf` for multiple time series. 
+
+   + Also, changed the LAG axis labels on `acf1`, `acf2`, and `ccf2` to show the 
+   frequency of the series if it's bigger than one.  For example, `soi` has
+   frequency 12 and the LAG axis of `acf1(soi)`  will be ticked as 1, 2, 3, ...
+   but the label now emphasizes that each tick is divided by 12.
+
 + v1.13.1 (July 2021) Some minor improvements  to `tsplot-spaghetti`, `sarima.sim`, `sarima`, and `arma.spec`.
 
     + Also some man page updates (adding sources and subtracting typos).

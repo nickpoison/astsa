@@ -14,7 +14,8 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
    } else {
    ACF = acf(series, max.lag, plot=FALSE, na.action = na.action, ...)$acf[-1]
   }
-  LAG = (1:max.lag)/frequency(series)
+  frequency = frequency(series)
+  LAG = (1:max.lag)/frequency
  if(plot){ 
   abline = graphics::abline
   U = (-1/num) + (2/sqrt(num))
@@ -26,13 +27,15 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
    maxu = min(maxA+.2, 1)
    ylim = c(minu,maxu) 
  }
+  Xlab = ifelse(frequency>1, paste('LAG', expression('\u00F7'), frequency), 'LAG')
   Ylab = ifelse(pacf, 'PACF', 'ACF')  
   if (!is.null(ylab)) Ylab=ylab
-  tsplot(LAG, ACF, ylim=ylim, main=main, xlab='LAG', ylab=Ylab, type='h', ...)
+  tsplot(LAG, ACF, ylim=ylim, main=main, xlab=Xlab, ylab=Ylab, type='h', ...)
   abline(h=c(0,L,U), lty=c(1,2,2), col=c(8,4,4))
   return(round(ACF, 2)) 
  } else {
   return(ACF)
   }
 }
+
 
