@@ -6,7 +6,7 @@
 Produces a grid of plots of the sample ACF (diagonal) and CCF (off-diagonal).
 }
 \usage{
-acfm(series, max.lag=NULL,  na.action = na.pass, ylim=NULL, ...)
+acfm(series, max.lag = NULL,  na.action = na.pass, ylim = NULL, ...)
 }
 \arguments{
   \item{series}{Multiple time series (at least 2 columns of time series)
@@ -16,17 +16,18 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
 }
   \item{na.action}{How to handle missing data; default is \code{na.pass}
 }
-  \item{...}{ Additional arguments passed to \code{\link{tsplot}}
+  \item{ylim}{Specify limits for the all correlation axes. If NULL (default) the values
+  are a little wider than the min and max of all values.
+}
+  \item{...}{Additional arguments passed to \code{\link{tsplot}}
 }
 }
 
 \details{Produces a grid of plots of the sample ACF (diagonal) and CCF (off-diagonal).
-The plots in the grid are estimates of  \kbd{corr{x(t+LAG), y(t)}} where \kbd{x} is
-a column series and \kbd{y} is a row series.  If  \kbd{LAG} is positive (column-wise), then \kbd{x} leads.
-If \kbd{LAG} is negative (row-wise), then \kbd{x} lags.
-
-
+The plots in the grid are estimates of  \kbd{corr{x(t+LAG), y(t)}}.  Thus
+\kbd{x} leads \kbd{y} if \kbd{LAG} is positive and \kbd{x} lags \kbd{y} if \kbd{LAG} is negative.
 }
+
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
