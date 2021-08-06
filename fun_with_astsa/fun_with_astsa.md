@@ -320,7 +320,7 @@ What you see are estimates of
 _corr( x<sub>t+LAG</sub> , y<sub>t</sub> )_ where
 _x<sub>t</sub>_ is a column series and _y<sub>t</sub>_ is a row
 series. _x<sub>t</sub>_  leads when LAG is positive and
-_y<sub>t</sub>_ leads when LAG is negative - 
+_x<sub>t</sub>_ lags when LAG is negative - 
 column-wise, the top series leads and row-wise, the side series lags.
 
 
