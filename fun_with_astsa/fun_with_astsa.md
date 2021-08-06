@@ -256,7 +256,7 @@ acf1(soi)
 ```
 <img src="figs/acf1.png" alt="acf1"  width="700" height="400">
 
-Since version 1.13.2, the LAG axis label indicates the frequency of 
+&#x1F4A1; Since version 1.13.2, the LAG axis label indicates the frequency of 
 the data unless it is 1.  This way, you can see that the tick at LAG 1 
 corresponds to 12 (months) and so on. 
 
@@ -316,7 +316,13 @@ acfm(diff(log(econ5)))
 ```
 <img src="figs/acfm.png" alt="acfm"  width="700">
 
-Column-wise, the top series leads and row-wise, the side series lags.
+What you see are estimates of
+_corr( x<sub>t+LAG</sub> , y<sub>t</sub> )_ where
+_x<sub>t</sub>_ is a column series and _y<sub>t</sub>_ is a row
+series. _x<sub>t</sub>_  leads when LAG is positive and
+_y<sub>t</sub>_ leads when LAG is negative - 
+column-wise, the top series leads and row-wise, the side series lags.
+
 
 [<sub>top</sub>](#table-of-contents)
 
