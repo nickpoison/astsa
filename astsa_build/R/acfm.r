@@ -25,13 +25,13 @@ uppr = min(uppr, 1)
 
 
 old.par <- par(no.readonly = TRUE)
-par(mfrow=c(nser,nser), mar=c(1,1,.5,.5), mgp=c(1.6,.6,0), oma=c(0,2,2,0), cex.main=1)
+par(mfrow=c(nser,nser), oma=c(0,2,2,0), cex.main=1)
  Xlab = ifelse(frequency>1, paste('LAG', expression('\u00F7'), frequency), 'LAG')
  for (i in 1:nser){ 
   for (j in 1:nser){ 
      U = (-1/num)*(i==j) + (2/sqrt(num))
      L = (-1/num)*(i==j) - (2/sqrt(num))
-    tsplot(u$lag[,i,j], u$acf[,i,j], type='h', ylab="", main=NULL, xlab=Xlab, ylim=c(lowr,uppr))
+    tsplot(u$lag[,i,j], u$acf[,i,j], type='h', ylab="", main=NULL, xlab=Xlab, ylim=c(lowr,uppr), ...)
      abline(h = c(0, L, U), lty = c(1, 2, 2), col = c(8, 4, 4))       
      txt2 = ifelse(j==1,u$snames[i],"") 
       mtext(txt2, side=2, font=2, line=2, cex=.65*(nser+1)/nser)
