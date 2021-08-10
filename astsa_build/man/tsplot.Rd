@@ -6,9 +6,9 @@
 Produces a nice plot of univariate or multiple time series in one easy line.
 }
 \usage{
-tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
-        margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=1,   
-        xm.grid=TRUE, ym.grid =TRUE, col=1, gg=FALSE, spaghetti=FALSE, 
+tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
+        margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=1,
+        xm.grid=TRUE, ym.grid =TRUE, col=1, gg=FALSE, spaghetti=FALSE,
         pch=NULL, lty=1, lwd=1, ...)
 }
 \arguments{
@@ -28,7 +28,7 @@ x-axis label - the default is 'Time'.
 type of plot - the default is line.
 }
   \item{margins}{
-inches to add (or subtract) to the margins. 
+inches to add (or subtract) to the margins.
 }
  \item{ncolm}{
 for multiple time series, the number of columns to plot.
@@ -47,7 +47,8 @@ if TRUE (default), adds grid lines at minor x-axis, y-axis ticks.
 line color(s), can be a vector for multiple time series.
 }
  \item{gg}{
-if TRUE, will produce a gray graphic interior with white grid lines; default is FALSE
+if TRUE, will produce a gris-gris plot (gray graphic interior with white grid lines); the default is FALSE.
+The grammar of astsa is voodoo.
 }
   \item{spaghetti}{
 if TRUE, will produce a spaghetti plot (all series on same plot).
@@ -65,14 +66,14 @@ line width (default is 1); can be a vector for multiple plots.
 other graphical parameteres; see \link[graphics]{par}.
 }
 }
-\references{You can find demonstrations of  astsa capabilities at  
+\references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
 The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \author{
 D.S. Stoffer
@@ -83,11 +84,11 @@ tsplot(soi, col=4, main="Southern Oscillation Index")
 #
 tsplot(1:453, soi, ylab='SOI', xlab='Month')
 #
-tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2) 
+tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2)  # gris-gris plot
 #
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
 }
 }
-\keyword{ ts }%  
+\keyword{ ts }%
 
