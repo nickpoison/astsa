@@ -1,4 +1,4 @@
-# fun with astsa 
+# fun with astsa
 
 [![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
 
@@ -15,10 +15,10 @@ it's more than just data ...
 
 
 -----
------- 
+------
 
 ### Table of Contents
-  
+
   * [1. Data](#1-data)
   * [2. Plotting](#2-plotting)
   * [3. Correlations](#3-correlations)
@@ -30,7 +30,7 @@ it's more than just data ...
      * [ARMA Spectrum](#arma-spectral-density)
      * [Nonparametric](#nonparametric-spectral-analysis)
      * [Parametric](#parametric-spectral-analysis)
-     * [Spectral Matrices](#more-multivariate-spectra)     
+     * [Spectral Matrices](#more-multivariate-spectra)
   * [6. Testing for Linearity](#6-linearity-test)
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
   * [8. EM Algorithm](#8-em-algorithm)
@@ -38,16 +38,16 @@ it's more than just data ...
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
-  * [10. The Spectral Envelope](#10-the-spectral-envelope)   
+  * [10. The Spectral Envelope](#10-the-spectral-envelope)
      * [DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
-     * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)     
+     * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)
 
 -----
 -----
 
 
 
-## 1. Data  
+## 1. Data
 
 &#x1F4A1; There are lots of fun data sets included in `astsa`. Here's a list obtained by issuing the command
 
@@ -132,11 +132,11 @@ And you can get more information on any individual set using the `help()` comman
 
 ## 2. Plotting
 
-&#x1F4A1; When `astsa` is loaded, the astsa palette is attached.  The palette is  especially  suited for plotting  time series and it is a bit darker than the new default R4 palette. You can revert back using  `palette("default")`.  Also,  
+&#x1F4A1; When `astsa` is loaded, the astsa palette is attached.  The palette is  especially  suited for plotting  time series and it is a bit darker than the new default R4 palette. You can revert back using  `palette("default")`.  Also,
 
-> **`astsa.col()`** 
+> **`astsa.col()`**
 
-is included to easily adjust the opacity of the colors. 
+is included to easily adjust the opacity of the colors.
 
 ```r
 par(mfrow=c(3,1))
@@ -175,7 +175,7 @@ tsplot(soi, col=4, lwd=2, gg=TRUE)
 &#x1F535; Many in one swell foop:
 
 ```r
-tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2) 
+tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2)
 ```
 <img src="figs/climhyd.png" alt="climhyd"  width="700">
 
@@ -207,7 +207,7 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 By default, the graphic displays the sample ACF or CCF and a `lowess` fit.
 They can be turned off individually (`?lag1.plot` or `?lag2.plot` for more info).
 
-First,  for one series  
+First,  for one series
 
 ```r
 lag1.plot(soi, 12, col=astsa.col(4, .3), pch=20, cex=2)
@@ -242,12 +242,12 @@ lines(lowess(tempr, cmort), col=6, lwd=2)
 &#x1F4A1; There are four basic correlation scripts in `astsa`.  They are
 
 
-> **`acf1()`**, **`acf2()`,**  **`ccf2()`**, and **`acfm()`** 
+> **`acf1()`**, **`acf2()`,**  **`ccf2()`**, and **`acfm()`**
 
 The first one will give the sample ACF or PACF of a series.  The second one gives both the sample ACF and PACF in a multifigure plot and both on the same scale.  The graphics do not display the lag 0 value because it is always 1.  The third one plots the sample CCF. The first two also print the values; the third one returns the values invisibly.  The last one is for multiple time series and it produces a grid of plots of the sample ACFs and CCFs.
 
 
-&#x1F535; The individual sample ACF or PACF  
+&#x1F535; The individual sample ACF or PACF
 
 ```r
 acf1(soi)
@@ -256,12 +256,12 @@ acf1(soi)
 ```
 <img src="figs/acf1.png" alt="acf1"  width="700" height="400">
 
-&#x1F4A1; Since version 1.13.2, the LAG axis label indicates the frequency of 
-the data unless it is 1.  This way, you can see that the tick at LAG 1 
-corresponds to 12 (months) and so on. 
+&#x1F4A1; Since version 1.13.2, the LAG axis label indicates the frequency of
+the data unless it is 1.  This way, you can see that the tick at LAG 1
+corresponds to 12 (months) and so on.
 
-```r  
-acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)  
+```r
+acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)
 
    [1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...
 ```
@@ -270,17 +270,17 @@ acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)
 &#x1F535; Sample ACF and PACF at the same time
 
 ```r
-acf2(diff(log(varve)))  
+acf2(diff(log(varve)))
 
         [,1]  [,2]  [,3]  [,4]  [,5]  [,6]  [,7]  [,8]  [,9] ...
    ACF  -0.4 -0.04 -0.06  0.01  0.00  0.04 -0.04  0.04  0.01 ...
-   PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 ... 
+   PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 ...
 ```
 <img src="figs/acf2.png" alt="acf2"  width="700">
 
 &#x1F535; If you just want the values, use `plot=FALSE` (works for `acf1` too)
 ```r
-acf2(diff(log(varve)), plot=FALSE)  
+acf2(diff(log(varve)), plot=FALSE)
 
                 ACF         PACF
  [1,] -0.3974306333 -0.397430633
@@ -297,7 +297,7 @@ acf2(diff(log(varve)), plot=FALSE)
 ```
 
 
-&#x1F535; and the sample CCF  
+&#x1F535; and the sample CCF
 
 ```r
 ccf2(cmort, part)
@@ -320,25 +320,35 @@ What you see are estimates of
 _corr( x<sub>t+LAG</sub> , y<sub>t</sub> )_ where
 _x<sub>t</sub>_ is a column series and _y<sub>t</sub>_ is a row
 series. _x<sub>t</sub>_  leads when LAG is positive and
-_x<sub>t</sub>_ lags when LAG is negative - 
+_x<sub>t</sub>_ lags when LAG is negative -
 column-wise, the top series leads and row-wise, the side series lags.
+
+The script uses `tsplot` so there are various options for the output.
+For example, you can suppress the minor ticks if it's too much, or
+you can do a "gris-gris" plot.:
+
+```r
+acfm(diff(log(econ5)), nxm=0)    #  no minor ticks on LAG axis
+
+acfm(diff(log(econ5)), gg=TRUE, acf=FALSE)  # Gris-Gris Gumbo Ya Ya
+```
 
 
 [<sub>top</sub>](#table-of-contents)
 
 -----
 
-## 4. ARIMA 
+## 4. ARIMA
 
 ### ARIMA Simulation
 
-&#x1F4A1; You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via 
+&#x1F4A1; You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via
 
 > **`sarima.sim()`**
 
 The syntax are simple and we'll demonstrate with a couple of examples. There are more examples in the help file (`?sarima.sim`).  For example, you can input your own innovations or generate non-normal innovations (the default is normal).
 
-&#x1F535; First an AR(2) with a mean of 50 (n=500 is the default sample size)  
+&#x1F535; First an AR(2) with a mean of 50 (n=500 is the default sample size)
 
 ```r
 y = sarima.sim(ar=c(1.5,-.75)) + 50
@@ -346,12 +356,12 @@ tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
 ```
 <img src="figs/ar2sim.png" alt="ar2sim"  width="700" height="400">
 
-&#x1F535; Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite  
+&#x1F535; Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite
 
 ```r
 set.seed(101010)
 x = sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120) + 100
-tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')  
+tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 ```
 
 <img src="figs/sarima.sim.png" alt="sarima.sim"  width="700" height="400">
@@ -364,37 +374,37 @@ tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 
 > **`sarima()`**
 
-It can do everything for you but you have to choose the model. 
+It can do everything for you but you have to choose the model.
 
 &#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK; see [Using an automated process to select the order of an ARMA time series model returns the true data generating process less than half the time even with simple data generating processes; and with more complex models the chance of success comes down nearly to zero even with long sample sizes.](http://freerangestats.info/blog/2015/09/30/autoarima-success-rates)
 
 <img src="figs/blackbox2.png" alt="blackbox"  width="700" height="400">
 
 
-Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T WORK and was scrapped. 
+Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T WORK and was scrapped.
  The bottom line is, if you don't know what you're doing (aka _ZERO KNOWLEDGE_), why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
 
 > DON'T BELIEVE IT?? OK... HERE YOU GO:
 
 ```r
 set.seed(666)
-x = rnorm(1000)          # WHITE NOISE 
+x = rnorm(1000)          # WHITE NOISE
 forecast::auto.arima(x)  # BLACK BOX
-      
-   # partial output 
+
+   # partial output
      Series: x
      ARIMA(2,0,1) with zero mean
-     
+
      Coefficients:
                ar1      ar2     ma1
            -0.9744  -0.0477  0.9509
      s.e.   0.0429   0.0321  0.0294
-     
+
      sigma^2 estimated as 0.9657:  log likelihood=-1400
      AIC=2808.01   AICc=2808.05   BIC=2827.64
 ````
 > HA! ... an ARMA(2,1) ??  BUT, if you KNOW what you are doing, you realize the model
-is basically overparametrized white noise.    
+is basically overparametrized white noise.
 
 &nbsp;
 
@@ -409,7 +419,7 @@ As with everything else, there are many examples on the help page (`?sarima`) an
 ```r
 sarima(log(AirPassengers),0,1,1,0,1,1,12, gg=TRUE, col=4)
 ```
-and the partial output including the residual diagnostic plot is (`AIC` is basically `aic` divided by the sample size):  
+and the partial output including the residual diagnostic plot is (`AIC` is basically `aic` divided by the sample size):
 
 ```r
 Coefficients:
@@ -439,20 +449,20 @@ $BIC
 
 <img src="figs/airpass.png" alt="airpass"  width="700">
 
-&#x1F535; You can shut off the diagnostics using `details=FALSE` 
+&#x1F535; You can shut off the diagnostics using `details=FALSE`
 
 ```r
  sarima(log(AirPassengers),0,1,1,0,1,1,12, details=FALSE)
 ```
 
 
-&#x1F535; You can fix parameters too, for example  
+&#x1F535; You can fix parameters too, for example
 
 ```r
-x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
+x = sarima.sim( ar=c(0,-.9), n=200 ) + 50
 sarima(x, 2,0,0, fixed=c(0,NA,NA))  # ar1 (fixed at 0), ar2 (free), mean (free)
 ```
-with output   
+with output
 
 ```r
 Coefficients:
@@ -522,7 +532,7 @@ $BIC
 
 > **`sarima.for()`**
 
-You get a graphic showing  ± 1 and 2 root mean square prediction errors and the predictions and standard errors are printed.   The syntax are similar to `sarima` but the 
+You get a graphic showing  ± 1 and 2 root mean square prediction errors and the predictions and standard errors are printed.   The syntax are similar to `sarima` but the
 number of periods to forecast, `n.ahead`, has to be specified.
 
 
@@ -537,22 +547,22 @@ text(85, 375, "PAST"); text(115, 375, "FUTURE")
 abline(v=100, lty=2, col=4)
 lines(x)
 ```
-with partial output  
+with partial output
 
 ```r
 $pred
 Time Series:
-Start = 101 
-End = 150 
-Frequency = 1 
+Start = 101
+End = 150
+Frequency = 1
  [1] 242.3821 241.3023 240.5037 239.9545 239.6264 239.4945 239.5364 ...
 
 $se
 Time Series:
-Start = 101 
-End = 150 
-Frequency = 1 
- [1]  1.136849  2.427539  3.889295  5.459392  7.096606  8.772528 10.466926 ...  
+Start = 101
+End = 150
+Frequency = 1
+ [1]  1.136849  2.427539  3.889295  5.459392  7.096606  8.772528 10.466926 ...
 ```
 <img src="figs/fore1.png" alt="fore1"  width="700" height="400">
 
@@ -577,9 +587,9 @@ The spectral density of an ARMA model can be obtained using
 
 Nonparametric spectral analysis is done with
 
-> **`mvspec()`** 
+> **`mvspec()`**
 
-and parametric spectral analysis with  
+and parametric spectral analysis with
 
 > **`spec.ic()`**
 
@@ -597,7 +607,7 @@ arma.spec(ar = c(1.5, -.75), ma = c(-.8,.4), col=4, lwd=2)
 and if you want to do a seasonal model, you have to be a little creative; e.g., _x<sub>t</sub>= .4 x<sub>t-12</sub> + w<sub>t</sub> + .5 w<sub>t-1</sub>_
 
 ```r
-arma.spec(ar=c(rep(0,11),.4), ma=.5, col=5, lwd=3, frequency=12)  
+arma.spec(ar=c(rep(0,11),.4), ma=.5, col=5, lwd=3, frequency=12)
 ```
 
 <img src="figs/arma_spec_season.png" alt="arma_spec_season"  width="700">
@@ -607,13 +617,13 @@ Some goofs
 ```r
 arma.spec(ar=10, ma=20)
 
-   WARNING: Model Not Causal 
+   WARNING: Model Not Causal
    WARNING: Model Not Invertible
    Error in arma.spec(ar = 10, ma = 20) : Try Again
-```   
+```
 ```r
 arma.spec(ar= .9, ma= -.9, main="It's White Noise, Dingus")
- 
+
    WARNING: Parameter Redundancy
 ```
 
@@ -631,7 +641,7 @@ x1 = 2*cos(2*pi*1:100*5/100)  + 3*sin(2*pi*1:100*5/100)
 x2 = 4*cos(2*pi*1:100*10/100) + 5*sin(2*pi*1:100*10/100)
 x3 = 6*cos(2*pi*1:100*40/100) + 7*sin(2*pi*1:100*40/100)
 x  = x1 + x2 + x3
-tsplot(x, col=5, lwd=2, gg=TRUE) 
+tsplot(x, col=5, lwd=2, gg=TRUE)
 mvspec(x, col=4, lwd=2, type='o', pch=20)
 ```
 
@@ -679,7 +689,7 @@ and easily locate the peaks
 [43,]     1.075  0.9302   0.0972
 
 ```
-&#x1F535; and cross-spectra  
+&#x1F535; and cross-spectra
 
 ```r
 mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitment")
@@ -698,7 +708,7 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 &#x1F535; Based on BIC after detrending (default is using AIC with `BIC=FALSE`)
 
 ```r
-u <- spec.ic(soi, BIC=TRUE, detrend=TRUE, col=4, lwd=2)  
+u <- spec.ic(soi, BIC=TRUE, detrend=TRUE, col=4, lwd=2)
 ```
 
 <img src="figs/spec.bic.png" alt="spec.bic"  width="700" height="400">
@@ -724,7 +734,7 @@ u[[1]]   # notice the values are adjusted by the min
 [13,]    12  41.0928139  28.745138
 [14,]    13  37.0833413  28.851557
 [15,]    14   8.7779160   4.662024
-[16,]    15   0.0000000   0.000000  
+[16,]    15   0.0000000   0.000000
 [17,]    16   0.4321663   4.548058
 [18,]    17   0.8834736   9.115258
 [19,]    18   0.9605224  13.308199
@@ -739,11 +749,11 @@ u[[1]]   # notice the values are adjusted by the min
 [28,]    27   4.2581518  53.648857
 [29,]    28   5.5960927  59.102690
 [30,]    29   6.3765400  63.999030
-[31,]    30   2.6978096  64.436191 
+[31,]    30   2.6978096  64.436191
 ```
 
 ```r
-tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRUE)  
+tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRUE)
 ```
 <img src="figs/aicbic.png" alt="aicbic"  width="700">
 
@@ -753,11 +763,11 @@ tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRU
 &#x1F535; The data frame `econ5` was used to consider the effect of quarterly GNP, consumption, and government and private investment on  U.S. unemployment. In this case, `mvspec` will plot the individual spectra by default and you can extract the spectral matrices as `fxx`, an array of dimensions `dim = c(p,p,nfreq)` as well as plot coherencies and phases. Here, <i>p = 5</i>:
 
 ```r
-gr = diff(log(econ5)) 
+gr = diff(log(econ5))
 gr = scale(gr)  # for comparable spectra
-tsplot(gr, ncol=2, col=2:6, lwd=2, byrow=FALSE) 
+tsplot(gr, ncol=2, col=2:6, lwd=2, byrow=FALSE)
 gr.spec = mvspec(gr, spans=c(7,7), detrend=FALSE, taper=.25, col=2:6, lwd=2, main='spectra')
-round(gr.spec$fxx, 2) 
+round(gr.spec$fxx, 2)
 ```
 <img src="figs/econ5.png" alt="econ5"  width="700">
 
@@ -800,13 +810,13 @@ where <i>Z<sub>t</sub></i> is a sequence of i.i.d. random variables with at leas
 
 > **`test.linear()`**
 
-and more details can be found in its help file (`?test.linear`).    Chi-squared test statistics are formed in blocks to measure departures from the null hypothesis and the corresponding p-values are displayed in a graphic and returned invisibly - 
+and more details can be found in its help file (`?test.linear`).    Chi-squared test statistics are formed in blocks to measure departures from the null hypothesis and the corresponding p-values are displayed in a graphic and returned invisibly -
 [details in this paper](https://www.la.utexas.edu/hinich/files/Statistics/Normbispec.pdf).
 
 &#x1F535; First an example of a linear process where the graphic suggests a constant bispectrum.
 
 ```r
-test.linear(soi) 
+test.linear(soi)
 ```
 <img src="figs/test_soi.png" alt="test_soi"  width="700" height="400">
 
@@ -815,8 +825,8 @@ test.linear(soi)
 ```r
 # other packages have an 'nyse' data set
 # nyse = astsa::nyse  # if you have one of those other packages loaded
-test.linear(nyse) 
-tsplot(nyse, col=4) 
+test.linear(nyse)
+tsplot(nyse, col=4)
 ```
 <img src="figs/test_nyse.png" alt="test_nyse"  width="700" height="400">
 <img src="figs/nyse.png" alt="nyse"  width="700">
@@ -828,16 +838,16 @@ tsplot(nyse, col=4)
 ## 7. State Space Models
 
 
- &#x1F4A1;  There are a number of levels of Kalman filtering and smoothing in `astsa`. The most basic script is 
+ &#x1F4A1;  There are a number of levels of Kalman filtering and smoothing in `astsa`. The most basic script is
 
 > **`ssm()`**
 
 
-&#x1F535; First, consider a simple univariate model. 
+&#x1F535; First, consider a simple univariate model.
 We write the **states** as _x<sub>t</sub>_ and the **observations** as _y<sub>t</sub>_.
- 
 
-&emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/> 
+
+&emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/>
 
 where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
 
@@ -847,7 +857,7 @@ To use the script, you have to give initial estimates and then the script fits t
 ```r
 u = ssm(gtemp_land, A=1, alpha=.01, phi=1, sigw=.01, sigv=.1)
 ```
-with output (estimates and standard errors) 
+with output (estimates and standard errors)
 
 ```r
         estimate          SE
@@ -858,7 +868,7 @@ sigv  0.14902612 0.010685375
 ```
 
 and a nice picture - the data [_y<sub>t</sub>_], the smoothers [ E(_x<sub>t</sub>_ | _y<sub>1</sub> ,..., y<sub>n</sub>_) ] and  &#177;2 root MSPEs.  The smoothers are
-in `Xs` and the MSPEs are in `Ps`: 
+in `Xs` and the MSPEs are in `Ps`:
 
 ```r
 tsplot(gtemp_land, col=4, type="o", pch=20, ylab="Temperature Deviations")
@@ -876,7 +886,7 @@ polygon(xx, yy, border=8, col=gray(.6, alpha=.25) )
 ssm(gtemp_land, A=1, alpha=.01, phi=1, sigw=.01, sigv=.1, fixphi=TRUE)
 
 ##-- output --##
-initial  value -79.270104 
+initial  value -79.270104
 iter   2 value -158.182337
 iter   3 value -160.835289
 
@@ -886,7 +896,7 @@ iter  19 value -172.326951
 iter  20 value -172.326965
 iter  20 value -172.326965
 iter  20 value -172.326965
-final  value -172.326965 
+final  value -172.326965
 converged
 
         estimate          SE
@@ -896,11 +906,11 @@ sigv  0.14727510 0.010881612
 ```
 <br/>
 
-&#x1F535; The output of `ssm()` gives the predictors  [`Xp`] and MSPE [`Pp`], the 
+&#x1F535; The output of `ssm()` gives the predictors  [`Xp`] and MSPE [`Pp`], the
 filtered values [`Xf` and `Pf`]  and the smoothers [`Xs` and `Ps`]:
 
 ```r
-str(u) 
+str(u)
 
 List of 6
  $ Xp: Time-Series [1:138] from 1880 to 2017: -0.591 -0.602 -0.538 -0.511 -0.537 ...
@@ -913,7 +923,7 @@ List of 6
 
 &#x1F535; For general models, there are three levels of filtering and smoothing,
 
-> **`Kfilter0()/Ksmooth0()`**, **`Kfilter1()/Ksmooth1()`**, **`Kfilter2()/Ksmooth2()`** 
+> **`Kfilter0()/Ksmooth0()`**, **`Kfilter1()/Ksmooth1()`**, **`Kfilter2()/Ksmooth2()`**
 
 Further explanations are also given on a [special page on Kalman filtering and
 smoothing](https://github.com/nickpoison/tsa4/blob/master/chap6.md) for the text.
@@ -934,22 +944,22 @@ set.seed(999)
 num  = 100
 N    = num+1
 x    = sarima.sim(n=N, ar=.8)      # state x[0], x[1], ..., x[100]
-y    = ts(x[-1] + rnorm(num,0,1))  # obs         y[1], ..., y[100]   
+y    = ts(x[-1] + rnorm(num,0,1))  # obs         y[1], ..., y[100]
 
 
-# Function to evaluate the likelihood 
+# Function to evaluate the likelihood
 Linn  = function(para){
-  phi = para[1]; sigw = para[2]; sigv = para[3]   
+  phi = para[1]; sigw = para[2]; sigv = para[3]
   kf  = Kfilter0(num, y, A=1, mu0=0, Sigma0=10, phi, sigw, sigv)
-  return(kf$like)   
+  return(kf$like)
   }
 
-# Estimation  
+# Estimation
 init.par = c(.1, 1, 1)   # initial parameter values
-(est = optim(init.par, Linn, gr=NULL, method="BFGS", hessian=TRUE, control=list(trace=1,REPORT=1)))      
-   
-   # output from numerical optimization 
-   initial  value 115.748358 
+(est = optim(init.par, Linn, gr=NULL, method="BFGS", hessian=TRUE, control=list(trace=1,REPORT=1)))
+
+   # output from numerical optimization
+   initial  value 115.748358
    iter   2 value 98.291352
    iter   3 value 94.054737
    iter   4 value 93.454266
@@ -964,27 +974,27 @@ init.par = c(.1, 1, 1)   # initial parameter values
    converged
    $par
    [1] 0.7653691 1.0408250 0.9348492
-   
+
    $value
    [1] 91.36552
-   
+
    $counts
    function gradient
-         28        9 
-   
+         28        9
+
    $convergence
    [1] 0
-   
+
    $message
    NULL
-   
+
    $hessian
              [,1]     [,2]     [,3]
    [1,] 178.81837 46.95386 -8.64152
    [2,]  46.95386 60.71263 38.88109
    [3,]  -8.64152 38.88109 65.62742
 
-# nice display of the results   
+# nice display of the results
 SE = sqrt(diag(solve(est$hessian)))
 cbind(estimate=c(phi=est$par[1],sigw=est$par[2],sigv=est$par[3]), SE)
 
@@ -1014,7 +1024,7 @@ lines(ks$xs, col=6, lwd=2)
 
 that follow the Kalman filtering scripts, `EM0` does the EM Algorithm for Time Invariant State Space Models, and `EM1` does the EM Algorithm for General State Space Models.
 
-&#x1F535; We'll do an example for the general set up using the data in `blood` containing the daily blood work of a patient for 90 days and where there are many missing observations after the first month.  
+&#x1F535; We'll do an example for the general set up using the data in `blood` containing the daily blood work of a patient for 90 days and where there are many missing observations after the first month.
 
 
 ```r
@@ -1022,12 +1032,12 @@ tsplot(blood, type='o', col=c(6,4,2), lwd=2, pch=19, cex=1)
 ```
 <img src="figs/blood.png" alt="blood"  width="700">
 
-+ First the set up. 
- 
-&emsp;&emsp;_x<sub>t</sub> =   &Phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> + v<sub>t</sub>_ 
++ First the set up.
+
+&emsp;&emsp;_x<sub>t</sub> =   &Phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> + v<sub>t</sub>_
 
 where _A<sub>t</sub>_ is 3x3 identity when observed, and 0 matrix when missing.
-The errors are  _w<sub>t</sub> ~ iid N<sub>3</sub>(0, Q)_ &perp;   _v<sub>t</sub> ~ iid N<sub>3</sub>(0, V)_ &perp; _x<sub>0</sub> ~ N<sub>3</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>)_. 
+The errors are  _w<sub>t</sub> ~ iid N<sub>3</sub>(0, Q)_ &perp;   _v<sub>t</sub> ~ iid N<sub>3</sub>(0, V)_ &perp; _x<sub>0</sub> ~ N<sub>3</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>)_.
 
 
 
@@ -1035,47 +1045,47 @@ The errors are  _w<sub>t</sub> ~ iid N<sub>3</sub>(0, Q)_ &perp;   _v<sub>t</sub
 ```r
 y    = cbind(WBC, PLT, HCT)      # variables in blood with 0s instead of NAs
 #  y = blood;  y[is.na(y)] = 0   # this works too
-num  = nrow(y)       
+num  = nrow(y)
 A    = array(0, dim=c(3,3,num))  # creates num 3x3 zero matrices
 for(k in 1:num) if (y[k,1] > 0) A[,,k]= diag(1,3) # measurement matrices for observed
 
 ```
 
 + Next, run the EM Algorithm by specifying model parameters. You can specify the max number of iterations and relative tolerance, too.
- 
+
 ```r
-# Initial values 
-mu0    = matrix(0,3,1) 
+# Initial values
+mu0    = matrix(0,3,1)
 Sigma0 = diag(c(.1,.1,1) ,3)
 Phi    = diag(1,3)
 cQ     = diag(c(.1,.1,1), 3)
-cR     = diag(c(.1,.1,1), 3)  
-(em = EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, 100, .001))    
-``` 
+cR     = diag(c(.1,.1,1), 3)
+(em = EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, 100, .001))
+```
 
-Note that, as in the `Kfilter_` and `Ksmooth_` scripts, 
+Note that, as in the `Kfilter_` and `Ksmooth_` scripts,
 `cQ` and `cR` are the Cholesky-type decompositions of `Q` and `R`. In particular, `Q = t(cQ)%*%cQ` and `R = t(cR)%*%cR` is all that is required (assuming `Q` and `R` are valid covariance matrices).  In this example, the covariance matrix `R` is diagonal, so the elements of `cR` are the standard deviations.
 
 The (partial) output is
 
 ```r
-iteration    -loglikelihood 
-     1           68.28328 
-     2          -183.9361 
-     3          -194.2051 
-     4          -197.5444 
-     5          -199.7442 
+iteration    -loglikelihood
+     1           68.28328
+     2          -183.9361
+     3          -194.2051
+     4          -197.5444
+     5          -199.7442
 
-    20          -220.2935 
-    21          -221.1649 
-    22          -221.9869 
-    23          -222.762 
-    24          -223.4924 
-    25          -224.1805 
-   
-    40          -230.6582 
-    41          -230.9019 
-    42          -231.1289 
+    20          -220.2935
+    21          -221.1649
+    22          -221.9869
+    23          -222.762
+    24          -223.4924
+    25          -224.1805
+
+    40          -230.6582
+    41          -230.9019
+    42          -231.1289
 
 # estimates below
 
@@ -1120,30 +1130,30 @@ $cvg
 ks  = Ksmooth1(num, y, A, em$mu0, em$Sigma0, em$Phi, 0, 0, chol(em$Q), chol(em$R), 0)
 
 # Pull out the values
-y1s = ks$xs[1,,] 
-y2s = ks$xs[2,,] 
+y1s = ks$xs[1,,]
+y2s = ks$xs[2,,]
 y3s = ks$xs[3,,]
-p1  = 2*sqrt(ks$Ps[1,1,]) 
-p2  = 2*sqrt(ks$Ps[2,2,]) 
+p1  = 2*sqrt(ks$Ps[1,1,])
+p2  = 2*sqrt(ks$Ps[2,2,])
 p3  = 2*sqrt(ks$Ps[3,3,])
 
-# plots 
+# plots
 par(mfrow=c(3,1))
 tsplot(WBC, type='p', pch=19, ylim=c(1,5), col=6, lwd=2, cex=1)
-lines(y1s) 
+lines(y1s)
   xx = c(time(WBC), rev(time(WBC)))  # same for all
   yy = c(y1s-p1, rev(y1s+p1))
-polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))  
+polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 tsplot(PLT, type='p', ylim=c(3,6), pch=19, col=4, lwd=2, cex=1)
 lines(y2s)
   yy = c(y2s-p2, rev(y2s+p2))
-polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))  
+polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 tsplot(HCT, type='p', pch=19, ylim=c(20,40), col=2, lwd=2, cex=1)
 lines(y3s)
   yy = c(y3s-p3, rev(y3s+p3))
-polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))  
+polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 ```
 
 <img src="figs/blood2.png" alt="blood2"  width="700">
@@ -1154,7 +1164,7 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 ## 9. Arithmetic
 
-&#x1F4A1; The package has a few scripts to help with items related to time series and stochastic processes. 
+&#x1F4A1; The package has a few scripts to help with items related to time series and stochastic processes.
 
 ### ARMAtoAR
 
@@ -1169,7 +1179,7 @@ ARMAtoMA(ar = c(1.5, -.75), ma = c(-.8,.4), 50)
 giving some of the &psi;-weights in the _x<sub>t</sub> = &sum;&psi;<sub>j</sub> w<sub>t-j</sub>_ representation of the model (_w<sub>t</sub>_ is white noise). If you want to go the other way, use
 ```r
 # ARMA(2, 2) in invertible form [rounded for your pleasure]
-ARMAtoAR(ar = c(1.5, -.75), ma = c(-.8,.4), 50) 
+ARMAtoAR(ar = c(1.5, -.75), ma = c(-.8,.4), 50)
 
   [1] -0.7000 -0.2100  0.1120  0.1736  0.0941  0.0058 -0.0330 -0.0287 -0.0098  0.0037
  [11]  0.0068  0.0040  0.0005 -0.0012 -0.0012 -0.0004  0.0001  0.0003  0.0002  0.0000 ...
@@ -1180,13 +1190,13 @@ giving some of the &pi;-weights in the _w<sub>t</sub> = &sum;&pi;<sub>j</sub> x<
 ```r
 arma.spec(ar = c(1.5, -.75), ma = c(-.8,-.4))
 
-  WARNING: Model Not Invertible 
+  WARNING: Model Not Invertible
   Error in arma.spec(ar = c(1.5, -0.75), ma = c(-0.8, -0.4)) : Try Again
 ```
 
 ### Matrix Powers
 
-&#x1F535;  We  compute _&Sigma;<sup>&nbsp;-&frac12;</sup>_ where _&Sigma;_ is a variance-covariance matrix  when calculating the [_spectral envelope_](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full) 
+&#x1F535;  We  compute _&Sigma;<sup>&nbsp;-&frac12;</sup>_ where _&Sigma;_ is a variance-covariance matrix  when calculating the [_spectral envelope_](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full)
 so we built in a script called `matrixpwr` that computes powers of a square matrix, including negative powers for nonsingular matrices.
 Also, `%^%` is available as a more intuitive operator. For example,
 
@@ -1217,13 +1227,13 @@ round(var(econ5), 1)
 
 ```r
 ( P = matrix(c(.7,.5,.3,.5), 2) )  # 1 step transitions
-  
+
        [,1] [,2]
   [1,]  0.7  0.3
   [2,]  0.5  0.5
 
 ( P %^% 5 )  # 5 step transitions
-  
+
           [,1]    [,2]
   [1,] 0.62512 0.37488
   [2,] 0.62480 0.37520
@@ -1234,7 +1244,7 @@ round(var(econ5), 1)
   [1,] 0.625 0.375
   [2,] 0.625 0.375
 ```
-_&pi;(1)_ = 5/(3+5) and _&pi;(2)_ = 3/(3+5) and almost there in 5 steps.  
+_&pi;(1)_ = 5/(3+5) and _&pi;(2)_ = 3/(3+5) and almost there in 5 steps.
 
 A note - if you use it in an expression, surround the operation with parentheses:
 ```r
@@ -1247,9 +1257,9 @@ c(.5,.5) %*% ( P %^% 50 )  # toss a coin for initial state
 c(.5,.5) %*% P %^% 50
 ```
 
-### Polynomial Multiplication 
+### Polynomial Multiplication
 
-&#x1F535;  The script `sarima.sim` uses `polyMul` when simulating data from seasonal ARIMA models. 
+&#x1F535;  The script `sarima.sim` uses `polyMul` when simulating data from seasonal ARIMA models.
 For folks who may have forgotten the stuff they learned about polynomials in 2nd grade math, it might help to see what happens with a multiplicative model such as<br/>
 _&emsp; &emsp; (1 - 1.5B<sup>1</sup> + .75B<sup>2</sup>)&times;(1 - .9B<sup>12</sup>) x<sub>t</sub>   =w<sub>t</sub>_<br/>
 which is an ARIMA(2,0,0)&times;(1,0,0)<sub>12</sub> model.  You can add MA and SMA parts to your liking in the same manner.  Here's the AR polynomial on the left (`ARpoly`) and then the AR coefficients when on the right (`ARparm`):
@@ -1258,8 +1268,8 @@ which is an ARIMA(2,0,0)&times;(1,0,0)<sub>12</sub> model.  You can add MA and S
 ar = c(1, -1.5, .75)
 sar = c(1, rep(0,11), -.9)
 AR = polyMul(ar,sar)
-( ARpoly = cbind(order=0:14, ARpoly=AR) ) 
-  
+( ARpoly = cbind(order=0:14, ARpoly=AR) )
+
         order ARpoly
    [1,]     0  1.000
    [2,]     1 -1.500
@@ -1280,10 +1290,10 @@ AR = polyMul(ar,sar)
 ```
 which is
 &emsp; x<sub>t</sub> -1.5  x<sub>t-1</sub> +.75  x<sub>t-2</sub> - .9  x<sub>t-12</sub>
-           + 1.35  x<sub>t-13</sub> - .675  x<sub>t-14</sub> =  w<sub>t</sub> , &emsp; or            
+           + 1.35  x<sub>t-13</sub> - .675  x<sub>t-14</sub> =  w<sub>t</sub> , &emsp; or
 ```r
 ( ARparm = cbind(order=1:14, ARparm=-AR[-1]) )
-  
+
        order ARparm
   [1,]     1  1.500
   [2,]     2 -0.750
@@ -1304,7 +1314,7 @@ which is
 &emsp; x<sub>t</sub> = 1.5  x<sub>t-1</sub> -.75  x<sub>t-2</sub> + .9  x<sub>t-12</sub>
            -1.35  x<sub>t-13</sub> + .675  x<sub>t-14</sub> +  w<sub>t</sub> .
 
-&#129313;  That **was** fun!          
+&#129313;  That **was** fun!
 
 [<sub>top</sub>](#table-of-contents)
 
@@ -1315,13 +1325,13 @@ which is
 
 &#x1F4A1;  There are 2 scripts to accomplish spectral analysis of DNA sequences,
 
-> **`specenv`** and **`dna2vector`** 
+> **`specenv`** and **`dna2vector`**
 
 and then there are a few data files,
 
 > **`bnrf1ebv`**, **`bnrf1hvs`**, and **`EBV`**.
 
-&#x1F535;  The first and second files are the nucleotide sequence of the BNRF1  gene (3741 bp) of the Epstein-Barr virus (EBV) and of the herpesvirus saimiri (HVS) using the coding 1=A, 2=C, 3=G, 4=T.   EBV is the FASTA file of the entire Epstein-Barr virus sequence taken from [NCBI]( https://www.ncbi.nlm.nih.gov/nuccore/V01555.2),  172281 bp.  It's not useful on its own, but using  `dna2vector`, different regions can be explored. For example, 
+&#x1F535;  The first and second files are the nucleotide sequence of the BNRF1  gene (3741 bp) of the Epstein-Barr virus (EBV) and of the herpesvirus saimiri (HVS) using the coding 1=A, 2=C, 3=G, 4=T.   EBV is the FASTA file of the entire Epstein-Barr virus sequence taken from [NCBI]( https://www.ncbi.nlm.nih.gov/nuccore/V01555.2),  172281 bp.  It's not useful on its own, but using  `dna2vector`, different regions can be explored. For example,
 
 ```r
 # EBV looks like "AGAATTCGTCTTG ...", one very long string
@@ -1337,9 +1347,9 @@ head(ebv)
   [6,]    0    0    0    1
 ```
 
-&#x1F535;  To use `specenv`, the input sequence has to be a matrix of indicators like the output above.  That's where `dna2vector` comes in.  There are many examples in the help file (`?dna2vector`), but here's a few to whet the appetite. 
+&#x1F535;  To use `specenv`, the input sequence has to be a matrix of indicators like the output above.  That's where `dna2vector` comes in.  There are many examples in the help file (`?dna2vector`), but here's a few to whet the appetite.
 
- 	
+
 &#129002; Let's say you download a DNA sequence as a FASTA file called `sequence.fasta`.
 It will look something like this:
 ```r
@@ -1353,14 +1363,14 @@ Remove the first line using a text editor. If the file is in the working directo
 the following code can be used to read the data into the session, create the indicator sequence and save it as a compressed R data file:
 
 ```r
-  fileName <- 'sequence.fasta'      # name of FASTA file  
-  data     <- readChar(fileName, file.info(fileName)$size)  # input the sequence  
-  bone    <- dna2vector(data)       # convert it to indicators 
-  save(bone, file='bone.rda')       # save the file as a compressed file  
-  load('bone.rda')                  # and load 'bone' when you need it           
+  fileName <- 'sequence.fasta'      # name of FASTA file
+  data     <- readChar(fileName, file.info(fileName)$size)  # input the sequence
+  bone    <- dna2vector(data)       # convert it to indicators
+  save(bone, file='bone.rda')       # save the file as a compressed file
+  load('bone.rda')                  # and load 'bone' when you need it
  ```
 
-&#129002; Here are some other examples using `dna2vector`, which takes two arguments, 
+&#129002; Here are some other examples using `dna2vector`, which takes two arguments,
 `data` and `alphabet`.  Of course `data` is the object that contains the sequence data, and `alphabet` is the particular alphabet used in the file, which defaults to ` alphabet = c("A", "C", "G", "T")` for strings and `alphabet = 1:4` for numeric data such as `bnrf1ebv`.
 
 ```r
@@ -1371,7 +1381,7 @@ the following code can be used to read the data into the session, create the ind
 xdata = dna2vector(bnrf1ebv)
 # note:
 head(bnrf1ebv)
-   [1] 1 4 3 3 1 
+   [1] 1 4 3 3 1
 # and
 head(xdata)
         [,1] [,2] [,3] [,4]
@@ -1385,12 +1395,12 @@ head(xdata)
 ##########################
 ## raw GenBank sequence ##
 ##########################
-data <- 
+data <-
 c("1 agaattcgtc ttgctctatt cacccttact tttcttcttg cccgttctct ttcttagtat
   61 gaatccagta tgcctgcctg taattgttgc gccctacctc ttttggctgg cggctattgc")
-xdata = dna2vector(data, alphabet=c('a', 'c', 'g', 't')) 
+xdata = dna2vector(data, alphabet=c('a', 'c', 'g', 't'))
 head(xdata)
-   
+
         [,1] [,2] [,3] [,4]
    [1,]    1    0    0    0
    [2,]    0    0    1    0
@@ -1401,10 +1411,10 @@ head(xdata)
 ##########################
 ##  raw FASTA sequence  ##
 ##########################
-data <- 
+data <-
  c("AGAATTCGTCTTGCTCTATTCACCCTTACTTTTCTTCTTGCCCGTTCTCTTTCTTAGTATGAATCCAGTA
     TGCCTGCCTGTAATTGTTGCGCCCTACCTCTTTTGGCTGGCGGCTATTGCCGCCTCGTGTTTCACGGCCT")
-xdata = dna2vector(data) 
+xdata = dna2vector(data)
 head(xdata)
 
        [,1] [,2] [,3] [,4]
@@ -1415,9 +1425,9 @@ head(xdata)
   [5,]    0    0    0    1
 ```
 
-&#x1F4A1;  `specenv` calculates the spectral envelope defined in [the original paper](https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf), summarized in  [Statistical Science](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full) and discussed in Chapter 7 of [Time Series Analysis and Its Applications: With R Examples](https://www.stat.pitt.edu/stoffer/tsa4/). 
+&#x1F4A1;  `specenv` calculates the spectral envelope defined in [the original paper](https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf), summarized in  [Statistical Science](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full) and discussed in Chapter 7 of [Time Series Analysis and Its Applications: With R Examples](https://www.stat.pitt.edu/stoffer/tsa4/).
 
-By default, it produces a graph of the spectral envelope and an approximate significance threshold and invisibly return a matrix containing: _frequency, spectral envelope ordinates, and scaling of the categories_ in the order of the categories in the alphabet.  
+By default, it produces a graph of the spectral envelope and an approximate significance threshold and invisibly return a matrix containing: _frequency, spectral envelope ordinates, and scaling of the categories_ in the order of the categories in the alphabet.
 
 &#129002; A very simple run is something like this
 ```r
@@ -1441,7 +1451,7 @@ Here's one for a section of the EBV.
 ```r
 xdata = dna2vector(EBV)
 u = specenv(xdata, spans=c(7,7), section=50000:52000)  # repeat section
-round(head(u), 3)  # output 
+round(head(u), 3)  # output
 
          freq specenv coef[1] coef[2] coef[3] coef[4]
    [1,] 0.000   0.055   0.520  -0.529  -0.671       0
@@ -1458,26 +1468,26 @@ round(head(u), 3)  # output
 
 The script
 
-> **`specenv()`** 
+> **`specenv()`**
 
 can also be used to find optimal transformations of real-valued time series.
 For example, we've seen the NYSE returns are nonlinear.
 
 ```r
-x = astsa::nyse    
+x = astsa::nyse
 # possible transformations include absolute value and squared value
-xdata = cbind(x, abs(x), x^2)  
+xdata = cbind(x, abs(x), x^2)
 par(mfrow=2:1)
 u = specenv(xdata, real=TRUE,  spans=c(3,3))
 # peak at freq = .001 so let's
-# plot the optimal transform 
+# plot the optimal transform
 beta = u[2, 3:5]  # scalings
 b = beta/beta[2]  # makes abs(x) coef=1
 gopt = function(x) { b[1]*x+b[2]*abs(x)+b[3]*x^2 }
  curve(gopt, -.2, .2, col=4, lwd=2, panel.first=Grid(nym=0))
 gabs = function(x) { b[2]*abs(x) } # corresponding to |x|
  curve(gabs, -.2, .2, add=TRUE, col=6)
-legend('bottomright', lty=1, col=c(4,6), legend=c('optimal', 'absolute value'), bg='white') 
+legend('bottomright', lty=1, col=c(4,6), legend=c('optimal', 'absolute value'), bg='white')
 ```
 
 <img src="figs/SEnyse.png" alt="specenv2"  width="700">
@@ -1486,6 +1496,6 @@ legend('bottomright', lty=1, col=c(4,6), legend=c('optimal', 'absolute value'), 
 
 
 ----
-&#128584; &#128585; &#128586;  &emsp; THAT'S A WRAP  &emsp;  &#128584; &#128585;  &#128586; 
+&#128584; &#128585; &#128586;  &emsp; THAT'S A WRAP  &emsp;  &#128584; &#128585;  &#128586;
 
 ----
