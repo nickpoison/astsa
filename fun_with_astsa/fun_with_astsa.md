@@ -325,13 +325,14 @@ column-wise, the top series leads and row-wise, the side series lags.
 
 The script uses `tsplot` so there are various options for the output.
 For example, you can suppress the minor ticks if it's too much, or
-you can do a "gris-gris" plot.:
+you can do a "gris-gris" plot (the grammar of `astsa` is voodoo):
 
 ```r
 acfm(diff(log(econ5)), nxm=0)    #  no minor ticks on LAG axis
 
-acfm(diff(log(econ5)), gg=TRUE, acf=FALSE)  # Gris-Gris Gumbo Ya Ya
+acfm(diff(log(econ5)), gg=TRUE, acf.highlight=FALSE)  # Gris-Gris Gumbo Ya Ya
 ```
+
 
 
 [<sub>top</sub>](#table-of-contents)
