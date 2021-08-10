@@ -1,5 +1,6 @@
 acfm <-
-function(series, max.lag=NULL,  na.action = na.pass, ylim=NULL, ...)
+function(series, max.lag=NULL,  na.action = na.pass, ylim=NULL, 
+         acf.highlight = TRUE, ...)
 {
 nser = ncol(series)
   if (nser < 2) {stop("Multivariate time series only")} 
@@ -34,17 +35,14 @@ par(mfrow=c(nser,nser), oma=c(0,2,2,0), cex.main=1)
     tsplot(u$lag[,i,j], u$acf[,i,j], type='h', ylab="", main=NULL, xlab=Xlab, ylim=c(lowr,uppr), ...)
      abline(h = c(0, L, U), lty = c(1, 2, 2), col = c(8, 4, 4))       
      txt2 = ifelse(j==1,u$snames[i],"") 
-      mtext(txt2, side=2, font=2, line=2, cex=.65*(nser+1)/nser)
+      mtext(txt2, side=2, font=2, line=2, las=0, cex=.65*(nser+1)/nser)
      txt3 = ifelse (i==1,u$snames[j],"") 
-       mtext(txt3, side=3, font=2, line=.75, cex=.65*(nser+1)/nser)
-      if(i==j) box(col=1)
+       mtext(txt3, side=3, font=2, line=.75, las=0, cex=.65*(nser+1)/nser)
+      if(i==j && acf.highlight) box(col=1)
   }   
  } 
 mtext('Leads', side=3, line=.65, outer=TRUE, cex=.9) 
-mtext('Lags',  side=2, line=.65, outer=TRUE, cex=.9)  
+mtext('Lags',  side=2, line=.65, outer=TRUE, cex=.9, las=0)  
 par(old.par)
 }
-
-
-
 

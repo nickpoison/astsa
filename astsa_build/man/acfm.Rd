@@ -6,7 +6,8 @@
 Produces a grid of plots of the sample ACF (diagonal) and CCF (off-diagonal).
 }
 \usage{
-acfm(series, max.lag = NULL,  na.action = na.pass, ylim = NULL, ...)
+acfm(series, max.lag = NULL,  na.action = na.pass, ylim = NULL,
+      acf.highlight = TRUE, ...)
 }
 \arguments{
   \item{series}{Multiple time series (at least 2 columns of time series)
@@ -18,6 +19,8 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
 }
   \item{ylim}{Specify limits for the all correlation axes. If NULL (default) the values
   are a little wider than the min and max of all values.
+}
+  \item{acf.highlight}{If TRUE (default), the diagonals (ACFs) are highlighted.
 }
   \item{...}{Additional arguments passed to \code{\link{tsplot}}
 }
@@ -42,5 +45,7 @@ D.S. Stoffer
 }
 \examples{
 acfm(diff(log(econ5)))
+
+acfm(diff(log(econ5)), gg=TRUE, acf=FALSE)
 }
 \keyword{ts}
