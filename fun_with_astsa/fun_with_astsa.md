@@ -167,15 +167,15 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), names=rep(3:6, 2), add=TRUE)
 
 ```r
 par(mfrow=c(2,1))
-tsplot(soi, col=4, lwd=2)
-tsplot(soi, col=4, lwd=2, gg=TRUE)
+tsplot(soi, col=4, lwd=2)            
+tsplot(soi, col=4, lwd=2, gg=TRUE)   # gg => gris-gris plot - the grammar of astsa is voodoo
 ```
 <img src="figs/tsplot1.png" alt="tsplot"  width="700">
 
 &#x1F535; Many in one swell foop:
 
 ```r
-tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2)
+tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2)  # another gris-gris plot
 ```
 <img src="figs/climhyd.png" alt="climhyd"  width="700">
 
