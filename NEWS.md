@@ -18,18 +18,18 @@ If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get
 After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
 > You can also install `astsa` from the archive 
-[astsa_1.13.2.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.13.2.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+[astsa_1.14.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.14.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
 You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
 
-
-
-
-
-
 ---
+---
+### Versions 1.14 - August/Sept 2021
+
++ Just in time for a new skool year - version 1.14 here and coming to CRAN soon.
+
 ---
 ### Versions 1.13 - May 2021
 
