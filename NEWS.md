@@ -26,9 +26,9 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 ---
 ---
-### Versions 1.14 - August/Sept 2021
+### Version 1.14 - August/Sept 2021
 
-+ Just in time for a new skool year - version 1.14 here and coming to CRAN soon.
++ Just in time for a new skool year - version 1.14 is here and coming to CRAN in September after the CRANnies get back from vacation.
 
 ---
 ### Versions 1.13 - May 2021
