@@ -42,7 +42,9 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 + v1.13.1 (July 2021) Some minor improvements  to `tsplot-spaghetti`, `sarima.sim`, `sarima`, and `arma.spec`.
 
-    + Also some man page updates (adding sources and subtracting typos).
+    + For `sarima.sim`, I forgot to add the `innov` argument in the call (only a problem if you wanted to use your own innovations), but it seemed to work in the examples I tried (maybe it got passed in ...) ¿Quién sabe?   Or maybe it was just voodoo. 
+
+    + Updated some man page (adding sources and subtracting typos).
 
 + v1.13 is on CRAN.   There are lots of additions to the package that are listed below.
 
