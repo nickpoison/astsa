@@ -38,7 +38,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
    + Also, changed the LAG axis labels on `acf1`, `acf2`, and `ccf2` to show the 
    frequency of the series if it's bigger than one.  For example, `soi` has
    frequency 12 and the LAG axis of `acf1(soi)`  will be ticked as 1, 2, 3, ...
-   but the label now emphasizes that each tick is divided by 12.
+   but the label now emphasizes that each tick is LAG divided by 12.
 
 + v1.13.1 (July 2021) Some minor improvements  to `tsplot-spaghetti`, `sarima.sim`, `sarima`, and `arma.spec`.
 
