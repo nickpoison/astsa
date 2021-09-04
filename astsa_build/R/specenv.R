@@ -1,6 +1,6 @@
 specenv <-
-function(xdata, section=NULL, spans=3, significance=.0001, plot=TRUE, ylim=NULL, 
-          real=FALSE, ...){           
+function(xdata, section=NULL, spans=NULL, kernel=NULL, significance=.0001, 
+          plot=TRUE, ylim=NULL, real=FALSE, ...){           
  # data check 
   if (real) {
    if (ncol(xdata)<2)  stop("For continuous data, the input 'xdata' must be a matrix")
@@ -18,8 +18,8 @@ function(xdata, section=NULL, spans=3, significance=.0001, plot=TRUE, ylim=NULL,
        stop("'section' must be consecutive indices of the form 'start:finish'") 
       x = xdata[section,-ncol(xdata)]
     }
-   }  
-xspec = mvspec(x, spans=spans, detrend=FALSE, plot=FALSE)  
+   }  	
+xspec = mvspec(x, spans=spans, kernel=kernel, detrend=FALSE, plot=FALSE)  
 fxxr  = Re(xspec$fxx)  # fxxr is real(fxx) 
 Var   = stats::var(x)  # var-cov matrix 
 Q     = Var %^% -.5
@@ -45,7 +45,7 @@ frequency = xspec$freq
 if (plot){  
 # threshold
 m = xspec$kernel$m
-etainv = sqrt(sum(xspec$kernel[-m:m]^2))
+etainv = ifelse(m>0, sqrt(sum(xspec$kernel[-m:m]^2)), 1)
 if (is.na(significance)) { thresh=0
  } else {
 thresh = 100*(2/num)*exp(qnorm(1-significance)*etainv)*rep(1,nfreq)

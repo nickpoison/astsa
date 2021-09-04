@@ -7,7 +7,7 @@ Spectral Envelope
 Computes the spectral envelope of categorical-valued or real-valued time series.
 }
 \usage{
-specenv(xdata, section = NULL, spans = 3, significance = 1e-04,
+specenv(xdata, section = NULL, spans = NULL, kernel=NULL, significance = 1e-04,
          plot = TRUE, ylim = NULL, real = FALSE, ...)
 }
 \arguments{
@@ -21,9 +21,12 @@ of the form \code{start:end} where \code{start < end} are non-negative integers;
 specifies the section used in the analysis - default is the entire sequence.
 }
   \item{spans}{
-specify smoothing used in \code{mvspec}. This should be specified but defaults
-to 3, the smallest allowable amount of smoothing.
+specify smoothing used in \code{mvspec}.
 }
+  \item{kernel}{
+specify kernel to be used in \code{mvspec}.
+}
+
   \item{significance}{
 significance threshold exhibited in plot - default is .0001; set to NA to cancel
 }
