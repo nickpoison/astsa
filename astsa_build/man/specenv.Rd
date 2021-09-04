@@ -7,21 +7,22 @@ Spectral Envelope
 Computes the spectral envelope of categorical-valued or real-valued time series.
 }
 \usage{
-specenv(xdata, section = NULL, spans = NULL, significance = 1e-04, 
+specenv(xdata, section = NULL, spans = 3, significance = 1e-04,
          plot = TRUE, ylim = NULL, real = FALSE, ...)
 }
 \arguments{
-  \item{xdata}{For categorical-valued sequences, a matrix with rows that are indicators 
-of the categories represented by the columns, possibly a sequence converted using 
-\code{\link{dna2vector}}.  For real-valued sequences, a matrix with at least two 
-columns that are various transformations of the data. 
+  \item{xdata}{For categorical-valued sequences, a matrix with rows that are indicators
+of the categories represented by the columns, possibly a sequence converted using
+\code{\link{dna2vector}}.  For real-valued sequences, a matrix with at least two
+columns that are various transformations of the data.
 }
   \item{section}{
-of the form \code{start:end} where \code{start < end} are non-negative integers;  
+of the form \code{start:end} where \code{start < end} are non-negative integers;
 specifies the section used in the analysis - default is the entire sequence.
 }
   \item{spans}{
-specify smoothing used in \code{mvspec} 
+specify smoothing used in \code{mvspec}. This should be specified but defaults
+to 3, the smallest allowable amount of smoothing.
 }
   \item{significance}{
 significance threshold exhibited in plot - default is .0001; set to NA to cancel
@@ -33,7 +34,7 @@ if TRUE (default) a graphic of the spectral envelope is produced
 limits of the spectral envelope axis; if NULL (default), a suitable range is calculated.
 }
   \item{real}{ FALSE (default) for categorical-valued sequences and TRUE for
-real-valued sequences.  
+real-valued sequences.
 }
   \item{\dots}{
 other graphical parameters.
@@ -52,14 +53,14 @@ For real-valued series, the input \code{xdata} should be a matrix whose columns 
 By default, will produce a graph of the spectral envelope and an approximate significance threshold.
 A matrix containing: frequency, spectral envelope ordinates, and (1) the scalings of the categories in the order of the categories in the alphabet or (2) the coefficients of the transformations, is returned invisibly.
 }
-\references{You can find demonstrations of  astsa capabilities at  
+\references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
 The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \author{
 D.S. Stoffer
@@ -76,7 +77,7 @@ u = specenv(xdata, section=1:1000, spans=c(7,7))
 head(u)  # scalings are for A, C, G, and last one T=0 always
 
 # a real-valued series (nyse returns)
-x = astsa::nyse    
+x = astsa::nyse
 xdata = cbind(x, abs(x), x^2)
 u = specenv(xdata, real=TRUE,  spans=c(3,3))
 # plot optimal transform at freq = .001

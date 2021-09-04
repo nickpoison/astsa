@@ -1,5 +1,5 @@
 specenv <-
-function(xdata, section=NULL, spans=NULL, significance=.0001, plot=TRUE, ylim=NULL, 
+function(xdata, section=NULL, spans=3, significance=.0001, plot=TRUE, ylim=NULL, 
           real=FALSE, ...){           
  # data check 
   if (real) {
@@ -18,7 +18,7 @@ function(xdata, section=NULL, spans=NULL, significance=.0001, plot=TRUE, ylim=NU
        stop("'section' must be consecutive indices of the form 'start:finish'") 
       x = xdata[section,-ncol(xdata)]
     }
-   }       
+   }  
 xspec = mvspec(x, spans=spans, detrend=FALSE, plot=FALSE)  
 fxxr  = Re(xspec$fxx)  # fxxr is real(fxx) 
 Var   = stats::var(x)  # var-cov matrix 
