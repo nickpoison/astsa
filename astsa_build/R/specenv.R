@@ -5,7 +5,7 @@ function(xdata, section=NULL, spans=NULL, kernel=NULL, significance=.0001,
   if (real) {
    if (ncol(xdata)<2)  stop("For continuous data, the input 'xdata' must be a matrix")
    if (is.null(section)) { x = xdata } else {
-     if (!all(base::rle(x)$lengths)==1) 
+       if (!all(as.integer(diff(section))==1) && !is.integer(section))
        stop("'section' must be consecutive indices of the form 'start:end'") 
      x = xdata[section,] 
 	 }	 
@@ -14,7 +14,7 @@ function(xdata, section=NULL, spans=NULL, kernel=NULL, significance=.0001,
      stop("Input must be indicators, use 'dna2vector' to preprocess the data.")
    if  (is.null(section)) { x = xdata[,-ncol(xdata)] 
     } else {
-       if (!all(base::rle(x)$lengths)==1)
+       if (!all(as.integer(diff(section))==1) && !is.integer(section))
        stop("'section' must be consecutive indices of the form 'start:finish'") 
       x = xdata[section,-ncol(xdata)]
     }
