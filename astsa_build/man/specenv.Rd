@@ -17,7 +17,7 @@ of the categories represented by the columns, possibly a sequence converted usin
 columns that are various transformations of the data.
 }
   \item{section}{
-of the form \code{start:end} where \code{start < end} are non-negative integers;
+of the form \code{start:end} where \code{start < end} are positive integers;
 specifies the section used in the analysis - default is the entire sequence.
 }
   \item{spans}{
