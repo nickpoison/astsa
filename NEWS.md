@@ -31,7 +31,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 + Just in time for a new skool year - v1.14 is here and on CRAN.
 
 + After submission, added option to specify a kernel in `specenv` and if `spans` and `kernel` are both `NULL`,
-the spectral envelope will be based on the periodogram.  Also changed the way it checks if `segment` is a
+the spectral envelope will be based on the periodogram.  Also changed the way it checks if `section` is a
 proper sequence.  The version number is staying the same. 
 
 ---
