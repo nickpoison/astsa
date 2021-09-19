@@ -567,7 +567,7 @@ Frequency = 1
 ```
 <img src="figs/fore1.png" alt="fore1"  width="75%">
 
-&#x1F535; Notice the `plot.all=TRUE` in the previous example. If you leave that off, the graphic show the final 100 observations and the forecasts to make it easier to see what's going on.
+&#x1F535; Notice the `plot.all=TRUE` in the `sarima.for` call. The default is `FALSE` in which case the graphic shows only the final 100 observations and the forecasts to make it easier to see what's going on (like in the next example).
 
 ```r
 sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
