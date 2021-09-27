@@ -34,6 +34,9 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 the spectral envelope will be based on the periodogram.  Also changed the way it checks if `section` is a
 proper sequence.  The version number is staying the same. 
 
++ After submission, changed `isSymmetric(A)` to `isSymmetric(unname(A))` in `matrixpwr` because `A` is not
+taken as symmetric if the column and row names are not the same.  Still no change to version number
+
 ---
 ### Versions 1.13 - May 2021
 
