@@ -10,7 +10,7 @@ function(A, power){
       singtest <- "matrix" %in% class(try(solve(A),silent=TRUE))
       if (!singtest) stop("matrix singular")
 	  }
-   if (isSymmetric(A)) {
+   if (isSymmetric(unname(A))) {
     with(eigen(A), vectors %*% (values^power * t(vectors)))
    } else {
     with(eigen(A), vectors %*% (values^power * solve(vectors))) 
