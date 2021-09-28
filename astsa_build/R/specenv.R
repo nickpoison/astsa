@@ -1,6 +1,6 @@
 specenv <-
-function(xdata, section=NULL, spans=NULL, kernel=NULL, significance=.0001, 
-          plot=TRUE, ylim=NULL, real=FALSE, ...){           
+function(xdata, section=NULL, spans=NULL, kernel=NULL, taper=0, 
+          significance=.0001, plot=TRUE, ylim=NULL, real=FALSE, ...){           
  # data check 
   if (real) {
    if (ncol(xdata)<2)  stop("For continuous data, the input 'xdata' must be a matrix")
@@ -19,7 +19,7 @@ function(xdata, section=NULL, spans=NULL, kernel=NULL, significance=.0001,
       x = xdata[section,-ncol(xdata)]
     }
    }  	
-xspec = mvspec(x, spans=spans, kernel=kernel, detrend=FALSE, plot=FALSE)  
+xspec = mvspec(x, spans=spans, kernel=kernel, taper=taper, detrend=FALSE, plot=FALSE)  
 fxxr  = Re(xspec$fxx)  # fxxr is real(fxx) 
 Var   = stats::var(x)  # var-cov matrix 
 Q     = Var %^% -.5

@@ -7,8 +7,8 @@ Spectral Envelope
 Computes the spectral envelope of categorical-valued or real-valued time series.
 }
 \usage{
-specenv(xdata, section = NULL, spans = NULL, kernel=NULL, significance = 1e-04,
-         plot = TRUE, ylim = NULL, real = FALSE, ...)
+specenv(xdata, section = NULL, spans = NULL, kernel = NULL, taper = 0,
+         significance = 1e-04, plot = TRUE, ylim = NULL, real = FALSE, ...)
 }
 \arguments{
   \item{xdata}{For categorical-valued sequences, a matrix with rows that are indicators
@@ -26,7 +26,9 @@ specify smoothing used in \code{mvspec}.
   \item{kernel}{
 specify kernel to be used in \code{mvspec}.
 }
-
+  \item{taper}{
+specify amount of tapering to be used in \code{mvspec}.
+}
   \item{significance}{
 significance threshold exhibited in plot - default is .0001; set to NA to cancel
 }
@@ -51,6 +53,8 @@ These concepts are also presented (with examples) in Section 7.9 (Chapter 7) of 
 For categorical-valued series, the input  \code{xdata} must be a matrix of indicators which is perhaps a sequence preprocessed using \code{\link{dna2vector}}.
 
 For real-valued series, the input \code{xdata} should be a matrix whose columns are various transformations of the univariate series.
+
+The script does not detrend the data prior to estimating spectra. If this is an issue, then detrend the data prior to using this script.
 }
 \value{
 By default, will produce a graph of the spectral envelope and an approximate significance threshold.

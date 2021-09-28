@@ -30,12 +30,14 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 + Just in time for a new skool year - v1.14 is here and on CRAN.
 
-+ After submission, added option to specify a kernel in `specenv` and if `spans` and `kernel` are both `NULL`,
++ The stuff below was added after the CRAN submission, but it doesn't really change anything for most users so the version number is staying the same.
+   
+   + After submission, added option to specify a kernel in `specenv` and if `spans` and `kernel` are both `NULL`,
 the spectral envelope will be based on the periodogram.  Also changed the way it checks if `section` is a
-proper sequence.  The version number is staying the same. 
+proper sequence and added option to taper the data prior to estimating spectra.  
 
-+ After submission, changed `isSymmetric(A)` to `isSymmetric(unname(A))` in `matrixpwr` because `A` is not
-taken as symmetric if the column and row names are not the same.  Still no change to version number
+   + After submission, changed `isSymmetric(A)` to `isSymmetric(unname(A))` in `matrixpwr` because a symmetric 
+matrix is not taken as such if the column and row names are not the same.  
 
 ---
 ### Versions 1.13 - May 2021
