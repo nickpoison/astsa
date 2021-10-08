@@ -46,8 +46,8 @@ par(xpd = NA, oma=c(0,0,0,8) )
 tsplot(sleep1[1:115,3:4], type='s', col=2:3, spag=TRUE)
 legend('topright', inset=c(-0.25,0), bty='n', lty=1, col=2:3, legend=c('sleep state', 'number of \nmovements'))
 
-x = dna2vector(sleep1[1:115,3], alphabet=c('1','2','3','4','5'))
-specenv(x, spans=c(5,5))
+x = dna2vector(sleep1[1:115,3], alphabet=c('1','2','3','4','5'))  # never awake
+specenv(x, spans=c(3,3))
 abline(v=1/60, lty=2, col=8)
 }
 \seealso{\code{\link{sleep2}}}
