@@ -10,19 +10,17 @@ prenatal exposure to alcohol. This is Group 2 where the mothers drank alcohol in
 moderation during pregnancy.
 }
 \format{
-  A data frame with 1440 observations on the following 4 variables.
-  \describe{
-    \item{\code{ID}}{infant ID}
-    \item{\code{min}}{minute (1 to 120)}
-    \item{\code{state}}{sleep state 1 to 6; 0 means missing; see details}
-    \item{\code{mvmnt}}{number of movements}
-  }
+  The format is: List of 12 (by subjects)
+ $ :'data.frame':	120 obs. of  3 variables:
+  ..$ min  : int [1:120] minute (1 to 120)
+  ..$ state: int [1:120] sleep state 1 to 6 with NA missing
+  ..$ mvmnt: int [1:120] number of movements
 }
 \details{
 Per minute sleep state, for approximately 120 minutes, is categorized into one of
-six possible states, non-REM: NR1 [1] to NR4 [4], or REM [5], or AWAKE [6].
-A zero [0] means no state is recorded for that minute (if it happens, it occurs at the
-end of session). Group 2 (this group) is from mothers who drank alcohol in moderation during
+six possible states, non-REM: NR1 [1] to NR4 [4], and REM [5], or AWAKE [6].
+NA means no state is recorded for that minute (if there, it occurs at end of the session).
+Group 1 (this group) is from mothers who abstained from drinking during
 pregnancy. In addition, the number of movements per minute are listed.
 }
 \source{
@@ -40,13 +38,14 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 
 The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
-
 \examples{
-par(xpd = NA, oma=c(0,0,0,8) )
-tsplot(sleep2[121:240,3:4], type='s', col=2:3, spag=TRUE, main='Infant 2')
-legend('topright', inset=c(-0.25,0), bty='n', lty=1, col=2:3,
-        legend=c('sleep state', 'number of \nmovements'))
+par(xpd = NA, oma = c(0,0,0,8) )
+tsplot(sleep2[[1]][2:3], type='s', col=2:3, spag=TRUE, gg=TRUE)
+legend('topright', inset=c(-0.25,0), bty='n', lty=1, col=2:3, legend=c('sleep state', 'number of \nmovements'))
+
+x = dna2vector(sleep2[[3]]$state[1:119], alphabet=c('1','2','3','4','5'))  # never awake
+specenv(x, spans=3)
+abline(v=1/60, lty=2, col=8)
 }
 \seealso{\code{\link{sleep1}}}
 \keyword{datasets}
-
