@@ -10,11 +10,13 @@ prenatal exposure to alcohol. This is Group 1 where the mothers did not drink al
 during pregnancy.
 }
 \format{
+\details{
   The format is: List of 12 (by subjects)
  $ :'data.frame':	120 obs. of  3 variables:
   ..$ min  : int [1:120] minute (1 to 120)
-  ..$ state: int [1:120] sleep state 1 to 6 with NA missing
+  ..$ state: int [1:120] sleep state 1 to 6 with NA missing (see details)
   ..$ mvmnt: int [1:120] number of movements
+}
 }
 \details{
 Per minute sleep state, for approximately 120 minutes, is categorized into one of
