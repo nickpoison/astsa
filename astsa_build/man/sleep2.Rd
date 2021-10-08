@@ -22,7 +22,7 @@ moderation during pregnancy.
 Per minute sleep state, for approximately 120 minutes, is categorized into one of
 six possible states, non-REM: NR1 [1] to NR4 [4], and REM [5], or AWAKE [6].
 NA means no state is recorded for that minute (if there, it occurs at end of the session).
-Group 1 (this group) is from mothers who abstained from drinking during
+Group 2 (this group) is from mothers who drank alcohol in moderation during
 pregnancy. In addition, the number of movements per minute are listed.
 }
 \source{
