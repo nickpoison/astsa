@@ -1,4 +1,5 @@
 \name{sleep2}
+\alias{sleep2}
 \docType{data}
 \title{
 Sleep State and Movement Data - Group 2
@@ -42,13 +43,9 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 
 \examples{
 par(xpd = NA, oma=c(0,0,0,8) )
-tsplot(sleep1[1:115,3:4], type='s', col=2:3, spag=TRUE)
+tsplot(sleep2[121:240,3:4], type='s', col=2:3, spag=TRUE, main='Infant 2')
 legend('topright', inset=c(-0.25,0), bty='n', lty=1, col=2:3,
         legend=c('sleep state', 'number of \nmovements'))
-
-x = dna2vector(sleep1[1:115,3], alphabet=c('1','2','3','4','5')) # never awake
-specenv(x, spans=c(5,5))
-abline(v=1/60, lty=2, col=8)
 }
 \seealso{\code{\link{sleep1}}}
 \keyword{datasets}

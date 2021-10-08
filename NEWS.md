@@ -36,8 +36,9 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 the spectral envelope will be based on the periodogram.  Also changed the way it checks if `section` is a
 proper sequence and added option to taper the data prior to estimating spectra.  
 
-   + Changed `isSymmetric(A)` to `isSymmetric(unname(A))` in `matrixpwr` because a symmetric 
-matrix is not taken as such if the column and row names are not the same.  
+   + Changed `isSymmetric(A)` to `isSymmetric(unname(A))` in `matrixpwr` because a symmetric matrix is not taken as such if the column and row names are not the same. 
+
+   + Added sleep state and movement data (`sleep1` and `sleep2`) - more details in the data files.
 
 ---
 ### Versions 1.13 - May 2021
