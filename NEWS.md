@@ -26,7 +26,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 ---
 ---
-### Versions 1.14 - Sept 2021
+### Versions 1.14 - Oct 2021
 
 + <span style="font-size:larger;">__v1.14.3__:</span>  The stuff below was added after the CRAN submission.
    
@@ -37,12 +37,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
    + Added option to specify a kernel in `specenv` and if `spans` and `kernel` are both `NULL`, the spectral envelope will be based on the periodogram.  Also changed the way it checks if `section` is a proper sequence and added option to taper the data prior to estimating spectra.  
 
     
-
- 
-
-
-
-+ Just in time for a new skool year - v1.14 is on CRAN.
++ Just in time for a new skool year - v1.14 is on CRAN (Sept 2021)
 
 ---
 ### Versions 1.13 - May 2021
