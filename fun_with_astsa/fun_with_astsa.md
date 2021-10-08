@@ -112,6 +112,8 @@ And you can get more information on any individual set using the `help()` comman
 |salmon                      | Monthly export price of salmon                              |
 |salt                        | Salt Profiles                                               |
 |saltemp                     | Temperature Profiles                                        |
+|sleep1                      | Sleep State and Movement Data - Group 1                     |
+|sleep2                      | Sleep State and Movement Data - Group 2                     |
 |so2                         | SO2 levels from the LA pollution study                      |
 |soi                         | Southern Oscillation Index                                  |
 |soiltemp                    | Spatial Grid of Surface Soil Temperatures                   |
