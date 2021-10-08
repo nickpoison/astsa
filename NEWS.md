@@ -18,7 +18,7 @@ If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get
 After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
 > You can also install `astsa` from the archive (which is always current)
-[astsa_1.14.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.14.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+[astsa_1.14.3.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.14.3.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
 You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
@@ -26,19 +26,23 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 ---
 ---
-### Version 1.14 - Sept 2021
+### Versions 1.14 - Sept 2021
 
-+ Just in time for a new skool year - v1.14 is here and on CRAN.
-
-+ The stuff below was added after the CRAN submission, but it doesn't really change anything for most users so the version number is staying the same.  
++ <span style="font-size:larger;">__v1.14.3__:</span>  The stuff below was added after the CRAN submission.
    
-   + Added option to specify a kernel in `specenv` and if `spans` and `kernel` are both `NULL`,
-the spectral envelope will be based on the periodogram.  Also changed the way it checks if `section` is a
-proper sequence and added option to taper the data prior to estimating spectra.  
+   + Added sleep state and movement data (`sleep1` and `sleep2`) - more details in the data files. 
 
-   + Changed `isSymmetric(A)` to `isSymmetric(unname(A))` in `matrixpwr` because a symmetric matrix is not taken as such if the column and row names are not the same. 
+   + Changed `isSymmetric(A)` to `isSymmetric(unname(A))` in `matrixpwr` because a symmetric matrix is not taken as such if the column and row names are not the same.
 
-   + Added sleep state and movement data (`sleep1` and `sleep2`) - more details in the data files.
+   + Added option to specify a kernel in `specenv` and if `spans` and `kernel` are both `NULL`, the spectral envelope will be based on the periodogram.  Also changed the way it checks if `section` is a proper sequence and added option to taper the data prior to estimating spectra.  
+
+    
+
+ 
+
+
+
++ Just in time for a new skool year - v1.14 is on CRAN.
 
 ---
 ### Versions 1.13 - May 2021
