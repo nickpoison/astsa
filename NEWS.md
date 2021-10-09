@@ -30,7 +30,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 + <span style="font-size:larger;">__v1.14.3__:</span>  The stuff below was added after the CRAN submission.
    
-   + Added sleep state and movement data (`sleep1` and `sleep2`) - more details in the data files. 
+   + Added sleep state and movement data (`sleep1` and `sleep2`) - more details in the help files. 
 
    + Changed `isSymmetric(A)` to `isSymmetric(unname(A))` in `matrixpwr` because a symmetric matrix is not taken as such if the column and row names are not the same.
 
