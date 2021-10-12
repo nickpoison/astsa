@@ -12,8 +12,10 @@ We won't always push the latest version of the package to CRAN, but the latest w
 
 * See the [News for further details about the state of the package and the changelog](https://github.com/nickpoison/astsa/blob/master/NEWS.md) .
 
++ And we have a [pdf version of the `astsa` manual](https://github.com/nickpoison/astsa/blob/master/astsa.pdf) .
+
 * A demonstration of the capabilities of `astsa` can be found here at
-[FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md)
+[FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
 
 
 * The updated [code for the graduate level text](https://github.com/nickpoison/tsa4/blob/master/textRcode.md) is here: [TSA4](https://github.com/nickpoison/tsa4).
