@@ -12,6 +12,7 @@ Remember to load `astsa` at the start of a session.
 it's more than just data ...
 
 
+&#x1F4CC;  If it helps, an updated [pdf version of the `astsa` manual](https://github.com/nickpoison/astsa/blob/master/astsa.pdf) is available.
 
 
 -----
