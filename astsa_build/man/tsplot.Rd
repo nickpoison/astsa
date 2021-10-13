@@ -48,7 +48,8 @@ line color(s), can be a vector for multiple time series.
 }
  \item{gg}{
 if TRUE, will produce a gris-gris plot (gray graphic interior with white grid lines); the default is FALSE.
-The grammar of astsa is voodoo; see \kbd{https://musicaficionado.blog/2017/11/08/gris-gris-by-dr-john/}
+The grammar of astsa is voodoo; \cr
+ see \kbd{https://musicaficionado.blog/2017/11/08/gris-gris-by-dr-john/}
 }
   \item{spaghetti}{
 if TRUE, will produce a spaghetti plot (all series on same plot).

@@ -11,16 +11,16 @@
 }
 \details{Pairs with series \code{oil}
 }
-\source{Data were obtained from the URL: www.eia.doe.gov/dnav/pet/pet_pri_spt_s1_w.htm
+\source{Data were obtained from: \kbd{https://www.eia.gov/dnav/pet/pet_pri_spt_s1_w.htm}
 }
-\references{You can find demonstrations of  astsa capabilities at  
+\references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
 The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \seealso{\code{\link{oil}}}
 \keyword{datasets}

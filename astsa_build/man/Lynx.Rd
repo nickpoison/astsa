@@ -12,17 +12,17 @@
 }
 \note{The data are in  units of one  thousand.  This data set pairs with \code{\link{Hare}} and is NOT the same as  \code{\link{lynx}}.
 }
-\source{From Odum's "Fundamentals of Ecology",  p. 191.
-http://people.whitman.edu/~hundledr/courses/M250F03/M250.html
+\source{From Odum's "Fundamentals of Ecology",  p. 191. Additional information at\cr
+\kbd{http://people.whitman.edu/~hundledr/courses/M250F03/M250.html}
 }
-\references{You can find demonstrations of  astsa capabilities at  
+\references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
 The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.   
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \seealso{\code{\link{Hare}}}
 \keyword{datasets}

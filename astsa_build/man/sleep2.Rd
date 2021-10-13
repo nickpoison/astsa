@@ -43,7 +43,8 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 \examples{
 par(xpd = NA, oma = c(0,0,0,8) )
 tsplot(sleep2[[1]][2:3], type='s', col=2:3, spag=TRUE, gg=TRUE)
-legend('topright', inset=c(-0.25,0), bty='n', lty=1, col=2:3, legend=c('sleep state', 'number of \nmovements'))
+legend('topright', inset=c(-0.25,0), bty='n', lty=1, col=2:3, legend=c('sleep state',
+        'number of \nmovements'))
 
 x = dna2vector(sleep2[[3]]$state[1:119], alphabet=c('1','2','3','4','5'))  # never awake
 specenv(x, spans=3)
