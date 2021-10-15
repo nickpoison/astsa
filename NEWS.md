@@ -6,22 +6,23 @@
 
 **more than just data ...**  
 
-... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/)... both by Shumway and Stoffer. 
+... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and  [Time Series A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/). 
 
 The GitHub version is updated before the CRAN version.   To update the package to the most recent working version, you just need the following two lines:
+
 ```r
 install.packages("remotes")   # if you don't have the package already
 remotes::install_github("nickpoison/astsa/astsa_build")
 ```
 
-If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
+> Note: If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
 After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
-> You can also install `astsa` from the archive (which is always current)
+&#x1F4A1;  You can also install `astsa` from the archive (which is always current)
 [astsa_1.14.3.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.14.3.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
-You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
+You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) and  an updated [pdf version of the `astsa` manual](https://github.com/nickpoison/astsa/blob/master/astsa.pdf) is available.
 
 
 ---
