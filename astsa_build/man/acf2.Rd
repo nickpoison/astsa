@@ -13,7 +13,7 @@ acf2(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL,
   \item{series}{The data.  Does not have to be a time series object.
 }
   \item{max.lag}{
-Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60}. If the series is seasonal, this will be at least 4 seasons by default.  
+Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60}. If the series is seasonal, this will be at least 4 seasons by default.
 }
    \item{plot}{If TRUE (default), a graph is produced and the values are rounded and listed. If FALSE, no graph is produced and the values are listed but not rounded by the script.
 }
@@ -24,24 +24,24 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
  \item{na.action}{How to handle missing data; default is \code{na.pass}
 }
   \item{...}{ Additional arguments passed to \code{\link{tsplot}}
-}  
+}
 }
 \value{\item{ACF}{The sample ACF}
 \item{PACF}{The sample PACF}
 }
-\details{This is basically a wrapper for \code{acf()} provided in \code{tseries}.  The error bounds are approximate white noise bounds, \eqn{-1/n  \pm 2/\sqrt{n}}; no other option is given.        
+\details{Will print and/or plot the sample ACF and PACF on the same scale. The zero lag of the ACF (which is always 1) has been removed. If \code{plot=TRUE}, a graph is produced and the values are rounded and listed. If FALSE, no graph is produced and the values are listed but not rounded by the script. The error bounds are approximate white noise bounds, \eqn{-1/n  \pm 2/\sqrt{n}}; no other option is given.
 }
-\references{You can find demonstrations of  astsa capabilities at  
+\references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
 The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.   
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \author{
-D.S. Stoffer 
+D.S. Stoffer
 }
 \examples{
 acf2(rnorm(100))
