@@ -5,7 +5,7 @@
 Powers of a Square Matrix
 }
 \description{
-\code{matrixpwr} computes powers of a square matrix, including negative powers for nonsingular matrices.
+\code{matrixpwr} computes powers of a square matrix including negative powers for nonsingular matrices.
 
 \code{\%^\%} is a more intuitive interface as an operator.
 }
@@ -35,21 +35,21 @@ If \code{power = 0}, the identity matrix is returned.
 Returns matrix raised to the given power.
 }
 \references{
-You can find demonstrations of  astsa capabilities at  
+You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
 The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}. 
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \author{
-D.S. Stoffer 
+D.S. Stoffer
 }
 \examples{
 # 2-state Markov transition matrix to steady state
-P = matrix(c(.7,.4,.3,.6), 2)       
+P = matrix(c(.7,.4,.3,.6), 2)
 P \%^\% 50
 
 # surround with parentheses if used in an expression
