@@ -34,7 +34,7 @@ it's more than just data ...
      * [Spectral Matrices](#more-multivariate-spectra)
   * [6. Testing for Linearity](#6-linearity-test)
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
-  * [8. EM Algorithm and Missing Data](#8-em-algorithm)
+  * [8. EM Algorithm and Missing Data](#8-em-algorithm-and-missing-data)
   * [9. Arithmetic](#9-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
