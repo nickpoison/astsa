@@ -34,7 +34,7 @@ it's more than just data ...
      * [Spectral Matrices](#more-multivariate-spectra)
   * [6. Testing for Linearity](#6-linearity-test)
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
-  * [8. EM Algorithm](#8-em-algorithm)
+  * [8. EM Algorithm and Missing Data](#8-em-algorithm)
   * [9. Arithmetic](#9-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
@@ -1020,9 +1020,10 @@ lines(ks$xs, col=6, lwd=2)
 
 ---
 
-## 8. EM Algorithm
+## 8. EM Algorithm and Missing Data
 
-&#x1F4A1;  To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) there are two scripts
+&#x1F4A1;  To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) and discussed in detail in Chapter 6 of the
+text [Time Series Analysis and Its Applications: With R Examples](http://www.springer.com/us/book/9783319524511), there are two scripts
 
 > **`EM0()`** and **`EM1()`**
 
