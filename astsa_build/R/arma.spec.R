@@ -31,10 +31,10 @@ function(ar=0, ma=0, var.noise=1, n.freq=500,  main='from specified model',
     spg.out <- list(freq=freq*frequency, spec=spec)
     Ylab = 'spectrum'
     Xlab = ifelse(frequency>1, paste('frequency', expression('\u00D7'), frequency), 'frequency')
-    m1   = min(spec)
-    m2   = max(spec)
-    yspread = (m2-m1)/sqrt(var.noise) 
-    if (is.null(ylim) & yspread < 4) ylim = c(max(m1-2,0.1), m2+2)
+     m1  = min(spec) 
+     m2  = max(spec) 
+     yspread =  (m2 - m1)/var.noise 
+     if (is.null(ylim) & yspread < 1) ylim = c(max(m1-2*var.noise, 0.1*var.noise), m2+2*var.noise)
    tsplot(freq*frequency, spec, xlab=Xlab, ylab=Ylab, main=main, ylim=ylim, ...)
    return(invisible(spg.out))
 }
