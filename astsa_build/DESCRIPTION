@@ -4,7 +4,7 @@ Title: Applied Statistical Time Series Analysis
 Version: 1.14.3
 Date:   2021-10-10
 Depends: R (>= 3.5)
-Author: David Stoffer [aut, cre],  Nicky Poison [ctb, spy]
+Author: David Stoffer [aut, cre],  Nicky Poison [ctb, mus, spy]
 Maintainer: David Stoffer <stoffer@pitt.edu>
 BugReports: https://github.com/nickpoison/astsa/issues
 Description: Data sets and scripts to accompany Time Series Analysis and Its Applications: With R Examples (4th ed), by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2017, <DOI:10.1007/978-3-319-52452-8>, and Time Series: A Data Analysis Approach Using R. Chapman-Hall, 2019, <DOI:10.1201/9780429273285>.
