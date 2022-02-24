@@ -1,22 +1,21 @@
 ## astsa &mdash; applied statistical time series analysis
 
-... it's more than just data
-
 <img src="https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/figs/astsa.gif" alt="astsa"  height="100">
 
+more than just data ...
 
 ---
 
 ... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series: A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/). 
 
 
-We won't always push the latest version of the package to CRAN, but [the latest working version of the package will always be at Github](https://github.com/nickpoison/astsa/) .
+We won't always push the latest version of the package to CRAN, but [the latest working version of the package will always be at Github](https://github.com/nickpoison/astsa/).
 
-* See the [News for further details about the state of the package and the changelog](https://github.com/nickpoison/astsa/blob/master/NEWS.md) .
+* See the [NEWS for further details about the state of the package, how to install the latest version, and the changelog](https://github.com/nickpoison/astsa/blob/master/NEWS.md).
 
 
 * A demonstration of the capabilities of `astsa` can be found here at
-[FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
+[FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).  It's more fun than high school.
 
 
 * The updated [code for the graduate level text](https://github.com/nickpoison/tsa4/blob/master/textRcode.md) is here: [TSA4](https://github.com/nickpoison/tsa4).
