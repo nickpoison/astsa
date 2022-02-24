@@ -5,12 +5,12 @@
 <img src="https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/figs/astsa.gif" alt="astsa"  height="100">
 
 
-
+---
 
 ... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series: A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/). 
 
 
-We won't always push the latest version of the package to CRAN, but the latest working version of the package will always be at Github.
+We won't always push the latest version of the package to CRAN, but [the latest working version of the package will always be at Github](https://github.com/nickpoison/astsa/) .
 
 * See the [News for further details about the state of the package and the changelog](https://github.com/nickpoison/astsa/blob/master/NEWS.md) .
 
