@@ -54,4 +54,5 @@ trend(soi)
 
 trend(soi, lowess=TRUE)
 }
+\seealso{\code{\link{detrend}}}
 \keyword{ts}

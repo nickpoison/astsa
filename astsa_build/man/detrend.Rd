@@ -43,4 +43,5 @@ tsplot(detrend(soi))
 
 tsplot(detrend(soi, lowess=TRUE)
 }
+\seealso{\code{\link{trend}}}
 \keyword{ts}
