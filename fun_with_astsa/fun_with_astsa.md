@@ -22,6 +22,7 @@ it's more than just data ...
 
   * [1. Data](#1-data)
   * [2. Plotting](#2-plotting)
+     * [Trends](#trends)
   * [3. Correlations](#3-correlations)
   * [4. ARIMA](#4-arima)
      * [Simulation](#arima-simulation)
@@ -233,6 +234,34 @@ lines(lowess(tempr, cmort), col=6, lwd=2)
 ```
 
 <img src="figs/scatterhist.png" alt="scatterhist"  width="75%">
+
+### Trends
+
+&#x1F4A1; As of version 1.14.4, there are two new scripts to help with analyzing trends. They are
+
+> **`detrend()`** and **`trend()`**
+
+
+ &#x1F535;  `detrend` returns a detrended series using a polynomial regression (default is linear) or lowess (with the default span).  For example,
+
+ ```r
+tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon - USD per KG')
+ ```
+
+<img src="figs/detrend.png" alt="detrend"  width="75%">
+
+
+&#x1F535; `trend`  fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
+
+ ```r
+ trend(soi, lowess=TRUE)
+ ``` 
+
+ showing the `soi` series with a lowess trend and 95% pointwise confidence bands.
+ The fitted trend and the error bounds are returned invisibly.
+
+<img src="figs/trend.png" alt="trend"  width="75%">
+
 
 [<sub>top</sub>](#table-of-contents)
 

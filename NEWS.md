@@ -19,7 +19,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
 &#x1F4A1;  You can also install `astsa` from the archive (which is always current)
-[astsa_1.14.3.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.14.3.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+[astsa_1.14.3.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.14.4.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
 You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) and  an updated [pdf version of the `astsa` manual](https://github.com/nickpoison/astsa/blob/master/astsa.pdf) is available.
@@ -27,9 +27,15 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 ---
 ---
-### Versions 1.14 - Dec 2021
+### Versions 1.14 - May 2022
 
-+ <span style="font-size:larger;">__v1.14.3__:</span>  The stuff below was added after the CRAN submission.
++ <span style="font-size:larger;">__v1.14.4__</span> (May 2022)
+
+    + Added two new scripts ```detrend()``` and ```trend()```.  The first one returns a __detrended__ series using a polynomial regression (default is linear) or lowess (with the default span).  The second script fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
+
+       - Examples are ```tsplot(detrend(soi))``` showing the ```soi``` series with a linear trend removed, and ```trend(soi, lowess=TRUE)``` showing the ```soi``` series with a lowess trend and 95% pointwise confidence bands.
+
++ v1.14.3  (Dec 2021)
    
    + Added sleep state and movement data (`sleep1` and `sleep2`) - more details in the help files. 
 
