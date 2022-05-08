@@ -22,6 +22,10 @@ it's more than just data ...
 
   * [1. Data](#1-data)
   * [2. Plotting](#2-plotting)
+     * [astsa Color Palette](#colors)
+     * [Time Series Plots](#tsplot)
+     * [Lag Plots](#lag-plots)
+     * [Scatterplots](#scatterplots)
      * [Trends](#trends)
   * [3. Correlations](#3-correlations)
   * [4. ARIMA](#4-arima)
@@ -136,6 +140,8 @@ And you can get more information on any individual set using the `help()` comman
 
 ## 2. Plotting
 
+### Colors
+
 &#x1F4A1; When `astsa` is loaded, the astsa palette is attached.  The palette is  especially  suited for plotting  time series and it is a bit darker than the new default R4 palette. You can revert back using  `palette("default")`.  Also,
 
 > **`astsa.col()`**
@@ -159,6 +165,7 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), names=rep(3:6, 2), add=TRUE)
 <img src="figs/palette.png" alt="palette"  width="75%">
 
 
+### tsplot
 
 &#x1F535; For plotting time series and just about anything else, you can use
 
@@ -204,6 +211,8 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 <img src="figs/tsplot2.png" alt="tsplot"  width="75%">
 
 
+### Lag Plots
+
 &#x1F4A1; There are also lag plots for one series and for two series using
 
 > **`lag1.plot()`** or **`lag2.plot()`**
@@ -225,6 +234,8 @@ lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, bgl='transparent', lwl=2, gg=T, b
 ```
 <img src="figs/lag2plot.png" alt="lag2plot"  width="75%">
 
+
+### Scatterplots
 
 &#x1F4A1; Sometimes it's nice to have a scatterplot with marginal histograms...
 
