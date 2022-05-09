@@ -39,7 +39,7 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 D.S. Stoffer
 }
 \examples{
-tsplot(detrend(soi))
+tsplot(cbind(salmon, detrend(salmon)))
 
 tsplot(detrend(soi, lowess=TRUE)
 }
