@@ -24,7 +24,7 @@ Group 2 (this group) is from mothers who drank alcohol in moderation during
 pregnancy. In addition, the number of movements per minute are listed.
 }
 \source{
-Stoffer, D. S., Scher, M. S., Richardson, G. A., Day, N. L., Coble, P. A. (1988). A Walsh—Fourier Analysis of the Effects of Moderate Maternal Alcohol Consumption on Neonatal Sleep-State Cycling. Journal of the American Statistical Association, 83(404), 954-963. \kbd{https://doi.org/10.2307/2290119}
+Stoffer, D. S., Scher, M. S., Richardson, G. A., Day, N. L., Coble, P. A. (1988). A Walsh-Fourier Analysis of the Effects of Moderate Maternal Alcohol Consumption on Neonatal Sleep-State Cycling. Journal of the American Statistical Association, 83(404), 954-963. \kbd{https://doi.org/10.2307/2290119}
 
 Stoffer, D. S. (1990). Multivariate Walsh-Fourier Analysis. Journal of Time Series Analysis, 11(1), 57-73.
 \kbd{ https://doi.org/10.1111/j.1467-9892.1990.tb00042.x}
