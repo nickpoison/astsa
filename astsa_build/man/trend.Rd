@@ -50,9 +50,11 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 D.S. Stoffer
 }
 \examples{
+\dontrun{
 trend(soi)
 
 trend(soi, lowess=TRUE)
+}
 }
 \seealso{\code{\link{detrend}}}
 \keyword{ts}

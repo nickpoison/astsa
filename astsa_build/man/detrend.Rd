@@ -41,7 +41,7 @@ D.S. Stoffer
 \examples{
 tsplot(cbind(salmon, detrend(salmon)))
 
-tsplot(detrend(soi, lowess=TRUE)
+tsplot(detrend(salmon, lowess=TRUE))
 }
 \seealso{\code{\link{trend}}}
 \keyword{ts}
