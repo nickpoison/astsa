@@ -1,8 +1,8 @@
 Package: astsa
 Type: Package
 Title: Applied Statistical Time Series Analysis
-Version: 1.14.4
-Date:   2022-05-07
+Version: 1.15
+Date:   2022-05-08
 Depends: R (>= 3.5)
 Author: David Stoffer [aut, cre],  Nicky Poison [ctb, mus, spy]
 Maintainer: David Stoffer <stoffer@pitt.edu>
