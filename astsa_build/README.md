@@ -1,6 +1,13 @@
 ## astsa &mdash; applied statistical time series analysis
 
-<img src="https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/figs/astsa.gif" alt="astsa"  height="100">
+
+░█████╗░░██████╗████████╗░██████╗░█████╗░
+██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗
+███████║╚█████╗░░░░██║░░░╚█████╗░███████║
+██╔══██║░╚═══██╗░░░██║░░░░╚═══██╗██╔══██║
+██║░░██║██████╔╝░░░██║░░░██████╔╝██║░░██║
+╚═╝░░╚═╝╚═════╝░░░░╚═╝░░░╚═════╝░╚═╝░░╚═╝
+
 
 more than just data ...
 
