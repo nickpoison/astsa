@@ -268,8 +268,7 @@ tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon - USD per KG')
  trend(soi, lowess=TRUE)
  ``` 
 
- showing the `soi` series with a lowess trend and 95% pointwise confidence bands.
- The fitted trend and the error bounds are returned invisibly.
+ 
 
 <img src="figs/trend.png" alt="trend"  width="75%">
 
