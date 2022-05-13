@@ -8,7 +8,7 @@ function(series, order=1, lowess=FALSE, lowspan=2/3, col=c(4,6), ylab=NULL, ...)
     x      = time(series) 
     if (lowess) { 
       y    = c(series)
-      lo   = stats::predict(stats::loess(y ~ x), se=TRUE)
+      lo   = stats::predict(stats::loess(y ~ x, span=lowspan), se=TRUE)
       trnd = ts(lo$fit, start=tspar[1], frequency=tspar[3])
     tsplot(series, col=col[1], ylab=ylab, ...)
     lines(trnd, col=col[2], lwd=2)       
