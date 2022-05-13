@@ -35,7 +35,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
        - Examples are `tsplot(detrend(soi))` showing the `soi` series with a linear trend removed, and `trend(soi, lowess=TRUE)` showing the `soi` series with a lowess trend and 95% pointwise confidence bands.
 
-+ v1.15+ : Added a line to `detrend` to make sure the input series is univariate (already there in `trend`).   The the archive [astsa_1.15.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.tar.gz) has been updated here only.  The version number remains the same for now.
++ v1.15+ : Added a line to `detrend` to make sure the input series is univariate (already there in `trend`).   The   archive [astsa_1.15.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.tar.gz) has been updated here only.  The version number remains the same for now.
 
 ---
 ### Versions 1.14 - Sept 2021
