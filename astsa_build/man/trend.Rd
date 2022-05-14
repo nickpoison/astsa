@@ -6,7 +6,7 @@
 Estimates the trend (polynomial or lowess) of a time series and returns a graphic of the series with the trend and error bounds superimposed.
 }
 \usage{
-trend(series, order = 1, lowess = FALSE, lowspan = 2/3, col = c(4, 6), ylab = NULL, ...)
+trend(series, order = 1, lowess = FALSE, lowspan = 3/4, col = c(4, 6), ylab = NULL, ...)
 }
 \arguments{
   \item{series}{
@@ -16,7 +16,7 @@ The time series to be analyzed (univariate only).
 Order of the polynomial used to estimate the trend with a linear default (order=1) unless \code{lowess} is TRUE.
 }
   \item{lowess}{
-If TRUE, lowess is used to find the trend. The default is FALSE.
+If TRUE,  \code{loess} from the stats package is used to fit the trend. The default is FALSE.
 }
   \item{lowspan}{
 The smoother span used for lowess.
