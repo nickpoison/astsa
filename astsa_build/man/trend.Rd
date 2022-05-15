@@ -6,7 +6,8 @@
 Estimates the trend (polynomial or lowess) of a time series and returns a graphic of the series with the trend and error bounds superimposed.
 }
 \usage{
-trend(series, order = 1, lowess = FALSE, lowspan = 3/4, col = c(4, 6), ylab = NULL, ...)
+trend(series, order = 1, lowess = FALSE, lowspan = .75, robust = TRUE,
+         col = c(4, 6), ylab = NULL, ...)
 }
 \arguments{
   \item{series}{
@@ -20,6 +21,9 @@ If TRUE,  \code{loess} from the stats package is used to fit the trend. The defa
 }
   \item{lowspan}{
 The smoother span used for lowess.
+}
+  \item{robust}{
+If TRUE (default), the lowess fit is robust.
 }
   \item{col}{
 For the graphic, the color of the data (default is 4) and the color of the trend (default is 6).

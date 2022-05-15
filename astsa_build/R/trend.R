@@ -1,14 +1,16 @@
 trend <-
-function(series, order=1, lowess=FALSE, lowspan=.75, col=c(4,6), ylab=NULL, ...){
+function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE, 
+          col=c(4,6), ylab=NULL, ...){
   if (NCOL(series) > 1) stop("univariate time series only")
     name   = deparse(substitute(series))
     if (is.null(ylab)) { ylab = name }
     series = as.ts(series)
     tspar  = tsp(series)
     if (lowess) { 
+	  fam  = ifelse(robust, 'symmetric', 'gaussian') 
       y    = c(series)
       x    = c(time(series)) 
-      lo   = stats::predict(stats::loess(y ~ x, span=lowspan), se=TRUE)
+      lo   = stats::predict(stats::loess(y ~ x, span=lowspan, family=fam), se=TRUE)
       trnd = ts(lo$fit, start=tspar[1], frequency=tspar[3])
     tsplot(series, col=col[1], ylab=ylab, ...)
     lines(trnd, col=col[2], lwd=2)       
