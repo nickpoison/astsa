@@ -7,7 +7,7 @@ function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE,
     series = as.ts(series)
     tspar  = tsp(series)
     if (lowess) { 
-	  fam  = ifelse(robust, 'symmetric', 'gaussian') 
+      fam  = ifelse(robust, 'symmetric', 'gaussian') 
       y    = c(series)
       x    = c(time(series)) 
       lo   = stats::predict(stats::loess(y ~ x, span=lowspan, family=fam), se=TRUE)
