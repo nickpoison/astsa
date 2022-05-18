@@ -2,6 +2,7 @@ trend <-
 function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE, 
           col=c(4,6), ylab=NULL, ...){
   if (NCOL(series) > 1) stop("univariate time series only")
+  if (length(col) < 2) col = rep(col, 2)  
     name   = deparse(substitute(series))
     if (is.null(ylab)) { ylab = name }
     series = as.ts(series)

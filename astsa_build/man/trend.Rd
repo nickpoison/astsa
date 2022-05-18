@@ -26,7 +26,7 @@ The smoother span used for lowess.
 If TRUE (default), the lowess fit is robust.
 }
   \item{col}{
-For the graphic, the color of the data (default is 4) and the color of the trend (default is 6).
+Vector of two colors for the graphic, first the color of the data (default is 4) and second the color of the trend (default is 6). Both the data and trend line will be the same color if only one value is given.
 }
   \item{ylab}{
 Label for the vertical axis (default is the name of the series).
