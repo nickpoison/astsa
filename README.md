@@ -1,15 +1,7 @@
 ## astsa &mdash; applied statistical time series analysis
 
 <img src="fun_with_astsa/figs/astsa.gif" alt="astsa"  height="100">
-```
-                _____ _______ _____         
-         /\    / ____|__   __/ ____|  /\    
-        /  \  | (___    | | | (___   /  \   
-       / /\ \  \___ \   | |  \___ \ / /\ \  
-      / ____ \ ____) |  | |  ____) / ____ \ 
-     /_/    \_\_____/   |_| |_____/_/    \_\
-	 
- ```                                       
+                       
                                         
 > The package is now in the folder [astsa_build](https://github.com/nickpoison/astsa/tree/master/astsa_build) 
 
@@ -30,11 +22,11 @@ We won't always push the latest version of the package to CRAN, but the latest w
 
 * The updated [code for the data science text](https://github.com/nickpoison/tsda/blob/master/Rcode.md) is here: [TSDA](https://github.com/nickpoison/tsda).
 
-* Python
+* Python:
 
-   - The [code in the first 3 chapters of the Springer text has been converted to Python here.](https://github.com/borisgarbuzov/tsa4-python/tree/master/src) 
+    - The [code in the first 3 chapters of the Springer text has been converted to Python here.](https://github.com/borisgarbuzov/tsa4-python/tree/master/src) 
 
-   - And a [Python package that contains datasets from astsa is here.](https://pypi.org/project/astsadata/)
+    - And a [Python package that contains datasets from astsa is here.](https://pypi.org/project/astsadata/)
 
 The Springer text was written under version 1.8 and the Chapman & Hall text was written under version 1.9. Later versions will work for both texts with only some minor changes that won't affect any of the data analysis. 
 
