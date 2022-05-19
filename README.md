@@ -2,11 +2,11 @@
 
 <img src="fun_with_astsa/figs/astsa.gif" alt="astsa"  height="100">
                 _____ _______ _____         
-     /\    / ____|__   __/ ____|  /\    
-    /  \  | (___    | | | (___   /  \   
-   / /\ \  \___ \   | |  \___ \ / /\ \  
-  / ____ \ ____) |  | |  ____) / ____ \ 
- /_/    \_\_____/   |_| |_____/_/    \_\
+         /\    / ____|__   __/ ____|  /\    
+        /  \  | (___    | | | (___   /  \   
+       / /\ \  \___ \   | |  \___ \ / /\ \  
+      / ____ \ ____) |  | |  ____) / ____ \ 
+     /_/    \_\_____/   |_| |_____/_/    \_\
                                         
                                         
 > The package is now in the folder [astsa_build](https://github.com/nickpoison/astsa/tree/master/astsa_build) 
