@@ -2,12 +2,12 @@
 \alias{lag2.plot}
 \title{Lag Plot - two time series
 }
-\description{Produces a grid of scatterplots of one series versus another. The first named series is the one that gets lagged. 
+\description{Produces a grid of scatterplots of one series versus another. The first named series is the one that gets lagged.
 }
 \usage{
-lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1), 
-           lwl=1, bgl ='white', box.col=8, ...)
-} 
+lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1),
+           lwl=1, bgl ='white', ltcol=1, box.col=8, ...)
+}
 \arguments{
   \item{series1}{first series (the one that gets lagged)
 }
@@ -25,19 +25,21 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
 }
   \item{bgl}{background of the ACF legend; default is \code{'white'}
 }
+  \item{ltcol}{legend text color; default is black
+}
   \item{box.col}{color of the border of the ACF legend; default is \code{'gray(62)'}
 }
   \item{\dots}{additional graphical parameters
-}   
 }
-\references{You can find demonstrations of  astsa capabilities at  
+}
+\references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
 The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.   
+The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \author{D.S. Stoffer
 }
