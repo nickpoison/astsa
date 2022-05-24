@@ -223,6 +223,9 @@ They can be turned off individually (`?lag1.plot` or `?lag2.plot` for more info)
 First,  for one series
 
 ```r
+# minimal call 
+lag1.plot(soi, 12)
+# but prettified
 lag1.plot(soi, 12, col=astsa.col(4, .3), pch=20, cex=2)
 ```
 <img src="figs/lag1plot.png" alt="lag1plot"  width="75%">
@@ -230,6 +233,9 @@ lag1.plot(soi, 12, col=astsa.col(4, .3), pch=20, cex=2)
 and for two series (the first one gets lagged)
 
 ```r
+# minimal call - the first series gets lagged
+lag2.plot(soi, rec, 8)
+# but prettified
 lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, bgl='transparent', lwl=2, gg=T, box.col=gray(1))
 ```
 <img src="figs/lag2plot.png" alt="lag2plot"  width="75%">
@@ -248,7 +254,7 @@ lines(lowess(tempr, cmort), col=6, lwd=2)
 
 ### Trends
 
-&#x1F4A1; As of version 1.14.4, there are two new scripts to help with analyzing trends. They are
+&#x1F4A1; As of version 1.15, there are two new scripts to help with analyzing trends. They are
 
 > **`detrend()`** and **`trend()`**
 
