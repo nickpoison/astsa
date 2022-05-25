@@ -1549,3 +1549,5 @@ legend('bottomright', lty=1, col=c(4,6), legend=c('optimal', 'absolute value'), 
 &#128584; &#128585; &#128586;  &emsp; THAT'S A WRAP  &emsp;  &#128586; &#128585;  &#128584;
 
 ----
+
+![Visitor Count](https://profile-counter.glitch.me/nickpoison/count.svg)
