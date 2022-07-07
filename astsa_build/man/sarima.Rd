@@ -42,8 +42,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
   \item{...}{additional graphical arguments
 }
 }
-\details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The values p,d,q, must be specified as there is no default. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0)} will fit an ARIMA(2,1,0) model to the series in x, and \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0)*(0,1,1)_{12}} model to the series in x. 
-         The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they  differ by a scaling factor of the effective sample size.  
+\details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The values p,d,q, must be specified as there is no default. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0)} will fit an ARIMA(2,1,0) model to the series in x, and \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0)*(0,1,1)_{12}} model to the series in x. The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they  differ by a scaling factor of the effective sample size.  
 }
 \value{\item{fit }{the \code{arima} object}
 \item{degrees_of_freedom}{Error degrees of freedom}
@@ -77,5 +76,5 @@ sarima(x, 2,0,0, fixed=c(0,NA,NA))
 # fun with diagnostics
 sarima(log(AirPassengers),0,1,1,0,1,1,12, gg=TRUE, col=4)
 }
-\seealso{\code{\link{sarima.for}}}
+\seealso{\code{\link{sarima.for}}, \code{\link{sarima.sim}} }
 \keyword{ ts }
