@@ -29,19 +29,26 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ### Versions 1.15 - May 2022
 
+
++ v1.15+ : 
+   
+   - The   archive [astsa_1.15.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.tar.gz) has been updated (here only) to include what is listed below .  The version number remains the same for now.
+
+    - Added `ar.mcmc` to fit AR models via Gibbs sampling.
+   
+    - Added a line to `detrend` to make sure the input series is univariate (already there in `trend`).  Also, in `trend`, forgot to add the span option for lowess (actually `stats::loess` with a robust option) - this has been corrected.  
+    
+    - Added the ability to change the legend text color in `lag1.plot` and `lag2.plot` and set the default to black - it makes the values easier to see, especially if the background of the legend is transparent.
+
+    
+
 + <span style="font-size:larger;">__v1.15__</span> (May 2022) is v1.14.3 plus the following 2 additions and (of course) minor changes to appease the CRAN warlords:
 
     + Added two new scripts ```detrend()``` and ```trend()```.  The first one returns a __detrended__ series using a polynomial regression (default is linear) or lowess (with the default span).  The second script fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
 
        - Examples are `tsplot(detrend(soi))` showing the `soi` series with a linear trend removed, and `trend(soi, lowess=TRUE)` showing the `soi` series with a lowess trend and 95% pointwise confidence bands.
 
-+ v1.15+ : 
-   
-    - Added a line to `detrend` to make sure the input series is univariate (already there in `trend`).  Also, in `trend`, forgot to add the span option for lowess (actually `stats::loess` with a robust option) - this has been corrected.  
-    
-    - Added the ability to change the legend text color in `lag1.plot` and `lag2.plot` and set the default to black - it makes the values easier to see, especially if the background of the legend is transparent.
 
-    - The   archive [astsa_1.15.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.tar.gz) has been updated here only.  The version number remains the same for now.
 
 
 ---
