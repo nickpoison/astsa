@@ -6,7 +6,8 @@
 Fits a stochastic volatility model to a univariate time series of returns.
 }
 \usage{
-SV.mcmc(y, nmcmc = 1000, burnin = 100, init = NULL, hyper = NULL, tuning = NULL, sigma_MH = NULL, npart = NULL, mcmseed = NULL)
+SV.mcmc(y, nmcmc = 1000, burnin = 100, init = NULL, hyper = NULL, tuning = NULL, 
+         sigma_MH = NULL, npart = NULL, mcmseed = NULL)
 }
 \arguments{
   \item{y}{
@@ -39,7 +40,7 @@ seed for mcmc
 }
 \details{
 The log-volatility process is \eqn{x_t} and the returns are \eqn{y_t}. The SV model is
-\deqn{x_t = \phi x_{t-1} + \sigma w_t; \quad y_t = \beta \exp\bigl\{\tfrac{1}{2} x_t\bigr\}\epsilon_t}
+\deqn{x_t = \phi x_{t-1} + \sigma w_t \qquad y_t = \beta \exp\bigl\{\tfrac{1}{2} x_t\bigr\}\epsilon_t}
 where \eqn{w_t} and \eqn{\epsilon_t} are independent standard normal white noise.
 The model is fit using a technique described in the paper listed in the source.
 Two graphics are returned, the three parameter traces, their ACFs, and their histograms with
@@ -52,7 +53,7 @@ the .025, .5, and .975 quantiles displayed.
  \item{X }{sampled log-volatility} 
  \item{inputs }{values of the arguments}   
 }
-\source{Gong \& Stoffer . (2021). A note on efficient fitting of stochastic volatility models. \emph{Journal of Time Series Analysis}, 42(2), 186-200.  \url{https://github.com/nickpoison/Stochastic-Volatility-Models}
+\source{Gong & Stoffer . (2021). A note on efficient fitting of stochastic volatility models. \emph{Journal of Time Series Analysis}, 42(2), 186-200.  \url{https://github.com/nickpoison/Stochastic-Volatility-Models}
 and  \url{https://doi.org/10.1111/jtsa.12561}
 }
 \references{
@@ -68,7 +69,7 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 D.S. Stoffer
 }
 \note{
-Except for the data, all the other inputs have defaults.  The time to run and the acceptance rate are returned at the end of the analysis.  The acceptance rate should be around 28% and this can be adjusted using the tuning parameter.  
+Except for the data, all the other inputs have defaults.  The time to run and the acceptance rate are returned at the end of the analysis.  The acceptance rate should be around 28\% and this can be adjusted using the tuning parameter.  
 }
 
 \section{Warning }{There is a large amount of output and it is highly recommended that the output be sent to an object.} 

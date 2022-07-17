@@ -11,12 +11,10 @@ Daily returns of three banks, 1.  Bank of America [boa], 2. Citibank [citi], and
 \format{
   The format is:
  Time-Series [1:3243, 1:3] from 2005 to 2017: -0.01378 -0.01157 -0.00155 -0.01084 0.01252 ...
- - attr(*, "dimnames")=List of 2
-  ..$ : NULL
-  ..$ : chr [1:3] "boa" "citi" "jpm"
+ with column names  "boa" "citi" "jpm" .
 }
 \source{
-Gong \& Stoffer (2021). A Note on Efficient Fitting of Stochastic Volatility Models. 
+Gong & Stoffer (2021). A Note on Efficient Fitting of Stochastic Volatility Models. 
 \emph{Journal of Time Series Analysis}, 42(2), 186-200.
 
 \url{https://github.com/nickpoison/Stochastic-Volatility-Models}
