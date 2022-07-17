@@ -34,7 +34,10 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
    
    - The   archive [astsa_1.15.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.tar.gz) has been updated (here only) to include what is listed below .  The version number remains the same for now.
 
-    - Added `ar.mcmc` to fit AR models via Gibbs sampling.
+   - In the process of adding some Bayesian (.mcmc) scripts.  So far 
+     - Added `ar.mcmc` to fit AR models via Gibbs sampling
+     - Added `SV.mcmc` to fit stochastic volatility models 
+     - ... and some financial data sets `sp500.gr` (S&P 500 returns) and `BCJ` (returns of 3 banks) 
    
     - Added a line to `detrend` to make sure the input series is univariate (already there in `trend`).  Also, in `trend`, forgot to add the span option for lowess (actually `stats::loess` with a robust option) - this has been corrected.  
     
