@@ -24,8 +24,8 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100,  init=NULL, hyper=NULL, tuning=NUL
   #   acp - acceptence rate of Random Walk Metropolis Hastings
   #   ESS - effective sample size
   
-  if (is.null(init))   init       = c(0.9, 0.5, .1)   # phi, q, beta
-  if (is.null(hyper))  hyper      = c(0.9, 0.5, 0.075, 0.1, -0.25)
+  if (is.null(init))   init       = c(0.9, 0.5, .1)   # phi, sigma, beta
+  if (is.null(hyper))  hyper      = c(0.9, 0.5, 0.075, 0.3, -0.25)
   if (is.null(tuning)) tuning     =.03
   if (is.null(sigma_MH)) sigma_MH = tuning * matrix(c(1,-.25,-.25,1),nrow=2,ncol=2)
   if (is.null(npart)) npart       = 10
@@ -36,17 +36,15 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100,  init=NULL, hyper=NULL, tuning=NUL
   set.seed(mcmseed)
   pb = txtProgressBar(min = 0, max = numMCMC, initial = 0, style=3)  # progress bar
 
-  
   T = length(y)
   X = matrix(0,numMCMC,T)
   q = rep(0,numMCMC)             # q = state variance ## W(t) ~ iid N(0,q)
-  phi = rep(0,numMCMC)           # phi-values
+  phi = rep(0,numMCMC)
   beta = rep(0,numMCMC)
-  
 
   # Initialize the parameters
    phi[1]  = init[1]
-     q[1]  = init[2]^2   
+     q[1]  = init[2]^2
   beta[1]  = init[3]
 
   
@@ -54,14 +52,14 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100,  init=NULL, hyper=NULL, tuning=NUL
   mu_phi = hyper[1]
   mu_q = hyper[2]^2
   sigma_phi = hyper[3]
-  sigma_q = hyper[4]
-  rho = hyper[5]   
-  mu_MH = c(0,0)   
-  sigma_MH = sigma_MH  
+  sigma_q = hyper[4]^2
+  rho = hyper[5]
+  mu_MH = c(0,0)
+  sigma_MH = sigma_MH
   
   
   # Initialize the state by running a PF
-  u = .cpf_as_sv(y, phi[1], q[1],  N,  X[1,], beta[1])   #  changed from X to X[1,]
+  u = .cpf_as_sv(y, phi[1], q[1],  N,  X[1,], beta[1])    
   particles = u$x           # returned particles
   w = u$w                   # returned weights
   # Draw J
@@ -71,7 +69,7 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100,  init=NULL, hyper=NULL, tuning=NUL
   ptm <- proc.time()
   # Run MCMC loop
   for(k in 2:numMCMC){
-    # Sample the parameters (phi, sqrt_q) ~ bivariate normal Random Walk Metropolis Hastings
+    # Sample the parameters (phi, sigma=sqrt_q) ~ bivariate normal RW Metropolis  
     parms = cbind(phi[k-1], sqrt(q[k-1]))
     parms_star = parms + MASS::mvrnorm(1, mu_MH, sigma_MH)
     
@@ -98,11 +96,11 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100,  init=NULL, hyper=NULL, tuning=NUL
     
     
     # Sample beta, prior unif, N(0,b)=N(0,inf)
-      atemp = T/2 - 1
-      btemp = sum(y^2/exp(X[k-1,]))/2
-      beta[k] = sqrt(1/rgamma(1, atemp, btemp))
+     atemp = T/2 - 1
+     btemp = sum(y^2/exp(X[k-1,]))/2
+     beta[k] = sqrt(1/rgamma(1, atemp, btemp))
     
-     # Sample beta, prior IG(a,b)
+    # Sample beta, prior IG(a,b)
     # a = .001
     # b = .001
     #   atemp = T/2 + a
@@ -148,8 +146,8 @@ par(mfcol=c(3,3))
 for (i in 1:3){
   tsplot(parms[,i], main=names[i], col=culer[i], ylab='', xlab='Index')
     v = spec.ic(parms[,i], plot=F)
-	spec0 = as.numeric(v[[2]][1,2])
-	ESS = nmcmc*var(parms[,i])/spec0
+    spec0 = as.numeric(v[[2]][1,2])
+    ESS = nmcmc*var(parms[,i])/spec0
   legend("topright", legend=paste('ESS = ', round(ESS, digits=1)), adj=.1, bg='white')	
   acf1(parms[,i],   main='', col=culer[i], ylim=c(lwr,1))
   hist(parms[,i],   main='', xlab='', col=astsa.col(culer[i], .4))
@@ -191,25 +189,24 @@ par(old.par)
   
   for (t in 1:T){
     if(t != 1){
-      ind = .resamplew(w[,t-1]);             
-      ind = ind[sample.int(N)]; # default: no replacement
+      ind = .resamplew(w[,t-1]) 
+      ind = ind[sample.int(N)]  # default: no replacement
       t1 = t-1
-      xpred = phi*x[, t1] # length N Vector
-      x[,t] = xpred[ind] + sqrt(q)*rnorm(N);
-      x[N,t] = X[t]; #Line 6
+      xpred = phi*x[, t1]  
+      x[,t] = xpred[ind] + sqrt(q)*rnorm(N)
+      x[N,t] = X[t] 
       
-      # Ancestor sampling ---# Eq(3) 
-      
-      logm = -1/(2*q)*(X[t]-xpred)^2;
+      # Ancestor sampling 
+      logm = -1/(2*q)*(X[t]-xpred)^2 
       maxlogm = max(log(w[,t-1])+logm)
       w_as = exp(log(w[,t-1])+logm - maxlogm)
-      w_as = w_as/sum(w_as);
-      
+      w_as = w_as/sum(w_as) 
       ind[N] =  which( (runif(1)-cumsum(w_as)) < 0 )[1]   
       
       # Store the ancestor indices
       a[,t] = ind;
     }#end IF
+ 
     # Compute importance weights
     exp_now = exp(x[,t])
     temp = (y[t]/beta)^2

@@ -50,9 +50,9 @@ Two graphics are returned: (1) the three parameter traces [and the effective sam
  \item{sigma }{sample state error stnd deviation}
  \item{beta }{sampled observation error scale}
  \item{X }{sampled log-volatility} 
- \item{inputs }{values of the arguments}   
+ \item{options }{values of the input arguments}   
 }
-\source{Gong & Stoffer . (2021). A note on efficient fitting of stochastic volatility models. \emph{Journal of Time Series Analysis}, 42(2), 186-200.  \url{https://github.com/nickpoison/Stochastic-Volatility-Models}
+\source{Gong & Stoffer (2021). A note on efficient fitting of stochastic volatility models. \emph{Journal of Time Series Analysis}, 42(2), 186-200.  \url{https://github.com/nickpoison/Stochastic-Volatility-Models}
 and  \url{https://doi.org/10.1111/jtsa.12561}
 }
 \references{
@@ -71,13 +71,15 @@ D.S. Stoffer
 Except for the data, all the other inputs have defaults.  The time to run and the acceptance rate are returned at the end of the analysis.  The acceptance rate should be around 28\% and this can be adjusted using the tuning parameter.  
 }
 
-\section{Warning }{There is a large amount of output and it is highly recommended that the output be sent to an object.} 
+\section{Warning }{There is a LARGE amount of output and it is highly recommended that the output be sent to an object.} 
 
 
 \examples{
 \dontrun{
 #--   A minimal example  --##
 myrun <- SV.mcmc(sp500w)   # results in object myrun - don't forget it 
+
+str(myrun)                 # an easy way to see the default input options
 }
 }
 \keyword{ ts }
