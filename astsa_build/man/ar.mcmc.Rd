@@ -51,7 +51,7 @@ Defaults are given for the hyperparameters, but the user
 may choose \eqn{(a,b)} as \code{(prior_sig_a, prior_sig_b)}
 and \eqn{\gamma^2} as \code{prior_var_phi}.
 
-
+The algorithm is efficient and converges quickly.
 Further details can be found in Example 8.36  of Douc, R., Moulines, E., & Stoffer, D. (2014).
 \emph{ Nonlinear Time Series: Theory, Methods and Applications with R Examples}. CRC press. 
 ISBN 9781466502253.
