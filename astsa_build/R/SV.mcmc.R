@@ -22,6 +22,7 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100,  init=NULL, hyper=NULL, tuning=NUL
   #   X - sampled log-volatility
   #   time2run - running time
   #   acp - acceptence rate of Random Walk Metropolis Hastings
+  #   ESS - effective sample size
   
   if (is.null(init))   init       = c(0.9, 0.5, .1)   # phi, q, beta
   if (is.null(hyper))  hyper      = c(0.9, 0.5, 0.075, 0.1, -0.25)
@@ -133,15 +134,23 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100,  init=NULL, hyper=NULL, tuning=NUL
  
 
 # plots
+legend  = graphics::legend
+par     = graphics::par
+abline  = graphics::abline
 old.par = par(no.readonly = TRUE)
 parms   = cbind(phi, sigma, beta)
 names   = c(expression(phi), expression(sigma), expression(beta))
 colnames(parms) = names
 lwr     = min(min(acf(phi)$acf), min(acf(sigma)$acf), min(acf(beta)$acf))
 culer   = c(6,4,3)
+
 par(mfcol=c(3,3))
 for (i in 1:3){
   tsplot(parms[,i], main=names[i], col=culer[i], ylab='', xlab='Index')
+    v = spec.ic(parms[,i], plot=F)
+	spec0 = as.numeric(v[[2]][1,2])
+	ESS = nmcmc*var(parms[,i])/spec0
+  legend("topright", legend=paste('ESS = ', round(ESS, digits=1)), adj=.1, bg='white')	
   acf1(parms[,i],   main='', col=culer[i], ylim=c(lwr,1))
   hist(parms[,i],   main='', xlab='', col=astsa.col(culer[i], .4))
   abline(v=c(stats::quantile(parms[,i], probs=c(.025,.5,.975))), col=8)
