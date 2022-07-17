@@ -32,4 +32,5 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 }
 \examples{
 tsplot(BCJ, col=2:4)
+}
 \keyword{datasets}
