@@ -55,7 +55,7 @@ Two graphics are returned: (1) the three parameter traces [and the effective sam
 \source{Gong & Stoffer (2021). A note on efficient fitting of stochastic volatility models. \emph{Journal of Time Series Analysis}, 42(2), 186-200.  \url{https://github.com/nickpoison/Stochastic-Volatility-Models}
 and  \url{https://doi.org/10.1111/jtsa.12561}
 }
-\references{
+\references{You can find demonstrations of  astsa capabilities at 
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
 The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
