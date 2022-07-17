@@ -78,7 +78,7 @@ Except for the data, all the other inputs have defaults.  The time to run and th
 \examples{
 \dontrun{
 #--   A minimal example  --##
-myrun <- SV.mcmc(sp500.gr)   # results in object myrun - don't forget it 
+myrun <- SV.mcmc(sp500w)   # results in object myrun - don't forget it 
 }
 }
 \keyword{ ts }
