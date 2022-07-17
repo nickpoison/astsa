@@ -1,5 +1,10 @@
-SV.mcmc <-
-function(y, nmcmc=1000, burnin=100,  init=NULL, hyper=NULL, tuning=NULL, sigma_MH=NULL, npart=NULL, mcmseed=NULL){
+################################################################################################# 
+#     PGAS for an SV model.        
+#      X(t) = phi * X(t-1) + sigma*W(t);    W(t) ~ iid N(0,1)  
+#      Y(t) = beta*exp{X(t)/2}V(t);         V(t) ~ iid N(0,1)   ind of Ws  
+##################################################################################################
+
+SV.mcmc = function(y, nmcmc=1000, burnin=100,  init=NULL, hyper=NULL, tuning=NULL, sigma_MH=NULL, npart=NULL, mcmseed=NULL){
   # Input:
   #   nmcmc - number of MCMC
   #   burnin - number of burnin
@@ -155,4 +160,88 @@ par(old.par)
 
  argmnts = list(nmcmc=nmcmc, burnin=burnin, init=init,  hyper=hyper, tuning=tuning, sigma_MH=sigma_MH, npart=npart, mcmseed=mcmseed)
  return(list(phi=phi, sigma=sigma, beta=beta, log.vol=X, options=argmnts))
+}#end
+
+#--------------------------------------------------------------------------
+.cpf_as_sv = function(y, phi, q, N, X, beta){
+  # Conditional particle filter with ancestor sampling
+  # Input:
+  #   y - measurements
+  #   phi - transition parameter
+  #   q - state noise variance
+  #   N - number of particles
+  #   X - conditioned particles
+  #   beta - state noise scale
+  
+  T = length(y)
+  x = matrix(0, N, T); # Particles
+  a = matrix(0, N, T); # Ancestor indices
+  w = matrix(0, N, T); # Weights
+  x[,1] = 0; # Deterministic initial condition
+  x[N,1] = X[1] 
+  
+  for (t in 1:T){
+    if(t != 1){
+      ind = .resamplew(w[,t-1]);             
+      ind = ind[sample.int(N)]; # default: no replacement
+      t1 = t-1
+      xpred = phi*x[, t1] # length N Vector
+      x[,t] = xpred[ind] + sqrt(q)*rnorm(N);
+      x[N,t] = X[t]; #Line 6
+      
+      # Ancestor sampling ---# Eq(3) 
+      
+      logm = -1/(2*q)*(X[t]-xpred)^2;
+      maxlogm = max(log(w[,t-1])+logm)
+      w_as = exp(log(w[,t-1])+logm - maxlogm)
+      w_as = w_as/sum(w_as);
+      
+      ind[N] =  which( (runif(1)-cumsum(w_as)) < 0 )[1]   
+      
+      # Store the ancestor indices
+      a[,t] = ind;
+    }#end IF
+    # Compute importance weights
+    exp_now = exp(x[,t])
+    temp = (y[t]/beta)^2
+    logweights = -sum(log(beta)) - (1/2)*x[,t] - 0.5*(sum(temp)/exp_now) # (up to an additive constant)
+    const = max(logweights); # Subtract the maximum value for numerical stability
+    weights = exp(logweights-const)
+    w[,t] = weights/sum(weights) # Save the normalized weights
+  }#end FOR
+  
+  # Generate the trajectories from ancestor indices
+  ind = a[,T];
+  for(t in (T-1):1){
+    x[,t] = x[ind,t];
+    ind = a[ind,t];
+  }#end
+  list(x=x, w=w)
+}#end
+#-------------------------------------------------------------------
+.resamplew = function(w){
+  # multinomial resampling
+  N = length(w)
+  u = runif(N)    # uniform random number
+  cw = cumsum(w)  # Cumulative Sum
+  cw = cw/cw[N]
+  ucw = c(u,cw)
+  ind1 = sort(ucw, index.return=TRUE)$ix   # $ix will give the index
+  ind2 = which(ind1<=N)
+  i = ind2-(0:(N-1))
+  return(i)
 }
+
+#-------------------------------------------------------------------
+.log_g_func = function(parms, mu_phi, sigma_phi, mu_q, sigma_q, rho, x){
+  # Calculate acceptance probability for RWMH
+  phi = parms[1]
+  q = parms[2]
+  Z = cbind(x[2:T], x[1:(T-1)])  # (T-1)*2 matrix
+  V = t(Z)%*%Z
+  term1 = -((phi-mu_phi)^2/(sigma_phi^2) + (q-mu_q)^2/(sigma_q^2) - 2*rho*(phi-mu_phi)*(q-mu_q)/(sigma_q*sigma_phi))/(2*(1-rho^2))
+  term2 = -(1-phi^2)*(x[1])^2/(2*q^2) - V[1,1]/(2*q^2) - V[2,2]*(phi^2)/(2*q^2) + V[1,2]*phi/(q^2)
+  g = .25*(log((1-phi^2)^2)) - .5*T*log((q)^2) + term1 + term2
+  return(g)
+}
+
