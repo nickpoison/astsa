@@ -40,11 +40,14 @@ it's more than just data ...
   * [6. Testing for Linearity](#6-linearity-test)
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
   * [8. EM Algorithm and Missing Data](#8-em-algorithm-and-missing-data)
-  * [9. Arithmetic](#9-arithmetic)
+  * [9. Bayesian Techniques](#9-bayesian-techniques)
+      * [AR Models](#ar-models)
+      * [Stochastic Volatility Models](#stochastic-volatility)
+  * [10. Arithmetic](#10-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
-  * [10. The Spectral Envelope](#10-the-spectral-envelope)
+  * [11. The Spectral Envelope](#11-the-spectral-envelope)
      * [DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
      * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)
 
@@ -1212,7 +1215,112 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 ---
 
-## 9. Arithmetic
+## 9. Bayesian Techniques
+
+&#x1F4A1; We're adding some scripts to handle Bayesian analysis. So far we have
+> `ar.mcmc` to fit AR models 
+
+> `SV.mcmc` to fit stochastic volatility models 
+
+
+### AR Models
+
+&#x1F535; For a minimal example, we'll fit an AR(2) to the Recruitment (`rec`) data. 
+
+&emsp;&emsp;_x<sub>t</sub> = &phi;<sub>0</sub> +  &phi;<sub>1</sub> x<sub>t-1</sub> + &phi;<sub>2</sub> x<sub>t-2</sub> + &sigma; w<sub>t</sub>_  
+
+where _w<sub>t</sub>_ is standard Gaussian white noise.
+
+You just need to give the data and the order, the priors, the number of MCMC iterations (including burnin) have defaults. The output includes two graphics (unless you set `plot = FALSE`) and some
+quantiles of the sampled parameters.  For further details and references, see the help file (`?ar.mcmc`); this is not covered in tsa4.
+
+```r
+u = ar.mcmc(rec, 2)
+```
+
+with screen output
+```
+   Quantiles: 
+             phi0     phi1       phi2     sigma
+   1%    3.991699 1.268724 -0.5604687  8.799926
+   2.5%  4.504180 1.276576 -0.5460294  8.903435
+   5%    4.897493 1.289001 -0.5306669  9.001894
+   10%   5.312776 1.302280 -0.5163514  9.109764
+   25%   5.976938 1.325613 -0.4907099  9.291095
+   50%   6.780525 1.353442 -0.4614311  9.498246
+   75%   7.571304 1.380684 -0.4361400  9.703718
+   90%   8.235147 1.406633 -0.4130296  9.913079
+   95%   8.643331 1.424673 -0.3985069 10.018678
+   97.5% 8.928998 1.435397 -0.3874075 10.130158
+   99%   9.482394 1.458155 -0.3751349 10.335975  
+```
+
+and graphics
+
+<img src="figs/bayes_ar.png" alt="bayes_ar"  width="75%">
+
+<img src="figs/bayes_ar2.png" alt="bayes_ar"  width="75%">
+
+<br/>
+
+### Stochastic Volatility
+
+&#x1F535; For an example, we'll fit a stochastic volatility model to the S&P500 weekly returns(`sp500w`).  We've also added some new financial data sets, `sp500.gr` (daily S&P 500 returns) and
+`BCJ` (daily returns for 3 banks, Bank of America, Citi, and JP Morgan Chase).  The model is
+
+&emsp;&emsp;_x<sub>t</sub> =  &phi; x<sub>t-1</sub>  + &sigma; w<sub>t</sub>_ , &nbsp; &nbsp; and &nbsp;  &nbsp;
+_y<sub>t</sub> =&beta;_ exp _(&half; x<sub>t</sub>) &epsilon;<sub>t</sub>_
+
+where _w<sub>t</sub>_ and  _&epsilon;<sub>t</sub>_  are independent standard Gaussian white noise,
+ _x<sub>t</sub>_ is the hidden log-volatility process and _y<sub>t</sub>_ are the returns.
+ Most of the inputs have defaults, so a minimal run just needs the data specified.
+
+ ```r
+ u = SV.mcmc(sp500w)   # put the results in an object - it's important
+ ```
+
+ The immediate output shows the status, then the time to run and the acceptance rate of the Metropolis MCMC (which should be close to 28%):
+ ```
+  |= = = = = = = = = = = = = = = = = = = = = = = = =| 100%
+   Time to run (secs): 
+     user  system elapsed 
+    43.11    0.96   45.53 
+   The acceptance rate is: 27.1%
+```
+and graphics (traces, effective sample sizes, ACFs, histograms with 2.5%-50%-97.5% quantiles
+followed by the posterior mean log-volatility with 95% credible intervals).
+
+<img src="figs/bayes_sv.png" alt="bayes_sv"  width="75%">
+
+<img src="figs/bayes_sv2.png" alt="bayes_sv"  width="75%">
+
+An easy way to see the defaults (a list of options) is to look at the structure of the object:
+```r
+str(u)
+
+   List of 5
+    $ phi    : num [1:1000] 0.764 0.764 0.764 0.764 0.764 ...
+    $ sigma  : num [1:1000] 0.36 0.36 0.36 0.36 0.36 ...
+    $ beta   : num [1:1000] 0.0199 0.0206 0.0208 0.0202 0.0208 ...
+    $ log.vol: num [1:1000, 1:509] 0.0146 0.0266 -0.0694 -0.1368 -0.0442 ...
+    $ options:List of 8
+     ..$ nmcmc   : num 1000
+     ..$ burnin  : num 100
+     ..$ init    : num [1:3] 0.9 0.5 0.1
+     ..$ hyper   : num [1:5] 0.9 0.5 0.075 0.3 -0.25
+     ..$ tuning  : num 0.03
+     ..$ sigma_MH: num [1:2, 1:2] 0.03 -0.0075 -0.0075 0.03
+     ..$ npart   : num 10
+     ..$ mcmseed : num 90210
+```
+
+&#x1F4A1; And as always, references and details are in the help file (`?SV.mcmc`).
+
+[<sub>top</sub>](#table-of-contents)
+
+---
+
+## 10. Arithmetic
 
 &#x1F4A1; The package has a few scripts to help with items related to time series and stochastic processes.
 
@@ -1369,7 +1477,7 @@ which is
 [<sub>top</sub>](#table-of-contents)
 
 ---
-## 10. The Spectral Envelope
+## 11. The Spectral Envelope
 
 ### DNA and the Spectral Envelope
 
