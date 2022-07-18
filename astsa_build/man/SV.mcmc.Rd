@@ -43,13 +43,13 @@ The log-volatility process is \eqn{x_t} and the returns are \eqn{y_t}. The SV mo
 \deqn{x_t = \phi x_{t-1} + \sigma w_t \qquad y_t = \beta \exp\bigl\{\tfrac{1}{2} x_t\bigr\}\epsilon_t}
 where \eqn{w_t} and \eqn{\epsilon_t} are independent standard normal white noise.
 The model is fit using a technique described in the paper listed in the source.
-Two graphics are returned: (1) the three parameter traces [and the effective sample size (ESS)], their ACFs, and their histograms with the .025, .5, and .975 quantiles displayed, and (2) the log-volatility posterior mean along with corresponding .95 credible intervals.
+Two graphics are returned: (1) the three parameter traces [with effective sample sizes (ESS)], their ACFs, and their histograms with the .025, .5, and .975 quantiles displayed, and (2) the log-volatility posterior mean along with corresponding .95 credible intervals.
 }
 \value{
- \item{phi }{sampled state AR parameter}
- \item{sigma }{sample state error stnd deviation}
- \item{beta }{sampled observation error scale}
- \item{X }{sampled log-volatility} 
+ \item{phi }{vector of sampled state AR parameter}
+ \item{sigma }{vector of sampled state error stnd deviation}
+ \item{beta }{vector of sampled observation error scale}
+ \item{log.vol }{matrix of sampled log-volatility} 
  \item{options }{values of the input arguments}   
 }
 \source{Gong & Stoffer (2021). A note on efficient fitting of stochastic volatility models. \emph{Journal of Time Series Analysis}, 42(2), 186-200.  \url{https://github.com/nickpoison/Stochastic-Volatility-Models}
