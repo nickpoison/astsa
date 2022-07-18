@@ -68,6 +68,7 @@ And you can get more information on any individual set using the `help()` comman
 
 |Name|     Title                     |
 |----------|-------------|
+|BCJ                         | Daily Returns of Three Banks                                |
 |EBV                         | Entire Epstein-Barr Virus (EBV) Nucleotide Sequence         |
 |EQ5                         | Seismic Trace of Earthquake number 5                        |
 |EQcount                     | EQ Counts                                                   |
@@ -126,6 +127,7 @@ And you can get more information on any individual set using the `help()` comman
 |so2                         | SO2 levels from the LA pollution study                      |
 |soi                         | Southern Oscillation Index                                  |
 |soiltemp                    | Spatial Grid of Surface Soil Temperatures                   |
+|sp500.gr                    | Returns of the S&P 500                                      |
 |sp500w                      | Weekly Growth Rate of the Standard and Poor's 500           |
 |speech                      | Speech Recording                                            |
 |star                        | Variable Star                                               |
