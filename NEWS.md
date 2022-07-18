@@ -32,7 +32,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 + v1.15+ : 
    
-   - The   archive [astsa_1.15.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.tar.gz) has been updated (here only) to include what is listed below .  The version number remains the same for now except that there is a + in the DESCRIPTION file.
+   - The   archive [astsa_1.15.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.tar.gz) has been updated (here only) to include what is listed below .  The version number remains except in the DESCRIPTION file.
 
    - In the process of adding some Bayesian (.mcmc) scripts.  So far 
      - Added `ar.mcmc` to fit AR models via Gibbs sampling
