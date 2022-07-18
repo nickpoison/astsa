@@ -19,7 +19,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
 &#x1F4A1;  You can also install `astsa` from the archive (which is always current)
-[astsa_1.15.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+[astsa_1.15.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.1.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
 You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) and  an updated [pdf version of the `astsa` manual](https://github.com/nickpoison/astsa/blob/master/astsa.pdf) is available.
@@ -30,9 +30,9 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ### Versions 1.15 - May 2022
 
 
-+ v1.15+ : 
++ v1.15.1 (July 2022): 
    
-   - The   archive [astsa_1.15.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.tar.gz) has been updated (here only) to include what is listed below .  The version number remains except in the DESCRIPTION file.
+   - The   archive [astsa_1.15.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.1.tar.gz) has been updated (here only) to include what is listed below.  
 
    - In the process of adding some Bayesian (.mcmc) scripts.  So far 
      - Added `ar.mcmc` to fit AR models via Gibbs sampling
