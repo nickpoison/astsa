@@ -1,14 +1,14 @@
-################################################################################################# 
+###############################################################################
 #     PGAS for an SV model.        
 #      X(t) = phi * X(t-1) + sigma*W(t);    W(t) ~ iid N(0,1)  
 #      Y(t) = beta*exp{X(t)/2}V(t);         V(t) ~ iid N(0,1)   ind of Ws  
-##################################################################################################
+###############################################################################
 
-SV.mcmc = function(y, nmcmc=1000, burnin=100,  init=NULL, hyper=NULL, tuning=NULL, sigma_MH=NULL, npart=NULL, mcmseed=NULL){
+SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL, sigma_MH=NULL, npart=NULL, mcmseed=NULL){
   # Input:
+  #   y - returns
   #   nmcmc - number of MCMC
   #   burnin - number of burnin
-  #   y - measurements
   #   init - initial values of (phi, sigma, beta)
   #   npart - number of particles
   #   hyper - hyperparameters for bivariate normal (phi, q), user inputs (mu_phi, mu_q, sigma_phi, sigma_q, rho)
@@ -24,6 +24,7 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100,  init=NULL, hyper=NULL, tuning=NUL
   #   acp - acceptence rate of Random Walk Metropolis Hastings
   #   ESS - effective sample size
   
+  if (NCOL(y) > 1) stop("univariate time series only")
   if (is.null(init))   init       = c(0.9, 0.5, .1)   # phi, sigma, beta
   if (is.null(hyper))  hyper      = c(0.9, 0.5, 0.075, 0.3, -0.25)
   if (is.null(tuning)) tuning     =.03

@@ -2,6 +2,8 @@ ar.mcmc <-
 function(xdata, porder, n.iter=1000, n.warmup=100, plot=TRUE, 
           col=4, prior_var_phi=50, prior_sig_a=1, prior_sig_b=2){
 #
+if (NCOL(xdata) > 1) stop("univariate time series only")
+
 nobs    = length(xdata)
 lagp    = porder
 lagp1   = lagp + 1
@@ -24,7 +26,7 @@ for (i in 2:niter){
    # Drawing the phis
      var_phi   = solve((1/sigma[i-1])*(t(x)%*%x+(1/sigphi)*diag(1,lagp1)))
      mu_phi    = (1/sigma[i-1])*var_phi%*%t(x)%*%y
-	 Z         = as.matrix(rnorm(lagp1))
+     Z         = as.matrix(rnorm(lagp1))
      eV        = eigen(var_phi, symmetric=TRUE)
      phi[,i]   = mu_phi + eV$vectors%*%diag(sqrt(pmax(eV$values,0)),lagp1)%*%Z
    # Drawing sigma^2
@@ -70,6 +72,5 @@ text(0.5, 0.5, r, cex = 1.5)
     breaks <- h$breaks; nB <- length(breaks)
     y <- h$counts; y <- y/max(y)
     rect(breaks[-nB], 0, breaks[-1], y, ...)
-	#abline(v=stats::quantile(x, c(.025,.975)))
 }
 
