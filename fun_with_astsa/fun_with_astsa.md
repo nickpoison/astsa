@@ -1233,8 +1233,7 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 where _w<sub>t</sub>_ is standard Gaussian white noise.
 
-You just need to give the data and the order, the priors, the number of MCMC iterations (including burnin) have defaults. The output includes two graphics (unless you set `plot = FALSE`) and some
-quantiles of the sampled parameters.  For further details and references, see the help file (`?ar.mcmc`); this is not covered in tsa4.
+You just need to input the data and the order because the priors, the number of MCMC iterations (including burnin) have defaults. The method is fast and efficient; the ESSs are the same as the number of iterations (`n.iter`). The output includes two graphics (unless you set `plot = FALSE`) and some quantiles of the sampled parameters.  For further details and references, see the help file (`?ar.mcmc`); this is not covered in tsa4.
 
 ```r
 u = ar.mcmc(rec, 2)
@@ -1316,7 +1315,7 @@ str(u)
      ..$ mcmseed : num 90210
 ```
 
-&#x1F4A1; And as always, references and details are in the help file (`?SV.mcmc`).
+&#x1F4A1; And as always, references and details are in the help file (`?SV.mcmc`). The techniques are not covered in tsa4.
 
 [<sub>top</sub>](#table-of-contents)
 
