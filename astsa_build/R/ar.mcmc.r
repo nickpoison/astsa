@@ -43,7 +43,7 @@ colnames(phit) = paste('phi', numer, sep="")
 u     = cbind(phit, sigma)
 
 cat('Quantiles:', "\n")
-print(apply(u, 2, stats::quantile, c(.01,.025,.05,.1,.25,.50,.75,.9,.95,.975,.99)) )
+print(apply(u, 2, stats::quantile, c(.01,.025,.05,.1,.25,.50,.75,.9,.95,.975,.99)), digits=4 )
 
 if (plot){
   old.par = par(no.readonly = TRUE)
