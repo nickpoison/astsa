@@ -7,8 +7,7 @@ if (NCOL(xdata) > 1) stop("univariate time series only")
 nobs    = length(xdata)
 lagp    = porder
 lagp1   = lagp + 1
-nwarmup = n.warmup
-niter   = n.iter + nwarmup
+niter   = n.iter + n.warmup
 y       = xdata[lagp1:nobs]
 x       = matrix(1, nobs-lagp, lagp1)
 for (j in lagp1:2) {
@@ -36,7 +35,7 @@ for (i in 2:niter){
    } 
    
 # print - plot results	
-indx  = (nwarmup+1):niter
+indx  = (n.warmup+1):niter
 phit  = t(phi[,indx])
 sigma = sqrt(sigma[indx])  # now sigma is stand dev
 numer = 0:porder
