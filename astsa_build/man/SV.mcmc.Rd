@@ -46,6 +46,7 @@ The model is fit using a technique described in the paper listed in the source.
 Two graphics are returned: (1) the three parameter traces [with effective sample sizes (ESS)], their ACFs, and their histograms with the .025, .5, and .975 quantiles displayed, and (2) the log-volatility posterior mean along with corresponding .95 credible intervals.
 }
 \value{
+Returned invisibly:
  \item{phi }{vector of sampled state AR parameter}
  \item{sigma }{vector of sampled state error stnd deviation}
  \item{beta }{vector of sampled observation error scale}
@@ -70,8 +71,6 @@ D.S. Stoffer
 \note{
 Except for the data, all the other inputs have defaults.  The time to run and the acceptance rate are returned at the end of the analysis.  The acceptance rate should be around 28\% and this can be adjusted using the tuning parameter.  
 }
-
-\section{Warning }{There is a LARGE amount of output and it is highly recommended that the output be sent to an object.} 
 
 
 \examples{

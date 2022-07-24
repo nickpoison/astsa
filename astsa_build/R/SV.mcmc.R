@@ -167,7 +167,7 @@ polygon(xx, yy, border=NA, col=astsa.col(4,.2))
 par(old.par)
 
  argmnts = list(nmcmc=nmcmc, burnin=burnin, init=init,  hyper=hyper, tuning=tuning, sigma_MH=sigma_MH, npart=npart, mcmseed=mcmseed)
- return(list(phi=phi, sigma=sigma, beta=beta, log.vol=X, options=argmnts))
+ return(invisible(list(phi=phi, sigma=sigma, beta=beta, log.vol=X, options=argmnts)))
 }#end
 
 #--------------------------------------------------------------------------
