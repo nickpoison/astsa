@@ -70,7 +70,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    arorder = length(arnew)
    maorder = length(manew)
    if (is.na(burnin))  burnin = 50 + (D + Po + Qo)*S + d + po + qo
-   if (burnin != round(burnin) || burnin < 0) { 	 
+   if (burnin != round(burnin) || burnin < 0) {  
        stop("'burnin' must be a non-negative integer")         
    }
    num = n + burnin
@@ -92,17 +92,17 @@ return(x)
 function(model, n, rand.gen = rand.gen, innov = innov, ...)
 {
     filter = stats::filter
-	if (length(innov) < n)
-	   warning(paste("the number of innovations should be at least 'n + burnin' = ", n))
+    if (length(innov) < n)
+      warning(paste("the number of innovations should be at least 'n + burnin' = ", n))
     if (n <= 0L) 
         stop("'n' must be strictly positive")
     p <- length(model$ar)
     q <- length(model$ma)
-	d <- model$order[2L]
+    d <- model$order[2L]
         if (d != round(d) || d < 0) 
             stop("'d' must be a positive integer")
     x <- ts(innov)
-	if (length(model$ma)) {
+    if (length(model$ma)) {
         x <- filter(x, c(1, model$ma), sides = 1L)
         x[seq_along(model$ma)] <- 0
     }
