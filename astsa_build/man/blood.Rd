@@ -23,6 +23,6 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 }
 \seealso{\code{\link{HCT}}, \code{\link{PLT}}, \code{\link{WBC}}}
 \examples{
-plot(blood, type="o", pch=19)
+tsplot(blood, type="o", pch=19)
 }
 \keyword{datasets}
