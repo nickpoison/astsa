@@ -1225,7 +1225,7 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 > `SV.mcmc` to fit stochastic volatility models 
 
-> `ffbs` the forward filter backward sampling algorithm - part of Gibbs sampler
+> `ffbs` the forward filter backward sampling (FFBS) algorithm - part of Gibbs sampler
 
 ### AR Models
 
@@ -1322,40 +1322,42 @@ str(u)
 
 ### Gibbs Sampling 
 
-&#x1F4A1; The package now contains `ffbs` to facilitate Gibbs sampling for linear state
-space models.  This samples the states given the parameters and the data. 
+&#x1F535; The package now contains `ffbs`
+(**Forward Filtering Backward Sampling**)
+ to facilitate Gibbs sampling for linear state
+space models.  It samples the states given the parameters and the data. 
 There is NOT a script to do the other step; i.e., to sample the parameters
-given the states and the data because the model is too general to build a decent
-script to cover the possibilities.
+given the states and the data because the model is too general to build a decent script to cover the possibilities.
 
 
 
-&#x1F535;  Example 6.26 (local level model)
+&#x1F6C2;  Example: Local Level Model 
 
 &emsp;&emsp;_x<sub>t</sub> =  x<sub>t-1</sub>  +  w<sub>t</sub>_ , &nbsp; &nbsp; and &nbsp;  &nbsp;
 _y<sub>t</sub> = x<sub>t</sub> + 3 v<sub>t</sub>_
 
-where  _w<sub>t</sub>_ and _v<sub>t</sub>_ are standard Gaussian noise.
+where  _w<sub>t</sub>_ and _v<sub>t</sub>_ are independent standard Gaussian noise.
 
 ```r
-# generate some data - 2 parameters
+# generate some data from the model - 2 parameters
 set.seed(1)
-sQ = 1; sR = 3; n  = 100  
+sQ = 1; sR = 3; n  = 100
 mu0 = 0; Sigma0=10; x0=rnorm(1,mu0,Sigma0)
-w  = rnorm(n, 0, sQ); v  = rnorm(n, 0, sR)
-x = c(x0   + w[1])  # initialize states
-y = c(x[1] + v[1])  # initialize obs
-for (t in 2:n){
-  x[t] = x[t-1] + w[t]
-  y[t] = x[t] + v[t]   
+w  = rnorm(n); v  = rnorm(n)
+x = c(x0   + sQ*w[1])  # initialize states
+y = c(x[1] + sR*v[1])  # initialize obs
+for (t in 2:n){ 
+  x[t] = x[t-1] + sQ*w[t]
+  y[t] = x[t] + sR*v[t]
   }
 
 # set up the Gibbs sampler
-burn   = 10;  n.iter = 1000
+burn   = 50;  n.iter = 1000
 niter  = burn + n.iter
 draws  = c()
-a = 0.01; b = 0.01; c = 0.01; d = 0.01  # priors for Q and R IG distributions
-sQ = 1; sR =1  # prior values for sQ and sR (for the FFBS)
+a = 2; b = 2; c = 2; d = 1  # priors for Q and R IG distributions
+# initial values for sQ and sR (for the FFBS)
+sR = sqrt(1/rgamma(1,a,b)); sQ =  sqrt(1/rgamma(1,c,d))
 pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  # progress bar
 
 # run it
