@@ -27,12 +27,13 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 ---
 ---
-### Versions 1.15 - May 2022
+
+### Versions 1.16 - Coming soon
 
 
-+ v1.15.1 (July 2022): 
++ <span style="font-size:larger;">__v1.16__</span> (Aug 2022): 
    
-   - The   archive [astsa_1.15.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.15.1.tar.gz) has been updated (here only) to include what is listed below.  
+   - The   archive [astsa_1.16.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.16.tar.gz) has been updated here only... we'll probably get it to CRAN before Sept 2022.  
 
    - Added some Bayesian scripts (examples in [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md))
      - Added `ar.mcmc` to fit AR models via Gibbs sampling
@@ -45,8 +46,9 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
     - Added the ability to change the legend text color in `lag1.plot` and `lag2.plot` and set the default to black - it makes the values easier to see, especially if the background of the legend is transparent.
 
     
-
-+ <span style="font-size:larger;">__v1.15__</span> (May 2022) is v1.14.3 plus the following 2 additions and (of course) minor changes to appease the CRAN warlords:
+---
+### Version 1.15 - May 2022
++   v1.15 is v1.14.3 plus the following 2 additions and (of course) minor changes to appease the CRAN warlords:
 
     + Added two new scripts ```detrend()``` and ```trend()```.  The first one returns a __detrended__ series using a polynomial regression (default is linear) or lowess (with the default span).  The second script fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
 
