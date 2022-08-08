@@ -1322,10 +1322,20 @@ str(u)
 
 ### Gibbs Sampling 
 
-&#x1F535; The package now contains `ffbs`
-(**Forward Filtering Backward Sampling**)
- to facilitate Gibbs sampling for linear state
-space models.  It samples the states given the parameters and the data. 
+&#x1F535; The package now contains `ffbs` (**Forward Filtering Backward Sampling**)
+ to facilitate Gibbs sampling for linear state space models:  
+
+&emsp;&emsp;  x<sub>t</sub> = &Phi; x<sub>t-1</sub> +  &Upsilon; u<sub>t</sub> + sQ w<sub>t</sub>,  &nbsp; &nbsp;  y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> +  &Gamma; u<sub>t</sub> + sR v<sub>t</sub>, 
+
+w<sub>t</sub> ~ iid N<sub>p</sub>(0, I) &perp;   v<sub>t</sub> ~ iid N<sub>q</sub>(0, I) &perp; x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>)
+and  u<sub>t</sub> is an r-dimensional input sequence.
+It's almost _Level 1_ in the text's Kalman filtering and smoothing set up with
+a change in how the noise covariance matrices are identified ( 
+[additional Chapter 6 info](https://github.com/nickpoison/tsa4/blob/master/chap6.md) ).
+
+
+
+It samples the states given the parameters and the data. 
 There is NOT a script to do the other step; i.e., to sample the parameters
 given the states and the data because the model is too general to build a decent script to cover the possibilities.
 
@@ -1363,7 +1373,7 @@ pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  # progress bar
 # run it
 for (iter in 1:niter){
 ## (1)  sample the states  
- run   = ffbs(y,1,0,10,1,0,0,sQ,sR,0) 
+ run   = ffbs(y,1,0,10,1,0,0,sQ,sR,0)  # ffbs(y,A,mu0,Sigma0,Phi,Ups,Gam,sQ,sR,input)
 ## (2)  sample the parameters    
   xs   = as.matrix(run$xs)
   R    = 1/rgamma(1,a+n/2,b+sum((y-xs)^2)/2)
