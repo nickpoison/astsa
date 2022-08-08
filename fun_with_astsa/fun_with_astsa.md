@@ -43,6 +43,7 @@ it's more than just data ...
   * [9. Bayesian Techniques](#9-bayesian-techniques)
       * [AR Models](#ar-models)
       * [Stochastic Volatility Models](#stochastic-volatility)
+      * [Gibbs Sampler and FFBS Algorithm](#gibbs-sampling)
   * [10. Arithmetic](#10-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
@@ -1224,6 +1225,7 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 > `SV.mcmc` to fit stochastic volatility models 
 
+> `ffbs` the forward filter backward sampling algorithm - part of Gibbs sampler
 
 ### AR Models
 
@@ -1316,6 +1318,93 @@ str(u)
 ```
 
 &#x1F4A1; And as always, references and details are in the help file (`?SV.mcmc`). The techniques are not covered in tsa4.
+
+
+### Gibbs Sampling 
+
+&#x1F4A1; The package now contains `ffbs` to facilitate Gibbs sampling for linear state
+space models.  This samples the states given the parameters and the data. 
+There is NOT a script to do the other step; i.e., to sample the parameters
+given the states and the data because the model is too general to build a decent
+script to cover the possibilities.
+
+
+
+&#x1F535;  Example 6.26 (local level model)
+
+&emsp;&emsp;_x<sub>t</sub> =  x<sub>t-1</sub>  +  w<sub>t</sub>_ , &nbsp; &nbsp; and &nbsp;  &nbsp;
+_y<sub>t</sub> = x<sub>t</sub> + 3 v<sub>t</sub>_
+
+where  _w<sub>t</sub>_ and _v<sub>t</sub>_ are standard Gaussian noise.
+
+```r
+# generate some data - 2 parameters
+set.seed(1)
+sQ = 1; sR = 3; n  = 100  
+mu0 = 0; Sigma0=10; x0=rnorm(1,mu0,Sigma0)
+w  = rnorm(n, 0, sQ); v  = rnorm(n, 0, sR)
+x = c(x0   + w[1])  # initialize states
+y = c(x[1] + v[1])  # initialize obs
+for (t in 2:n){
+  x[t] = x[t-1] + w[t]
+  y[t] = x[t] + v[t]   
+  }
+
+# set up the Gibbs sampler
+burn   = 10;  n.iter = 1000
+niter  = burn + n.iter
+draws  = c()
+a = 0.01; b = 0.01; c = 0.01; d = 0.01  # priors for Q and R IG distributions
+sQ = 1; sR =1  # prior values for sQ and sR (for the FFBS)
+pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  # progress bar
+
+# run it
+for (iter in 1:niter){
+## (1)  sample the states  
+ run   = ffbs(y,1,0,10,1,0,0,sQ,sR,0) 
+## (2)  sample the parameters    
+  xs   = as.matrix(run$xs)
+  R    = 1/rgamma(1,a+n/2,b+sum((y-xs)^2)/2)
+ sR    = sqrt(R)
+  Q    = 1/rgamma(1,c+(n-1)/2,d+sum(diff(xs)^2)/2)
+ sQ    = sqrt(Q)
+## store everything 
+ draws = rbind(draws,c(sQ,sR,xs))
+ setTxtProgressBar(pb,iter)  
+}
+close(pb)
+
+# pull out the results for easy plotting
+draws  = draws[(burn+1):(niter),]
+ q025  = function(x){quantile(x,0.025)}
+ q975  = function(x){quantile(x,0.975)}
+xs     = draws[,3:(n+2)]
+lx     = apply(xs,2,q025)
+mx     = apply(xs,2,mean)
+ux     = apply(xs,2,q975)
+
+# some graphics 
+tsplot(cbind(x,y,mx), spag=TRUE,  ylab='', col=c(6,8,4), lwd=c(1,1,1.5), type='o', pch=c(NA,1,NA))
+legend('topleft', legend=c("x(t)","y(t)","xs(t)"), lty=1, col=c(6,8,4), lwd=1.5, bty="n", pch=c(NA,1,NA))
+points(y)
+ xx=c(1:100, 100:1)
+ yy=c(lx, rev(ux))
+polygon(xx, yy, border=NA, col=astsa.col(4,.1))
+```
+<img src="figs/llx.png" alt="local level x"  width="75%">
+
+```r
+# and the parameters
+scatter.hist(draws[,1],draws[,2], xlab=expression(sigma[w]), ylab=expression(sigma[v]), 
+              reset.par = FALSE, pt.col=5, hist.col=5)
+abline(v=mean(draws[,1]), col=3, lwd=2)
+abline(h=mean(draws[,2]), col=3, lwd=2)
+```
+<img src="figs/llparms.png" alt="local level parameters"  width="75%">
+
+
+
+
 
 [<sub>top</sub>](#table-of-contents)
 
