@@ -28,14 +28,14 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ---
 
-### Versions 1.16 - Coming soon
+### Versions 1.16 - GitHub version 
 
 
 + <span style="font-size:larger;">__v1.16__</span> (Aug 2022): 
    
-   - The   archive [astsa_1.16.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.16.tar.gz) has been updated here only... we'll probably get it to CRAN before Sept 2022.  
+   - The   archive [astsa_1.16.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.16.tar.gz) has been updated here only... we'll get it to CRAN eventually (only the tedious stuff is left to do).  
 
-   - Added some Bayesian scripts (examples in [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md))
+   - Added some Bayesian scripts (examples in [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) - see the new section 9)
      - Added `ar.mcmc` to fit AR models via Gibbs sampling
      - Added `SV.mcmc` to fit stochastic volatility models 
      - ... and some financial data sets `sp500.gr` (S&P 500 daily returns) and `BCJ` (returns of 3 banks) 
