@@ -80,7 +80,7 @@ input an array; see the example.
 \dontrun{
 
 ## -- this is just one pass - see FUN WITH ASTSA for the real fun --##
-# generate some data1
+# generate some data
  set.seed(1)
  sQ  = 1; sR = 3; n = 100  
  mu0 = 0; Sigma0 = 10; x0 = rnorm(1,mu0,Sigma0)
