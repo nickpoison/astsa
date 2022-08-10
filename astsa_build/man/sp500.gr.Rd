@@ -21,6 +21,9 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \examples{
-tsplot(sp500.gr)
+\dontrun{
+
+tsplot(sp500.gr, gg=TRUE, col=5, las=0)
+}
 }
 \keyword{datasets}
