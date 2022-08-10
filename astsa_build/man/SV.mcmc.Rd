@@ -20,22 +20,24 @@ number of iterations for the MCMC procedure
 number of iterations to discard for the MCMC procedure
 }
   \item{init}{
-initial values of (phi, sigma, beta)
+initial values of (phi, sigma, beta); default is c(0.9, 0.5, .1)
 }
   \item{hyper}{
-hyperparameters for bivariate normal (phi, sigma), user inputs (mu_phi, mu_q, sigma_phi, sigma_q, rho)
+hyperparameters for bivariate normal (phi, sigma), user inputs (mu_phi, mu_q, sigma_phi, sigma_q, rho);
+default is c(0.9, 0.5, 0.075, 0.3, -0.25)
 }
   \item{tuning}{
-tuning parameter
+tuning parameter; default is .03
 }
   \item{sigma_MH}{
-covariance matrix for random walk Metropolis
+covariance matrix for random walk Metropolis; default is 
+\code{tuning * matrix(c(1,-.25,-.25,1), nrow=2, ncol=2)}
 }
   \item{npart}{
-number of particles used in particle filter
+number of particles used in particle filter; default is 10
 }
   \item{mcmseed}{
-seed for mcmc
+seed for mcmc; default is 90210
 }
 }
 \details{
