@@ -1421,7 +1421,10 @@ abline(h=mean(draws[,2]), col=3, lwd=2)
 
 &#x1F6C2;  **Example: Structural Model** 
 
-It's too difficult to display the model here. We suggest looking at Example 6.27 in edition 4 of the text to see the model and the discussion. 
+Here's the model and some discussion. We suggest looking at Example 6.27 in edition 4 of the text for more details.
+
+
+<img src="figs/ex627.png" alt="jj parameters">
 
 
 ```r
@@ -1436,8 +1439,8 @@ Phi = diag(0,4)
   Phi[2,]  = c(0,-1,-1,-1); Phi[3,]=c(0,1,0,0); Phi[4,]=c(0,0,1,0)
 mu0 = rbind(.7,0,0,0)
 Sigma0 = diag(.04, 4)
-sR = 1
-sQ = diag(c(.1,.1,0,0))
+sR = 1                    # observation noise standard deviation
+sQ = diag(c(.1,.1,0,0))   # state noise standard deviations on the diagonal
 
 ### initializing and hyperparameters
 burn   = 50
