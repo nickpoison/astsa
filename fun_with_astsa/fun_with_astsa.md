@@ -1337,11 +1337,14 @@ a change in how the noise covariance matrices are identified (
 
 It samples the states given the parameters and the data. 
 There is NOT a script to do the other step; i.e., to sample the parameters
-given the states and the data because the model is too general to build a decent script to cover the possibilities.
+given the states and the data because the model is too general to build a decent script to cover the possibilities.  
+
+
+There are 2 examples that are similar to Example 6.26 and 6.27 in the text.
 
 
 
-&#x1F6C2;  Example: Local Level Model 
+&#x1F6C2;  **Example: Local Level Model** 
 
 &emsp;&emsp;_x<sub>t</sub> =  x<sub>t-1</sub>  +  w<sub>t</sub>_ , &nbsp; &nbsp; and &nbsp;  &nbsp;
 _y<sub>t</sub> = x<sub>t</sub> + 3 v<sub>t</sub>_
@@ -1414,7 +1417,112 @@ abline(h=mean(draws[,2]), col=3, lwd=2)
 ```
 <img src="figs/llparms.png" alt="local level parameters"  width="75%">
 
+<br/>
 
+&#x1F6C2;  **Example: Structural Model** 
+
+It's too difficult to display the model here because GitHub markdown won't display math and it's questionable if html math would even work (aside from the fact that it would be tedious). We suggest looking at Example 6.27 in edition 4 of the text to see the model and the discussion. 
+
+
+```r
+y = jj    # the data
+
+### setup - model and initial parameters
+set.seed(90210)
+n   = length(y)
+A   = matrix(c(1,1,0,0), 1, 4)
+Phi = diag(0,4)
+  Phi[1,1] = 1.03 
+  Phi[2,]  = c(0,-1,-1,-1); Phi[3,]=c(0,1,0,0); Phi[4,]=c(0,0,1,0)
+mu0 = rbind(.7,0,0,0)
+Sigma0 = diag(.04, 4)
+sR = 1
+sQ = diag(c(.1,.1,0,0))
+
+### initializing and hyperparameters
+burn   = 50
+n.iter = 1000
+niter  = burn + n.iter
+draws  = NULL
+a = 2; b = 2; c = 2; d = 1   # hypers (c and d for both Qs)
+pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  # progress bar
+
+### start Gibbs
+for (iter in 1:niter){
+# draw states 
+  run  = ffbs(y,A,mu0,Sigma0,Phi,0,0,sQ,sR,0)   # initial values are given above
+  xs   = run$xs
+# obs variance
+  R    = 1/rgamma(1,a+n/2,b+sum((as.vector(y)-as.vector(A%*%xs[,,]))^2))
+ sR    = sqrt(R)
+# beta where phi = 1+beta  
+ Y     = diff(xs[1,,])
+ D     = as.vector(lag(xs[1,,],-1))[-1]
+ regu  = lm(Y~0+D)  # est beta = phi-1
+ phies = as.vector(coef(summary(regu)))[1:2] + c(1,0) # phi estimate and SE
+ dft   = df.residual(regu)
+ Phi[1,1]  = phies[1] + rt(1,dft)*phies[2]  # use a t to sample phi
+# state variances
+  u   = xs[,,2:n] - Phi%*%xs[,,1:(n-1)]
+  uu  = u%*%t(u)/(n-2)
+  Q1  = 1/rgamma(1,c+(n-1)/2,d+uu[1,1]/2)
+  sQ1 = sqrt(Q1)
+  Q2  = 1/rgamma(1,c+(n-1)/2,d+uu[2,2]/2)
+  sQ2 = sqrt(Q2) 
+  sQ  = diag(c(sQ1, sQ2, 0,0))
+# store results
+ trend = xs[1,,]
+ season= xs[2,,] 
+ draws = rbind(draws,c(Phi[1,1],sQ1,sQ2,sR,trend,season))
+ setTxtProgressBar(pb,iter)  
+}
+close(pb)
+
+##- display results -##
+
+# set up
+u     = draws[(burn+1):(niter),]
+parms = u[,1:4]
+q025  = function(x){quantile(x,0.025)}
+q975  = function(x){quantile(x,0.975)}
+
+##  plot parameters (display at end)
+names= c(expression(phi), expression(sigma[w1]), expression(sigma[w2]), expression(sigma[v]))
+par(mfrow=c(4,1), mar=c(2,1,2,1)+1)
+for (i in 1:4){
+hist(parms[,i], col=astsa.col(5,.4), main=names[i], xlab='', cex.main=2)
+ u1 = apply(parms,2,q025); u2 = apply(parms,2,mean); u3 = apply(parms,2,q975);
+abline(v=c(u1[i],u2[i],u3[i]), lwd=2, col=c(3,6,3))
+}
+
+###  plot states  (display at end)
+# trend
+dev.new()
+par(mfrow=2:1)
+tr    = ts(u[,5:(n+4)], start=1960, frequency=4)
+ltr   = ts(apply(tr,2,q025), start=1960, frequency=4)
+mtr   = ts(apply(tr,2,mean), start=1960, frequency=4)
+utr   = ts(apply(tr,2,q975), start=1960, frequency=4)
+
+tsplot(mtr, ylab='', col=4, main='trend')
+ xx=c(time(mtr), rev(time(mtr)))
+ yy=c(ltr, rev(utr))
+polygon(xx, yy, border=NA, col=astsa.col(4,.1)) 
+
+# trend + season
+sea    = ts(u[,(n+5):(2*n)], start=1960, frequency=4)
+lsea   = ts(apply(sea,2,q025), start=1960, frequency=4)
+msea   = ts(apply(sea,2,mean), start=1960, frequency=4)
+usea   = ts(apply(sea,2,q975), start=1960, frequency=4)
+tsplot(msea+mtr, ylab='', col=4, main='trend + season')
+ xx=c(time(msea), rev(time(msea)))
+ yy=c(lsea+ltr, rev(usea+utr))
+polygon(xx, yy, border=NA, col=astsa.col(4,.1)) 
+```
+
+<img src="figs/jjparms.png" alt="jj parameters"  width="75%">
+
+<img src="figs/jjstates.png" alt="jj states"  width="75%">
 
 
 
