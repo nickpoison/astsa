@@ -1421,7 +1421,7 @@ abline(h=mean(draws[,2]), col=3, lwd=2)
 
 &#x1F6C2;  **Example: Structural Model** 
 
-It's too difficult to display the model here because GitHub markdown won't display math and it's questionable if html math would even work (aside from the fact that it would be tedious). We suggest looking at Example 6.27 in edition 4 of the text to see the model and the discussion. 
+It's too difficult to display the model here. We suggest looking at Example 6.27 in edition 4 of the text to see the model and the discussion. 
 
 
 ```r
