@@ -3,7 +3,7 @@
 [![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
 
 
-##### we'll demonstrate some of the capabilities of `astsa` ... the [News page  has additional installation information](https://github.com/nickpoison/astsa/blob/master/NEWS.md).
+##### we'll demonstrate some of the capabilities of `astsa` ... the [NEWS page  has additional installation information](https://github.com/nickpoison/astsa/blob/master/NEWS.md).
 
 Remember to load `astsa` at the start of a session.
 
@@ -1424,7 +1424,7 @@ abline(h=mean(draws[,2]), col=3, lwd=2)
 
 Here's the model and some discussion.  $T_t$ is trend and $S_t$ is quarterly season and
 
-&emsp;&emsp; $ y_t  = T_t + S_t + v_t$ &emsp; where &emsp; $T_t = \phi T_{t-1} + w_{t1}$
+&emsp;&emsp; $y_t  = T_t + S_t + v_t$ &emsp; where &emsp; $T_t = \phi T_{t-1} + w_{t1}$
 &emsp; and &emsp; $S_t+S_{t-1}+S_{t-2}+S_{t-3} = w_{t2}$.
 
  We suggest looking at Example 6.27 in edition 4 of the text for more details.
