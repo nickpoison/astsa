@@ -1329,10 +1329,11 @@ str(u)
 
 w<sub>t</sub> ~ iid N<sub>p</sub>(0, I) &perp;   v<sub>t</sub> ~ iid N<sub>q</sub>(0, I) &perp; x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>)
 and  u<sub>t</sub> is an r-dimensional input sequence.
-It's almost _Level 1_ in the text's Kalman filtering and smoothing set up with
+
+The model is  almost _Level 1_ in the text's Kalman filtering and smoothing set up with
 a change in how the noise covariance matrices are identified ( 
 [additional Chapter 6 info](https://github.com/nickpoison/tsa4/blob/master/chap6.md) ).
-
+In this case, the state noise covariance matrix is $Q = sQ' sQ$ and for the observation noise it is $R =sR' sR$, a slight change from the  `Kfilter_` and `Ksmooth_` scripts (where $Q = cQ\, cQ'$ and $R = cR\, cR'$).    
 
 
 It samples the states given the parameters and the data. 
@@ -1340,7 +1341,7 @@ There is NOT a script to do the other step; i.e., to sample the parameters
 given the states and the data because the model is too general to build a decent script to cover the possibilities.  
 
 
-There are 2 examples that are similar to Example 6.26 and 6.27 in the text.
+There are 2 examples that are similar to Examples 6.26 and 6.27 in the text.
 
 
 
@@ -1421,7 +1422,12 @@ abline(h=mean(draws[,2]), col=3, lwd=2)
 
 &#x1F6C2;  **Example: Structural Model** 
 
-Here's the model and some discussion. We suggest looking at Example 6.27 in edition 4 of the text for more details.
+Here's the model and some discussion.  $T_t$ is trend and $S_t$ is quarterly season and
+
+&emsp;&emsp; $ y_t  = T_t + S_t + v_t$ &emsp; where &emsp; $T_t = \phi T_{t-1} + w_{t1}$
+&emsp; and &emsp; $S_t+S_{t-1}+S_{t-2}+S_{t-3} = w_{t2}$.
+
+ We suggest looking at Example 6.27 in edition 4 of the text for more details.
 
 
 <img src="figs/ex627.png" alt="jj parameters">
