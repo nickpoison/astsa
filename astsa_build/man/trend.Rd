@@ -40,7 +40,7 @@ Produces a graphic of the time series with the trend and a .95 pointwise confide
 }
 \value{
 Produces a graphic and returns the trend estimate \code{fit} and error bounds  \code{lwr} and \code{upr} invisibly
- (see details) and with the same time series attributes as the input \code{series].
+ (see details) and with the same time series attributes as the input \code{series}.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
