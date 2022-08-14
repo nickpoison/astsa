@@ -25,9 +25,9 @@ ffbs(y, A, mu0, Sigma0, Phi, Ups, Gam, sQ, sR, input)
 }
   \item{Gam }{Observation input matrix; use \code{Gam = 0} if not needed.
 }
-  \item{sQ }{Pre-state error covariance matrix is \code{Q = t(sQ)\%*\%sQ} -- see details below. In the univariate case, it is the standard deviation.
+  \item{sQ }{State error covariance matrix is \code{Q = t(sQ)\%*\%sQ} -- see details below. In the univariate case, it is the standard deviation.
 }
-  \item{sR }{Pre-observation error covariance matrix is \code{R = t(sR)\%*\%sR} -- see details below. In the univariate case, it is the standard deviation.
+  \item{sR }{Observation error covariance matrix is \code{R = t(sR)\%*\%sR} -- see details below. In the univariate case, it is the standard deviation.
 }
   \item{input }{matrix or vector of inputs having the same row dimension as y; use \code{input = 0} if not needed
 }
@@ -84,11 +84,11 @@ input an array; see the example.
  set.seed(1)
  sQ  = 1; sR = 3; n = 100  
  mu0 = 0; Sigma0 = 10; x0 = rnorm(1,mu0,Sigma0)
- w = rnorm(n,0,sQ); v = rnorm(n,0,sR)
- x = c(x0 + w[1]);  y = c(x[1] + v[1])   # initialize
+ w = rnorm(n); v = rnorm(n)
+ x = c(x0 + sQ*w[1]);  y = c(x[1] + sR*v[1])   # initialize
 for (t in 2:n){
-  x[t] = x[t-1] + w[t]
-  y[t] = x[t] + v[t]   
+  x[t] = x[t-1] + sQ*w[t]
+  y[t] = x[t] + sR*v[t]   
   }
 ## run one pass of FFBS, plot data, states and sampled states  
 run = ffbs(y,A=1,mu0=0,Sigma0=10,Phi=1,Ups=0,Gam=0,sQ=1,sR=3,input=0)
