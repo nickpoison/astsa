@@ -23,7 +23,7 @@ number of iterations to discard for the MCMC procedure
 initial values of (phi, sigma, beta) -  default is \code{c(0.9, 0.5, .1)}
 }
   \item{hyper}{
-hyperparameters for bivariate normal (phi, sigma), user inputs (mu_phi, mu_q, sigma_phi, sigma_q, rho) - 
+hyperparameters for bivariate normal distribution of (phi, sigma); user inputs (mu_phi, mu_q, sigma_phi, sigma_q, rho) - 
 default is \code{c(0.9, 0.5, 0.075, 0.3, -0.25)}
 }
   \item{tuning}{

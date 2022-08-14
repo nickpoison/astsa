@@ -11,7 +11,7 @@ ar.mcmc(xdata, porder, n.iter = 1000, n.warmup = 100, plot = TRUE, col = 4,
 }
 \arguments{
   \item{xdata}{
-time series data
+time series data (univariate only)
 }
   \item{porder}{
 autoregression order
@@ -57,7 +57,8 @@ Further details can be found in Example 8.36  of Douc, R., Moulines, E., & Stoff
 ISBN 9781466502253.
 }
 \value{In addition to the graphics (if plot is TRUE), 
-the  draws of each parameter are returned invisibly and
+the  draws of each parameter (\code{phi0, phi1, ..., sigma})
+ are returned invisibly and
 various quantiles are displayed.  
 }
 \author{
@@ -75,6 +76,8 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \examples{
-ar.mcmc(rec, 2)
+u = ar.mcmc(rec, 2)
+
+head(u)  # view first part of the returned sample values
 }
 \keyword{ts}

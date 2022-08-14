@@ -1,7 +1,7 @@
 \name{ffbs}
 \alias{ffbs}
 \title{
-Forward Filter Backward Sampling
+Forward Filtering Backward Sampling
 }
 \description{
 FFBS algorithm for state space models
@@ -45,13 +45,17 @@ The general model  is
 \deqn{y_t = A_t  x_{t-1} + \Gamma u_{t} +   sR\, v_t \quad v_t \sim iid\ N(0,I)}
 where \eqn{w_t \perp v_t}. Consequently the state noise covariance matrix is
 \eqn{Q = sQ' sQ} and the observation noise covariance matrix is
-\eqn{R = sR' sR}.
+\eqn{R = sR' sR} and these matrices do not have to be square as long as everything is
+conformable.
 
 
-\eqn{x_t} is p-dimensional and \eqn{y_t} is q-dimensional. 
-With everything being  conformable,  \eqn{u_t} is \eqn{r\times 1} vector of inputs, 
-\eqn{\Upsilon} is \eqn{p \times r} and \eqn{\Gamma} is \eqn{q \times r};
-either of these matrices may be the zero matrix.
+\eqn{x_t} is p-dimensional, \eqn{y_t} is q-dimensional, and  \eqn{u_t} is r-dimensional.
+Note that \eqn{sQ\, w_t}  has to be p-dimensional, but  \eqn{w_t} does not, and
+ \eqn{sR\, v_t}  has to be q-dimensional, but  \eqn{v_t} does not.
+
+
+If not needed, set \eqn{\Upsilon}  or \eqn{\Gamma} to 0 (zero) in the call (without having to 
+worry about conformability).
 }
 \value{
   \item{xs }{A p-dimensional matrix of sampled states}

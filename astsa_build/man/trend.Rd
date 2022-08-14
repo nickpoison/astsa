@@ -26,7 +26,7 @@ The smoother span used for lowess.
 If TRUE (default), the lowess fit is robust.
 }
   \item{col}{
-Vector of two colors for the graphic, first the color of the data (default is 4) and second the color of the trend (default is 6). Both the data and trend line will be the same color if only one value is given.
+Vector of two colors for the graphic, first the color of the data (default is blue [4]) and second the color of the trend (default is magenta [6]). Both the data and trend line will be the same color if only one value is given.
 }
   \item{ylab}{
 Label for the vertical axis (default is the name of the series).
@@ -39,7 +39,8 @@ Other graphical parameters.
 Produces a graphic of the time series with the trend and a .95 pointwise confidence interval superimposed. The trend estimate and the error bounds are returned invisibly.
 }
 \value{
-Produces a graphic and returns the trend estimate and error bounds invisibly (see details).
+Produces a graphic and returns the trend estimate \code{fit} and error bounds  \code{lwr} and \code{upr} invisibly
+ (see details) and with the same time series attributes as the input \code{series].
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
@@ -55,6 +56,7 @@ D.S. Stoffer
 }
 \examples{
 \dontrun{
+
 trend(soi)
 
 trend(soi, lowess=TRUE)
