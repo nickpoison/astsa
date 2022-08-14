@@ -25,9 +25,9 @@ ffbs(y, A, mu0, Sigma0, Phi, Ups, Gam, sQ, sR, input)
 }
   \item{Gam }{Observation input matrix; use \code{Gam = 0} if not needed.
 }
-  \item{sQ }{State error covariance matrix is \code{Q = t(sQ)\%*\%sQ} -- see details below. In the univariate case, it is the standard deviation.
+  \item{sQ }{State error covariance matrix is \code{Q = sQ\%*\%t(sQ)} -- see details below. In the univariate case, it is the standard deviation.
 }
-  \item{sR }{Observation error covariance matrix is \code{R = t(sR)\%*\%sR} -- see details below. In the univariate case, it is the standard deviation.
+  \item{sR }{Observation error covariance matrix is \code{R = sR\%*\%t(sR)} -- see details below. In the univariate case, it is the standard deviation.
 }
   \item{input }{matrix or vector of inputs having the same row dimension as y; use \code{input = 0} if not needed
 }
@@ -44,8 +44,8 @@ The general model  is
 \deqn{x_t = \Phi  x_{t-1} + \Upsilon u_{t} +   sQ\,  w_t \quad w_t \sim iid\ N(0,I)}
 \deqn{y_t = A_t  x_{t-1} + \Gamma u_{t} +   sR\, v_t \quad v_t \sim iid\ N(0,I)}
 where \eqn{w_t \perp v_t}. Consequently the state noise covariance matrix is
-\eqn{Q = sQ' sQ} and the observation noise covariance matrix is
-\eqn{R = sR' sR} and these matrices do not have to be square as long as everything is
+\eqn{Q = sQ\, sQ'} and the observation noise covariance matrix is
+\eqn{R = sR\, sR'} and \eqn{sQ, sR}  do not have to be square as long as everything is
 conformable.
 
 
