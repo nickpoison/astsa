@@ -1540,13 +1540,17 @@ polygon(xx, yy, border=NA, col=astsa.col(4,.1))
 
 <br/>
 
-And let's check the efficiency of the sampler ( see [ESS](#ess) ); recall niter = 1000.
+&#x1F3B5; And let's check the efficiency of the sampler ( see [ESS](#ess) ); recall `niter = 1000`.
 
 ```r
 colnames(parms)=c('Phi11','sQ1','sQ2','sR')
 apply(parms,2,ESS)
     Phi11       sQ1       sQ2        sR 
  571.0002 1000.0000 1000.0000  270.7789 
+
+# and maybe look at some other things (not displayed)
+tsplot(parms, col=4, ncolm=2)   # plot the traces
+acfm(parms)                     # view the ACFs
 ```
 
 [<sub>top</sub>](#table-of-contents)
