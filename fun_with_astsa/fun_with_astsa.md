@@ -1338,7 +1338,7 @@ and  u<sub>t</sub> is an r-dimensional input sequence.
 The model is  almost _Level 1_ in the text's Kalman filtering and smoothing set up with
 a change in how the noise covariance matrices are identified ( 
 [additional Chapter 6 info](https://github.com/nickpoison/tsa4/blob/master/chap6.md) ).
-In this case, the state noise covariance matrix is $Q = sQ' sQ$ and for the observation noise it is $R =sR' sR$, a slight change from the  `Kfilter_` and `Ksmooth_` scripts (where $Q = cQ\, cQ'$ and $R = cR\, cR'$).    
+In this case, the state noise covariance matrix is  Q = sQ sQ'  and for the observation noise it is  R =sR  sR', a slight change from the  `Kfilter_` and `Ksmooth_` scripts (where  Q = cQ' cQ and R = cR' cR).    
 
 
 It samples the states given the parameters and the data. 
