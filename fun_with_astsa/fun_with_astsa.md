@@ -48,6 +48,7 @@ it's more than just data ...
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
+     * [Effective Sample Size (ESS)](#ess)
   * [11. The Spectral Envelope](#11-the-spectral-envelope)
      * [DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
      * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)
@@ -1295,6 +1296,8 @@ followed by the posterior mean log-volatility with 95% credible intervals).
 
 <img src="figs/bayes_sv.png" alt="bayes_sv"  width="75%">
 
+&#x1F429;  The **Effective Sample Size (ESS)** in the graphic above were calculated using the script `ESS`, which became available in version 1.16 of the package.
+
 <img src="figs/bayes_sv2.png" alt="bayes_sv"  width="75%">
 
 An easy way to see the defaults (a list of options) is to look at the structure of the object:
@@ -1318,6 +1321,8 @@ str(u)
 ```
 
 &#x1F4A1; And as always, references and details are in the help file (`?SV.mcmc`). The techniques are not covered in tsa4.
+
+
 
 
 ### Gibbs Sampling 
@@ -1692,6 +1697,29 @@ which is
            -1.35  x<sub>t-13</sub> + .675  x<sub>t-14</sub> +  w<sub>t</sub> .
 
 &#129313;  That **was** fun!
+
+### ESS
+
+&#x1F437; The effective sample size (ESS) is a measure of efficiency of an MCMC procedure based on estimating a posterior mean.  The package now includes a script to estimate ESS given a sequence of samples and was displayed in the  [Stochastic Volatility](#stochastic-volatility) example.  
+
+```r
+# Fit an AR(2) to the Recruitment series
+u = ar.mcmc(rec, 2, n.iter = 1000, plot=FALSE)  
+#  Quantiles: 
+#         phi0  phi1    phi2  sigma
+#  1%    4.198 1.256 -0.5601  8.875
+#  2.5%  4.640 1.274 -0.5459  8.937
+#         ...   
+# then calculate some ESSs (one at a time only)
+ESS(u[,'phi1'])
+ [1] 1000
+ESS(u[,'phi2'])
+ [1] 1000
+# ar.mcmc is efficient
+```
+
+
+
 
 [<sub>top</sub>](#table-of-contents)
 
