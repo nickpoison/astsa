@@ -40,6 +40,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
      - Added `SV.mcmc` to fit stochastic volatility models 
      - ... and some financial data sets `sp500.gr` (S&P 500 daily returns) and `BCJ` (returns of 3 banks) 
      - Added `ffbs` (forward filter backward sample algorithm) for linear state space models
+     - Added `ESS` to estimate the effective sample size 
    
     - Added a line to `detrend` to make sure the input series is univariate (already there in `trend`).  Also, in `trend`, forgot to add the span option for lowess (actually `stats::loess` with a robust option) - this has been corrected.  
     

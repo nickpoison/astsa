@@ -146,10 +146,8 @@ culer   = c(6,4,3)
 par(mfcol=c(3,3))
 for (i in 1:3){
   tsplot(parms[,i], main=names[i], col=culer[i], ylab='', xlab='Index')
-    v = spec.ic(parms[,i], plot=F)
-    spec0 = as.numeric(v[[2]][1,2])
-    ESS = nmcmc*var(parms[,i])/spec0
-  legend("topright", legend=paste('ESS = ', round(ESS, digits=1)), adj=.1, bg='white')	
+   ess = ESS(parms[,i])
+  legend("topright", legend=paste('ESS = ', round(ess, digits=1)), adj=.1, bg='white')	
   acf1(parms[,i],   main='', col=culer[i], ylim=c(lwr,1))
   hist(parms[,i],   main='', xlab='', col=astsa.col(culer[i], .4))
   abline(v=c(stats::quantile(parms[,i], probs=c(.025,.5,.975))), col=8)
