@@ -38,10 +38,9 @@ D.S. Stoffer
 }
 \examples{
 # Fit an AR(2) to the Recruitment series
-u = ar.mcmc(rec, 2, plot=FALSE)  # it's efficient
-# then calculate some ESSs (one at a time only)
-ESS(u[,'phi1'])
-ESS(u[,'phi2'])
+u = ar.mcmc(rec, porder=2, n.iter=1000, plot=FALSE)  # it's efficient
+# then calculate the ESSs 
+apply(u, 2, ESS)
 }
 \keyword{ ts }
 

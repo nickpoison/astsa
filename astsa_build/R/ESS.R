@@ -1,7 +1,7 @@
 ESS <-
 function(trace, tol = 1e-8){
   if (NCOL(trace) > 1) stop('univariate input only')
-  v = spec.ic(trace, plot=F)
+  v = spec.ic(trace, BIC=TRUE, plot=FALSE)
   spec0 = as.numeric(v[[2]][1,2])
   if (spec0 <= tol){
     return(0) 

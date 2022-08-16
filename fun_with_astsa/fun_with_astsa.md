@@ -1704,17 +1704,16 @@ which is
 
 ```r
 # Fit an AR(2) to the Recruitment series
-u = ar.mcmc(rec, 2, n.iter = 1000, plot=FALSE)  
+u = ar.mcmc(rec, 2, n.iter = 1000, plot = FALSE)  
 #  Quantiles: 
 #         phi0  phi1    phi2  sigma
 #  1%    4.198 1.256 -0.5601  8.875
 #  2.5%  4.640 1.274 -0.5459  8.937
-#         ...   
-# then calculate some ESSs (one at a time only)
-ESS(u[,'phi1'])
- [1] 1000
-ESS(u[,'phi2'])
- [1] 1000
+#             . . .
+# then calculate the ESSs 
+apply(u, 2, ESS)
+ phi0  phi1  phi2 sigma 
+ 1000  1000  1000  1000
 # ar.mcmc is efficient
 ```
 
