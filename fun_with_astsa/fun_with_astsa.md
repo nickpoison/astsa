@@ -1374,7 +1374,7 @@ for (t in 2:n){
 burn   = 50;  n.iter = 1000
 niter  = burn + n.iter
 draws  = c()
-a = 2; b = 2; c = 2; d = 1  # priors for Q and R IG distributions
+a = 2; b = 2; c = 2; d = 1  # priors for R (a,b) and Q (c,d) IG distributions
 # initial values for sQ and sR (for the FFBS)
 sR = sqrt(1/rgamma(1,a,b)); sQ =  sqrt(1/rgamma(1,c,d))
 pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  # progress bar
