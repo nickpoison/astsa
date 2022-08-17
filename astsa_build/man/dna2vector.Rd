@@ -55,22 +55,25 @@ D.S. Stoffer
 \examples{
 # Epstein-Barr virus (entire sequence included in astsa)
 xdata = dna2vector(EBV)
+head(xdata)
 
 # part of EBV with  1, 2, 3, 4 for "A", "C", "G", "T"
 xdata = dna2vector(bnrf1ebv)
-
+head(xdata)
 
 # raw GenBank sequence
 data <-
 c("1 agaattcgtc ttgctctatt cacccttact tttcttcttg cccgttctct ttcttagtat
   61 gaatccagta tgcctgcctg taattgttgc gccctacctc ttttggctgg cggctattgc")
 xdata = dna2vector(data, alphabet=c('a', 'c', 'g', 't'))
+head(xdata)
 
 # raw FASTA sequence
 data <-
  c("AGAATTCGTCTTGCTCTATTCACCCTTACTTTTCTTCTTGCCCGTTCTCTTTCTTAGTATGAATCCAGTA
     TGCCTGCCTGTAATTGTTGCGCCCTACCTCTTTTGGCTGGCGGCTATTGCCGCCTCGTGTTTCACGGCCT")
 xdata = dna2vector(data)
+head(xdata)
 }
 \keyword{ manip }
 

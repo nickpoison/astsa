@@ -52,9 +52,10 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 }
 \details{\code{cQ} and \code{cR} are the Cholesky-type decompositions of \code{Q} and \code{R}. In particular, \code{Q = t(cQ)\%*\%cQ} and \code{R = t(cR)\%*\%cR} is all that is required (assuming \code{Q} and \code{R} are valid covariance matrices). 
 }
-\note{
+\note{For examples, see Chapter 6 of the text.
+
   Inputs are not allowed (and hence not estimated). The script uses Ksmooth1 and everything related to inputs are set equal to zero when it is called.  
   
-  It would be relatively easy to include estimates of 'Ups' and 'Gam' because conditional on the states, these are just regression coefficients.  If you decide to alter EM1 to include estimates of the 'Ups' or 'Gam', feel free to notify me with a workable example and I'll include it in the next update.
+  It would be relatively easy to include estimates of 'Ups' and 'Gam' because conditional on the states, these are just regression coefficients.  If you decide to alter EM1 to include estimates of the 'Ups' or 'Gam', feel free to notify me with a workable example.
 }
 \keyword{ ts }
