@@ -76,8 +76,11 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \examples{
+\dontrun{
+
 u = ar.mcmc(rec, 2)
 
 head(u)  # view first part of the returned sample values
+}
 }
 \keyword{ts}
