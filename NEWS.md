@@ -35,6 +35,11 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
    
    - The   archive [astsa_1.16.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.16.tar.gz) has been updated here only... we'll get it to CRAN eventually (only the tedious stuff is left to do).  
 
+   - Added `Months` to use with `pch` for monthly data.
+
+      `tsplot(sin(0:11), type='b', pch=Months, col=1:7)`
+
+
    - Added some Bayesian scripts (examples in [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) - see the new section 9)
      - Added `ar.mcmc` to fit AR models via Gibbs sampling
      - Added `SV.mcmc` to fit stochastic volatility models 
