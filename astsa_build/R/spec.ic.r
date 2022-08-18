@@ -1,16 +1,12 @@
-spec.ic = 
+spec.ic =
 function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE, 
            detrend=FALSE, method=NULL, ...){
-  lm    = stats::lm
-  resid = stats::resid
-  var   = stats::var  
-  
   if (is.null(method)) {method='yw'}   
   
   nme1  = paste('Series:', deparse(substitute(data)))
   nme2  = ifelse(BIC,'BIC','AIC')  
   
-  if (detrend) { data = resid(lm(data~time(data), na.action=NULL)); dmean = FALSE
+  if (detrend) { data = detrend(data); dmean = FALSE
         } else { dmean = TRUE } 
   
   u    = stats::ar(data, order=order.max, aic=TRUE, method=method, demean=dmean) 
@@ -27,10 +23,9 @@ function(data, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
       if (is.null(main)) {main=paste(nme1,"  |  ",nme2," order = ",0)} 
          tsplot(freq, spec, ylab='AR Spectrum', xlab='Frequency', margins=.5, 
            main=main, cex.axis=.85, las=0, cex.main=1, cex.lab=.9, ...)
-     }  	  
+     } 
    } else {
-    u    = stats::ar(data, order=kmin, aic=FALSE, method=method, demean=dmean)
-    u2   = stats::spec.ar(u, plot=FALSE)	
+    u2   = stats::spec.ar(data, order=kmin, plot=FALSE)
     out2 = cbind(freq=u2$freq, spec=c(u2$spec)) 
      if(plot){
       if (is.null(main)) {main = paste(nme1,"  |  ",nme2," order = ", kmin, sep="")}
