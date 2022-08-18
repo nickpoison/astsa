@@ -58,9 +58,12 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.
 }
 \examples{
+\dontrun{
+
 u = ssm(gtemp_land, A=1, alpha=.01, phi=1, sigw=.05, sigv=.15)
 tsplot(gtemp_land, type='o', col=4)
 lines(u$Xs, col=6, lwd=2)
+}
 }
 \author{D.S. Stoffer
 }
