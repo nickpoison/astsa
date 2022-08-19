@@ -100,4 +100,5 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
                           lty=lty[h], lwd=lwd[h], ...) }
    }
 }
+return(invisible(grDevices::recordPlot()))
 }

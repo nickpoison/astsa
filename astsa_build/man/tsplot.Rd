@@ -96,11 +96,9 @@ tsplot(1:453, soi, ylab='SOI', xlab='Month', margins=c(2,3,4,5), las=1, mgpp=c(1
 # gris-gris multiple plot 
 tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2)  
 
-# spaghetti
+# spaghetti (and store it in an object - ?recordPlot for details)
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
-tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
+u <- tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
 }
 }
 \keyword{ ts }
-
-c(5, 4, 4, 2) + 0.1

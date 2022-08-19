@@ -1,7 +1,7 @@
 # Imports
 
 importFrom("grDevices", "cm.colors", "dev.new", "xy.coords", "gray", "palette", 
-             "rgb", "adjustcolor")
+             "rgb", "adjustcolor", "recordPlot")
 importFrom("graphics", "abline", "box", "filled.contour", "grid", "layout", 
              "legend", "lines", "par", "plot", "title", "polygon", "axTicks", 
              "axis", "mtext", "rect", "hist", "barplot", "text", "pairs")
