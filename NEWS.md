@@ -39,7 +39,9 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
       `tsplot(sin(0:11), type='b', pch=Months, col=1:7)`
    
-   - Tweaked `tsplot` by adding the ability to adjust the `mpg` graphics parameters settings (`?par`).  The R graphics default is `c(3,1,0)` while `tsplot` sets it at `c(1.6,.6,0) + mgpp` with default `mgpp=0`. This is helpful for moving an axis label farther from the axis if necessary and setting `mgpp=c(1.4,.4,0)` gets it back to R default.
+   - Tweaked `tsplot` by adding the ability to adjust the `mpg` graphics parameters settings (`?par`); see the help file `?tsplot`.
+
+   - A `tsplot` plot  can now be stored by putting it in an object; e.g., `pl = tsplot(soi)`.  Now entering `pl` will restore the graph and it's possible to add to it (made possible by `recordPlot`).
 
    - Added some Bayesian scripts (examples in [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) - see the new section 9)
      - Added `ar.mcmc` to fit AR models via Gibbs sampling
