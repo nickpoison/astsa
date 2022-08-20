@@ -1379,16 +1379,19 @@ for (t in 2:n){
 burn   = 50;  n.iter = 1000
 niter  = burn + n.iter
 draws  = c()
-a = 2; b = 2; c = 2; d = 1  # priors for R (a,b) and Q (c,d) IG distributions
-# initial values for sQ and sR (for the FFBS)
+# priors for R (a,b) and Q (c,d) IG distributions
+a = 2; b = 2; c = 2; d = 1  
+# (1) initialize - sample sQ and sR  
 sR = sqrt(1/rgamma(1,a,b)); sQ =  sqrt(1/rgamma(1,c,d))
-pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  # progress bar
+
+# progress bar
+pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  
 
 # run it
 for (iter in 1:niter){
-## (1)  sample the states  
+## (2)  sample the states  
  run   = ffbs(y,1,0,10,1,0,0,sQ,sR,0)  # ffbs(y,A,mu0,Sigma0,Phi,Ups,Gam,sQ,sR,input)
-## (2)  sample the parameters    
+## (1)  sample the parameters    
   xs   = as.matrix(run$xs)
   R    = 1/rgamma(1,a+n/2,b+sum((y-xs)^2)/2)
  sR    = sqrt(R)
