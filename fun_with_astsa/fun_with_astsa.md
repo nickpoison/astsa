@@ -43,7 +43,7 @@ it's more than just data ...
   * [9. Bayesian Techniques](#9-bayesian-techniques)
       * [AR Models](#ar-models)
       * [Stochastic Volatility Models](#stochastic-volatility)
-      * [Gibbs Sampler and FFBS Algorithm](#gibbs-sampling)
+      * [Gibbs Sampling for State Space Models - the FFBS Algorithm](#gibbs-sampling-for-linear-state-space-models)
   * [10. Arithmetic](#10-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
@@ -1325,9 +1325,9 @@ str(u)
 
 
 
-### Gibbs Sampling 
+### Gibbs Sampling for Linear State Space Models
 
-&#x1F535; The package now contains `ffbs` (**Forward Filtering Backward Sampling**)
+&#x1F535; The package now contains `ffbs` (**Forward Filtering Backward Sampling - FFBS**)
  to facilitate Gibbs sampling for linear state space models:  
 
 &emsp;&emsp;  x<sub>t</sub> = &Phi; x<sub>t-1</sub> +  &Upsilon; u<sub>t</sub> + sQ w<sub>t</sub>,  &nbsp; &nbsp;  y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> +  &Gamma; u<sub>t</sub> + sR v<sub>t</sub>, 
@@ -1335,15 +1335,20 @@ str(u)
 w<sub>t</sub> ~ iid N<sub>p</sub>(0, I) &perp;   v<sub>t</sub> ~ iid N<sub>q</sub>(0, I) &perp; x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>)
 and  u<sub>t</sub> is an r-dimensional input sequence.
 
-The model is  almost _Level 1_ in the text's Kalman filtering and smoothing set up with
+If $\Theta$ represents the parameters, $x_{0:n}$ the states, $y_{1:n}$ the data, then the generic Gibbs sampler is (repeat and rinse)
+
+&emsp;&emsp; (1) sample $\Theta' \sim p(\Theta \mid x_{0:n}, y_{1:n})$ <br/>
+&emsp;&emsp; (2) sample $x_{0:n}' \sim p(x_{0:n} \mid \Theta', y_{1:n})$
+
+`ffbs` accomplishes (2). There is NOT a script to do (1) because the model is too general to build a decent script to cover the possibilities.  
+
+
+The script uses  _Level 1_ of the text's Kalman filtering and smoothing set up with
 a change in how the noise covariance matrices are identified ( 
 [additional Chapter 6 info](https://github.com/nickpoison/tsa4/blob/master/chap6.md) ).
-In this case, the state noise covariance matrix is  Q = sQ sQ'  and for the observation noise it is  R =sR  sR', a slight change from the  `Kfilter_` and `Ksmooth_` scripts (where  Q = cQ' cQ and R = cR' cR).    
+In this case, the state noise covariance matrix is  Q = sQ sQ'  and for the observation noise it is  R =sR  sR', a slight change from the  `Kfilter_` and `Ksmooth_` scripts (where  Q = cQ' cQ and R = cR' cR).  Also, the measurement matrix A<sub>t</sub> does not have to be an array if it is constant.
 
 
-It samples the states given the parameters and the data. 
-There is NOT a script to do the other step; i.e., to sample the parameters
-given the states and the data because the model is too general to build a decent script to cover the possibilities.  
 
 
 There are 2 examples that are similar to Examples 6.26 and 6.27 in the text.
