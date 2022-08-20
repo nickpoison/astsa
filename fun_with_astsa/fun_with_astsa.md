@@ -44,11 +44,11 @@ it's more than just data ...
       * [AR Models](#ar-models)
       * [Stochastic Volatility Models](#stochastic-volatility)
       * [Gibbs Sampling for State Space Models - the FFBS Algorithm](#gibbs-sampling-for-linear-state-space-models)
+      * [Effective Sample Size (ESS)](#ess)
   * [10. Arithmetic](#10-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
-     * [Effective Sample Size (ESS)](#ess)
   * [11. The Spectral Envelope](#11-the-spectral-envelope)
      * [DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
      * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)
@@ -1561,6 +1561,29 @@ tsplot(parms, col=4, ncolm=2)   # plot the traces
 acfm(parms)                     # view the ACFs
 ```
 
+### ESS
+
+&#x1F437; The effective sample size (ESS) is a measure of efficiency of an MCMC procedure based on estimating a posterior mean.  The package now includes a script to estimate ESS given a sequence of samples. It was used in the display for the  [Stochastic Volatility](#stochastic-volatility) example
+and just above in the structural equation model.
+
+Here's another example.
+
+```r
+# Fit an AR(2) to the Recruitment series
+u = ar.mcmc(rec, 2, n.iter = 1000, plot = FALSE)  
+#  Quantiles: 
+#         phi0  phi1    phi2  sigma
+#  1%    4.198 1.256 -0.5601  8.875
+#  2.5%  4.640 1.274 -0.5459  8.937
+#             . . .
+# then calculate the ESSs 
+apply(u, 2, ESS)
+ phi0  phi1  phi2 sigma 
+ 1000  1000  1000  1000
+# ar.mcmc is efficient
+```
+
+
 [<sub>top</sub>](#table-of-contents)
 
 ---
@@ -1718,26 +1741,6 @@ which is
            -1.35  x<sub>t-13</sub> + .675  x<sub>t-14</sub> +  w<sub>t</sub> .
 
 &#129313;  That **was** fun!
-
-### ESS
-
-&#x1F437; The effective sample size (ESS) is a measure of efficiency of an MCMC procedure based on estimating a posterior mean.  The package now includes a script to estimate ESS given a sequence of samples and was displayed in the  [Stochastic Volatility](#stochastic-volatility) example.  
-
-```r
-# Fit an AR(2) to the Recruitment series
-u = ar.mcmc(rec, 2, n.iter = 1000, plot = FALSE)  
-#  Quantiles: 
-#         phi0  phi1    phi2  sigma
-#  1%    4.198 1.256 -0.5601  8.875
-#  2.5%  4.640 1.274 -0.5459  8.937
-#             . . .
-# then calculate the ESSs 
-apply(u, 2, ESS)
- phi0  phi1  phi2 sigma 
- 1000  1000  1000  1000
-# ar.mcmc is efficient
-```
-
 
 
 
