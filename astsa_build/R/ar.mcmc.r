@@ -49,7 +49,7 @@ if (plot){
   old.par = par(no.readonly = TRUE)
   ncols   = floor(sqrt(porder + 2))
  tsplot(u, main="sample traces", xlab="Iteration", col=col, ncolm=ncols)
-  readline(prompt="Press [enter] to continue - Press [esc] to stop")
+  readline(prompt="Press [enter] to continue")
  pairs(u, col=astsa.col(col,.4), lower.panel=.panelcor,  diag.panel=.panelhist)
   par(old.par)
 }

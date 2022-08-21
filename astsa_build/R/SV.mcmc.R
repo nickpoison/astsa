@@ -12,7 +12,8 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL
   #   init - initial values of (phi, sigma, beta)
   #   npart - number of particles
   #   hyper - hyperparameters for bivariate normal (phi, q), user inputs (mu_phi, mu_q, sigma_phi, sigma_q, rho)
-  #   sigma_MH - covariance matrix for Random Walk Metropolis Hastings
+  #   tuning - tuning parameter for RW Metropolis
+  #   sigma_MH - covariance matrix for Random Walk Metropolis Hastings = tuning * sigma_MH
   #   mcmseed - seed for mcmc
   
   # Output:
@@ -28,7 +29,7 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL
   if (is.null(init))   init       = c(0.9, 0.5, .1)   # phi, sigma, beta
   if (is.null(hyper))  hyper      = c(0.9, 0.5, 0.075, 0.3, -0.25)
   if (is.null(tuning)) tuning     =.03
-  if (is.null(sigma_MH)) sigma_MH = tuning * matrix(c(1,-.25,-.25,1),nrow=2,ncol=2)
+  if (is.null(sigma_MH)) sigma_MH = matrix(c(1,-.25,-.25,1),nrow=2,ncol=2)
   if (is.null(npart)) npart       = 10
   if (is.null(mcmseed)) mcmseed   = 90210
   
@@ -49,14 +50,15 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL
   beta[1]  = init[3]
 
   
-  # hyperparameters
+  # hyper and MH parameters
   mu_phi = hyper[1]
   mu_q = hyper[2]^2
   sigma_phi = hyper[3]
   sigma_q = hyper[4]^2
   rho = hyper[5]
   mu_MH = c(0,0)
-  sigma_MH = sigma_MH
+   sigtemp = sigma_MH  # holds the matrix for output
+  sigma_MH = tuning * sigma_MH 
   
   
   # Initialize the state by running a PF
@@ -143,6 +145,7 @@ colnames(parms) = names
 lwr     = min(min(acf(phi)$acf), min(acf(sigma)$acf), min(acf(beta)$acf))
 culer   = c(6,4,3)
 
+
 par(mfcol=c(3,3))
 for (i in 1:3){
   tsplot(parms[,i], main=names[i], col=culer[i], ylab='', xlab='Index')
@@ -152,7 +155,8 @@ for (i in 1:3){
   hist(parms[,i],   main='', xlab='', col=astsa.col(culer[i], .4))
   abline(v=c(stats::quantile(parms[,i], probs=c(.025,.5,.975))), col=8)
 }  
-readline(prompt="Press [enter] to continue - Press [esc] to stop")
+
+readline(prompt="Press [enter] to continue")
 par(mfcol = c(1,1))
  tspar =  tsp(as.ts(y))
  mX = ts(apply(X, 2, mean), start=tspar[1], frequency=tspar[3])
@@ -164,8 +168,10 @@ tsplot(mX, col=4, ylab='Log Volatiltiy (%)', ylim=c(min(lX), max(uX)))
 polygon(xx, yy, border=NA, col=astsa.col(4,.2)) 
 par(old.par)
 
- argmnts = list(nmcmc=nmcmc, burnin=burnin, init=init,  hyper=hyper, tuning=tuning, sigma_MH=sigma_MH, npart=npart, mcmseed=mcmseed)
+# output
+ argmnts = list(nmcmc=nmcmc, burnin=burnin, init=init,  hyper=hyper, tuning=tuning, sigma_MH=sigtemp, npart=npart, mcmseed=mcmseed)
  return(invisible(list(phi=phi, sigma=sigma, beta=beta, log.vol=X, options=argmnts)))
+
 }#end
 
 #--------------------------------------------------------------------------

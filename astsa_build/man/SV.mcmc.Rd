@@ -30,8 +30,8 @@ default is \code{c(0.9, 0.5, 0.075, 0.3, -0.25)}
 tuning parameter -  default is \code{.03}
 }
   \item{sigma_MH}{
-covariance matrix for random walk Metropolis - default is 
-\code{tuning * matrix(c(1,-.25,-.25,1), nrow=2, ncol=2)}
+covariance matrix used for random walk Metropolis; it will be scaled by \code{tuning} in the script - default is 
+\code{matrix(c(1,-.25,-.25,1), nrow=2, ncol=2)}
 }
   \item{npart}{
 number of particles used in particle filter - default is \code{10}
