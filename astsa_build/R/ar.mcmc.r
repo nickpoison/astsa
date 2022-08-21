@@ -44,11 +44,13 @@ u     = cbind(phit, sigma)
 
 cat('Quantiles:', "\n")
 print(apply(u, 2, stats::quantile, c(.01,.025,.05,.1,.25,.50,.75,.9,.95,.975,.99)), digits=4 )
+cat('\n')
 
 if (plot){
   old.par = par(no.readonly = TRUE)
   ncols   = floor(sqrt(porder + 2))
  tsplot(u, main="sample traces", xlab="Iteration", col=col, ncolm=ncols)
+   cat("Press [Enter] or [Left Mouse] on the active graphic device", "\n")
    par(ask=TRUE)
  pairs(u, col=astsa.col(col,.4), lower.panel=.panelcor,  diag.panel=.panelhist)
   par(old.par)

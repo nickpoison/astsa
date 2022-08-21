@@ -156,6 +156,7 @@ for (i in 1:3){
   abline(v=c(stats::quantile(parms[,i], probs=c(.025,.5,.975))), col=8)
 }  
 
+cat("Press [Enter] or [Left Mouse] on the active graphic device", "\n")
 par(ask=TRUE)
 par(mfcol = c(1,1))
  tspar =  tsp(as.ts(y))
