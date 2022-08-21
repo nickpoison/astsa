@@ -156,7 +156,7 @@ for (i in 1:3){
   abline(v=c(stats::quantile(parms[,i], probs=c(.025,.5,.975))), col=8)
 }  
 
-readline(prompt="Press [enter] to continue")
+par(ask=TRUE)
 par(mfcol = c(1,1))
  tspar =  tsp(as.ts(y))
  mX = ts(apply(X, 2, mean), start=tspar[1], frequency=tspar[3])
