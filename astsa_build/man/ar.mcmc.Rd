@@ -41,7 +41,7 @@ second prior for the variance component; see details
 }
 \details{
 Assumes a normal-inverse gamma model,
-\deqn{y_t = \phi_0 + \phi_1 y_{t-1} + \dots + \phi_p y_{t-p} + \sigma z_t ,}
+\deqn{x_t = \phi_0 + \phi_1 x_{t-1} + \dots + \phi_p x_{t-p} + \sigma z_t ,}
 where \eqn{z_t} is standard Gaussian noise.
 With \eqn{\Phi} being the (p+1)-dimensional vector of the \eqn{\phi}s,
 the priors are 
@@ -52,7 +52,7 @@ may choose \eqn{(a,b)} as \code{(prior_sig_a, prior_sig_b)}
 and \eqn{\gamma^2} as \code{prior_var_phi}.
 
 The algorithm is efficient and converges quickly.
-Further details can be found in Example 8.36  of Douc, R., Moulines, E., & Stoffer, D. (2014).
+Further details can be found in Example 8.36  of Douc,  Moulines, & Stoffer, D. (2014).
 \emph{ Nonlinear Time Series: Theory, Methods and Applications with R Examples}. CRC press. 
 ISBN 9781466502253.
 }
@@ -64,7 +64,9 @@ various quantiles are displayed.
 \author{
 D.S. Stoffer
 }
-\source{Based on the scirpt \code{arp.mcmc} used in Douc, Moulines, & Stoffer (2014). 
+\source{Based on the scirpt \code{arp.mcmc} used in Douc,  Moulines, & Stoffer, D. (2014).
+\emph{ Nonlinear Time Series: Theory, Methods and Applications with R Examples}. CRC press. 
+ISBN 9781466502253.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
@@ -80,7 +82,7 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 
 u = ar.mcmc(rec, 2)
 
-head(u)  # view first part of the returned sample values
+tsplot(u, ncolm=2, col=4)  # plot the traces
 }
 }
 \keyword{ts}
