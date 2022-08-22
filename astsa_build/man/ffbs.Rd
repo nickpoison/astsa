@@ -52,10 +52,6 @@ conformable.
 \eqn{x_t} is p-dimensional, \eqn{y_t} is q-dimensional, and  \eqn{u_t} is r-dimensional.
 Note that \eqn{sQ\, w_t}  has to be p-dimensional, but  \eqn{w_t} does not, and
  \eqn{sR\, v_t}  has to be q-dimensional, but  \eqn{v_t} does not.
-
-
-If not needed, set \eqn{\Upsilon}  or \eqn{\Gamma} to 0 (zero) in the call (without having to 
-worry about conformability).
 }
 \value{
   \item{xs }{A p-dimensional matrix of sampled states}
