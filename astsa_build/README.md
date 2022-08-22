@@ -14,13 +14,13 @@ We won't always push the latest version of the package to CRAN, but [the latest 
 * See the [NEWS for further details about the state of the package, how to install the latest version, and the changelog](https://github.com/nickpoison/astsa/blob/master/NEWS.md).
 
 
-* A demonstration of the capabilities of `astsa` can be found here at
-[FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).  It's more fun than high school.
+* A list of data sets, scripts, and demonstrations of the capabilities of `astsa` can be found  at
+[FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md)...  it's more fun than high school.
 
 
-* The updated [code for the graduate level text](https://github.com/nickpoison/tsa4/blob/master/textRcode.md) is here: [TSA4](https://github.com/nickpoison/tsa4).
+* The updated [code for the graduate level text](https://github.com/nickpoison/tsa4/blob/master/textRcode.md) is here: [TSA4](https://github.com/nickpoison/tsa4/blob/master/textRcode.md).
 
-* The updated [code for the data science text](https://github.com/nickpoison/tsda/blob/master/Rcode.md) is here: [TSDA](https://github.com/nickpoison/tsda).
+* The updated [code for the data science text](https://github.com/nickpoison/tsda/blob/master/Rcode.md) is here: [TSDA](https://github.com/nickpoison/tsda/blob/master/Rcode.md).
 
 * Python
 
@@ -28,7 +28,7 @@ We won't always push the latest version of the package to CRAN, but [the latest 
 
    - And a [Python package that contains datasets from astsa is here.](https://pypi.org/project/astsadata/)
 
-The Springer text was written under version 1.8 and the Chapman & Hall text was written under version 1.9. Later versions will work for both texts with only some minor changes that won't affect any of the data analysis. 
+The Springer text was written under version 1.8 and the Chapman & Hall text was written under version 1.9. Later versions will work for both texts with only some minor changes in output that won't affect any of the data analysis. 
 
 
 
