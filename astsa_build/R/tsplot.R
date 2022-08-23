@@ -31,9 +31,8 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    } else {
    par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0))
    }
-   if (is.null(y)) { ylab=colnames(as.matrix(x)) 
-                    } else { ylab=colnames(as.matrix(y))} 
-   if (is.null(ylab)) { ylab = NA }
+   if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
+   if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
    for (h in 1:nser) {
     if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, 
                   minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
@@ -68,8 +67,8 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,.25,3*topper,0)+margins, tcl=-.2, 
         las=1, cex.axis=.9)
    }
-   if (is.null(y)) { ylab=colnames(as.matrix(x)) } else { ylab=colnames(as.matrix(y))} 
-   if (is.null(ylab)) { ylab = NA }
+   if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
+   if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
    for (h in 1:nser) {
     if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, 
          gg=TRUE, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
