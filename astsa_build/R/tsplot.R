@@ -10,6 +10,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
   pch    =  rep(pch, ceiling(nser/length(pch)))
   lty    =  rep(lty, ceiling(nser/length(lty)))
   lwd    =  rep(lwd, ceiling(nser/length(lwd)))
+  if(!is.null(ylab)){ ylab = rep(ylab, ceiling(nser/length(ylab))) } 
   
  if(!spaghetti || nser < 2){ # no spaghetti 
  if(!gg){                    # no gris-gris
@@ -36,11 +37,11 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    for (h in 1:nser) {
     if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, 
                   minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
-	} else {
-	tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, 
+    } else {
+    tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, 
                                nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
     }
-    }  	
+    }  
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
    }    
 } else {                   # gris-gris ya ya 
