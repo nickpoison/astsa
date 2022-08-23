@@ -11,9 +11,9 @@ function (x, y, max.lag = NULL, main = NULL, ylab = "CCF", plot = TRUE,
   lag.max = max.lag
   type =  match.arg(type)
   if (is.matrix(x) || is.matrix(y)) { stop("univariate time series only") }
-    X <- ts.intersect(as.ts(x), as.ts(y))
-	num = nrow(X)
-	if (num > 49 & is.null(lag.max))  lag.max= max(ceiling(10+sqrt(num)), 3*frequency(X))
+  X <- ts.intersect(as.ts(x), as.ts(y))
+  num = nrow(X)
+  if (num > 49 & is.null(lag.max))  lag.max= max(ceiling(10+sqrt(num)), 3*frequency(X))
   if (num < 50 & is.null(lag.max))  lag.max=floor(5*log10(num))
   if (lag.max > (num-1)) stop("Number of lags exceeds number of observations")
   colnames(X) <- c(deparse(substitute(x))[1L], deparse(substitute(y))[1L])
@@ -28,15 +28,15 @@ function (x, y, max.lag = NULL, main = NULL, ylab = "CCF", plot = TRUE,
   if (plot){ 
    frequency = frequency(X)  
    Xlab = ifelse(frequency>1, paste('LAG', expression('\u00F7'), frequency), 'LAG')
-	 U = 2/sqrt(num)
-	 tsplot(acf.out$LAG, acf.out$CCF, type='h', ylab=ylab, xlab=Xlab, main=main, ...) 
-	 if (type == "correlation") { abline(h=c(0,-U,U), lty=c(1,2,2), col=c(8,4,4))
+    U = 2/sqrt(num)
+    tsplot(acf.out$LAG, acf.out$CCF, type='h', ylab=ylab, xlab=Xlab, main=main, ...) 
+    if (type == "correlation") { abline(h=c(0,-U,U), lty=c(1,2,2), col=c(8,4,4))
     } else { abline(h=0, col=8)
     }
-	 abline(v=0, lty=2, col=astsa.col(8,.6))
-	 LAG = -lag.max:lag.max
-	 CCF = round(acf.out$CCF,3)
-	 return(invisible(cbind(LAG, CCF)))
+    abline(v=0, lty=2, col=astsa.col(8,.6))
+    LAG = -lag.max:lag.max
+    CCF = round(acf.out$CCF,3)
+    return(invisible(cbind(LAG, CCF)))
   } else {
   return(cbind(LAG=-lag.max:lag.max, CCF=acf.out$CCF)) 
   }

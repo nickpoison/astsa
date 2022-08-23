@@ -2,7 +2,7 @@ acfm <-
 function(series, max.lag=NULL,  na.action = na.pass, ylim=NULL, 
          acf.highlight = TRUE, ...)
 {
-nser = ncol(series)
+nser = NCOL(series)
   if (nser < 2) {stop("Multivariate time series only")} 
 
 frequency = tsp(as.ts(series))[3]  
