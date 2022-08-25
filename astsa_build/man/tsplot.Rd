@@ -89,6 +89,9 @@ D.S. Stoffer
 \examples{
 \dontrun{
 
+# minimal
+tsplot(soi)
+# prettified
 tsplot(soi, col=4, main="Southern Oscillation Index")
 
 # compare these
