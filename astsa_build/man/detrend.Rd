@@ -39,9 +39,9 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 D.S. Stoffer
 }
 \examples{
-tsplot(cbind(salmon, detrend(salmon)))
+tsplot( cbind(salmon, detrend(salmon)) )
 
-tsplot(detrend(salmon, lowess=TRUE))
+tsplot( cbind(chicken, detrend(chicken, lowess=TRUE)) )
 }
 \seealso{\code{\link{trend}}}
 \keyword{ts}

@@ -10,7 +10,6 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
   pch    =  rep(pch, ceiling(nser/length(pch)))
   lty    =  rep(lty, ceiling(nser/length(lty)))
   lwd    =  rep(lwd, ceiling(nser/length(lwd)))
-  if(!is.null(ylab)){ ylab = rep(ylab, ceiling(nser/length(ylab))) } 
   
  if(!spaghetti || nser < 2){ # no spaghetti 
  if(!gg){                    # no gris-gris
@@ -25,6 +24,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
         lty=lty, lwd=lwd, ... ) 
    box(col='gray62')
   } else {                   # multiple series
+   if(!is.null(ylab)){ ylab = rep(ylab, ceiling(nser/length(ylab))) } 
    prow = ceiling(nser/ncolm)
    culer = rep(col, nser)
    if(byrow){
@@ -59,6 +59,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
          lty=lty, lwd=lwd, ... ) 
    box(col=gray(1))
   } else {                 # multiple series
+   if(!is.null(ylab)){ ylab = rep(ylab, ceiling(nser/length(ylab))) } 
    prow = ceiling(nser/ncolm)
    culer = rep(col, nser)
    if(byrow){
@@ -87,14 +88,14 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    if (is.null(y)) {
    u = x[,1]
    u[1:2] =  c(min(x, na.rm=TRUE), max(x, na.rm=TRUE))
-   tsplot(u, ylab=ylab,  type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, 
+   tsplot(u, ylab=ylab[1],  type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, 
              main=main, pch=pch[1], margins=margins, ...)
    for (h in 1:nser) { lines(x[,h], col=culer[h], type=type1, pch=pch[h], lty=lty[h], 
               lwd=lwd[h], ...) }
     } else {
    u = y[,1]
    u[1:2] =  c(min(y, na.rm=TRUE), max(y, na.rm=TRUE))
-   tsplot(x, u, ylab=ylab, type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, 
+   tsplot(x, u, ylab=ylab[1], type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, 
                main=main, pch=pch[1], margins=margins, ...)
    for (h in 1:nser) { lines(x, y[,h], col=culer[h], type=type1, pch=pch[h], 
                           lty=lty[h], lwd=lwd[h], ...) }

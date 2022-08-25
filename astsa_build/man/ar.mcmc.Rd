@@ -83,6 +83,8 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 u = ar.mcmc(rec, 2)
 
 tsplot(u, ncolm=2, col=4)  # plot the traces
+
+apply(u, 2, ESS)    # effective sample sizes
 }
 }
 \keyword{ts}

@@ -46,16 +46,12 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 D.S.Stoffer
 }
 \examples{
-# View the astsa palette
-par(mfrow=c(3,1))
-barplot(rep(1,8), col=1:8, main='astsa palette', names=1:8)
-barplot(rep(1,8), col=astsa.col(1:8, .7), main='transparency', names=1:8)
-barplot(rep(1,8), col=astsa.col(3:6, .5), main='pastelity', names=rep(3:6, 2))
-
-
 # plotting 2 series that touch (but in a nice way)
 tsplot(cbind(gtemp_land, gtemp_ocean), col=astsa.col(c(4,2), .5), lwd=2, spaghetti=TRUE, 
          type='o', pch=20, ylab="Temperature Deviations")
 legend('topleft', legend=c("Land Only", "Ocean Only"), col=c(4,2), lwd=2, pch=20, bty='n')  
+
+# View the astsa palette
+barplot(rep(1,8), col=1:8, main='astsa palette', names=1:8)
 }
 \keyword{ color }

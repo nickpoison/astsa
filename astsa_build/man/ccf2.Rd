@@ -50,6 +50,6 @@ ccf2(soi, rec, plot=FALSE)  # now you see it
 ccf2(soi, rec)              # now you don't
 
 # happy birthday mom
-ccf2(soi, rec, col=rainbow(36, v=.8), lwd=4)
+ccf2(soi, rec, col=rainbow(36, v=.8), lwd=4, gg=TRUE)
 }
 \keyword{ ts } 

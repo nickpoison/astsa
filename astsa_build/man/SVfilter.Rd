@@ -43,4 +43,6 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 }
 \author{D.S. Stoffer
 }
+\note{See Example 6.23 in Chapter 6 of the text.
+}
 \keyword{ ts }

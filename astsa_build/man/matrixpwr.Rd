@@ -49,7 +49,7 @@ D.S. Stoffer
 }
 \examples{
 # 2-state Markov transition matrix to steady state
-P = matrix(c(.7,.4,.3,.6), 2)
+( P = matrix(c(.7,.4,.3,.6), 2) )
 P \%^\% 50
 
 # surround with parentheses if used in an expression

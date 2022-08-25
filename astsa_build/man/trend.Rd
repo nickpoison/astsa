@@ -57,8 +57,8 @@ D.S. Stoffer
 \examples{
 \dontrun{
 
+par(mfrow=2:1)
 trend(soi)
-
 trend(soi, lowess=TRUE)
 }
 }

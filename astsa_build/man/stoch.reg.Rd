@@ -40,6 +40,6 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 }
 \author{D.S. Stoffer
 }
-\note{The script is based on code that was contributed by Professor Doug Wiens, Department of Mathematical and Statistical Sciences, University of Alberta. 
+\note{See Chapter 7 of the text for examples. The script is based on code that was contributed by Professor Doug Wiens, Department of Mathematical and Statistical Sciences, University of Alberta. 
 }
 \keyword{ ts }

@@ -80,7 +80,6 @@ tsplot(y)
 tsplot(sarima.sim(ma=-.8, d=1, mean=.1))
 
 ## SAR(1) example from text
-Months = c("J","F","M","A","M","J","J","A","S","O","N","D")
 sAR = sarima.sim(sar=.9, S=12, n=36)
 tsplot(sAR, type='c')
 points(sAR, pch=Months, cex=1.1, font=4, col=1:4)

@@ -103,6 +103,7 @@ tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2)
 # spaghetti (and store it in an object - ?recordPlot for details)
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 u <- tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
+u   #  plot on demand
 }
 }
 \keyword{ ts }
