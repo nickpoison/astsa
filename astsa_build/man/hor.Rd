@@ -21,10 +21,8 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
 }
 \examples{
-plot(hor, type='c')                            # plot data and
-text(hor, labels=1:4, col=c(1,4,2,6), cex=.9)  # add quarter labels
-#
-plot(stl(hor, s.window=15))  # fit structural model
+tsplot(hor, type='c')                           # plot data and
+text(hor, labels=1:4, col=c(1,4,2,6), cex=.9)   # add quarter labels
 }
 \keyword{datasets}
 
