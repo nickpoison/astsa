@@ -43,7 +43,7 @@ the number of minor tick mark divisions on x-axis, y-axis; the default is one mi
  \item{\dots }{graphical arguments passed to \code{plot.spec}
 }
 }
-\details{This is \code{spec.pgram} from the stats package with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. The default for the plot is NOT to plot on a log scale and the graphic will have a grid. The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}.  Also, the bandwidth is no longer displayed in the graphic.  Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series.  Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
+\details{This is built off of \code{spec.pgram} from the stats package with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. The default for the plot is NOT to plot on a log scale and the graphic will have a grid. The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}.  Also, the bandwidth is no longer displayed in the graphic.  Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series.  Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
 }
 \value{An object of class "spec", which is a list containing at least the following components:
 
@@ -79,8 +79,9 @@ mvspec(soi, log='y')  # on a log scale
 mvspec(soi, spans=c(7,7), taper=.5)$details[1:45,]
 
 # multivariate example
-ts.plot(mdeaths, fdeaths, col=1:2)   # an R data set, male/female monthly deaths ...
-dog = mvspec(cbind(mdeaths,fdeaths), spans=c(3,3), taper=.1)
+deth = cbind(mdeaths, fdeaths)    # two R data sets, male/female monthly deaths ...
+tsplot(deth, type='b', col=c(4,6), spaghetti=TRUE, pch=c('M','F'))
+dog = mvspec(deth, spans=c(3,3), taper=.1)
 dog$fxx        # look a spectral matrix estimates
 dog$bandwidth  # bandwidth with time unit = year
 dog$df         # degrees of freedom
