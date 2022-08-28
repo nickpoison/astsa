@@ -15,8 +15,7 @@ install.packages("remotes")   # if you don't have the package already
 remotes::install_github("nickpoison/astsa/astsa_build")
 ```
 
-> Note: If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it.
-After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
+> Note: If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
 &#x1F4A1;  You can also install `astsa` from the archive (which is always current)
 [astsa_1.16.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.16.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
@@ -28,12 +27,12 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ---
 
-### Versions 1.16 - GitHub version 
+### Version 1.16 - Here now, on CRAN by September 1, 2022.
 
 
-+ <span style="font-size:larger;">__v1.16__</span> (Aug 2022): 
++ <span style="font-size:larger;">__v1.16__</span>: 
    
-   - The   archive [astsa_1.16.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.16.tar.gz) has been updated here only... we'll get it to CRAN eventually (only the tedious stuff is left to do).  
+   - The  archive [astsa_1.16.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.16.tar.gz) is the latest version. It will be on CRAN hopefully by September 2022.
 
    - Added `Months` to use with `pch` for monthly data; see the help file `?Months`.
    
