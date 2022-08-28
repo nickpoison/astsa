@@ -2,7 +2,7 @@
 \alias{FDR}
 \title{Basic False Discovery Rate
 }
-\description{Computes the basic false discovery rate given a vector of p-values.
+\description{Computes the basic false discovery rate given a vector of p-values and returns the index of the maximal p-value satisfying the FDR condition. 
 }
 \usage{
 FDR(pvals, qlevel = 0.05)
@@ -15,7 +15,9 @@ FDR(pvals, qlevel = 0.05)
 }
 \value{\item{fdr.id }{ NULL if no significant tests, or the index of the maximal p-value satisfying the FDR condition. }
 }
-\source{\url{https://www.stat.berkeley.edu/~paciorek/code/fdr/fdr.R} 
+\source{Built off of \url{https://www.stat.berkeley.edu/~paciorek/code/fdr/fdr.R}.
+}
+\note{This is used primarily in Chapter 7.
 }
 \references{
 You can find demonstrations of  astsa capabilities at  

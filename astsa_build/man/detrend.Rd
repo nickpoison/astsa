@@ -39,9 +39,7 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 D.S. Stoffer
 }
 \examples{
-tsplot( cbind(salmon, detrend(salmon)) )
-
-tsplot( cbind(chicken, detrend(chicken, lowess=TRUE)) )
+tsplot( cbind(salmon, detrend(salmon)), main='Norwegian Salmon Export Price USD/KG' )
 }
 \seealso{\code{\link{trend}}}
 \keyword{ts}
