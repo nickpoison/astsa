@@ -27,12 +27,10 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ---
 
-### Version 1.16 - Here now, on CRAN by September 1, 2022.
+### Version 1.16 - September 2022: 
 
 
-+ <span style="font-size:larger;">__v1.16__</span>: 
-   
-   - The  archive [astsa_1.16.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.16.tar.gz) is the latest version. It will be on CRAN hopefully by September 2022.
++ <span style="font-size:larger;">__v1.16__</span>: All OS versions should be on CRAN by September 2022.
 
    - Added `Months` to use with `pch` for monthly data; see the help file `?Months`.
    
