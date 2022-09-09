@@ -27,7 +27,16 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ---
 
-### Version 1.16 - September 2022: 
+### Versions 1.16 - September 2022: 
+
++ <span style="font-size:larger;">__v1.16.3__</span>: (CRAN only) - Added 2 new scripts and updated one "newer" script.
+
+   - Added `Kfilter` which is faster than `Kfilter0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples will make it to  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) soon.
+
+   -  Added `Ksmooth` which is faster than `Ksmooth0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples will make it to  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) soon.
+
+   - The Forward Filtering Backward Smoothing algorithm (`ffbs`) has been updated to run with the new `Kfilter` script.  There may be conflicts, but the old `ffbs` is not very old, so hopefully there is no harm done. 
+
 
 
 + <span style="font-size:larger;">__v1.16__</span>: All OS versions should be on CRAN by September 2022.
