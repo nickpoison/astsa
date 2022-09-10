@@ -29,7 +29,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 ### Versions 1.16 - September 2022: 
 
-+ <span style="font-size:larger;">__v1.16.3__</span>: (CRAN only) - Added 2 new scripts and updated one "newer" script.
++ <span style="font-size:larger;">__v1.16.3__</span>: (GitHub only) - Added 2 new scripts and updated one "newer" script.
 
    - Added `Kfilter` which is faster than `Kfilter0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples will make it to  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) soon.
 
@@ -39,7 +39,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 
 
-+ <span style="font-size:larger;">__v1.16__</span>: All OS versions should be on CRAN by September 2022.
++ <span style="font-size:larger;">__v1.16__</span>: (on CRAN)
 
    - Added `Months` to use with `pch` for monthly data; see the help file `?Months`.
    
