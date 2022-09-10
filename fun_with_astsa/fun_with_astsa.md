@@ -41,7 +41,7 @@ it's more than just data ...
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
      * [Quick Kalman Filter and Smoother - NEW](#&#128293;-quick-kalman-filter-and-smoother)
      * [Beginners Paradise - SSM](#beginners-paradise)
-    * [The Old Stuff](#now-back-to-the-original-stuff)
+    * [The Old Stuff](#now-back-to-the-old-stuff)
   * [8. EM Algorithm and Missing Data](#8-em-algorithm-and-missing-data)
   * [9. Bayesian Techniques](#9-bayesian-techniques)
       * [AR Models](#ar-models)
@@ -1114,6 +1114,8 @@ List of 6
  $ Xs: Time-Series [1:138] from 1880 to 2017: -0.595 -0.588 -0.593 -0.607 -0.621 ...
  $ Ps: Time-Series [1:138] from 1880 to 2017: 0.00432 0.0038 0.0035 0.00333 0.00324 ...
  ```
+
+<br/>
 
 ###  now back to the old stuff
 &#9888; THE FOLLOWING HAS BEEN SUPERSCEDED BY `Kfilter` and `Ksmooth` DESCRIBED ABOVE
