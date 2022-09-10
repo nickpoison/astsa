@@ -35,7 +35,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
    -  Added `Ksmooth` which is faster than `Ksmooth0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples will make it to  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) soon.
 
-   - The Forward Filtering Backward Smoothing algorithm (`ffbs`) has been updated to run with the new `Kfilter` script.  There may be conflicts, but the old `ffbs` is not very old, so hopefully there is no harm done. 
+   - The Forward Filtering Backward Smoothing algorithm (`ffbs`) and the simple univariate state space model (`ssm`) scripts have been updated to run with the new `Kfilter` and `Ksmooth` scripts.  There may be a conflict with the origianl `ffbs`, but it's not very old, so hopefully there is no harm done. 
 
 
 

@@ -6,12 +6,11 @@ num = length(y)
 if (num < 20) { stop("This script requires at least 20 observations") }
 x00 = mean(y[1:5])
 P00 = stats::var(jitter(y[1:5])) 
-A = array(A, dim=c(1,1,num))
 # function to calc likelihood
 Linn=function(para){
   if (fixphi){ phi=phi; alpha = para[1]; sigw = para[2];  sigv = para[3] 
   } else {phi=para[1]; alpha = para[2];   sigw = para[3];  sigv = para[4]}
- kf = Kfilter1(num,y,A,x00,P00,phi,alpha,0,sigw,sigv,rep(1,num))
+ kf = Kfilter(y,A,x00,P00,phi,sigw,sigv,alpha,0,rep(1,num))
  return(kf$like) 
 }
 # Estimation
@@ -24,13 +23,13 @@ SE = sqrt(diag(solve(est$hessian)))
 if (fixphi){ phat = c(phi, est$par)
 } else {phat = est$par}
 # run filter /smoother with estimates
-ks = Ksmooth1(num,y,A,x00,P00,phat[1],phat[2],0,phat[3],phat[4],rep(1,num))
-Xp = ts(as.vector(ks$xp), start=strt, frequency=frq) 
-Pp = ts(as.vector(ks$Pp), start=strt, frequency=frq)
-Xf = ts(as.vector(ks$xf), start=strt, frequency=frq) 
-Pf = ts(as.vector(ks$Pf), start=strt, frequency=frq)
-Xs = ts(as.vector(ks$xs), start=strt, frequency=frq) 
-Ps = ts(as.vector(ks$Ps), start=strt, frequency=frq)
+ks = Ksmooth(y,A,x00,P00,phat[1],phat[3],phat[4],phat[2],0,rep(1,num))
+Xp = ts(drop(ks$Xp), start=strt, frequency=frq) 
+Pp = ts(drop(ks$Pp), start=strt, frequency=frq)
+Xf = ts(drop(ks$Xf), start=strt, frequency=frq) 
+Pf = ts(drop(ks$Pf), start=strt, frequency=frq)
+Xs = ts(drop(ks$Xs), start=strt, frequency=frq) 
+Ps = ts(drop(ks$Ps), start=strt, frequency=frq)
 estimate = est$par 
 u = cbind(estimate, SE) 
 if (fixphi){rownames(u)=c("alpha", "sigw", "sigv"); u[2:3,1] = abs(u[2:3,1]) 
