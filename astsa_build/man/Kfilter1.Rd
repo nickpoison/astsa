@@ -3,7 +3,7 @@
 \title{Kalman Filter -  Model may be time varying or have inputs
 }
 \description{Returns both the predicted and filtered values for a linear  state space model. Also evaluates
-the likelihood at the given parameter values.
+the likelihood at the given parameter values.  NOTE: This script has been superseded by \code{\link{Kfilter}}.
 }
 \usage{
 Kfilter1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input)

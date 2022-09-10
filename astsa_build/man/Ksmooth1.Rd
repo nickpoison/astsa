@@ -2,7 +2,7 @@
 \alias{Ksmooth1}
 \title{Kalman Filter and Smoother - General model 
 }
-\description{Returns both the filtered  and the smoothed values for the state-space model.
+\description{Returns both the filtered  and the smoothed values for the state-space model. NOTE: This script has been superseded by \code{\link{Ksmooth}}.
 }
 \usage{
 Ksmooth1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input)

@@ -3,6 +3,7 @@
 \title{Kalman Filter - Time Invariant Model 
 }
 \description{Returns the filtered values for the basic time invariant state-space model; inputs are not allowed.
+NOTE: This script has been superseded by \code{\link{Kfilter}}.
 }
 \usage{
 Kfilter0(num, y, A, mu0, Sigma0, Phi, cQ, cR)

@@ -3,6 +3,7 @@
 \title{Kalman Filter and Smoother - Time invariant model without inputs
 }
 \description{Returns both the filtered values  and  smoothed values   for the state-space model.
+NOTE: This script has been superseded by \code{\link{Ksmooth}}.
 }
 \usage{
 Ksmooth0(num, y, A, mu0, Sigma0, Phi, cQ, cR)

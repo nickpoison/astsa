@@ -2,7 +2,7 @@
 \alias{Ksmooth2}
 \title{Kalman Filter and Smoother - General model, may have correlated errors
 }
-\description{Returns the filtered and smoothed values  for the state-space model. This is the smoother companion to Kfilter2.
+\description{Returns the filtered and smoothed values  for the state-space model. This is the smoother companion to Kfilter2. NOTE: This script has been superseded by \code{\link{Ksmooth}}.
 }
 \usage{
 Ksmooth2(num, y, A, mu0, Sigma0, Phi, Ups, Gam, Theta, cQ, cR, 
