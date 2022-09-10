@@ -974,8 +974,8 @@ for (i in 1:nboot){
  setTxtProgressBar(pb,i)                       
  e.star[k] = sample(e[k], replace=TRUE)   
  for (j in k){ 
-   K       = (phi*Pp[j]*z[j])/sig[j]  
-  xp.star[j] = phi*xp.star[j-1] + Ups +   K*sqrt(sig[j])*e.star[j]
+   K = (phi*Pp[j]*z[j])/sig[j]  
+  xp.star[j] = phi*xp.star[j-1] + Ups + K*sqrt(sig[j])*e.star[j]
   } 
    y.star[k] = z[k]*xp.star[k] + alpha + sqrt(sig[k])*e.star[k]  
  est.star  = optim(init.par, Linn, NULL, y.data=y.star, method='BFGS', control=list(reltol=tol))     
@@ -984,12 +984,13 @@ for (i in 1:nboot){
 }
 close(pb) 
 
-# Some summary statistics  
-rmse = rep(NA,5)                 # SEs from the bootstrap
+# Some summary statistics
+# SEs from the bootstrap
+rmse = rep(NA,5)
 for(i in 1:5){rmse[i]=sqrt(sum((para.star[,i]-est$par[i])^2)/nboot)
               cat(i, rmse[i],"\n") 
              }    
-# output (compare to SEs about)        
+# output (compare to SEs above)        
 ### 1 0.4341447 
 ### 2 0.5653623 
 ### 3 0.3201879 
