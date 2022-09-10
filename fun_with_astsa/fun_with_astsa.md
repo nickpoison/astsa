@@ -40,7 +40,8 @@ it's more than just data ...
   * [6. Testing for Linearity](#6-linearity-test)
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
      * [Quick Kalman Filter and Smoother - NEW](#&#128293;-quick-kalman-filter-and-smoother)
-    
+     * [Beginners Paradise - SSM](#beginners-paradise)
+    * [The Old Stuff](#now-back-to-the-original-stuff)
   * [8. EM Algorithm and Missing Data](#8-em-algorithm-and-missing-data)
   * [9. Bayesian Techniques](#9-bayesian-techniques)
       * [AR Models](#ar-models)
@@ -1004,10 +1005,32 @@ scatter.hist(sigw, phi, ylab=expression(phi), xlab=expression(sigma[~w]),
 ```
 <img src="figs/boots.png" alt="Example 6.13"  width="75%">
 
+&#x1F535; The smoother is similar. Here's a simple example with no output shown.
+```r
+# generate some data
+ set.seed(1)
+ sQ  = 1; sR = 3; n = 100  
+ mu0 = 0; Sigma0 = 10; x0 = rnorm(1,mu0,Sigma0)
+ w = rnorm(n); v = rnorm(n)
+ x = c(x0 + sQ*w[1]);  y = c(x[1] + sR*v[1])   # initialize
+for (t in 2:n){
+  x[t] = x[t-1] + sQ*w[t]
+  y[t] = x[t] + sR*v[t]   
+  }
+# let's make y a time series starting in the year 3000 just to mess with its mind
+y = ts(y, start=3000)  
 
+# run and plot the filter  
+run = Ksmooth(y, A=1, mu0, Sigma0, Phi=1, sQ, sR)
+
+# the smoother comes back as an array, so you have to un-array it
+tsplot(cbind(y, drop(run$Xs)), spaghetti=TRUE, type='o', col=c(4,6), pch=c(1,NA))
+legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,NA))
+```
 
 <br/> 
-###  now back to the original stuff
+
+### Beginners Paradise
  
  &#x1F4A1;  There is a basic state space model script in `astsa` for beginners:
 
@@ -1092,7 +1115,7 @@ List of 6
  $ Ps: Time-Series [1:138] from 1880 to 2017: 0.00432 0.0038 0.0035 0.00333 0.00324 ...
  ```
 
-	
+###  now back to the old stuff
 &#9888; THE FOLLOWING HAS BEEN SUPERSCEDED BY `Kfilter` and `Ksmooth` DESCRIBED ABOVE
 
 For general models, there are three levels of filtering and smoothing,
