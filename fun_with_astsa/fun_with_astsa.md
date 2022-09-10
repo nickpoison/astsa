@@ -39,6 +39,8 @@ it's more than just data ...
      * [Spectral Matrices](#more-multivariate-spectra)
   * [6. Testing for Linearity](#6-linearity-test)
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
+     * [Quick Kalman Filter and Smoother - NEW](#&#128293;-quick-kalman-filter-and-smoother)
+    
   * [8. EM Algorithm and Missing Data](#8-em-algorithm-and-missing-data)
   * [9. Bayesian Techniques](#9-bayesian-techniques)
       * [AR Models](#ar-models)
@@ -893,8 +895,121 @@ tsplot(nyse, col=4)
 
 ## 7. State Space Models
 
+ First, the new and improved
+### &#128293; Quick Kalman Filter and Smoother 
 
- &#x1F4A1;  There are a number of levels of Kalman filtering and smoothing in `astsa`. The most basic script is
+We've added two new scripts to simplify Kalman filtering and smoothing for linear state space models. The scripts are
+> `Kfilter` and `Ksmooth`
+
+and are meant to replace  `Kfilter0/Ksmooth0`,  `Kfilter1/Ksmooth1`, `Kfilter2/Ksmooth2` with simplified arguments and faster running times. 
+
+&#x1F535; We'll do the bootstrap example from the text, which used to take a long time... but now is very fast.
+
+```r
+# Example 6.13  
+tol = .0001       # determines convergence of optimizer     
+nboot = 500       # number of bootstrap replicates     
+ 
+# set up 
+y     = window(qinfl, c(1953,1), c(1965,2))  # quarterly inflation   
+z     = window(qintr, c(1953,1), c(1965,2))  # interest   
+num   = length(y) 
+A     = array(z, dim=c(1,1,num))
+input = matrix(1,num,1)  
+
+# Function to Calculate Likelihood   
+Linn  = function(para, y.data){  # pass data also
+   phi = para[1];  alpha = para[2]
+   b   = para[3];  Ups   = (1-phi)*b
+   sQ  = para[4];  sR    = para[5]  
+   kf  = Kfilter(y.data, A, mu0, Sigma0, phi, sQ, sR, Ups, Gam=alpha, input)
+   return(kf$like)    
+}
+
+# Parameter ML Estimation   
+mu0      = 1
+Sigma0   = .01  
+init.par = c(phi=.84, alpha=-.77, b=.85, sQ=.12, sR=1.1) # initial values   
+
+est = optim(init.par,  Linn, NULL, y.data=y, method="BFGS", hessian=TRUE, 
+             control=list(trace=1, REPORT=1, reltol=tol))  
+SE  = sqrt(diag(solve(est$hessian)))   
+
+## results
+phi   = est$par[1];  alpha = est$par[2]
+b     = est$par[3];  Ups   = (1-phi)*b         
+sQ    = est$par[4];  sR    = est$par[5] 
+round(cbind(estimate=est$par, SE), 3)  
+
+   # output
+   ###        estimate      SE
+   ###  phi      0.866   0.223
+   ###  alpha   -0.686   0.486
+   ###  b        0.788   0.226
+   ###  sQ       0.115   0.107
+   ###  sR       1.135   0.147
+
+# BEGIN BOOTSTRAP   
+# Run the filter at the estimates 
+kf  = Kfilter(y, A, mu0, Sigma0, phi, sQ, sR, Ups, Gam=alpha, input) 
+
+# Pull out necessary values from the filter and initialize  
+xp      = kf$Xp
+Pp      = kf$Pp
+innov   = kf$innov 
+sig     = kf$sig 
+e       = innov/sqrt(sig)
+e.star  = e                      # initialize values
+y.star  = y  
+xp.star = xp  
+k       = 4:50                   # hold first 3 observations fixed 
+para.star = matrix(0, nboot, 5)  # to store estimates
+init.par  =  c(.84, -.77, .85, .12, 1.1)    
+
+
+pb = txtProgressBar(min = 0, max = nboot, initial = 0, style=3)  # progress bar
+
+for (i in 1:nboot){
+ setTxtProgressBar(pb,i)                       
+ e.star[k] = sample(e[k], replace=TRUE)   
+ for (j in k){ 
+   K       = (phi*Pp[j]*z[j])/sig[j]  
+  xp.star[j] = phi*xp.star[j-1] + Ups +   K*sqrt(sig[j])*e.star[j]
+  } 
+   y.star[k] = z[k]*xp.star[k] + alpha + sqrt(sig[k])*e.star[k]  
+ est.star  = optim(init.par, Linn, NULL, y.data=y.star, method='BFGS', control=list(reltol=tol))     
+ para.star[i,] = cbind(est.star$par[1], est.star$par[2], est.star$par[3], 
+                       abs(est.star$par[4]), abs(est.star$par[5]))   
+}
+close(pb) 
+
+# Some summary statistics  
+rmse = rep(NA,5)                 # SEs from the bootstrap
+for(i in 1:5){rmse[i]=sqrt(sum((para.star[,i]-est$par[i])^2)/nboot)
+              cat(i, rmse[i],"\n") 
+             }    
+# output (compare to SEs about)        
+### 1 0.4341447 
+### 2 0.5653623 
+### 3 0.3201879 
+### 4 0.1945398 
+### 5 0.3183883 
+             
+# Plot phi and sigw  (scatter.hist in astsa)
+phi  = para.star[,1] 
+sigw = abs(para.star[,4]) 
+phi  = ifelse(phi<0, NA, phi)    # any phi < 0 not plotted
+scatter.hist(sigw, phi, ylab=expression(phi), xlab=expression(sigma[~w]), 
+             hist.col=astsa.col(5,.4), pt.col=5, pt.size=1.5)
+```
+<img src="figs/boots.png" alt="Example 6.13"  width="75%">
+
+
+
+<br/> 
+###  now back to the original stuff
+ 
+ &#x1F4A1;  There is a basic state space model script in `astsa` for beginners:
 
 > **`ssm()`**
 
@@ -977,7 +1092,10 @@ List of 6
  $ Ps: Time-Series [1:138] from 1880 to 2017: 0.00432 0.0038 0.0035 0.00333 0.00324 ...
  ```
 
-&#x1F535; For general models, there are three levels of filtering and smoothing,
+	
+&#9888; THE FOLLOWING HAS BEEN SUPERSCEDED BY `Kfilter` and `Ksmooth` DESCRIBED ABOVE
+
+For general models, there are three levels of filtering and smoothing,
 
 > **`Kfilter0()/Ksmooth0()`**, **`Kfilter1()/Ksmooth1()`**, **`Kfilter2()/Ksmooth2()`**
 
