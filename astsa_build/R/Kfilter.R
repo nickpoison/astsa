@@ -239,7 +239,7 @@ function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,S,input){
   sigma      = B%*%Pp[,,i]%*%t(B) + R 
   sig[,,i]   = (t(sigma)+sigma)/2     # make sure sig is symmetric
   siginv     = solve(sigma)
-  K          = (Phi%*%Pp[,,i]%*%t(B) + S)%*%siginv 
+  K          = (Phi%*%Pp[,,i]%*%t(B) + t(cQ)%*%S)%*%siginv 
   xf[,,i]    = xp[,,i] + Pp[,,i]%*%t(B)%*%siginv%*%innov[,,i]
   Pf[,,i]    = Pp[,,i] - Pp[,,i]%*%t(B)%*%siginv%*%B%*%Pp[,,i] 
   like       = like + log(det(sigma)) + t(innov[,,i])%*%siginv%*%innov[,,i]
