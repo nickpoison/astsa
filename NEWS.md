@@ -29,13 +29,15 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 ### Versions 1.16 - September 2022: 
 
-+ <span style="font-size:larger;">__v1.16.3__</span>: (GitHub only) - Added 2 new scripts and updated one "newer" script.
++ <span style="font-size:larger;">__v1.16.3__</span>: (GitHub only) - Added 2 new scripts and updated others.
 
-   - Added `Kfilter` which is faster than `Kfilter0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples will make it to  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) soon.
+   - Added `Kfilter` which is faster than `Kfilter0-1-2` (these will stay in `astsa`), easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
-   -  Added `Ksmooth` which is faster than `Ksmooth0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples will make it to  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) soon.
+   -  Added `Ksmooth` which is faster than `Ksmooth0-1-2` (these will stay in `astsa`), easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
-   - The Forward Filtering Backward Smoothing algorithm (`ffbs`) and the simple univariate state space model (`ssm`) scripts have been updated to run with the new `Kfilter` and `Ksmooth` scripts.  There may be a conflict with the origianl `ffbs`, but it's not very old, so hopefully there is no harm done. 
+   - Updated (to run with the new `Kfilter` and `Ksmooth` scripts):
+      + the Forward Filtering Backward Smoothing script (`ffbs`) and 
+      + the simple univariate state space model (`ssm`) script  
 
 
 
