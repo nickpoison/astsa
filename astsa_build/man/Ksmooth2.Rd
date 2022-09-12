@@ -1,6 +1,6 @@
 \name{Ksmooth2}
 \alias{Ksmooth2}
-\title{Kalman Filter and Smoother - General model, may have correlated errors
+\title{Kalman Filter and Smoother - This script has been superseded by \code{\link{Ksmooth}}
 }
 \description{Returns the filtered and smoothed values  for the state-space model. This is the smoother companion to Kfilter2. NOTE: This script has been superseded by \code{\link{Ksmooth}}.
 }
@@ -58,8 +58,6 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 }
 \author{D.S. Stoffer
 }
-\details{\code{cQ} and \code{cR} are the Cholesky-type decompositions of \code{Q} and \code{R}. In particular, \code{Q = t(cQ)\%*\%cQ} and \code{R = t(cR)\%*\%cR} is all that is required (assuming \code{Q} and \code{R} are valid covariance matrices). 
-}
-\note{For examples, see Chapter 6 of the text.
+\details{NOTE: This script has been superseded by \code{\link{Ksmooth}}
 }
 \keyword{ ts }

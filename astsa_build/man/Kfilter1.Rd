@@ -1,6 +1,6 @@
 \name{Kfilter1}
 \alias{Kfilter1}
-\title{Kalman Filter -  Model may be time varying or have inputs
+\title{Kalman Filter - This script has been superseded by \code{\link{Kfilter}}
 }
 \description{Returns both the predicted and filtered values for a linear  state space model. Also evaluates
 the likelihood at the given parameter values.  NOTE: This script has been superseded by \code{\link{Kfilter}}.
@@ -53,8 +53,6 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 }
 \author{D.S. Stoffer
 }
-\details{\code{cQ} and \code{cR} are the Cholesky-type decompositions of \code{Q} and \code{R}. In particular, \code{Q = t(cQ)\%*\%cQ} and \code{R = t(cR)\%*\%cR} is all that is required (assuming \code{Q} and \code{R} are valid covariance matrices). 
-}
-\note{For examples, see Chapter 6 of the text.
+\details{NOTE: This script has been superseded by \code{\link{Kfilter}}
 }
 \keyword{ ts }
