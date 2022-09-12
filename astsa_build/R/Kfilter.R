@@ -109,18 +109,8 @@ return(list(Xp=Xp,Pp=Pp,Xf=Xf,Pf=Pf,Kn=K,like=like,innov=innov,sig=sig))
 ############  multivariate cases ##############################################
 ###############################################################################
 
- # input yes or no
- if (is.null(input)) {Ups=0; Gam=0; input=as.matrix(rep(0,num))
-  } else {
-  rdim = ncol(as.matrix(input))
-   if (is.null(Ups))  Ups = matrix(0, nrow=1, ncol=rdim)
-   if (is.null(Gam))  Gam = matrix(0, nrow=1, ncol=rdim)
-  }
-## 
-## ##- as.matrix everything  
-## mu0=as.matrix(mu0); Sigma0=as.matrix(Sigma0); Phi=as.matrix(Phi)
-## Ups=as.matrix(Ups); Gam=as.matrix(Gam); input=as.matrix(input)
-## sR=as.matrix(sR); sQ=as.matrix(sQ)
+ # input? 
+if (is.null(input)) {Ups=0; Gam=0; input=as.matrix(rep(0,num))}
 
 ## these are used in the calls to .Kfilter1 or 2
 cQ = t(sQ)
@@ -217,11 +207,11 @@ function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,S,input){
  S     = as.matrix(S)
  y     = as.matrix(y)
  rdim  =  ncol(as.matrix(input))
-   if (max(abs(Ups))==0) Ups = matrix(0,pdim,rdim)
-   if (max(abs(Gam))==0) Gam = matrix(0,qdim,rdim)
- input  = matrix(input, nrow=num, ncol=rdim)
-    Ups = as.matrix(Ups)
-    Gam = as.matrix(Gam)
+ input = matrix(input, nrow=num, ncol=rdim)
+  if (max(abs(Ups))==0) Ups = matrix(0, nrow=pdim, ncol=rdim)
+  if (max(abs(Gam))==0) Gam = matrix(0, nrow=qdim, ncol=rdim)
+  Ups = as.matrix(Ups)
+  Gam = as.matrix(Gam)
  mu0    = as.matrix(mu0)
  Sigma0 = as.matrix(Sigma0)
  xp    =  array(NA, dim=c(pdim,1,num))      # xp = x_t^{t-1} 
