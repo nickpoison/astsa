@@ -72,7 +72,7 @@ conformable.  Notice the specification of the state and observation covariances 
 Version 2 (correlated errors): The general model  is
 \deqn{x_{t+1} = \Phi  x_{t} + \Upsilon u_{t+1} +   sQ\,  w_t \quad w_t \sim iid\ N(0,I)}
 \deqn{y_t = A_t  x_{t-1} + \Gamma u_{t} +   sR\, v_t \quad v_t \sim iid\ N(0,I)}
-where \eqn{\text{Cov}(w_t, v_t) = S}.
+where \eqn{{\rm Cov}(w_t, v_t) = S}.
 
 
 Note that in either version, \eqn{sQ\, w_t}  has to be p-dimensional, but  \eqn{w_t} does not, and

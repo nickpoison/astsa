@@ -36,7 +36,7 @@ if TRUE, the phi parameter is fixed
 }
 }
 \details{The script works for a specific univariate state space model,
-\deqn{x_t = \alpha + \phi x_{t-1} + w_t \quad \text{and} \quad y_t = A x_t + v_t.}
+\deqn{x_t = \alpha + \phi x_{t-1} + w_t \quad {\rm and} \quad y_t = A x_t + v_t.}
 The initial state conditions use a default calculation and cannot be specified.
 The parameter estimates are printed and the script returns the state predictors and
 smoothers.  The regression parameter \eqn{\phi} may be fixed.

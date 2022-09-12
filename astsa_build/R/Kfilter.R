@@ -10,7 +10,7 @@ function(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=NULL,Gam=NULL,input=NULL,S=NULL,version=1)
 # version 2
 #    x[t+1] = Ups u[t+1] + Phi x[t] + sQ w[t],  w[t]~iid N(0,I)
 #    y[t] = Gam u[t] + A[t] x[t] + sR v[t]      v[t]~ iid N(0,I) 
-#      cov(w[t], v[t]) = S (must be specified even if 0 matrix)
+#      cov(w[t], v[t]) = S 
 ##########################################################################
 ##########################################################################
 # for either version (1 or 2)
