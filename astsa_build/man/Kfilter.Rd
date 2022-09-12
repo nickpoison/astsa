@@ -39,7 +39,8 @@ state input matrix (p \code{x} r); not necessary to specify if not needed
 observation input matrix (q \code{x} r); not necessary to specify if not needed
 }
   \item{input}{
-matrix (n \code{x} r) or vector of inputs having the same row dimension (n) as y; not necessary to specify if not needed
+NULL (default) if not needed or a   
+matrix (n \code{x} r) of inputs having the same row dimension (n) as y
 }
   \item{S}{
 covariance matrix (p \code{x} q) between state and observation errors; not necessary to specify if not needed and only used if version=2.

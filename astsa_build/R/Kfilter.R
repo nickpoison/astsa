@@ -109,9 +109,6 @@ return(list(Xp=Xp,Pp=Pp,Xf=Xf,Pf=Pf,Kn=K,like=like,innov=innov,sig=sig))
 ############  multivariate cases ##############################################
 ###############################################################################
 
- # input? 
-if (is.null(input)) {Ups=0; Gam=0; input=as.matrix(rep(0,num))}
-
 ## these are used in the calls to .Kfilter1 or 2
 cQ = t(sQ)
 cR = t(sR)
@@ -137,6 +134,54 @@ return(list(Xp=kf$xp,Pp=kf$Pp,Xf=kf$xf,Pf=kf$Pf,like=kf$like,innov=kf$innov,sig=
 
 .Kfilter1 <-
 function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,input){
+#
+if (is.null(input)){  # no input
+ Q      = t(cQ)%*%cQ
+ R      = t(cR)%*%cR
+ Phi    = as.matrix(Phi)
+ pdim   = nrow(Phi) 
+ mu0    = matrix(mu0, nrow=pdim, ncol=1)
+ Sigma0 = matrix(Sigma0, nrow=pdim, ncol=pdim)
+ y      = as.matrix(y)
+ qdim   = ncol(y)
+ xp    = array(NA, dim=c(pdim,1,num))         # xp = x_t^{t-1}          
+ Pp    = array(NA, dim=c(pdim,pdim,num))      # Pp = P_t^{t-1}
+ xf    = array(NA, dim=c(pdim,1,num))         # xf = x_t^t
+ Pf    = array(NA, dim=c(pdim,pdim,num))      # Pf = x_t^t
+ innov = array(NA, dim=c(qdim,1,num))         # innovations
+ sig   = array(NA, dim=c(qdim,qdim,num))      # innov var-cov matrix
+# initialize 
+ xp[,,1]  = Phi%*%mu0 
+ Pp[,,1]  = Phi%*%Sigma0%*%t(Phi)+Q
+  B       = matrix(A[,,1], nrow=qdim, ncol=pdim)  
+ sigtemp  = B%*%Pp[,,1]%*%t(B) + R
+ sig[,,1] = (t(sigtemp)+sigtemp)/2    # innov var - make sure symmetric
+ siginv   = solve(sig[,,1])          
+ K        = Pp[,,1]%*%t(B)%*%siginv
+ innov[,,1] = y[1,] - B%*%xp[,,1]
+ xf[,,1]  = xp[,,1] + K%*%innov[,,1]
+ Pf[,,1]  = Pp[,,1] - K%*%B%*%Pp[,,1]
+ sigmat   = matrix(sig[,,1], nrow=qdim, ncol=qdim)
+ like     = log(det(sigmat)) + t(innov[,,1])%*%siginv%*%innov[,,1]   # -log(likelihood)
+############################# 
+# start filter iterations
+#############################
+ for (i in 2:num){
+  if (num < 2) break
+  xp[,,i]   = Phi%*%xf[,,i-1]
+  Pp[,,i]   = Phi%*%Pf[,,i-1]%*%t(Phi)+Q
+   B        = matrix(A[,,i], nrow=qdim, ncol=pdim)  
+  sigma     = B%*%Pp[,,i]%*%t(B) + R    
+  sig[,,i]  = (t(sigma)+sigma)/2     # make sure sig is symmetric
+  siginv    = solve(sig[,,i])          # now siginv is sig[[i]]^{-1}
+  K         = Pp[,,i]%*%t(B)%*%siginv
+  innov[,,i] = y[i,] - B%*%xp[,,i]
+  xf[,,i]   = xp[,,i] + K%*%innov[,,i]
+  Pf[,,i]   = Pp[,,i] - K%*%B%*%Pp[,,i]
+  sigmat    = matrix(sig[,,i], nrow=qdim, ncol=qdim)
+  like      = like + log(det(sigmat)) + t(innov[,,i])%*%siginv%*%innov[,,i]
+}  # end no input
+} else {  # start with input
  Q      = t(cQ)%*%cQ
  R      = t(cR)%*%cR
  Phi    = as.matrix(Phi)
@@ -188,6 +233,7 @@ function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,input){
   sigmat    = matrix(sig[,,i], nrow=qdim, ncol=qdim)
   like      = like + log(det(sigmat)) + t(innov[,,i])%*%siginv%*%innov[,,i]
  }
+ } # end with input
    like=0.5*like
    list(xp=xp,Pp=Pp,xf=xf,Pf=Pf,like=like,innov=innov,sig=sig,Kn=K)
 }
@@ -198,6 +244,42 @@ function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,input){
 # this is Kfilter2 without Theta 
 .Kfilter2 <-
 function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,S,input){
+#
+if (is.null(input)){  # no input
+ Phi   = as.matrix(Phi) 
+ num   = NROW(y)
+ pdim  = NROW(Phi) 
+ qdim  = NCOL(y)
+ Q     =  t(cQ)%*%cQ
+ R     =  t(cR)%*%cR 
+ S     = as.matrix(S)
+ y     = as.matrix(y)
+ mu0   = as.matrix(mu0)
+ Sigma0 = as.matrix(Sigma0)
+ xp    =  array(NA, dim=c(pdim,1,num))      # xp = x_t^{t-1} 
+ Pp    =  array(NA, dim=c(pdim,pdim,num))   # Pp = P_t^{t-1}
+ xf    =  array(NA, dim=c(pdim,1,num))      # xf = x_t^{t} 
+ Pf    =  array(NA, dim=c(pdim,pdim,num))   # Pf = P_t^{t}
+ innov =  array(NA, dim=c(qdim,1,num))      # innovations
+ sig   =  array(NA, dim=c(qdim,qdim,num))   # innov var-cov matrix
+ like  = 0                                  # -log(likelihood)
+ xp[,,1] = Phi%*%mu0      # mu1
+ Pp[,,1] = Phi%*%Sigma0%*%t(Phi)+ Q       # Sigma1
+ for (i in 1:num){
+   B         = matrix(A[,,i], nrow=qdim, ncol=pdim)  
+  innov[,,i] = y[i,] - B%*%xp[,,i]  
+  sigma      = B%*%Pp[,,i]%*%t(B) + R 
+  sig[,,i]   = (t(sigma)+sigma)/2     # make sure sig is symmetric
+  siginv     = solve(sigma)
+  K          = (Phi%*%Pp[,,i]%*%t(B) + t(cQ)%*%S)%*%siginv 
+  xf[,,i]    = xp[,,i] + Pp[,,i]%*%t(B)%*%siginv%*%innov[,,i]
+  Pf[,,i]    = Pp[,,i] - Pp[,,i]%*%t(B)%*%siginv%*%B%*%Pp[,,i] 
+  like       = like + log(det(sigma)) + t(innov[,,i])%*%siginv%*%innov[,,i]
+  if (i==num) break
+  xp[,,i+1]  = Phi%*%xp[,,i] + K%*%innov[,,i]
+  Pp[,,i+1]  = Phi%*%Pp[,,i]%*%t(Phi) + Q - K%*%sig[,,i]%*%t(K)
+  } # end no input
+} else { # start with input
  Phi   = as.matrix(Phi) 
  num   = NROW(y)
  pdim  = NROW(Phi) 
@@ -237,6 +319,7 @@ function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,S,input){
   xp[,,i+1]  = Phi%*%xp[,,i] + Ups%*%input[i+1,] + K%*%innov[,,i]
   Pp[,,i+1]  = Phi%*%Pp[,,i]%*%t(Phi) + Q - K%*%sig[,,i]%*%t(K)
   }
+}  # end with input   
   like=0.5*like
   list(xp=xp,Pp=Pp,xf=xf,Pf=Pf, Kn=K,like=like,innov=innov,sig=sig)
 }
