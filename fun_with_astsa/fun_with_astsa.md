@@ -14,9 +14,11 @@ it's more than just data ...
 
 &#x1F4CC;  If it helps, an updated [pdf version of the `astsa` manual](https://github.com/nickpoison/astsa/blob/master/astsa.pdf) is available.
 
-
 -----
+-----
+> &#128262; Note: when you are in a code block below, you can copy the contents of the block by moving your mouse to the upper right corner and clicking on the copy icon ( &#128203; ).
 ------
+-----
 
 ### Table of Contents
 
