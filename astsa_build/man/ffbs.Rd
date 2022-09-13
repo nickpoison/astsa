@@ -72,8 +72,7 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 D.S. Stoffer
 }
 \note{
-The script uses \code{\link{Kfilter1}}. To match the input, \code{sQ} and \code{sR} are transposed prior
-to calling  \code{Kfilter1}.  Also, if \eqn{A_t} is constant wrt time, it is not necessary to
+The script uses \code{\link{Kfilter}}.  If \eqn{A_t} is constant wrt time, it is not necessary to
 input an array; see the example.
 }
 \examples{
