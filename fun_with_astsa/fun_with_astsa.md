@@ -39,7 +39,7 @@ it's more than just data ...
      * [Spectral Matrices](#more-multivariate-spectra)
   * [6. Testing for Linearity](#6-linearity-test)
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
-     * [Quick Kalman Filter and Smoother - NEW](#&#128293;-quick-kalman-filter-and-smoother)
+     * [Quick Kalman Filter and Smoother - NEW](#quick-kalman-filter-and-smoother)
      * [Beginners Paradise - SSM](#beginners-paradise)
     * [The Old Stuff](#now-back-to-the-old-stuff)
   * [8. EM Algorithm and Missing Data](#8-em-algorithm-and-missing-data)
@@ -897,9 +897,9 @@ tsplot(nyse, col=4)
 ## 7. State Space Models
 
  First, the new and improved
-### &#128293; Quick Kalman Filter and Smoother 
+ ### Quick Kalman Filter and Smoother 
 
-We've added two new scripts to simplify Kalman filtering and smoothing for linear state space models. The scripts are
+&#128293; We've added two new scripts to simplify Kalman filtering and smoothing for linear state space models. The scripts are
 > `Kfilter` and `Ksmooth`
 
 and are meant to replace  `Kfilter0/Ksmooth0`,  `Kfilter1/Ksmooth1`, `Kfilter2/Ksmooth2` with simplified arguments and faster running times. 
