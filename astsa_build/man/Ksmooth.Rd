@@ -93,6 +93,7 @@ Note that in either version, \eqn{sQ\, w_t}  has to be p-dimensional, but  \eqn{
 \item{like }{negative of the log likelihood}
 \item{innov }{innovation series}
 \item{sig }{innovation covariances}
+\item{Kn }{the value of the last Gain}
 }
 
 \references{You can find demonstrations of  astsa capabilities at  

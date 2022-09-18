@@ -40,5 +40,5 @@ kf = Kfilter(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=Ups,Gam=Gam,input=input,S=S,version=ve
    X0n =  as.matrix(mu0 + J0%*%(Xs[,,1] - kf$Xp[,,1]), nrow=pdim, ncol=1)
    P0n =  Sigma0 + J0%*%(Ps[,,1] - kf$Pp[,,1])%*%t(J0)
 #
-list(Xs=Xs,Ps=Ps,X0n=X0n,P0n=P0n,J0=J0,J=J,Xp=kf$Xp,Pp=kf$Pp,Xf=kf$Xf,Pf=kf$Pf,like=kf$like,innov=kf$innov,sig=kf$sig)
+list(Xs=Xs,Ps=Ps,X0n=X0n,P0n=P0n,J0=J0,J=J,Xp=kf$Xp,Pp=kf$Pp,Xf=kf$Xf,Pf=kf$Pf,like=kf$like,innov=kf$innov,sig=kf$sig,Kn=kf$Kn)
 } # end
