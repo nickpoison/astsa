@@ -1329,13 +1329,13 @@ $cvg
 + Now  plot the results.
 
 ```r
-# Run smoother at the estimates
-ks  = Ksmooth1(num, y, A, em$mu0, em$Sigma0, em$Phi, 0, 0, chol(em$Q), chol(em$R), 0)
+# Run smoother at the estimates (using the new Ksmooth script)
+ks  = Ksmooth(y, A, em$mu0, em$Sigma0, em$Phi, sQ=t(chol(em$Q)), sR=sqrt(em$R))
 
 # Pull out the values
-y1s = ks$xs[1,,]
-y2s = ks$xs[2,,]
-y3s = ks$xs[3,,]
+y1s = ks$Xs[1,,]
+y2s = ks$Xs[2,,]
+y3s = ks$Xs[3,,]
 p1  = 2*sqrt(ks$Ps[1,1,])
 p2  = 2*sqrt(ks$Ps[2,2,])
 p3  = 2*sqrt(ks$Ps[3,3,])
