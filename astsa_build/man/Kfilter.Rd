@@ -66,10 +66,16 @@ where \eqn{w_t \perp v_t}. Consequently the state noise covariance matrix is
 \eqn{R = sR\, sR'} and \eqn{sQ, sR}  do not have to be square as long as everything is
 conformable.  Notice the specification of the state and observation covariances has changed from the original scripts.
 
+\emph{NOTE:} If it is easier to model in terms of \eqn{Q} and \eqn{R}, simply input the square root matrices
+\code{sQ = Q \%^\% .5} and \code{sR = R \%^\% .5}.
+
 Version 2 (correlated errors): The general model  is
 \deqn{x_{t+1} = \Phi  x_{t} + \Upsilon u_{t+1} +   sQ\,  w_t \quad w_t \sim iid\ N(0,I)}
 \deqn{y_t = A_t  x_{t-1} + \Gamma u_{t} +   sR\, v_t \quad v_t \sim iid\ N(0,I)}
 where \eqn{{\rm Cov}(w_t, v_t) = S}.
+
+\emph{NOTE:}   If it is easier to model in terms of \eqn{Q} and \eqn{R}, simply input the square root matrices
+\code{sQ = Q \%^\% .5} and \code{sR = R \%^\% .5}.
 
 
 Note that in either version, \eqn{sQ\, w_t}  has to be p-dimensional, but  \eqn{w_t} does not, and
@@ -98,6 +104,9 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 \note{Note that \code{Kfilter} is similar to \code{Kfilter-0-1-2} except that only the essential values need to be entered (and come first in the statement); the optional values such as 
    \code{input} are set to \code{NULL} by default if they are not needed. This version is faster
    than the older versions. The biggest change was to how the covarainces are specified. For example, if you have code that used \code{Kfilter1}, just use \code{sQ = t(cQ)} and \code{sR = t(cR)} here.
+   
+NOTE: If it is easier to model in terms of \eqn{Q} and \eqn{R}, simply input the square root matrices
+\eqn{sQ = Q\%^\%.5} and \eqn{sR = R\%^\%.5}.   
 }
 \author{D.S. Stoffer
 }
