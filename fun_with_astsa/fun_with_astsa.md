@@ -898,13 +898,22 @@ tsplot(nyse, col=4)
 
 ## 7. State Space Models
 
- First, the new and improved
+
+
+
+First, the new and improved
  ### Quick Kalman Filter and Smoother 
 
-&#128293; We've added two new scripts to simplify Kalman filtering and smoothing for linear state space models. The scripts are
+ &#128293; We've added two new scripts to simplify Kalman filtering and smoothing for linear state space models. 
+
+
+
+The scripts are
 > `Kfilter` and `Ksmooth`
 
 and are meant to replace  `Kfilter0/Ksmooth0`,  `Kfilter1/Ksmooth1`, `Kfilter2/Ksmooth2` with simplified arguments and faster running times. 
+
+&#10067;  See the help files `?Kfilter` and `?Ksmooth` to see how the models are specified. &#10067;  
 
 &#x1F535; We'll do the bootstrap example from the text, which used to take a long time... but now is very fast.
 
