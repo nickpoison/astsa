@@ -915,15 +915,15 @@ and are meant to replace  `Kfilter0/Ksmooth0`,  `Kfilter1/Ksmooth1`, `Kfilter2/K
 
 The default is
 
-&diams; **Version 1:**  &nbsp; &nbsp;  x<sub>t</sub> = &Phi; x<sub>t-1</sub> +  &Upsilon; u<sub>t</sub> + sQ w<sub>t</sub>,  &nbsp; &nbsp;  y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> +  &Gamma; u<sub>t</sub> + sR v<sub>t</sub>,
+&diams; **Version 1:**  &nbsp; &nbsp;  x<sub>t</sub> = &Phi; x<sub>t-1</sub> +  &Upsilon; u<sub>t</sub> + sQ w<sub>t</sub>  &nbsp; and &nbsp;  y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> +  &Gamma; u<sub>t</sub> + sR v<sub>t</sub>,
 
 where w<sub>t</sub> ~ iid N(0, I) &perp;   v<sub>t</sub> ~ iid N(0, I) &perp; x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>).  In this case Q = sQ sQ' and R = sR sR'.  If it's easier to model by specifying Q and/or R, you can use `sQ = t(chol(Q))` or `sQ = Q %^% .5` and so on.  
 
-There is an option to select     
+There is an option to select correlated errors:  
 
-&diams; **Version 2:** &nbsp; &nbsp; x<sub>t</sub> = &Phi; x<sub>t-1</sub> +  &Upsilon; u<sub>t</sub> + sQ w<sub>t-1</sub>, &nbsp;   &nbsp;   y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> +  &Gamma; u<sub>t</sub> + sR v<sub>t</sub>, 
+&diams; **Version 2:** &nbsp; &nbsp; x<sub>t+1</sub> = &Phi; x<sub>t</sub> +  &Upsilon; u<sub>t+1</sub> + sQ w<sub>t</sub>, &nbsp; and   &nbsp;   y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> +  &Gamma; u<sub>t</sub> + sR v<sub>t</sub>, 
 
-cov(w<sub>s</sub>, v<sub>t</sub>) = S &delta;<sub>s</sub><span style="position:relative; left: -.9ex; bottom: 2pt"><sup>t</sup></span> and so on.
+where cov(w<sub>s</sub>, v<sub>t</sub>) = S &delta;<sub>s</sub><span style="position:relative; left: -.9ex; bottom: 2pt"><sup>t</sup></span> and so on.
 
 
 &#10067;  See the help files `?Kfilter` and `?Ksmooth` to see how the models are specified. &#10067;  
