@@ -33,10 +33,10 @@ state error pre-matrix (see details)
 observation error pre-matrix (see details)
 }
   \item{Ups}{
-state input matrix (p \code{x} r); not necessary to specify if not needed
+state input matrix (p \code{x} r); leave as NULL (default) if not needed
 }
   \item{Gam}{
-observation input matrix (q \code{x} r); not necessary to specify if not needed
+observation input matrix (q \code{x} r); leave as NULL (default) if not needed
 }
   \item{input}{
 NULL (default) if not needed or a   

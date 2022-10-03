@@ -14,8 +14,10 @@ function(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=NULL,Gam=NULL,input=NULL,S=NULL,version=1)
 ##########################################################################
 ##########################################################################
 # for either version (1 or 2)
-#    sQ is a p*pm matrix and w[t] is pm*1, so variance comes in as sQ sQ'
-#         it can be t(chol(Q)) so that it's the lower triangle matrix
+#    sQ is a p*pm matrix and w[t] is pm*1, so variance comes in as 
+#     Q = sQ sQ' - it can be sQ = t(chol(Q)) if Q is pd so that 
+#      it's the lower triangle matrix or 
+#      sQ = Q%^%.5, the square root matrix if Q is psd.
 #    sR is q*qm and v[t] is qm*1 ... etc
 #    t = 1,...,n, x is p-dim, y is q-dim, and input is r-dim
 ##-  A should be array of dim(q,p,n) unless it is constant (matrix is ok)

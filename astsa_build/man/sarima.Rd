@@ -66,7 +66,7 @@ sarima(rec,2,0,0)  # data, p, d, and q
 sarima(rec, 2,0,0, details=FALSE)$ttable  # print t-table only
 
 (dog <- sarima(log(AirPassengers), 0,1,1, 0,1,1,12))
-str(dog$fit)      # fit has all the returned arima values
+str(dog$fit, vec.len=1) # fit has all the returned arima values
 tsplot(resid(dog$fit))  # plot the innovations (residuals) 
 
 # fixed parameters
