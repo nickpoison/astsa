@@ -16,8 +16,9 @@ Ksmooth(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL,
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{y}{
-data matrix (n \code{x} q), vector or time series, n = number of observations}.
+data matrix (n \code{x} q), vector or time series, n = number of observations.
 Use \code{NA} or  zero (0) for missing data.
+}
   \item{A}{
 can be constant or an array with dimension \code{dim=c(q,p,n)} if time varying (see details)
 }
