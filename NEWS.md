@@ -27,9 +27,11 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ---
 
-### Versions 1.16 - September 2022: 
+### Versions 1.16 - October 2022: 
 
-+ <span style="font-size:larger;">__v1.16.3__</span>: (GitHub only) - Added 2 new scripts and updated others.
++ <span style="font-size:larger;">__v1.16.5__</span>: (GitHub only) - Added 2 new scripts and updated others.
+   
+   - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfiler` and `Ksmooth` scripts. In addition, the script now accepts inputs in both the state and observations equations. There's an example in the help file (?EM) but other examples will be on [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) soon.
 
    - Added `Kfilter` which is faster than `Kfilter0-1-2` (these will stay in `astsa`), easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
