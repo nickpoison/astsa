@@ -95,16 +95,12 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 }
 \examples{
 # example used for ssm()
-# x[t] = Ups + Phi x[t-1] + sQ w[t]
-# y[t] = x[t] + sR v[t]
-y   = gtemp_land  
-A   = 1
-Phi = 1        
-Ups = 0.01
-Q   = 0.001       
-R   = 0.01
-mu0 = -0.6   
-Sigma0 = 0.02
+# x[t] = Ups + Phi x[t-1] + w[t]
+# y[t] = x[t] + v[t]
+y = gtemp_land  
+A = 1; Phi = 1; Ups = 0.01
+Q = 0.001; R = 0.01
+mu0 = -0.6; Sigma0 = 0.02
 input = rep(1, length(y))
 ( em = EM(y, A, mu0, Sigma0, Phi, Q, R, Ups, Gam=NULL, input) ) 
 }
