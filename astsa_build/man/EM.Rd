@@ -94,7 +94,7 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 \code{\link{Kfilter}, \link{Ksmooth}, \link{EM0}, \link{EM1} }
 }
 \examples{
-# example used for ssm()
+# example used for ssm() 
 # x[t] = Ups + Phi x[t-1] + w[t]
 # y[t] = x[t] + v[t]
 y = gtemp_land  
