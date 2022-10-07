@@ -20,7 +20,8 @@ data matrix (n \code{x} q), vector or time series, n = number of observations.
 Use \code{NA} or  zero (0) for missing data.
 }
   \item{A}{
-can be constant or an array with dimension \code{dim=c(q,p,n)} if time varying (see details)
+can be constant or an array with dimension \code{dim=c(q,p,n)} if time varying (see details).
+Use \code{NA} or  zero (0) for missing data.
 }
   \item{mu0}{
 initial state mean vector (p \code{x} 1)
