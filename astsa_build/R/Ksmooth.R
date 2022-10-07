@@ -25,6 +25,10 @@ function(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=NULL,Gam=NULL,input=NULL,S=NULL,version=1)
  num  = NROW(y)
  pdim = NROW(Phi) 
  qdim = NCOL(y)
+
+## set NAs to zeros
+y[is.na(y)]=0
+A[is.na(A)]=0
 ###########################################################################
 kf = Kfilter(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=Ups,Gam=Gam,input=input,S=S,version=version)
   Xs  = array(NA, dim=c(pdim,1,num))       # Xs = x_t^n

@@ -43,7 +43,7 @@ it's more than just data ...
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
      * [Quick Kalman Filter and Smoother - NEW](#quick-kalman-filter-and-smoother)
      * [Beginners Paradise - SSM](#beginners-paradise)
-    * [The Old Stuff](#now-back-to-the-old-stuff)
+    * [The Old Stuff](#the-old-stuff)
   * [8. EM Algorithm and Missing Data](#8-em-algorithm-and-missing-data)
   * [9. Bayesian Techniques](#9-bayesian-techniques)
       * [AR Models](#ar-models)
@@ -1142,98 +1142,17 @@ List of 6
 
 <br/>
 
-###  now back to the old stuff
+###  the old stuff
 &#9888; THE FOLLOWING HAS BEEN SUPERSCEDED BY `Kfilter` and `Ksmooth` DESCRIBED ABOVE
 
-For general models, there are three levels of filtering and smoothing,
 
 > **`Kfilter0()/Ksmooth0()`**, **`Kfilter1()/Ksmooth1()`**, **`Kfilter2()/Ksmooth2()`**
 
-Further explanations are also given on a [special page on Kalman filtering and
-smoothing](https://github.com/nickpoison/tsa4/blob/master/chap6.md) for the text.
+These are still in `astsa` so as not to break anything and the old
+ [special page on Kalman filtering and
+smoothing](https://github.com/nickpoison/tsa4/blob/master/chap6.md) page with the old 
+code is still up.
 
-MLE is accomplished via  the `Kfilter_()`s, each of  which returns the value
-of -log.likelihood of the innovations.
-
-
-&#x1F535; We'll give an example of using `Kfiler0()` on some generated data.
-The model is a simple AR(1) plus noise:
-
-&emsp;&emsp;_x<sub>t</sub> =  &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = x<sub>t</sub> + v<sub>t</sub>_<br/>
-
-
-```r
-# Generate Data
-set.seed(999)
-num  = 100
-N    = num+1
-x    = sarima.sim(n=N, ar=.8)      # state x[0], x[1], ..., x[100]
-y    = ts(x[-1] + rnorm(num,0,1))  # obs         y[1], ..., y[100]
-
-
-# Function to evaluate the likelihood
-Linn  = function(para){
-  phi = para[1]; sigw = para[2]; sigv = para[3]
-  kf  = Kfilter0(num, y, A=1, mu0=0, Sigma0=10, phi, sigw, sigv)
-  return(kf$like)
-  }
-
-# Estimation
-init.par = c(.1, 1, 1)   # initial parameter values
-(est = optim(init.par, Linn, gr=NULL, method="BFGS", hessian=TRUE, control=list(trace=1,REPORT=1)))
-
-   # output from numerical optimization
-   initial  value 115.748358
-   iter   2 value 98.291352
-   iter   3 value 94.054737
-   iter   4 value 93.454266
-   iter   5 value 92.192204
-   iter   6 value 91.398541
-   iter   7 value 91.368801
-   iter   8 value 91.365538
-   iter   9 value 91.365527
-   iter   9 value 91.365526
-   iter   9 value 91.365525
-   final  value 91.365525
-   converged
-   $par
-   [1] 0.7653691 1.0408250 0.9348492
-
-   $value
-   [1] 91.36552
-
-   $counts
-   function gradient
-         28        9
-
-   $convergence
-   [1] 0
-
-   $message
-   NULL
-
-   $hessian
-             [,1]     [,2]     [,3]
-   [1,] 178.81837 46.95386 -8.64152
-   [2,]  46.95386 60.71263 38.88109
-   [3,]  -8.64152 38.88109 65.62742
-
-# nice display of the results
-SE = sqrt(diag(solve(est$hessian)))
-cbind(estimate=c(phi=est$par[1],sigw=est$par[2],sigv=est$par[3]), SE)
-
-         estimate         SE
-   phi  0.7653691 0.09726158   # actual phi = .8
-  sigw  1.0408250 0.21121288   # actual sigw = 1
-  sigv  0.9348492 0.18193356   # actual sigv = 1
-
-# and maybe plot the data with the smoother
-ks =  Ksmooth0(num, y, A=1,mu0=0, Sigma0=10, est$par[1], est$par[2], est$par[3])
-tsplot(y, type='o', col=4, pch=20)
-lines(ks$xs, col=6, lwd=2)
-```
-
-<img src="figs/ksmoo.png" alt="ksmoo"  width="75%">
 
 
 [<sub>top</sub>](#table-of-contents)
@@ -1243,13 +1162,72 @@ lines(ks$xs, col=6, lwd=2)
 ## 8. EM Algorithm and Missing Data
 
 &#x1F4A1;  To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) and discussed in detail in Chapter 6 of the
-text [Time Series Analysis and Its Applications: With R Examples](http://www.springer.com/us/book/9783319524511), there are two scripts
+text [Time Series Analysis and Its Applications: With R Examples](http://www.springer.com/us/book/9783319524511) can be accomplished using the new script
 
-> **`EM0()`** and **`EM1()`**
+> **`EM()`**
 
-that follow the Kalman filtering scripts, `EM0` does the EM Algorithm for Time Invariant State Space Models, and `EM1` does the EM Algorithm for General State Space Models.
+which replaces `EM0` and `EM1`.  The new script is faster and allows inputs in both the state
+and observation equations.
 
-&#x1F535; We'll do an example for the general set up using the data in `blood` containing the daily blood work of a patient for 90 days and where there are many missing observations after the first month.
+&#x1F535;  We'll do the simple example that was used for [`ssm()`](#beginners-paradise) above.
+The model for `y = gtemp_land` is
+
+&emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/>
+
+where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
+
+```r
+y = gtemp_land
+A = 1
+Ups = .01  # alpha
+Phi = 1 
+Q = .001
+R = .01
+mu0 = mean(y[1:5])
+Sigma0 = var(jitter(y[1:5]))
+input = rep(1, length(y))
+( em = EM(y, A, mu0, Sigma0, Phi, Q, R, Ups, Gam=NULL, input) ) 
+# notice you input Q and R now
+```
+with partial output
+```
+$Phi
+[1] 1.014343
+
+$Q
+            [,1]
+[1,] 0.001379695
+
+$R
+           [,1]
+[1,] 0.02291215
+
+$Ups
+[1] 0.01261561
+
+$Gam
+NULL
+
+$mu0
+           [,1]
+[1,] -0.6014448
+
+$Sigma0
+             [,1]
+[1,] 0.0005205546
+
+$like
+ [1] -142.8227 -172.8538 -173.5373 -173.6148 -173.6633 -173.7014 -173.7324 -173.7581 -173.7799 -173.7985 -173.8145
+
+$niter
+[1] 11
+
+$cvg
+[1] 9.246853e-05
+```
+
+
+&#x1F535; Next, we'll do a missing data  `blood` example, which contains the daily blood work of a patient for 90 days and where there are many missing observations after the first month.
 
 
 ```r
@@ -1268,11 +1246,10 @@ The errors are  _w<sub>t</sub> ~ iid N<sub>3</sub>(0, Q)_ &perp;   _v<sub>t</sub
 
 
 ```r
-y    = cbind(WBC, PLT, HCT)      # variables in blood with 0s instead of NAs
-#  y = blood;  y[is.na(y)] = 0   # this works too
+y    = blood  # missing values are NA
 num  = nrow(y)
 A    = array(0, dim=c(3,3,num))  # creates num 3x3 zero matrices
-for(k in 1:num) if (y[k,1] > 0) A[,,k]= diag(1,3) # measurement matrices for observed
+for(k in 1:num) if (!is.na(y[k,1])) A[,,k]= diag(1,3) # measurement matrices for observed
 
 ```
 
@@ -1282,77 +1259,84 @@ for(k in 1:num) if (y[k,1] > 0) A[,,k]= diag(1,3) # measurement matrices for obs
 # Initial values
 mu0    = matrix(0,3,1)
 Sigma0 = diag(c(.1,.1,1) ,3)
-Phi    = diag(1,3)
-cQ     = diag(c(.1,.1,1), 3)
-cR     = diag(c(.1,.1,1), 3)
-(em = EM1(num, y, A, mu0, Sigma0, Phi, cQ, cR, 100, .001))
+Phi    = diag(1, 3)
+Q     = diag(c(.01,.01,1), 3) 
+R     = diag(c(.01,.01,1), 3) 
+# Run  EM
+(em = EM(y, A, mu0, Sigma0, Phi, Q, R))
 ```
-
-Note that, as in the `Kfilter_` and `Ksmooth_` scripts,
-`cQ` and `cR` are the Cholesky-type decompositions of `Q` and `R`. In particular, `Q = t(cQ)%*%cQ` and `R = t(cR)%*%cR` is all that is required (assuming `Q` and `R` are valid covariance matrices).  In this example, the covariance matrix `R` is diagonal, so the elements of `cR` are the standard deviations.
-
 The (partial) output is
 
 ```r
-iteration    -loglikelihood
-     1           68.28328
-     2          -183.9361
-     3          -194.2051
-     4          -197.5444
-     5          -199.7442
-
-    20          -220.2935
-    21          -221.1649
-    22          -221.9869
-    23          -222.762
-    24          -223.4924
-    25          -224.1805
-
-    40          -230.6582
-    41          -230.9019
-    42          -231.1289
+iteration    -loglikelihood 
+    1            68.28328 
+    2           -183.9361 
+    3           -194.2051 
+    4           -197.5444 
+    5           -199.7442 
+ 
+    60          -233.2111 
+    61          -233.2501 
+    62          -233.2837 
+    63          -233.3121 
+    64          -233.3357 
+    65          -233.3545 
 
 # estimates below
 
 $Phi
             [,1]        [,2]        [,3]
-[1,]  0.98052698 -0.03494377 0.008287009
-[2,]  0.05279121  0.93299479 0.005464917
-[3,] -1.46571679  2.25780951 0.795200344
+[1,]  0.98395673 -0.03975976 0.008688178
+[2,]  0.05726606  0.92656284 0.006023044
+[3,] -1.26586175  1.96500888 0.820475630
 
 $Q
              [,1]         [,2]       [,3]
-[1,]  0.013786772 -0.001724166 0.01882951
-[2,] -0.001724166  0.003032109 0.03528162
-[3,]  0.018829510  0.035281625 3.61897901
+[1,]  0.013786286 -0.001974193 0.01147321
+[2,] -0.001974193  0.002796296 0.02685780
+[3,]  0.011473214  0.026857800 3.33355946
 
 $R
-            [,1]      [,2]      [,3]
-[1,] 0.007124671 0.0000000 0.0000000
-[2,] 0.000000000 0.0168669 0.0000000
-[3,] 0.000000000 0.0000000 0.9724247
+           [,1]       [,2]      [,3]
+[1,] 0.00694027 0.00000000 0.0000000
+[2,] 0.00000000 0.01707764 0.0000000
+[3,] 0.00000000 0.00000000 0.9389751
 
 $mu0
           [,1]
-[1,]  2.119269
-[2,]  4.407390
-[3,] 23.905038
+[1,]  2.137368
+[2,]  4.417385
+[3,] 25.815731
 
 $Sigma0
               [,1]          [,2]          [,3]
-[1,]  4.553949e-04 -5.249215e-05  0.0005877626
-[2,] -5.249215e-05  3.136928e-04 -0.0001199788
-[3,]  5.877626e-04 -1.199788e-04  0.1677365489
+[1,]  2.910997e-04 -4.161189e-05  0.0002346656
+[2,] -4.161189e-05  1.923713e-04 -0.0002854434
+[3,]  2.346656e-04 -2.854434e-04  0.1052641500
+
+$like
+ [1]   68.28328 -183.93608 -194.20508 -197.54440 -199.74425 -201.64313 -203.42258 -205.12530 -206.75951 -208.32511
+[11] -209.82091 -211.24639 -212.60202 -213.88906 -215.10935 -216.26514 -217.35887 -218.39311 -219.37048 -220.29354
+[21] -221.16485 -221.98686 -222.76196 -223.49243 -224.18049 -224.82824 -225.43771 -226.01085 -226.54953 -227.05552
+[31] -227.53054 -227.97621 -228.39410 -228.78569 -229.15242 -229.49563 -229.81661 -230.11659 -230.39674 -230.65816
+[41] -230.90189 -231.12893 -231.34021 -231.53662 -231.71899 -231.88811 -232.04473 -232.18954 -232.32321 -232.44634
+[51] -232.55954 -232.66333 -232.75824 -232.84475 -232.92332 -232.99437 -233.05831 -233.11551 -233.16633 -233.21110
+[61] -233.25013 -233.28372 -233.31215 -233.33567 -233.35454
+
+$niter
+[1] 65
 
 $cvg
-[1] 0.0009832656  # relative tolerance of -loglikelihood at convergence
+[1] 8.086056e-05   # relative tolerance of -loglikelihood at convergence
 ```
 
 + Now  plot the results.
 
 ```r
 # Run smoother at the estimates (using the new Ksmooth script)
-ks  = Ksmooth(y, A, em$mu0, em$Sigma0, em$Phi, sQ=t(chol(em$Q)), sR=sqrt(em$R))
+sQ = em$Q %^% .5
+sR = sqrt(em$R)
+ks  = Ksmooth(y, A, em$mu0, em$Sigma0, em$Phi, sQ, sR)
 
 # Pull out the values
 y1s = ks$Xs[1,,]

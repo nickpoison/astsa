@@ -29,6 +29,10 @@ if (is.na(dim(as.array(A))[3]) && NROW(A)==qdim && NCOL(A) == pdim){
     A = array(A, dim=c(qdim,pdim,num))
 }
 
+## set NAs to zeros
+y[is.na(y)]=0
+A[is.na(A)]=0
+
 ###########################################################################
 #########  univariate cases p=q=1  and r is free
 ###########################################################################
