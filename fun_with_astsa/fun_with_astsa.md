@@ -1162,7 +1162,8 @@ code is still up.
 ## 8. EM Algorithm and Missing Data
 
 &#x1F4A1;  To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) and discussed in detail in Chapter 6 of the
-text [Time Series Analysis and Its Applications: With R Examples](http://www.springer.com/us/book/9783319524511) can be accomplished using the new script
+text [Time Series Analysis and Its Applications: With R Examples](http://www.springer.com/us/book/9783319524511), use the new script 
+
 
 > **`EM()`**
 
@@ -1177,17 +1178,17 @@ The model for `y = gtemp_land` is
 where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
 
 ```r
-y = gtemp_land
-A = 1
-Ups = .01  # alpha
+y   = gtemp_land
+A   = 1        # if A is constant, enter it that way now
+Ups = 0.01     # alpha
 Phi = 1 
-Q = .001
-R = .01
-mu0 = mean(y[1:5])
-Sigma0 = var(jitter(y[1:5]))
-input = rep(1, length(y))
+Q   = 0.001    # notice you input Q 
+R   = 0.01     #  and R now
+mu0 = mean(y[1:5])           # this is how ssm() chooses
+Sigma0 = var(jitter(y[1:5])) #  initial state values
+input  = rep(1, length(y))
 ( em = EM(y, A, mu0, Sigma0, Phi, Q, R, Ups, Gam=NULL, input) ) 
-# notice you input Q and R now
+
 ```
 with partial output
 ```
@@ -1226,6 +1227,7 @@ $cvg
 [1] 9.246853e-05
 ```
 
+**NOTE: Missing data can now be entered as NA or zero (0) in the data (y) and measurement matrices (A<sub>t</sub>).
 
 &#x1F535; Next, we'll do a missing data  `blood` example, which contains the daily blood work of a patient for 90 days and where there are many missing observations after the first month.
 
