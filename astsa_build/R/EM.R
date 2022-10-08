@@ -13,18 +13,11 @@ return(em)
 }
 
 
-.EMno <-
-function(y, A, mu0, Sigma0, Phi, sQ, sR, Ups=NULL, Gam=NULL, input=NULL,
-           max.iter=max.iter, tol=tol){
 ######################################################################################
 ######## NO INPUT ####################################################################
 ######################################################################################
-
-
-#################################################
-### missing y and A use 0s (zeros) as in text
-### but can be NA
-#################################################
+.EMno <-
+function(y, A, mu0, Sigma0, Phi, sQ, sR, Ups, Gam, input, max.iter, tol){
 
 ## set NAs to zeros
 y[is.na(y)]=0
@@ -36,7 +29,6 @@ qdim = NCOL(y)
 if (is.na(dim(as.array(A))[3]) && NROW(A)==qdim && NCOL(A) == pdim){
     A = array(A, dim=c(qdim,pdim,num))
 }
-
 
 #################################################
 #########  univariate cases p=q=1  
@@ -101,6 +93,7 @@ for(iter in 1:max.iter){
   Sigma0 = ks$P0n
 }
 } else { # end univariate  
+
 #################################################
 #########  multivariate cases
 #################################################
@@ -168,30 +161,20 @@ for(iter in 1:max.iter){
 }
 }
 list(Phi=Phi,Q=Q,R=R,mu0=mu0,Sigma0=Sigma0,like=like[1:iter],niter=iter,cvg=cvg)
-} # end 
+} # end no input
 
 
-
-.EMin <-
-function(y, A, mu0, Sigma0, Phi, sQ, sR, Ups, Gam, input, max.iter=max.iter, tol=tol){
 ########################################################################################
 ########################################################################################
 ######## WITH INPUT ####################################################################
 ########################################################################################
 ########################################################################################
-
-
-#################################################
-### missing y and A use 0s (zeros) as in text
-### but can be NA
-#################################################
+.EMin <-
+function(y, A, mu0, Sigma0, Phi, sQ, sR, Ups, Gam, input, max.iter, tol){
 
 # will only come here if input is not NULL
 # now check if there is at least one of Ups or Gam
- chk = 0L
- if (is.null(Ups)) chk = chk + 1L
- if (is.null(Gam)) chk = chk + 1L
- if (chk > 1L) stop("there is 'input' but 'Ups' and 'Gam' are not specified")
+if (is.null(Ups) & is.null(Gam))  stop("there is 'input' but 'Ups' and 'Gam' are not specified")
 
 ## set NAs to zeros
 y[is.na(y)]=0

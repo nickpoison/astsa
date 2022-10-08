@@ -123,10 +123,7 @@ cR = t(sR)
 
 # now check if input, there is at least one of Ups or Gam
 if (!is.null(input)){
- chk = 0L
- if (is.null(Ups)) chk = chk + 1L
- if (is.null(Gam)) chk = chk + 1L
- if (chk > 1L) stop("there is 'input' but 'Ups' and 'Gam' are not specified")
+if (is.null(Ups) & is.null(Gam))  stop("there is 'input' but 'Ups' and 'Gam' are not specified")
 }
 
 ###############################################################################
@@ -197,7 +194,9 @@ if (is.null(input)){  # no input
   sigmat    = matrix(sig[,,i], nrow=qdim, ncol=qdim)
   like      = like + log(det(sigmat)) + t(innov[,,i])%*%siginv%*%innov[,,i]
 }  # end no input
+#
 } else {  # start with input
+#
  Q      = t(cQ)%*%cQ
  R      = t(cR)%*%cR
  Phi    = as.matrix(Phi)
@@ -295,7 +294,9 @@ if (is.null(input)){  # no input
   xp[,,i+1]  = Phi%*%xp[,,i] + K%*%innov[,,i]
   Pp[,,i+1]  = Phi%*%Pp[,,i]%*%t(Phi) + Q - K%*%sig[,,i]%*%t(K)
   } # end no input
+#
 } else { # start with input
+#
  Phi   = as.matrix(Phi) 
  num   = NROW(y)
  pdim  = NROW(Phi) 
