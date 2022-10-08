@@ -33,6 +33,8 @@ if (is.na(dim(as.array(A))[3]) && NROW(A)==qdim && NCOL(A) == pdim){
 y[is.na(y)]=0
 A[is.na(A)]=0
 
+
+
 ###########################################################################
 #########  univariate cases p=q=1  and r is free
 ###########################################################################
@@ -119,6 +121,14 @@ return(list(Xp=Xp,Pp=Pp,Xf=Xf,Pf=Pf,Kn=K,like=like,innov=innov,sig=sig))
 cQ = t(sQ)
 cR = t(sR)
 
+# now check if input, there is at least one of Ups or Gam
+if (!is.null(input)){
+ chk = 0L
+ if (is.null(Ups)) chk = chk + 1L
+ if (is.null(Gam)) chk = chk + 1L
+ if (chk > 1L) stop("there is 'input' but 'Ups' and 'Gam' are not specified")
+}
+
 ###############################################################################
 if (version == 1){
 ###############################################################################
@@ -198,8 +208,8 @@ if (is.null(input)){  # no input
  qdim   = ncol(y)
  rdim   = ncol(as.matrix(input))
  input  = matrix(input, nrow=num, ncol=rdim)
-   if (max(abs(Ups))==0) Ups = matrix(0, nrow=pdim, ncol=rdim)
-   if (max(abs(Gam))==0) Gam = matrix(0, nrow=qdim, ncol=rdim)
+   if (is.null(Ups)) Ups = matrix(0, nrow=pdim, ncol=rdim)
+   if (is.null(Gam)) Gam = matrix(0, nrow=qdim, ncol=rdim)
    Ups = as.matrix(Ups)
    Gam = as.matrix(Gam)
  xp    = array(NA, dim=c(pdim,1,num))         # xp = x_t^{t-1}          
@@ -296,8 +306,8 @@ if (is.null(input)){  # no input
  y     = as.matrix(y)
  rdim  =  ncol(as.matrix(input))
  input = matrix(input, nrow=num, ncol=rdim)
-  if (max(abs(Ups))==0) Ups = matrix(0, nrow=pdim, ncol=rdim)
-  if (max(abs(Gam))==0) Gam = matrix(0, nrow=qdim, ncol=rdim)
+  if (is.null(Ups)) Ups = matrix(0, nrow=pdim, ncol=rdim)
+  if (is.null(Gam)) Gam = matrix(0, nrow=qdim, ncol=rdim)
   Ups = as.matrix(Ups)
   Gam = as.matrix(Gam)
  mu0    = as.matrix(mu0)
