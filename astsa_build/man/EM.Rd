@@ -5,6 +5,7 @@ EM Algorithm for State Space Models
 }
 \description{Estimation of the parameters in general linear state space models via the EM algorithm.   
 Missing data may be entered as \code{NA} or as zero (0). Inputs in both the state and observation equations are allowed.
+This script replaces \code{EM0} and \code{EM1}.
 }
 \usage{
 EM(y, A, mu0, Sigma0, Phi, Q, R, Ups = NULL, Gam = NULL, input = NULL, 
@@ -91,7 +92,7 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
 \author{D.S. Stoffer
 }
 \seealso{
-\code{\link{Kfilter}, \link{Ksmooth}, \link{EM0}, \link{EM1} }
+\code{\link{Kfilter}, \link{Ksmooth} }
 }
 \examples{
 # example used for ssm() 
