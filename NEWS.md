@@ -30,15 +30,16 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ### Versions 1.16 - October 2022: 
 
 + <span style="font-size:larger;">__v1.16.5__</span>: (GitHub only) - Added new scripts and updated others.
+
+**NOTE** that the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now:
+     `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
    
-   - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfilter` and `Ksmooth` scripts. In addition, the script now accepts inputs in both the state and observations equations. There's an example in the help file (?EM) and other examples on [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
-   - Added `Kfilter` which is faster than `Kfilter0-1-2` (these will stay in `astsa`), easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
+   - Added `Kfilter` which is faster than `Kfilter0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
-   -  Added `Ksmooth` which is faster than `Ksmooth0-1-2` (these will stay in `astsa`), easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
+   -  Added `Ksmooth` which is faster than `Ksmooth0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
-   - NOTE that the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them:
-     `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting old scripts to use the newer scripts should be easy with only minor changes.
+     - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfilter` and `Ksmooth` scripts. In addition, the script now accepts inputs in both the state and observations equations. There's an example in the help file (?EM) and other examples on [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
    - Updated (to run with the new `Kfilter` and `Ksmooth` scripts):
       + the Forward Filtering Backward Smoothing script (`ffbs`) and 
