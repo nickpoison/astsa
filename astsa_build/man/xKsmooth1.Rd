@@ -1,11 +1,12 @@
-\name{Ksmooth1}
-\alias{Ksmooth1}
+\name{xKsmooth1}
+\alias{xKsmooth1}
 \title{Kalman Filter and Smoother - This script has been superseded by \code{\link{Ksmooth}}
 }
-\description{Returns both the filtered  and the smoothed values for the state-space model. NOTE: This script has been superseded by \code{\link{Ksmooth}}.
+\description{Returns both the filtered  and the smoothed values for the state-space model. NOTE: This script has been superseded by \code{\link{Ksmooth}}.  Note that
+scripts starting with an x are scheduled to be phased out.
 }
 \usage{
-Ksmooth1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input)
+xKsmooth1(num, y, A, mu0, Sigma0, Phi, Ups, Gam, cQ, cR, input)
 }
 \arguments{
   \item{num}{number of observations

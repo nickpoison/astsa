@@ -37,6 +37,9 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
    -  Added `Ksmooth` which is faster than `Ksmooth0-1-2` (these will stay in `astsa`), easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
+   - NOTE that the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them:
+     `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting old scripts to use the newer scripts should be easy with only minor changes.
+
    - Updated (to run with the new `Kfilter` and `Ksmooth` scripts):
       + the Forward Filtering Backward Smoothing script (`ffbs`) and 
       + the simple univariate state space model (`ssm`) script  

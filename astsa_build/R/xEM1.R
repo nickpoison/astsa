@@ -1,4 +1,4 @@
-EM1 <-
+xEM1 <-
 function(num,y,A,mu0,Sigma0,Phi,cQ,cR,max.iter=100, tol=0.001){
 ###########################################################
 #---> missing y and A use 0s (zeros) as in text           #
@@ -18,7 +18,7 @@ function(num,y,A,mu0,Sigma0,Phi,cQ,cR,max.iter=100, tol=0.001){
    cat("iteration","   -loglikelihood", "\n")
 #----------------- start EM -------------------------
 for(iter in 1:max.iter){ 
-  ks=astsa::Ksmooth1(num,y,A,mu0,Sigma0,Phi,Ups=0,Gam=0,cQ,cR,input=0)
+  ks=xKsmooth1(num,y,A,mu0,Sigma0,Phi,Ups=0,Gam=0,cQ,cR,input=0)
   like[iter]=ks$like
    cat("   ",iter, "        ", ks$like, "\n")     
   if(iter>1) cvg=(like[iter-1]-like[iter])/abs(like[iter-1])

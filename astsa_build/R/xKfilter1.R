@@ -1,4 +1,4 @@
-Kfilter1 <-
+xKfilter1 <-
 function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,input){
   #
   # NOTE: must give cholesky decomp: cQ=chol(Q), cR=chol(R)

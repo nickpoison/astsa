@@ -1,11 +1,11 @@
-Ksmooth2 <-
+xKsmooth2 <-
 function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,Theta,cQ,cR,S,input){
 #
 # Note: Q and R are given as Cholesky decomps
 #       cQ=chol(Q), cR=chol(R)
 #  Use Ups=0 or Gam=0 or input=0 if these aren't needed
 #
- kf=astsa::Kfilter2(num,y,A,mu0,Sigma0,Phi,Ups,Gam,Theta,cQ,cR,S,input)
+ kf=xKfilter2(num,y,A,mu0,Sigma0,Phi,Ups,Gam,Theta,cQ,cR,S,input)
  pdim=nrow(as.matrix(Phi))  
  xs=array(NA, dim=c(pdim,1,num))      # xs=x_t^n
  Ps=array(NA, dim=c(pdim,pdim,num))   # Ps=P_t^n

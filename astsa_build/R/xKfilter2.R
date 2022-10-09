@@ -1,4 +1,4 @@
-Kfilter2 <-
+xKfilter2 <-
 function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,Theta,cQ,cR,S,input){
   #
   ######## Reference Property 6.5 in Section 6.6 ###########
