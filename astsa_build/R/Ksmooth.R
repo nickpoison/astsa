@@ -31,7 +31,7 @@ y[is.na(y)]=0
 A[is.na(A)]=0
 
 ###########################################################################
-kf = Kfilter(y,A,mu0,Sigma0,Phi,sQ,sR,Ups,Gam,input,S,version=version)
+kf = Kfilter(y,A,mu0,Sigma0,Phi,sQ,sR,Ups,Gam,input,S,version)
   Xs  = array(NA, dim=c(pdim,1,num))       # Xs = x_t^n
   Ps  = array(NA, dim=c(pdim,pdim,num))    # Ps = P_t^n
   J   = array(NA, dim=c(pdim,pdim,num))    # J = J_t
