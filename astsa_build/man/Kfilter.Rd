@@ -4,8 +4,9 @@
 Quick Kalman Filter 
 }
 \description{
-Returns both the predicted and filtered values for various linear  state space models
-(version 1 or 2 - see details). Also evaluates the likelihood at the given parameter values.
+Returns both the predicted and filtered values for various linear  state space models;
+it also evaluates the likelihood at the given parameter values.
+This script replaces \code{Kfilter0}, \code{Kfilter1}, and \code{Kfilter2} 
 }
 \usage{
 Kfilter(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL, 

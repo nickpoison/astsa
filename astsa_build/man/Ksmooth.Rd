@@ -1,13 +1,12 @@
 \name{Ksmooth}
 \alias{Ksmooth}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Quick Kalman Smoother
 }
 \description{
-Returns the smoother values for various linear  state space models
-(version 1 or 2 - see details). The predicted and filtered values and
- the likelihood at the given parameter values are also returned (via \code{Kfilter}),
+Returns the smoother values for various linear  state space models. The predicted and filtered values and
+ the likelihood at the given parameter values are also returned (via \code{Kfilter}). 
+ This script replaces \code{Ksmooth0}, \code{Ksmooth1}, and \code{Ksmooth2}.
 }
 \usage{
 Ksmooth(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL, 
