@@ -110,7 +110,7 @@ The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and
    than the older versions. The biggest change was to how the covarainces are specified. For example, if you have code that used \code{Kfilter1}, just use \code{sQ = t(cQ)} and \code{sR = t(cR)} here.
    
 NOTE: If it is easier to model in terms of \eqn{Q} and \eqn{R}, simply input the square root matrices
-\eqn{sQ = Q\%^\%.5} and \eqn{sR = R\%^\%.5}.   
+\code{sQ = Q\%^\%.5} and \code{sR = R\%^\%.5}.   
 }
 \author{D.S. Stoffer
 }
