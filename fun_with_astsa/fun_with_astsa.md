@@ -43,8 +43,9 @@ it's more than just data ...
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
      * [Quick Kalman Filter and Smoother - NEW](#quick-kalman-filter-and-smoother)
      * [Beginners Paradise - SSM](#beginners-paradise)
-    * [The Old Stuff](#the-old-stuff)
+     * [The Old Stuff](#the-old-stuff)
   * [8. EM Algorithm and Missing Data](#8-em-algorithm-and-missing-data)
+     * [Parameter Constraints](#parameter-constraints)
   * [9. Bayesian Techniques](#9-bayesian-techniques)
       * [AR Models](#ar-models)
       * [Stochastic Volatility Models](#stochastic-volatility)
@@ -1368,6 +1369,111 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 ```
 
 <img src="figs/blood2.png" alt="blood2"  width="75%">
+
+<br/><br/>
+
+### Parameter Constraints
+
+&#x1F4A1; The script doesn't allow constraints on the parameters, but constrained parameter estimation can be accomplished by being a little clever.  We demonstrate by fitting an AR(2) with noise.  
+
+The model is 
+
+&emsp;&emsp;_x<sub>t</sub> =  &phi;<sub>1</sub> x<sub>t-1</sub> + &phi;<sub>2</sub> x<sub>t-2</sub> + w<sub>t</sub>_  &nbsp;&nbsp; and  &nbsp; &nbsp; y<sub>t</sub> = x<sub>t</sub> + v<sub>t</sub>.
+
+or in state-space form
+$$\begin{pmatrix}x_t\\x_{t-1}\end{pmatrix} = \begin{bmatrix}\phi_1 & \phi_2\\ 1 & 0\end{bmatrix}\begin{pmatrix}x_{t-1}\\x_{t-2}\end{pmatrix} + \begin{pmatrix}w_{t}\\0\end{pmatrix}$$
+
+$$y_t =  \begin{bmatrix}1 & 0\end{bmatrix} \begin{pmatrix}x_t\\x_{t-1}\end{pmatrix} + v_t$$
+
+Here we go
+```r
+set.seed(1)
+num = 100
+phi1 = 1.5; phi2 =-.75   # the ar parameters
+Phi= diag(0,2)
+Phi[1,1] = phi1; Phi[1,2] = phi2
+Phi[2,1] = 1
+Q = diag(0,2)
+Q[1,1] = 1               # var(w[t])
+# simulate the AR(2)
+x = sarima.sim(ar = c(phi1, phi2), n=num)
+# form the data
+A = rbind(1:0)
+R = .01                  # var(v[t])
+y = x + rnorm(num,0, R)
+
+
+# fix the initial values throughout
+mux = rbind(0, 0)
+Sigmax = matrix(c(8.6,7.4,7.4,8.6), 2,2)
+
+# for estimation, use these not so great starting values
+Phi[1,1]=.1 ; Phi[1,2]=.1
+Q[1,1] = .1
+R = .1
+
+# run EM one at a time, then re-constrain the parms
+for (i in 1:150){
+em = EM(y, A, mu0=mux, Sigma0=Sigmax, Phi, Q, R, max.iter = 1)
+Phi= diag(0,2)
+Phi[2,1] = 1
+Phi[1,1] = em$Phi[1,1]; Phi[1,2] = em$Phi[1,2]
+Q = diag(0, 2)
+Q[1,1] = em$Q[1,1]
+R = em$R
+}
+
+### some output ###
+iteration    -loglikelihood 
+    1          1482.028 
+iteration    -loglikelihood 
+    1          94.41169 
+iteration    -loglikelihood 
+    1          71.72431 
+iteration    -loglikelihood 
+    1          61.35374 
+iteration    -loglikelihood 
+    1          55.39857 
+iteration    -loglikelihood 
+    1          51.87069 
+iteration    -loglikelihood 
+    .            .
+    .            .
+iteration    -loglikelihood 
+    1          44.23287 
+iteration    -loglikelihood 
+    1          44.23278 
+iteration    -loglikelihood 
+    1          44.23269 
+iteration    -loglikelihood 
+    1          44.23261 
+iteration    -loglikelihood 
+    1          44.23252 
+iteration    -loglikelihood 
+    1          44.23244 
+iteration    -loglikelihood 
+    1          44.23236 
+iteration    -loglikelihood 
+    1          44.23229 
+############################
+
+## Results
+Phi # (actual 1.5 and -.75)
+##         [,1]       [,2]
+## [1,] 1.52166 -0.7439008
+## [2,] 1.00000  0.0000000
+
+Q  # (actual 1)
+##           [,1] [,2]
+## [1,] 0.7716051    0
+## [2,] 0.0000000    0
+ 
+R  # (actual .01)
+##            [,1]
+## [1,] 0.02666379
+```
+
+
 
 [<sub>top</sub>](#table-of-contents)
 

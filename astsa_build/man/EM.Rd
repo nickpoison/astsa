@@ -89,6 +89,9 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 
 The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
 }
+\note{The script does not allow for contrained estimation directly, however, constrained estimation is possible with some 
+extra manipulations. There is an example of constrained estimation using \code{EM} at \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}, where the fun never stops.
+}
 \author{D.S. Stoffer
 }
 \seealso{
