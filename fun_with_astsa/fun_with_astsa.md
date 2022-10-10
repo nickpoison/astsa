@@ -1388,6 +1388,7 @@ $$y_t =  \begin{bmatrix}1 & 0\end{bmatrix} \begin{pmatrix}x_t\cr x_{t-1}\end{pma
 
 Here we go
 ```r
+# generate some data
 set.seed(1)
 num = 100
 phi1 = 1.5; phi2 =-.75   # the ar parameters
@@ -1396,9 +1397,9 @@ Phi[1,1] = phi1; Phi[1,2] = phi2
 Phi[2,1] = 1
 Q = diag(0,2)
 Q[1,1] = 1               # var(w[t])
-# simulate the AR(2)
+# simulate the AR(2) states
 x = sarima.sim(ar = c(phi1, phi2), n=num)
-# form the data
+# the observations
 A = rbind(1:0)
 R = .01                  # var(v[t])
 y = x + rnorm(num,0, R)
@@ -1414,6 +1415,8 @@ Q[1,1] = .1
 R = .1
 
 # run EM one at a time, then re-constrain the parms
+###-- with some extra coding, the loop can be stopped when a given
+###-- tolerance is reached  by monitoring em$like at each iteration ... 
 for (i in 1:150){
 em = EM(y, A, mu0=mux, Sigma0=Sigmax, Phi, Q, R, max.iter = 1)
 Phi= diag(0,2)
@@ -1424,38 +1427,38 @@ Q[1,1] = em$Q[1,1]
 R = em$R
 }
 
-### some output ###
-iteration    -loglikelihood 
-    1          1482.028 
-iteration    -loglikelihood 
-    1          94.41169 
-iteration    -loglikelihood 
-    1          71.72431 
-iteration    -loglikelihood 
-    1          61.35374 
-iteration    -loglikelihood 
-    1          55.39857 
-iteration    -loglikelihood 
-    1          51.87069 
-iteration    -loglikelihood 
-    .            .
-    .            .
-iteration    -loglikelihood 
-    1          44.23287 
-iteration    -loglikelihood 
-    1          44.23278 
-iteration    -loglikelihood 
-    1          44.23269 
-iteration    -loglikelihood 
-    1          44.23261 
-iteration    -loglikelihood 
-    1          44.23252 
-iteration    -loglikelihood 
-    1          44.23244 
-iteration    -loglikelihood 
-    1          44.23236 
-iteration    -loglikelihood 
-    1          44.23229 
+# ### some output ###
+# iteration    -loglikelihood 
+#     1          1482.028 
+# iteration    -loglikelihood 
+#     1          94.41169 
+# iteration    -loglikelihood 
+#     1          71.72431 
+# iteration    -loglikelihood 
+#     1          61.35374 
+# iteration    -loglikelihood 
+#     1          55.39857 
+# iteration    -loglikelihood 
+#     1          51.87069 
+# iteration    -loglikelihood 
+#     .            .
+#     .            .
+# iteration    -loglikelihood 
+#     1          44.23287 
+# iteration    -loglikelihood 
+#     1          44.23278 
+# iteration    -loglikelihood 
+#     1          44.23269 
+# iteration    -loglikelihood 
+#     1          44.23261 
+# iteration    -loglikelihood 
+#     1          44.23252 
+# iteration    -loglikelihood 
+#     1          44.23244 
+# iteration    -loglikelihood 
+#     1          44.23236 
+# iteration    -loglikelihood 
+#     1          44.23229 
 ############################
 
 ## Results
