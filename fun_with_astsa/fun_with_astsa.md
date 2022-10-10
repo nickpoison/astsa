@@ -1381,6 +1381,7 @@ The model is
 &emsp;&emsp;_x<sub>t</sub> =  &phi;<sub>1</sub> x<sub>t-1</sub> + &phi;<sub>2</sub> x<sub>t-2</sub> + w<sub>t</sub>_  &nbsp;&nbsp; and  &nbsp; &nbsp; y<sub>t</sub> = x<sub>t</sub> + v<sub>t</sub>.
 
 or in state-space form
+
 $$\begin{pmatrix}x_t\cr x_{t-1}\end{pmatrix} = \begin{bmatrix}\phi_1 & \phi_2\cr 1 & 0\end{bmatrix}\begin{pmatrix}x_{t-1}\cr x_{t-2}\end{pmatrix} + \begin{pmatrix}w_{t}\cr 0\end{pmatrix}$$
 
 $$y_t =  \begin{bmatrix}1 & 0\end{bmatrix} \begin{pmatrix}x_t\cr x_{t-1}\end{pmatrix} + v_t$$
