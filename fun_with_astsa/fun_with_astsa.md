@@ -1397,12 +1397,12 @@ Phi[1,1] = phi1; Phi[1,2] = phi2
 Phi[2,1] = 1
 Q = diag(0,2)
 Q[1,1] = 1               # var(w[t])
-# simulate the AR(2) states
+# simulate the AR(2) states (var w[t] is 1 by default)
 x = sarima.sim(ar = c(phi1, phi2), n=num)
 # the observations
 A = rbind(1:0)
 R = .01                  # var(v[t])
-y = x + rnorm(num,0, R)
+y = x + rnorm(num,0, sqrt(R))
 
 
 # fix the initial values throughout
@@ -1428,53 +1428,44 @@ R = em$R
 }
 
 # ### some output ###
-# iteration    -loglikelihood 
-#     1          1482.028 
-# iteration    -loglikelihood 
-#     1          94.41169 
-# iteration    -loglikelihood 
-#     1          71.72431 
-# iteration    -loglikelihood 
-#     1          61.35374 
-# iteration    -loglikelihood 
-#     1          55.39857 
-# iteration    -loglikelihood 
-#     1          51.87069 
-# iteration    -loglikelihood 
-#     .            .
-#     .            .
-# iteration    -loglikelihood 
-#     1          44.23287 
-# iteration    -loglikelihood 
-#     1          44.23278 
-# iteration    -loglikelihood 
-#     1          44.23269 
-# iteration    -loglikelihood 
-#     1          44.23261 
-# iteration    -loglikelihood 
-#     1          44.23252 
-# iteration    -loglikelihood 
-#     1          44.23244 
-# iteration    -loglikelihood 
-#     1          44.23236 
-# iteration    -loglikelihood 
-#     1          44.23229 
+#iteration    -loglikelihood 
+#    1          1485.486 
+#iteration    -loglikelihood 
+#    1          95.26131 
+#iteration    -loglikelihood 
+#    1          73.45769 
+#iteration    -loglikelihood 
+#    1          63.83681 
+#iteration    -loglikelihood 
+#    1          58.44693 
+#    .            .
+#    .            .
+#iteration    -loglikelihood 
+#    1          48.68323 
+#iteration    -loglikelihood 
+#    1          48.68321 
+#iteration    -loglikelihood 
+#    1          48.68319 
+#iteration    -loglikelihood 
+#    1          48.68317 
+#iteration    -loglikelihood 
+#    1          48.68315 
 ############################
 
 ## Results
 Phi # (actual 1.5 and -.75)
-##         [,1]       [,2]
-## [1,] 1.52166 -0.7439008
-## [2,] 1.00000  0.0000000
+##          [,1]      [,2]
+## [1,] 1.508753 -0.733643
+## [2,] 1.000000  0.000000
 
 Q  # (actual 1)
 ##           [,1] [,2]
-## [1,] 0.7716051    0
+## [1,] 0.810959     0
 ## [2,] 0.0000000    0
  
 R  # (actual .01)
 ##            [,1]
-## [1,] 0.02666379
+## [1,] 0.03989166
 ```
 
 &#128526; And that's how it's done.
