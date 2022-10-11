@@ -1395,14 +1395,14 @@ phi1 = 1.5; phi2 =-.75   # the ar parameters
 Phi= diag(0,2)
 Phi[1,1] = phi1; Phi[1,2] = phi2
 Phi[2,1] = 1
-Q = diag(0,2)
+Q = diag(0, 2)
 Q[1,1] = 1               # var(w[t])
 # simulate the AR(2) states (var w[t] is 1 by default)
 x = sarima.sim(ar = c(phi1, phi2), n=num)
 # the observations
-A = rbind(1:0)
+A = cbind(1, 0)
 R = .01                  # var(v[t])
-y = x + rnorm(num,0, sqrt(R))
+y = x + rnorm(num, 0, sqrt(R))
 
 
 # fix the initial values throughout
