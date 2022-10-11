@@ -41,12 +41,18 @@ it's more than just data ...
      * [Spectral Matrices](#more-multivariate-spectra)
   * [6. Testing for Linearity](#6-linearity-test)
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
-     * [Quick Kalman Filter and Smoother - NEW](#quick-kalman-filter-and-smoother)
+     * [Quick Kalman Filter and Smoother - 	
+&#128150; NEW 	
+&#128150;](#quick-kalman-filter-and-smoother)
      * [Beginners Paradise - SSM](#beginners-paradise)
      * [The Old Stuff](#the-old-stuff)
-  * [8. EM Algorithm and Missing Data - NEW](#8-em-algorithm-and-missing-data)
+  * [8. EM Algorithm and Missing Data - 	
+&#128150; NEW 	
+&#128150;](#8-em-algorithm-and-missing-data)
      * [Parameter Constraints](#parameter-constraints)
-  * [9. Bayesian Techniques - NEW](#9-bayesian-techniques)
+  * [9. Bayesian Techniques - 	
+&#128150; NEW 	
+&#128150;](#9-bayesian-techniques)
       * [AR Models](#ar-models)
       * [Stochastic Volatility Models](#stochastic-volatility)
       * [Gibbs Sampling for State Space Models - the FFBS Algorithm](#gibbs-sampling-for-linear-state-space-models)
