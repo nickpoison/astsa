@@ -1417,7 +1417,7 @@ R = .1
 # run EM one at a time, then re-constrain the parms
 ###-- with some extra coding, the loop can be stopped when a given
 ###-- tolerance is reached  by monitoring em$like at each iteration ... 
-for (i in 1:150){
+for (i in 1:75){
 em = EM(y, A, mu0=mux, Sigma0=Sigmax, Phi, Q, R, max.iter = 1)
 Phi= diag(0,2)
 Phi[2,1] = 1
@@ -1441,31 +1441,29 @@ R = em$R
 #    .            .
 #    .            .
 #iteration    -loglikelihood 
-#    1          48.68323 
+#    1          48.69579 
 #iteration    -loglikelihood 
-#    1          48.68321 
+#    1          48.69518 
 #iteration    -loglikelihood 
-#    1          48.68319 
+#    1          48.6946 
 #iteration    -loglikelihood 
-#    1          48.68317 
-#iteration    -loglikelihood 
-#    1          48.68315 
+#    1          48.69405 
 ############################
 
 ## Results
 Phi # (actual 1.5 and -.75)
 ##          [,1]      [,2]
-## [1,] 1.508753 -0.733643
+## [1,] 1.513079 -0.737669
 ## [2,] 1.000000  0.000000
 
 Q  # (actual 1)
 ##           [,1] [,2]
-## [1,] 0.810959     0
+## [1,] 0.7973415    0
 ## [2,] 0.0000000    0
  
 R  # (actual .01)
 ##            [,1]
-## [1,] 0.03989166
+## [1,] 0.04462222
 ```
 
 &#128526; And that's how it's done.
