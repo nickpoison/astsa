@@ -927,7 +927,9 @@ There is an option to select the correlated errors version:
 where cov(w<sub>s</sub>, v<sub>t</sub>) = S &delta;<sub>s</sub><span style="position:relative; left: -.9ex; bottom: 2pt"><sup>t</sup></span> and so on.
 
 
-&#10067;  See the help files `?Kfilter` and `?Ksmooth` to see how the models are specified. &#10067;  
+&#10067; &#10067; See the help files `?Kfilter` and `?Ksmooth` to see how the models are specified, but the calls 
+look like `Kfilter(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL, input = NULL, S = NULL, version = 1)`.
+The "always needed" stuff comes first, and the "sometimes needed" comes last.  And again, if you want to model via  `Q` and `R`, just use `sQ = Q%*%.5` and  `sR = R%*%.5` [which works in the psd case] or `sQ = t(chol(Q))` and `sR = t(chol(R))` [which needs pd].
 
 &#x1F535; We'll do the bootstrap example from the text, which used to take a long time... but now is very fast.
 
@@ -948,7 +950,7 @@ Linn  = function(para, y.data){  # pass data also
    phi = para[1];  alpha = para[2]
    b   = para[3];  Ups   = (1-phi)*b
    sQ  = para[4];  sR    = para[5]  
-   kf  = Kfilter(y.data, A, mu0, Sigma0, phi, sQ, sR, Ups, Gam=alpha, input)  # version 1 - the default
+   kf  = Kfilter(y.data, A, mu0, Sigma0, phi, sQ, sR, Ups, Gam=alpha, input)   # version 1 by default
    return(kf$like)    
 }
 
@@ -1169,7 +1171,10 @@ text [Time Series Analysis and Its Applications: With R Examples](http://www.spr
 > **`EM()`**
 
 which replaces `EM0` and `EM1`.  The new script is faster and allows inputs in both the state
-and observation equations.
+and observation equations.  
+
+The call looks like `EM(y, A, mu0, Sigma0, Phi, Q, R, Ups = NULL, Gam = NULL, input = NULL, 
+    max.iter = 100, tol = 1e-04)` and sort of mimics the `Kfilter` and `Ksmooth` calls but accepts `Q` and `R` directly. However, the code only works with the uncorrelated noise script (version 1). 
 
 &#x1F535;  We'll do the simple example that was used for [`ssm()`](#beginners-paradise) above.
 The model for `y = gtemp_land` is
