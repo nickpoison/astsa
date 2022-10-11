@@ -87,6 +87,7 @@ Note that in either version, \eqn{sQ\, w_t}  has to be p-dimensional, but  \eqn{
  }
 
  \value{ 
+Time varying values are returned as arrays. 
 \item{Xs }{state smoothers}
 \item{Ps }{smoother mean square error}
 \item{X0n }{initial mean smoother}

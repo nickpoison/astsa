@@ -87,6 +87,7 @@ Note that in either version, \eqn{sQ\, w_t}  has to be p-dimensional, but  \eqn{
  }
  
 \value{
+Time varying values are returned as arrays.
 \item{Xp }{one-step-ahead prediction of the state}
 \item{Pp }{mean square prediction error}
 \item{Xf }{filter value of the state}
