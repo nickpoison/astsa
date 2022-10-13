@@ -22,6 +22,14 @@ function(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=NULL,Gam=NULL,input=NULL,S=NULL,version=1)
 #    t = 1,...,n, x is p-dim, y is q-dim, and input is r-dim
 ##-  A should be array of dim(q,p,n) unless it is constant (matrix is ok)
 #########################################################################
+
+# check if input, there is at least one of Ups or Gam
+if (!is.null(input)){
+if (is.null(Ups) & is.null(Gam))  stop("there is 'input' but 'Ups' and 'Gam' are not specified")
+} else { # or there is no input but Ups or Gam are specified
+if (!is.null(Ups) | !is.null(Gam)) stop(" 'Ups' or 'Gam' are specified but there is no 'input' ")
+}
+
  num  = NROW(y)
  pdim = NROW(Phi) 
  qdim = NCOL(y)
@@ -32,6 +40,7 @@ if (is.na(dim(as.array(A))[3]) && NROW(A)==qdim && NCOL(A) == pdim){
 ## set NAs to zeros
 y[is.na(y)]=0
 A[is.na(A)]=0
+
 
 
 
@@ -121,10 +130,7 @@ return(list(Xp=Xp,Pp=Pp,Xf=Xf,Pf=Pf,Kn=K,like=like,innov=innov,sig=sig))
 cQ = t(sQ)
 cR = t(sR)
 
-# now check if input, there is at least one of Ups or Gam
-if (!is.null(input)){
-if (is.null(Ups) & is.null(Gam))  stop("there is 'input' but 'Ups' and 'Gam' are not specified")
-}
+
 
 ###############################################################################
 if (version == 1){
