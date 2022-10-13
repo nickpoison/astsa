@@ -1,4 +1,4 @@
-# fun with astsa
+# fun with astsa &#x1F388;&#x1F388;&#x1F388;
 
 [![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
 
@@ -181,8 +181,9 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), names=rep(3:6, 2), add=TRUE)
 ```
 **Notice each color display has diagonal lines behind it to demonstrate opacity.**
 
-<img src="figs/palette.png" alt="palette"  width="75%">
+<img src="figs/palette.png" alt="palette"  width="75%"><br/>
 
+<br/><br/>
 
 ### tsplot
 
@@ -193,46 +194,46 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), names=rep(3:6, 2), add=TRUE)
 
 
 
-&#x1F535; Notice there are minor ticks and a grid by default. Here are some examples.
+&#128064; Notice there are minor ticks and a grid by default. Here are some examples.
 
 ```r
 par(mfrow=c(2,1))
 tsplot(soi, col=4, lwd=2)            
 tsplot(soi, col=4, lwd=2, gg=TRUE)   # gg => gris-gris plot - the grammar of astsa is voodoo
 ```
-<img src="figs/tsplot1.png" alt="tsplot"  width="75%">
+<img src="figs/tsplot1.png" alt="tsplot"  width="75%"><br/><br/>
 
 &#x1F535; Many in one swell foop:
 
 ```r
 tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2)  # another gris-gris plot
 ```
-<img src="figs/climhyd.png" alt="climhyd"  width="75%">
+<img src="figs/climhyd.png" alt="climhyd"  width="75%"><br/>
 
-
-&#x1F535; Do you like `spaghetti` (you can shorten it to `spag` or even `spaghet`):
+<br/>
+&#x1F535; Do you like `spaghetti` (you can shorten it to `spag`):
 
 ```r
 tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),
           ylab=expression(Number~~~(""%*% 1000)),  spaghetti=TRUE)
 legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
 ```
-<img src="figs/lynxhare.png" alt="lynxhare"  width="75%">
+<img src="figs/lynxhare.png" alt="lynxhare"  width="75%"><br/>
 
 
-&#x1F535; And the land where the LLN ceases to exist:
+&#128148; And the land where the LLN ceases to exist:
 
 ```r
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample mean", xlab="sample size")
 ```
 
-<img src="figs/tsplot2.png" alt="tsplot"  width="75%">
+<img src="figs/tsplot2.png" alt="tsplot"  width="75%"><br/><br/>
 
 
 ### Lag Plots
 
-&#x1F4A1; There are also lag plots for one series and for two series using
+&#129412; There are also lag plots for one series and for two series using
 
 > **`lag1.plot()`** or **`lag2.plot()`**
 
@@ -247,7 +248,7 @@ lag1.plot(soi, 12)
 # but prettified
 lag1.plot(soi, 12, col=astsa.col(4, .3), pch=20, cex=2)
 ```
-<img src="figs/lag1plot.png" alt="lag1plot"  width="75%">
+<img src="figs/lag1plot.png" alt="lag1plot"  width="75%"><br/>
 
 and for two series (the first one gets lagged)
 
@@ -257,23 +258,23 @@ lag2.plot(soi, rec, 8)
 # but prettified
 lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, bgl='transparent', lwl=2, gg=T, box.col=gray(1))
 ```
-<img src="figs/lag2plot.png" alt="lag2plot"  width="75%">
+<img src="figs/lag2plot.png" alt="lag2plot"  width="75%"><br/><br/>
 
 
 ### Scatterplots
 
-&#x1F4A1; Sometimes it's nice to have a scatterplot with marginal histograms...
+&#128027; Sometimes it's nice to have a scatterplot with marginal histograms...
 
 ```r
 scatter.hist(tempr, cmort, hist.col=astsa.col(5,.4), pt.col=5, pt.size=1.5, reset=FALSE)
 lines(lowess(tempr, cmort), col=6, lwd=2)
 ```
 
-<img src="figs/scatterhist.png" alt="scatterhist"  width="75%">
+<img src="figs/scatterhist.png" alt="scatterhist"  width="75%"><br/>
 
 ### Trends
 
-&#x1F4A1; As of version 1.15, there are two new scripts to help with analyzing trends. They are
+&#128178; As of version 1.15, there are two new scripts to help with analyzing trends. They are
 
 > **`detrend()`** and **`trend()`**
 
@@ -284,10 +285,10 @@ lines(lowess(tempr, cmort), col=6, lwd=2)
 tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon - USD per KG')
  ```
 
-<img src="figs/detrend.png" alt="detrend"  width="75%">
+<img src="figs/detrend.png" alt="detrend"  width="75%"><br/>
 
 
-&#x1F535; `trend`  fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
+&#128061; `trend`  fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
 
  ```r
  trend(soi, lowess=TRUE)
@@ -295,7 +296,7 @@ tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon - USD per KG')
 
  
 
-<img src="figs/trend.png" alt="trend"  width="75%">
+<img src="figs/trend.png" alt="trend"  width="75%"><br/>
 
 
 [<sub>top</sub>](#table-of-contents)
@@ -306,7 +307,7 @@ tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon - USD per KG')
 
 ## 3. Correlations
 
-&#x1F4A1; There are four basic correlation scripts in `astsa`.  They are
+&#128125; There are four basic correlation scripts in `astsa`.  They are
 
 
 > **`acf1()`**, **`acf2()`,**  **`ccf2()`**, and **`acfm()`**
@@ -321,7 +322,7 @@ acf1(soi)
 
   [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...
 ```
-<img src="figs/acf1.png" alt="acf1" width="75%">
+<img src="figs/acf1.png" alt="acf1" width="75%"><br/>
 
 &#x1F4A1; Since version 1.13.2, the LAG axis label indicates the frequency of
 the data unless it is 1.  This way, you can see that the tick at LAG 1
@@ -332,7 +333,7 @@ acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)
 
    [1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...
 ```
-<img src="figs/pacf1.png" alt="pacf1"  width="75%">
+<img src="figs/pacf1.png" alt="pacf1"  width="75%"><br/>
 
 &#x1F535; Sample ACF and PACF at the same time
 
@@ -343,7 +344,7 @@ acf2(diff(log(varve)))
    ACF  -0.4 -0.04 -0.06  0.01  0.00  0.04 -0.04  0.04  0.01 ...
    PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 ...
 ```
-<img src="figs/acf2.png" alt="acf2"  width="75%">
+<img src="figs/acf2.png" alt="acf2"  width="75%"><br/>
 
 &#x1F535; If you just want the values, use `plot=FALSE` (works for `acf1` too)
 ```r
@@ -370,7 +371,7 @@ acf2(diff(log(varve)), plot=FALSE)
 ccf2(cmort, part)
 ```
 
-<img src="figs/ccf2.png" alt="ccf2"  width="75%">
+<img src="figs/ccf2.png" alt="ccf2"  width="75%"><br/>
 
 &#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).
 
@@ -381,7 +382,7 @@ and CCFs (off-diagonal) simultaneously:
 ```r
 acfm(diff(log(econ5)))
 ```
-<img src="figs/acfm.png" alt="acfm"  width="75%">
+<img src="figs/acfm.png" alt="acfm"  width="75%"><br/>
 
 What you see are estimates of
 _corr( x<sub>t+LAG</sub> , y<sub>t</sub> )_ where
@@ -410,7 +411,7 @@ acfm(diff(log(econ5)), gg=TRUE, acf.highlight=FALSE)  # Gris-Gris Gumbo Ya Ya
 
 ### ARIMA Simulation
 
-&#x1F4A1; You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via
+&#128171; You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via
 
 > **`sarima.sim()`**
 
@@ -422,7 +423,7 @@ The syntax are simple and we'll demonstrate with a couple of examples. There are
 y = sarima.sim(ar=c(1.5,-.75)) + 50
 tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
 ```
-<img src="figs/ar2sim.png" alt="ar2sim"  width="75%">
+<img src="figs/ar2sim.png" alt="ar2sim"  width="75%"><br/>
 
 &#x1F535; Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite
 
@@ -432,13 +433,13 @@ x = sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120) + 100
 tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 ```
 
-<img src="figs/sarima.sim.png" alt="sarima.sim"  width="75%">
+<img src="figs/sarima.sim.png" alt="sarima.sim"  width="75%"><br/>
 
 
 
 ### ARIMA Estimation
 
-&#x1F4A1; Fitting ARIMA models to data is a breeze with the modern script
+&#127817; Fitting ARIMA models to data is a breeze with the modern script
 
 > **`sarima()`**
 
@@ -446,7 +447,7 @@ It can do everything for you but you have to choose the model.
 
 &#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK; see [Using an automated process to select the order of an ARMA time series model returns the true data generating process less than half the time even with simple data generating processes; and with more complex models the chance of success comes down nearly to zero even with long sample sizes.](http://freerangestats.info/blog/2015/09/30/autoarima-success-rates)
 
-<img src="figs/blackbox2.png" alt="blackbox"  width="75%">
+<img src="figs/blackbox2.png" alt="blackbox"  width="75%"><br/>
 
 
 Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T WORK and was scrapped.
@@ -515,7 +516,7 @@ $BIC
 [1] -3.624225
 ```
 
-<img src="figs/airpass.png" alt="airpass"  width="75%">
+<img src="figs/airpass.png" alt="airpass"  width="75%"><br/>
 
 &#x1F535; You can shut off the diagnostics using `details=FALSE`
 
@@ -590,13 +591,13 @@ $BIC
 [1] 7.201026
 ```
 
-<img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="75%">
+<img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="75%"><br/>
 
 
 
 ### Forecasting
 
-&#x1F4A1;  Forecasting your fitted ARIMA model is as simple as using
+&#127801;  Forecasting your fitted ARIMA model is as simple as using
 
 > **`sarima.for()`**
 
@@ -632,14 +633,14 @@ End = 150
 Frequency = 1
  [1]  1.136849  2.427539  3.889295  5.459392  7.096606  8.772528 10.466926 ...
 ```
-<img src="figs/fore1.png" alt="fore1"  width="75%">
+<img src="figs/fore1.png" alt="fore1"  width="75%"><br/>
 
 &#x1F535; Notice the `plot.all=TRUE` in the `sarima.for` call. The default is `FALSE` in which case the graphic shows only the final 100 observations and the forecasts to make it easier to see what's going on (like in the next example).
 
 ```r
 sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 ```
-<img src="figs/foreCO2.png" alt="foreCO2" width="75%">
+<img src="figs/foreCO2.png" alt="foreCO2" width="75%"><br/>
 
 [<sub>top</sub>](#table-of-contents)
 
@@ -647,7 +648,7 @@ sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 
 ## 5. Spectral Analysis
 
-&#x1F4A1;  There are a few scripts that help with spectral analysis.
+&#127774;  There are a few scripts that help with spectral analysis.
 
 The spectral density of an ARMA model can be obtained using
 
@@ -670,7 +671,7 @@ and parametric spectral analysis with
 arma.spec(ar = c(1.5, -.75), ma = c(-.8,.4), col=4, lwd=2)
 ```
 
-<img src="figs/arma_spec.png" alt="arma_spec" width="75%">
+<img src="figs/arma_spec.png" alt="arma_spec" width="75%"><br/>
 
 and if you want to do a seasonal model, you have to be a little creative; e.g., _x<sub>t</sub>= .4 x<sub>t-12</sub> + w<sub>t</sub> + .5 w<sub>t-1</sub>_
 
@@ -678,7 +679,7 @@ and if you want to do a seasonal model, you have to be a little creative; e.g., 
 arma.spec(ar=c(rep(0,11),.4), ma=.5, col=5, lwd=3, frequency=12)
 ```
 
-<img src="figs/arma_spec_season.png" alt="arma_spec_season" width="75%">
+<img src="figs/arma_spec_season.png" alt="arma_spec_season" width="75%"><br/>
 
 
 Some goofs
@@ -695,12 +696,12 @@ arma.spec(ar= .9, ma= -.9, main="It's White Noise, Dingus")
    WARNING: Parameter Redundancy
 ```
 
-<img src="figs/dingus.png" alt="dingus"  width="75%">
+<img src="figs/dingus.png" alt="dingus"  width="75%"><br/>
 
 
 ### nonparametric spectral analysis
 
-&#x1F4A1; `mvspec` was originally just a way to  get the multivariate spectral density estimate out of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
+&#127929; `mvspec` was originally just a way to  get the multivariate spectral density estimate out of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
 
 &#x1F535; If you want the periodogram, you got it (tapering is not done automatically because you're old enough to do it by yourself):
 
@@ -713,8 +714,8 @@ tsplot(x, col=5, lwd=2, gg=TRUE)
 mvspec(x, col=4, lwd=2, type='o', pch=20)
 ```
 
-<img src="figs/cosum.png" alt="cosum"  width="75%">
-<img src="figs/periodogram.png" alt="periodogram" width="75%">
+<img src="figs/cosum.png" alt="cosum"  width="75%"><br/>
+<img src="figs/periodogram.png" alt="periodogram" width="75%"><br/>
 
 &#x1F535; You can smooth in the usual way and get the CIs on the log-plot:
 
@@ -724,7 +725,7 @@ sois  = mvspec(soi, spans=c(7,7), taper=.1, col=4, lwd=2)
 soisl = mvspec(soi, spans=c(7,7), taper=.5, col=4, lwd=2, log='y')
 ```
 
-<img src="figs/soispec.png" alt="soispec" width="75%">
+<img src="figs/soispec.png" alt="soispec" width="75%"><br/>
 
 &#x1F535; and you can get the usual information
 
@@ -763,7 +764,7 @@ and easily locate the peaks
 mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitment")
 ```
 
-<img src="figs/coher.png" alt="coher"  width="75%">
+<img src="figs/coher.png" alt="coher"  width="75%"><br/>
 
 
 ### parametric spectral analysis
@@ -779,7 +780,7 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 u <- spec.ic(soi, BIC=TRUE, detrend=TRUE, col=4, lwd=2)
 ```
 
-<img src="figs/spec.bic.png" alt="spec.bic"  width="75%">
+<img src="figs/spec.bic.png" alt="spec.bic"  width="75%"><br/>
 
 &#x1F535; Print and plot AIC and BIC (both pick order 15):
 
@@ -823,7 +824,7 @@ u[[1]]   # notice the values are adjusted by the min
 ```r
 tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRUE)
 ```
-<img src="figs/aicbic.png" alt="aicbic"  width="75%">
+<img src="figs/aicbic.png" alt="aicbic"  width="75%"><br/>
 
 
 ### more multivariate spectra
@@ -837,7 +838,7 @@ tsplot(gr, ncol=2, col=2:6, lwd=2, byrow=FALSE)
 gr.spec = mvspec(gr, spans=c(7,7), detrend=FALSE, taper=.25, col=2:6, lwd=2, main='spectra')
 round(gr.spec$fxx, 2)
 ```
-<img src="figs/econ5.png" alt="econ5" width="75%">
+<img src="figs/econ5.png" alt="econ5" width="75%"><br/>
 
 And a sample of the output of the last line giving the matrix estimate. The numbers at top
 refer to frequency ordinate:
@@ -886,7 +887,7 @@ and more details can be found in its help file (`?test.linear`).    Chi-squared 
 ```r
 test.linear(soi)
 ```
-<img src="figs/test_soi.png" alt="test_soi"  width="75%">
+<img src="figs/test_soi.png" alt="test_soi"  width="75%"><br/>
 
 &#x1F535; Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange (NYSE) from February 2, 1984 to December 31, 1991
 
@@ -896,8 +897,8 @@ test.linear(soi)
 test.linear(nyse)
 tsplot(nyse, col=4)
 ```
-<img src="figs/test_nyse.png" alt="test_nyse"  width="75%">
-<img src="figs/nyse.png" alt="nyse"  width="75%">
+<img src="figs/test_nyse.png" alt="test_nyse"  width="75%"><br/>
+<img src="figs/nyse.png" alt="nyse"  width="75%"><br/>
 
 [<sub>top</sub>](#table-of-contents)
 
@@ -1037,7 +1038,7 @@ phi  = ifelse(phi<0, NA, phi)    # any phi < 0 not plotted
 scatter.hist(sigw, phi, ylab=expression(phi), xlab=expression(sigma[~w]), 
              hist.col=astsa.col(5,.4), pt.col=5, pt.size=1.5)
 ```
-<img src="figs/boots.png" alt="Example 6.13"  width="75%">
+<img src="figs/boots.png" alt="Example 6.13"  width="75%"><br/>
 
 &#x1F535; The smoother is similar. Here's a simple example with no output shown.
 ```r
@@ -1105,7 +1106,7 @@ lines(u$Xs, col=6, lwd=2)
  yy = c(u$Xs-2*sqrt(u$Ps), rev(u$Xs+2*sqrt(u$Ps)))
 polygon(xx, yy, border=8, col=gray(.6, alpha=.25) )
 ```
-<img src="figs/ssm.png" alt="ssm"  width="75%">
+<img src="figs/ssm.png" alt="ssm"  width="75%"><br/>
 
 
 &#x1F535; You can fix &phi;=1 in this case if you believe the series is taking a random walk with drift:
@@ -1247,7 +1248,7 @@ $cvg
 ```r
 tsplot(blood, type='o', col=c(6,4,2), lwd=2, pch=19, cex=1)
 ```
-<img src="figs/blood.png" alt="blood"  width="75%">
+<img src="figs/blood.png" alt="blood"  width="75%"><br/>
 
 + First the set up.
 
@@ -1379,7 +1380,7 @@ lines(y3s)
 polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 ```
 
-<img src="figs/blood2.png" alt="blood2"  width="75%">
+<img src="figs/blood2.png" alt="blood2"  width="75%"><br/>
 
 <br/><br/>
 
@@ -1527,9 +1528,9 @@ with screen output
 
 and graphics
 
-<img src="figs/bayes_ar.png" alt="bayes_ar"  width="75%">
+<img src="figs/bayes_ar.png" alt="bayes_ar"  width="75%"><br/>
 
-<img src="figs/bayes_ar2.png" alt="bayes_ar"  width="75%">
+<img src="figs/bayes_ar2.png" alt="bayes_ar"  width="75%"><br/>
 
 <br/>
 
@@ -1560,11 +1561,11 @@ where _w<sub>t</sub>_ and  _&epsilon;<sub>t</sub>_  are independent standard Gau
 and graphics (traces, effective sample sizes, ACFs, histograms with 2.5%-50%-97.5% quantiles
 followed by the posterior mean log-volatility with 95% credible intervals).
 
-<img src="figs/bayes_sv.png" alt="bayes_sv"  width="75%">
+<img src="figs/bayes_sv.png" alt="bayes_sv"  width="75%"><br/>
 
 &#x1F429;  The **Effective Sample Size (ESS)** in the graphic above were calculated using the script `ESS`, which became available in version 1.16 of the package.
 
-<img src="figs/bayes_sv2.png" alt="bayes_sv"  width="75%">
+<img src="figs/bayes_sv2.png" alt="bayes_sv"  width="75%"><br/>
 
 An easy way to see the defaults (a list of options) is to look at the structure of the object:
 ```r
@@ -1686,7 +1687,7 @@ points(y)
  yy=c(lx, rev(ux))
 polygon(xx, yy, border=NA, col=astsa.col(4,.1))
 ```
-<img src="figs/llx.png" alt="local level x"  width="75%">
+<img src="figs/llx.png" alt="local level x"  width="75%"><br/>
 
 ```r
 # and the parameters
@@ -1695,7 +1696,7 @@ scatter.hist(draws[,1],draws[,2], xlab=expression(sigma[w]), ylab=expression(sig
 abline(v=mean(draws[,1]), col=3, lwd=2)
 abline(h=mean(draws[,2]), col=3, lwd=2)
 ```
-<img src="figs/llparms.png" alt="local level parameters"  width="75%">
+<img src="figs/llparms.png" alt="local level parameters"  width="75%"><br/>
 
 <br/>
 
@@ -1808,9 +1809,9 @@ tsplot(msea+mtr, ylab='', col=4, main='trend + season')
 polygon(xx, yy, border=NA, col=astsa.col(4,.1)) 
 ```
 
-<img src="figs/jjparms.png" alt="jj parameters"  width="75%">
+<img src="figs/jjparms.png" alt="jj parameters"  width="75%"><br/>
 
-<img src="figs/jjstates.png" alt="jj states"  width="75%">
+<img src="figs/jjstates.png" alt="jj states"  width="75%"><br/>
 
 <br/>
 
@@ -2137,7 +2138,7 @@ head(u)  # output - coefs are scalings in order of 'alphabet' (A C G T here)
   [5,] 0.00125 0.001511232 -0.6025964 -0.5307763 -0.5959481       0
 ```
 
-<img src="figs/specenv1.png" alt="specenv1"  width="75%">
+<img src="figs/specenv1.png" alt="specenv1"  width="75%"><br/>
 
 &#129002; One more example... you can specify a section (`section = start:end`) to work on and the significance threshold (or turn it off `significance = NA`), plus other options.
 Here's one for a section of the EBV.
@@ -2155,7 +2156,7 @@ round(head(u), 3)  # output
    [5,] 0.002   0.017   0.493  -0.564  -0.662       0
 ```
 
-<img src="figs/specenv2.png" alt="specenv2" width="75%">
+<img src="figs/specenv2.png" alt="specenv2" width="75%"><br/>
 
 
 ### Optimal Transformations and the Spectral Envelope
@@ -2184,7 +2185,7 @@ gabs = function(x) { b[2]*abs(x) } # corresponding to |x|
 legend('bottomright', lty=1, col=c(4,6), legend=c('optimal', 'absolute value'), bg='white')
 ```
 
-<img src="figs/SEnyse.png" alt="specenv2"  width="75%">
+<img src="figs/SEnyse.png" alt="specenv2"  width="75%"><br/>
 
 [<sub>top</sub>](#table-of-contents)
 
