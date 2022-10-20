@@ -1,8 +1,8 @@
 ## astsa &mdash; applied statistical time series analysis
 
-<img src="https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/figs/astsa.gif" alt="astsa"  height="100">
+<img src="https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/figs/astsa.gif" alt="&nbsp; &nbsp; ASTSA ..."  height="100">
 
-more than just data ...
+... more than just data 
 
 ---
 
@@ -13,6 +13,8 @@ more than just data ...
 
 
 We won't always push the latest version of the package to CRAN, but [the latest working version of the package will always be at Github](https://github.com/nickpoison/astsa/).
+
+* The [ROAD MAP](https://nickpoison.github.io/) is a good place to start to find all the links to the webpages for the texts and some help on using R for time series analysis. 
 
 * See the [NEWS for further details about the state of the package, how to install the latest version, and the changelog](https://github.com/nickpoison/astsa/blob/master/NEWS.md).
 
