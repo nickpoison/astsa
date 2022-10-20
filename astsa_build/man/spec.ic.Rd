@@ -39,8 +39,7 @@ additional arguments.
 }
 }
 \details{Uses \code{ar} to fit the best AR model based on pseudo AIC or BIC. 
-No likelihood is calculated unless \code{method='mle'} is used, however, the
-calculations will be slow. The minimum centered AIC and BIC values and the 
+Using \code{method='mle'} will be slow. The minimum centered AIC and BIC values and the 
 spectral and frequency ordinates are returned silently.
 }
 \value{
