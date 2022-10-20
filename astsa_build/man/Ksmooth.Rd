@@ -111,7 +111,8 @@ The most recent version of the package can be found  at \url{https://github.com/
 
 In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
 
-The webpages for the texts are \url{https://www.stat.pitt.edu/stoffer/tsa4/} and \url{https://www.stat.pitt.edu/stoffer/tsda/}.  
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}.   
 }
 \note{Note that \code{Ksmooth} is similar to \code{Ksmooth-0-1-2} except that only the essential values need to be entered (and come first in the statement); the optional values such as 
    \code{input} are set to \code{NULL} by default if they are not needed. This version is faster
