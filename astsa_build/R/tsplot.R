@@ -57,7 +57,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    par(new=TRUE)
    plot(x, y, type=type1, main=main, ylab=ylab, xlab=xlab, col=col, pch=pch, 
          lty=lty, lwd=lwd, ... ) 
-   box(col=gray(1))
+   box(col='white', lwd=2)
   } else {                 # multiple series
    if(!is.null(ylab)){ ylab = rep(ylab, ceiling(nser/length(ylab))) } 
    prow = ceiling(nser/ncolm)
