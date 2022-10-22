@@ -1,7 +1,7 @@
 \name{test.linear}
 \alias{test.linear}
 \title{Test Linearity of a Time Series via Normalized Bispectrum 
-}
+} 
 \description{Produces a plot of the tail probabilities of a normalized bispectrum of a series under the assumption the model is a linear process with iid innovations. 
 }
 \usage{

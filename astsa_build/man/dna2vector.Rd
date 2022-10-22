@@ -2,7 +2,7 @@
 \alias{dna2vector}
 \title{
 Convert DNA Sequence to Indicator Vectors
-}
+} 
 \description{
 Takes a DNA sequence (string) of general form (e.g., FASTA) and converts it to a sequence of indicator vectors for use with the Spectral Envelope (\code{specenv}).
 }

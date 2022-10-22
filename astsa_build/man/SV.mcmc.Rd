@@ -1,7 +1,7 @@
 \name{SV.mcmc}
 \alias{SV.mcmc}
 \title{Fit Bayesian Stochastic Volatility Model
-}
+} 
 \description{
 Fits a stochastic volatility model to a univariate time series of returns.
 }

@@ -2,7 +2,7 @@
 \alias{beamd}
 \docType{data}
 \title{Infrasonic Signal from a Nuclear Explosion 
-}
+} 
 \description{Infrasonic signal from a nuclear explosion.   
 }
 \usage{data(beamd)}

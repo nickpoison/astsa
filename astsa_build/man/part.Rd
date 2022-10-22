@@ -2,7 +2,7 @@
 \alias{part}
 \docType{data}
 \title{Particulate levels from the LA pollution study
-}
+} 
 \description{Particulate series corresponding to \code{cmort} from the LA pollution study.
 }
 \format{

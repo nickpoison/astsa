@@ -2,7 +2,7 @@
 \alias{EQ5}
 \docType{data}
 \title{Seismic Trace of Earthquake number 5 
-}
+} 
 \description{Seismic trace of an earthquake [two phases or arrivals along the surface, the primary wave (\eqn{t = 1,\dots,1024}) and the shear wave (\eqn{t = 1025,\dots,2048})] recorded at a seismic station.
 }
 \format{

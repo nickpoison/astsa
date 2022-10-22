@@ -2,7 +2,7 @@
 \alias{gtemp2}
 \docType{data}
 \title{Global Mean Surface Air Temperature Deviations
-}
+} 
 \description{This data file is old and is here only for compatibility.  See \code{\link{globtemp}} and \code{\link{gtemp_land}}. The original description is:    Similar to \code{gtemp} but the data are based only on surface air temperature data obtained from meteorological stations. The data are temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2009.
 }
 \usage{data(gtemp2)}

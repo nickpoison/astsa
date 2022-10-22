@@ -1,7 +1,7 @@
 \name{LagReg}
 \alias{LagReg}
 \title{Lagged Regression
-}
+} 
 \description{Performs lagged regression as discussed in Chapter 4.
 }
 \usage{

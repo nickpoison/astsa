@@ -2,7 +2,7 @@
 \alias{gtemp_ocean}
 \docType{data}
 \title{Global mean ocean temperature deviations - updated to 2017
-}
+} 
 \description{Annual sea surface temperature anomalies averaged over the part of the ocean that is free of ice at all times (open ocean) from 1880 to 2017.
 }
 \format{

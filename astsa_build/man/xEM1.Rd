@@ -2,6 +2,7 @@
 \alias{xEM1}
 \title{EM Algorithm for General State Space Models - This script has been superseded by \code{\link{EM}}.
 }
+
 \description{Estimation of the parameters in the general state space  model via the EM algorithm.   Inputs are not allowed; see the note.  NOTE: This script has been superseded by \code{\link{EM}} and 
 scripts starting with an x are scheduled to be phased out.
 }

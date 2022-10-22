@@ -2,7 +2,7 @@
 \alias{gtemp_land}
 \docType{data}
 \title{Global mean land  temperature deviations - updated to 2017
-}
+} 
 \description{Annual temperature anomalies (in degress centigrade) averaged over the Earth's land area from 1880 to  2017.
 }
 \format{

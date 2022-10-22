@@ -2,6 +2,7 @@
 \alias{xKfilter0}
 \title{Kalman Filter - This script has been superseded by \code{\link{Kfilter}}
 }
+
 \description{Returns the filtered values for the basic time invariant state-space model; inputs are not allowed.
 NOTE: This script has been superseded by \code{\link{Kfilter}}.  Note that
 scripts starting with an x are scheduled to be phased out.

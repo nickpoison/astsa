@@ -2,7 +2,7 @@
 \alias{fmri1}
 \docType{data}
 \title{fMRI Data Used in Chapter 1
-}
+} 
 \description{A data frame that consists of average fMRI BOLD signals at eight locations.
 }
 \usage{data(fmri1)}

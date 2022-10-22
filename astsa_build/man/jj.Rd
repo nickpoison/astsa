@@ -2,7 +2,7 @@
 \alias{jj}
 \docType{data}
 \title{Johnson and Johnson Quarterly Earnings Per Share
-}
+} 
 \description{Johnson and Johnson quarterly earnings per share, 84 quarters (21 years) measured from the first quarter of 1960 to the last quarter of 1980.
 }
 \format{

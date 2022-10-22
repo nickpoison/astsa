@@ -2,7 +2,7 @@
 \alias{sp500.gr}
 \docType{data}
 \title{Returns of the S&P 500
-}
+} 
 \description{Daily growth rate of the   S&P 500 from 2001 though 2011.
 }
 \format{

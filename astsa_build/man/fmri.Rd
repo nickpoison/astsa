@@ -2,7 +2,7 @@
 \alias{fmri}
 \docType{data}
 \title{fMRI - complete data set
-}
+} 
 \description{Data (as a vector list) from an fMRI experiment in pain, listed  by location and stimulus.  The data are BOLD signals when a stimulus was applied for 32 seconds and then stopped for 32 seconds. The signal period is 64 seconds and the sampling rate was one observation every 2 seconds for 256 seconds (\eqn{n = 128}).  The number of subjects under each condition varies.
 }
 

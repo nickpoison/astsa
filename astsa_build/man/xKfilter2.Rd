@@ -2,6 +2,7 @@
 \alias{xKfilter2}
 \title{Kalman Filter - This script has been superseded by \code{\link{Kfilter}}.  
 }
+
 \description{Returns the filtered values  for the state space model.  In addition, the script returns the evaluation of the likelihood at the given parameter values and the innovation sequence.  NOTE: This script has been superseded by \code{\link{Kfilter}}. Note that
 scripts starting with an x are scheduled to be phased out.
 }

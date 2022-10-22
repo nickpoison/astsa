@@ -2,7 +2,7 @@
 \alias{cmort}
 \docType{data}
 \title{Cardiovascular Mortality from the LA Pollution study
-}
+} 
 \description{Average weekly cardiovascular mortality in Los Angeles County; 508 six-day smoothed averages obtained by filtering daily values over the 10 year period 1970-1979.
 }
 \format{

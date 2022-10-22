@@ -1,7 +1,7 @@
 \name{SigExtract}
 \alias{SigExtract}
 \title{Signal Extraction And Optimal Filtering
-}
+} 
 \description{Performs signal extraction and optimal filtering as discussed in Chapter 4.
 
 }

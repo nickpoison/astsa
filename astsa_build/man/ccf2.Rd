@@ -1,7 +1,7 @@
 \name{ccf2}
 \alias{ccf2}
 \title{Cross Correlation
-}
+} 
 \description{
 Produces a nice graphic of the sample CCF of two time series.  The actual CCF values are returned invisibly.
 }

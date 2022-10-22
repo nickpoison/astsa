@@ -2,6 +2,7 @@
 \alias{xEM0}
 \title{EM Algorithm for Time Invariant State Space Models - This script has been superseded by \code{\link{EM}}. 
 }
+
 \description{Estimation of the parameters in a simple state space via the EM algorithm.  NOTE: This script has been superseded by \code{\link{EM}}. Note that
 scripts starting with an x are scheduled to be phased out.
 }

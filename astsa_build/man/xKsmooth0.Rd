@@ -2,6 +2,7 @@
 \alias{xKsmooth0}
 \title{Kalman Filter and Smoother - This script has been superseded by \code{\link{Ksmooth}}
 }
+
 \description{Returns both the filtered values  and  smoothed values   for the state-space model.
 NOTE: This script has been superseded by \code{\link{Ksmooth}}.  Note that
 scripts starting with an x are scheduled to be phased out.

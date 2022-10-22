@@ -3,6 +3,7 @@
 \docType{data}
 \title{U.S. Unemployment
 }
+
 \description{Monthly U.S. Unemployment series (1948-1978, n = 372)
 }
 \usage{data(unemp)}

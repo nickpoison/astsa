@@ -2,7 +2,7 @@
 \alias{spec.ic}
 \title{
 Estimate Spectral Density of a Time Series from AR Fit
-}
+} 
 \description{
 Fits an AR model to data and computes (and by default plots) the spectral 
      density of the fitted model based on AIC (default) or BIC.

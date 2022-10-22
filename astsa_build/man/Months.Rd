@@ -6,7 +6,7 @@ Month Labels
 }
 \description{
 Provides labels for the (English) months of the year to be used in plotting monthly time series.
-}
+} 
 \format{
   The format is:
  chr [1:12] "J" "F" "M" "A" "M" "J" "J" "A" "S" "O" "N" "D"

@@ -2,7 +2,7 @@
 \alias{eqexp}
 \docType{data}
 \title{Earthquake and Explosion Seismic Series
-}
+} 
 \description{This is a data frame of the earthquake and explosion seismic series used throughout the text. 
 }
 \format{

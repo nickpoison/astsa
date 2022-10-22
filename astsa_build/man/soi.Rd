@@ -2,7 +2,7 @@
 \alias{soi}
 \docType{data}
 \title{Southern Oscillation Index
-}
+} 
 \description{Southern Oscillation Index (SOI) for a period of 453 months ranging over the years 1950-1987.
 }
 \format{

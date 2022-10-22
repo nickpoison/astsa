@@ -2,7 +2,7 @@
 \alias{ESS}
 \title{
 Effective Sample Size (ESS)
-}
+} 
 \description{
 Estimates the ESS of a given vector of samples.
 }

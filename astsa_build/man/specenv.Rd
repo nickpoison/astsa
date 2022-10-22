@@ -2,7 +2,7 @@
 \alias{specenv}
 \title{
 Spectral Envelope
-}
+} 
 \description{
 Computes the spectral envelope of categorical-valued or real-valued time series.
 }

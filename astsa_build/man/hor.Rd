@@ -4,7 +4,7 @@
 \title{Hawaiian occupancy rates}
 \description{Quarterly Hawaiian hotel occupancy rate (percent of rooms occupied) from 
 1982-I to 2015-IV
-}
+} 
 \format{
   The format is:
  Time-Series [1:136] from 1982 to 2015: 79  65.9  70.9  66.7  ...

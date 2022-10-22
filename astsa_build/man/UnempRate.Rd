@@ -3,6 +3,7 @@
 \docType{data}
 \title{U.S. Unemployment Rate
 }
+
 \description{Monthly U.S. unemployment rate in percent unemployed (Jan, 1948 - Nov, 2016, n = 827)
 }
 \format{

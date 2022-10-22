@@ -2,7 +2,7 @@
 \alias{rec}
 \docType{data}
 \title{Recruitment (number of new fish index)
-}
+} 
 \description{Recruitment (index of the number of new fish) for a period of 453 months ranging over the years 1950-1987. Recruitment is loosely defined as an indicator of new members of a population to the first life stage at which natural mortality stabilizes near adult levels.
 }
 \usage{data(rec)}

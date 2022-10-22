@@ -3,6 +3,7 @@
 \docType{data}
 \title{White Blood Cell Levels
 }
+
 \description{WBC: Measurements made for 91 days on the three variables, log(white blood count) [WBC], log(platelet) [PLT] and hematocrit [HCT].   Missing data code is 0 (zero).
 }
 \format{

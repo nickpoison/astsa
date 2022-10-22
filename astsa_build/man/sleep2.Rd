@@ -3,7 +3,7 @@
 \docType{data}
 \title{
 Sleep State and Movement Data - Group 2
-}
+} 
 \description{
 Sleep-state and number of movements of infants taken from a study on the effects of
 prenatal exposure to alcohol. This is Group 2 where the mothers drank alcohol in

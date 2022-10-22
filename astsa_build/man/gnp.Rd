@@ -2,7 +2,7 @@
 \alias{gnp}
 \docType{data}
 \title{Quarterly U.S. GNP
-}
+} 
 \description{Seasonally adjusted quarterly U.S. GNP from 1947(1) to 2002(3).
 }
 \format{

@@ -2,7 +2,7 @@
 \alias{EBV}
 \docType{data}
 \title{Entire Epstein-Barr Virus (EBV) Nucleotide Sequence
-}
+} 
 \description{EBV nucleotide sequence - 172281 bp as a single string
 }
 \format{

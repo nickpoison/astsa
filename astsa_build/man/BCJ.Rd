@@ -3,7 +3,7 @@
 \docType{data}
 \title{
 Daily Returns of Three Banks
-}
+} 
 \description{
 Daily returns of three banks, 1.  Bank of America [boa], 2. Citibank [citi], and
 3.  JP Morgan Chase [jpm], from 2005 to 2017.

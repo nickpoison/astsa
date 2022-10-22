@@ -1,7 +1,7 @@
 \name{sarima.for}
 \alias{sarima.for}
 \title{ARIMA Forecasting
-}
+} 
 \description{ARIMA forecasting.
 }
 \usage{

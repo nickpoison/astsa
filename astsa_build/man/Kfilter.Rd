@@ -2,7 +2,7 @@
 \alias{Kfilter}
 \title{
 Quick Kalman Filter 
-}
+} 
 \description{
 Returns both the predicted and filtered values for various linear  state space models;
 it also evaluates the likelihood at the given parameter values.

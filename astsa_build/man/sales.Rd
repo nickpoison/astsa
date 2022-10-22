@@ -2,7 +2,7 @@
 \alias{sales}
 \docType{data}
 \title{Sales
-}
+} 
 \description{Sales, 150 months; taken from Box and Jenkins (1970).
 }
 \format{

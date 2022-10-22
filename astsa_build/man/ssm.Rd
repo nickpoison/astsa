@@ -1,7 +1,7 @@
 \name{ssm}
 \alias{ssm}
 \title{State Space Model
-}
+} 
 \description{
 Fits a simple univariate state space model to data. The parameters
 are estimated (the state regression parameter may be fixed).  State 

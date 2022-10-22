@@ -2,7 +2,7 @@
 \alias{oil}
 \docType{data}
 \title{Crude oil, WTI spot price FOB
-}
+} 
 \description{Crude oil, WTI spot price FOB (in dollars per barrel), weekly data from 2000 to mid-2010.
 }
 \format{

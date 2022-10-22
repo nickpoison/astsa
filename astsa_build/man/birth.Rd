@@ -2,7 +2,7 @@
 \alias{birth}
 \docType{data}
 \title{U.S. Monthly Live Births 
-}
+} 
 \description{Monthly live births (adjusted) in thousands for the United States, 1948-1979.
 }
 \format{

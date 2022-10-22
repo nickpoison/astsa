@@ -2,7 +2,7 @@
 \alias{djia}
 \docType{data}
 \title{Dow Jones Industrial Average
-}
+} 
 \description{Daily DJIA values from April 2006 - April 2016
 }
 \format{

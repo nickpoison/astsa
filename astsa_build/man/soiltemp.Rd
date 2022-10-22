@@ -2,7 +2,7 @@
 \alias{soiltemp}
 \docType{data}
 \title{Spatial Grid of Surface Soil Temperatures
-}
+} 
 \description{A 64 by 36 matrix of surface soil temperatures.
 }
 \format{

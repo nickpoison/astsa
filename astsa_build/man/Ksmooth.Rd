@@ -2,7 +2,7 @@
 \alias{Ksmooth}
 \title{
 Quick Kalman Smoother
-}
+} 
 \description{
 Returns the smoother values for various linear  state space models. The predicted and filtered values and
  the likelihood at the given parameter values are also returned (via \code{Kfilter}). 

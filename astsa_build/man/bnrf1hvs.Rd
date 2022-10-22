@@ -2,7 +2,7 @@
 \alias{bnrf1hvs}
 \docType{data}
 \title{Nucleotide sequence - BNRF1 of Herpesvirus saimiri
-}
+} 
 \description{Nucleotide sequence of the BNRF1 gene of the herpesvirus saimiri (HVS): 1=A, 2=C, 3=G, 4=T. The data are used in Chapter 7.
 }
 \format{

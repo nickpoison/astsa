@@ -1,7 +1,7 @@
 \name{FDR}
 \alias{FDR}
 \title{Basic False Discovery Rate
-}
+} 
 \description{Computes the basic false discovery rate given a vector of p-values and returns the index of the maximal p-value satisfying the FDR condition. 
 }
 \usage{

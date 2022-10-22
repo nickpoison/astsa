@@ -4,7 +4,7 @@
 \title{Hematocrit Levels
 }
 \description{HCT: Measurements made for 91 days on the three variables, log(white blood count) [WBC], log(platelet) [PLT] and hematocrit [HCT].  Missing data code is 0 (zero).
-}
+} 
 \format{
   The format is:
  Time-Series [1:91] from 1 to 91: 30 30 28.5 34.5 34 32 30.5 31 33 34 ...

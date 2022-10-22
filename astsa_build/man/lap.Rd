@@ -2,7 +2,7 @@
 \alias{lap}
 \docType{data}
 \title{LA Pollution-Mortality Study
-}
+} 
 \description{LA Pollution-Mortality Study (1970-1979, weekly data).
 }
 \format{

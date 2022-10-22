@@ -2,7 +2,7 @@
 \alias{EM}
 \title{
 EM Algorithm for State Space Models
-}
+} 
 \description{Estimation of the parameters in general linear state space models via the EM algorithm.   
 Missing data may be entered as \code{NA} or as zero (0). Inputs in both the state and observation equations are allowed.
 This script replaces \code{EM0} and \code{EM1}.

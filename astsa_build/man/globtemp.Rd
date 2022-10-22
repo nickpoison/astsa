@@ -2,7 +2,7 @@
 \alias{globtemp}
 \docType{data}
 \title{Global mean land-ocean temperature deviations to 2015
-}
+} 
 \description{Global mean land-ocean temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2015. This was an update of \code{gtemp}, but \code{gtemp_land} and \code{gtemp_ocean} are the most recent updates.
 }
 \format{

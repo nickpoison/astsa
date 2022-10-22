@@ -2,7 +2,7 @@
 \alias{gas}
 \docType{data}
 \title{Gas Prices
-}
+} 
 \description{New York Harbor conventional regular gasoline weekly spot price FOB (in cents per gallon) from 2000 to mid-2010.
 }
 \format{

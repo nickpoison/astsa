@@ -2,7 +2,7 @@
 \alias{ar1miss}
 \docType{data}
 \title{AR with Missing Values
-}
+} 
 \description{Data used in Chapter 6
 }
 \format{

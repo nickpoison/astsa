@@ -8,7 +8,7 @@ Powers of a Square Matrix
 \code{matrixpwr} computes powers of a square matrix including negative powers for nonsingular matrices.
 
 \code{\%^\%} is a more intuitive interface as an operator.
-}
+} 
 \usage{
 matrixpwr(A, power)
 

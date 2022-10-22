@@ -2,7 +2,7 @@
 \alias{nyse}
 \docType{data}
 \title{Returns of the New York Stock Exchange
-}
+} 
 \description{Returns of the New York Stock Exchange (NYSE) from February 2, 1984 to December 31, 1991.
 }
 \usage{data(nyse)}

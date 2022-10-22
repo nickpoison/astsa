@@ -1,7 +1,7 @@
 \name{acf2}
 \alias{acf2}
 \title{Plot and print ACF and PACF of a time series
-}
+} 
 \description{
 Produces a simultaneous plot (and a printout) of the sample ACF and PACF on the same scale. The zero lag value of the ACF is removed.
 }

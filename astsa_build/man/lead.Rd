@@ -2,7 +2,7 @@
 \alias{lead}
 \docType{data}
 \title{Leading Indicator
-}
+} 
 \description{Leading indicator, 150 months; taken from Box and Jenkins (1970).  
 }
 \usage{data(lead)}

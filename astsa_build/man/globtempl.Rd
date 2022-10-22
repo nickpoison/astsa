@@ -2,7 +2,7 @@
 \alias{globtempl}
 \docType{data}
 \title{Global mean land (only) temperature deviations to 2015
-}
+} 
 \description{Global mean [land only] temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2015. This is an update of \code{gtemp2}.  Note the data file is \code{globtemp-el} not
     \code{globtemp-one}; the el stands for land.  The data files \code{gtemp_land} and \code{gtemp_ocean} are the most recent updates.
 }

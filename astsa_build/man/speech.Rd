@@ -2,7 +2,7 @@
 \alias{speech}
 \docType{data}
 \title{Speech Recording
-}
+} 
 \description{A small .1 second (1000 points) sample of recorded speech for the phrase "aaa...hhh".
 }
 \format{

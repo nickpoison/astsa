@@ -3,6 +3,7 @@
 \docType{data}
 \title{Annual Varve Series
 }
+
 \description{Sedimentary deposits from one location in Massachusetts for 634 years, beginning nearly 12,000 years ago.
 }
 \format{

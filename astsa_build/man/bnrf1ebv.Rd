@@ -2,7 +2,7 @@
 \alias{bnrf1ebv}
 \docType{data}
 \title{Nucleotide sequence - BNRF1 Epstein-Barr 
-}
+} 
 \description{Nucleotide sequence of the BNRF1 gene of the Epstein-Barr virus
 (EBV): 1=A, 2=C, 3=G, 4=T. The data are used in Chapter 7.
 }

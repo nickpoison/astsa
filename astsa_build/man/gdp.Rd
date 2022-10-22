@@ -2,7 +2,7 @@
 \alias{gdp}
 \docType{data}
 \title{Quarterly U.S. GDP
-}
+} 
 \description{Seasonally adjusted quarterly U.S. GDP from 1947(1) to 2018(3).
 }
 \format{

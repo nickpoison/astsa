@@ -1,7 +1,7 @@
 \name{trend}
 \alias{trend}
 \title{Estimate Trend
-}
+} 
 \description{
 Estimates the trend (polynomial or lowess) of a time series and returns a graphic of the series with the trend and error bounds superimposed.
 }

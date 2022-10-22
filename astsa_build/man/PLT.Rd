@@ -2,7 +2,7 @@
 \alias{PLT}
 \docType{data}
 \title{Platelet Levels
-}
+} 
 \description{PLT: Measurements made for 91 days on the three variables, log(white blood count) [WBC], log(platelet) [PLT] and hematocrit [HCT].  Missing data code is 0 (zero).
 }
 \usage{data(PLT)}

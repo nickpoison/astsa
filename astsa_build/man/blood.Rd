@@ -2,7 +2,7 @@
 \alias{blood}
 \docType{data}
 \title{Daily Blood Work with Missing Values
-}
+} 
 \description{Multiple time series of measurements made for 91 days on the three variables, log(white blood count) [WBC], log(platelet) [PLT] and hematocrit [HCT].  Missing data code is NA.
 }
 \format{

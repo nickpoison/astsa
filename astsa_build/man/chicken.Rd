@@ -2,7 +2,7 @@
 \alias{chicken}
 \docType{data}
 \title{Monthly price of a pound of chicken
-}
+} 
 \description{
 Poultry (chicken), Whole bird spot price, Georgia docks, US cents per pound
 }

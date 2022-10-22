@@ -1,6 +1,6 @@
 \name{polyMul}
 \alias{polyMul}
-\title{Multiplication of Two Polynomials}
+\title{Multiplication of Two Polynomials} 
 \description{Multiplication of two polynomials.}
 \usage{polyMul(p, q)}
 \arguments{

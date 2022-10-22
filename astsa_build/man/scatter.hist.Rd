@@ -2,7 +2,7 @@
 \alias{scatter.hist}
 \title{
 Scatterplot with Marginal Histograms
-}
+} 
 \description{
 Draws a scatterplot with histograms in the margins.
 }

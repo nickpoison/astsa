@@ -1,7 +1,7 @@
 \name{tsplot}
 \alias{tsplot}
 \title{Time Series Plot
-}
+} 
 \description{
 Produces a nice plot of univariate or multiple time series in one easy line.
 }

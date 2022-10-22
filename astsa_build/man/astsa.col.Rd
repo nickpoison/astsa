@@ -2,7 +2,7 @@
 \alias{astsa.col}
 \title{
 astsa color palette with transparency
-}
+} 
 \description{
 Modifies the opacity level of the astsa color palette.
 }

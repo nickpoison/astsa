@@ -2,7 +2,7 @@
 \alias{salt}
 \docType{data}
 \title{Salt Profiles
-}
+} 
 \description{Salt profiles taken over a spatial grid set out on an agricultural field, 64 rows at 17-ft spacing.
 }
 \usage{data(salt)}

@@ -2,7 +2,7 @@
 \alias{so2}
 \docType{data}
 \title{SO2 levels from the LA pollution study
-}
+} 
 \description{Sulfur dioxide levels from the LA pollution study
 }
 \format{

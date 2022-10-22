@@ -3,7 +3,7 @@
 \title{Convert ARMA Process to Infinite AR Process}
 \description{
   Gives the \eqn{\pi}-weights in the invertible representation of an ARMA model.
-}
+} 
 \usage{
 ARMAtoAR(ar = 0, ma = 0, lag.max=20)
 }

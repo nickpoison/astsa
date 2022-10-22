@@ -2,7 +2,7 @@
 \alias{arf}
 \docType{data}
 \title{Simulated ARFIMA
-}
+} 
 \description{1000 simulated observations from an ARFIMA(1, 1, 0) model with \eqn{\phi = .75} and \eqn{d = .4}.
 }
 \format{

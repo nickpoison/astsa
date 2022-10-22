@@ -2,7 +2,7 @@
 \alias{climhyd}
 \docType{data}
 \title{Lake Shasta inflow data
-}
+} 
 \description{Lake Shasta inflow data.  This is a data frame.
 }
 \format{A data frame with 454 observations (rows) on the following 6 numeric variables (columns): \code{Temp}, \code{DewPt}, \code{CldCvr}, \code{WndSpd}, \code{Precip}, \code{Inflow}.

@@ -1,7 +1,7 @@
 \name{lag1.plot}
 \alias{lag1.plot}
 \title{Lag Plot - one time series
-}
+} 
 \description{Produces a grid of scatterplots of a series versus lagged values of the series.
 }
 \usage{

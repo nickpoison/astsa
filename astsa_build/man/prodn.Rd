@@ -2,7 +2,7 @@
 \alias{prodn}
 \docType{data}
 \title{Monthly Federal Reserve Board Production Index
-}
+} 
 \description{Monthly Federal Reserve Board Production Index (1948-1978, n = 372 months).
 }
 \usage{data(prodn)}

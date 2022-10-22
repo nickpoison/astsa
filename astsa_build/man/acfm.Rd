@@ -1,7 +1,7 @@
 \name{acfm}
 \alias{acfm}
 \title{ACF and CCF for Multiple Time Series
-}
+} 
 \description{
 Produces a grid of plots of the sample ACF (diagonal) and CCF (off-diagonal).
 }

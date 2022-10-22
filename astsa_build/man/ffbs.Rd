@@ -2,7 +2,7 @@
 \alias{ffbs}
 \title{
 Forward Filtering Backward Sampling
-}
+} 
 \description{
 FFBS algorithm for state space models
 }

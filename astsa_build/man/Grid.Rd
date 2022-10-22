@@ -1,7 +1,7 @@
 \name{Grid}
 \alias{Grid}
 \title{A Better Add Grid to a Plot
-}
+} 
 \description{Adds a grid to an existing plot with major and minor ticks.  Works like R graphics grid() but the grid lines are solid and gray and minor ticks are produced by default.
 }
 \usage{

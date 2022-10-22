@@ -2,7 +2,7 @@
 \alias{econ5}
 \docType{data}
 \title{Five Quarterly Economic Series
-}
+} 
 \description{Multiple time series of quarterly U.S. unemployment, GNP, consumption, and government and private investment, from 1948-III to 1988-II.
 }
 \usage{data(econ5)}

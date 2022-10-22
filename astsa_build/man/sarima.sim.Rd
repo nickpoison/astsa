@@ -1,7 +1,7 @@
 \name{sarima.sim}
 \alias{sarima.sim}
 \title{ARIMA Simulation
-}
+} 
 \description{Simulate data from (seasonal) ARIMA models.
 }
 \usage{

@@ -1,7 +1,7 @@
 \name{arma.spec}
 \alias{arma.spec}
 \title{Spectral Density of an ARMA Model
-}
+} 
 \description{Gives the ARMA spectrum, tests for causality, invertibility, and
  common zeros.
 }

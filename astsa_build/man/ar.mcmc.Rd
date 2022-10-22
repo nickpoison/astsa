@@ -1,7 +1,7 @@
 \name{ar.mcmc}
 \alias{ar.mcmc}
 \title{Fit Bayesian AR Model 
-}
+} 
 \description{
 Uses Gibbs sampling to fit an AR model to time series data.
 }

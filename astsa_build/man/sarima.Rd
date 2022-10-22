@@ -1,7 +1,7 @@
 \name{sarima}
 \alias{sarima}
 \title{Fit ARIMA Models
-}
+} 
 \description{Fits ARIMA models (with diagnostics) in a short command.  It can also be used to perform regression with autocorrelated errors. 
 }
 \usage{

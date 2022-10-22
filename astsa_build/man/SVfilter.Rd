@@ -1,7 +1,7 @@
 \name{SVfilter}
 \alias{SVfilter}
 \title{Switching Filter (for Stochastic Volatility Models)
-}
+} 
 \description{Performs a special case switching filter when the observational noise is a certain mixture of normals. Used to fit a stochastic volatility model. 
 }
 \usage{

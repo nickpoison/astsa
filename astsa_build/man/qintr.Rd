@@ -2,7 +2,7 @@
 \alias{qintr}
 \docType{data}
 \title{Quarterly Interest Rate
-}
+} 
 \description{Quarterly interest rate recorded for Treasury bills from 1953-Ito 1980-II, n = 110 observations. 
 }
 \format{

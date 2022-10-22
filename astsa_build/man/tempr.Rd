@@ -2,7 +2,7 @@
 \alias{tempr}
 \docType{data}
 \title{Temperatures from the LA pollution study 
-}
+} 
 \description{Temperature series corresponding to \code{cmort} from the LA pollution study.
 }
 \format{

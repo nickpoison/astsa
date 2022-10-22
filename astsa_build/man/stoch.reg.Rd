@@ -1,7 +1,7 @@
 \name{stoch.reg}
 \alias{stoch.reg}
 \title{Frequency Domain Stochastic Regression
-}
+} 
 \description{Performs frequency domain stochastic regression discussed in Chapter 7.  
 }
 \usage{

@@ -3,7 +3,7 @@
 \docType{data}
 \title{
 Monthly export price of salmon
-}
+} 
 \description{
 Farm Bred Norwegian Salmon, export price, US Dollars per Kilogram
 }

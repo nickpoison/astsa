@@ -2,7 +2,7 @@
 \alias{qinfl}
 \docType{data}
 \title{Quarterly Inflation
-}
+} 
 \description{Quarterly inflation rate in the Consumer Price Index from 1953-Ito 1980-II, n = 110 observations.
 }
 \format{

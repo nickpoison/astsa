@@ -4,7 +4,7 @@
 \title{Canadian Lynx
 }
 \description{This is one of the classic studies of predator-prey interactions, the 90-year data set is the number, in thousands, of  lynx  pelts  purchased by the Hudson's Bay Company of Canada. While this is an indirect measure of predation, the assumption is that there is a direct relationship between the number of pelts collected and the number of hare and lynx in the wild.
-}
+} 
 \usage{data("Lynx")}
 \format{
   The format is:

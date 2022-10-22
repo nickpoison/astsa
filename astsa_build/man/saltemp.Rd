@@ -2,7 +2,7 @@
 \alias{saltemp}
 \docType{data}
 \title{Temperature Profiles 
-}
+} 
 \description{Temperature profiles over a spatial grid set out on an agricultural field, 64 rows at 17-ft spacing.
 }
 \usage{data(saltemp)}

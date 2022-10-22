@@ -2,7 +2,7 @@
 \alias{cpg}
 \docType{data}
 \title{Hard Drive Cost per GB 
-}
+} 
 \description{Median annual cost per gigabyte (GB) of storage.
 }
 \format{

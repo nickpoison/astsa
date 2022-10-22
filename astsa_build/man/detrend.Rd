@@ -2,7 +2,7 @@
 \alias{detrend}
 \title{
 Detrend a Time Series
-}
+} 
 \description{
 Returns a time series with the trend removed.  The trend can be estimated using polynomial regression or using a lowess fit.
 }

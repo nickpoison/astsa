@@ -3,7 +3,7 @@
 \docType{data}
 \title{
 Poliomyelitis cases in US 
-}
+} 
 \description{
 Monthly time series of poliomyelitis cases reported to the U.S. Centers for Disease Control for the years 1970 to 1983, 168 observations. }
 \format{
