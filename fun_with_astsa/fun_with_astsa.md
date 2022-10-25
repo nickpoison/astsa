@@ -919,7 +919,7 @@ First, the new and improved
 The scripts are
 > `Kfilter` and `Ksmooth`
 
-and are meant to replace  `Kfilter0/Ksmooth0`,  `Kfilter1/Ksmooth1`, `Kfilter2/Ksmooth2` with simplified arguments and faster running times. 
+and are meant to replace  `Kfilter0/Ksmooth0`,  `Kfilter1/Ksmooth1`, `Kfilter2/Ksmooth2` with simplified arguments and faster running times.  
 
 The default is
 
@@ -1158,7 +1158,9 @@ List of 6
 
 > **`Kfilter0()/Ksmooth0()`**, **`Kfilter1()/Ksmooth1()`**, **`Kfilter2()/Ksmooth2()`**
 
-These are still in `astsa` so as not to break anything and the old
+These are still in `astsa` for awhile, but there is an `x` in front of the names; e.g.,
+`Kfilter1()` is `xKilter1()` starting with version 2.0 of `astsa`. 
+The  old
  [special page on Kalman filtering and
 smoothing](https://github.com/nickpoison/tsa4/blob/master/chap6.md) page with the old 
 code is still up.
