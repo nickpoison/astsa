@@ -12,8 +12,8 @@ Includes data and scripts to accompany \href{https://link.springer.com/book/10.1
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 1.16.5\cr
-Date: \tab 2022-10-15\cr
+Version: \tab 2.0\cr
+Date: \tab 2022-12-21\cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr

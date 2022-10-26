@@ -18,7 +18,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 > Note: If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
 &#x1F4A1;  You can also install `astsa` from the archive (which is always current)
-[astsa_1.16.5.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_1.16.5.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+[astsa_2.0.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.0.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
 You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) and  an updated [pdf version of the `astsa` manual](https://github.com/nickpoison/astsa/blob/master/astsa.pdf) is available.
@@ -29,9 +29,14 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ---
 
-### Versions 1.16 - October 2022: 
+### Version 2.0 - December 2022
 
-+ <span style="font-size:larger;">__v1.16.5__</span>: (GitHub only) - Added new scripts and updated others.
++ <span style="font-size:larger;">__v2.0__</span>: (GitHub only) We'll wait until December (at least) to push this version to CRAN. There are a number of new scripts and some old ones are set to be retired eventually.  
+
+
+### Versions 1.16 - October 2022
+
++  Version v1.16.5: (GitHub only) - Added new scripts and updated others.
 
 **NOTE** that the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now:
      `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
@@ -49,7 +54,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 
 
-+ <span style="font-size:larger;">__v1.16__</span>: (on CRAN)
++ Version v1.16: (on CRAN)
 
    - Added `Months` to use with `pch` for monthly data; see the help file `?Months`.
    
