@@ -36,4 +36,6 @@ The Springer text was written under version 1.8 and the Chapman & Hall text was 
 
 
 [![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
-![](https://komarev.com/ghpvc/?username=nickpoison&color=006666&label=guests)
+
+<!-- ![](https://komarev.com/ghpvc/?username=nickpoison&color=006666&label=guests)  -->
+
