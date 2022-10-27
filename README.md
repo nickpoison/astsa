@@ -37,5 +37,15 @@ The Springer text was written under version 1.8 and the Chapman & Hall text was 
 
 [![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
 
-<!-- ![](https://komarev.com/ghpvc/?username=nickpoison&color=006666&label=guests)  -->
+<!--![](https://komarev.com/ghpvc/?username=nickpoison&color=006666&label=guests) 
+
+![visitor badge](https://visitor-badge.glitch.me/badge?page_id=nickpoison.visitor-badge&left_text=guests)
+
+![Visitor Count](https://visitor-badge-reloaded.herokuapp.com/badge?page_id=nickpoison&cache=on) -->
+
+ 
+
+## ⒼⓊⒺⓈⓉⓈ
+
+![Visitor Count](https://profile-counter.glitch.me/nickpoison/count.svg)
 
