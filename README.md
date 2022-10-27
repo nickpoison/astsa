@@ -48,6 +48,3 @@ The Springer text was written under version 1.8 and the Chapman & Hall text was 
 
 <sup> ＧＵＥＳＴＳ: </sup>  ![Visitor Count](https://profile-counter.glitch.me/nickpoison/count.svg)
 
- <style>
-    sup { font-size: 100% !important; }
-  </style>
