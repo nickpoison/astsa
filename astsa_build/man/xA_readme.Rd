@@ -1,5 +1,5 @@
 \name{xA_readme}
-\alias{xA_readme}
+\alias{x_readme}
 \docType{data}
 \title{
 Scripts marked with an 'x' are scheduled to be phased out
