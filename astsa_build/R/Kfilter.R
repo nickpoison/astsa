@@ -67,9 +67,9 @@ Pf    = c(0)      # Pf=x_t^t
 innov = c(0)      # innovations
 sig   = c(0)      # innov var-cov matrix
 
-###############################################################################
+############################################################### 
 if (version == 1){
-###############################################################################
+############################################################### 
 # initial run
   Xp[1]    = Phi*mu0 + Ups%*%ut[1,]
   Pp[1]    = Phi^2*Sigma0 + Q
@@ -95,9 +95,9 @@ if (version == 1){
   }
  like = 0.5*like
 }
-##########################################################################
+############################################################### 
 if (version == 2){
-##########################################################################
+############################################################### 
   like  = 0                               # -log(likelihood)
   if (is.null(S)) S = 0
   Xp[1] = Phi*mu0 + Ups%*%ut[1,]
@@ -115,36 +115,30 @@ if (version == 2){
   }
   like=0.5*like
 }
-########## returns for univariate cases #######################################
+########## returns for univariate cases #######################
  Xp = array(Xp, dim=c(1,1,num)); Xf = array(Xf, dim=c(1,1,num))
  Pp = array(Pp, dim=c(1,1,num)); Pf = array(Pf, dim=c(1,1,num))
  innov = array(innov, dim=c(1,1,num)); sig = array(sig, dim=c(1,1,num))
 return(list(Xp=Xp,Pp=Pp,Xf=Xf,Pf=Pf,Kn=K,like=like,innov=innov,sig=sig))
-##### end univariate ##########################################################
+##### end univariate ##########################################
 } else {
 ###############################################################################
 ############  multivariate cases ##############################################
 ###############################################################################
 
-## these are used in the calls to .Kfilter1 or 2
-cQ = t(sQ)
-cR = t(sR)
-
-
-
-###############################################################################
+############################################################
 if (version == 1){
-###############################################################################
- kf = .Kfilter1(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,input)
+############################################################
+ kf = .Kfilter1(num,y,A,mu0,Sigma0,Phi,Ups,Gam,sQ,sR,input)
 }
 
-###############################################################################
+############################################################
 if (version == 2){
-###############################################################################
+############################################################
  if (is.null(S)) S = matrix(0, nrow=pdim, ncol=qdim)
- kf = .Kfilter2(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,S,input)
+ kf = .Kfilter2(num,y,A,mu0,Sigma0,Phi,Ups,Gam,sQ,sR,S,input)
 }
-######## both multivariates ##############################################
+######## both multivariates returns #########################
 return(list(Xp=kf$xp,Pp=kf$Pp,Xf=kf$xf,Pf=kf$Pf,like=kf$like,innov=kf$innov,sig=kf$sig,Kn=kf$Kn))
 } # end multivariate
 } # the end 
@@ -152,18 +146,18 @@ return(list(Xp=kf$xp,Pp=kf$Pp,Xf=kf$xf,Pf=kf$Pf,like=kf$like,innov=kf$innov,sig=
 
 
 .Kfilter1 <-
-function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,input){
+function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,sQ,sR,input){
 #
 if (is.null(input)){  # no input
- Q      = t(cQ)%*%cQ
- R      = t(cR)%*%cR
+ Q      = sQ %*% t(sQ)
+ R      = sR %*% t(sR)
  Phi    = as.matrix(Phi)
  pdim   = nrow(Phi) 
  mu0    = matrix(mu0, nrow=pdim, ncol=1)
  Sigma0 = matrix(Sigma0, nrow=pdim, ncol=pdim)
  y      = as.matrix(y)
  qdim   = ncol(y)
- xp    = array(NA, dim=c(pdim,1,num))         # xp = x_t^{t-1}          
+ xp    = array(NA, dim=c(pdim,1,num))         # xp = x_t^{t-1}
  Pp    = array(NA, dim=c(pdim,pdim,num))      # Pp = P_t^{t-1}
  xf    = array(NA, dim=c(pdim,1,num))         # xf = x_t^t
  Pf    = array(NA, dim=c(pdim,pdim,num))      # Pf = x_t^t
@@ -203,8 +197,8 @@ if (is.null(input)){  # no input
 #
 } else {  # start with input
 #
- Q      = t(cQ)%*%cQ
- R      = t(cR)%*%cR
+ Q      = sQ %*% t(sQ)
+ R      = sR %*% t(sR)
  Phi    = as.matrix(Phi)
  pdim   = nrow(Phi) 
  mu0    = matrix(mu0, nrow=pdim, ncol=1)
@@ -264,15 +258,15 @@ if (is.null(input)){  # no input
 
 # this is Kfilter2 without Theta 
 .Kfilter2 <-
-function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,cQ,cR,S,input){
+function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,sQ,sR,S,input){
 #
 if (is.null(input)){  # no input
  Phi   = as.matrix(Phi) 
  num   = NROW(y)
  pdim  = NROW(Phi) 
  qdim  = NCOL(y)
- Q     =  t(cQ)%*%cQ
- R     =  t(cR)%*%cR 
+ Q     = sQ %*% t(sQ)
+ R     = sR %*% t(sR)
  S     = as.matrix(S)
  y     = as.matrix(y)
  mu0   = as.matrix(mu0)
@@ -292,7 +286,7 @@ if (is.null(input)){  # no input
   sigma      = B%*%Pp[,,i]%*%t(B) + R 
   sig[,,i]   = (t(sigma)+sigma)/2     # make sure sig is symmetric
   siginv     = solve(sigma)
-  K          = (Phi%*%Pp[,,i]%*%t(B) + t(cQ)%*%S)%*%siginv 
+  K          = (Phi%*%Pp[,,i]%*%t(B) + sQ%*%S)%*%siginv 
   xf[,,i]    = xp[,,i] + Pp[,,i]%*%t(B)%*%siginv%*%innov[,,i]
   Pf[,,i]    = Pp[,,i] - Pp[,,i]%*%t(B)%*%siginv%*%B%*%Pp[,,i] 
   like       = like + log(det(sigma)) + t(innov[,,i])%*%siginv%*%innov[,,i]
@@ -307,8 +301,8 @@ if (is.null(input)){  # no input
  num   = NROW(y)
  pdim  = NROW(Phi) 
  qdim  = NCOL(y)
- Q     =  t(cQ)%*%cQ
- R     =  t(cR)%*%cR 
+ Q     = sQ %*% t(sQ)
+ R     = sR %*% t(sR)
  S     = as.matrix(S)
  y     = as.matrix(y)
  rdim  =  ncol(as.matrix(input))
@@ -334,7 +328,7 @@ if (is.null(input)){  # no input
   sigma      = B%*%Pp[,,i]%*%t(B) + R 
   sig[,,i]   = (t(sigma)+sigma)/2     # make sure sig is symmetric
   siginv     = solve(sigma)
-  K          = (Phi%*%Pp[,,i]%*%t(B) + t(cQ)%*%S)%*%siginv 
+  K          = (Phi%*%Pp[,,i]%*%t(B) + sQ%*%S)%*%siginv 
   xf[,,i]    = xp[,,i] + Pp[,,i]%*%t(B)%*%siginv%*%innov[,,i]
   Pf[,,i]    = Pp[,,i] - Pp[,,i]%*%t(B)%*%siginv%*%B%*%Pp[,,i] 
   like       = like + log(det(sigma)) + t(innov[,,i])%*%siginv%*%innov[,,i]
