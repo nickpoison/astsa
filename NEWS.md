@@ -51,7 +51,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 ---
 
-### Version v1.16: (on CRAN)
+### Version v1.16 - Sept 2022 (on CRAN)
 
    - Added `Months` to use with `pch` for monthly data; see the help file `?Months`.
    
