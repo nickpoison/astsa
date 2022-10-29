@@ -1,13 +1,13 @@
 \name{gtemp_land}
 \alias{gtemp_land}
 \docType{data}
-\title{Global mean land  temperature deviations - updated to 2017
+\title{Global mean land  temperature deviations - updated to 2021
 } 
-\description{Annual temperature anomalies (in degress centigrade) averaged over the Earth's land area from 1880 to  2017.
+\description{Annual temperature anomalies (in degress centigrade) averaged over the Earth's land area from 1880 to  2021.
 }
 \format{
   The format is:
- Time-Series [1:138] from 1880 to 2017: -0.62 -0.45 -0.47 -0.62 -0.82 ...
+  Time-Series [1:142] from 1880 to 2021: -0.6 -0.39 -0.49 -0.58 -0.75 -0.76 -0.6 -0.69 -0.54 -0.26 ...
 }
 \source{\kbd{https://data.giss.nasa.gov/gistemp/graphs/}
 }

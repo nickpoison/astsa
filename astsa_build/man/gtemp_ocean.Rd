@@ -1,13 +1,13 @@
 \name{gtemp_ocean}
 \alias{gtemp_ocean}
 \docType{data}
-\title{Global mean ocean temperature deviations - updated to 2017
+\title{Global mean ocean temperature deviations - updated to 2021
 } 
-\description{Annual sea surface temperature anomalies averaged over the part of the ocean that is free of ice at all times (open ocean) from 1880 to 2017.
+\description{Annual sea surface temperature anomalies averaged over the part of the ocean that is free of ice at all times (open ocean) from 1880 to 2021.
 }
 \format{
   The format is:
- Time-Series [1:138] from 1880 to 2009:  -0.05  0.01  0.00 -0.06 -0.15 ...
+  Time-Series [1:142] from 1880 to 2021: -0.05 0.01 0 -0.06 -0.15 -0.21 -0.21 -0.24 -0.05 -0.04 ...
 }
 \source{\kbd{https://data.giss.nasa.gov/gistemp/graphs/}
 }
