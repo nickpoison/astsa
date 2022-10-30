@@ -15,7 +15,7 @@ install.packages("remotes")   # if you don't have the package already
 remotes::install_github("nickpoison/astsa/astsa_build")
 ```
 
-> Note: If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
+> __Note__: If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
 &#x1F4A1;  You can also install `astsa` from the archive (which is always current)
 [astsa_2.0.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.0.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
