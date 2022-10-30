@@ -15,7 +15,7 @@ install.packages("remotes")   # if you don't have the package already
 remotes::install_github("nickpoison/astsa/astsa_build")
 ```
 
-> __Note__: If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
+>  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
 &#x1F4A1;  You can also install `astsa` from the archive (which is always current)
 [astsa_2.0.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.0.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
@@ -34,7 +34,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
  <span style="font-size:larger;">__v2.0__</span>: (now on GitHub only) We'll wait until December 2022 (at least) to push this version to CRAN. There are a number of new scripts and some old ones are set to be retired eventually.  
 
 
-**NOTE** that the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now: `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
+__NOTE__  the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now: `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
    
 
    - Added `Kfilter` which is faster than `Kfilter0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
