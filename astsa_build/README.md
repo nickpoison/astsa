@@ -9,7 +9,7 @@
 ... `astsa` is the R package to accompany the [Springer](https://link.springer.com/book/10.1007/978-3-319-52452-8) text, [Time Series Analysis and Its Applications: With R Examples](https://github.com/nickpoison/tsa4)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series: A Data Analysis Approach using R](https://github.com/nickpoison/tsda). 
 
 
-> _Note_ that scripts starting with `x` will be phased out eventually. Old code will run by adding an `x`; e.g., `xKfilter1(...)` instead of `Kfilter1()`.
+> __Note__ that scripts starting with `x` will be phased out eventually. Old code will run by adding an `x`; e.g., `xKfilter1(...)` instead of `Kfilter1()`.
 
 
 We won't always push the latest version of the package to CRAN, but [the latest working version of the package will always be at Github](https://github.com/nickpoison/astsa/).
