@@ -14,7 +14,7 @@
 
 We won't always push the latest version of the package to CRAN, but the latest working version of the package will always be at Github.
 
-* See the [NEWS for further details about the state of the package and the changelog](https://github.com/nickpoison/astsa/blob/master/NEWS.md) .
+* [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) has further details about the state of the package and the changelog.
 
 + And we have a [pdf version of the `astsa` manual](https://github.com/nickpoison/astsa/blob/master/astsa.pdf) .
 
