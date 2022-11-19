@@ -1659,9 +1659,9 @@ pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)
 # run it
 for (iter in 1:niter){
 ## (2)  sample the states  
- run   = ffbs(y,1,0,10,1,0,0,sQ,sR,0)  # ffbs(y,A,mu0,Sigma0,Phi,Ups,Gam,sQ,sR,input)
+ run   = ffbs(y,A=1,mu0=0,Sigma0=10,Phi=1,sQ,sR) 
 ## (1)  sample the parameters    
-  xs   = as.matrix(run$xs)
+  xs   = as.matrix(run$Xs)
   R    = 1/rgamma(1,a+n/2,b+sum((y-xs)^2)/2)
  sR    = sqrt(R)
   Q    = 1/rgamma(1,c+(n-1)/2,d+sum(diff(xs)^2)/2)

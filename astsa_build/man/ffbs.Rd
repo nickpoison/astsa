@@ -91,7 +91,7 @@ for (t in 2:n){
   y[t] = x[t] + sR*v[t]   
   }
 ## run one pass of FFBS, plot data, states and sampled states  
-run = ffbs(y,A=1,mu0=0,Sigma0=10,Phi=1,Ups=0,Gam=0,sQ=1,sR=3,input=0)
+run = ffbs(y, A=1, mu0=0, Sigma0=10, Phi=1, sQ=1, sR=3)
 tsplot(cbind(y,run$Xs), spaghetti=TRUE, type='o', col=c(8,4), pch=c(1,NA))
 legend('topleft', legend=c("y(t)","xs(t)"), lty=1, col=c(8,4), bty="n", pch=c(1,NA))
 }
