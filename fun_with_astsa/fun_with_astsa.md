@@ -16,7 +16,7 @@ it's more than just data ...
 
 -----
 -----
-> _note_: when you are in a code block below, you can copy the contents of the block by moving your mouse to the upper right corner and clicking on the copy icon ( &#128203; ).
+> __Note__  when you are in a code block below, you can copy the contents of the block by moving your mouse to the upper right corner and clicking on the copy icon ( &#128203; ).
 ------
 -----
 
