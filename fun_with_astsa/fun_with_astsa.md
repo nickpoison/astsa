@@ -3,7 +3,7 @@
 [![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
 
 
-#### we'll demonstrate some of the capabilities of latest version of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
+#### we'll demonstrate some of the capabilities of the latest version of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
 
 Remember to load `astsa` at the start of a session.
 
