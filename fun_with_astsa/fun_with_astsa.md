@@ -3,7 +3,7 @@
 [![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa)
 
 
-##### we'll demonstrate some of the capabilities of `astsa` ... the [NEWS page  has additional installation information](https://github.com/nickpoison/astsa/blob/master/NEWS.md).
+#### we'll demonstrate some of the capabilities of latest version of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
 
 Remember to load `astsa` at the start of a session.
 
@@ -16,9 +16,11 @@ it's more than just data ...
 
 -----
 -----
-> &#128262; Note: when you are in a code block below, you can copy the contents of the block by moving your mouse to the upper right corner and clicking on the copy icon ( &#128203; ).
+> _note_: when you are in a code block below, you can copy the contents of the block by moving your mouse to the upper right corner and clicking on the copy icon ( &#128203; ).
 ------
 -----
+
+ 
 
 ### Table of Contents
 
