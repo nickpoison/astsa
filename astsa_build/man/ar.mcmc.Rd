@@ -64,7 +64,7 @@ various quantiles are displayed.
 \author{
 D.S. Stoffer
 }
-\source{Based on the scirpt \code{arp.mcmc} used in Douc,  Moulines, & Stoffer, D. (2014).
+\source{Based on the script \code{arp.mcmc} used in Douc,  Moulines, & Stoffer, D. (2014).
 \emph{ Nonlinear Time Series: Theory, Methods and Applications with R Examples}. CRC press. 
 ISBN 9781466502253.
 }
