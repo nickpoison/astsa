@@ -865,10 +865,9 @@ refer to frequency ordinate:
 
 ### autoSpec
 
-### &emsp; Detection of Narrowband Frequency Changes in Time Series
+#### &emsp; Detection of Narrowband Frequency Changes in Time Series -  [the paper is here](https://dx.doi.org/10.4310/21-SII703) 
 
-### &#x1F535;  [The paper is here.](https://dx.doi.org/10.4310/21-SII703)
-
+<br/>
 
 &#x1F4A1;  The basic idea is to fit local spectra by detecting slight changes in frequency.  Section 2 of the paper on _Resolution_ provides the motivation for the technique.  If you haven't guessed it already, the script is called  
 
@@ -876,8 +875,8 @@ refer to frequency ordinate:
 
 and most of the inputs have default settings. We'll do a couple of examples:
 
-&#128526; ENSO ... this is like the main example in the paper, but the data have been updated. 
-The input `max.period` specifies the frequency range [0, 1/max.period] over which to calculate the Whittle likelihood; the default is 2 (the min).
+&#128526; ENSO ... this is like the main example in the paper but the data have been updated. 
+The input `max.period` specifies the frequency range [0, 1/max.period] over which to calculate the Whittle likelihood; the default is 2, which is the max frequency range.
 
 
 ```r
@@ -913,7 +912,7 @@ mvspec(x2, taper=.5, kernel=bart(4),   main='Segment 2', col=4, lwd=2)
 
 <br/>
 
-&#128526; Here's an example where other techniques tend to fail. A narrowband signal is modulated unitl halfway through.
+&#128526; Here's an example where other techniques tend to fail. A narrowband signal is modulated until halfway through.
 
 ```r
 set.seed(90210)
