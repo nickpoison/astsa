@@ -157,6 +157,8 @@ And you can get more information on any individual set using the `help()` comman
 
 ## 2. Plotting
 
+<br/>
+
 ###  ▶️ Colors
 
 &#x1F4A1; When `astsa` is loaded, the astsa palette is attached.  The palette is  especially  suited for plotting  time series and it is a bit darker than the new default R4 palette. You can revert back using  `palette("default")`.  Also,
@@ -181,7 +183,7 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), names=rep(3:6, 2), add=TRUE)
 
 <img src="figs/palette.png" alt="palette"  width="75%"><br/>
 
-<br/><br/>
+<br/>
 
 ### ▶️ tsplot
 
@@ -270,7 +272,9 @@ lines(lowess(tempr, cmort), col=6, lwd=2)
 
 <img src="figs/scatterhist.png" alt="scatterhist"  width="75%"><br/>
 
-### Trends
+<br/>
+
+### ▶️ Trends
 
 &#128178; As of version 1.15, there are two new scripts to help with analyzing trends. They are
 
@@ -407,6 +411,8 @@ acfm(diff(log(econ5)), gg=TRUE, acf.highlight=FALSE)  # Gris-Gris Gumbo Ya Ya
 
 ## 4. ARIMA
 
+<br/>
+
 ### ▶️ ARIMA Simulation
 
 &#128171; You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via
@@ -433,7 +439,7 @@ tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 
 <img src="figs/sarima.sim.png" alt="sarima.sim"  width="75%"><br/>
 
-
+<br/>
 
 ### ▶️ ARIMA Estimation
 
@@ -591,7 +597,7 @@ $BIC
 
 <img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="75%"><br/>
 
-
+<br/>
 
 ### ▶️ Forecasting
 
@@ -660,6 +666,8 @@ and parametric spectral analysis with
 
 > **`spec.ic()`**
 
+<br/>
+
 ### ▶️ ARMA Spectral Density
 
 
@@ -696,6 +704,7 @@ arma.spec(ar= .9, ma= -.9, main="It's White Noise, Dingus")
 
 <img src="figs/dingus.png" alt="dingus"  width="75%"><br/>
 
+<br/>
 
 ### ▶️ nonparametric spectral analysis
 
@@ -764,6 +773,7 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 
 <img src="figs/coher.png" alt="coher"  width="75%"><br/>
 
+<br/>
 
 ### ▶️ parametric spectral analysis
 
@@ -824,6 +834,7 @@ tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRU
 ```
 <img src="figs/aicbic.png" alt="aicbic"  width="75%"><br/>
 
+<br/>
 
 ### ▶️ more multivariate spectra
 
@@ -862,6 +873,7 @@ refer to frequency ordinate:
 
 ```
 
+<br/>
 
 ### ▶️ autoSpec
 
@@ -994,7 +1006,7 @@ tsplot(nyse, col=4)
 ## 7. State Space Models
 
 
-
+<br/>
 
 First, the new and improved
  ### ▶️ Quick Kalman Filter and Smoother 
@@ -1584,6 +1596,8 @@ R  # (actual .01)
 
 > `ffbs` the forward filter backward sampling (FFBS) algorithm - part of Gibbs sampler
 
+<br/>
+
 ### ▶️ AR Models
 
 &#x1F535; For a minimal example, we'll fit an AR(2) to the Recruitment (`rec`) data. 
@@ -1621,7 +1635,7 @@ and graphics
 
 <img src="figs/bayes_ar2.png" alt="bayes_ar"  width="75%"><br/>
 
-<br/>
+<br/><br/>
 
 ### ▶️ Stochastic Volatility
 
@@ -1679,7 +1693,7 @@ str(u)
 &#x1F4A1; And as always, references and details are in the help file (`?SV.mcmc`). The techniques are not covered in tsa4.
 
 
-
+<br/>
 
 ### ▶️ Gibbs Sampling for Linear State Space Models
 
@@ -1917,6 +1931,8 @@ tsplot(parms, col=4, ncolm=2)   # plot the traces
 acfm(parms)                     # view the ACFs
 ```
 
+<br/>
+
 ### ▶️ ESS
 
 &#x1F437; The effective sample size (ESS) is a measure of efficiency of an MCMC procedure based on estimating a posterior mean.  The package now includes a script to estimate ESS given a sequence of samples. It was used in the display for the  [Stochastic Volatility](#stochastic-volatility) example
@@ -1948,6 +1964,8 @@ apply(u, 2, ESS)
 
 &#x1F4A1; The package has a few scripts to help with items related to time series and stochastic processes.
 
+<br/>
+
 ### ▶️ ARMAtoAR
 
 &#x1F535;  R `stats` has an `ARMAtoMA` script to help visualize the causal form of a model.  To help visualize the _invertible_ form of a model, `astsa` includes an `ARMAtoAR` script.  For example,
@@ -1975,6 +1993,8 @@ arma.spec(ar = c(1.5, -.75), ma = c(-.8,-.4))
   WARNING: Model Not Invertible
   Error in arma.spec(ar = c(1.5, -0.75), ma = c(-0.8, -0.4)) : Try Again
 ```
+
+<br/>
 
 ### ▶️ Matrix Powers
 
@@ -2038,6 +2058,8 @@ c(.5,.5) %*% ( P %^% 50 )  # toss a coin for initial state
 # but this draws an error because %*% is first
 c(.5,.5) %*% P %^% 50
 ```
+
+<br/>
 
 ### ▶️ Polynomial Multiplication
 
@@ -2104,6 +2126,8 @@ which is
 
 ---
 ## 11. The Spectral Envelope
+
+<br/>
 
 ### ▶️ DNA and the Spectral Envelope
 
@@ -2247,6 +2271,7 @@ round(head(u), 3)  # output
 
 <img src="figs/specenv2.png" alt="specenv2" width="75%"><br/>
 
+<br/>
 
 ### ▶️ Optimal Transformations and the Spectral Envelope
 
