@@ -41,20 +41,15 @@ it's more than just data ...
      * [Nonparametric](#nonparametric-spectral-analysis)
      * [Parametric](#parametric-spectral-analysis)
      * [Spectral Matrices](#more-multivariate-spectra)
+     * [autoSpec - changepoint detection &#128150; NEW &#128150;](#autospec)
   * [6. Testing for Linearity](#6-linearity-test)
   * [7. State Space Models and Kalman Filtering](#7-state-space-models)
-     * [Quick Kalman Filter and Smoother - 	
-&#128150; NEW 	
-&#128150;](#quick-kalman-filter-and-smoother)
+     * [Quick Kalman Filter and Smoother - 	&#128150; NEW 	&#128150;](#quick-kalman-filter-and-smoother)
      * [Beginners Paradise - SSM](#beginners-paradise)
      * [The Old Stuff](#the-old-stuff)
-  * [8. EM Algorithm and Missing Data - 	
-&#128150; NEW 	
-&#128150;](#8-em-algorithm-and-missing-data)
+  * [8. EM Algorithm and Missing Data - &#128150; NEW &#128150;](#8-em-algorithm-and-missing-data)
      * [Parameter Constraints](#parameter-constraints)
-  * [9. Bayesian Techniques - 	
-&#128150; NEW 	
-&#128150;](#9-bayesian-techniques)
+  * [9. Bayesian Techniques - &#128150; NEW &#128150;](#9-bayesian-techniques)
       * [AR Models](#ar-models)
       * [Stochastic Volatility Models](#stochastic-volatility)
       * [Gibbs Sampling for State Space Models - the FFBS Algorithm](#gibbs-sampling-for-linear-state-space-models)
@@ -86,6 +81,7 @@ And you can get more information on any individual set using the `help()` comman
 |----------|-------------|
 |BCJ                         | Daily Returns of Three Banks                                |
 |EBV                         | Entire Epstein-Barr Virus (EBV) Nucleotide Sequence         |
+|ENSO                        | El Nino - Southern Oscillation                              |
 |EQ5                         | Seismic Trace of Earthquake number 5                        |
 |EQcount                     | EQ Counts                                                   |
 |EXP6                        | Seismic Trace of Explosion number 6                         |
@@ -865,6 +861,96 @@ refer to frequency ordinate:
 [5,] -0.033-0.035i  0.100-0.008i  0.027-0.085i -0.043-0.015i  0.146+0.000i
 
 ```
+
+
+### autoSpec
+
+### &emsp; Detection of Narrowband Frequency Changes in Time Series
+
+### &#x1F535;  [The paper is here.](https://dx.doi.org/10.4310/21-SII703)
+
+
+&#x1F4A1;  The basic idea is to fit local spectra by detecting slight changes in frequency.  Section 2 of the paper on _Resolution_ provides the motivation for the technique.  If you haven't guessed it already, the script is called  
+
+> **`autoSpec()`**
+
+and most of the inputs have default settings. We'll do a couple of examples:
+
+&#128526; ENSO ... this is like the main example in the paper, but the data have been updated. 
+The input `max.period` specifies the frequency range [0, 1/max.period] over which to calculate the Whittle likelihood; the default is 2 (the min).
+
+
+```r
+autoSpec(ENSO, max.period=4)  
+
+  #  returned breakpoints include the endpoints 
+  # $breakpoints
+  # [1]   1 238 862
+  # 
+  # $number_of_segments
+  # [1] 2
+  # 
+  # $segment_kernel_orders_m
+  # [1] 1 4
+
+z = time(ENSO)
+z[238]
+  # 1970.75
+
+x1 =  window(ENSO, start=z[1], end=z[237])
+x2 =  window(ENSO, start=z[238], end=z[862])
+
+par(mfrow=c(3,1))
+tsplot(ENSO, col=4, ylab='SOI')
+ abline(v=z[238], col=6, lty=2, lwd=2)
+mvspec(x1, taper=.5, kernel=bart(1), main='Segment 1', col=4, lwd=2)
+ rect(1/7, -1e5, 1/2, 1e5, density=NA, col=gray(.5,.2))
+mvspec(x2, taper=.5, kernel=bart(4),   main='Segment 2', col=4, lwd=2)
+ rect(1/7, -1e5, 1/2, 1e5, density=NA, col=gray(.5,.2))
+```
+
+<img src="figs/autospec_enso.png" alt="autoSpec_ENSO"  width="75%"><br/>
+
+<br/>
+
+&#128526; Here's an example where other techniques tend to fail. A narrowband signal is modulated unitl halfway through.
+
+```r
+set.seed(90210)
+num = 500
+t   = 1:num
+w   = 2*pi/25
+d   = 2*pi/150
+x1  = 2*cos(w*t)*cos(d*t) + rnorm(num)
+x2  = cos(w*t) + rnorm(num)
+x   = c(x1, x2)
+
+# periodogram  (not shown) - all action below .1
+mvspec(x)
+
+autoSpec(x, max.period=10)
+
+  # returned breakpoints include the endpoints 
+  # $breakpoints
+  # [1]    1  483 1000
+  # 
+  # $number_of_segments
+  # [1] 2
+  # 
+  # $segment_kernel_orders_m
+  # [1] 2 1
+
+# plot everything
+par(mfrow=c(3,1))
+tsplot(x, col=4)
+ abline(v=483, col=6, lty=2, lwd=2)
+mvspec(x[1:482],    kernel=bart(2), taper=.5, main='segment 1', col=4, lwd=2, xlim=c(0,.25))
+mvspec(x[483:1000], kernel=bart(1), taper=.5, main='segment 2', col=4, lwd=2, xlim=c(0,.25))   
+```
+
+<img src="figs/autospec_cos.png" alt="autoSpec_ENSO"  width="75%"><br/>
+
+
 
 [<sub>top</sub>](#table-of-contents)
 
