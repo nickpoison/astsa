@@ -30,7 +30,7 @@ it's more than just data ...
      * [Time Series Plots](#tsplot)
      * [Lag Plots](#lag-plots)
      * [Scatterplots](#scatterplots)
-     * [Trends](#trends)
+     * [Trends](#▶️-trends)
   * [3. Correlations](#3-correlations)
   * [4. ARIMA](#4-arima)
      * [Simulation](#arima-simulation)
@@ -157,9 +157,9 @@ And you can get more information on any individual set using the `help()` comman
 
 ## 2. Plotting
 
-<br/>
 
-###  ▶️ Colors
+
+### Colors
 
 &#x1F4A1; When `astsa` is loaded, the astsa palette is attached.  The palette is  especially  suited for plotting  time series and it is a bit darker than the new default R4 palette. You can revert back using  `palette("default")`.  Also,
 
@@ -185,7 +185,7 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), names=rep(3:6, 2), add=TRUE)
 
 <br/>
 
-### ▶️ tsplot
+### tsplot
 
 &#x1F535; For plotting time series and just about anything else, you can use
 
@@ -231,7 +231,7 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 <img src="figs/tsplot2.png" alt="tsplot"  width="75%"><br/><br/>
 
 
-### ▶️ Lag Plots
+### Lag Plots
 
 &#129412; There are also lag plots for one series and for two series using
 
@@ -261,7 +261,7 @@ lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, bgl='transparent', lwl=2, gg=T, b
 <img src="figs/lag2plot.png" alt="lag2plot"  width="75%"><br/><br/>
 
 
-### ▶️ Scatterplots
+### Scatterplots
 
 &#128027; Sometimes it's nice to have a scatterplot with marginal histograms...
 
@@ -274,7 +274,7 @@ lines(lowess(tempr, cmort), col=6, lwd=2)
 
 <br/>
 
-### ▶️ Trends
+### Trends
 
 &#128178; As of version 1.15, there are two new scripts to help with analyzing trends. They are
 
@@ -413,7 +413,7 @@ acfm(diff(log(econ5)), gg=TRUE, acf.highlight=FALSE)  # Gris-Gris Gumbo Ya Ya
 
 <br/>
 
-### ▶️ ARIMA Simulation
+### ARIMA Simulation
 
 &#128171; You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via
 
@@ -441,7 +441,7 @@ tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 
 <br/>
 
-### ▶️ ARIMA Estimation
+### ARIMA Estimation
 
 &#127817; Fitting ARIMA models to data is a breeze with the modern script
 
@@ -599,7 +599,7 @@ $BIC
 
 <br/>
 
-### ▶️ Forecasting
+### Forecasting
 
 &#127801;  Forecasting your fitted ARIMA model is as simple as using
 
@@ -668,7 +668,7 @@ and parametric spectral analysis with
 
 <br/>
 
-### ▶️ ARMA Spectral Density
+### ARMA Spectral Density
 
 
 &#x1F4A1;  `arma.spec` tests for causality, invertibility, and common zeros. If the model is not causal or invertible an error message is given. If there are approximate common zeros, a spectrum will be displayed and a warning will be given.  The frequency and spectral ordinates are returned invisibly.
@@ -706,7 +706,7 @@ arma.spec(ar= .9, ma= -.9, main="It's White Noise, Dingus")
 
 <br/>
 
-### ▶️ nonparametric spectral analysis
+### nonparametric spectral analysis
 
 &#127929; `mvspec` was originally just a way to  get the multivariate spectral density estimate out of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
 
@@ -775,7 +775,7 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 
 <br/>
 
-### ▶️ parametric spectral analysis
+### parametric spectral analysis
 
 
 
@@ -836,7 +836,7 @@ tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRU
 
 <br/>
 
-### ▶️ more multivariate spectra
+### more multivariate spectra
 
 &#x1F535; The data frame `econ5` was used to consider the effect of quarterly GNP, consumption, and government and private investment on  U.S. unemployment. In this case, `mvspec` will plot the individual spectra by default and you can extract the spectral matrices as `fxx`, an array of dimensions `dim = c(p,p,nfreq)` as well as plot coherencies and phases. Here, <i>p = 5</i>:
 
@@ -875,7 +875,7 @@ refer to frequency ordinate:
 
 <br/>
 
-### ▶️ autoSpec
+### autoSpec
 
 #### &emsp; Detection of Narrowband Frequency Changes in Time Series -  [the paper is here](https://dx.doi.org/10.4310/21-SII703) 
 
@@ -1009,7 +1009,7 @@ tsplot(nyse, col=4)
 <br/>
 
 First, the new and improved
- ### ▶️ Quick Kalman Filter and Smoother 
+ ### Quick Kalman Filter and Smoother 
 
  &#128293; We've added two new scripts to simplify Kalman filtering and smoothing for linear state space models. 
 
@@ -1164,7 +1164,7 @@ legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,
 
 <br/> 
 
-### ▶️ Beginners Paradise
+### Beginners Paradise
  
  &#x1F4A1;  There is a basic state space model script in `astsa` for beginners:
 
@@ -1251,7 +1251,7 @@ List of 6
 
 <br/>
 
-### ▶️ the old stuff
+### the old stuff
 &#9888; THE FOLLOWING HAS BEEN SUPERSCEDED BY `Kfilter` and `Ksmooth` DESCRIBED ABOVE
 
 
@@ -1485,7 +1485,7 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 <br/><br/>
 
-### ▶️ Parameter Constraints
+### Parameter Constraints
 
 &#x1F4A1; The script doesn't allow constraints on the parameters, but constrained parameter estimation can be accomplished by being a little clever.  We demonstrate by fitting an AR(2) with noise.  
 
@@ -1598,7 +1598,7 @@ R  # (actual .01)
 
 <br/>
 
-### ▶️ AR Models
+### AR Models
 
 &#x1F535; For a minimal example, we'll fit an AR(2) to the Recruitment (`rec`) data. 
 
@@ -1637,7 +1637,7 @@ and graphics
 
 <br/><br/>
 
-### ▶️ Stochastic Volatility
+### Stochastic Volatility
 
 &#x1F535; For an example, we'll fit a stochastic volatility model to the S&P500 weekly returns(`sp500w`).  We've also added some new financial data sets, `sp500.gr` (daily S&P 500 returns) and
 `BCJ` (daily returns for 3 banks, Bank of America, Citi, and JP Morgan Chase).  The model is
@@ -1695,7 +1695,7 @@ str(u)
 
 <br/>
 
-### ▶️ Gibbs Sampling for Linear State Space Models
+### Gibbs Sampling for Linear State Space Models
 
 &#x1F535; The package now contains `ffbs` (**Forward Filtering Backward Sampling - FFBS**)
  to facilitate Gibbs sampling for linear state space models:  
@@ -1933,7 +1933,7 @@ acfm(parms)                     # view the ACFs
 
 <br/>
 
-### ▶️ ESS
+### ESS
 
 &#x1F437; The effective sample size (ESS) is a measure of efficiency of an MCMC procedure based on estimating a posterior mean.  The package now includes a script to estimate ESS given a sequence of samples. It was used in the display for the  [Stochastic Volatility](#stochastic-volatility) example
 and just above in the structural equation model.
@@ -1966,7 +1966,7 @@ apply(u, 2, ESS)
 
 <br/>
 
-### ▶️ ARMAtoAR
+### ARMAtoAR
 
 &#x1F535;  R `stats` has an `ARMAtoMA` script to help visualize the causal form of a model.  To help visualize the _invertible_ form of a model, `astsa` includes an `ARMAtoAR` script.  For example,
 ```r
@@ -1996,7 +1996,7 @@ arma.spec(ar = c(1.5, -.75), ma = c(-.8,-.4))
 
 <br/>
 
-### ▶️ Matrix Powers
+### Matrix Powers
 
 &#x1F535;  We  compute _&Sigma;<sup>&nbsp;-&frac12;</sup>_ where _&Sigma;_ is a variance-covariance matrix  when calculating the [_spectral envelope_](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full)
 so we built in a script called `matrixpwr` that computes powers of a square matrix, including negative powers for nonsingular matrices.
@@ -2061,7 +2061,7 @@ c(.5,.5) %*% P %^% 50
 
 <br/>
 
-### ▶️ Polynomial Multiplication
+### Polynomial Multiplication
 
 &#x1F535;  The script `sarima.sim` uses `polyMul` when simulating data from seasonal ARIMA models.
 For folks who may have forgotten the stuff they learned about polynomials in 2nd grade math, it might help to see what happens with a multiplicative model such as<br/>
@@ -2129,7 +2129,7 @@ which is
 
 <br/>
 
-### ▶️ DNA and the Spectral Envelope
+### DNA and the Spectral Envelope
 
 &#x1F4A1;  There are 2 scripts to accomplish spectral analysis of DNA sequences,
 
@@ -2273,7 +2273,7 @@ round(head(u), 3)  # output
 
 <br/>
 
-### ▶️ Optimal Transformations and the Spectral Envelope
+### Optimal Transformations and the Spectral Envelope
 
 The script
 
