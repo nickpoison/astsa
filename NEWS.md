@@ -31,7 +31,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 ### Version 2.0 - TBA
 
- <span style="font-size:larger;">__v2.0__</span>: (now on GitHub)  The package is available here only... we're still checking the code, but so far everything seems to be working fine.   We'll wait until December 2022 (at least) to push this version to CRAN. There are a number of new scripts and some old ones are set to be retired eventually.  
+ <span style="font-size:larger;">__v2.0__</span>: (now on GitHub)  The package is available here only. Everything works but we're adding items every so often.   We'll wait until the end December 2022 (at least) to push this version to CRAN. There are a number of new scripts and some old ones are set to be retired eventually.  
 
 - Added `autoSpec` for changepoint detection of slight frequency shifts following this paper: [autoSpec](https://dx.doi.org/10.4310/21-SII703)
 
