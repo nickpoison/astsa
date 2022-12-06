@@ -1,10 +1,10 @@
 #########################################################################################
 
-##########  AUTOSPEC 
+##-- autoSpec 
 
 # PopSize: population size. The number of chromosomes in each generation
 # Generation: Number of iterations
-# P0   = Maximum width of kernel is 2*P0+1 - see 'bart()' line 62
+# P0   = Maximum width of kernel is 2*P0+1 - see '?bart()' 
 # Pi.P = Probability of taking parent's gene in mutation
 # Pi.N = Probability of taking -1 in mutation
 # Pi.B = Probability of being a break point in initial stage, default to 10/n
@@ -16,12 +16,15 @@
 #########################################################################################
 
 autoSpec <-
-function(xdata, n = length(xdata), Pi.B = 10/n, Pi.C = (n-10)/n, PopSize = 70,
-         generation = 70, P0 = 20, Pi.P = 0.3, Pi.N = 0.3, NI = 7, taper = .5, 
-         max.period = 2){
+function(xdata, Pi.B = NULL, Pi.C = NULL, PopSize = 70, generation = 70, P0 = 10, 
+         Pi.P = 0.3, Pi.N = 0.3, NI = 7, taper = .5, max.period = 2){
 
+if (NCOL(xdata) > 1) stop("univariate time series only")
+xdata = c(xdata)  # remove ts attributes if there
+n     = length(xdata)
 if (n < 100) stop('sample size should be at least 100')
-xdata <- c(xdata)  # remove ts attributes if there
+if (is.null(Pi.B)) Pi.B = 10/n
+if (is.null(Pi.C)) Pi.C = (n-10)/n
 
 # find breakpoints
 brkpts  = .GA(xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI,taper,max.period)
@@ -36,8 +39,8 @@ for (i in 1:npts){
   endd = u[i+1]-1
   if (i == npts) endd = endd+1
   data.piece = xdata[strt:endd]
-   for( k in 0:P0 ) { 
-   if (length(data.piece) <= 2*k+1) break
+   P00 = ifelse((endd-strt) < 2*P0, floor(.5*(endd-strt+1)), P0)
+   for( k in 0:P00 ) { 
    kmdl[k+1] = .MDL.individual(data.piece,k,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,
                                Pi.P,Pi.N,NI,taper, max.period) 
    }  

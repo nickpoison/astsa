@@ -10,18 +10,13 @@ to do nonparametric spectral estimation with the goal of detecting changepoints.
 Optimization is accomplished via a genetic algorithm (GA).
 }
 \usage{
-autoSpec(xdata, n = length(xdata), Pi.B = 10/n, Pi.C = (n - 10)/n, PopSize = 70, 
-          generation = 70, P0 = 20, Pi.P = 0.3, Pi.N = 0.3, NI = 7, taper = 0.5, 
-          max.period = 2)
+autoSpec(xdata, Pi.B = NULL, Pi.C = NULL, PopSize = 70, generation = 70, P0 = 10, 
+         Pi.P = 0.3, Pi.N = 0.3, NI = 7, taper = .5, max.period = 2)
 }
 \arguments{
   \item{xdata}{
-time series to be analyzed; the \code{ts} attributes are stripped 
+time series (of length n at least 100) to be analyzed; the \code{ts} attributes are stripped 
 prior to the analysis
-}
-  \item{n}{
-the number of observations - should not be specified; it is only used for 
-the defaults of \code{Pi.B} and \code{Pi.C}.
 }
   \item{Pi.B}{
 probability of being a breakpoint in initial stage; default is 10/n. 
@@ -40,7 +35,7 @@ number of iterations; default is 70.
 Does not need to be specified.
 }
   \item{P0}{
-maximum width of the Bartlett kernel is \code{2*P0 + 1}; default is 20. 
+maximum width of the Bartlett kernel is \code{2*P0 + 1}; default is 10. 
 Does not need to be specified.
 }
   \item{Pi.P}{
@@ -57,10 +52,11 @@ Does not need to be specified.
 }
   \item{taper}{
 half width of taper used in spectral estimate; .5 (default) is full taper
+Does not need to be specified.
 }
   \item{max.period}{
 the frequency range [0, 1/max.period] over which to calculate the Whittle likelihood;
-the default is 2 (the min).
+the default is 2 (the min). Does not need to be specified.
 }
 }
 \details{
@@ -84,9 +80,8 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \note{
-The code was adapted from the code used in Davis, Lee, & Rodriguez-Yam (2006). Structural break estimation for nonstationary time series models. Journal of the American Statistical Association, 101(473), 223-239.
+The genetic algorithm code is adapted from R code provided to us by Rex Cheung at SFSU (\kbd{https://cob.sfsu.edu/directory/rex-cheung}). The code originally supported Aue, Cheung, Lee, & Zhong (2014). Segmented model selection in quantile regression using the minimum description length principle. JASA, 109, 1241-1256.  A similar version also supported Davis, Lee, & Rodriguez-Yam (2006). Structural break estimation for nonstationary time series models. JASA, 101, 223-239.
 }
-
 \examples{
 \dontrun{
 
