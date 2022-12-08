@@ -231,11 +231,10 @@ return(break.locations)
 }
 
 #get the probabilities that inversely proportional to their ranks sorted by S values
-.rank.crossover = function(S.chromosome,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,
-                         NI,taper,max.period){
-  n = length(S.chromosome)
+.rank.crossover = function(S.chromosome){
+  en = length(S.chromosome)
   rank.chromosome = rank(S.chromosome)
-  return(2*(n+1-rank.chromosome)/n/(n+1))   #the total probabilities equal to 1
+  return(2*(en+1-rank.chromosome)/en/(en+1))   #the total probabilities equal to 1
 }
 
 
