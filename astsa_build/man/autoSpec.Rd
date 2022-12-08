@@ -104,7 +104,7 @@ autoSpec(x, max.period=10)
 ##--         the nature of GA) 
 # returned breakpoints include the endpoints 
 # $breakpoints
-# [1]    1  526 1000
+# [1]    1  481 1000
 # 
 # $number_of_segments
 # [1] 2
@@ -116,9 +116,9 @@ autoSpec(x, max.period=10)
 ##-- plot everything
 par(mfrow=c(3,1))
 tsplot(x, col=4)
- abline(v=525.5, col=6, lty=2, lwd=2)
-mvspec(x[1:525],    kernel=bart(2), taper=.5, main='segment 1', col=4, xlim=c(0,.25))
-mvspec(x[526:1000], kernel=bart(1), taper=.5, main='segment 2', col=4, xlim=c(0,.25))   
+ abline(v=481, col=6, lty=2, lwd=2)
+mvspec(x[1:480],    kernel=bart(2), taper=.5, main='segment 1', col=4, xlim=c(0,.25))
+mvspec(x[481:1000], kernel=bart(1), taper=.5, main='segment 2', col=4, xlim=c(0,.25))   
 ##-- end --##
 
 ##-- for a real data example try
