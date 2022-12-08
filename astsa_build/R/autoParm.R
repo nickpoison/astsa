@@ -26,7 +26,7 @@ if (is.null(Pi.B)) Pi.B = 10/n
 if (is.null(Pi.C)) Pi.C = (n-10)/n
 
 # find breakpoints
-brkpts  = .GA(xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI)
+brkpts  = .GA1(xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI)
 
 # optimal orders
  u    = c(brkpts, n)
@@ -40,7 +40,7 @@ brkpts  = .GA(xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI)
   data.piece = xdata[strt:endd]
    P00 = ifelse((endd-strt) < P0, floor(.8*(endd-strt)), P0)
   for( k in 0:P00 ) { 
-   kmdl[k+1] = .MDL.individual(data.piece,k,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,
+   kmdl[k+1] = .MDL.individual1(data.piece,k,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,
                                Pi.P,Pi.N,NI) 
    }  
   bst[i] = which.min(kmdl)-1
@@ -53,7 +53,7 @@ return(list(breakpoints=u, number_of_segments=npts,segment_AR_orders=bst))
 }
 
 #This is the overall GA function
-.GA = function(xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI)
+.GA1 = function(xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI)
 {
  gene.parent = vector("list", NI)                #Stores Chromosomes
  gene.child = vector("list", NI)                 #Stores Chromosomes
@@ -62,8 +62,8 @@ return(list(breakpoints=u, number_of_segments=npts,segment_AR_orders=bst))
  rank.child = matrix(0, nrow = NI, ncol = PopSize)
  gene.best = vector("list", generation)
  for(i in 1:NI){           #Generate all initial generation for all islands
-   gene.parent[[i]] = .Initial(xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI)
-   S.parent[i,] = apply(gene.parent[[i]], 1, function(j) .MDL.total(xdata,j,n,Pi.B,Pi.C,
+   gene.parent[[i]] = .Initial1(xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI)
+   S.parent[i,] = apply(gene.parent[[i]], 1, function(j) .MDL.total1(xdata,j,n,Pi.B,Pi.C,
          PopSize,generation,P0,Pi.P,Pi.N,NI))
  }
 
@@ -71,16 +71,16 @@ return(list(breakpoints=u, number_of_segments=npts,segment_AR_orders=bst))
  for(k in 1:generation){   #For each next generation
 pb = txtProgressBar(min=1, max=generation, style=2)  # progress bar
   for(i in 1:NI){      #For each island
-    gene.child[[i]] = .generate(gene.parent[[i]],xdata,n,Pi.B,Pi.C,PopSize,generation,
+    gene.child[[i]] = .generate1(gene.parent[[i]],xdata,n,Pi.B,Pi.C,PopSize,generation,
                                 P0,Pi.P,Pi.N,NI)
-    S.child[i,] = apply(gene.child[[i]], 1, function(j) .MDL.total(xdata,j,n,Pi.B,Pi.C,
+    S.child[i,] = apply(gene.child[[i]], 1, function(j) .MDL.total1(xdata,j,n,Pi.B,Pi.C,
                         PopSize,generation,P0,Pi.P,Pi.N,NI))
   }
   min.index = which(S.child == min(S.child), arr.ind = TRUE)  
   gene.best[[k]] = gene.child[[min.index[1]]][min.index[2], ]
   #Only comparing first and last of 20,
-  if(k > 20 && .MDL.total(xdata,gene.best[[k]],n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,
-                 Pi.N,NI) == .MDL.total(xdata,gene.best[[k-20]],n,Pi.B,
+  if(k > 20 && .MDL.total1(xdata,gene.best[[k]],n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,
+                 Pi.N,NI) == .MDL.total1(xdata,gene.best[[k-20]],n,Pi.B,
                  Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI)) break  
   gene.parent = gene.child
   S.parent = S.child
@@ -106,21 +106,21 @@ break.locations = which(gene.best[[k]]!=-1)
 return(break.locations)
 }
 
-.MinSpan = c(10,10,12,14,16,18,20,rep(25,4),rep(50,10))
+.MinSpan1 = c(10,10,12,14,16,18,20,rep(25,4),rep(50,10))
 
    #Setting up initial generation of chromosomes
-.Initial=function(xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI)  
+.Initial1=function(xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI)  
 {
   Ini=matrix(0,nrow=PopSize,ncol=n)
   for(i in 1:PopSize){
     Ini[i,1]=sample(seq(1,P0,1),1)
-    Ini[i,2:.MinSpan[Ini[i,1]+1]]=-1
+    Ini[i,2:.MinSpan1[Ini[i,1]+1]]=-1
     for(t in 2:(n-50)){
       if(Ini[i,t]==0){
         r=runif(1,0,1)
         if(r<Pi.B){
           Ini[i,t]=sample(seq(1,P0,1),1)
-          Ini[i,(t+1):(t+.MinSpan[Ini[i,t]+1]-1)]=-1
+          Ini[i,(t+1):(t+.MinSpan1[Ini[i,t]+1]-1)]=-1
         }
         else {Ini[i,t]=-1}
       }
@@ -132,7 +132,7 @@ return(break.locations)
 }
 
 
-.crossover=function(parent.1,parent.2,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,
+.crossover1=function(parent.1,parent.2,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,
                     NI){
  chromosome.crossover=rep(-9999,n)
  for(t in 1:(n-50)){
@@ -140,7 +140,7 @@ return(break.locations)
     if(runif(1,0,1)<0.5) {chromosome.crossover[t]=parent.1[t]}
     else {chromosome.crossover[t]=parent.2[t]}
     if(chromosome.crossover[t]!=-1)  {
-    chromosome.crossover[(t+1):(t+.MinSpan[chromosome.crossover[t]+1]-1)]=-1
+    chromosome.crossover[(t+1):(t+.MinSpan1[chromosome.crossover[t]+1]-1)]=-1
     }
   }         #This step replace all followings with -1
   else{t=t+1}   #Since we have replaced with -1, can just move on.
@@ -150,23 +150,23 @@ return(break.locations)
 }
 
 
-.mutation=function(parent.mutation,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI){
+.mutation1=function(parent.mutation,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI){
   chromosome.mutation=rep(-9999,n)
   chromosome.mutation[1]=sample(seq(1,P0,1),1)
-  chromosome.mutation[2:.MinSpan[chromosome.mutation[1]+1]]=-1
-  for(t in (.MinSpan[chromosome.mutation[1]+1]+1):(n-50)){
+  chromosome.mutation[2:.MinSpan1[chromosome.mutation[1]+1]]=-1
+  for(t in (.MinSpan1[chromosome.mutation[1]+1]+1):(n-50)){
     if(chromosome.mutation[t]==-9999){
       r=runif(1,0,1)
       if(r<=Pi.N)      {chromosome.mutation[t]=-1}
       else if(r>Pi.N&&r<Pi.P+Pi.N){
         chromosome.mutation[t]=parent.mutation[t]
         if(parent.mutation[t]!=-1){
-          chromosome.mutation[(t+1):(t+.MinSpan[parent.mutation[t]+1]-1)]=-1
+          chromosome.mutation[(t+1):(t+.MinSpan1[parent.mutation[t]+1]-1)]=-1
         }
       }
       else{
         chromosome.mutation[t]=sample(seq(1,P0,1),1)
-        chromosome.mutation[(t+1):(t+.MinSpan[chromosome.mutation[t]+1]-1)]=-1
+        chromosome.mutation[(t+1):(t+.MinSpan1[chromosome.mutation[t]+1]-1)]=-1
       }
     }
     else{t=t+1}
@@ -176,7 +176,7 @@ return(break.locations)
 }
 
 
-.MDL.individual = function(data.piece, orders,xdata,n,Pi.B,Pi.C,PopSize,
+.MDL.individual1 = function(data.piece, orders,xdata,n,Pi.B,Pi.C,PopSize,
                             generation,P0,Pi.P,Pi.N,NI){  #Calculate the MDL value for a segment of the data
   if(orders != 0){
     code.orders = log(orders)
@@ -195,7 +195,7 @@ return(break.locations)
 
 
 #Calculate the MDL value for each model/chromosom
-.MDL.total = function(xdata,chromosome,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI){
+.MDL.total1 = function(xdata,chromosome,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI){
   #Find the break locations
   breakpoint=c()
   for(t in 1:n){          #Find all the break points
@@ -208,7 +208,7 @@ return(break.locations)
 
   mdl = 0
   for(i in 1:m){
-    mdl = mdl + .MDL.individual(xdata[breakpoint[i]:(breakpoint[i+1]-1)], 
+    mdl = mdl + .MDL.individual1(xdata[breakpoint[i]:(breakpoint[i+1]-1)], 
                                 chromosome[breakpoint[i]],xdata,n,Pi.B,Pi.C,PopSize,
                                 generation,P0,Pi.P,Pi.N,NI)
   }
@@ -221,7 +221,7 @@ return(break.locations)
 }
 
 #get the probabilities that inversely proportional to their ranks sorted by S values
-.rank.crossover = function(S.chromosome){
+.rank.crossover1 = function(S.chromosome){
   en = length(S.chromosome)
   rank.chromosome = rank(S.chromosome)
   return(2*(en+1-rank.chromosome)/en/(en+1))   #the total probabilities equal to 1
@@ -229,23 +229,23 @@ return(break.locations)
 
 
 #This function generates the next generation
-.generate=function(parents,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI){  
+.generate1=function(parents,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,Pi.P,Pi.N,NI){  
   #parents is a matrix of Popsize x n, each row is a model/chromosome
   offspring = matrix(0,nrow = PopSize,ncol = n)
-  MDL.parents = apply(parents, 1, function(i) .MDL.total(xdata,i,n,Pi.B,Pi.C,PopSize,
+  MDL.parents = apply(parents, 1, function(i) .MDL.total1(xdata,i,n,Pi.B,Pi.C,PopSize,
                        generation,P0,Pi.P,Pi.N,NI))
   for(i in 1:PopSize){
     r=runif(1,0,1)
     if(r<Pi.C){                                 #conduct crossover
-      S.parent1 = sample(1:PopSize, 1, prob = .rank.crossover(MDL.parents))
-      S.parent2 = sample(1:PopSize, 1, prob = .rank.crossover(MDL.parents))
+      S.parent1 = sample(1:PopSize, 1, prob = .rank.crossover1(MDL.parents))
+      S.parent2 = sample(1:PopSize, 1, prob = .rank.crossover1(MDL.parents))
       parent.1 = parents[S.parent1,]; parent.2 = parents[S.parent2,]
-      offspring[i,]=.crossover(parent.1,parent.2,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,
+      offspring[i,]=.crossover1(parent.1,parent.2,xdata,n,Pi.B,Pi.C,PopSize,generation,P0,
                                Pi.P,Pi.N,NI)
     }
     if(r>=Pi.C){                                      #conduct mutation
-      S.parent = sample(1:PopSize, 1, prob = .rank.crossover(MDL.parents))
-      offspring[i,]=.mutation(parents[S.parent,],xdata,n,Pi.B,Pi.C,PopSize,
+      S.parent = sample(1:PopSize, 1, prob = .rank.crossover1(MDL.parents))
+      offspring[i,]=.mutation1(parents[S.parent,],xdata,n,Pi.B,Pi.C,PopSize,
                       generation,P0,Pi.P,Pi.N,NI)
     }
   }
