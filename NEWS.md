@@ -33,11 +33,17 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
  <span style="font-size:larger;">__v2.0__</span>: (now on GitHub)  The package is available here only. Everything works but we're adding items every so often.   We'll wait until the end December 2022 (at least) to push this version to CRAN. There are a number of new scripts and some old ones are set to be retired eventually.  
 
-- Added `autoSpec` for changepoint detection of slight frequency shifts following this paper: [autoSpec](https://dx.doi.org/10.4310/21-SII703)
+- Added [`autoSpec`](https://dx.doi.org/10.4310/21-SII703) for changepoint detection of slight frequency shifts following this paper: 
 
     - Also added the data set `ENSO` which is the most recent update to SOI (an older version was used the paper that introduced autoSpec).  
 
     - The script uses the Bartlett kernel so it was made available for general use; see `bart`.
+
+- Also added   [`autoParm`](https://doi.org/10.1198/016214505000000745) since the code is closely related to `autoSpec`.
+
+We'll put up some examples in FUN WITH ASTSA soon.
+
+~~
 
  > __Note__  the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now: `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
    
