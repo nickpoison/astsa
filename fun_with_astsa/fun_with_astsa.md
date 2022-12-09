@@ -216,7 +216,9 @@ tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2)  # another gris-gris plot
 <img src="figs/climhyd.png" alt="climhyd"  width="70%"> 
 
 <br/>
+
 &#x1F535; Do you like `spaghetti` (you can shorten it to `spag`):
+
 
 ```r
 tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),
@@ -589,6 +591,8 @@ $AICc
 $BIC
 [1] 3.003807
 ```
+
+<br/>
 
 &#x1F535; And one more with exogenous variables - this is the regression
 of `Lynx` on `Hare` lagged one year with AR(2) errors.
