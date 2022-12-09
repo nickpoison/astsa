@@ -83,7 +83,7 @@ And you can get more information on any individual set using the `help()` comman
 |----------|-------------|
 |BCJ                         | Daily Returns of Three Banks                                |
 |EBV                         | Entire Epstein-Barr Virus (EBV) Nucleotide Sequence         |
-|ENSO                        | El Ni&ntilde;o - Southern Oscillation                              |
+|ENSO                        | El Ni&ntilde;o - Southern Oscillation                       |
 |EQ5                         | Seismic Trace of Earthquake number 5                        |
 |EQcount                     | EQ Counts                                                   |
 |EXP6                        | Seismic Trace of Explosion number 6                         |
@@ -160,6 +160,7 @@ And you can get more information on any individual set using the `help()` comman
 ## 2. Plotting
 
 
+
 ### Colors 
 
 
@@ -203,14 +204,16 @@ par(mfrow=c(2,1))
 tsplot(soi, col=4, lwd=2)            
 tsplot(soi, col=4, lwd=2, gg=TRUE)   # gg => gris-gris plot - the grammar of astsa is voodoo
 ```
-<img src="figs/tsplot1.png" alt="tsplot"  width="70%"><br/><br/>
+<img src="figs/tsplot1.png" alt="tsplot"  width="70%">
+
+<br/>
 
 &#x1F535; Many in one swell foop:
 
 ```r
 tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2)  # another gris-gris plot
 ```
-<img src="figs/climhyd.png" alt="climhyd"  width="70%"><br/>
+<img src="figs/climhyd.png" alt="climhyd"  width="70%"> 
 
 <br/>
 &#x1F535; Do you like `spaghetti` (you can shorten it to `spag`):
@@ -220,7 +223,9 @@ tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),
           ylab=expression(Number~~~(""%*% 1000)),  spaghetti=TRUE)
 legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
 ```
-<img src="figs/lynxhare.png" alt="lynxhare"  width="70%"><br/>
+<img src="figs/lynxhare.png" alt="lynxhare"  width="70%">
+
+<br/>
 
 
 &#128148; And the land where the LLN ceases to exist:
@@ -230,7 +235,9 @@ x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample mean", xlab="sample size")
 ```
 
-<img src="figs/tsplot2.png" alt="tsplot"  width="70%"><br/><br/>
+<img src="figs/tsplot2.png" alt="tsplot"  width="70%">
+
+<br/><br/>
 
 
 ### Lag Plots
@@ -250,7 +257,9 @@ lag1.plot(soi, 12)
 # but prettified
 lag1.plot(soi, 12, col=astsa.col(4, .3), pch=20, cex=2)
 ```
-<img src="figs/lag1plot.png" alt="lag1plot"  width="70%"><br/>
+<img src="figs/lag1plot.png" alt="lag1plot"  width="70%">
+
+<br/>
 
 and for two series (the first one gets lagged)
 
@@ -260,7 +269,9 @@ lag2.plot(soi, rec, 8)
 # but prettified
 lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, bgl='transparent', lwl=2, gg=T, box.col=gray(1))
 ```
-<img src="figs/lag2plot.png" alt="lag2plot"  width="70%"><br/><br/>
+<img src="figs/lag2plot.png" alt="lag2plot"  width="70%">
+
+<br/>
 
 
 ### Scatterplots
@@ -272,7 +283,7 @@ scatter.hist(tempr, cmort, hist.col=astsa.col(5,.4), pt.col=5, pt.size=1.5, rese
 lines(lowess(tempr, cmort), col=6, lwd=2)
 ```
 
-<img src="figs/scatterhist.png" alt="scatterhist"  width="70%"><br/>
+<img src="figs/scatterhist.png" alt="scatterhist"  width="70%"> 
 
 <br/>
 
@@ -289,7 +300,9 @@ lines(lowess(tempr, cmort), col=6, lwd=2)
 tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon - USD per KG')
  ```
 
-<img src="figs/detrend.png" alt="detrend"  width="70%"><br/>
+<img src="figs/detrend.png" alt="detrend"  width="70%">
+
+<br/>
 
 
 &#128061; `trend`  fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
@@ -300,7 +313,9 @@ tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon - USD per KG')
 
  
 
-<img src="figs/trend.png" alt="trend"  width="70%"><br/>
+<img src="figs/trend.png" alt="trend"  width="70%">
+
+<br/>
 
 
 [<sub>top</sub>](#table-of-contents)
@@ -326,7 +341,9 @@ acf1(soi)
 
   [1]  0.60  0.37  0.21  0.05 -0.11 -0.19 -0.18 -0.10  ...
 ```
-<img src="figs/acf1.png" alt="acf1" width="70%"><br/>
+<img src="figs/acf1.png" alt="acf1" width="70%">
+
+<br/>
 
 &#x1F4A1; Since version 1.13.2, the LAG axis label indicates the frequency of
 the data unless it is 1.  This way, you can see that the tick at LAG 1
@@ -337,7 +354,9 @@ acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)
 
    [1]  0.92 -0.44 -0.05 -0.02  0.07 -0.03 -0.03  0.04 ...
 ```
-<img src="figs/pacf1.png" alt="pacf1"  width="70%"><br/>
+<img src="figs/pacf1.png" alt="pacf1"  width="70%">
+
+<br/>
 
 &#x1F535; Sample ACF and PACF at the same time
 
@@ -348,7 +367,9 @@ acf2(diff(log(varve)))
    ACF  -0.4 -0.04 -0.06  0.01  0.00  0.04 -0.04  0.04  0.01 ...
    PACF -0.4 -0.24 -0.23 -0.18 -0.15 -0.08 -0.11 -0.05 -0.01 ...
 ```
-<img src="figs/acf2.png" alt="acf2"  width="70%"><br/>
+<img src="figs/acf2.png" alt="acf2"  width="70%">
+
+<br/>
 
 &#x1F535; If you just want the values, use `plot=FALSE` (works for `acf1` too)
 ```r
@@ -375,7 +396,9 @@ acf2(diff(log(varve)), plot=FALSE)
 ccf2(cmort, part)
 ```
 
-<img src="figs/ccf2.png" alt="ccf2"  width="70%"><br/>
+<img src="figs/ccf2.png" alt="ccf2"  width="70%">
+
+<br/>
 
 &#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).
 
@@ -386,7 +409,9 @@ and CCFs (off-diagonal) simultaneously:
 ```r
 acfm(diff(log(econ5)))
 ```
-<img src="figs/acfm.png" alt="acfm"  width="70%"><br/>
+<img src="figs/acfm.png" alt="acfm"  width="70%">
+
+<br/>
 
 What you see are estimates of
 _corr( x<sub>t+LAG</sub> , y<sub>t</sub> )_ where
@@ -1097,8 +1122,11 @@ There is an option to select the correlated errors version:
 where cov(w<sub>s</sub>, v<sub>t</sub>) = S &delta;<sub>s</sub><span style="position:relative; left: -.9ex; bottom: 2pt"><sup>t</sup></span> and so on.
 
 
-&#10067; &#10067; See the help files `?Kfilter` and `?Ksmooth` to see how the models are specified, but the calls 
-look like `Kfilter(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL, input = NULL, S = NULL, version = 1)`.
+&#10067;  See the help files `?Kfilter` and `?Ksmooth` to see how the models are specified, but the calls 
+look like
+
+&emsp; `Kfilter(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL, input = NULL, S = NULL, version = 1)`.
+
 The "always needed" stuff comes first, and the "sometimes needed" comes last.  And again, if you want to model via  `Q` and `R`, just use `sQ = Q%*%.5` and  `sR = R%*%.5` [which works in the psd case] or `sQ = t(chol(Q))` and `sR = t(chol(R))` [which needs pd].
 
 &#x1F535; We'll do the bootstrap example from the text, which used to take a long time... but now is very fast.
@@ -1345,8 +1373,11 @@ text [Time Series Analysis and Its Applications: With R Examples](http://www.spr
 which replaces `EM0` and `EM1`.  The new script is faster and allows inputs in both the state
 and observation equations.  
 
-The call looks like `EM(y, A, mu0, Sigma0, Phi, Q, R, Ups = NULL, Gam = NULL, input = NULL, 
-    max.iter = 100, tol = 1e-04)` and sort of mimics the `Kfilter` and `Ksmooth` calls but accepts `Q` and `R` directly. However, the code only works with the uncorrelated noise script (version 1). 
+The call looks like 
+
+&emsp; `EM(y, A, mu0, Sigma0, Phi, Q, R, Ups = NULL, Gam = NULL, input = NULL, max.iter = 100, tol = 1e-04)`
+
+and sort of mimics the `Kfilter` and `Ksmooth` calls but accepts `Q` and `R` directly. However, the code only works with the uncorrelated noise script (version 1). 
 
 &#x1F535;  We'll do the simple example that was used for [`ssm()`](#beginners-paradise) above.
 The model for `y = gtemp_land` is
