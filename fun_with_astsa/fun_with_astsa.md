@@ -893,6 +893,7 @@ refer to frequency ordinate:
 
 and most of the inputs have default settings. We'll do a couple of examples:
 
+<!--
 &#128526; ENSO ... this is like the main example in the paper but the data have been updated. 
 The input `max.period` specifies the frequency range [0, 1/max.period] over which to calculate the Whittle likelihood; the default is 2, which is the max frequency range.
 
@@ -929,10 +930,12 @@ mvspec(x2, taper=.5, kernel=bart(4),   main='Segment 2', col=4, lwd=2)
 <img src="figs/autospec_enso.png" alt="autoSpec_ENSO"  width="70%"><br/>
 
 <br/>
+-->
 
-&#128526; Here's an example where other techniques tend to fail. A narrowband signal is modulated until halfway through.
+&#128526; Here's an example where other techniques tend to fail (try it with `autoParm` below). A narrowband signal is modulated until halfway through.
 
 ```r
+# simulate data
 set.seed(90210)
 num = 500
 t   = 1:num
