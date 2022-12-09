@@ -41,24 +41,26 @@ it's more than just data ...
      * [Nonparametric](#nonparametric-spectral-analysis)
      * [Parametric](#parametric-spectral-analysis)
      * [Spectral Matrices](#more-multivariate-spectra)
-     * [autoSpec - changepoint detection &#128150; NEW &#128150;](#autospec)
-  * [6. Testing for Linearity](#6-linearity-test)
-  * [7. State Space Models and Kalman Filtering](#7-state-space-models)
+  * [6. Detecting Structural Breaks  &#128150; NEW &#128150;](#6-detecting-structural-breaks)
+    * [autoSpec - changepoint detection - nonparametric](#autospec) 
+    * [autoParm - changepoint detection - parametric](#autoparm) 
+  * [7. Testing for Linearity](#6-linearity-test)
+  * [8. State Space Models and Kalman Filtering](#7-state-space-models)
      * [Quick Kalman Filter and Smoother - 	&#128150; NEW 	&#128150;](#quick-kalman-filter-and-smoother)
      * [Beginners Paradise - SSM](#beginners-paradise)
      * [The Old Stuff](#the-old-stuff)
-  * [8. EM Algorithm and Missing Data - &#128150; NEW &#128150;](#8-em-algorithm-and-missing-data)
+  * [9. EM Algorithm and Missing Data - &#128150; NEW &#128150;](#8-em-algorithm-and-missing-data)
      * [Parameter Constraints](#parameter-constraints)
-  * [9. Bayesian Techniques - &#128150; NEW &#128150;](#9-bayesian-techniques)
+  * [10. Bayesian Techniques - &#128150; NEW &#128150;](#9-bayesian-techniques)
       * [AR Models](#ar-models)
       * [Stochastic Volatility Models](#stochastic-volatility)
       * [Gibbs Sampling for State Space Models - the FFBS Algorithm](#gibbs-sampling-for-linear-state-space-models)
       * [Effective Sample Size (ESS)](#ess)
-  * [10. Arithmetic](#10-arithmetic)
+  * [11. Arithmetic](#10-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
-  * [11. The Spectral Envelope](#11-the-spectral-envelope)
+  * [12. The Spectral Envelope](#11-the-spectral-envelope)
      * [DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
      * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)
 
@@ -875,6 +877,10 @@ refer to frequency ordinate:
 
 <br/>
 
+-----
+
+## 6. Detecting Structural Breaks
+
 ### autoSpec
 
 #### &emsp; Detection of Narrowband Frequency Changes in Time Series -  [the paper is here](https://dx.doi.org/10.4310/21-SII703) 
@@ -961,13 +967,68 @@ mvspec(x[483:1000], kernel=bart(1), taper=.5, main='segment 2', col=4, lwd=2, xl
 
 <img src="figs/autospec_cos.png" alt="autoSpec_ENSO"  width="70%"><br/>
 
+<br/><br/>
 
+### autoParm
+
+#### &emsp; Structural Break Estimation for Nonstationary Time Series Models. -  [the paper is here](https://doi.org/10.1198/016214505000000745) 
+
+
+&#x1F4A1;  This is similar to `autoSpec` but fits local AR models.  If you haven't guessed it already, the script is called  
+
+> **`autoParm()`**
+
+and most of the inputs have default settings.  Here's an example.
+
+```r
+##-- simulation - two AR(2)s that may look similar
+x1 = sarima.sim(ar=c(1.69, -.81), n=500)
+x2 = sarima.sim(ar=c(1.32, -.81), n=500) 
+x = c(x1, x2)
+
+##-- but if you look at the data they're very different
+##-- in fact, x2 is twice as fast as x1
+tsplot(x)
+
+##-- run procedure
+autoParm(x)
+
+# output
+#  returned breakpoints include the endpoints 
+#  $breakpoints
+#  [1]    1  507 1000
+#  
+#  $number_of_segments
+#  [1] 2
+#  
+#  $segment_AR_orders
+#  [1] 2 2
+
+##-- now fit AR(2)s to each piece
+ar(x[1:506], order=2, aic=FALSE)
+
+#  Coefficients:
+#        1        2  
+#   1.6786  -0.8085  
+#  Order selected 2  sigma^2 estimated as 1.053
+#  
+
+ar(x[507:1000], order=2, aic=FALSE) 
+
+#  Coefficients:
+#        1        2  
+#   1.2883  -0.7635  
+# Order selected 2  sigma^2 estimate as 1.144
+```
+
+
+<br/>
 
 [<sub>top</sub>](#table-of-contents)
 
 -----
 
-## 6. Linearity Test
+## 7. Linearity Test
 
 &#x1F4A1;  Linear time series models are built on the linear process, where it is assumed that a univariate series <i>X<sub>t</sub></i> can be generated as
 
@@ -1003,7 +1064,7 @@ tsplot(nyse, col=4)
 
 -----
 
-## 7. State Space Models
+## 8. State Space Models
 
 
 <br/>
@@ -1270,7 +1331,7 @@ code is still up.
 
 ---
 
-## 8. EM Algorithm and Missing Data
+## 9. EM Algorithm and Missing Data
 
 &#x1F4A1;  To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) and discussed in detail in Chapter 6 of the
 text [Time Series Analysis and Its Applications: With R Examples](http://www.springer.com/us/book/9783319524511), use the new script 
@@ -1587,7 +1648,7 @@ R  # (actual .01)
 
 ---
 
-## 9. Bayesian Techniques
+## 10. Bayesian Techniques
 
 &#x1F4A1; We're adding some scripts to handle Bayesian analysis. So far we have
 > `ar.mcmc` to fit AR models 
@@ -1960,7 +2021,7 @@ apply(u, 2, ESS)
 
 ---
 
-## 10. Arithmetic
+## 11. Arithmetic
 
 &#x1F4A1; The package has a few scripts to help with items related to time series and stochastic processes.
 
@@ -2125,7 +2186,7 @@ which is
 [<sub>top</sub>](#table-of-contents)
 
 ---
-## 11. The Spectral Envelope
+## 12. The Spectral Envelope
 
 <br/>
 
