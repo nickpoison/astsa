@@ -891,7 +891,7 @@ refer to frequency ordinate:
 
 > **`autoSpec()`**
 
-and most of the inputs have default settings. We'll do a couple of examples:
+and most of the inputs have default settings.  
 
 <!--
 &#128526; ENSO ... this is like the main example in the paper but the data have been updated. 
