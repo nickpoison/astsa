@@ -44,23 +44,23 @@ it's more than just data ...
   * [6. Detecting Structural Breaks  &#128150; NEW &#128150;](#6-detecting-structural-breaks)
     * [autoSpec - changepoint detection - nonparametric](#autospec) 
     * [autoParm - changepoint detection - parametric](#autoparm) 
-  * [7. Testing for Linearity](#6-linearity-test)
-  * [8. State Space Models and Kalman Filtering](#7-state-space-models)
+  * [7. Testing for Linearity](#7-linearity-test)
+  * [8. State Space Models and Kalman Filtering](#8-state-space-models)
      * [Quick Kalman Filter and Smoother - 	&#128150; NEW 	&#128150;](#quick-kalman-filter-and-smoother)
      * [Beginners Paradise - SSM](#beginners-paradise)
      * [The Old Stuff](#the-old-stuff)
-  * [9. EM Algorithm and Missing Data - &#128150; NEW &#128150;](#8-em-algorithm-and-missing-data)
+  * [9. EM Algorithm and Missing Data - &#128150; NEW &#128150;](#9-em-algorithm-and-missing-data)
      * [Parameter Constraints](#parameter-constraints)
-  * [10. Bayesian Techniques - &#128150; NEW &#128150;](#9-bayesian-techniques)
+  * [10. Bayesian Techniques - &#128150; NEW &#128150;](#10-bayesian-techniques)
       * [AR Models](#ar-models)
       * [Stochastic Volatility Models](#stochastic-volatility)
       * [Gibbs Sampling for State Space Models - the FFBS Algorithm](#gibbs-sampling-for-linear-state-space-models)
       * [Effective Sample Size (ESS)](#ess)
-  * [11. Arithmetic](#10-arithmetic)
+  * [11. Arithmetic](#11-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
-  * [12. The Spectral Envelope](#11-the-spectral-envelope)
+  * [12. The Spectral Envelope](#12-the-spectral-envelope)
      * [DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
      * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)
 
@@ -875,7 +875,7 @@ refer to frequency ordinate:
 
 ```
 
-<br/>
+[<sub>top</sub>](#table-of-contents)
 
 -----
 
