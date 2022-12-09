@@ -80,7 +80,7 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \source{
-The genetic algorithm code is adapted from R code provided to us by Rex Cheung at SFSU (\kbd{https://cob.sfsu.edu/directory/rex-cheung}). The code originally supported Aue, Cheung, Lee, & Zhong (2014). Segmented model selection in quantile regression using the minimum description length principle. JASA, 109, 1241-1256.  A similar version also supported Davis, Lee, & Rodriguez-Yam (2006). Structural break estimation for nonstationary time series models. JASA, 101, 223-239.
+The genetic algorithm code is adapted from R code provided to us by Rex Cheung (\kbd{https://www.linkedin.com/in/rexcheung}). The code originally supported Aue, Cheung, Lee, & Zhong (2014). Segmented model selection in quantile regression using the minimum description length principle. JASA, 109, 1241-1256.  A similar version also supported Davis, Lee, & Rodriguez-Yam (2006). Structural break estimation for nonstationary time series models. JASA, 101, 223-239.
 }
 \seealso{
 \code{\link{autoParm}}

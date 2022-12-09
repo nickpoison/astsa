@@ -70,7 +70,7 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \source{
-The code is adapted from R code provided to us by Rex Cheung at SFSU (\kbd{https://cob.sfsu.edu/directory/rex-cheung}).
+The code is adapted from R code provided to us by Rex Cheung (\kbd{https://www.linkedin.com/in/rexcheung}).
 }
 \seealso{
 \code{\link{autoSpec}}
