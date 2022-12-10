@@ -33,13 +33,13 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
  <span style="font-size:larger;">__v2.0__</span>: (now on GitHub)  The package is available here only. Everything works but we're adding items every so often.   We'll wait until the end December 2022 (at least) to push this version to CRAN. There are a number of new scripts and some old ones are set to be retired eventually.  
 
-- Added [`autoSpec`](https://dx.doi.org/10.4310/21-SII703) for changepoint detection of slight frequency shifts following this paper: 
+- Added [`autoSpec`](https://dx.doi.org/10.4310/21-SII703) for changepoint detection using local nonparametric spectra.
 
     - Also added the data set `ENSO` which is the most recent update to SOI (an older version was used the paper that introduced autoSpec).  
 
     - The script uses the Bartlett kernel so it was made available for general use; see `bart`.
 
-- Also added   [`autoParm`](https://doi.org/10.1198/016214505000000745) since the code is closely related to `autoSpec`.
+- Also added   [`autoParm`](https://doi.org/10.1198/016214505000000745) for changepoint detection using local AR models.
 
 We'll put up some examples in FUN WITH ASTSA soon.
 
