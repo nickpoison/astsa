@@ -923,12 +923,12 @@ refer to frequency ordinate:
 and most of the inputs have default settings.  
 
 <!--
-&#128526; ENSO ... this is like the main example in the paper but the data have been updated. 
-The input `max.period` specifies the frequency range [0, 1/max.period] over which to calculate the Whittle likelihood; the default is 2, which is the max frequency range.
+&#128526; ENSO ... this is like the main example in the paper but the data have been updated.  The input `min.freq` and `max.freq` specify the frequency range 
+(min, max) over which to calculate the Whittle likelihood; the default is (0, &half;), which is the max frequency range.
 
 
 ```r
-autoSpec(ENSO, max.period=4)  
+autoSpec(ENSO, max.freq=.25)  
 
   #  returned breakpoints include the endpoints 
   # $breakpoints
@@ -961,7 +961,10 @@ mvspec(x2, taper=.5, kernel=bart(4),   main='Segment 2', col=4, lwd=2)
 <br/>
 -->
 
-&#128526; Here's an example where other techniques tend to fail (try it with `autoParm` below). A narrowband signal is modulated until halfway through.
+&#128526; Here's an example where other techniques tend to fail (try it with `autoParm` below). A narrowband signal is modulated until halfway through. 
+
+Part of the input are `min.freq` and `max.freq` that specify the frequency range 
+(`min`, `max`) over which to calculate the Whittle likelihood; the default is (0, &half;), which is the entire frequency range.
 
 ```r
 # simulate data
@@ -977,7 +980,7 @@ x   = c(x1, x2)
 # periodogram  (not shown) - all action below .1
 mvspec(x)
 
-autoSpec(x, max.period=10)
+autoSpec(x, max.freq=.1)
 
   # returned breakpoints include the endpoints 
   # $breakpoints

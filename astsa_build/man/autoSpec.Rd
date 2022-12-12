@@ -11,7 +11,7 @@ Optimization is accomplished via a genetic algorithm (GA).
 }
 \usage{
 autoSpec(xdata, Pi.B = NULL, Pi.C = NULL, PopSize = 70, generation = 70, P0 = 10, 
-         Pi.P = 0.3, Pi.N = 0.3, NI = 7, taper = .5, max.period = 2)
+         Pi.P = 0.3, Pi.N = 0.3, NI = 7, taper = .5, min.freq = 0, max.freq = .5)
 }
 \arguments{
   \item{xdata}{
@@ -54,9 +54,10 @@ Does not need to be specified.
 half width of taper used in spectral estimate; .5 (default) is full taper
 Does not need to be specified.
 }
-  \item{max.period}{
-the frequency range [0, 1/max.period] over which to calculate the Whittle likelihood;
-the default is 2 (the min). Does not need to be specified.
+  \item{min.freq, max.freq}{
+the frequency range (min.freq, max.freq) over which to calculate the Whittle likelihood;
+the default is (0, .5). Does not need to be specified.  If min > max, the roles are 
+reversed, and reset to the default if either is out of range.
 }
 }
 \details{
@@ -101,7 +102,7 @@ x   = c(x1,x2)
 mvspec(x)
 
 ##-- run procedure
-autoSpec(x, max.period=10)
+autoSpec(x, max.freq=.1)
 
 ##-- output (yours will be slightly different - 
 ##--         the nature of GA) 
@@ -122,10 +123,6 @@ tsplot(x, col=4)
  abline(v=481, col=6, lty=2, lwd=2)
 mvspec(x[1:480],    kernel=bart(2), taper=.5, main='segment 1', col=4, xlim=c(0,.25))
 mvspec(x[481:1000], kernel=bart(1), taper=.5, main='segment 2', col=4, xlim=c(0,.25))   
-##-- end --##
-
-##-- for a real data example try
-autoSpec(ENSO, max.period=4)
 }
 }
 \keyword{ ts }

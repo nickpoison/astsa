@@ -95,7 +95,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     for (i in 1:nser) spec[, i] <- spec[, i]/u2
     spec <- drop(spec)
 ##== rearrange pgram for more useful display
-	fxx = base::aperm(pgram, c(2,3,1))	
+    fxx = base::aperm(pgram, c(2,3,1))	
 ##== show details to help find peaks 
     details <- round( cbind(frequency=freq, period=1/freq, spectrum=spec), 4)
 ##== output
@@ -107,15 +107,15 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
     if (plot) {
-          if (is.null(main))
-            main <- paste("Series:", series,  " | ", spg.out$method, " | ", 'taper =', taper)
-	    par(mar = c(2.75, 2.75, 2, 0.75), mgp = c(1.6, 0.6, 0), cex.main = 1.1)
+        if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method, " | ", 'taper =', taper)
+        par(mar = c(2.75, 2.75, 2, 0.75), mgp = c(1.6, 0.6, 0), cex.main = 1.1)
         type0 <- 'n' 
         type1 <- ifelse(is.null(type), 'l', type) 
+        Xlab = ifelse(xfreq>1, paste('frequency', expression('\u00D7'), xfreq), 'frequency')
         plot(spg.out, type = type0, sub=NA, axes=FALSE, ann=FALSE, log = log, main='', ...) 
         Grid(nxm=nxm, nym=nym)
         par(new=TRUE)
-        plot(spg.out, log = log, type = type1, sub=NA, main=main, ...) 
+        plot(spg.out, xlab=Xlab, log = log, type = type1, sub=NA, main=main, ...) 
         return(invisible(spg.out))
     }
     else return(spg.out)
