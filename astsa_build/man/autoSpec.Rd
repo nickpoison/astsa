@@ -86,6 +86,9 @@ The genetic algorithm code is adapted from R code provided to us by Rex Cheung (
 \seealso{
 \code{\link{autoParm}}
 }
+\note{The GA is a stochastic optimization procedure and consequently will give different results at
+each run.  It is a good idea to run the algorithm a few times before coming to a final decision.
+}
 \examples{
 \dontrun{
 
