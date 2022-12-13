@@ -31,7 +31,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 ### Version 2.0 - TBA
 
- <span style="font-size:larger;">__v2.0__</span>: (now on GitHub)  The package is available here only. Everything works but we're adding items every so often.   We'll wait until the end December 2022 (at least) to push this version to CRAN. There are a number of new scripts and some old ones are set to be retired eventually.  
+ <span style="font-size:larger;">__v2.0__</span>: (now on GitHub)  The package is available here only. Everything works but we're adding items every so often.   We'll wait until the end of December 2022 (at least) to push this version to CRAN. There are a number of new scripts and some old ones are set to be retired eventually.  
 
 - Added [`autoSpec`](https://dx.doi.org/10.4310/21-SII703) for changepoint detection using local nonparametric spectra.
 
@@ -41,7 +41,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 - Also added   [`autoParm`](https://doi.org/10.1198/016214505000000745) for changepoint detection using local AR models.
 
-We'll put up some examples in FUN WITH ASTSA soon.
+Some examples are in  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
 ~~
 
@@ -49,11 +49,11 @@ We'll put up some examples in FUN WITH ASTSA soon.
    
 
 
-   - Added `Kfilter` which is faster than `Kfilter0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
+   - Added `Kfilter` which is faster than `Kfilter0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
-   -  Added `Ksmooth` which is faster than `Ksmooth0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
+   -  Added `Ksmooth` which is faster than `Ksmooth0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
-   - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfilter` and `Ksmooth` scripts. In addition, the script now accepts inputs in both the state and observations equations. There's an example in the help file (?EM) and other examples on [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
+   - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfilter` and `Ksmooth` scripts. In addition, the script now accepts inputs in both the state and observations equations. There's an example in the help file (?EM) and other examples on [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
    - Updated (to run with the new `Kfilter` and `Ksmooth` scripts):
       + the Forward Filtering Backward Smoothing script (`ffbs`) and 
@@ -71,7 +71,7 @@ We'll put up some examples in FUN WITH ASTSA soon.
 
    - A `tsplot` plot  can now be stored by putting it in an object; e.g., `pl = tsplot(soi)`.  Later, entering `pl` will restore the graph and it's possible to add to it (made possible by `recordPlot`).
 
-  - Added some Bayesian scripts (examples in [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) - see the new section 9)
+  - Added some Bayesian scripts (examples in [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) - see the new section 9)
      - Added `ar.mcmc` to fit AR models via Gibbs sampling
      - Added `SV.mcmc` to fit stochastic volatility models 
      - ... and some financial data sets `sp500.gr` (S&P 500 daily returns) and `BCJ` (returns of 3 banks) 
@@ -87,9 +87,8 @@ We'll put up some examples in FUN WITH ASTSA soon.
 ### Version 1.15 - May 2022
 +   v1.15 is v1.14.3 plus the following 2 additions and (of course) minor changes to appease the CRAN warlords:
 
-    + Added two new scripts ```detrend()``` and ```trend()```.  The first one returns a __detrended__ series using a polynomial regression (default is linear) or lowess (with the default span).  The second script fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
+    + Added two new scripts ```detrend()``` and ```trend()```.  The first one returns a detrended series using a polynomial regression (default is linear) or lowess (with the default span).  The second script fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
 
-       - Examples are `tsplot(detrend(soi))` showing the `soi` series with a linear trend removed, and `trend(soi, lowess=TRUE)` showing the `soi` series with a lowess trend and 95% pointwise confidence bands.
 
 
 
