@@ -10,7 +10,7 @@ to do nonparametric spectral estimation with the goal of detecting changepoints.
 Optimization is accomplished via a genetic algorithm (GA).
 }
 \usage{
-autoSpec(xdata, Pi.B = NULL, Pi.C = NULL, PopSize = 70, generation = 70, P0 = 10, 
+autoSpec(xdata, Pi.B = NULL, Pi.C = NULL, PopSize = 70, generation = 70, m0 = 10, 
          Pi.P = 0.3, Pi.N = 0.3, NI = 7, taper = .5, min.freq = 0, max.freq = .5)
 }
 \arguments{
@@ -34,8 +34,8 @@ Does not need to be specified.
 number of iterations; default is 70.
 Does not need to be specified.
 }
-  \item{P0}{
-maximum width of the Bartlett kernel is \code{2*P0 + 1}; default is 10. 
+  \item{m0}{
+maximum width of the Bartlett kernel is \code{2*m0 + 1}; default is 10. 
 Does not need to be specified.
 }
   \item{Pi.P}{
