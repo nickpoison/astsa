@@ -50,7 +50,7 @@ Does not need to be specified.
 }
 }
 \details{
-Details my be found in Davis, Lee, & Rodriguez-Yam (2006). Structural break estimation for nonstationary time series models. JASA, 101, 223-239. \url{https://doi.org/10.1198/016214505000000745}
+Details my be found in Davis, Lee, & Rodriguez-Yam (2006). Structural break estimation for nonstationary time series models. JASA, 101, 223-239. \doi{10.1198/016214505000000745}
 }
 \value{
 Returns three values, (1) the breakpoints including the endpoints, (2) the number of

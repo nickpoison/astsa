@@ -61,7 +61,7 @@ reversed, and reset to the default if either is out of range.
 }
 }
 \details{
-Details my be found in Stoffer, D. S. (2023). AutoSpec: Detection of narrowband frequency changes in time series. Statistics and Its Interface, 16(1), 97-108. \url{https://dx.doi.org/10.4310/21-SII703}
+Details my be found in Stoffer, D. S. (2023). AutoSpec: Detection of narrowband frequency changes in time series. Statistics and Its Interface, 16(1), 97-108. \doi{10.4310/21-SII703}
 }
 \value{
 Returns three values, (1) the breakpoints including the endpoints, (2) the number of
