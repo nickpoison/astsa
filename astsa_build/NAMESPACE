@@ -12,9 +12,10 @@ importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",  "time",
              "qnorm", "coef", "dnorm", "quantile", "optim", "ar", "spec.ar", 
              "filter", "diffinv", "tsp", "var", "fft", "is.ts", "pchisq", 
              "qqnorm", "qt", "cor", "rgamma", "runif")           
-importFrom("utils", "setTxtProgressBar", "txtProgressBar")                         
+importFrom("utils", "setTxtProgressBar", "txtProgressBar")        
+                 
 
-# Export all names
+# Export all names that do not start with a period
 
 exportPattern("^[^\\.]")
 
