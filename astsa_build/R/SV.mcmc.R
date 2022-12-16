@@ -4,7 +4,8 @@
 #      Y(t) = beta*exp{X(t)/2}V(t);         V(t) ~ iid N(0,1)   ind of Ws  
 ###############################################################################
 
-SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL, sigma_MH=NULL, npart=NULL, mcmseed=NULL){
+SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL, 
+                    sigma_MH=NULL, npart=NULL, mcmseed=NULL){
   # Input:
   #   y - returns
   #   nmcmc - number of MCMC
