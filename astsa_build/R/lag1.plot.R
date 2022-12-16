@@ -19,11 +19,12 @@ function(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1),
    old.par <- par(no.readonly = TRUE)
    par(mfrow=c(prow,pcol))
   for(h in 1:max.lag){                       
-   tsplot(stats::lag(series,-h), series, type='p', xy.labels=FALSE, xlab=paste(name1,h,")",sep=""), ylab=name2, col=col, ...) 
-    if (smooth==TRUE) 
+   tsplot(stats::lag(series,-h), series, type='p', xy.labels=FALSE, 
+           xlab=paste(name1,h,")",sep=""), ylab=name2, col=col, ...) 
+    if (smooth) 
     lines(stats::lowess(ts.intersect(stats::lag(series,-h),series)[,1],
                  ts.intersect(stats::lag(series,-h),series)[,2]), col=2, lwd=lwl)
-    if (corr==TRUE)
+    if (corr)
     legend("topright", legend=round(a[h], digits=2), text.col=ltcol, bg=bgl, adj=.25, box.col=box.col)
    on.exit(par(old.par))
    }
