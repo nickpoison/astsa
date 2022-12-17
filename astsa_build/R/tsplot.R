@@ -7,9 +7,10 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
   topper = ifelse(is.null(main), 0, .5) 
   type0  = 'n' 
   type1  = ifelse(is.null(type), 'l', type)
-  pch    =  rep(pch, ceiling(nser/length(pch)))
-  lty    =  rep(lty, ceiling(nser/length(lty)))
-  lwd    =  rep(lwd, ceiling(nser/length(lwd)))
+  pch    = rep(pch, ceiling(nser/length(pch)))
+  lty    = rep(lty, ceiling(nser/length(lty)))
+  lwd    = rep(lwd, ceiling(nser/length(lwd)))
+  oldp   = par()
   
  if(!spaghetti || nser < 2){ # no spaghetti 
  if(!gg){                    # no gris-gris
@@ -102,5 +103,6 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
                           lty=lty[h], lwd=lwd[h], ...) }
    }
 }
+las = oldp$las
 return(invisible(grDevices::recordPlot()))
 }
