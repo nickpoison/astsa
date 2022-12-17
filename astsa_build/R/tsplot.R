@@ -102,6 +102,5 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
                           lty=lty[h], lwd=lwd[h], ...) }
    }
 }
-las = oldp$las
 return(invisible(grDevices::recordPlot()))
 }
