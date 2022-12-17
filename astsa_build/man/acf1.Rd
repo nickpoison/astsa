@@ -6,8 +6,8 @@
 Produces a plot (and a printout) of the sample ACF or PACF. The zero lag value of the ACF is removed.
 }
 \usage{
-acf1(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
-     ylab=NULL, na.action = na.pass, ...)
+acf1(series, max.lag = NULL, plot = TRUE, main = NULL, ylim = NULL, pacf = FALSE,
+      ylab = NULL, na.action = na.pass, ...)
 }
 \arguments{
   \item{series}{The data.  Does not have to be a time series object.

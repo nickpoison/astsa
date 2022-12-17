@@ -5,11 +5,11 @@ function(series, max.lag=NULL,  na.action = na.pass, ylim=NULL,
 nser = NCOL(series)
   if (nser < 2) {stop("Multivariate time series only")} 
 
-frequency = tsp(as.ts(series))[3]  
+xfreq = tsp(as.ts(series))[3]  
 
 num = nrow(series)
   if (num > 59 & is.null(max.lag))
-      max.lag = max(ceiling(10 + sqrt(num)), 4 * frequency(series))
+      max.lag = max(ceiling(10 + sqrt(num)), 4 * xfreq)
   if (num < 60 & is.null(max.lag))
       max.lag = floor(5 * log10(num + 5))
   if (max.lag > (num - 2))
@@ -27,7 +27,7 @@ uppr = min(uppr, 1)
 
 old.par <- par(no.readonly = TRUE)
 par(mfrow=c(nser,nser), oma=c(0,2,2,0), cex.main=1)
- Xlab = ifelse(frequency>1, paste('LAG', expression('\u00F7'), frequency), 'LAG')
+ Xlab = ifelse(xfreq>1, paste('LAG \u00F7', xfreq), 'LAG')
  for (i in 1:nser){ 
   for (j in 1:nser){ 
      U = (-1/num)*(i==j) + (2/sqrt(num))

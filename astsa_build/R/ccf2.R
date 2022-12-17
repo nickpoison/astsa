@@ -26,8 +26,8 @@ function (x, y, max.lag = NULL, main = NULL, ylab = "CCF", plot = TRUE,
   if (is.null(main)){main=acf.out$snames}
   #  better graphic
   if (plot){ 
-   frequency = frequency(X)  
-   Xlab = ifelse(frequency>1, paste('LAG', expression('\u00F7'), frequency), 'LAG')
+   xfreq = frequency(X)  
+   Xlab = ifelse(xfreq>1, paste('LAG \u00F7', xfreq), 'LAG')
     U = 2/sqrt(num)
     tsplot(acf.out$LAG, acf.out$CCF, type='h', ylab=ylab, xlab=Xlab, main=main, ...) 
     if (type == "correlation") { abline(h=c(0,-U,U), lty=c(1,2,2), col=c(8,4,4))

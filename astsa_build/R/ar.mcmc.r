@@ -34,7 +34,7 @@ for (i in 2:niter){
      sigma[i]   = 1/rgamma(1, shape=siga, scale=sigb)
    } 
    
-# print - plot results	
+# print - plot results 
 indx  = (n.warmup+1):niter
 phit  = t(phi[,indx])
 sigma = sqrt(sigma[indx])  # now sigma is stand dev
