@@ -86,6 +86,7 @@ tsplot(sAR, type='c')
 points(sAR, pch=Months, cex=1.1, font=4, col=1:4)
 
 ## SARIMA(0,1,1)x(0,1,1)_12 - B&J's favorite
+set.seed(101010)
 tsplot(sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120))  
 
 ## infinite variance t-errors 

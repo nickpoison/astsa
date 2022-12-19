@@ -40,7 +40,7 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \examples{
-tsplot( cbind(salmon, detrend(salmon)), main='Norwegian Salmon Export Price USD/KG' )
+tsplot( cbind(salmon, detrend(salmon)), gg=TRUE, main='Norwegian Salmon USD/KG' ) 
 }
 \seealso{\code{\link{trend}}}
 \keyword{ts}

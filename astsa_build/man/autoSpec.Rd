@@ -93,6 +93,7 @@ each run.  It is a good idea to run the algorithm a few times before coming to a
 \dontrun{
 
 ##-- simulation
+set.seed(1)
 num = 500
 t   = 1:num
 w   = 2*pi/25
@@ -101,8 +102,9 @@ x1  = 2*cos(w*t)*cos(d*t) + rnorm(num)
 x2  = cos(w*t) + rnorm(num)
 x   = c(x1,x2)
 
-##-- periodogram - all action below 0.1
-mvspec(x)
+##-- plot and periodogram (all action below 0.1)
+tsplot(x, main='not easy to see the change')
+mvspec(x) 
 
 ##-- run procedure
 autoSpec(x, max.freq=.1)
@@ -111,21 +113,21 @@ autoSpec(x, max.freq=.1)
 ##--         the nature of GA) 
 # returned breakpoints include the endpoints 
 # $breakpoints
-# [1]    1  481 1000
+# [1]    1  503 1000
 # 
 # $number_of_segments
 # [1] 2
 # 
 # $segment_kernel_orders_m
-# [1] 2 1
+# [1] 2 4
 
 
 ##-- plot everything
 par(mfrow=c(3,1))
 tsplot(x, col=4)
- abline(v=481, col=6, lty=2, lwd=2)
-mvspec(x[1:480],    kernel=bart(2), taper=.5, main='segment 1', col=4, xlim=c(0,.25))
-mvspec(x[481:1000], kernel=bart(1), taper=.5, main='segment 2', col=4, xlim=c(0,.25))   
+ abline(v=503, col=6, lty=2, lwd=2)
+mvspec(x[1:502],    kernel=bart(2), taper=.5, main='segment 1', col=4, xlim=c(0,.25))
+mvspec(x[503:1000], kernel=bart(4), taper=.5, main='segment 2', col=4, xlim=c(0,.25))   
 }
 }
 \keyword{ ts }

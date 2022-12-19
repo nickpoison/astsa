@@ -54,10 +54,9 @@ D.S. Stoffer
 P \%^\% 50
 
 # surround with parentheses if used in an expression
-c(.5,.5) \%*\% (P\%^\%50)
+c(.2, .8) \%*\% (P \%^\% 50)
 
 # Inverse square root
-Q = var(econ5)
-Q \%^\% -.5
+var(econ5) \%^\% -.5
 }
 \keyword{ math }
