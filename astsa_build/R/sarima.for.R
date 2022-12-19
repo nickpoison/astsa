@@ -26,7 +26,7 @@ if (is.null(xreg)) {
  if (!is.null(xreg)) {
         fitit = stats::arima(xdata, order = c(p, d, q), seasonal = list(order = c(P, 
             D, Q), period = S), xreg = xreg, fixed=fixed, trans=trans)
-	nureg = newxreg		
+        nureg = newxreg 
 }
 #--
 fore <- stats::predict(fitit, n.ahead, newxreg=nureg)  
@@ -41,7 +41,7 @@ if (plot){
   L  = fore$pred - 2*fore$se
   U1 = fore$pred + fore$se
   L1 = fore$pred - fore$se
-  if(plot.all)  {a=1} else  {a=max(1,n-100)}
+  a  = ifelse(plot.all, 1, max(1,n-100))
   minx = min(xdata[a:n],L)
   maxx = max(xdata[a:n],U)
    t1 = xy.coords(xdata, y = NULL)$x 

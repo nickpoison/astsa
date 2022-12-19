@@ -37,7 +37,7 @@ if (pdim < 2 & qdim < 2){
 A  = as.vector(A) 
 cvg   = 1 + tol
 like  = c()
-miss  = ifelse(abs(y)>0, 0, 1)     # 0=observed, 1=missing
+miss  = ifelse(abs(y)>0, 0, 1)     # 0=observed, 1=missing (for R updates)
 cat("iteration","   -loglikelihood", "\n")
 
 
@@ -60,11 +60,10 @@ for(iter in 1:max.iter){
   J0  = drop(ks$J0)
   X0n = drop(ks$X0n)
   P0n = drop(ks$P0n)
-  Kn  = A[num]*Pp[num]/sig[num]
  
 # Lag-One Covariance Smoothers 
  Pcs = c(0)            # Pcs=P_{t,t-1}^n
- Pcs[num] = (1 - Kn*A[num])*Phi*Pf[num-1]
+ Pcs[num] = (1 - ks$Kn*A[num])*Phi*Pf[num-1]
   for(k in num:3){
    Pcs[k-1] = Pf[k-1]*J[k-2] + J[k-1]*(Pcs[k] - Phi*Pf[k-1])*J[k-2]
   }

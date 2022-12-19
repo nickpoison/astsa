@@ -8,7 +8,7 @@ function(xdata, section=NULL, spans=NULL, kernel=NULL, taper=0,
        if (!all(as.integer(diff(section))==1) && !is.integer(section))
        stop("'section' must be consecutive indices of the form 'start:end'") 
      x = xdata[section,] 
-	 }	 
+    }	 
   } else {
    if ( !is.matrix(xdata) || !all(xdata %in% c(0,1)) || !all(base::rowSums(xdata)==1) ) 
      stop("Input must be indicators, use 'dna2vector' to preprocess the data.")

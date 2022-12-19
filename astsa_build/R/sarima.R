@@ -52,18 +52,18 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    stdres <- rs/sqrt(fitit$sigma2)
    num    <- sum(!is.na(rs))
    tsplot(stdres, main = "Standardized Residuals", ylab = "", ...)
-	if(Model){
-	 if (S<0) {title(paste( "Model: (", p, "," ,d, "," ,q, ")", sep=""), adj=0) }
-	 else {title(paste( "Model: (", p, "," ,d, "," ,q, ") ", "(", P, "," ,D, "," ,Q, ") [", S,"]",  sep=""), adj=0) }
-	}
+    if(Model){
+     if (S<0) {title(paste( "Model: (", p, "," ,d, "," ,q, ")", sep=""), adj=0) }
+     else {title(paste( "Model: (", p, "," ,d, "," ,q, ") ", "(", P, "," ,D, "," ,Q, ") [", S,"]",  sep=""), adj=0) }
+    }
     alag  <- max(10+sqrt(num), 3*S) 
     acf1(rs, alag, main = "ACF of Residuals", ...)   
 #    
     u = qqnorm(stdres, plot.it=FALSE)
-	  lwr = min(-4, min(stdres)); upr = max(4, max(stdres))
+    lwr = min(-4, min(stdres)); upr = max(4, max(stdres))
     tsplot(u$x, u$y, type='p', ylim=c(lwr,upr), ylab="Sample Quantiles", xlab="Theoretical Quantiles",  
            main="Normal Q-Q Plot of Std Residuals",  ...)	
-      ################ qq error bnds ###########
+     ################ qq error bnds ###########
        sR  <- !is.na(stdres)
        ord <- order(stdres[sR])
        ord.stdres <- stdres[sR][ord]
@@ -83,10 +83,10 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
          xx <- c(z, rev(z))
          yy <- c(L, rev(U))
         polygon(xx, yy, border=NA, col=gray(.5, alpha=.2) )   
-      ############ end qq error bnds ##########################
+    ############ end qq error bnds ##########################
     nlag <- ifelse(S<7, 20, 3*S)
     ppq  <- p+q+P+Q - sum(!is.na(fixed))   # decrease by number of fixed parameters
-	  if (nlag < ppq + 8) {nlag = ppq + 8}
+    if (nlag < ppq + 8) {nlag = ppq + 8}
     pval <- numeric(nlag)
     for (i in (ppq+1):nlag) {u <- stats::Box.test(rs, i, type = "Ljung-Box")$statistic
                              pval[i] <- stats::pchisq(u, i-ppq, lower.tail=FALSE)}            
