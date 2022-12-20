@@ -8,11 +8,11 @@ Fits an AR model to data and computes (and by default plots) the spectral
      density of the fitted model based on AIC (default) or BIC.
 }
 \usage{
-spec.ic(data, BIC = FALSE, order.max = 30, main = NULL, plot = TRUE, 
+spec.ic(xdata, BIC = FALSE, order.max = 30, main = NULL, plot = TRUE, 
          detrend = FALSE, method=NULL, ...)
 }
 \arguments{
-  \item{data}{
+  \item{xdata}{
 a univariate time series.
 }
   \item{BIC}{
