@@ -17,35 +17,24 @@ function(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=NULL,Gam=NULL,input=NULL){
  kf =  Kfilter(y,A,mu0,Sigma0,Phi,sQ,sR,Ups,Gam,input,version=1)
 ##
  Xs       =  array(NA, dim=c(pdim,1,num))     # xs are sampled x[t]s
- Xs[,,num] = .rmvnorm(1, kf$Xf[,,num], kf$Pf[,,num])
+ Xs[,,num] = .rmvnorm(kf$Xf[,,num], kf$Pf[,,num])
 ##
  for(k in num:2)  { # k is t+1 here
  J         =   kf$Pf[,,k-1]%*%t(Phi)%*%solve(kf$Pp[,,k])
  m         =   as.matrix(kf$Xf[,,k-1] + J%*%(Xs[,,k] - kf$Xp[,,k]))
  V         =   as.matrix(kf$Pf[,,k-1] - J%*%kf$Pp[,,k]%*%t(J))
- Xs[,,k-1]  =  .rmvnorm(1, m, V)
+ Xs[,,k-1]  =  .rmvnorm(m, V)
 }
 # and now for the initial values because R can't count backward to zero
   J   = (Sigma0%*%t(Phi))%*%solve(kf$Pp[,,1])
   m   = mu0 + J%*%(Xs[,,1]-kf$Xp[,,1])
   V   = Sigma0 + J%*%kf$Pp[,,1]%*%t(J)
-  X0n = .rmvnorm(1, m, V)
+  X0n = .rmvnorm(m, V)
 list(Xs=Xs,X0n=X0n)
 }
 
-
-
-.rmvnorm <-
-function(n = 1, mu, Sigma, tol=1e-8){
-## - this is built off of MASS::mvrnorm
-  p   <- length(mu)
-  eS  <- eigen(Sigma, symmetric = TRUE)
-  ev  <- eS$values
-  if(!all(ev >= -tol*abs(ev[1L]))) stop("'Sigma' is not positive definite")
-  X  <- matrix(stats::rnorm(p * n), n)
-  X  <- drop(mu) + eS$vectors %*% diag(sqrt(pmax(ev, 0)), p) %*% t(X)
-  nm <- names(mu)
-    if(is.null(nm) && !is.null(dn <- dimnames(Sigma))) nm <- dn[[1L]]
-  dimnames(X) <- list(nm, NULL)
-  if(n == 1) drop(X) else t(X)
+.rmvnorm = function(mu, Sigma){
+z  = rnorm(length(mu))
+cS = t(chol(Sigma)) 
+return(drop(cS%*%z + mu))
 }

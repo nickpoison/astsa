@@ -75,10 +75,10 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL
   for(k in 2:numMCMC){
     # Sample the parameters (phi, sigma=sqrt_q) ~ bivariate normal RW Metropolis  
     parms = cbind(phi[k-1], sqrt(q[k-1]))
-    parms_star = parms + .rmvnorm(1, mu_MH, sigma_MH)
+    parms_star = parms + .rmvnorm(mu_MH, sigma_MH)
     
     while(parms_star[2]^2 < 2e-2|parms_star[1]>2){
-      parms_star = parms + .rmvnorm(1, mu_MH, sigma_MH)
+      parms_star = parms + .rmvnorm(mu_MH, sigma_MH)
     }
     
     g_star = .log_g_func(parms_star, mu_phi, sigma_phi, mu_q, sigma_q, rho, X[(k-1),])
@@ -259,18 +259,8 @@ par(old.par)
 }
 
 
-.rmvnorm <-
-function(n = 1, mu, Sigma, tol=1e-8){
-## - this is built off of MASS::mvrnorm
-  p  <- length(mu)
-    if(!all(dim(Sigma) == c(p,p))) stop("incompatible arguments")
-  eS  <- eigen(Sigma, symmetric = TRUE)
-  ev  <- eS$values
-  if(!all(ev >= -tol*abs(ev[1L]))) stop("'Sigma' is not positive definite")
-  X  <- matrix(stats::rnorm(p * n), n)
-  X  <- drop(mu) + eS$vectors %*% diag(sqrt(pmax(ev, 0)), p) %*% t(X)
-  nm <- names(mu)
-    if(is.null(nm) && !is.null(dn <- dimnames(Sigma))) nm <- dn[[1L]]
-  dimnames(X) <- list(nm, NULL)
-  if(n == 1) drop(X) else t(X)
+.rmvnorm = function(mu, Sigma){
+z  = rnorm(length(mu))
+cS = t(chol(Sigma)) 
+return(drop(cS%*%z + mu))
 }

@@ -1760,8 +1760,8 @@ where _w<sub>t</sub>_ and  _&epsilon;<sub>t</sub>_  are independent standard Gau
   |= = = = = = = = = = = = = = = = = = = = = = = = =| 100%
    Time to run (secs): 
      user  system elapsed 
-    43.11    0.96   45.53 
-   The acceptance rate is: 27.1%
+    42.02    0.71   44.73 
+   The acceptance rate is: 29.7%
 ```
 and graphics (traces, effective sample sizes, ACFs, histograms with 2.5%-50%-97.5% quantiles
 followed by the posterior mean log-volatility with 95% credible intervals).
