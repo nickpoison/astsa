@@ -41,7 +41,7 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL
 
   T = length(y)
   X = matrix(0,numMCMC,T)
-  q = rep(0,numMCMC)             # q = state variance ## W(t) ~ iid N(0,q)
+  q = rep(0,numMCMC)             # q = state variance 
   phi = rep(0,numMCMC)
   beta = rep(0,numMCMC)
 
@@ -231,6 +231,7 @@ par(old.par)
   }#end
   list(x=x, w=w)
 }#end
+
 #-------------------------------------------------------------------
 .resamplew = function(w){
   # multinomial resampling
@@ -258,9 +259,9 @@ par(old.par)
   return(g)
 }
 
-
+#---------------------------------------------------------
 .rmvnorm = function(mu, Sigma){
-z  = rnorm(length(mu))
-cS = t(chol(Sigma)) 
-return(drop(cS%*%z + mu))
+  z  = rnorm(length(mu))
+  cS = t(chol(Sigma)) 
+  return(drop(cS%*%z + mu))
 }
