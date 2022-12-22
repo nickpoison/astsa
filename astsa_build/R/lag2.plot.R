@@ -1,6 +1,6 @@
 lag2.plot <-
 function(series1, series2, max.lag=0, corr=TRUE, smooth=TRUE, col=gray(.1),
-         lwl=1, bgl ='white', ltcol=1, box.col=8, ...){ 
+         lwl=1, bgl =gray(1,.65), ltcol=1, box.col=8, cex=.9, ...){ 
    #
    as.ts = stats::as.ts
    par = graphics::par
@@ -24,7 +24,7 @@ function(series1, series2, max.lag=0, corr=TRUE, smooth=TRUE, col=gray(.1),
    for(h in 0:max.lag){                   
     Xlab = ifelse(h==0, name10, paste(name1,h,")",sep="")) 
    tsplot(stats::lag(series1,-h), series2, xy.labels=FALSE, type='p', 
-               xlab=Xlab, ylab=name2, col=col, ...) 
+               xlab=Xlab, ylab=name2, col=col, cex=cex, ...) 
     if (smooth) 
     lines(stats::lowess(ts.intersect(stats::lag(series1,-h),series2)[,1],
                  ts.intersect(stats::lag(series1,-h),series2)[,2]), col=2, lwd=lwl)

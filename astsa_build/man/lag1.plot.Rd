@@ -6,7 +6,7 @@
 }
 \usage{
 lag1.plot(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1),
-          lwl=1, bgl ='white', ltcol=1, box.col=8, ...)
+            lwl=1, bgl=gray(1,.65), ltcol=1, box.col=8, cex=.9, ...)
 }
 \arguments{
   \item{series}{the data
@@ -21,11 +21,13 @@ lag1.plot(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1),
 }
   \item{lwl}{width of lowess line; default is 1
 }
-  \item{bgl}{background of the ACF legend; default is \code{'white'}
+  \item{bgl}{background of the ACF legend; default is semitransparent white
 }
   \item{ltcol}{legend text color; default is black
 }
   \item{box.col}{color of the border of the ACF legend; default is \code{'gray(62)'}
+}
+  \item{cex}{size of points; default is .9
 }
   \item{...}{additional graphical arguments
 }
