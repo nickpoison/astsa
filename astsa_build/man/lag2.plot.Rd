@@ -2,11 +2,11 @@
 \alias{lag2.plot}
 \title{Lag Plot - two time series
 } 
-\description{Produces a grid of scatterplots of one series versus another. The first named series is the one that gets lagged.
+\description{Produces a grid of scatterplots of one series versus another lagged. The first named series is the one that gets lagged.
 }
 \usage{
 lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1),
-           lwl=1, bgl =gray(1,.65), ltcol=1, box.col=8, cex=.9, ...)
+           lwl = 1, lwc = 2, bgl = gray(1,.65), ltcol = 1, box.col = 8, cex = .9, ...)
 }
 \arguments{
   \item{series1}{first series (the one that gets lagged)
@@ -22,6 +22,8 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
   \item{col}{color of points; default is \code{gray(.1)}
 }
   \item{lwl}{width of lowess line; default is 1
+}
+  \item{lwc}{color of lowess line; default is 2 (red)
 }
   \item{bgl}{background of the ACF legend; default is semitransparent white
 }

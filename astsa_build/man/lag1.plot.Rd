@@ -5,8 +5,8 @@
 \description{Produces a grid of scatterplots of a series versus lagged values of the series.
 }
 \usage{
-lag1.plot(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1),
-            lwl=1, bgl=gray(1,.65), ltcol=1, box.col=8, cex=.9, ...)
+lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1), lwl = 1,
+            lwc = 2, bgl = gray(1,.65), ltcol = 1, box.col = 8, cex = .9, ...)
 }
 \arguments{
   \item{series}{the data
@@ -20,6 +20,8 @@ lag1.plot(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1),
   \item{col}{color of points; default is \code{gray(.1)}
 }
   \item{lwl}{width of lowess line; default is 1
+}
+  \item{lwc}{color of lowess line; default is 2 (red)
 }
   \item{bgl}{background of the ACF legend; default is semitransparent white
 }
