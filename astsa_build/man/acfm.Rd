@@ -47,6 +47,6 @@ D.S. Stoffer
 \examples{
 acfm(diff(log(econ5)))
 
-acfm(diff(log(econ5)), gg=TRUE, acf=FALSE)
+acfm(diff(log(econ5)), gg=TRUE, acf.highlight=FALSE)
 }
 \keyword{ts}
