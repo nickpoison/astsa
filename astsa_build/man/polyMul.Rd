@@ -11,8 +11,8 @@
          \eqn{ax^0 + bx^1 + cx^2 + ...}  }
 \value{coefficients of the product in order of power}
 \author{D.S. Stoffer}
-\source{based on code from the polymatrix package
-\url{https://github.com/namezys/polymatrix}
+\source{based on code from the polynom package 
+\url{https://CRAN.R-project.org/package=polynom}
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
