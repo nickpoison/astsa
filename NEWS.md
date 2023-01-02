@@ -45,7 +45,6 @@ Some examples are in  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/
 
 ~~
 
- > __Note__  the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now: `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
    
 
 
@@ -55,11 +54,18 @@ Some examples are in  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/
 
    - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfilter` and `Ksmooth` scripts. In addition, the script now accepts inputs in both the state and observations equations. There's an example in the help file (?EM) and other examples on [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
+ 
+ > __Note__  the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now: `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
+
+
    - Updated (to run with the new `Kfilter` and `Ksmooth` scripts):
+
       + the Forward Filtering Backward Smoothing script (`ffbs`) and 
       + the simple univariate state space model (`ssm`) script  
 
-   - Updated data files `gtemp_land` and `gtemp_ocean` to 2021   
+   - Updated data files `gtemp_land` and `gtemp_ocean` to 2021  
+
+   - Made `lag1.plot` and `lag2.plot` look more purty. 
 
 ---
 
