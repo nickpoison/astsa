@@ -44,6 +44,6 @@ The webpages for the texts and some help on using R for time series analysis can
 }
 \author{D.S. Stoffer
 }
-\note{See Example 6.23 in Chapter 6 of the text.
+\note{See \href{https://github.com/nickpoison/tsa4/blob/master/textRcode.md#6.23}{Example 6.23 in Chapter 6} of the text.
 }
 \keyword{ ts }

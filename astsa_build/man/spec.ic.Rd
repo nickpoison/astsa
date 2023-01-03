@@ -22,7 +22,7 @@ if TRUE, fit is based on BIC. If FALSE (default), fit is based on AIC.
 maximum order of models to fit. Defaults to 30.
 }
   \item{main}{
-title. Defaults to name of series, method and chosen order.
+plot title. Defaults to name of series, method and chosen order.
 }
   \item{plot}{
 if TRUE (default) produces a graphic of the estimated AR spectrum.
@@ -35,7 +35,7 @@ if TRUE, detrends the data first. Default is FALSE.
        "yule-walker", "burg", "ols", "mle", "yw". Defaults to "yule-walker".
 }
   \item{\dots}{
-additional arguments.
+additional graphical arguments.
 }
 }
 \details{Uses \code{ar} to fit the best AR model based on pseudo AIC or BIC. 

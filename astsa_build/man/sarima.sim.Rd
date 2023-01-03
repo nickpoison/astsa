@@ -77,7 +77,7 @@ The webpages for the texts and some help on using R for time series analysis can
 y = sarima.sim(ar=c(1.5,-.75)) + 50
 tsplot(y)
 
-## ARIMA(0,1,1) with drift  
+## ARIMA(0,1,1) with drift ['mean' refers to the innovations] 
 tsplot(sarima.sim(ma=-.8, d=1, mean=.1))
 
 ## SAR(1) example from text
