@@ -1961,7 +1961,7 @@ pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  # progress bar
 ### start Gibbs
 for (iter in 1:niter){
 # draw states 
-  run  = ffbs(y,A,mu0,Sigma0,Phi,0,0,sQ,sR,0)   # initial values are given above
+  run  = ffbs(y,A,mu0,Sigma0,Phi,sQ,sR)   # initial values are given above
   xs   = run$xs
 # obs variance
   R    = 1/rgamma(1,a+n/2,b+sum((as.vector(y)-as.vector(A%*%xs[,,]))^2))
