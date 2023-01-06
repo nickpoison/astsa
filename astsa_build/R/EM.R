@@ -19,6 +19,13 @@ return(em)
 .EMno <-
 function(y, A, mu0, Sigma0, Phi, sQ, sR, Ups, Gam, input, max.iter, tol){
 
+
+## deal with missing values
+if (anyNA(y)){
+miss  = ifelse(!is.na(y), 0, 1)     # 0=observed, 1=missing (for R updates)
+} else {
+miss  = ifelse(abs(y)>0, 0, 1)
+}
 ## set NAs to zeros
 y[is.na(y)]=0
 A[is.na(A)]=0
@@ -37,7 +44,6 @@ if (pdim < 2 & qdim < 2){
 A  = as.vector(A) 
 cvg   = 1 + tol
 like  = c()
-miss  = ifelse(abs(y)>0, 0, 1)     # 0=observed, 1=missing (for R updates)
 cat("iteration","   -loglikelihood", "\n")
 
 

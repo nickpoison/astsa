@@ -74,12 +74,13 @@ D.S. Stoffer
 }
 \note{
 The script uses \code{\link{Kfilter}}.  If \eqn{A_t} is constant wrt time, it is not necessary to
-input an array; see the example.
+input an array; see the example.  The example below is just one pass of the algorithm; see the example
+at \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md#gibbs-sampling-for-linear-state-space-models}{FUN WITH ASTSA} for the real fun.
 }
 \examples{
 \dontrun{
 
-## -- this is just one pass - see FUN WITH ASTSA for the real fun --##
+## -- this is just one pass --##
 # generate some data
  set.seed(1)
  sQ  = 1; sR = 3; n = 100  
@@ -90,6 +91,7 @@ for (t in 2:n){
   x[t] = x[t-1] + sQ*w[t]
   y[t] = x[t] + sR*v[t]   
   }
+
 ## run one pass of FFBS, plot data, states and sampled states  
 run = ffbs(y, A=1, mu0=0, Sigma0=10, Phi=1, sQ=1, sR=3)
 tsplot(cbind(y,run$Xs), spaghetti=TRUE, type='o', col=c(8,4), pch=c(1,NA))

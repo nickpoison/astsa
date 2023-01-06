@@ -4,8 +4,8 @@
 EM Algorithm for State Space Models
 } 
 \description{Estimation of the parameters in general linear state space models via the EM algorithm.   
-Missing data may be entered as \code{NA} or as zero (0). Inputs in both the state and observation equations are allowed.
-This script replaces \code{EM0} and \code{EM1}.
+Missing data may be entered as \code{NA} or as zero (0), however, use \code{NA}s if zero (0) can be an
+observation. Inputs in both the state and observation equations are allowed. This script replaces \code{EM0} and \code{EM1}.
 }
 \usage{
 EM(y, A, mu0, Sigma0, Phi, Q, R, Ups = NULL, Gam = NULL, input = NULL, 
@@ -14,7 +14,8 @@ EM(y, A, mu0, Sigma0, Phi, Q, R, Ups = NULL, Gam = NULL, input = NULL,
 \arguments{
   \item{y}{
 data matrix (n \code{x} q), vector or time series, n = number of observations, q = number of series.
-Use \code{NA} or  zero (0) for missing data.
+Use \code{NA} or  zero (0) for missing data, however, use \code{NA}s if zero (0) can be an
+observation.
 }
   \item{A}{
 measurement matrices; can be constant or an array with dimension \code{dim=c(q,p,n)} if time varying.
@@ -90,8 +91,7 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}. 
 }
-\note{The script does not allow for contrained estimation directly, however, constrained estimation is possible with some 
-extra manipulations. There is an example of constrained estimation using \code{EM} at \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}, where the fun never stops.
+\note{The script does not allow for constrained estimation directly, however, constrained estimation is possible with some extra manipulations. There is an example of constrained estimation using \code{EM} at \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}, where the fun never stops.
 }
 \author{D.S. Stoffer
 }

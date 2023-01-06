@@ -3,7 +3,7 @@
 \title{Cross Correlation
 } 
 \description{
-Produces a nice graphic of the sample CCF of two time series.  The actual CCF values are returned invisibly.
+Calculates and plots the sample CCF of two time series.
 }
 \usage{
 ccf2(x, y, max.lag = NULL, main = NULL, ylab = "CCF", plot = TRUE,

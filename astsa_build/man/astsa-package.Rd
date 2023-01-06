@@ -13,7 +13,7 @@ Contains data sets and scripts for analyzing time series in both the frequency a
 Package: \tab astsa\cr
 Type: \tab Package\cr
 Version: \tab 2.0\cr
-Date: \tab 2022-12-21\cr
+Date: \tab 2023-01-10\cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr

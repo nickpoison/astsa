@@ -5,7 +5,6 @@
 } 
 \description{Multiple time series of quarterly U.S. unemployment, GNP, consumption, and government and private investment, from 1948-III to 1988-II.
 }
-\usage{data(econ5)}
 \format{
 Multiple time series with 161 observations (rows) on the following 5 numeric variables (columns):  \code{unemp}, \code{gnp}, \code{consum}, \code{govinv},     \code{prinv}.
 }

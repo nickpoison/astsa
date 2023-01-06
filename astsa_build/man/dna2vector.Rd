@@ -4,14 +4,14 @@
 Convert DNA Sequence to Indicator Vectors
 } 
 \description{
-Takes a DNA sequence (string) of general form (e.g., FASTA) and converts it to a sequence of indicator vectors for use with the Spectral Envelope (\code{specenv}).
+Takes a string (e.g., a DNA sequence) of general form (e.g., FASTA) and converts it to a sequence of indicator vectors for use with the Spectral Envelope (\code{specenv}).
 }
 \usage{
 dna2vector(data, alphabet = NULL)
 }
 \arguments{
   \item{data}{
-A DNA sequence as a single string.
+A single string.
 }
   \item{alphabet}{
 The particular alphabet  being used. The default is \code{alphabet=c("A", "C", "G", "T")}.
@@ -19,16 +19,16 @@ The particular alphabet  being used. The default is \code{alphabet=c("A", "C", "
 }
 \details{Takes a string of categories and converts it to a matrix of indicators. The data can then be used by the script \code{\link{specenv}}, which calculates the Spectral Envelope of the sequence (or subsequence). Many different type of sequences can be used, including FASTA and GenBank, as long as the data is a string of categories.
 
-    The indicator vectors (as a matrix) are returned invisibly in case the user forgets to put the results in an object wherein the screen would scroll displaying the entire sequence.  In other words, the user should do something like \code{xdata = dna2vector(data)} where \code{data} is the original sequence.
+The indicator vectors (as a matrix) are returned invisibly in case the user forgets to put the results in an object wherein the screen would scroll displaying the entire sequence.  In other words, the user should do something like \code{xdata = dna2vector(data)} where \code{data} is the original sequence.
 
-    As an example, if the DNA sequence is in a FASTA file, say \code{sequence.fasta}, remove the first line which will look like \code{>V01555.2 ... }. Then the following code can be used to read the data into the session, create the indicator sequence and save it as a compressed R data file:
+As an example, if the DNA sequence is in a FASTA file, say \code{sequence.fasta}, remove the first line, which will look like \code{>V01555.2 ... }. Then the following code can be used to read the data into the session, create the indicator sequence and save it as a compressed R data file:
 
 \preformatted{
   fileName <- 'sequence.fasta'      # name of FASTA file
   data     <- readChar(fileName, file.info(fileName)$size)  # input the sequence
   myseq    <- dna2vector(data)      # convert it to indicators
 
-  ##== and if you want to compress and save the data ==##
+  ##== to compress and save the data ==##
   save(myseq, file='myseq.rda')
   ##== and then load it when needed ==##
   load('myseq.rda')
