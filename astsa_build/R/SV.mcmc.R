@@ -260,8 +260,14 @@ par(old.par)
 }
 
 #---------------------------------------------------------
-.rmvnorm = function(mu, Sigma){
-  z  = rnorm(length(mu))
-  cS = t(chol(Sigma)) 
-  return(drop(cS%*%z + mu))
-}
+ .rmvnorm <-
+ function(mu, Sigma, tol=1e-8){
+ ## - this is built off of MASS::mvrnorm
+   p   <- length(mu)
+   eS  <- eigen(Sigma, symmetric = TRUE)
+   ev  <- eS$values
+   if(!all(ev >= -tol*abs(ev[1L]))) stop("'Sigma' is not positive definite")
+   X  <- matrix(stats::rnorm(p), 1)
+   X  <- drop(mu) + eS$vectors %*% diag(sqrt(pmax(ev, 0)), p) %*% t(X)
+   return(drop(X)) 
+ }
