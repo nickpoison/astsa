@@ -1962,7 +1962,7 @@ pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  # progress bar
 for (iter in 1:niter){
 # draw states 
   run  = ffbs(y,A,mu0,Sigma0,Phi,sQ,sR)   # initial values are given above
-  xs   = run$xs
+  xs   = run$Xs
 # obs variance
   R    = 1/rgamma(1,a+n/2,b+sum((as.vector(y)-as.vector(A%*%xs[,,]))^2))
  sR    = sqrt(R)
