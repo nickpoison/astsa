@@ -1222,12 +1222,12 @@ rmse = rep(NA,5)
 for(i in 1:5){rmse[i]=sqrt(sum((para.star[,i]-est$par[i])^2)/nboot)
               cat(i, rmse[i],"\n") 
              }    
-# output (compare to SEs above)        
-### 1 0.4341447 
-### 2 0.5653623 
-### 3 0.3201879 
-### 4 0.1945398 
-### 5 0.3183883 
+# output (compare these to the SEs above)        
+# 1 0.401331 
+# 2 0.5590043 
+# 3 0.3346493 
+# 4 0.1793103 
+# 5 0.2836505 
              
 # Plot phi and sigw  (scatter.hist in astsa)
 phi  = para.star[,1] 
@@ -1961,8 +1961,8 @@ pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  # progress bar
 ### start Gibbs
 for (iter in 1:niter){
 # draw states 
-  run  = ffbs(y,A,mu0,Sigma0,Phi,0,0,sQ,sR,0)   # initial values are given above
-  xs   = run$xs
+  run  = ffbs(y,A,mu0,Sigma0,Phi,sQ,sR)   # initial values are given above
+  xs   = run$Xs
 # obs variance
   R    = 1/rgamma(1,a+n/2,b+sum((as.vector(y)-as.vector(A%*%xs[,,]))^2))
  sR    = sqrt(R)
