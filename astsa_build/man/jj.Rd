@@ -9,7 +9,7 @@
   The format is:
  Time-Series [1:84] from 1960 to 1981: 0.71 0.63 0.85 0.44 0.61 0.69 0.92 0.55 0.72 0.77 ...
 }
-\details{This data set is also included with the R distribution as \code{JohnsonJohnson}
+\details{The data were provided (personal communication) by Professor Paul Griffin, \kbd{https://gsm.ucdavis.edu/profile/paul-griffin}, of the Graduate School of Management, University of California, Davis. This data set is also included with the R distribution as \code{JohnsonJohnson}.
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

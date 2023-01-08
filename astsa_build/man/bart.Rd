@@ -33,6 +33,7 @@ The webpages for the texts and some help on using R for time series analysis can
  \url{https://nickpoison.github.io/}. 
 }
 \examples{
-plot(bart(4), ylim=c(0,.2))
+bart(4)                         # for a list
+plot(bart(4), ylim=c(.01,.21))  # for a graph
 }
 \keyword{ts}

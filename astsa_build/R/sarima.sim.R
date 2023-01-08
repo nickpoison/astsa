@@ -6,11 +6,11 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
   if (length(ma)==1 && ma==0) ma=NULL  
   po = length(ar)
   qo = length(ma)
-  if (po>0) {
+  if (po>0){
        minroots <- min(Mod(polyroot(c(1, -ar))))
        if (minroots <= 1) { stop("AR side is not causal") }
     }
-  if (qo>0){	
+  if (qo>0){
        minroots <- min(Mod(polyroot(c(1, ma))))
        if (minroots <= 1) { stop("MA side is not invertible") }	
   }
@@ -21,9 +21,10 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
   if (burnin != round(burnin) || burnin < 0) { 	 
        stop("'burnin' must be a non-negative integer")        
    }
+
   num = n + burnin   
   if (is.null(innov)) innov = rand.gen(num, ...)
-  x = .zarima_sim(list(order=c(po,d,qo), ar=ar, ma=ma), n=num, rand.gen=rand.gen, innov=innov, ...)
+  x = .arima_sim(model=list(order=c(po,d,qo), ar=ar, ma=ma), n=num, innov=innov, ...)
  } else {  
   if (length(sar)==1 && sar==0) sar=NULL
   if (length(sma)==1 && sma==0) sma=NULL 
@@ -75,7 +76,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    }
    num = n + burnin
    if (is.null(innov)) innov = rand.gen(num, ...)
-   x = .zarima_sim(list(order=c(arorder,d,maorder), ar=arnew, ma=manew), n=num, rand.gen=rand.gen, innov=innov, ...)
+   x = .arima_sim(model=list(order=c(arorder,d,maorder), ar=arnew, ma=manew), n=num, innov=innov, ...)
   if (D > 0){
    x = stats::diffinv(x, lag=S, differences=D)
    }
@@ -88,28 +89,28 @@ return(x)
 
 
 ##
-.zarima_sim <-
-function(model, n, rand.gen = rand.gen, innov = innov, ...)
+.arima_sim <-
+function(model, n, innov, ...)
 {
     filter = stats::filter
     if (length(innov) < n)
       warning(paste("the number of innovations should be at least 'n + burnin' = ", n))
     if (n <= 0L) 
-        stop("'n' must be strictly positive")
+       stop("'n' must be strictly positive")
     p <- length(model$ar)
     q <- length(model$ma)
     d <- model$order[2L]
-        if (d != round(d) || d < 0) 
+       if (d != round(d) || d < 0) 
             stop("'d' must be a positive integer")
     x <- ts(innov)
     if (length(model$ma)) {
-        x <- filter(x, c(1, model$ma), sides = 1L)
-        x[seq_along(model$ma)] <- 0
+       x <- filter(x, c(1, model$ma), sides = 1L)
+       x[seq_along(model$ma)] <- 0
     }
     if (length(model$ar)) 
-        x <- filter(x, model$ar, method = "recursive")
+       x <- filter(x, model$ar, method = "recursive")
     if (d > 0) 
-        x <- diffinv(x, differences = d)
+       x <- diffinv(x, differences = d)
     as.ts(x)
 }
 
