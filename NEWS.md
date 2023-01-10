@@ -29,9 +29,9 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ---
 
-### Version 2.0 - TBA
+### Version 2.0 - Jan 2023 (at CRAN)
 
- <span style="font-size:larger;">__v2.0__</span>: (now on GitHub)  The package is available here only. Everything works but we're adding items every so often.   We'll wait until the end of December 2022 (at least) to push this version to CRAN. There are a number of new scripts and some old ones are set to be retired eventually.  
+ >  **Note**  There are a number of new scripts and some old ones are set to be retired eventually.  
 
 - Added [`autoSpec`](https://dx.doi.org/10.4310/21-SII703) for changepoint detection using local nonparametric spectra.
 
@@ -43,8 +43,6 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 Some examples are in  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
-~~
-
    
 
 
@@ -55,7 +53,7 @@ Some examples are in  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/
    - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfilter` and `Ksmooth` scripts. In addition, the script now accepts inputs in both the state and observations equations. There's an example in the help file (?EM) and other examples on [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
  
- > __Note__  the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now: `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
+ > __Warning__  the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now: `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
 
 
    - Updated (to run with the new `Kfilter` and `Ksmooth` scripts):
