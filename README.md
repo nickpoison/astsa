@@ -37,8 +37,10 @@ We won't always push the latest version of the package to CRAN, but the latest w
 The Springer text was written under version 1.8 and the Chapman & Hall text was written under version 1.9. Later versions will work for both texts with only some minor changes that won't affect any of the data analysis. 
 
 
-[![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa) &nbsp;
-[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa)
+[![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa) &nbsp; 
+![](https://img.shields.io/static/v1?label=CRAN&message=2.0&color=brightgreen)
+<!--[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa)-->
+
 
 
 <br/>
