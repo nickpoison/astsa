@@ -38,15 +38,10 @@ The Springer text was written under version 1.8 and the Chapman & Hall text was 
 
 
 [![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa) &nbsp; 
-![](https://img.shields.io/static/v1?label=CRAN&message=2.0&color=brightgreen)
+[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa)
 
-<!--[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa)
-
-<a href="https://cran.r-project.org/package=astsa"><img decoding="async" src="https://www.r-pkg.org/badges/version-last-release/astsa" alt="" /></a>
--->
 
 <br/>
-
 
 <sup> ＧＵＥＳＴＳ: </sup>  ![Visitor Count](https://profile-counter.glitch.me/nickpoison/count.svg)
 
