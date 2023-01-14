@@ -1134,7 +1134,7 @@ look like
 
 &emsp; `Kfilter(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL, input = NULL, S = NULL, version = 1)`.
 
-The "always needed" stuff comes first, and the "sometimes needed" comes last.  And again, if you want to model via  `Q` and `R`, just use `sQ = Q%*%.5` and  `sR = R%*%.5` [which works in the psd case] or `sQ = t(chol(Q))` and `sR = t(chol(R))` [which needs pd].
+The "always needed" stuff comes first, and the "sometimes needed" comes last.  And again, if you want to model via  `Q` and `R`, just use `sQ = Q %^%.5` and  `sR = R %^%.5` [which works in the psd case] or `sQ = t(chol(Q))` and `sR = t(chol(R))` [which needs pd].
 
 &#x1F535; We'll do the bootstrap example from the text, which used to take a long time... but now is very fast.
 
