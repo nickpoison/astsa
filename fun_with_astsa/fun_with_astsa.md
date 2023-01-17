@@ -1122,7 +1122,7 @@ The default is
 
  &emsp; &emsp;  x<sub>t</sub> = &Phi; x<sub>t-1</sub> +  &Upsilon; u<sub>t</sub> + sQ w<sub>t</sub>  &nbsp; and &nbsp;  y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> +  &Gamma; u<sub>t</sub> + sR v<sub>t</sub>,
 
-where w<sub>t</sub> ~ iid N(0, I) &perp;   v<sub>t</sub> ~ iid N(0, I) &perp; x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>).  In this case Q = sQ sQ' and R = sR sR'.  If it's easier to model by specifying Q and/or R, you can use `sQ = t(chol(Q))` or `sQ = Q %^% .5` and so on.  
+where w<sub>t</sub> ~ iid N(0, <span style="font-family: serif;">I</span>) &perp;   v<sub>t</sub> ~ iid N(0, <span style="font-family: serif;">I</span>) &perp; x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>).  In this case Q = sQ sQ' and R = sR sR'.  If it's easier to model by specifying Q and/or R, you can use `sQ = t(chol(Q))` or `sQ = Q %^% .5` and so on.  
 
 <br/>
 
