@@ -47,7 +47,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 
 
-   - Added `Kfilter` and `Ksmooth` which are faster than the older `Kfilter0-1-2`s and  `Ksmooth0-1-2`s, are easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [FUN WITH ASTSA - Kalman filtering and smoothing](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md#quick-kalman-filter-and-smoother).
+   - Added `Kfilter` and `Ksmooth` which are faster than the older `Kfilter0-1-2` and  `Ksmooth0-1-2`, are easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [FUN WITH ASTSA - Kalman filtering and smoothing](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md#quick-kalman-filter-and-smoother).
 
  
 
