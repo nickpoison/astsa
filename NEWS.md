@@ -41,25 +41,27 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 - Also added   [`autoParm`](https://doi.org/10.1198/016214505000000745) for changepoint detection using local AR models.
 
-Some examples are in  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
+✄ &nbsp; Some examples are in  [FUN WITH ASTSA - structural breaks](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md#6-detecting-structural-breaks).
 
-   
+<br/>
 
 
-   - Added `Kfilter` which is faster than `Kfilter0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
 
-   -  Added `Ksmooth` which is faster than `Ksmooth0-1-2`, easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
+   - Added `Kfilter` and `Ksmooth` which are faster than the older `Kfilter0-1-2`s and  `Ksmooth0-1-2`s, are easier to work with, and removes the need for 3 different scripts.  A simple example is in the help file and other examples are on  [FUN WITH ASTSA - Kalman filtering and smoothing](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md#quick-kalman-filter-and-smoother).
 
-   - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfilter` and `Ksmooth` scripts. In addition, the script now accepts inputs in both the state and observations equations. There's an example in the help file (?EM) and other examples on [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
+ 
+
+   - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfilter` and `Ksmooth` scripts. **In addition, the script now accepts inputs in both the state and observations equations.** There's an example in the help file (?EM) and other examples on [FUN WITH ASTSA - EM algorithm and missing data](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md#9-em-algorithm-and-missing-data).
 
  
  > __Warning__  the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now: `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
 
+<br/>
 
-   - Updated (to run with the new `Kfilter` and `Ksmooth` scripts):
-
+   - Updated (to run with the new `Kfilter` and `Ksmooth` scripts): 
+   
       + the Forward Filtering Backward Smoothing script (`ffbs`) and 
-      + the simple univariate state space model (`ssm`) script  
+      + the simple univariate state space model (`ssm`) script       
 
    - Updated data files `gtemp_land` and `gtemp_ocean` to 2021  
 
