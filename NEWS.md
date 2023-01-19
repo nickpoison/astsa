@@ -4,7 +4,7 @@
 
 <img src="fun_with_astsa/figs/astsa.gif" alt="astsa"  height="100">
 
-**more than just data ...**  
+**more than just data ... it's a palindrome**  
 
 ... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and  [Time Series A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/). 
 
