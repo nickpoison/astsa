@@ -30,7 +30,7 @@ it's more than just data ...
      * [Time Series Plots](#tsplot)
      * [Lag Plots](#lag-plots)
      * [Scatterplots](#scatterplots)
-     * [Trends](#▶️-trends)
+     * [Trends](#trends)
   * [3. Correlations](#3-correlations)
   * [4. ARIMA](#4-arima)
      * [Simulation](#arima-simulation)
