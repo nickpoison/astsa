@@ -29,7 +29,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ---
 
-### Version 2.0 - Jan 2023 (at CRAN)
+### Version 2.0 - Jan 2023 (at CRAN and GitHub)
 
  >  **Note**  There are a number of new scripts and some old ones are set to be retired eventually.  
 
@@ -43,7 +43,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 ✄ &nbsp; Some examples are in  [FUN WITH ASTSA - structural breaks](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md#6-detecting-structural-breaks).
 
-<br/>
+&#128312;&#128312;&#128312;&#128312;&#128312;
 
 
 
@@ -56,7 +56,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
  
  > __Warning__  the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now: `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
 
-<br/>
+&#128312;&#128312;&#128312;&#128312;&#128312;
 
    - Updated (to run with the new `Kfilter` and `Ksmooth` scripts): 
    
@@ -68,6 +68,8 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
    - Made `lag1.plot` and `lag2.plot` look more purty. 
 
 ---
+---
+
 
 ### Version v1.16 - Sept 2022 (on CRAN)
 
