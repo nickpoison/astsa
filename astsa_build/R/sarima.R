@@ -2,8 +2,6 @@ sarima <-
 function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
           fixed=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE, ...)
 { 
-   arima = stats::arima
-   #
    trans = ifelse (is.null(fixed), TRUE, FALSE)
    trc   = ifelse(details, 1, 0)
    n     = length(xdata)
@@ -25,28 +23,13 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
   }
 #
   if (!is.null(xreg)) {
-    fitit = stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
+    fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
                          xreg=xreg, fixed=fixed, trans=trans, 
                          optim.control=list(trace=trc, REPORT=1, reltol=tol))
   }
 #  replace tsdiag with a better version
  if(details){
-   layout    = graphics::layout
-   par       = graphics::par
-   plot      = graphics::plot
-   acf       = stats::acf
-   polygon   = graphics::polygon
-   abline    = graphics::abline
-   lines     = graphics::lines
-   title     = graphics::title
-   frequency = stats::frequency
-   coef      = stats::coef
-   dnorm     = stats::dnorm
-   ppoints   = stats::ppoints
-   qnorm     = stats::qnorm
-   time      = stats::time
-   na.pass   = stats::na.pass
-   old.par  <- par(no.readonly = TRUE)
+  old.par  <- par(no.readonly = TRUE)
   layout(matrix(c(1,2,4, 1,3,4), ncol=2))
    rs     <- fitit$residuals
    stdres <- rs/sqrt(fitit$sigma2)

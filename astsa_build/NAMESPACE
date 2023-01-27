@@ -4,14 +4,14 @@ importFrom("grDevices", "cm.colors", "dev.new", "xy.coords", "gray", "palette",
              "rgb", "adjustcolor", "recordPlot")
 importFrom("graphics", "abline", "box", "filled.contour", "grid", "layout", 
              "legend", "lines", "par", "plot", "title", "polygon", "axTicks", 
-             "axis", "mtext", "rect", "hist", "barplot", "text", "pairs")
+             "axis", "mtext", "rect", "hist", "barplot", "text", "pairs", "title")
 importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",  "time",   
              "is.tskernel", "kernapply", "kernel", "mvfft", "na.fail", "lag",
              "lm", "na.omit", "na.pass", "nextn", "plot.ts", "qf", "ppoints",
              "resid", "rnorm", "spec.taper", "ts", "ts.intersect", "ts.plot", 
              "qnorm", "coef", "dnorm", "quantile", "optim", "ar", "spec.ar", 
              "filter", "diffinv", "tsp", "var", "fft", "is.ts", "pchisq", 
-             "qqnorm", "qt", "cor", "rgamma", "runif")           
+             "qqnorm", "qt", "cor", "rgamma", "runif", "arima",)           
 importFrom("utils", "setTxtProgressBar", "txtProgressBar")        
                  
 
