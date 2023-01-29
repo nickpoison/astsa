@@ -8,7 +8,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
  if (is.null(xreg)) {
    constant = 1:n 
    xmean    = rep(1,n)  
-   if (no.constant==TRUE)  xmean=NULL 
+   if (no.constant)  xmean=NULL 
    if (d==0 & D==0) {	  
            fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
                   xreg=xmean, include.mean=FALSE, fixed=fixed, trans=trans, 
@@ -34,17 +34,18 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    rs     <- fitit$residuals
    stdres <- rs/sqrt(fitit$sigma2)
    num    <- sum(!is.na(rs))
-   tsplot(stdres, main = "Standardized Residuals", ylab = "", ...)
+ tsplot(stdres, main = "Standardized Residuals", ylab = "", ...)
     if(Model){
-     if (S<0) {title(paste( "Model: (", p, "," ,d, "," ,q, ")", sep=""), adj=0) }
-     else {title(paste( "Model: (", p, "," ,d, "," ,q, ") ", "(", P, "," ,D, "," ,Q, ") [", S,"]",  sep=""), adj=0) }
+     if (S<0) {title(bquote('Model: ('~.(p)*','*.(d)*','*.(q)~')'), adj=0) }
+     else { title(bquote('Model: ('~.(p)*','*.(d)*','*.(q)~')'~'\u00D7'~'('~.(P)*','*.(D)*','*.(Q)~')'[~.(S)]), 
+                  adj=0) }     
     }
     alag  <- max(10+sqrt(num), 3*S) 
-    acf1(rs, alag, main = "ACF of Residuals", ...)   
+ acf1(rs, alag, main = "ACF of Residuals", ...)   
 #    
     u = qqnorm(stdres, plot.it=FALSE)
-    lwr = min(-4, min(stdres)); upr = max(4, max(stdres))
-    tsplot(u$x, u$y, type='p', ylim=c(lwr,upr), ylab="Sample Quantiles", xlab="Theoretical Quantiles",  
+    lwr = min(-4, min(stdres, na.rm=TRUE)); upr = max(4, max(stdres), na.rm=TRUE)
+ tsplot(u$x, u$y, type='p', ylim=c(lwr,upr), ylab="Sample Quantiles", xlab="Theoretical Quantiles",  
            main="Normal Q-Q Plot of Std Residuals",  ...)	
      ################ qq error bnds ###########
        sR  <- !is.na(stdres)
@@ -73,7 +74,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
     pval <- numeric(nlag)
     for (i in (ppq+1):nlag) {u <- stats::Box.test(rs, i, type = "Ljung-Box")$statistic
                              pval[i] <- stats::pchisq(u, i-ppq, lower.tail=FALSE)}            
-     tsplot( (ppq+1):nlag, pval[(ppq+1):nlag], type='p', xlab = "LAG (H)", ylab = "p value", 
+ tsplot( (ppq+1):nlag, pval[(ppq+1):nlag], type='p', xlab = "LAG (H)", ylab = "p value", 
               ylim = c(-.14, 1), main = "p values for Ljung-Box statistic", ...)
      abline(h = 0.05, lty = 2, col = 4)  
     on.exit(par(old.par)) 
