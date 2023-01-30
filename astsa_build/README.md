@@ -2,7 +2,7 @@
 
 <img src="https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/figs/astsa.gif" alt="&nbsp; &nbsp; ASTSA ..."  height="100">
 
-... more than just data 
+... more than just data ... it's a palindrome
 
 ---
 
