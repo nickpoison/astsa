@@ -1,17 +1,25 @@
 stoch.reg <-
-function(data, cols.full, cols.red, alpha, L, M, plot.which)  {
-  #
-  nextn   = stats::nextn
-  kernel  = stats::kernel
-  qf = stats::qf
-  plot = graphics::plot
-  abline = graphics::abline
-  #
+function(xdata, cols.full, cols.red, alpha, L, M, plot.which, ...)  {
+#
+##############################################################################
+# This function computes the spectral matrix, F statistics and coherences, and plots them.
+# Returned as well are the coefficients in the impulse response function.
+#
+# Enter, as the argument to this function, the full data matrix, and then the labels of the 
+# columns of input series in the "full" and "reduced" regression models - enter NULL if there 
+# are no inputs under the reduced model. 
+#
+# The response variable is the LAST column of the data matrix, and this need not be specified 
+# among the inputs.  Other inputs are alpha (test size), L (smoothing), M (number 
+# of points in the discretization of the integral)  and plot.which = "coh" 
+# or "F", to plot either the coherences or the F statistics.
+##############################################################################
+#
 # SPEC[i,j,k] is the spectrum between the i-th and j-th series at frequency k/n':
-SPEC = array(dim = c(ncol(data),ncol(data),nextn(nrow(data))/2)) 
-for(i in 1:ncol(data)) { 
-for (j in i:ncol(data)) {
-	power = stats::spec.pgram(data[,c(i,j)], kernel("daniell",(L-1)/2), plot = FALSE)
+SPEC = array(dim = c(ncol(xdata),ncol(xdata),nextn(nrow(xdata))/2)) 
+for(i in 1:ncol(xdata)) { 
+for (j in i:ncol(xdata)) {
+	power = stats::spec.pgram(xdata[,c(i,j)], kernel("daniell",(L-1)/2), plot = FALSE)
 	SPEC[i,i, ] = power$spec[,1]
 	SPEC[j,j, ] = power$spec[,2]
 	coh.ij = power$coh 
@@ -21,10 +29,10 @@ for (j in i:ncol(data)) {
 	}}
 
 ### Compute the power under the full model:
-f.yy = SPEC[ncol(data), ncol(data), ]
+f.yy = SPEC[ncol(xdata), ncol(xdata), ]
 f.xx = SPEC[cols.full, cols.full, ]
-f.xy = SPEC[cols.full, ncol(data), ]
-f.yx = SPEC[ncol(data), cols.full, ]
+f.xy = SPEC[cols.full, ncol(xdata), ]
+f.yx = SPEC[ncol(xdata), cols.full, ]
 
 power.full = vector(length = dim(SPEC)[3])
 for (k in 1:length(power.full)) {
@@ -42,7 +50,7 @@ for (k in 1:length(power.full)) {
 # These are the frequencies 1/M, 2/M, ... .5*M/M 
 # Currently the frequencies used are 1/N, 2/N, ... .5*N/N 
 N = 2*length(power$freq)  # This will be n', in our notation 
-	# R displays the power at only half of the frequencies.
+# R displays the power at only half of the frequencies.
 sampled.indices = (N/M)*(1:(M/2))  # These are the indices of the frequencies we want
 B = B[, sampled.indices]
 # Invert B, by discretizing the defining integral, to get the coefficients b:
@@ -60,8 +68,8 @@ Betahat = Re(b)
 ### Compute the power under the reduced model:
 if (length(cols.red) > 0) {
 	f.xx = SPEC[cols.red, cols.red, ]
-	f.xy = SPEC[cols.red, ncol(data), ]
-	f.yx = SPEC[ncol(data), cols.red, ]
+	f.xy = SPEC[cols.red, ncol(xdata), ]
+	f.yx = SPEC[ncol(xdata), cols.red, ]
 	}
 
 power.red = vector(length = dim(SPEC)[3])
@@ -86,11 +94,11 @@ coh.mult = F.to.drop/(F.to.drop + df.denom/df.num)
 crit.coh = crit.F/(crit.F + df.denom/df.num)
 
 if(plot.which=="F.stat") {
-	plot(power$freq, F.to.drop, type = "l", xlab = "Frequency", ylab = "F", ylim = c(0, 3*crit.F))
+	tsplot(power$freq, F.to.drop, xlab = "Frequency", ylab = "F", ylim = c(0, 3*crit.F), ...)
 	abline(h=crit.F)
 	}
 if(plot.which=="coh") {
-	plot(power$freq, coh.mult, type = "l", xlab = "Frequency", ylab = "Sq Coherence", ylim=c(0,1)) 	  
+	tsplot(power$freq, coh.mult, xlab = "Frequency", ylab = "Sq Coherence", ylim=c(0,1), ...) 	  
 	abline(h=crit.coh)
 	}
 
