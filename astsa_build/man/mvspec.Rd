@@ -13,37 +13,45 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 \arguments{
   \item{x }{univariate or multivariate time series (i.e., the p columns of x are time series)
 }
-  \item{spans }{specify smoothing; same as \code{spec.pgram}
+  \item{spans }{vector of odd integers giving the widths of modified Daniell smoothers to be used to smooth the periodogram
 }
-  \item{kernel }{specify kernel; same as \code{spec.pgram} 
+  \item{kernel }{alternatively, a kernel smoother of class \code{tskernel} 
 }
-  \item{taper }{specify taper; same as \code{spec.pgram} with different default
+  \item{taper }{specifies the proportion of data to taper using a split cosine bell taper (.5 specifies a full taper)
 }
-  \item{pad }{specify padding; same as \code{spec.pgram}
+  \item{pad }{proportion of data to pad (zeros are added to the end of the series to increase its length by the proportion pad)
 }
-  \item{fast }{specify use of FFT; same as \code{spec.pgram}
+  \item{fast }{logical; if TRUE, pad the series to a highly composite length
 }
-  \item{demean }{if TRUE, series is demeaned first; same as \code{spec.pgram} 
+  \item{demean }{if TRUE, series is demeaned first 
 }
-  \item{detrend }{if TRUE, series is detrended first; same as \code{spec.pgram} 
+  \item{detrend }{if TRUE, series is detrended first 
 }
-  \item{plot }{plot the estimate; same as \code{spec.pgram} 
+  \item{plot }{plot the estimated spectra 
 }
-  \item{log }{same as \code{spec.pgram} but default is \code{'no'}
+  \item{log }{if \code{log='y'}, spectra plotted on a log scale; otherwise a log scale is not used
 }
-  \item{type }{type of plot to be drawn, defaults to lines
+  \item{type }{type of plot to be drawn, defaults to lines (see \code{par})
 }
-  \item{na.action }{same as \code{spec.pgram}
+  \item{na.action }{how to handle missing values
 }
   \item{nxm, nym }{
 the number of minor tick mark divisions on x-axis, y-axis; the default is one minor tick on the x-axis and none on the y-axis
 }
- \item{main }{title of the graphics; if NULL, a suitable title is generated
+ \item{main }{title of the graphics; if NULL, a totally awesome title is generated dude
 }
  \item{\dots }{graphical arguments passed to \code{plot.spec}
 }
 }
-\details{This is built off of \code{spec.pgram} from the stats package with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. The default for the plot is NOT to plot on a log scale and the graphic will have a grid. The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}.  Also, the bandwidth is no longer displayed in the graphic.  Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series.  Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
+\details{This is built off of \code{spec.pgram} from the stats package with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. 
+
+The default for the plot is NOT to plot on a log scale and the graphic will have a grid. 
+
+The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}.  Also, the bandwidth is not displayed in the graphic, but is returned. 
+
+Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series as a replacement for \code{spec.pgram}.
+
+Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
 }
 \value{An object of class "spec", which is a list containing at least the following components:
 

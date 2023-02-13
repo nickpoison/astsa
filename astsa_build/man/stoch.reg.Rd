@@ -5,7 +5,7 @@
 \description{Performs frequency domain stochastic regression discussed in Chapter 7.  
 }
 \usage{
-stoch.reg(xdata, cols.full, cols.red, alpha, L, M, plot.which, ...)
+stoch.reg(xdata, cols.full, cols.red=NULL, alpha, L, M, plot.which, col.resp=NULL, ...)
 }
 \arguments{
   \item{xdata}{data matrix with the last column being the response variable
@@ -14,13 +14,16 @@ stoch.reg(xdata, cols.full, cols.red, alpha, L, M, plot.which, ...)
 }
   \item{cols.red}{specify columns of data matrix that are in the reduced model (use NULL if there are no inputs in the reduced model) 
 }
-  \item{alpha}{test size
+  \item{alpha}{test size; number between 0 and 1
 }
-  \item{L}{number (odd) specifying degree of smoothing  
+  \item{L}{odd integer specifying degree of smoothing  
 }
-  \item{M}{number (odd) of points in the discretization of the integral
+  \item{M}{number (integer) of points in the discretization of the integral
 }
   \item{plot.which}{\code{coh} or \code{F.stat}, to plot either the squared-coherencies or the F-statistics, respectively
+}
+  \item{col.resp}{specify column of the response variable if it is not the last column of
+    the data matrix
 }
   \item{\dots}{additional graphic arguments
 }
@@ -33,8 +36,9 @@ Enter, as the argument to this function, the full data matrix, and then the labe
 columns of input series in the "full" and "reduced" regression models - enter NULL if there 
 are no inputs under the reduced model. 
 
-The response variable is the LAST column of the data matrix, and this need not be specified 
-among the inputs.  Other inputs are alpha (test size), L (smoothing), M (number 
+If the response variable is the LAST column of the data matrix, it need not be specified. Otherwise specify which column holds the responses as \code{col.resp}.
+
+Other inputs are alpha (test size), L (smoothing), M (number 
 of points in the discretization of the integral)  and plot.which = "coh" 
 or "F", to plot either the coherences or the F statistics.
 }
