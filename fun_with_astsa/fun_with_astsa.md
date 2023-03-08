@@ -1415,8 +1415,10 @@ input  = rep(1, length(y))
 ( em = EM(y, A, mu0, Sigma0, Phi, Q, R, Ups, Gam=NULL, input) ) 
 
 ```
+
 with partial output
-```
+
+```r
 $Phi
 [1] 1.015942
 
