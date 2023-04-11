@@ -1,6 +1,6 @@
 trend <-
 function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE, 
-          col=c(4,6), ylab=NULL, ...){
+          col=c(4,6), ylab=NULL, ci=FALSE, ...){
   if (NCOL(series) > 1) stop("univariate time series only")
   if (length(col) < 2) col = rep(col, 2)  
     name   = deparse(substitute(series))
@@ -15,11 +15,13 @@ function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE,
       trnd = ts(lo$fit, start=tspar[1], frequency=tspar[3])
     tsplot(series, col=col[1], ylab=ylab, ...)
     lines(trnd, col=col[2], lwd=2)       
+     if(ci){
         L = lo$fit - qt(0.975, lo$df)*lo$se
         U = lo$fit + qt(0.975, lo$df)*lo$se
         xx = c(x, rev(x))
         yy = c(L, rev(U))
-      polygon(xx, yy, border=8, col = gray(.6, alpha=.2) ) 
+       polygon(xx, yy, border=8, col = gray(.6, alpha=.2) ) 
+      }
       invisible(cbind(trnd, L, U))  
     } else {
       x = as.vector(time(series))
@@ -29,9 +31,11 @@ function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE,
       tsplot(series, col=col[1], ylab=ylab, ...)
       trnd = upts[,1]
       lines(trnd, col=col[2], lwd=2)
+       if(ci){
         xx = c(x, rev(x))
         yy = c(upts[,2], rev(upts[,3]))
-      polygon(xx, yy, border=8, col = gray(.6, alpha=.2) ) 
+       polygon(xx, yy, border=8, col = gray(.6, alpha=.2) )
+       } 
       invisible(upts)
     }
  }

@@ -29,6 +29,10 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ---
 
+#### small updates after v2.0:
+> added option in `trend` to plot (or not) the CIs - default is not (`ci=FALSE`).
+
+
 ### Version 2.0 - Jan 2023 (at CRAN and GitHub)
 
  >  **Note**  There are a number of new scripts and some old ones are set to be retired eventually.  
