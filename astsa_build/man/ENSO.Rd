@@ -4,16 +4,15 @@
 \title{El Nino - Southern Oscillation
 }
 \description{
-Southern Oscillation Index (SOI), 1/1951 to 10/2022; anomalies are departures from the 1981-2010 base period.
+Southern Oscillation Index (SOI), 1/1866 to 10/2022; anomalies are departures from the 1981-2010 base period.
 }
 \format{
   The format is:
- Time-Series [1:862] from 1951 to 2022: 1.5 0.9 -0.1 -0.3 -0.7 0.2 -1 -0.2 -1.1 -1 ...
+ Time-Series [1:1882] from 1866 to 2022: 0.0  0.6  0.1 -0.5 -0.3 -0.5 -0.6  0.7  0.2  0.6
+ ...
 }
 \details{
 The \eqn{\textrm{El Ni\~no - Southern Oscillation (ENSO)}} is a recurring climate pattern involving changes in the temperature of waters in the central and eastern tropical Pacific Ocean.  
-
-The data have been detrended and seasonally adjusted.  For raw SOI data (from a different time period), see \code{\link{soi}}.
 }
 \source{
 \kbd{https://www.ncei.noaa.gov/access/monitoring/enso/soi}
