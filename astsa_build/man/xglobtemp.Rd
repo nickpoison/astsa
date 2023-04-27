@@ -1,18 +1,13 @@
-\name{globtemp}
-\alias{globtemp}
+\name{xglobtemp}
+\alias{xglobtemp}
 \docType{data}
-\title{Global mean land-ocean temperature deviations to 2015
+\title{Superseded by \code{gtemp_both} - Global mean land-ocean temperature deviations. 
 } 
-\description{Global mean land-ocean temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2015. This was an update of \code{gtemp}, but \code{gtemp_land} and \code{gtemp_ocean} are the most recent updates.
+\description{This data file is old and is scheduled to be deleted.
 }
 \format{
   The format is:
  Time-Series [1:136] from 1880 to 2015: -0.2 -0.11 -0.1 -0.2 -0.28 -0.31 -0.3 -0.33 -0.2 -0.11 ...
-}
-\details{
-The data were changed after 2011, so there are discrepancies between this data set and \code{gtemp}.
-The differences are explained in the following document:
-www1.ncdc.noaa.gov/pub/data/ghcn/v3/GHCNM-v3.2.0-FAQ.pdf.
 }
 \source{\kbd{https://data.giss.nasa.gov/gistemp/graphs/}
 }
@@ -26,5 +21,5 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}. 
 }
-\seealso{\code{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{globtempl}}, \code{\link{gtemp}},  \code{\link{gtemp2}}}
+\seealso{\code{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{gtemp_both}}}
 \keyword{datasets}

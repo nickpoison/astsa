@@ -1,9 +1,9 @@
-\name{gtemp}
-\alias{gtemp}
+\name{xgtemp}
+\alias{xgtemp}
 \docType{data}
-\title{Global mean land-ocean temperature deviations
+\title{Superseded by \code{gtemp_both} - Global mean land-ocean temperature deviations. 
 } 
-\description{This data file is old and is here only for compatibility.  See \code{\link{globtemp}} and \code{\link{gtemp_land}}. The original description is:  Global mean land-ocean temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2009.
+\description{This data file is old and is scheduled to be deleted.
 }
 \format{
   The format is:
@@ -21,5 +21,5 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}. 
 }
-\seealso{\code{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{globtemp}}, \code{\link{globtempl}},  \code{\link{gtemp2}}}
+\seealso{\code{\link{gtemp_land}}, \code{\link{gtemp_ocean}}, \code{\link{gtemp_both}}}
 \keyword{datasets}
