@@ -34,6 +34,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 - updated global temperature data sets and put all the old ones into the x box to be deleted (eventually) ... `gtemp_land`, `gtemp_ocean`, and `gtemp_both` are the updated/new sets
 
+- updated `gnp` and `gdp` in sets `GNP` and `GDP`... also `ENSO` is now called `SOI`
 
 ### Version 2.0 - Jan 2023 (at CRAN and GitHub)
 
