@@ -1,7 +1,7 @@
 \name{ENSO}
-\alias{ENSO}
+\alias{SOI}
 \docType{data}
-\title{El Nino - Southern Oscillation
+\title{El Nino - Southern Oscillation Index
 }
 \description{
 Southern Oscillation Index (SOI), 1/1951 to 10/2022; anomalies are departures from the 1981-2010 base period.
