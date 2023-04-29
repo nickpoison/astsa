@@ -36,6 +36,8 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 - updated `gnp` and `gdp` in sets `GNP` and `GDP`... also `ENSO` is now called `SOI`
 
+- added US population data (`uspop`) ... we thought it was in already, now it is 
+
 ### Version 2.0 - Jan 2023 (at CRAN and GitHub)
 
  >  **Note**  There are a number of new scripts and some old ones are set to be retired eventually.  
