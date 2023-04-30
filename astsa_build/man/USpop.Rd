@@ -1,5 +1,5 @@
-\name{uspop}
-\alias{uspop}
+\name{USpop}
+\alias{USpop}
 \docType{data}
 \title{
 U.S. Population - 1900 to 2010
