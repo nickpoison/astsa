@@ -22,11 +22,11 @@ number of bootstrap iterations (default is 500)
 seed for the bootstrap sampling (defalut is NULL)
 }
   \item{plot}{
-if TRUE (default) returns a scatterplot matrix of the bootstrapped parameters - the diagonals
-of the matrix show a histogram with the 2.5\%, 50\%, and 97.5\% quantiles marked
+if TRUE (default) and \code{order.ar > 1}, returns a scatterplot matrix of the bootstrapped parameters, - the diagonals
+of the matrix show a histogram (or just a histogram if the order is 1) with the 2.5\%, 50\%, and 97.5\% quantiles marked
 }
   \item{col}{
-color used in the scatterplot matrix
+color used in the display
 }
 }
 \details{
