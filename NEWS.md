@@ -30,6 +30,9 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 
 #### v2.0.1: small updates after v2.0:
+
+- added `ar.boot` to get the bootstrapped distributions of the parameters of a specified (by the order) AR model.
+
 -  added option in `trend` to plot (or not) the CIs - default is to plot (`ci=TRUE`).
 
 - updated global temperature data sets and put all the old ones into the x box to be deleted (eventually) ... `gtemp_land`, `gtemp_ocean`, and `gtemp_both` are the updated/new sets
