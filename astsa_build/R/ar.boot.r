@@ -38,9 +38,21 @@ colnames(phi.star) = names(fit$coef[1:arp])
 cat('Quantiles:', "\n")
 print(apply(phi.star, 2, stats::quantile, c(.01,.025,.05,.1,.25,.50,.75,.9,.95,.975,.99)), digits=4 )
 cat('\n')
-cat('Means:', "\n") 
+cat('Mean:', "\n") 
 print(colMeans(phi.star), digits=4)
 cat('\n')
+bias =  t( colMeans(phi.star)-phi)
+colnames(bias) = names(fit$coef[1:arp])
+cat('Bias:', "\n") 
+print(bias, digits=4)
+cat('\n')
+u = diag(var(phi.star))
+cat('rMSE:', "\n")
+print(sqrt(u + bias^2), digits=4)
+cat('\n')
+
+
+
 
 if (plot){
    old.par = par(no.readonly = TRUE)

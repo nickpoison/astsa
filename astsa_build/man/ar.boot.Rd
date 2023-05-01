@@ -35,6 +35,8 @@ Yule-Walker estimates of \eqn{\phi_1,\dots,\phi_p} in the AR model specified by 
 \deqn{x_t = \mu + \phi_1 (x_{t-1}-\mu) + \dots + \phi_p (x_{t-p}-\mu) + w_t ,}
 where \eqn{w_t} is white noise. The data are centered by the estimate of \eqn{\mu} 
 prior to the bootstrap simulations.
+
+The script displays a number of quantiles of the bootstrapped estimates, the means, the biases, and the root mean squared errors.
 }
 \value{
 Returned invisibly:
