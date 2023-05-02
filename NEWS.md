@@ -31,6 +31,8 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 #### v2.0.1: small updates after v2.0:
 
+- updated `cardox` to 2023
+
 - added `ar.boot` to get the bootstrapped distributions of the parameters of a specified (by the order) AR model.
 
 -  added option in `trend` to plot (or not) the CIs - default is to plot (`ci=TRUE`).
