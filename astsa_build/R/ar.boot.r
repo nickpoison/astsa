@@ -1,12 +1,16 @@
 ar.boot = function(series, order.ar, nboot=500, seed=NULL, plot=TRUE, col=5){
 
+ar.yw   = stats::ar.yw
+na.omit = stats::na.omit
+num     = length(series)
+
 # estimate parameters
-tspar  = tsp(series)
+tspar  = stats::tsp(series)
 arp    = order.ar
-fit    = sarima(series, p=arp, d=0,q=0, details=FALSE)$fit
-m      = fit$coef[arp+1]                    # estimate of mean
-phi    = fit$coef[1:arp]                    # estimate of phis
-resids = fit$resid                          # the residuals
+fit    = ar.yw(series, order=arp, aic=FALSE) 
+m      = fit$x.mean               # estimate of mean
+phi    = fit$ar                   # estimate of phis
+resids = na.omit(fit$resid)       # the residuals
 
 
 # start boots
@@ -15,24 +19,24 @@ nboot    = nboot                 # number of bootstrap replicates
 x.star   = series                # initialize x*
 phi      = matrix(phi)           # p x 1
 phi.star = matrix(0, arp, nboot)
-x.sim    = matrix(0, length(series), nboot)
+x.sim    = matrix(0, num, nboot)
 
 pb = txtProgressBar(min = 0, max = nboot, initial = 0, style=3)  # progress bar
 
 for (i in 1:nboot) {
   setTxtProgressBar(pb,i)
- resid.star =  sample(resids, replace=TRUE)
- for (t in arp:(length(series)-1)){
+  resid.star = c(rep(0,arp), sample(resids, replace=TRUE))
+  for (t in arp:(num-1)){
     x0 = matrix(x.star[t:(t-arp+1)] - m)
-    x.star[t+1] = m + t(phi)%*%x0 + resid.star[t]
- }
- x.sim[,i]  = matrix(x.star) 
+    x.star[t+1] = m + t(phi)%*%x0 + resid.star[t+1]
+  }
+ x.sim[,i]    = matrix(x.star) 
  phi.star[,i] = ar.yw(x.star, order=arp, aic=FALSE)$ar
 }
-  close(pb)
+close(pb)
 x.sim = ts(x.sim, start=tspar[1], frequency=tspar[3])
 phi.star = t(phi.star)
-colnames(phi.star) = names(fit$coef[1:arp])
+colnames(phi.star) =  paste('ar', 1:arp, sep="")
 
 
 cat('Quantiles:', "\n")
@@ -42,7 +46,7 @@ cat('Mean:', "\n")
 print(colMeans(phi.star), digits=4)
 cat('\n')
 bias =  t( colMeans(phi.star)-phi)
-colnames(bias) = names(fit$coef[1:arp])
+colnames(bias) = paste('ar', 1:arp, sep="")
 cat('Bias:', "\n") 
 print(bias, digits=4)
 cat('\n')
