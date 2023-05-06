@@ -31,6 +31,8 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 #### v2.0.1: small updates after v2.0:
 
+- improvements to `mvspec` like allow detrending via lowess and some other visual improvements
+
 - updated `cardox` to 2023
 
 - added `ar.boot` to get the bootstrapped distributions of the parameters of a specified (by the order) AR model.

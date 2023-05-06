@@ -5,10 +5,9 @@
 \description{This is \code{spec.pgram} with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}.  The bandwidth calculation has been changed to the more practical definition given in the text and this can be used to replace \code{spec.pgram}.
 } 
 \usage{
-mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
-         fast = TRUE, demean = FALSE, detrend = TRUE, 
-         plot = TRUE, log='n', type = NULL, na.action = na.fail,
-         nxm=2, nym=1, main=NULL, ...)
+mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
+        demean = FALSE, detrend = TRUE, lowess = FALSE, log = 'n', plot = TRUE,
+         type = NULL, na.action = na.fail, nxm = 2, nym = 1, main = NULL, ...) 
 }
 \arguments{
   \item{x }{univariate or multivariate time series (i.e., the p columns of x are time series)
@@ -27,9 +26,11 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
 }
   \item{detrend }{if TRUE, series is detrended first 
 }
-  \item{plot }{plot the estimated spectra 
+  \item{lowess }{if TRUE and detrend TRUE, series is detrended using lowess first 
 }
   \item{log }{if \code{log='y'}, spectra plotted on a log scale; otherwise a log scale is not used
+}
+  \item{plot }{plot the estimated spectra 
 }
   \item{type }{type of plot to be drawn, defaults to lines (see \code{par})
 }
@@ -38,7 +39,7 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
   \item{nxm, nym }{
 the number of minor tick mark divisions on x-axis, y-axis; the default is one minor tick on the x-axis and none on the y-axis
 }
- \item{main }{title of the graphics; if NULL, a totally awesome title is generated dude
+ \item{main }{title of the graphics; if NULL, a totally awesome title is generated dude, but if NA there will be no gnarly title and the top margin will be used for the plot
 }
  \item{\dots }{graphical arguments passed to \code{plot.spec}
 }
@@ -49,7 +50,7 @@ The default for the plot is NOT to plot on a log scale and the graphic will have
 
 The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}.  Also, the bandwidth is not displayed in the graphic, but is returned. 
 
-Although meant to be used to easily obtain multivariate spectral estimates, this script can be used for univariate time series as a replacement for \code{spec.pgram}.
+Although initially meant to be used to easily obtain multivariate (mv) spectral (spec) estimates, this script can be used for univariate time series as a replacement for \code{spec.pgram}.
 
 Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
 }

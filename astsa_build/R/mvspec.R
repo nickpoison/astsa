@@ -1,6 +1,6 @@
-mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, 
-    fast = TRUE, demean = FALSE, detrend = TRUE, plot = TRUE, log='n',
-	type = NULL, na.action = na.fail, nxm=2, nym=1, main=NULL, ...) 
+mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
+        demean = FALSE, detrend = TRUE, lowess=FALSE, log='n', plot = TRUE,
+         type = NULL, na.action = na.fail, nxm=2, nym=1, main=NULL, ...)  
 {
      #
      na.fail = stats::na.fail
@@ -28,10 +28,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     if (!is.null(kernel) && !is.tskernel(kernel)) 
         stop("must specify 'spans' or a valid kernel")
     if (detrend) {
-        t <- 1:N - (N + 1)/2
-        sumt2 <- N * (N^2 - 1)/12
-        for (i in 1:ncol(x)) x[, i] <- x[, i] - mean(x[, i]) - 
-            sum(x[, i] * t) * t/sumt2
+        for (i in 1:nser) x[,i] = detrend(x[,i], lowess=lowess) 
     }
     else if (demean) {
         x <- sweep(x, 2, colMeans(x))
@@ -108,7 +105,8 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0,
     class(spg.out) <- "spec"
     if (plot) {
         if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method, " | ", 'taper =', taper)
-        par(mar = c(2.75, 2.75, 2, 0.75), mgp = c(1.6, 0.6, 0), cex.main = 1.1)
+        topper = ifelse (is.na(main), 1, 0)
+        par(mar = c(2.75, 2.75, 2-topper, 0.75), mgp = c(1.6, 0.6, 0), cex.main = 1.1)
         type0 <- 'n' 
         type1 <- ifelse(is.null(type), 'l', type) 
         Xlab = ifelse(xfreq>1, paste('frequency', expression('\u00D7'), xfreq), 'frequency')
