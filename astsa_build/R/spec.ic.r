@@ -1,5 +1,5 @@
 spec.ic =
-function(xdata, BIC=FALSE, order.max=30, main=NULL, plot=TRUE, 
+function(xdata, BIC=FALSE, order.max=NULL, main=NULL, plot=TRUE, 
            detrend=FALSE, method=NULL, ...){
   if (is.null(method)) {method='yw'}   
   
@@ -8,6 +8,7 @@ function(xdata, BIC=FALSE, order.max=30, main=NULL, plot=TRUE,
   
   if (detrend) { xdata = detrend(xdata); dmean = FALSE
         } else { dmean = TRUE } 
+  if (is.null(order.max)) order.max = min(100, ceiling(.1*length(xdata)))
   
   u    = stats::ar(xdata, order=order.max, aic=TRUE, method=method, demean=dmean) 
   aic  = as.vector(u$aic) 

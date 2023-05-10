@@ -7,7 +7,7 @@
 \usage{
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
         demean = FALSE, detrend = TRUE, lowess = FALSE, log = 'n', plot = TRUE,
-         type = NULL, na.action = na.fail, nxm = 2, nym = 1, main = NULL, ...) 
+        type = NULL, na.action = na.fail, nxm = 2, nym = 1, main = NULL, xlab=NULL, ...) 
 }
 \arguments{
   \item{x }{univariate or multivariate time series (i.e., the p columns of x are time series)
@@ -39,7 +39,9 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE,
   \item{nxm, nym }{
 the number of minor tick mark divisions on x-axis, y-axis; the default is one minor tick on the x-axis and none on the y-axis
 }
- \item{main }{title of the graphics; if NULL, a totally awesome title is generated dude, but if NA there will be no gnarly title and the top margin will be used for the plot
+ \item{main }{title of the graphics; if NULL (default), a totally awesome title is generated dude, but if NA there will be no gnarly title and the top margin will be used for the plot
+}
+ \item{xlab }{label for frequency axis; if NULL (default), a totally awesome label is generated for your viewing pleasure
 }
  \item{\dots }{graphical arguments passed to \code{plot.spec}
 }

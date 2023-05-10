@@ -8,7 +8,7 @@ Fits an AR model to data and computes (and by default plots) the spectral
      density of the fitted model based on AIC (default) or BIC.
 }
 \usage{
-spec.ic(xdata, BIC = FALSE, order.max = 30, main = NULL, plot = TRUE, 
+spec.ic(xdata, BIC = FALSE, order.max = NULL, main = NULL, plot = TRUE, 
          detrend = FALSE, method=NULL, ...)
 }
 \arguments{
@@ -19,7 +19,8 @@ a univariate time series.
 if TRUE, fit is based on BIC. If FALSE (default), fit is based on AIC.
 }
   \item{order.max}{
-maximum order of models to fit. Defaults to 30.
+maximum order of model to fit. Defaults (if NULL) to the minimum of 100 
+and 10\% of the number of observations. 
 }
   \item{main}{
 plot title. Defaults to name of series, method and chosen order.
