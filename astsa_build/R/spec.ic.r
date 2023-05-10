@@ -1,12 +1,12 @@
 spec.ic =
 function(xdata, BIC=FALSE, order.max=NULL, main=NULL, plot=TRUE, 
-           detrend=FALSE, method=NULL, ...){
+           detrend=TRUE, lowess=FALSE, method=NULL, ...){
   if (is.null(method)) {method='yw'}   
   
   nme1  = paste('Series:', deparse(substitute(xdata)))
   nme2  = ifelse(BIC,'BIC','AIC')  
   
-  if (detrend) { xdata = detrend(xdata); dmean = FALSE
+  if (detrend) { xdata = detrend(xdata, lowess=lowess); dmean = FALSE
         } else { dmean = TRUE } 
   if (is.null(order.max)) order.max = min(100, ceiling(.1*length(xdata)))
   

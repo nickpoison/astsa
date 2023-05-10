@@ -9,7 +9,7 @@ Fits an AR model to data and computes (and by default plots) the spectral
 }
 \usage{
 spec.ic(xdata, BIC = FALSE, order.max = NULL, main = NULL, plot = TRUE, 
-         detrend = FALSE, method=NULL, ...)
+         detrend = TRUE, lowess=FALSE, method=NULL, ...)
 }
 \arguments{
   \item{xdata}{
@@ -29,8 +29,12 @@ plot title. Defaults to name of series, method and chosen order.
 if TRUE (default) produces a graphic of the estimated AR spectrum.
 }
   \item{detrend}{
-if TRUE, detrends the data first. Default is FALSE.
+if TRUE (default), detrends the data first. If FALSE, the series is demeaned.
 }
+  \item{lowess}{
+if TRUE, detrends using lowess. Default is FALSE.
+}
+
   \item{method}{method of estimation - a character string specifying the 
         method to fit the model chosen from the following:
        "yule-walker", "burg", "ols", "mle", "yw". Defaults to "yule-walker".
