@@ -6,7 +6,7 @@
 
 }
 \usage{
-SigExtract(series, L = c(3, 3), M = 50, max.freq = 0.05)
+SigExtract(series, L = c(3, 3), M = 50, max.freq = 0.05, col = 4)
 }
 \arguments{
   \item{series}{univariate time series to be filtered
@@ -16,7 +16,9 @@ SigExtract(series, L = c(3, 3), M = 50, max.freq = 0.05)
 }
   \item{M}{number of terms used in the lagged regression approximation
 }
-  \item{max.freq}{truncation frequency, which must be larger than 1/M.
+  \item{max.freq}{truncation frequency, which must be larger than 1/M 
+}
+  \item{col}{color of the main graphs
 }
 }
 \details{The basic function of the script, and the default setting, is to remove frequencies above 1/20 (and, in particular, the seasonal frequency of 1 cycle every 12 time points). The  sampling frequency of the time series is set to unity prior to the analysis. 

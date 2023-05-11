@@ -1,5 +1,5 @@
 SigExtract <-
-function(series, L=c(3,3), M=50, max.freq=.05){
+function(series, L=c(3,3), M=50, max.freq=.05, col=4){
 
 ## Based on conde contributed by:
 ##  Professor Douglas P. Wiens 
@@ -102,22 +102,22 @@ par(mfrow=c(2,1))
 # put back time and frequency parameters for plotting
 series = ts(series, start=tspar[1], frequency=tspar[3])
 series.filt = ts(series.filt, start=tspar[1], frequency=tspar[3])
-tsplot(series, main = "Original series")
-tsplot(series.filt, main = "Filtered series")
+tsplot(series, main = "Original series", col=col, cex.main=1)
+tsplot(series.filt, main = "Filtered series", col=col, cex.main=1)
 
 dev.new()
 par(mfrow=c(2,1))
-mvspec(series, spans=L, log="no", main = "Spectrum of original series")
-mvspec(na.omit(series.filt), spans=L, log="no", main = "Spectrum of filtered series")
+mvspec(series, spans=L, log="no", main = "Spectrum of original series", col=col, cex.main=1)
+mvspec(na.omit(series.filt), spans=L, main = "Spectrum of filtered series", col=col,cex.main=1)
 
 
 dev.new()
 fr.N = fr.N*tspar[3]  # for plotting
 par(mfrow=c(2,1))
-tsplot(S, a, xlab = "s", ylab = "a(s)", main = "Filter coefficients")
-tsplot(fr.N, A.theoretical, type = "l", lty = 2, xlab = "freq", ylab = "freq. response", 
-    main = "Desired and attained frequency response functions")
-lines(fr.N, A.attained, lty = 1, col = 2)
+tsplot(S, a, xlab = "s", ylab = "a(s)", main = "Filter coefficients", type='o', col=col, cex.main=1)
+tsplot(fr.N, A.theoretical, col=2 , lty = 5, xlab = "freq", ylab = "freq. response", 
+    main = "Desired and attained frequency response functions", cex.main=1)
+lines(fr.N, A.attained, col=4)
 on.exit(par(old.par))
 return(invisible(series.filt))
 }

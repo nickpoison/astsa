@@ -31,7 +31,9 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 #### v2.0.1: small updates after v2.0:
 
-- increased  the default max order on `spec.ic` 
+- minor visual improvements to `SigExtract`
+
+- increased the default max order and made detrend default on `spec.ic` 
 
 - improvements to `mvspec` like allow detrending via lowess and some other visual improvements
 
