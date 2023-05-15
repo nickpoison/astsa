@@ -2,7 +2,7 @@
 \alias{xA_readme}
 \docType{data}
 \title{
-Scripts marked with an 'x' are scheduled to be phased out
+SCRIPTS MARKED WITH AN 'x' ARE SCHEDULED TO BE PHASED OUT
 }
 
 \description{
