@@ -1,6 +1,6 @@
 acf1 <-
 function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE, 
-          ylab=NULL, na.action = na.pass, ...){
+          ylab=NULL, xlab=NULL, na.action = na.pass, ...){
   frequency = stats::frequency
   acf       = stats::acf
   xfreq     = frequency(series)
@@ -34,6 +34,7 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
   Xlab = ifelse(xfreq>1, paste('LAG \u00F7', xfreq), 'LAG')
   Ylab = ifelse(pacf, 'PACF', 'ACF')  
   if (!is.null(ylab)) Ylab=ylab
+  if (!is.null(xlab)) Xlab=xlab
   tsplot(LAG, ACF, ylim=ylim, main=main, xlab=Xlab, ylab=Ylab, type='h', ...)
   abline(h=c(0,L,U), lty=c(1,2,2), col=c(8,4,4))
   return(round(ACF, 2)) 
