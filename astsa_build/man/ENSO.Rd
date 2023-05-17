@@ -1,5 +1,5 @@
 \name{ENSO}
-\alias{SOI}
+\alias{ENSO}
 \docType{data}
 \title{El Nino - Southern Oscillation Index
 }
