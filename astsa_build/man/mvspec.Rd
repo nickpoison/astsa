@@ -6,7 +6,7 @@
 } 
 \usage{
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
-        demean = FALSE, detrend = TRUE, lowess = FALSE, log = 'n', plot = TRUE,
+        demean = FALSE, detrend = TRUE, lowess = FALSE, log = 'n', plot = TRUE, gg = FALSE,
         type = NULL, na.action = na.fail, nxm = 2, nym = 1, main = NULL, xlab=NULL, ...) 
 }
 \arguments{
@@ -31,6 +31,8 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE,
   \item{log }{if \code{log='y'}, spectra plotted on a log scale; otherwise a log scale is not used
 }
   \item{plot }{plot the estimated spectra 
+}
+  \item{gg }{if TRUE, will produce a gris-gris plot (gray graphic interior with white grid lines); the default is FALSE. The grammar of astsa is voodoo
 }
   \item{type }{type of plot to be drawn, defaults to lines (see \code{par})
 }

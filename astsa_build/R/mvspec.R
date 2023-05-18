@@ -1,5 +1,5 @@
 mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
-        demean = FALSE, detrend = TRUE, lowess=FALSE, log='n', plot = TRUE,
+        demean = FALSE, detrend = TRUE, lowess=FALSE, log='n', plot = TRUE, gg=FALSE,
          type = NULL, na.action = na.fail, nxm=2, nym=1, main=NULL, xlab=NULL, ...)  
 {
      #
@@ -106,14 +106,25 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
     if (plot) {
         if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method, " | ", 'taper =', taper)
         topper = ifelse (is.na(main), 1, 0)
+        if (!gg){
         par(mar = c(2.75, 2.75, 2-topper, 0.75), mgp = c(1.6, 0.6, 0), cex.main = 1.1)
+         col.grid=gray(.9)
+         } else {
+         par(mar=c(2.5,2.5,2-topper,.5), mgp=c(1.6,.3,0), cex.main=1.1, tcl=-.2, cex.axis=.8, las=1)
+         }
         type0 <- 'n' 
         type1 <- ifelse(is.null(type), 'l', type) 
         if (is.null(xlab)) xlab = ifelse(xfreq>1, paste('frequency', expression('\u00D7'), xfreq), 'frequency')
         plot(spg.out, type = type0, sub=NA, axes=FALSE, ann=FALSE, log = log, main='', ...) 
-        Grid(nxm=nxm, nym=nym)
+        if (gg) { 
+        brdr = par("usr")
+        rect(brdr[1], brdr[3], brdr[2], brdr[4], col=gray(.92), border='white')
+        col.grid = 'white' 
+        }          
+        Grid(nxm=nxm, nym=nym, col=col.grid)
         par(new=TRUE)
         plot(spg.out, xlab=xlab, log = log, type = type1, sub=NA, main=main, ...) 
+        if (gg) box(col=col.grid, lwd=2)
         return(invisible(spg.out))
     }
     else return(spg.out)

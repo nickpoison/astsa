@@ -31,6 +31,8 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 #### v2.0.1: small updates after v2.0:
 
+- `mvspec` gets the gris-gris option, enhancing the voodoo grammar of astsa
+
 - made `acf1` more flexible 
 
 - minor visual improvements to `SigExtract`
