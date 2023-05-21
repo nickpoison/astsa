@@ -29,7 +29,7 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
 }
 }
 
-\value{}{The correlations are returned invisibly.}
+\value{The correlations are returned invisibly.}
 
 \details{Produces a grid of plots of the sample ACF (diagonal) and CCF (off-diagonal).
 The plots in the grid are estimates of  \kbd{corr{x(t+LAG), y(t)}}.  Thus
