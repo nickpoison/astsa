@@ -3,7 +3,7 @@
 \docType{data}
 \title{Global mean land temperature deviations, 1850-2023
 } 
-\description{Annual temperature anomalies (in degress centigrade) averaged over the Earth's land area from 1880 to 2021.
+\description{Annual temperature anomalies (in degress centigrade) averaged over the Earth's land area from 1850 to 2023.
  Anomalies are with respect to the 1991-2020 average.
 }
 \format{

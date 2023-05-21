@@ -3,11 +3,12 @@
 \title{ACF and CCF for Multiple Time Series
 } 
 \description{
-Produces a grid of plots of the sample ACF (diagonal) and CCF (off-diagonal).
+Produces a grid of plots of the sample ACF (diagonal) and CCF (off-diagonal). 
+The values are returned invisibly.
 }
 \usage{
 acfm(series, max.lag = NULL,  na.action = na.pass, ylim = NULL,
-      acf.highlight = TRUE, ...)
+      acf.highlight = TRUE, plot = TRUE, ...)
 }
 \arguments{
   \item{series}{Multiple time series (at least 2 columns of time series)
@@ -22,13 +23,18 @@ Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60
 }
   \item{acf.highlight}{If TRUE (default), the diagonals (ACFs) are highlighted.
 }
+  \item{plot}{If TRUE (default), you get a wonderful graphic.
+}
   \item{...}{Additional arguments passed to \code{\link{tsplot}}
 }
 }
 
+\value{}{The correlations are returned invisibly.}
+
 \details{Produces a grid of plots of the sample ACF (diagonal) and CCF (off-diagonal).
 The plots in the grid are estimates of  \kbd{corr{x(t+LAG), y(t)}}.  Thus
 \kbd{x} leads \kbd{y} if \kbd{LAG} is positive and \kbd{x} lags \kbd{y} if \kbd{LAG} is negative.
+If \code{plot} is FALSE, then there is no graphic.
 }
 
 \references{You can find demonstrations of  astsa capabilities at
@@ -45,8 +51,8 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \examples{
-acfm(diff(log(econ5)))
-
 acfm(diff(log(econ5)), gg=TRUE, acf.highlight=FALSE)
+
+( acfm(diff(log(econ5)), 2, plot=FALSE) )
 }
 \keyword{ts}
