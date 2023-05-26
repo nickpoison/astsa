@@ -10,7 +10,7 @@ function(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=NULL,Gam=NULL,input=NULL,S=NULL,version=1)
 # version 2
 #    x[t+1] = Ups u[t+1] + Phi x[t] + sQ w[t],  w[t]~iid N(0,I)
 #    y[t] = Gam u[t] + A[t] x[t] + sR v[t]      v[t]~ iid N(0,I) 
-#      cov(w[t], v[t]) = S 
+#      cov(sQ w[t], sR v[t]) = S 
 ##########################################################################
 ##########################################################################
 # for either version (1 or 2)
@@ -105,7 +105,7 @@ if (version == 2){
  for (i in 1:num){
   innov[i] = y[i] - A[i]*Xp[i] - Gam%*%ut[i,]
   sig[i]   = A[i]^2*Pp[i] + R 
-  K        = (Phi*Pp[i]*A[i] + sQ*S)/sig[i] 
+  K        = (Phi*Pp[i]*A[i] + sQ*S*sR)/sig[i] 
   Xf[i]    = Xp[i] + Pp[i]*A[i]*innov[i]/sig[i]
   Pf[i]    = Pp[i] - (Pp[i]*A[i])^2/sig[i]
   like     = like + log(sig[i]) + innov[i]^2/sig[i]
@@ -255,8 +255,9 @@ if (is.null(input)){  # no input
 
 
 
-
+#########################################################
 # this is Kfilter2 without Theta 
+#########################################################
 .Kfilter2 <-
 function(num,y,A,mu0,Sigma0,Phi,Ups,Gam,sQ,sR,S,input){
 #
@@ -286,7 +287,7 @@ if (is.null(input)){  # no input
   sigma      = B%*%Pp[,,i]%*%t(B) + R 
   sig[,,i]   = (t(sigma)+sigma)/2     # make sure sig is symmetric
   siginv     = solve(sigma)
-  K          = (Phi%*%Pp[,,i]%*%t(B) + sQ%*%S)%*%siginv 
+  K          = (Phi%*%Pp[,,i]%*%t(B) + sQ%*%S%*%t(sR))%*%siginv 
   xf[,,i]    = xp[,,i] + Pp[,,i]%*%t(B)%*%siginv%*%innov[,,i]
   Pf[,,i]    = Pp[,,i] - Pp[,,i]%*%t(B)%*%siginv%*%B%*%Pp[,,i] 
   like       = like + log(det(sigma)) + t(innov[,,i])%*%siginv%*%innov[,,i]
@@ -328,7 +329,7 @@ if (is.null(input)){  # no input
   sigma      = B%*%Pp[,,i]%*%t(B) + R 
   sig[,,i]   = (t(sigma)+sigma)/2     # make sure sig is symmetric
   siginv     = solve(sigma)
-  K          = (Phi%*%Pp[,,i]%*%t(B) + sQ%*%S)%*%siginv 
+  K          = (Phi%*%Pp[,,i]%*%t(B) + sQ%*%S%*%t(sR))%*%siginv 
   xf[,,i]    = xp[,,i] + Pp[,,i]%*%t(B)%*%siginv%*%innov[,,i]
   Pf[,,i]    = Pp[,,i] - Pp[,,i]%*%t(B)%*%siginv%*%B%*%Pp[,,i] 
   like       = like + log(det(sigma)) + t(innov[,,i])%*%siginv%*%innov[,,i]

@@ -13,9 +13,7 @@ U.S. Population by official census, every ten years from 1900 to 2010.
 }
 \details{
 The census from 2020 is not included in this data set because, by many accounts, 
-it was a nightmare mainly due to the COVID-19 pandemic.
-To make matters worse, the Census Bureau is in the Deptartment of Commerece, and its head reports directly to
-the POTUS, who at the time  was  D. tRump:  "Historians rank Trump among worst presidents in US history, new C-SPAN survey shows."
+it was a nightmare mainly due to the COVID-19 pandemic (\kbd{https://www.nytimes.com/2022/03/10/us/census-undercounted-population.html}. To make matters worse, the Census Bureau is in the Deptartment of Commerece, and its head reports directly to the POTUS, who at the time was DJ tRump: "Historians rank Trump among worst presidents in US history ... "
 }
 \source{
 \kbd{https://www.census.gov/}

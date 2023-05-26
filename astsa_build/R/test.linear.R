@@ -1,5 +1,5 @@
 test.linear <-
-function(series, color=TRUE, detrend=FALSE){
+function(series, color=TRUE, detrend=FALSE, main=NULL){
   if (NCOL(series)>1){stop("univariate series only")}
   x = series - mean(series)
   N = length(x)       #  data length
@@ -49,7 +49,8 @@ function(series, color=TRUE, detrend=FALSE){
   )
   mtext(expression(omega[1]), side=1, line=2,    adj=.4, cex=1.2)  
   mtext(expression(omega[2]), side=2, line=2.75, adj=.5, cex=1.2, las=1)
-  title("Normalized BiSpectrum", adj =.35, line=1, cex.main=1.2) 
+  Title = ifelse(is.null(main), "Normalized BiSpectrum", main)
+  title(Title, adj =.35, line=1, cex.main=1) 
   # output
   invisible(Tst)
 }

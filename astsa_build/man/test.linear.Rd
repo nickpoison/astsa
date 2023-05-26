@@ -5,7 +5,7 @@
 \description{Produces a plot of the tail probabilities of a normalized bispectrum of a series under the assumption the model is a linear process with iid innovations. 
 }
 \usage{
-test.linear(series, color = TRUE, detrend = FALSE)
+test.linear(series, color = TRUE, detrend = FALSE, main = NULL)
 }
 \arguments{
   \item{series }{ the time series (univariate only)
@@ -13,6 +13,8 @@ test.linear(series, color = TRUE, detrend = FALSE)
   \item{color }{ if FALSE, the graphic is produced in gray scale
 }
   \item{detrend }{ if TRUE, the series is detrended first
+}
+\item{main }{ if NULL (default), a very nice title is chosen for the plot
 }
 }
 \value{\item{prob }{ matrix of tail probabilities - returned invisibly}
