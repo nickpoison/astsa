@@ -31,9 +31,11 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 #### v2.0.1: small updates after v2.0:
 
+- `SV.mcmc` moved ESS display to the ACFs 
+
 - `test.linear` gets a title (`main`) control
 
-- fix to `Kfilter(... , version=2)`
+- adjustment to `Kfilter(... , version=2)` - if the errors are _Q<sup>&half;</sup> w<sub>t</sub>_ and  _R<sup>&half;</sup>  v<sub>t</sub>_ then _S = cov(w<sub>t</sub>, v<sub>t</sub>)_, the _Q<sup>&half;</sup>_ and _R<sup>&half;</sup>_ are already included in the script.  Typically in this case  _w<sub>t</sub> = v<sub>t</sub>_ and both are iid N(0, I) sequences, so `S = I`, the _q x q_ identity matrix.
 
 - `mvspec` gets the gris-gris option, enhancing the voodoo grammar of astsa
 
