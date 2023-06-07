@@ -143,7 +143,8 @@ old.par = par(no.readonly = TRUE)
 parms   = cbind(phi, sigma, beta)
 names   = c(expression(phi), expression(sigma), expression(beta))
 colnames(parms) = names
-lwr     = min(min(acf(phi)$acf), min(acf(sigma)$acf), min(acf(beta)$acf))
+lwr     = min(min(acf1(phi, plot=FALSE)), min(acf1(sigma, plot=FALSE)), 
+              min(acf1(beta, plot=FALSE)))
 culer   = c(6,4,3)
 
 
