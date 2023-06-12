@@ -151,6 +151,7 @@ culer   = c(6,4,3)
 par(mfcol=c(3,3))
 for (i in 1:3){
   tsplot(parms[,i], main=names[i], col=culer[i], ylab='', xlab='Index')
+   abline(h=mean(parms[,i]), col=8)
    ess = ESS(parms[,i])
   acf1(parms[,i],   main='', col=culer[i], ylim=c(lwr,1))
    legend("topright", legend=paste('ESS = ', round(ess, digits=1)), adj=.1, 

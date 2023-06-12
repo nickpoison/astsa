@@ -49,7 +49,9 @@ The model is fit using a technique described in the paper listed below (in the S
 parameters \eqn{(\phi, \sigma)} are sampled simultaneously with a bivariate normal prior specified
 in the arguments \code{init} and \code{hyper}.
 
-Two graphics are returned: (1) the three parameter traces [with effective sample sizes (ESS)], their ACFs, and their histograms with the .025, .5, and .975 quantiles displayed, and (2) the log-volatility posterior mean along with corresponding .95 credible intervals.
+Two graphics are returned: (1) the three parameter traces with the posterior mean highlighted,
+their ACFs [with effective sample sizes (ESS)], and their histograms with the .025, .5, and .975 quantiles displayed, 
+and (2) the log-volatility posterior mean along with corresponding .95 credible intervals.
 }
 \value{
 Returned invisibly:
@@ -76,7 +78,7 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \note{
-Except for the data, all the other inputs have defaults.  The time to run and the acceptance rate are returned at the end of the analysis.  The acceptance rate should be around 28\% and this can be adjusted using the tuning parameter.  
+Except for the data, all the other inputs have defaults.  The time to run and the acceptance rate are returned at the end of the analysis.  The acceptance rate should be around 30\% and this is easily adjusted using the tuning parameter.  
 }
 
 
