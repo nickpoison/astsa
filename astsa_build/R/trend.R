@@ -14,12 +14,12 @@ function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE,
       lo   = stats::predict(stats::loess(y ~ x, span=lowspan, family=fam), se=TRUE)
       trnd = ts(lo$fit, start=tspar[1], frequency=tspar[3])
     tsplot(series, col=col[1], ylab=ylab, ...)
-    lines(trnd, col=col[2], lwd=2)       
-     if(ci){
-        L = lo$fit - qt(0.975, lo$df)*lo$se
-        U = lo$fit + qt(0.975, lo$df)*lo$se
-        xx = c(x, rev(x))
-        yy = c(L, rev(U))
+    lines(trnd, col=col[2], lwd=2)
+      L = lo$fit - qt(0.975, lo$df)*lo$se
+      U = lo$fit + qt(0.975, lo$df)*lo$se
+    if(ci){
+       xx = c(x, rev(x))
+       yy = c(L, rev(U))
        polygon(xx, yy, border=8, col = gray(.6, alpha=.2) ) 
       }
       invisible(cbind(trnd, L, U))  
