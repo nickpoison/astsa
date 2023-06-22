@@ -31,6 +31,8 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 #### v2.0.1: small updates after v2.0:
 
+- added MEI (Multivariate ENSO Index) data set 
+
 - `SV.mcmc` moved ESS display to the ACFs 
 
 - `test.linear` gets a title (`main`) control

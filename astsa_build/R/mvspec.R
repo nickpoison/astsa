@@ -110,7 +110,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         par(mar = c(2.75, 2.75, 2-topper, 0.75), mgp = c(1.6, 0.6, 0), cex.main = 1.1)
          col.grid=gray(.9)
          } else {
-         par(mar=c(2.5,2.5,2-topper,.5), mgp=c(1.6,.3,0), cex.main=1.1, tcl=-.2, cex.axis=.8, las=1)
+         par(mar=c(2.75,2.75,2-topper,.5), mgp=c(1.6,.3,0), cex.main=1.1, tcl=-.2, cex.axis=.8, las=1)
          }
         type0 <- 'n' 
         type1 <- ifelse(is.null(type), 'l', type) 
