@@ -43,7 +43,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
     NewN <- if (fast) 
         nextn(N)
     else N
-    x <- rbind(x, matrix(0, nrow = (NewN - N), ncol = ncol(x)))
+    x <- rbind(x, matrix(0, nrow = (NewN - N), ncol = ncol(x)))  
     N <- nrow(x)
     Nspec <- floor(N/2)
     freq <- seq(from = xfreq/N, by = xfreq/N, length = Nspec)
@@ -68,7 +68,8 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         #########   bandwidth <- sqrt(1/12)    ############ fix this
         Lh <- 1
     }
-    df <- 2*Lh    # df/(u4/u2^2)
+    df <- 2*Lh    
+    df <- df/(u4/u2^2)
     df <- df * (N0/N)
     bandwidth <- Lh*xfreq/N
     pgram <- pgram[2:(Nspec + 1), , , drop = FALSE]
