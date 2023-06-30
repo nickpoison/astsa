@@ -134,10 +134,10 @@ for (t in 2:n){
   x[t] = x[t-1] + sQ*w[t]
   y[t] = x[t] + sR*v[t]   
   }
-# run and plot the filter  
+# run and plot the smoother  
 run = Ksmooth(y, A=1, mu0, Sigma0, Phi=1, sQ, sR)
 tsplot(cbind(y,run$Xs), spaghetti=TRUE, type='o', col=c(4,6), pch=c(1,NA), margins=1)
-# CRAN tests need extra white space :( so margins=1 is not necessary otherwise
+# CRAN tests need extra white space :( so margins=1 above is not necessary otherwise
 legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,NA))
 }
 \keyword{ ts }
