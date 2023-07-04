@@ -29,7 +29,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 ---
 ---
 
-#### v2.0.1: small updates after v2.0:
+#### v2.0.1: (on GitHub) - small updates after v2.0:
 
 - added MEI (Multivariate ENSO Index) data set 
 
@@ -61,7 +61,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 - added US population data (`USpop`) ... we thought it was in already, now it is 
 
-### Version 2.0 - Jan 2023 (at CRAN and GitHub)
+### Version 2.0 - Jan 2023 (on CRAN)
 
  >  **Note**  There are a number of new scripts and some old ones are set to be retired eventually.  
 
