@@ -7,7 +7,7 @@
 }
 \usage{
 arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500,
-          main='from specified model', frequency=1, ylim=NULL, ...)
+          main='from specified model', frequency=1, ylim=NULL, plot=TRUE, ...)
 }
 \arguments{
   \item{ar}{vector of AR parameters
@@ -23,6 +23,8 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500,
   \item{frequency}{for seasonal models, adjusts the frequency scale
 }
   \item{ylim}{optional; specify limits for the y-axis
+}
+  \item{plot}{if TRUE (default), produces a graphic
 }
   \item{\dots}{additional arguments
 }

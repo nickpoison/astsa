@@ -1,6 +1,6 @@
 arma.spec <-
 function(ar=0, ma=0, var.noise=1, n.freq=500,  main='from specified model', 
-          frequency=1, ylim=NULL, ...)
+          frequency=1, ylim=NULL, plot=TRUE, ...)
 {  
      check <- 0
     # check causality
@@ -30,6 +30,7 @@ function(ar=0, ma=0, var.noise=1, n.freq=500,  main='from specified model',
     spec <- var.noise*((1 - cs.ma)^2 + sn.ma^2)/((1 - cs.ar)^2 + sn.ar^2)
     
     spg.out <- list(freq=freq*xfreq, spec=spec)
+   if(plot){
     Ylab = 'spectrum'
     Xlab = ifelse(xfreq>1, paste('frequency \u00D7', xfreq), 'frequency')
      m1  = min(spec) 
@@ -37,6 +38,7 @@ function(ar=0, ma=0, var.noise=1, n.freq=500,  main='from specified model',
      yspread =  (m2 - m1)/var.noise 
      if (is.null(ylim) & yspread < 1) ylim = c(max(m1-2*var.noise, 0.1*var.noise), m2+2*var.noise)
    tsplot(freq*xfreq, spec, xlab=Xlab, ylab=Ylab, main=main, ylim=ylim, ...)
+   }
    return(invisible(spg.out))
 }
 

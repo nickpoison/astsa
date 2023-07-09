@@ -9,7 +9,7 @@ Fits an AR model to data and computes (and by default plots) the spectral
 }
 \usage{
 spec.ic(xdata, BIC = FALSE, order.max = NULL, main = NULL, plot = TRUE, 
-         detrend = TRUE, lowess=FALSE, method=NULL, ...)
+         detrend = TRUE, lowess=FALSE, method=NULL, cex.main=NULL, ...)
 }
 \arguments{
   \item{xdata}{
@@ -38,6 +38,9 @@ if TRUE, detrends using lowess. Default is FALSE.
   \item{method}{method of estimation - a character string specifying the 
         method to fit the model chosen from the following:
        "yule-walker", "burg", "ols", "mle", "yw". Defaults to "yule-walker".
+}
+  \item{cex.main}{
+magnification for main title; default is 1.
 }
   \item{\dots}{
 additional graphical arguments.

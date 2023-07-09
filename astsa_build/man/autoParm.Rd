@@ -33,7 +33,7 @@ number of iterations; default is 70.
 Does not need to be specified.
 }
   \item{P0}{
-maximum AR order; default is 20. 
+maximum AR order; default is 20. If larger than 20, it is reset to 20.
 Does not need to be specified.
 }
   \item{Pi.P}{

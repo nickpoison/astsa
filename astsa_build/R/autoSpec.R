@@ -25,6 +25,7 @@ n     = length(xdata)
 if (n < 100) stop('sample size should be at least 100')
 if (is.null(Pi.B)) Pi.B = 10/n
 if (is.null(Pi.C)) Pi.C = (n-10)/n
+if (m0 > 20) {m0=20; cat("m0 has been reset to 20 \n")}
 
 # find breakpoints
 brkpts  = .GA(xdata,n,Pi.B,Pi.C,PopSize,generation,m0,Pi.P,Pi.N,NI,taper,min.freq,max.freq)

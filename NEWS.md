@@ -39,7 +39,6 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 - adjustment to `Kfilter(... , version=2)` - if the errors are _Q<sup>&half;</sup> w<sub>t</sub>_ and  _R<sup>&half;</sup>  v<sub>t</sub>_ then _S = cov(w<sub>t</sub>, v<sub>t</sub>)_, the _Q<sup>&half;</sup>_ and _R<sup>&half;</sup>_ are already included in the script.  Typically in this case  _w<sub>t</sub> = v<sub>t</sub>_ and both are iid N(0, I) sequences, so `S = I`, the _q x q_ identity matrix.
 
-- `mvspec` gets the gris-gris option, enhancing the voodoo grammar of astsa
 
 - made `acf1` more flexible 
 
@@ -47,7 +46,7 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 - increased the default max order and made detrend default on `spec.ic` 
 
-- improvements to `mvspec` like allow detrending via lowess and some other visual improvements
+- improvements to `mvspec` like allow detrending via lowess and some other visual improvements like a gris-gris option, enhancing the voodoo grammar of astsa
 
 - updated `cardox` to 2023
 

@@ -35,8 +35,8 @@ number of iterations; default is 70.
 Does not need to be specified.
 }
   \item{m0}{
-maximum width of the Bartlett kernel is \code{2*m0 + 1}; default is 10. 
-Does not need to be specified.
+maximum width of the Bartlett kernel is \code{2*m0 + 1}; default is 10.
+If larger than 20, m0 is reset to 20. Does not need to be specified.
 }
   \item{Pi.P}{
 probability of taking parent's gene in mutation; default is 0.3.
