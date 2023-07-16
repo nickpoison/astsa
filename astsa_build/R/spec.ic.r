@@ -1,6 +1,6 @@
 spec.ic =
-function(xdata, BIC=FALSE, order.max=NULL, main=NULL, plot=TRUE, 
-           detrend=TRUE, lowess=FALSE, method=NULL, cex.main=NULL, ...){
+function(xdata, BIC=FALSE, order.max=NULL, main=NULL, plot=TRUE, detrend=TRUE, 
+         lowess=FALSE, method=NULL, cex.main=NULL, xlab=NULL, ...){
   if (is.null(method)) {method='yw'}   
   
   nme1  = paste('Series:', deparse(substitute(xdata)))
@@ -30,9 +30,11 @@ function(xdata, BIC=FALSE, order.max=NULL, main=NULL, plot=TRUE,
     u2   = stats::spec.ar(xdata, order=kmin, plot=FALSE)
     out2 = cbind(freq=u2$freq, spec=c(u2$spec)) 
      if(plot){
+      xfreq <- frequency(x)
       if (is.null(cex.main)) cex.main=1
       if (is.null(main)) {main = paste(nme1,"  |  ",nme2," order = ", kmin, sep="")}
-         tsplot(u2$freq, u2$spec, ylab='AR Spectrum', xlab='Frequency', 
+      if (is.null(xlab)) xlab = ifelse(xfreq>1, paste('Frequency', expression('\u00D7'), xfreq), 'Frequency')
+         tsplot(u2$freq, u2$spec, ylab='AR Spectrum', xlab=xlab, 
            main=main, cex.axis=.85, las=0, cex.lab=.9, cex.main=cex.main,...) 
     }
    } 

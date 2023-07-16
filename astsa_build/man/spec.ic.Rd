@@ -8,8 +8,8 @@ Fits an AR model to data and computes (and by default plots) the spectral
      density of the fitted model based on AIC (default) or BIC.
 }
 \usage{
-spec.ic(xdata, BIC = FALSE, order.max = NULL, main = NULL, plot = TRUE, 
-         detrend = TRUE, lowess=FALSE, method=NULL, cex.main=NULL, ...)
+spec.ic(xdata, BIC=FALSE, order.max=NULL, main=NULL, plot=TRUE, detrend=TRUE, 
+         lowess=FALSE, method=NULL, cex.main=NULL, xlab=NULL, ...)
 }
 \arguments{
   \item{xdata}{
@@ -41,6 +41,8 @@ if TRUE, detrends using lowess. Default is FALSE.
 }
   \item{cex.main}{
 magnification for main title; default is 1.
+}
+  \item{xlab}{label for frequency axis; if NULL (default), a totally awesome label is generated for your viewing pleasure.
 }
   \item{\dots}{
 additional graphical arguments.
