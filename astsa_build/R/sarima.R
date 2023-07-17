@@ -93,5 +93,5 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    BIC     = stats::BIC(fitit)/n
    AIC     = stats::AIC(fitit)/n
    AICc    = (n*AIC + ( (2*k^2+2*k)/(n-k-1) ))/n
-   list(fit=fitit, degrees_of_freedom=dfree, ttable=ttable, AIC=AIC, AICc=AICc, BIC=BIC)
+   list(fit=fitit, degrees_of_freedom=dfree, ttable=ttable, ICs=c(AIC=AIC, AICc=AICc, BIC=BIC))
 }

@@ -44,12 +44,12 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
 \details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The values p,d,q, must be specified as there is no default. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0)} will fit an ARIMA(2,1,0) model to the series in x, and \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0)*(0,1,1)_{12}} model to the series in x. The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they  differ by a scaling factor of the effective sample size.  
 }
-\value{\item{fit }{the \code{arima} object}
+\value{
+\item{fit }{the \code{arima} object}
 \item{degrees_of_freedom}{Error degrees of freedom}
 \item{ttable }{a little t-table with two-sided p-values}
-\item{AIC }{value of the AIC - all ICs are the values reported in \code{fit} divided by the essential number of observations (after differencing)}
-\item{AICc }{value of the AICc}
-\item{BIC }{value of the BIC}
+\item{ICs }{AIC  -  AICc  -  BIC  \cr
+the values reported in \code{fit} divided by the essential number of observations (after differencing)} 
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
