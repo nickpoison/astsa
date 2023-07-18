@@ -93,5 +93,15 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    BIC     = stats::BIC(fitit)/n
    AIC     = stats::AIC(fitit)/n
    AICc    = (n*AIC + ( (2*k^2+2*k)/(n-k-1) ))/n
-   list(fit=fitit, degrees_of_freedom=dfree, ttable=ttable, ICs=c(AIC=AIC, AICc=AICc, BIC=BIC))
+# print
+    cat('<><><><><><><><><><><><><><>')
+    cat('\n','\n')
+    cat('Coefficients:', '\n')
+    print(ttable)
+    cat('\n')
+    cat('sigma^2 estimated as', fitit$sigma2, 'on', dfree, 'degrees of freedom', '\n','\n')
+    cat('AIC =', AIC, ' AICc =', AICc, ' BIC =', BIC, '\n', '\n')
+   out = list(fit=fitit, sigma2=fitit$sigma2, degrees_of_freedom=dfree, ttable=ttable, 
+             ICs=c(AIC=AIC, AICc=AICc, BIC=BIC))
+   invisible(out)
 }

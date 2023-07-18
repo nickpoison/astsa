@@ -31,15 +31,15 @@ You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](
 
 #### v2.0.1: (on GitHub) - small updates after v2.0:
 
-- `sarima` - ICs are printed in a row - like ducks
+- `sarima` - prettified the output 
 
-- added MEI (Multivariate ENSO Index) data set 
+- added `MEI` (Multivariate ENSO Index) data set 
 
 - `SV.mcmc` moved ESS display to the ACFs 
 
 - `test.linear` gets a title (`main`) control
 
-- adjustment to `Kfilter(... , version=2)` - if the errors are _Q<sup>&half;</sup> w<sub>t</sub>_ and  _R<sup>&half;</sup>  v<sub>t</sub>_ then _S = cov(w<sub>t</sub>, v<sub>t</sub>)_, the _Q<sup>&half;</sup>_ and _R<sup>&half;</sup>_ are already included in the script.  Often in this case  _w<sub>t</sub> = v<sub>t</sub>_ and both are iid N(0, I) sequences, so `S = I`, the _q x q_ identity matrix.
+- adjustment to `Kfilter(... , version=2)` - if the errors are _Q<sup>&half;</sup> w<sub>t</sub>_ and  _R<sup>&half;</sup>  v<sub>t</sub>_ then _S = cov(w<sub>t</sub>, v<sub>t</sub>)_, the _Q<sup>&half;</sup>_ and _R<sup>&half;</sup>_ are already included in the script.  Often in this case  _w<sub>t</sub> = v<sub>t</sub>_ and both are iid N(0, I) sequences, so `S = diag(1, q)`, the _q x q_ identity matrix.
 
 
 - made `acf1` more flexible 
