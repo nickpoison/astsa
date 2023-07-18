@@ -21,7 +21,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 [astsa_2.0.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.0.1.tar.gz). Download it (there's a button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
-You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) and  an updated [pdf version of the `astsa` manual](https://github.com/nickpoison/astsa/blob/master/astsa.pdf) is available.
+&#128036; You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
 
 #### &#10024; Here is [A Road Map](https://nickpoison.github.io/) if you want a broad view of what is available. 
 
