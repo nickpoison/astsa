@@ -66,11 +66,12 @@ The webpages for the texts and some help on using R for time series analysis can
 \examples{
 # easy to use 
 sarima(rec,2,0,0)  # data, p, d, and q
-sarima(rec, 2,0,0, details=FALSE)$ttable  # print t-table only
+sarima(rec, 2,0,0, details=FALSE)  # minimal output
 
-(dog <- sarima(log(AirPassengers), 0,1,1, 0,1,1,12))
-str(dog$fit, vec.len=1) # fit has all the returned arima values
+dog <- sarima(log(AirPassengers), 0,1,1, 0,1,1,12)
+str(dog, vec.len=1) # dog has all the returned values
 tsplot(resid(dog$fit))  # plot the innovations (residuals) 
+dog$ICs # view the 3 ICs
 
 # fixed parameters
 x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
