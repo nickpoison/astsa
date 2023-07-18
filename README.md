@@ -18,8 +18,6 @@
 We won't always push the latest version of the package to CRAN, but the latest working version of the package will always be at Github.
 
 
-+ Here's  a current [pdf version of the `astsa` manual](https://github.com/nickpoison/astsa/blob/master/astsa.pdf) .
-
 * A demonstration of the capabilities of `astsa` can be found here at
 [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
 
