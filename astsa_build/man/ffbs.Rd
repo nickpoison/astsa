@@ -32,12 +32,10 @@ ffbs(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL, input = NULL)
   \item{input }{matrix or vector of inputs having the same row dimension as y.
 }
 }
-\details{Refer to Section 6.12 of edition 4 text. For a linear state space model,
+\details{For a linear state space model,
 the FFBS algorithm provides a way to sample a state sequence \eqn{x_{0:n}} 
 from the posterior \eqn{\pi(x_{0:n} \mid \Theta, y_{1:n})}
-with parameters \eqn{\Theta} and  data \eqn{y_{1:n}} as described
-in Procedure 6.1.
-
+with parameters \eqn{\Theta} and  data \eqn{y_{1:n}}.
 
 
 The general model  is
@@ -57,7 +55,7 @@ Note that \eqn{sQ\, w_t}  has to be p-dimensional, but  \eqn{w_t} does not, and
   \item{Xs }{An array of sampled states}
   \item{X0n }{The sampled initial state (because R is 1-based) }
 }
-\source{Shumway & Stoffer (2017) Edition 4, Section 6.12. 
+\source{Chapter 6 of the Shumway and Stoffer Springer text. 
 }
 \references{You can find demonstrations of  astsa capabilities at 
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
