@@ -1,10 +1,11 @@
 tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
                     margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=1, 
                     xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, 
-                    pch=NULL, lty=1, lwd=1, mgpp=0, ...)
+                    pch=NULL, lty=1, lwd=1, mgpp=0, topper=NULL, ...)
 {
   nser   = max(NCOL(x), NCOL(y))
-  topper = ifelse(is.null(main), 0, .5) 
+  if (is.null(topper)){
+  topper = ifelse(is.null(main), 0, .5) } 
   type0  = 'n' 
   type1  = ifelse(is.null(type), 'l', type)
   pch    = rep(pch, ceiling(nser/length(pch)))
