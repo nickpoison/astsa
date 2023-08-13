@@ -52,7 +52,7 @@ thresh = 100*(2/num)*exp(qnorm(1-significance)*etainv)*rep(1,nfreq)
  }
 if (is.null(ylim)) ylim = c(0, max(max(100*specenv), thresh))
 tsplot(frequency, 100*specenv, type="l", ylab="Spectral Envelope (%)", xlab="frequency", ylim=ylim, ...)
-if (any(thresh > 0)) lines(frequency, thresh, lty="dashed", col="blue")
+if (any(thresh > 0)) lines(frequency, thresh, lty="dashed", col=4)
 }
 # details 
 output = cbind(frequency, specenv, beta)
