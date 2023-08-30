@@ -59,14 +59,14 @@ cat('\n')
 
 
 if (plot){
-   old.par = par(no.readonly = TRUE)
+#   old.par = par(no.readonly = TRUE)
   if(arp>1){
   pairs(phi.star, col=astsa.col(col,.4), pch=19, diag.panel=.panhist, oma=rep(2,4), horOdd = TRUE, verOdd = FALSE)
    } else {
    hist(phi.star, main='', xlab=expression(phi^'*'), col=astsa.col(col, .4), freq=FALSE)
    abline(v=c(stats::quantile(phi.star, probs=c(.025,.5,.975))), col=6) 
    }  
-    par(old.par)
+#    par(old.par)
  }
 
 out = list(phi.star, x.sim)
