@@ -59,15 +59,15 @@ cat('\n')
 
 
 if (plot){
-#   old.par = par(no.readonly = TRUE)
+  old.par = par(no.readonly = TRUE)
   if(arp>1){
   pairs(phi.star, col=astsa.col(col,.4), pch=19, diag.panel=.panhist, oma=rep(2,4), horOdd = TRUE, verOdd = FALSE)
-   } else {
-   hist(phi.star, main='', xlab=expression(phi^'*'), col=astsa.col(col, .4), freq=FALSE)
-   abline(v=c(stats::quantile(phi.star, probs=c(.025,.5,.975))), col=6) 
-   }  
-#    par(old.par)
- }
+  par(old.par)
+  } else {
+  hist(phi.star, main='', xlab=expression(phi^'*'), col=astsa.col(col, .4), breaks='FD', freq=FALSE)
+  abline(v=c(stats::quantile(phi.star, probs=c(.025,.5,.975))), col=6) 
+  }
+}
 
 out = list(phi.star, x.sim)
 return(invisible(out))
@@ -77,7 +77,7 @@ return(invisible(out))
 .panhist <- function(x, ...){
     usr <- par("usr") 
     par(usr = c(usr[1:2], 0, 1.5) )
-    h <- hist(x, plot = FALSE)
+    h <- hist(x, plot = FALSE, breaks='FD')
     breaks <- h$breaks; nB <- length(breaks)
     y <- h$counts; y <- y/max(y)
     rect(breaks[-nB], 0, breaks[-1], y, ...)
