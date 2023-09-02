@@ -59,13 +59,13 @@ cat('\n')
 
 
 if (plot){
-  old.par = par(no.readonly = TRUE)
   if(arp>1){
-  pairs(phi.star, col=astsa.col(col,.4), pch=19, diag.panel=.panhist, oma=rep(2,4), horOdd = TRUE, verOdd = FALSE)
-  par(old.par)
+   old.par = par(no.readonly = TRUE)
+   pairs(phi.star, col=astsa.col(col,.4), pch=19, diag.panel=.panhist, oma=rep(2,4), horOdd = TRUE, verOdd = FALSE)
+   par(old.par)
   } else {
-  hist(phi.star, main='', xlab=expression(phi^'*'), col=astsa.col(col, .4), breaks='FD', freq=FALSE)
-  abline(v=c(stats::quantile(phi.star, probs=c(.025,.5,.975))), col=6) 
+   hist(phi.star, main='', xlab=expression(phi^'*'), col=astsa.col(col, .4), breaks='FD', freq=FALSE)
+   abline(v=c(stats::quantile(phi.star, probs=c(.025,.5,.975))), col=6) 
   }
 }
 
@@ -81,6 +81,6 @@ return(invisible(out))
     breaks <- h$breaks; nB <- length(breaks)
     y <- h$counts; y <- y/max(y)
     rect(breaks[-nB], 0, breaks[-1], y, ...)
-     u = stats::quantile(x, c(.025,.50,.975))
+    u = stats::quantile(x, c(.025,.50,.975))
     abline(v=u, col=6, lty=2)
 }

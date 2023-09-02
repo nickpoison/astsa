@@ -8,7 +8,7 @@
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
         demean = FALSE, detrend = TRUE, lowess = FALSE, log = 'n', plot = TRUE, gg = FALSE,
         type = NULL, na.action = na.fail, nxm = 2, nym = 1, main = NULL, xlab=NULL, 
-        cex.main=NULL, ...) 
+        cex.main=NULL, ci.col=4, ...) 
 }
 \arguments{
   \item{x }{univariate or multivariate time series (i.e., the p columns of x are time series)
@@ -48,6 +48,9 @@ the number of minor tick mark divisions on x-axis, y-axis; the default is one mi
 }
  \item{cex.main}{
 magnification for main title; default is 1.
+}
+ \item{ci.col}{
+color of the confidence interval if one is drawn.
 }
  \item{\dots }{graphical arguments passed to \code{plot.spec}
 }
