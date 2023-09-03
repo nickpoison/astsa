@@ -30,7 +30,7 @@ function(xdata, BIC=FALSE, order.max=NULL, main=NULL, plot=TRUE, detrend=TRUE,
     u2   = stats::spec.ar(xdata, order=kmin, plot=FALSE)
     out2 = cbind(freq=u2$freq, spec=c(u2$spec)) 
      if(plot){
-      xfreq <- frequency(x)
+      xfreq <- frequency(xdata)
       if (is.null(cex.main)) cex.main=1
       if (is.null(main)) {main = paste(nme1,"  |  ",nme2," order = ", kmin, sep="")}
       if (is.null(xlab)) xlab = ifelse(xfreq>1, paste('Frequency', expression('\u00D7'), xfreq), 'Frequency')
