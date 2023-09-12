@@ -40,7 +40,7 @@ where \eqn{w_t}  standard normal noise.  The observation error is a mixture of
 two normals, \eqn{N(0, \sigma_0^2)} and \eqn{N(\mu_1, \sigma_1^2)}; thus 3 parameters are estimated for the observation noise.
 }
 \value{
-The one step ahead predicted log-volatility and it root MSPE are returned invisibly. The estimates and SEs are printed and a graph of the data and log-volatility, and the normal mixture as displayed in one graphic.
+The one step ahead predicted log-volatility and corresponding root MSPE are returned invisibly. The estimates and SEs are printed and a graph of the data and log-volatility, and the normal mixture as displayed in one graphic.
 }
 \references{You can find demonstrations of  astsa capabilities at 
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
