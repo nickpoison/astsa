@@ -1,5 +1,5 @@
 SV.mle <- 
-function(returns, phi1=.95, sQ=.1, alpha=NULL, sR0=1, mu1=-3, sR1=2){
+function(returns, phi=.95, sQ=.1, alpha=NULL, sR0=1, mu1=-3, sR1=2){
 
 
 if (any(returns < 10^-8)) returns = jitter(returns) 
@@ -7,15 +7,15 @@ y = log(returns^2)
 
 num = length(y)
 if (is.null(alpha)) alpha=mean(y)
-init.par = c(phi1, sQ, alpha, sR0, mu1, sR1)
+init.par = c(phi, sQ, alpha, sR0, mu1, sR1)
 
 pb = txtProgressBar(min = 0, max = 100, initial = 0, style = 2, char = ' ')
 k=0
 # Innovations Likelihood
 Linn = function(para){
-  phi1=para[1]; sQ=para[2]; alpha=para[3]
+  phi=para[1]; sQ=para[2]; alpha=para[3]
   sR0=para[4]; mu1=para[5]; sR1=para[6]
-  sv = SVfilter(num, y, phi0=0, phi1, sQ, alpha, sR0, mu1, sR1)
+  sv = .SVfilter(num, y, phi, sQ, alpha, sR0, mu1, sR1)
     k=k+1; setTxtProgressBar(pb,k)
   return(sv$like)    }
 
@@ -24,7 +24,7 @@ Linn = function(para){
 close(pb)
 SE = sqrt(diag(solve(est$hessian)))
 u = cbind(estimates=est$par, SE)
-rownames(u)=c('phi1','sQ','alpha','sigv0','mu1','sigv1')
+rownames(u)=c('phi','sQ','alpha','sigv0','mu1','sigv1')
 cat("<><><><><><><><><><><><><><>") 
 cat("\n", "\n")
 cat("Coefficients:", "\n")
@@ -33,9 +33,9 @@ cat("\n")
 
 
 # Graphics   (need filters at the estimated parameters)
-phi0=0; phi1=est$par[1]; sQ=est$par[2]; alpha=est$par[3]
+phi=est$par[1]; sQ=est$par[2]; alpha=est$par[3]
 sR0=est$par[4]; mu1=est$par[5]; sR1=est$par[6]
-sv = SVfilter(num,y,phi0,phi1,sQ,alpha,sR0,mu1,sR1)
+sv = .SVfilter(num,y,phi,sQ,alpha,sR0,mu1,sR1)
 
 
 layout(matrix(1:2, 2), height=c(3,2))
@@ -66,4 +66,48 @@ legend('topleft', legend=c(cs, 'normal mixture' ), lty=c(1,5), lwd=1:2, col=4)
 
 on.exit(par(old.par))
 invisible(cbind(PredLogVol=tsxp, RMSPE=sqrt(tsPp)))
+}
+
+
+.SVfilter = function(num, y, phi, sQ, alpha, sR0, mu1, sR1){
+  #
+  #  see: http://www.stat.pitt.edu/stoffer/booty.pdf  section 2.2 for details
+  #  y is log(return^2)  -  x is log-volatility 
+  #  model is   x_t+1 = phi*x_t + w_t
+  #             y_t   = alpha + x_t + v_t  
+  #             v_t is a mixture
+
+
+# Initialize
+ Q  = sQ^2
+ R0 = sR0^2
+ R1 = sR1^2
+ xp = c(0) #  x_t+1^t
+ Pp = c(phi^2 + Q)    #  P_t+1^t
+
+ pi1  = .5    # initial mix probs
+ pi0  = .5
+ pit1 = .5 
+ pit0 = .5 
+ like =  0    # -log(likelihood)
+#
+for (i in 2:num){
+  sig1 = Pp[i-1] + R1     # innov var
+  sig0 = Pp[i-1] + R0 
+  k1   = phi*Pp[i-1]/sig1
+  k0   = phi*Pp[i-1]/sig0
+  e1   = y[i] - xp[i-1] - mu1 - alpha
+  e0   = y[i] - xp[i-1] - alpha
+  den1 = (1/sqrt(sig1))*exp(-.5*e1^2/sig1)
+  den0 = (1/sqrt(sig0))*exp(-.5*e0^2/sig0)
+  denom = pi1*den1 + pi0*den0
+  pit1  = pi1*den1/denom
+  pit0  = pi0*den0/denom
+#  
+  xp[i] =  phi*xp[i-1] + pit0*k0*e0 + pit1*k1*e1
+  Pp[i] = (phi^2)*Pp[i-1] + Q - pit0*(k0^2)*sig0 - pit1*(k1^2)*sig1
+#
+  like = like - 0.5*log(pi1*den1 + pi0*den0)
+ }
+ list(xp=xp, Pp=Pp, like=like)
 }

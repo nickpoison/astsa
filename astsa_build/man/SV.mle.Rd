@@ -7,13 +7,13 @@ Fit Stochastic Volatility Model via MLE
 Fits a stochastic volatility model to a univariate time series of returns via quasi-MLE.
 }
 \usage{
-SV.mle(returns, phi1 = 0.95, sQ = 0.1, alpha = NULL, sR0 = 1, mu1 = -3, sR1 = 2)
+SV.mle(returns, phi = 0.95, sQ = 0.1, alpha = NULL, sR0 = 1, mu1 = -3, sR1 = 2)
 }
 \arguments{
   \item{returns}{
 single time series of returns
 }
-  \item{phi1}{
+  \item{phi}{
 initial value of the log-volatility AR parameter (does not have to be specified)
 }
   \item{sQ}{
@@ -35,7 +35,7 @@ initial value of the log-returns^2 normal mixture standard deviation parameter (
 \details{The returns are \eqn{r_t} (input this).
 The log-volatility process is \eqn{x_t}   and 
  \eqn{y_t = \log r_t^2}. The SV model is
-\deqn{x_t = \phi_1 x_{t-1} + \sigma w_t \qquad y_t = \alpha + x_t + v_t}
+\deqn{x_t = \phi x_{t-1} + \sigma w_t \qquad y_t = \alpha + x_t + v_t}
 where \eqn{w_t}  standard normal noise.  The observation error is a mixture of
 two normals, \eqn{N(0, \sigma_0^2)} and \eqn{N(\mu_1, \sigma_1^2)}; thus 3 parameters are estimated for the observation noise.
 }

@@ -1,10 +1,12 @@
-SVfilter = function(num, y, phi0, phi1, sQ, alpha, sR0, mu1, sR1){
-  #
+xSVfilter = function(num, y, phi0, phi1, sQ, alpha, sR0, mu1, sR1){
+
+# THIS IS SCHEDULED TO BE REMOVED
+
   #  see: http://www.stat.pitt.edu/stoffer/booty.pdf  section 2.2 for details
   #  y is log(return^2)  -  x is log-volatility 
   #  model is   x_t+1 = phi0 + phi1*x_t + w_t
   #             y_t   = alpha + x_t + v_t  
-  #             v_t is a mixture, see (14) of the above reference
+  #             v_t is a mixture,  
   #
 
 # Initialize
