@@ -80,7 +80,9 @@ D.S. Stoffer
 \note{
 Except for the data, all the other inputs have defaults.  The time to run and the acceptance rate are returned at the end of the analysis.  The acceptance rate should be around 30\% and this is easily adjusted using the tuning parameter.  
 }
-
+\seealso{
+\code{\link{SV.mle}}
+}
 
 \examples{
 \dontrun{
