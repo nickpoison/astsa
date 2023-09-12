@@ -37,14 +37,16 @@ phi0=0; phi1=est$par[1]; sQ=est$par[2]; alpha=est$par[3]
 sR0=est$par[4]; mu1=est$par[5]; sR1=est$par[6]
 sv = SVfilter(num,y,phi0,phi1,sQ,alpha,sR0,mu1,sR1)
 
+
 layout(matrix(1:2, 2), height=c(3,2))
+ old.par <- par(no.readonly = TRUE)
 # data/volatility plot
 tapp = tsp(y)
 tsxp = ts(sv$xp, start=tapp[1], frequency=tapp[3] )
 tsPp = ts(sv$Pp, start=tapp[1], frequency=tapp[3] )
 Low = min(10*returns, tsxp-2*sqrt(tsPp))
 Upp = max(10*returns, tsxp+2*sqrt(tsPp))
-tsplot(cbind(10*returns, tsxp), col=c(astsa.col(2,.4),4), spag=TRUE, ylim=c(Low,Upp))
+tsplot(cbind(10*returns, tsxp), col=c(astsa.col(2,.5),4), spag=TRUE, ylim=c(Low,Upp))
 xx = c(time(y), rev(time(y)))
 yy = c(tsxp-2*sqrt(tsPp), rev(tsxp+2*sqrt(tsPp)))
  polygon(xx, yy, border=NA, col=astsa.col(4, alpha = .2))
@@ -56,10 +58,12 @@ f  = exp(-.5*(exp(x)-x))/(sqrt(2*pi))
 f0 = exp(-.5*(x^2)/sR0^2)/(sR0*sqrt(2*pi))
 f1 = exp(-.5*(x-mu1)^2/sR1^2)/(sR1*sqrt(2*pi))
 fm = .5*f0 +.5*f1
-tsplot(x, f, ylab='density', col=4)  
+Upp = max(f, fm)
+tsplot(x, f, ylab='density', col=4, ylim=c(0,Upp))  
  lines(x, fm, lty=5, lwd=2, col=5)
 cs = expression(log~chi[1]^2)
 legend('topleft', legend=c(cs, 'normal mixture' ), lty=c(1,5), lwd=1:2, col=4)
 
+on.exit(par(old.par))
 invisible(cbind(PredLogVol=tsxp, RMSPE=sqrt(tsPp)))
 }
