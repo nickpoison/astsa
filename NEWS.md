@@ -31,6 +31,8 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 #### v2.0.1: (on GitHub) - small updates after v2.0:
 
+- added `SV.mle` to fit the classical model in Chapter 6. (uses `SVfilter` so maybe put that in the xBox ?? not sure yet)
+
 - `sarima` - prettified the output 
 
 - added `MEI` (Multivariate ENSO Index) data set 
