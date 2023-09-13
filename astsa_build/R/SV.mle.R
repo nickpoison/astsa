@@ -37,9 +37,9 @@ phi=est$par[1]; sQ=est$par[2]; alpha=est$par[3]
 sR0=est$par[4]; mu1=est$par[5]; sR1=est$par[6]
 sv = .SVfilter(num,y,phi,sQ,alpha,sR0,mu1,sR1)
 
+old.par <- par(no.readonly = TRUE)
 
 layout(matrix(1:2, 2), height=c(3,2))
- old.par <- par(no.readonly = TRUE)
 # data/volatility plot
 tapp = tsp(y)
 tsxp = ts(sv$xp, start=tapp[1], frequency=tapp[3] )
@@ -63,7 +63,6 @@ tsplot(x, f, ylab='density', col=4, ylim=c(0,Upp))
  lines(x, fm, lty=5, lwd=2, col=5)
 cs = expression(log~chi[1]^2)
 legend('topleft', legend=c(cs, 'normal mixture' ), lty=c(1,5), lwd=1:2, col=4)
-
 on.exit(par(old.par))
 invisible(cbind(PredLogVol=tsxp, RMSPE=sqrt(tsPp)))
 }
