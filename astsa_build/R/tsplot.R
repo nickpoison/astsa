@@ -39,10 +39,10 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
    for (h in 1:nser) {
     if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, 
-                  minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
+                  nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
     } else {
     tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, 
-                               nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
+                     nx=nx, ny=ny, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
     }
     }  
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
@@ -76,9 +76,9 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
    for (h in 1:nser) {
     if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, 
-         gg=TRUE, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
+         gg=TRUE, nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
    } else {
-   tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, 
+   tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, nx=nx, ny=ny,
              minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
     }
     }
@@ -91,7 +91,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    if (is.null(y)) {
    u = x[,1]
    u[1:2] =  c(min(x, na.rm=TRUE), max(x, na.rm=TRUE))
-   tsplot(u, ylab=ylab[1],  type=type0, xlab=xlab, gg=gg, minor=minor, nxm=nxm, nym=nym, 
+   tsplot(u, ylab=ylab[1],  type=type0, xlab=xlab, gg=gg, nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, 
              main=main, pch=pch[1], margins=margins, ...)
    for (h in 1:nser) { lines(x[,h], col=culer[h], type=type1, pch=pch[h], lty=lty[h], 
               lwd=lwd[h], ...) }
