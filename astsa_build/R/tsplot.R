@@ -1,7 +1,8 @@
 tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
-                    margins=.25, ncolm=1, byrow=TRUE, minor=TRUE, nxm=2, nym=1, 
-                    xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, 
-                    pch=NULL, lty=1, lwd=1, mgpp=0, topper=NULL, ...)
+                    margins=.25, ncolm=1, byrow=TRUE, nx = NULL, ny = nx, 
+                    minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
+                    gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, lwd=1, mgpp=0, 
+                    topper=NULL, ...)
 {
   nser   = max(NCOL(x), NCOL(y))
   if (is.null(topper)){
@@ -20,7 +21,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    par(mar=c(2.5,2.5,1+topper,.5)+margins, mgp=c(1.6,.3,0)+mgpp, cex.main=1.2,
               tcl=-.2, cex.axis=.9)
    plot(x, y, type = type0, axes=FALSE, ann=FALSE, main=NULL, ... )
-   Grid(minor=minor, nxm=nxm, nym=nym, xm.grid=xm.grid, ym.grid=ym.grid)
+   Grid(nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, xm.grid=xm.grid, ym.grid=ym.grid)
    par(new=TRUE)
    plot(x, y, type=type1, main=main, ylab=ylab, xlab=xlab, col=col, pch=pch, 
         lty=lty, lwd=lwd, ... ) 
@@ -55,7 +56,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    plot(x, y, type = type0, axes=FALSE, ann=FALSE, main=NULL, ... )
    brdr = par("usr")        
    rect(brdr[1], brdr[3], brdr[2], brdr[4], col=gray(.92), border='white')         
-   Grid(minor=minor, nxm=nxm, nym=nym, xm.grid=xm.grid, ym.grid=ym.grid, col='white')
+   Grid(nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, xm.grid=xm.grid, ym.grid=ym.grid, col='white')
    par(new=TRUE)
    plot(x, y, type=type1, main=main, ylab=ylab, xlab=xlab, col=col, pch=pch, 
          lty=lty, lwd=lwd, las=1, ... ) 

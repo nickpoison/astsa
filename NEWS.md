@@ -31,6 +31,8 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 #### v2.0.1: (on GitHub) - small updates after v2.0:
 
+- `tsplot` becomes more kick-ass with full control of the `Grid`
+
 - added `SV.mle` to fit the classical model in Chapter 6. `SVfilter` is now part of `SV.mle` and the original script is now in the xBox as `xSVfilter`.
 
 - `sarima` - prettified the output 
