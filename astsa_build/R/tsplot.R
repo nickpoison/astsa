@@ -12,6 +12,8 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
   pch    = rep(pch, ceiling(nser/length(pch)))
   lty    = rep(lty, ceiling(nser/length(lty)))
   lwd    = rep(lwd, ceiling(nser/length(lwd)))
+  if (is.na(any(nx))) nxm=0
+  if (is.na(any(ny))) nym=0
   
  if(!spaghetti || nser < 2){ # no spaghetti 
  if(!gg){                    # no gris-gris
