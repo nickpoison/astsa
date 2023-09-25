@@ -7,7 +7,7 @@ Uses Gibbs sampling to fit an AR model to time series data.
 }
 \usage{
 ar.mcmc(xdata, porder, n.iter = 1000, n.warmup = 100, plot = TRUE, col = 4, 
-        prior_var_phi = 50, prior_sig_a = 1, prior_sig_b = 2)
+        prior_var_phi = 50, prior_sig_a = 1, prior_sig_b = 2, ...)
 }
 \arguments{
   \item{xdata}{
@@ -38,6 +38,9 @@ first prior for the variance component; see details
   \item{prior_sig_b}{
 second prior for the variance component; see details
 }
+  \item{...}{
+additional graphic parameters for the scatterplots
+}
 }
 \details{
 Assumes a normal-inverse gamma model,
@@ -52,9 +55,8 @@ may choose \eqn{(a,b)} as \code{(prior_sig_a, prior_sig_b)}
 and \eqn{\gamma^2} as \code{prior_var_phi}.
 
 The algorithm is efficient and converges quickly.
-Further details can be found in Example 8.36  of Douc,  Moulines, & Stoffer, D. (2014).
-\emph{ Nonlinear Time Series: Theory, Methods and Applications with R Examples}. CRC press. 
-ISBN 9781466502253.
+Further details can be found in Chapter 6 of the 5th edition of the 
+Springer text.
 }
 \value{In addition to the graphics (if plot is TRUE), 
 the  draws of each parameter (\code{phi0, phi1, ..., sigma})

@@ -1,6 +1,6 @@
 ar.mcmc <- 
 function(xdata, porder, n.iter=1000, n.warmup=100, plot=TRUE, 
-          col=4, prior_var_phi=50, prior_sig_a=1, prior_sig_b=2){
+          col=4, prior_var_phi=50, prior_sig_a=1, prior_sig_b=2, ...){
 #
 if (NCOL(xdata) > 1) stop("univariate time series only")
 
@@ -52,7 +52,7 @@ if (plot){
  tsplot(u, main="sample traces", xlab="Iteration", col=col, ncolm=ncols)
    cat("Press [Enter] or [Left Mouse] on the active graphic device", "\n")
    par(ask=TRUE)
- pairs(u, col=astsa.col(col,.4), lower.panel=.panelcor,  diag.panel=.panelhist)
+ pairs(u, col=astsa.col(col,.4), lower.panel=.panelcor,  diag.panel=.panelhist, ...)
   par(old.par)
 }
 return(invisible(u))
