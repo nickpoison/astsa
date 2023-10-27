@@ -2,7 +2,7 @@ SV.mle <-
 function(returns, phi=.95, sQ=.1, alpha=NULL, sR0=1, mu1=-3, sR1=2){
 
 
-if (any(returns < 10^-8)) returns = jitter(returns) 
+returns[abs(returns) < 10^-8] = jitter(returns[abs(returns) < 10^-8], amount=10^-5)  # jitter 0s
 y = log(returns^2)
 
 num = length(y)
