@@ -8,7 +8,7 @@ Fits a stochastic volatility model with feedback (optional) to a univariate time
 }
 \usage{
 SV.mle(returns, gamma=0, phi = 0.95, sQ = 0.1, alpha = NULL, sR0 = 1, mu1 = -3, sR1 = 2, 
-        rho=NULL, feedback=TRUE)
+        rho=NULL, feedback=FLASE)
 }
 \arguments{
   \item{returns}{
@@ -41,7 +41,7 @@ this will be included if given a proper numerical value; if NULL (default) it is
 it is often not significant when the feedback term is included.   
 }
   \item{feedback}{
-if TRUE (default) feedback is included in the model.
+if TRUE feedback is included in the model; default is FALSE.
 }
 }
 \details{The returns are \eqn{r_t} (input this).

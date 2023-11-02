@@ -1,6 +1,6 @@
 SV.mle <- 
 function(returns, gamma=0, phi=.95, sQ=.1, alpha=NULL, sR0=1, mu1=-3, sR1=2, rho=NULL,
-           feedback=TRUE)
+           feedback=FALSE)
 {
 
 if (!is.null(rho)) { if (abs(rho)>=1) rho=0 } # check rho is corr if used
