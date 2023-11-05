@@ -31,7 +31,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 #### v2.0.1: (on GitHub) - small updates after v2.0:
 
-- added `SV.mle` to fit an SV model with feedback (aka leverage) via quasi-MLE. Details are in the help file.  `SVfilter` is now part of `SV.mle` and the original script is now in the xBox as `xSVfilter`.
+- added `SV.mle` to fit an SV model [with feedback (aka leverage) if desired] via quasi-MLE. Details are in the help file.  `SVfilter` is now part of `SV.mle` and the original script is now in the xBox as `xSVfilter`.
 
 - `tsplot` becomes more kick-ass with full control of the `Grid`
 
