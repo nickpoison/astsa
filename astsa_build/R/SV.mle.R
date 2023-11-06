@@ -5,8 +5,7 @@ function(returns, gamma=0, phi=.95, sQ=.1, alpha=NULL, sR0=1, mu1=-3, sR1=2, rho
 
 if (!is.null(rho)) { if (abs(rho)>=1) rho=0 } # check rho is corr if used
 
-
-del = sign(returns)  # can have 0s
+del = returns    # del holds original returns
 returns[abs(returns) < 10^-8] = jitter(returns[abs(returns) < 10^-8], amount=10^-5)  # jitter 0s
 
 y = log(returns^2)
@@ -92,6 +91,7 @@ lines(x, fm, lty=5, lwd=2, col=5)
 cs = expression(log~chi[1]^2)
 legend('topleft', legend=c(cs, 'normal mixture' ), lty=c(1,5), lwd=1:2, col=4, bty='n')
 on.exit(par(old.par))
+
 output = list(PredLogVol=tsxp, RMSPE=sqrt(tsPp), Coefficients=t(u))
 invisible(output)
 
@@ -153,7 +153,11 @@ tsplot(x, f, ylab='density', col=4, ylim=c(0,Upp))
 cs = expression(log~chi[1]^2)
 legend('topleft', legend=c(cs, 'normal mixture' ), lty=c(1,5), lwd=1:2, col=4)
 on.exit(par(old.par))
-invisible(cbind(PredLogVol=tsxp, RMSPE=sqrt(tsPp)))
+
+output = list(PredLogVol=tsxp, RMSPE=sqrt(tsPp), Coefficients=t(u))
+invisible(output)
+
+
 
 }   # end no feedback
 

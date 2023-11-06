@@ -49,19 +49,20 @@ The log-volatility process is \eqn{x_t}   and
  \eqn{y_t = \log r_t^2}. 
  
 If \code{feedback=TRUE}, the model is
-\deqn{x_{t+1} = \gamma \delta_t + \phi x_t + \sigma w_t \qquad y_t = \alpha + x_t + \eta_t}
+\deqn{x_{t+1} = \gamma r_t + \phi x_t + \sigma w_t \qquad y_t = \alpha + x_t + \eta_t}
 where \eqn{w_t} is standard normal noise.  The observation error \eqn{\eta_t} is a mixture of
 two normals, \eqn{N(0, \sigma_0^2)} and \eqn{N(\mu_1, \sigma_1^2)}.  The state
 and observation noise can be correlated if \eqn{\rho} is given a value between -1 and 1.
-Here \eqn{\delta_t = \text{sign}(y_t)}
+
 
 If \code{feedback=FALSE}, \eqn{\gamma} and \eqn{\rho} are not included in the model.
 }
 \value{Returned invisibly:
 \item{PredLogVol }{one-step-ahead predicted log-volatility }
 \item{RMSPE }{corresponding root MSPE}
+\item{Coefficients }{table of estimates and estimated standard errors}
 
-In addition to the one step ahead predicted log-volatility and corresponding root MSPE, the estimates and SEs are printed and a graph of (1) the data with the predicted log-volatility, and (2) the normal mixture are displayed in one graphic.
+In addition to the one step ahead predicted log-volatility, corresponding root MSPE, and table of estimates returned invisibly, the estimates and SEs are printed and a graph of (1) the data with the predicted log-volatility, and (2) the normal mixture are displayed in one graphic.
 }
 \references{You can find demonstrations of  astsa capabilities at 
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
