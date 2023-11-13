@@ -5,7 +5,7 @@
 
 #### we'll demonstrate some of the capabilities of the latest version of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
 
-Remember to load `astsa` at the start of a session.
+Remember to load `astsa` at the start of a session.  Some of the stuff below uses version 2.0.1.
 
 > **`library(astsa)`**
 
