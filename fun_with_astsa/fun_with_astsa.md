@@ -51,14 +51,16 @@ it's more than just data ...
      * [Parameter Constraints](#parameter-constraints)
   * [10. Bayesian Techniques - &#128150; NEW &#128150;](#10-bayesian-techniques)
       * [AR Models](#ar-models)
-      * [Stochastic Volatility Models](#stochastic-volatility)
       * [Gibbs Sampling for State Space Models - the FFBS Algorithm](#gibbs-sampling-for-linear-state-space-models)
       * [Effective Sample Size (ESS)](#ess)
-  * [11. Arithmetic](#11-arithmetic)
+  * [11. Stochastic Volatility Models - 	&#128150; NEW 	&#128150;](#11-stochastic-volatility-models)  
+      * [Bayesian](#bayesian)
+      * [Classical](#classical) 
+  * [12. Arithmetic](#11-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
-  * [12. The Spectral Envelope](#12-the-spectral-envelope)
+  * [13. The Spectral Envelope](#12-the-spectral-envelope)
      * [DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
      * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)
 
@@ -1767,64 +1769,6 @@ head(u)
 
 <br/><br/>
 
-### Stochastic Volatility
-
-&#x1F535; For an example, we'll fit a stochastic volatility model to the S&P500 weekly returns(`sp500w`).  We've also added some new financial data sets, `sp500.gr` (daily S&P 500 returns) and
-`BCJ` (daily returns for 3 banks, Bank of America, Citi, and JP Morgan Chase).  The model is
-
-&emsp;&emsp;_x<sub>t</sub> =  &phi; x<sub>t-1</sub>  + &sigma; w<sub>t</sub>_ , &nbsp; &nbsp; and &nbsp;  &nbsp;
-_y<sub>t</sub> =&beta;_ exp _(&half; x<sub>t</sub>) &epsilon;<sub>t</sub>_
-
-where _w<sub>t</sub>_ and  _&epsilon;<sub>t</sub>_  are independent standard Gaussian white noise,
- _x<sub>t</sub>_ is the hidden log-volatility process and _y<sub>t</sub>_ are the returns.
- Most of the inputs have defaults, so a minimal run just needs the data specified.
-
- ```r
- u = SV.mcmc(sp500w)   # put the results in an object - it's important
- ```
-
- The immediate output shows the status, then the time to run and the acceptance rate of the Metropolis MCMC (which should be close to 28%):
- ```
-  |= = = = = = = = = = = = = = = = = = = = = = = = =| 100%
-   Time to run (secs): 
-     user  system elapsed 
-    42.02    0.71   44.73 
-   The acceptance rate is: 29.7%
-```
-and graphics (traces, effective sample sizes, ACFs, histograms with 2.5%-50%-97.5% quantiles
-followed by the posterior mean log-volatility with 95% credible intervals).
-
-<img src="figs/bayes_sv.png" alt="bayes_sv"  width="70%"><br/>
-
-&#x1F429;  The **Effective Sample Size (ESS)** in the graphic above were calculated using the script `ESS`, which became available in version 1.16 of the package.
-
-<img src="figs/bayes_sv2.png" alt="bayes_sv"  width="70%"><br/>
-
-An easy way to see the defaults (a list of options) is to look at the structure of the object:
-```r
-str(u)
-
-   List of 5
-    $ phi    : num [1:1000] 0.764 0.764 0.764 0.764 0.764 ...
-    $ sigma  : num [1:1000] 0.36 0.36 0.36 0.36 0.36 ...
-    $ beta   : num [1:1000] 0.0199 0.0206 0.0208 0.0202 0.0208 ...
-    $ log.vol: num [1:1000, 1:509] 0.0146 0.0266 -0.0694 -0.1368 -0.0442 ...
-    $ options:List of 8
-     ..$ nmcmc   : num 1000
-     ..$ burnin  : num 100
-     ..$ init    : num [1:3] 0.9 0.5 0.1
-     ..$ hyper   : num [1:5] 0.9 0.5 0.075 0.3 -0.25
-     ..$ tuning  : num 0.03
-     ..$ sigma_MH: num [1:2, 1:2] 1 -0.25 -0.25 1
-     ..$ npart   : num 10
-     ..$ mcmseed : num 90210
-```
-
-&#x1F4A1; And as always, references and details are in the help file (`?SV.mcmc`). The techniques are not covered in tsa4.
-
-
-<br/>
-
 ### Gibbs Sampling for Linear State Space Models
 
 &#x1F535; The package now contains `ffbs` (**Forward Filtering Backward Sampling - FFBS**)
@@ -2090,7 +2034,97 @@ apply(u, 2, ESS)
 
 ---
 
-## 11. Arithmetic
+
+## 11. Stochastic Volatility Models
+
+### Bayesian:
+
+&#x1F535; For an example, we'll fit a stochastic volatility model to the S&P500 weekly returns(`sp500w`).  We've also added some new financial data sets, `sp500.gr` (daily S&P 500 returns) and
+`BCJ` (daily returns for 3 banks, Bank of America, Citi, and JP Morgan Chase).  The model is
+
+&emsp;&emsp;_x<sub>t</sub> =  &phi; x<sub>t-1</sub>  + &sigma; w<sub>t</sub>_ , &nbsp; &nbsp; and &nbsp;  &nbsp;
+_y<sub>t</sub> =&beta;_ exp _(&half; x<sub>t</sub>) &epsilon;<sub>t</sub>_
+
+where _w<sub>t</sub>_ and  _&epsilon;<sub>t</sub>_  are independent standard Gaussian white noise,
+ _x<sub>t</sub>_ is the hidden log-volatility process and _y<sub>t</sub>_ are the returns.
+ Most of the inputs have defaults, so a minimal run just needs the data specified.
+
+ ```r
+ u = SV.mcmc(sp500w)   # put the results in an object - it's important
+ ```
+
+ The immediate output shows the status, then the time to run and the acceptance rate of the Metropolis MCMC (which should be close to 28%):
+ ```
+  |= = = = = = = = = = = = = = = = = = = = = = = = =| 100%
+   Time to run (secs): 
+     user  system elapsed 
+    42.02    0.71   44.73 
+   The acceptance rate is: 29.7%
+```
+and graphics (traces, effective sample sizes, ACFs, histograms with 2.5%-50%-97.5% quantiles
+followed by the posterior mean log-volatility with 95% credible intervals).
+
+<img src="figs/bayes_sv.png" alt="bayes_sv"  width="70%"><br/>
+
+&#x1F429;  The **Effective Sample Size (ESS)** in the graphic above were calculated using the script `ESS`, which became available in version 1.16 of the package.
+
+<img src="figs/bayes_sv2.png" alt="bayes_sv"  width="70%"><br/>
+
+An easy way to see the defaults (a list of options) is to look at the structure of the object:
+```r
+str(u)
+
+   List of 5
+    $ phi    : num [1:1000] 0.764 0.764 0.764 0.764 0.764 ...
+    $ sigma  : num [1:1000] 0.36 0.36 0.36 0.36 0.36 ...
+    $ beta   : num [1:1000] 0.0199 0.0206 0.0208 0.0202 0.0208 ...
+    $ log.vol: num [1:1000, 1:509] 0.0146 0.0266 -0.0694 -0.1368 -0.0442 ...
+    $ options:List of 8
+     ..$ nmcmc   : num 1000
+     ..$ burnin  : num 100
+     ..$ init    : num [1:3] 0.9 0.5 0.1
+     ..$ hyper   : num [1:5] 0.9 0.5 0.075 0.3 -0.25
+     ..$ tuning  : num 0.03
+     ..$ sigma_MH: num [1:2, 1:2] 1 -0.25 -0.25 1
+     ..$ npart   : num 10
+     ..$ mcmseed : num 90210
+```
+
+&#x1F4A1; And as always, references and details are in the help file (`?SV.mcmc`). The techniques are not covered in tsa4.
+
+---
+
+### Classical: 
+
+We'll fit the model with _feedback_ (aka leverage). The returns are $r_t$ and 
+$ x_t = \log \sigma_t^2$,
+$$ x_{t+1} = \gamma r_t + \phi x_t + \sigma w_t $$
+and the observations are $y_t = \log r_t^2$, and
+$$ y_t = \alpha + x_t + \eta_t$$ 
+where $\eta_t$ is a mixture of two normals, one centered at zero.
+More details are in the text (obviously).  You can have $\text{corr}(w_t, \eta_t) = \rho$, but it's not needed if you include feedback.
+
+```r
+SV.mle(BCJ[,'boa'], feedback=TRUE, rho=0)  # rho not included if no start value given
+  Coefficients: 
+              gamma    phi     sQ   alpha  sigv0     mu1  sigv1    rho
+  estimates -1.9464 0.9967 0.1260 -8.5394 1.1997 -2.1895 3.6221 0.1982
+  SE         0.5063 0.0023 0.0266  0.7049 0.0509  0.1778 0.1085 0.3970
+```
+
+Notice that $\rho$ is not significant and its SE is huge! And you get a graphic of the predicted $x_t$ superimpose on $r_t$ (times 10), and a comparison of the distribution of $\eta$ vs $\log \chi_1^2$,
+
+
+
+<img src='figs/svmle.png' alt="SV.mle" width="70%"><br/>
+
+[<sub>top</sub>](#table-of-contents)
+<br/>
+
+
+
+
+## 12. Arithmetic
 
 &#x1F4A1; The package has a few scripts to help with items related to time series and stochastic processes.
 
@@ -2255,7 +2289,7 @@ which is
 [<sub>top</sub>](#table-of-contents)
 
 ---
-## 12. The Spectral Envelope
+## 13. The Spectral Envelope
 
 <br/>
 
