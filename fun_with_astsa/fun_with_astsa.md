@@ -79,74 +79,76 @@ And you can get more information on any individual set using the `help()` comman
 
 |Name|     Title                     |
 |----------|-------------|
-|BCJ                         | Daily Returns of Three Banks                                |
-|EBV                         | Entire Epstein-Barr Virus (EBV) Nucleotide Sequence         |
-|ENSO                        | El Ni&ntilde;o - Southern Oscillation                       |
-|EQ5                         | Seismic Trace of Earthquake number 5                        |
-|EQcount                     | EQ Counts                                                   |
-|EXP6                        | Seismic Trace of Explosion number 6                         |
-|HCT                         | Hematocrit Levels                                           |
-|Hare                        | Snowshoe Hare                                               |
-|Lynx                        | Canadian Lynx                                               |
-|PLT                         | Platelet Levels                                             |
-|UnempRate                   | U.S. Unemployment Rate                                      |
-|WBC                         | White Blood Cell Levels                                     |
-|ar1miss                     | AR with Missing Values                                      |
-|arf                         | Simulated ARFIMA                                            |
-|beamd                       | Infrasonic Signal from a Nuclear Explosion                  |
-|birth                       | U.S. Monthly Live Births                                    |
-|blood                       | Daily Blood Work                                            |
-|bnrf1ebv                    | Nucleotide sequence - BNRF1 Epstein-Barr                    |
-|bnrf1hvs                    | Nucleotide sequence - BNRF1 of Herpesvirus saimiri          |
-|cardox                      | Monthly Carbon Dioxide Levels at Mauna Loa                  |
-|chicken                     | Monthly price of a pound of chicken                         |
-|climhyd                     | Lake Shasta inflow data                                     |
-|cmort                       | Cardiovascular Mortality from the LA Pollution study        |
-|cpg                         | Hard Drive Cost per GB                                      |
-|djia                        | Dow Jones Industrial Average                                |
-|econ5                       | Five Quarterly Economic Series                              |
-|eqexp                       | Earthquake and Explosion Seismic Series                     |
-|flu                         | Monthly pneumonia and influenza deaths in the U.S., 1968 to 1978. |
-|fmri                        | fMRI - complete data set                                    |
-|fmri1                       | fMRI Data Used in Chapter 1                                 |
-|gas                         | Gas Prices                                                  |
-|gdp                         | Quarterly U.S. GDP                                          |
-|globtemp                    | Global mean land-ocean temperature deviations to 2015       |
-|globtempl                   | Global mean land (only) temperature deviations to 2015      |
-|gnp                         | Quarterly U.S. GNP                                          |
-|gtemp                       | Global mean land-ocean temperature deviations               |
-|gtemp2                      | Global Mean Surface Air Temperature Deviations              |
-|gtemp_land                  | Global mean land temperature deviations - updated to 2017   |
-|gtemp_ocean                 | Global mean ocean temperature deviations - updated to 2017  |
-|hor                         | Hawaiian occupancy rates                                    |
-|jj                          | Johnson and Johnson Quarterly Earnings Per Share            |
-|lap                         | LA Pollution-Mortality Study                                |
-|lead                        | Leading Indicator                                           |
-|nyse                        | Returns of the New York Stock Exchange                      |
-|oil                         | Crude oil, WTI spot price FOB                               |
-|part                        | Particulate levels from the LA pollution study              |
-|polio                       | Poliomyelitis cases in US                                   |
-|prodn                       | Monthly Federal Reserve Board Production Index              |
-|qinfl                       | Quarterly Inflation                                         |
-|qintr                       | Quarterly Interest Rate                                     |
-|rec                         | Recruitment (number of new fish index)                      |
-|sales                       | Sales                                                       |
-|salmon                      | Monthly export price of salmon                              |
-|salt                        | Salt Profiles                                               |
-|saltemp                     | Temperature Profiles                                        |
-|sleep1                      | Sleep State and Movement Data - Group 1                     |
-|sleep2                      | Sleep State and Movement Data - Group 2                     |
-|so2                         | SO2 levels from the LA pollution study                      |
-|soi                         | Southern Oscillation Index                                  |
-|soiltemp                    | Spatial Grid of Surface Soil Temperatures                   |
-|sp500.gr                    | Returns of the S&P 500                                      |
-|sp500w                      | Weekly Growth Rate of the Standard and Poor's 500           |
-|speech                      | Speech Recording                                            |
-|star                        | Variable Star                                               |
-|sunspotz                    | Biannual Sunspot Numbers                                    |
-|tempr                       | Temperatures from the LA pollution study                    |
-|unemp                       | U.S. Unemployment                                           |
-|varve                       | Annual Varve Series                                         |
+|BCJ                              |  Daily Returns of Three Banks                                                 |
+|EBV                              |  Entire Epstein-Barr Virus (EBV) Nucleotide Sequence                          |
+|ENSO                             |  El Nino - Southern Oscillation Index                                         |
+|EQ5                              |  Seismic Trace of Earthquake number 5                                         |
+|EQcount                          |  EQ Counts                                                                    |
+|EXP6                             |  Seismic Trace of Explosion number 6                                          |
+|GDP (GDP23)                      |  Quarterly U.S. GDP - updated to 2023                                         |
+|GNP (GNP23)                      |  Quarterly U.S. GNP - updated to 2023                                         |
+|HCT                              |  Hematocrit Levels                                                            |
+|Hare                             |  Snowshoe Hare                                                                |
+|Lynx                             |  Canadian Lynx                                                                |
+|MEI                              |  Multivariate El Nino/Southern Oscillation Index (version 1)                  |
+|Months                           |  Month Labels                                                                 |
+|PLT                              |  Platelet Levels                                                              |
+|USpop                            |  U.S. Population - 1900 to 2010                                               |
+|UnempRate                        |  U.S. Unemployment Rate                                                       |
+|WBC                              |  White Blood Cell Levels                                                      |
+|ar1miss                          |  AR with Missing Values                                                       |
+|arf                              |  Simulated ARFIMA                                                             |
+|beamd                            |  Infrasonic Signal from a Nuclear Explosion                                   |
+|birth                            |  U.S. Monthly Live Births                                                     |
+|blood                            |  Daily Blood Work with Missing Values                                         |
+|bnrf1ebv                         |  Nucleotide sequence - BNRF1 Epstein-Barr                                     |
+|bnrf1hvs                         |  Nucleotide sequence - BNRF1 of Herpesvirus saimiri                           |
+|cardox                           |  Monthly Carbon Dioxide Levels at Mauna Loa                                   |
+|chicken                          |  Monthly price of a pound of chicken                                          |
+|climhyd                          |  Lake Shasta inflow data                                                      |
+|cmort                            |  Cardiovascular Mortality from the LA Pollution study                         |
+|cpg                              |  Hard Drive Cost per GB                                                       |
+|djia                             |  Dow Jones Industrial Average                                                 |
+|econ5                            |  Five Quarterly Economic Series                                               |
+|eqexp                            |  Earthquake and Explosion Seismic Series                                      |
+|flu                              |  Monthly pneumonia and influenza deaths in the U.S., 1968 to 1978.            |
+|fmri                             |  fMRI - complete data set                                                     |
+|fmri1                            |  fMRI Data Used in Chapter 1                                                  |
+|gas                              |  Gas Prices                                                                   |
+|gdp                              |  Quarterly U.S. GDP                                                           |
+|gnp                              |  Quarterly U.S. GNP                                                           |
+|gtemp_both                       |  Global mean land and open ocean temperature deviations, 1850-2023            |
+|gtemp_land                       |  Global mean land temperature deviations, 1850-2023                           |
+|gtemp_ocean                      |  Global mean ocean temperature deviations, 1850-2023                          |
+|hor                              |  Hawaiian occupancy rates                                                     |
+|jj                               |  Johnson and Johnson Quarterly Earnings Per Share                             |
+|lap                              |  LA Pollution-Mortality Study                                                 |
+|lead                             |  Leading Indicator                                                            |
+|nyse                             |  Returns of the New York Stock Exchange                                       |
+|oil                              |  Crude oil, WTI spot price FOB                                                |
+|part                             |  Particulate levels from the LA pollution study                               |
+|polio                            |  Poliomyelitis cases in US                                                    |
+|prodn                            |  Monthly Federal Reserve Board Production Index                               |
+|qinfl                            |  Quarterly Inflation                                                          |
+|qintr                            |  Quarterly Interest Rate                                                      |
+|rec                              |  Recruitment (number of new fish index)                                       |
+|sales                            |  Sales                                                                        |
+|salmon                           |  Monthly export price of salmon                                               |
+|salt                             |  Salt Profiles                                                                |
+|saltemp                          |  Temperature Profiles                                                         |
+|sleep1                           |  Sleep State and Movement Data - Group 1                                      |
+|sleep2                           |  Sleep State and Movement Data - Group 2                                      |
+|so2                              |  SO2 levels from the LA pollution study                                       |
+|soi                              |  Southern Oscillation Index                                                   |
+|soiltemp                         |  Spatial Grid of Surface Soil Temperatures                                    |
+|sp500.gr                         |  Returns of the S&P 500                                                       |
+|sp500w                           |  Weekly Growth Rate of the Standard and Poor's 500                            |
+|speech                           |  Speech Recording                                                             |
+|star                             |  Variable Star                                                                |
+|sunspotz                         |  Biannual Sunspot Numbers                                                     |
+|tempr                            |  Temperatures from the LA pollution study                                     |
+|unemp                            |  U.S. Unemployment                                                            |
+|varve                            |  Annual Varve Series                                                          |
 
 
 
