@@ -2096,12 +2096,8 @@ str(u)
 
 ### Classical: 
 
-We'll fit the model with _feedback_ (aka leverage). The returns are $r_t$ and 
-$ x_t = \log \sigma_t^2$,
-$$ x_{t+1} = \gamma r_t + \phi x_t + \sigma w_t $$
-and the observations are $y_t = \log r_t^2$, and
-$$ y_t = \alpha + x_t + \eta_t$$ 
-where $\eta_t$ is a mixture of two normals, one centered at zero.
+We'll fit the model with _feedback_ (aka leverage). The returns are $r_t$ and $x_t = \log \sigma_t^2$, and $$x_{t+1} = \gamma r_t + \phi x_t + \sigma w_t.$$
+The observations are $y_t = \log r_t^2$, and $$y_t = \alpha + x_t + \eta_t$$  where $\eta_t$ is a mixture of two normals, one centered at zero.
 More details are in the text (obviously).  You can have $\text{corr}(w_t, \eta_t) = \rho$, but it's not needed if you include feedback.
 
 ```r
