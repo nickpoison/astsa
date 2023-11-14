@@ -632,6 +632,44 @@ $BIC
 
 <br/>
 
+&#128126; And you can fit AR models using the bootstrap. Let's fit an AR(2) to the recruitment series.
+
+```r
+ar.boot(rec, 2)
+ 
+ Quantiles: 
+         ar1     ar2
+ 1%    1.205 -0.5338
+ 2.5%  1.234 -0.5186
+ 5%    1.249 -0.5021
+ 10%   1.266 -0.4912
+ 25%   1.294 -0.4656
+ 50%   1.326 -0.4429
+ 75%   1.354 -0.4121
+ 90%   1.376 -0.3874
+ 95%   1.393 -0.3682
+ 97.5% 1.406 -0.3589
+ 99%   1.413 -0.3443
+
+Mean: 
+    ar1     ar2 
+ 1.3229 -0.4404 
+
+Bias: 
+           ar1      ar2
+[1,] -0.008703 0.004168
+
+rMSE: 
+         ar1     ar2
+[1,] 0.04479 0.04192
+```
+
+and a picture:
+
+<img src="figs/ar.boot.png" alt="ar.boot"  width="70%"><br/>
+
+
+
 ### Forecasting
 
 &#127801;  Forecasting your fitted ARIMA model is as simple as using
@@ -678,6 +716,10 @@ Frequency = 1
 sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 ```
 <img src="figs/foreCO2.png" alt="foreCO2" width="70%"><br/>
+
+
+
+
 
 [<sub>top</sub>](#table-of-contents)
 
