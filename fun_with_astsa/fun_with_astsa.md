@@ -2138,7 +2138,7 @@ str(u)
 
 ### Classical: 
 
-&#129412; We'll fit an SV model with _feedback_ (aka leverage). The returns are $r_t$ and the log volatility is $x_t = \log \sigma_t^2$ with $$x_{t+1} = \gamma r_t + \phi x_t + \sigma w_t.$$  The prior return feeds back directly into the volatility. The observations are $y_t = \log r_t^2$, and $$y_t = \alpha + x_t + \eta_t$$  where $\eta_t$ is a mixture of two normals, one centered at zero. 
+&#129412; We'll fit an SV model with _feedback_ (aka leverage) to the daily returns of Bank of America (in `astsa`). The returns are $r_t$ and the log volatility is $x_t = \log \sigma_t^2$ with $$x_{t+1} = \gamma r_t + \phi x_t + \sigma w_t.$$  The prior return feeds back directly into the volatility. The observations are $y_t = \log r_t^2$, and $$y_t = \alpha + x_t + \eta_t$$  where $\eta_t$ is a mixture of two normals, one centered at zero. 
 More details are in the text (obviously).  You can have $\text{corr}(w_t, \eta_t) = \rho$, but it's not needed if you include feedback.
 
 ```r
