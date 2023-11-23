@@ -106,6 +106,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
     if (plot) {
+        cat("Bandwidth:", round(bandwidth,3), "\nDegrees of Freedom:", round(df,3), '\n')
         if (is.null(cex.main)) cex.main=1
         if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method, " | ", 'taper =', taper)
         topper = ifelse (is.na(main), 1, 0)
@@ -128,8 +129,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         par(new=TRUE)
         plot(spg.out, xlab=xlab, log = log, type = type1, sub=NA, main=main, ci.col=ci.col, ...) 
         if (gg) box(col=col.grid, lwd=2)
-        return(invisible(spg.out))
     }
-    else return(spg.out)
+    return(invisible(spg.out))
 }
 

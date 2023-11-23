@@ -65,7 +65,11 @@ Although initially meant to be used to easily obtain multivariate (mv) spectral 
 
 Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
 }
-\value{An object of class "spec", which is a list containing at least the following components:
+\value{All results are returned invisibly.  
+
+If \code{plot} is TRUE, the bandwidth and degrees of freedom are printed. 
+
+An object of class "spec", which is a list containing at least the following components:
 
 \item{fxx }{spectral matrix estimates; an array of dimensions \code{dim = c(p,p,nfreq)}}
 \item{freq }{vector of frequencies at which the spectral density is estimated.}
@@ -79,7 +83,7 @@ Note that the script does not taper by default (\code{taper=0}); this forces the
 \item{bandwidth }{Bandwidth (may be approximate) associated with the spectral estimate.}
 \item{method }{The method used to calculate the spectrum.}
 
-The results are returned invisibly if plot is true.
+
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
