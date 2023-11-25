@@ -55,4 +55,5 @@ acfm(diff(log(econ5)), gg=TRUE, acf.highlight=FALSE)
 
 ( acfm(diff(log(econ5)), 2, plot=FALSE) )
 }
+\seealso{\code{\link{acf1}}, \code{\link{acf2}}, \code{\link{ccf2}} }
 \keyword{ts}

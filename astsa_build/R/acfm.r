@@ -8,10 +8,10 @@ nser = NCOL(series)
 xfreq = tsp(as.ts(series))[3]  
 
 num = nrow(series)
-  if (num > 59 & is.null(max.lag))
+  if (num < 3) stop("More than 2 observations per series are needed")
+  if (num > 59 & is.null(max.lag)) 
       max.lag = max(ceiling(10 + sqrt(num)), 4 * xfreq)
-  if (num < 60 & is.null(max.lag))
-      max.lag = floor(5 * log10(num + 5))
+  if (num < 60 & is.null(max.lag))  max.lag = min(floor(6*log10(num+5)), num-2)
   if (max.lag > (num - 2))
       stop("Number of lags exceeds number of observations")
 

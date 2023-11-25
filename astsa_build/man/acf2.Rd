@@ -53,4 +53,5 @@ acf2(rnorm(100), plot=FALSE)[,'ACF']  # print only ACF
 
 acf2(soi, col=2:7, lwd=4, gg=TRUE)  # mother's day present
 }
+\seealso{\code{\link{acf1}}, \code{\link{acfm}}, \code{\link{ccf2}} }
 \keyword{ts}
