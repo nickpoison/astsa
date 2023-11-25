@@ -29,7 +29,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ---
 ---
 
-#### v2.0.1: (on GitHub) - some small and a few not so small updates after v2.0:
+#### v2.0.1.0018: (on GitHub) - some small and a few not so small updates after v2.0:
 
 - &#128544; &#128544; Got effing sick of dealing with `dplyr` and `tinyverse` masking `filter` and `lag` and having to put warnings all over the place to deal with the mess.  Their remedy was to make a package called "conflicted"  to deal with the problem and maybe get it if you plan to analyze time series and use tinyverse stuff.  But  our remedy is we now put `stats::filter` and `stats::lag` in the global environment when `astsa` is loaded so they have precedent. You can use `rm()` to remove those from the global environment if necessary.   
 
@@ -48,7 +48,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 - adjustment to `Kfilter(... , version=2)` - if the errors are _Q<sup>&half;</sup> w<sub>t</sub>_ and  _R<sup>&half;</sup>  v<sub>t</sub>_ then _S = cov(w<sub>t</sub>, v<sub>t</sub>)_, the _Q<sup>&half;</sup>_ and _R<sup>&half;</sup>_ are already included in the script.  Often in this case  _w<sub>t</sub> = v<sub>t</sub>_ and both are iid N(0, I) sequences, so `S = diag(1, q)`, the _q x q_ identity matrix.
 
 
-- made `acf1` more flexible 
+- made `acf1` more flexible
 
 - minor visual improvements to `SigExtract`
 
