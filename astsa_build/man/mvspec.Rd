@@ -107,7 +107,7 @@ mvspec(soi, spans=c(7,7), taper=.5)$details[1:45,]
 deth = cbind(mdeaths, fdeaths)    # two R data sets, male/female monthly deaths ...
 tsplot(deth, type='b', col=c(4,6), spaghetti=TRUE, pch=c('M','F'))
 dog = mvspec(deth, spans=c(3,3), taper=.1)
-dog$fxx        # look a spectral matrix estimates
+dog$fxx        # look at spectral matrix estimates
 dog$bandwidth  # bandwidth with time unit = year
 dog$df         # degrees of freedom
 plot(dog, plot.type="coherency")  # plot of squared coherency

@@ -31,10 +31,11 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 #### v2.0.1: (on GitHub) - some small and a few not so small updates after v2.0:
 
+- &#128544; &#128544; Got effing sick of dealing with `dplyr` and `tinyverse` masking `filter` and `lag` and having to put warnings all over the place to deal with the mess.  Their remedy was to make a package called "conflicted"  to deal with the problem and maybe get it if you plan to analyze time series and use tinyverse stuff.  But  our remedy is we now put `stats::filter` and `stats::lag` in the global environment when `astsa` is loaded so they have precedent. You can use `rm()` to remove those from the global environment if necessary.   
+
 - added `SV.mle` to fit an SV model [with feedback (aka leverage) if desired] via quasi-MLE. Details are in the help file.  `SVfilter` is now part of `SV.mle` and the original script is now in the xBox as `xSVfilter`.
 
 - `tsplot` becomes more kick-ass with full control of the `Grid`
-
 
 - `sarima` - prettified the output 
 
