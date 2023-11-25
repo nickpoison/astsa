@@ -6,9 +6,10 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action=na.pas
   num       = length(series)
   xfreq     = frequency(series)
 
+  if (num < 3) stop("More than 2 observations are needed")
   if (num > 59 & is.null(max.lag))  max.lag = max(ceiling(10+sqrt(num)), 4*xfreq) 
-  if (num < 60 & is.null(max.lag))  max.lag = floor(5*log10(num+5))
-  if (max.lag > (num-2)) stop("Number of lags exceeds number of observations")
+  if (num < 60 & is.null(max.lag))  max.lag = min(floor(6*log10(num+5)), num-2)
+  if (max.lag > (num-1)) stop("Number of lags exceeds number of observations")
   if (is.null(main)) main = paste("Series: ",deparse(substitute(series)))
 
   ACF  = acf(series, max.lag, plot=FALSE, na.action = na.action,...)$acf[-1]
