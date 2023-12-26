@@ -6,9 +6,9 @@
 }
 \usage{
 sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, 
-       details = TRUE, xreg=NULL, Model=TRUE,
-       fixed=NULL, tol = sqrt(.Machine$double.eps), 
-       no.constant = FALSE, ...)
+       details = TRUE, xreg = NULL, Model = TRUE,
+       fixed = NULL, tol = sqrt(.Machine$double.eps), 
+       no.constant = FALSE, data = NULL, ...)
 }
 \arguments{
   \item{xdata}{univariate time series
@@ -38,6 +38,8 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
   \item{tol}{controls the relative tolerance (reltol in \code{optim}) used to assess convergence. The default is \code{sqrt(.Machine$double.eps)}, the R default. 
 }
   \item{no.constant}{controls whether or not sarima includes a constant in the model. In particular, if there is no differencing (d = 0 and D = 0) you get the mean estimate. If there is differencing of order one (either d = 1 or D = 1, but not both), a constant term is included in the model. These two conditions may be overridden (i.e., no constant will be included in the model) by setting this to TRUE; e.g., \code{sarima(x,1,1,0,no.constant=TRUE)}. Otherwise, no constant or mean term is included in the model.  If regressors are included (via \code{xreg}), this is ignored.
+}
+  \item{data}{an optional (may be multiple) time series (ts) object; useful if using \code{xreg}.
 }
   \item{...}{additional graphical arguments
 }
@@ -79,6 +81,10 @@ sarima(x, 2,0,0, fixed=c(0,NA,NA))  # phi1 fixed, phi2 and mean free
 
 # fun with diagnostics
 sarima(log(AirPassengers), 0,1,1, 0,1,1,12, gg=TRUE, col=4)
+
+# regression with autocorrelated errors using data option
+wabbit = ts.intersect(L = Lynx, H1 = lag(Hare, -1))
+sarima(L, 2,0,0, xreg = H1, data = wabbit)
 }
 \seealso{\code{\link{sarima.for}}, \code{\link{sarima.sim}} }
 \keyword{ ts }

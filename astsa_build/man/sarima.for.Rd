@@ -5,9 +5,9 @@
 \description{ARIMA forecasting.
 }
 \usage{
-sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
-         no.constant=FALSE, plot=TRUE, plot.all=FALSE,
-         xreg = NULL, newxreg = NULL, fixed=NULL, ...)
+sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol = sqrt(.Machine$double.eps),
+         no.constant = FALSE, plot = TRUE, plot.all = FALSE,
+         xreg = NULL, newxreg = NULL, fixed = NULL, data = NULL, ...)
 }
 \arguments{
   \item{xdata}{univariate time series
@@ -37,11 +37,13 @@ sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
 }  
   \item{plot.all}{if TRUE, all the data are plotted in the graphic; otherwise, only the last 100 observations are plotted in the graphic.
 }
-\item{xreg}{Optionally, a vector or matrix of external regressors, which must have the same number of rows as the series.  If this is used, \code{newxreg} MUST be specified.
+  \item{xreg}{Optionally, a vector or matrix of external regressors, which must have the same number of rows as the series. If this is used, \code{newxreg} MUST be specified.
 }
-\item{newxreg}{New values of \code{xreg} to be used for prediction. Must have at least \code{n.ahead} rows.
+  \item{newxreg}{New values of \code{xreg} to be used for prediction. Must have at least \code{n.ahead} rows.
 }
-\item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
+  \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
+}
+  \item{data}{an optional (may be multiple) time series (ts) object; useful if using \code{xreg}.
 }
   \item{...}{additional graphical arguments
 }
@@ -69,10 +71,11 @@ sarima.for(log(AirPassengers),12,0,1,1,0,1,1,12)
 # fun with the graphic 
 sarima.for(log(AirPassengers),12,0,1,1,0,1,1,12, gg=TRUE, col=4, main='arf') 
 
-#  with regressors:
+#  with regressors and data option 
+dog = cbind(SOI=soi, TIME=time(soi))
 nummy   = length(soi)
 n.ahead = 24 
 nureg   = time(soi)[nummy] + seq(1,n.ahead)/12
-sarima.for(soi,n.ahead,2,0,0,2,0,0,12, xreg=time(soi), newxreg=nureg) 
+sarima.for(SOI,n.ahead,2,0,0,2,0,0,12, xreg=TIME, newxreg=nureg, data=dog) 
 }
 \keyword{ ts }

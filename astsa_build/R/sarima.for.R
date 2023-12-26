@@ -1,11 +1,19 @@
 sarima.for <-
 function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
          no.constant=FALSE, plot=TRUE, plot.all=FALSE,
-         xreg = NULL, newxreg = NULL, fixed=NULL, ...){ 
+         xreg = NULL, newxreg = NULL, fixed=NULL, data=NULL, ...){ 
 #
+
   trans = ifelse (is.null(fixed), TRUE, FALSE)
   xname = deparse(substitute(xdata))
-  xdata = as.ts(xdata) 
+
+     if(!is.null(data)){ 
+       tp = tsp(as.ts(data))
+       attach(as.data.frame(data), warn.conflicts = FALSE)
+       xdata=ts(xdata, start=tp[1], frequency=tp[3]) 
+     }
+
+
   n = length(xdata)
 if (is.null(xreg)) {  
   constant=1:n
@@ -51,7 +59,9 @@ if (plot){
    if(plot.all)  {strt=time(xdata)[1]} 
    xllim=c(strt,endd)
    typel = ifelse(plot.all, 'l', 'o')
-   xdatanew = ts(c(xdata,fore$pred), start=tsp(xdata)[1],  frequency=tsp(xdata)[3])
+     if (!is.null(data)) { xdatanew= ts(c(xdata,fore$pred), start=tp[1], frequency=tp[3])
+    } else {
+    xdatanew = ts(c(xdata,fore$pred), start=tsp(xdata)[1], frequency=tsp(xdata)[3]) }
   tsplot(xdatanew, type=typel, xlim=xllim, ylim=c(minx,maxx), ylab=xname, ...)    
    xx = c(time(U), rev(time(U)))
    yy = c(L, rev(U))
@@ -60,6 +70,7 @@ if (plot){
    polygon(xx, yy1, border=8, col=gray(.6, alpha=.2) ) 
    lines(fore$pred, col=2, type="o")
 }   
+if(!is.null(data)) {detach(as.data.frame(data))}
   return(fore)
 }
 

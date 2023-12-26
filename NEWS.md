@@ -29,7 +29,9 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ---
 ---
 
-#### v2.0.1.0018: (on GitHub) - some small and a few not so small updates after v2.0:
+#### v2.0.1.0019: (on GitHub) - some small and a few not so small updates after v2.0:
+
+- added option to input a multiple time series as `data` in `sarima` and `sarima.for`, similar to using `lm`.  See the help files for examples. 
 
 - &#128544; &#128544; Got effing sick of dealing with `dplyr` and `tinyverse` masking `filter` and `lag` and having to put warnings all over the place to deal with the mess.  Their remedy was to make a package called "conflicted"  to deal with the problem.  Our remedy is we now put `filter = stats::filter` and `lag = stats::lag` in the global (or user) environment when `astsa` is loaded so they have precedent. You can use `rm()` to remove those from the global environment if necessary.   
 

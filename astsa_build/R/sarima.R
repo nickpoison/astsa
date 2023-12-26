@@ -1,10 +1,17 @@
 sarima <-  
 function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
-          fixed=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE, ...)
+          fixed=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE, data=NULL, ...)
 { 
+
+   if(!is.null(data)) { 
+      tp = tsp(as.ts(data))
+      attach(as.data.frame(data), warn.conflicts = FALSE)
+    }
+  
+
    trans = ifelse (is.null(fixed), TRUE, FALSE)
    trc   = ifelse(details, 1, 0)
-   n     = length(xdata)
+   n     = length(xdata) 
  if (is.null(xreg)) {
    constant = 1:n 
    xmean    = rep(1,n)  
@@ -27,11 +34,41 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
                          xreg=xreg, fixed=fixed, trans=trans, 
                          optim.control=list(trace=trc, REPORT=1, reltol=tol))
   }
+###########################
+   if (is.null(fixed)) {coefs=fitit$coef
+    } else { coefs = fitit$coef[is.na(fixed)]
+    }  
+   k       = length(coefs) 
+   n       = fitit$nobs  # effective sample size
+   dfree   = n-k 
+   t.value = coefs/sqrt(diag(fitit$var.coef)) 
+   p.two   = stats::pf(t.value^2, df1=1, df2=dfree, lower.tail = FALSE)   
+   ttable  = cbind(Estimate=coefs, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
+   ttable  = round(ttable,4)
+   BIC     = stats::BIC(fitit)/n
+   AIC     = stats::AIC(fitit)/n
+   AICc    = (n*AIC + ( (2*k^2+2*k)/(n-k-1) ))/n
+   if(!is.null(data)) {detach(as.data.frame(data))}
+# print  results
+    cat('<><><><><><><><><><><><><><>')
+    cat('\n','\n')
+    cat('Coefficients:', '\n')
+    print(ttable)
+    cat('\n')
+    cat('sigma^2 estimated as', fitit$sigma2, 'on', dfree, 'degrees of freedom', '\n','\n')
+    cat('AIC =', AIC, ' AICc =', AICc, ' BIC =', BIC, '\n', '\n')
+   out = list(fit=fitit, degrees_of_freedom=dfree, ttable=ttable, 
+             ICs=c(AIC=AIC, AICc=AICc, BIC=BIC))
+############################
+
 #  replace tsdiag with a better version
  if(details){
   old.par  <- par(no.readonly = TRUE)
   layout(matrix(c(1,2,4, 1,3,4), ncol=2))
-   rs     <- fitit$residuals
+   if(!is.null(data)) { 
+    rs  <- ts(fitit$residuals, start=tp[1], frequency=tp[3])
+      } else { rs <-  fitit$residuals 
+    }
    stdres <- rs/sqrt(fitit$sigma2)
    num    <- sum(!is.na(rs))
  tsplot(stdres, main = "Standardized Residuals", ylab = "", ...)
@@ -78,30 +115,29 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
               ylim = c(-.14, 1), main = "p values for Ljung-Box statistic", ...)
      abline(h = 0.05, lty = 2, col = 4)  
     on.exit(par(old.par)) 
-}	
-#  end new tsdiag
-   if (is.null(fixed)) {coefs=fitit$coef
-    } else { coefs = fitit$coef[is.na(fixed)]
-    }  
-   k       = length(coefs) 
-   n       = fitit$nobs  # effective sample size
-   dfree   = n-k 
-   t.value = coefs/sqrt(diag(fitit$var.coef)) 
-   p.two   = stats::pf(t.value^2, df1=1, df2=dfree, lower.tail = FALSE)   
-   ttable  = cbind(Estimate=coefs, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
-   ttable  = round(ttable,4)
-   BIC     = stats::BIC(fitit)/n
-   AIC     = stats::AIC(fitit)/n
-   AICc    = (n*AIC + ( (2*k^2+2*k)/(n-k-1) ))/n
-# print
-    cat('<><><><><><><><><><><><><><>')
-    cat('\n','\n')
-    cat('Coefficients:', '\n')
-    print(ttable)
-    cat('\n')
-    cat('sigma^2 estimated as', fitit$sigma2, 'on', dfree, 'degrees of freedom', '\n','\n')
-    cat('AIC =', AIC, ' AICc =', AICc, ' BIC =', BIC, '\n', '\n')
-   out = list(fit=fitit, degrees_of_freedom=dfree, ttable=ttable, 
-             ICs=c(AIC=AIC, AICc=AICc, BIC=BIC))
-   invisible(out)
+
+}  #  end new tsdiag
+invisible(out)
 }
+
+
+
+# setMethod("attach", "ts",
+# function(what, pos = 2, name = deparse(substitute(what)),
+#     warn.conflicts = TRUE)
+# {   
+#     # A function implemented by Diethelm Wuertz and Yohan Chalabi
+# 
+#     # Description:
+#     #   Attaches a 'timeSeries' object
+#     
+#     # Details:
+#     #   The function works in the same way as in the case of a 
+#     #   data.frame, i.e. the return values are vectors.
+# 
+#     # FUNCTION:
+# 
+#     # Return Value:
+#     callGeneric(as.data.frame(what), pos, name, warn.conflicts)
+# })
+# 
