@@ -5,7 +5,8 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
 
    if(!is.null(data)) { 
       tp = tsp(as.ts(data))
-      attach(as.data.frame(data), warn.conflicts = FALSE)
+      suppressWarnings(rm(list = colnames(data),  envir = .GlobalEnv))
+      attach(as.data.frame(data), warn.conflicts = FALSE)  # detached later
     }
   
 
@@ -48,7 +49,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    BIC     = stats::BIC(fitit)/n
    AIC     = stats::AIC(fitit)/n
    AICc    = (n*AIC + ( (2*k^2+2*k)/(n-k-1) ))/n
-   if(!is.null(data)) {detach(as.data.frame(data))}
+  if(!is.null(data)) {detach(as.data.frame(data))}
 # print  results
     cat('<><><><><><><><><><><><><><>')
     cat('\n','\n')

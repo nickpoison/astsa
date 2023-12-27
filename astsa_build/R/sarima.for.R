@@ -7,10 +7,13 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
   trans = ifelse (is.null(fixed), TRUE, FALSE)
   xname = deparse(substitute(xdata))
 
+
      if(!is.null(data)){ 
        tp = tsp(as.ts(data))
-       attach(as.data.frame(data), warn.conflicts = FALSE)
-       xdata=ts(xdata, start=tp[1], frequency=tp[3]) 
+       suppressWarnings(rm(list = colnames(data),  envir = .GlobalEnv))
+       attach(as.data.frame(data), warn.conflicts = FALSE)  # detached later
+       xdata = ts(xdata, start=tp[1], frequency=tp[3])
+      } else { xdata = as.ts(xdata)
      }
 
 

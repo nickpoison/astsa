@@ -39,7 +39,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
   \item{no.constant}{controls whether or not sarima includes a constant in the model. In particular, if there is no differencing (d = 0 and D = 0) you get the mean estimate. If there is differencing of order one (either d = 1 or D = 1, but not both), a constant term is included in the model. These two conditions may be overridden (i.e., no constant will be included in the model) by setting this to TRUE; e.g., \code{sarima(x,1,1,0,no.constant=TRUE)}. Otherwise, no constant or mean term is included in the model.  If regressors are included (via \code{xreg}), this is ignored.
 }
-  \item{data}{an optional (may be multiple) time series (ts) object; useful if using \code{xreg}.
+  \item{data}{an optional (multiple) time series (ts) object; useful if using \code{xreg}.  NOTE: It is best not to use names in the \code{data} object that are in the user environment [cf. \code{ls()}] because they will be removed if there are duplicates.
 }
   \item{...}{additional graphical arguments
 }
