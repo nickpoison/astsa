@@ -43,7 +43,7 @@ sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol = sqrt(.Machine$double.eps),
 }
   \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
 }
-  \item{data}{an optional (multiple) time series (ts) object; useful if using \code{xreg}.  NOTE: It is best not to use names in the \code{data} object that are in the user environment [cf. \code{ls()}] because they will be removed if there are duplicates.
+  \item{data}{an optional (multiple) time series (ts) object; useful if using \code{xreg} with lagged variables (see last example).  NOTE: It is best not to use names in the \code{data} object that are in the user environment [cf. \code{ls()}] because they will be removed if there are duplicates.
 }
   \item{...}{additional graphical arguments
 }

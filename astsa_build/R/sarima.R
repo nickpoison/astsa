@@ -7,8 +7,11 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
       tp = tsp(as.ts(data))
       suppressWarnings(rm(list = colnames(data),  envir = .GlobalEnv))
       attach(as.data.frame(data), warn.conflicts = FALSE)  # detached later
+      xdata = ts(xdata, start = tp[1], frequency = tp[3])
+    } else {
+      xdata = as.ts(xdata)
     }
-  
+
 
    trans = ifelse (is.null(fixed), TRUE, FALSE)
    trc   = ifelse(details, 1, 0)
@@ -66,10 +69,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
  if(details){
   old.par  <- par(no.readonly = TRUE)
   layout(matrix(c(1,2,4, 1,3,4), ncol=2))
-   if(!is.null(data)) { 
-    rs  <- ts(fitit$residuals, start=tp[1], frequency=tp[3])
-      } else { rs <-  fitit$residuals 
-    }
+    rs <-  fitit$residuals 
    stdres <- rs/sqrt(fitit$sigma2)
    num    <- sum(!is.na(rs))
  tsplot(stdres, main = "Standardized Residuals", ylab = "", ...)
@@ -120,25 +120,3 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
 }  #  end new tsdiag
 invisible(out)
 }
-
-
-
-# setMethod("attach", "ts",
-# function(what, pos = 2, name = deparse(substitute(what)),
-#     warn.conflicts = TRUE)
-# {   
-#     # A function implemented by Diethelm Wuertz and Yohan Chalabi
-# 
-#     # Description:
-#     #   Attaches a 'timeSeries' object
-#     
-#     # Details:
-#     #   The function works in the same way as in the case of a 
-#     #   data.frame, i.e. the return values are vectors.
-# 
-#     # FUNCTION:
-# 
-#     # Return Value:
-#     callGeneric(as.data.frame(what), pos, name, warn.conflicts)
-# })
-# 
