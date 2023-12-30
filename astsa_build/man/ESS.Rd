@@ -7,7 +7,7 @@ Effective Sample Size (ESS)
 Estimates the ESS of a given vector of samples.
 }
 \usage{
-ESS(trace, tol = 1e-08, BIC=TRUE))
+ESS(trace, tol = 1e-08, BIC = TRUE)
 }
 \arguments{
   \item{trace}{
@@ -43,7 +43,7 @@ D.S. Stoffer
 }
 \examples{
 # Fit an AR(2) to the Recruitment series
-u = ar.mcmc(rec, porder=2, n.iter=1000, plot=FALSE)  # it's efficient
+u = ar.mcmc(rec, porder=2, n.iter=1000, plot=FALSE) 
 # then calculate the ESSs 
 apply(u, 2, ESS)
 }

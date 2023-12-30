@@ -21,5 +21,5 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}. 
 }
-\seealso{\code{\link{gtemp_ocean}},   \code{\link{globtemp}}, \code{\link{globtempl}},  \code{\link{gtemp2}}}
+\seealso{\code{\link{gtemp_land}}, \code{\link{gtemp_ocean}}}
 \keyword{datasets}

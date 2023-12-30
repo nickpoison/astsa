@@ -5,7 +5,6 @@
 } 
 \description{This data file is old and is scheduled to be deleted. 
 }
-\usage{data(gtemp2)}
 \format{
   The format is:
  Time-Series [1:130] from 1880 to 2009: -0.24 -0.19 -0.14 -0.19 -0.45 -0.32 -0.42 -0.54 -0.24 -0.05 ...

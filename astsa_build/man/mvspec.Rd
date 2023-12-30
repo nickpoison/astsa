@@ -6,9 +6,9 @@
 } 
 \usage{
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
-        demean = FALSE, detrend = TRUE, lowess = FALSE, log = 'n', plot = TRUE, gg = FALSE,
-        type = NULL, na.action = na.fail, nxm = 2, nym = 1, main = NULL, xlab=NULL, 
-        cex.main=NULL, ci.col=4, ...) 
+        demean = FALSE, detrend = TRUE, lowess = FALSE, log = 'n', plot = TRUE, 
+        gg = FALSE, type = NULL, na.action = na.fail, nxm = 2, nym = 1, 
+        main = NULL, xlab=NULL, cex.main=NULL, ci.col=4, ...) 
 }
 \arguments{
   \item{x }{univariate or multivariate time series (i.e., the p columns of x are time series)

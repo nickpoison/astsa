@@ -22,20 +22,20 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    if (no.constant)  xmean=NULL 
    if (d==0 & D==0) {	  
            fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
-                  xreg=xmean, include.mean=FALSE, fixed=fixed, trans=trans, 
+                  xreg=xmean, include.mean=FALSE, fixed=fixed, transform.pars=trans, 
                   optim.control=list(trace=trc, REPORT=1, reltol=tol))
     } else if (xor(d==1, D==1) & no.constant==FALSE) {
            fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
-                   xreg=constant, fixed=fixed, trans=trans,
+                   xreg=constant, fixed=fixed, transform.pars=trans,
                    optim.control=list(trace=trc, REPORT=1, reltol=tol))
     } else fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
-                   include.mean=!no.constant, fixed=fixed, trans=trans, 
+                   include.mean=!no.constant, fixed=fixed, transform.pars=trans, 
                    optim.control=list(trace=trc, REPORT=1, reltol=tol))
   }
 #
   if (!is.null(xreg)) {
     fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
-                         xreg=xreg, fixed=fixed, trans=trans, 
+                         xreg=xreg, fixed=fixed, transform.pars=trans, 
                          optim.control=list(trace=trc, REPORT=1, reltol=tol))
   }
 ###########################

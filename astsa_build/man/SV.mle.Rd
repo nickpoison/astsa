@@ -8,7 +8,7 @@ Fits a stochastic volatility model with feedback (optional) to a univariate time
 }
 \usage{
 SV.mle(returns, gamma = 0, phi = 0.95, sQ = 0.1, alpha = NULL, sR0 = 1, mu1 = -3, sR1 = 2, 
-        rho = NULL, feedback = FLASE)
+        rho = NULL, feedback = FALSE)
 }
 \arguments{
   \item{returns}{

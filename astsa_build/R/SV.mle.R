@@ -65,14 +65,14 @@ sv = .SVfilter(num, y, del, gamma, phi, sQ, alpha, sR0, mu1, sR1, rho)
 
 old.par <- par(no.readonly = TRUE)
 
-layout(matrix(1:2, 2), height=c(3,2))
+layout(matrix(1:2, 2), heights=c(3,2))
 # data/volatility plot
 tapp = tsp(y)
 tsxp = ts(sv$Xp, start=tapp[1], frequency=tapp[3] )
 tsPp = ts(sv$Pp, start=tapp[1], frequency=tapp[3] )
 Low = min(10*returns, tsxp-2*sqrt(tsPp))
 Upp = max(10*returns, tsxp+2*sqrt(tsPp))+.2
-tsplot(cbind(10*returns, tsxp), col=astsa.col(c(2,4),.7), spag=TRUE, ylim=c(Low,Upp), gg=TRUE,
+tsplot(cbind(10*returns, tsxp), col=astsa.col(c(2,4),.7), spaghetti=TRUE, ylim=c(Low,Upp), gg=TRUE,
     margins=c(0,-.6,0,0)+.2)
 xx = c(time(y), rev(time(y)))
 yy = c(tsxp-2*sqrt(tsPp), rev(tsxp+2*sqrt(tsPp)))
@@ -135,7 +135,7 @@ tsxp = ts(sv$Xp, start=tapp[1], frequency=tapp[3] )
 tsPp = ts(sv$Pp, start=tapp[1], frequency=tapp[3] )
 Low = min(10*returns, tsxp-2*sqrt(tsPp))
 Upp = max(10*returns, tsxp+2*sqrt(tsPp))
-tsplot(cbind(10*returns, tsxp), col=c(astsa.col(2,.5),4), spag=TRUE, ylim=c(Low,Upp))
+tsplot(cbind(10*returns, tsxp), col=c(astsa.col(2,.5),4), spaghetti=TRUE, ylim=c(Low,Upp))
 xx = c(time(y), rev(time(y)))
 yy = c(tsxp-2*sqrt(tsPp), rev(tsxp+2*sqrt(tsPp)))
  polygon(xx, yy, border=NA, col=astsa.col(4, alpha = .2))
