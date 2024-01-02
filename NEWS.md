@@ -31,7 +31,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 #### v2.0.1.0020: (on GitHub) - some small and a few not so small updates after v2.0:
 
-- 2023.12.30: `astsa_v2.0.1` built and checked `--as-cran`  
+- 2023.01.03: moving to CRAN: `astsa_v2.0.1` built and checked `--as-cran` 
 
 - added option to input a multiple time series as `data` in `sarima` and `sarima.for`, similar to using `lm`... useful when using `xreg` with lagged variables.  See the help files for examples. 
 
