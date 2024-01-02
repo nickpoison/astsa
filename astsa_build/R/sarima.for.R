@@ -8,13 +8,18 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
   xname = deparse(substitute(xdata))
 
 
-  if(!is.null(data)){ 
-    tp = tsp(as.ts(data))
-    suppressWarnings(rm(list = colnames(data),  envir = .GlobalEnv))
-    attach(as.data.frame(data), warn.conflicts = FALSE)  # detached later
-    xdata = ts(xdata, start=tp[1], frequency=tp[3])
-   } else { xdata = as.ts(xdata)
-  }
+  if(!is.null(data)) { 
+     if (!is.data.frame(data)){ 
+     tp = tsp(as.ts(data))
+     suppressWarnings(rm(list = colnames(data),  envir = .GlobalEnv))
+     attach(as.data.frame(data), warn.conflicts = FALSE)   # detached later
+     xdata = ts(xdata, start = tp[1], frequency = tp[3])
+  } else { 
+     suppressWarnings(rm(list = colnames(data),  envir = .GlobalEnv))
+     attach(data, warn.conflicts = FALSE)   # detached later
+     tp =tsp(data[,1])
+   }
+ } 
 
 
   n = length(xdata)
@@ -40,8 +45,11 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
       nureg = newxreg 
   }
 
-if(!is.null(data)) {detach(as.data.frame(data))}   # detach data if there
-
+if(!is.null(data)) { 
+    if (!is.data.frame(data)){ detach(as.data.frame(data))
+    } else { detach(data)
+    }   # detach data if there
+}
 ##--##
 fore <- stats::predict(fitit, n.ahead, newxreg=nureg)
 ##--##

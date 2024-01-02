@@ -3,14 +3,18 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
           fixed=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE, data=NULL, ...)
 { 
 
-  if(!is.null(data)) {
+  if(!is.null(data)) { 
+     if (!is.data.frame(data)){ 
      tp = tsp(as.ts(data))
      suppressWarnings(rm(list = colnames(data),  envir = .GlobalEnv))
      attach(as.data.frame(data), warn.conflicts = FALSE)   # detached later
      xdata = ts(xdata, start = tp[1], frequency = tp[3])
-   } else {
-     xdata = as.ts(xdata)
-  }
+  } else { 
+     suppressWarnings(rm(list = colnames(data),  envir = .GlobalEnv))
+     attach(data, warn.conflicts = FALSE)   # detached later
+   }
+ }
+
 
    trans = ifelse (is.null(fixed), TRUE, FALSE)
    trc   = ifelse(details, 1, 0)
@@ -53,7 +57,11 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    AIC     = stats::AIC(fitit)/n
    AICc    = (n*AIC + ( (2*k^2+2*k)/(n-k-1) ))/n
 
-  if(!is.null(data)) {detach(as.data.frame(data))}   # detach data if there
+  if(!is.null(data)) { # detach data if there
+    if (!is.data.frame(data)){ detach(as.data.frame(data))
+    } else { detach(data)
+    }   
+  }
 
 # print  results
   cat('<><><><><><><><><><><><><><>')
