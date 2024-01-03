@@ -29,9 +29,10 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ---
 ---
 
-#### Version 2.1 (in progress)
+### Version 2.1 (on GitHub)
 
-- Jan 2024:  v2.0.1:0020 is now v2.1 here and will move to CRAN this month.  
+- Jan 2024:  v2.0.1:0020 is now v2.1 here and will push to CRAN this month... hopefully the
+CRANks won't push back.  
 
 
 #### v2.0.1.0020: (on GitHub) - some small and a few not so small updates after v2.0:
