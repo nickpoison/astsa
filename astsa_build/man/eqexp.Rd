@@ -45,4 +45,16 @@ No.\tab Type\tab Date\tab Array \tab Magnitude \tab   Latitude \tab   Longitude 
 17 \tab NZ \tab 12/31/92\tab  NORESS\tab  2.50\tab 73.6\tab  55.2 \cr
 }
 }
+\examples{
+\dontrun{
+
+# view all series 
+# first 2 rows EQs - second 2 rows EXs
+# 5th row NZ event 
+
+tsplot(eqexp, ncol=4, col=1:8)
+}
+}
 \keyword{datasets}
+
+

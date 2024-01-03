@@ -27,14 +27,14 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
   \item{S}{seasonal period; use only for seasonal models 
 }
+  \item{details}{if FALSE, turns off the diagnostic plot and the output from the nonlinear optimization routine, which is \code{optim}. The default is TRUE. 
+}
   \item{xreg}{Optionally, a vector or matrix of external regressors, which must have the same number of rows as xdata.
 }
   \item{Model}{if TRUE (default), the model orders are printed on the diagnostic plot.
 }
   \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
 }  
-  \item{details}{if FALSE, turns off the diagnostic plot and the output from the nonlinear optimization routine, which is \code{optim}. The default is TRUE. 
-}
   \item{tol}{controls the relative tolerance (reltol in \code{optim}) used to assess convergence. The default is \code{sqrt(.Machine$double.eps)}, the R default. 
 }
   \item{no.constant}{controls whether or not sarima includes a constant in the model. In particular, if there is no differencing (d = 0 and D = 0) you get the mean estimate. If there is differencing of order one (either d = 1 or D = 1, but not both), a constant term is included in the model. These two conditions may be overridden (i.e., no constant will be included in the model) by setting this to TRUE; e.g., \code{sarima(x,1,1,0,no.constant=TRUE)}. Otherwise, no constant or mean term is included in the model.  If regressors are included (via \code{xreg}), this is ignored.
@@ -67,7 +67,7 @@ The webpages for the texts and some help on using R for time series analysis can
 }
 \examples{
 # easy to use 
-sarima(rec,2,0,0)  # data, p, d, and q
+sarima(rec, 2,0,0)  # data, p, d, and q
 sarima(rec, 2,0,0, details=FALSE)  # minimal output
 
 dog <- sarima(log(AirPassengers), 0,1,1, 0,1,1,12)
@@ -83,8 +83,8 @@ sarima(x, 2,0,0, fixed=c(0,NA,NA))  # phi1 fixed, phi2 and mean free
 sarima(log(AirPassengers), 0,1,1, 0,1,1,12, gg=TRUE, col=4)
 
 # regression with autocorrelated errors using data option
-wabbit = ts.intersect(L = Lynx, H1 = lag(Hare, -1))
-sarima(L, 2,0,0, xreg = H1, data = wabbit)
+wabbit = ts.intersect(L = Lynx, L1 = lag(Lynx,-1), H1 = lag(Hare,-1))
+sarima(L, 2,0,0, xreg = cbind(L1, LH1=L1*H1), data = wabbit)
 }
 \seealso{\code{\link{sarima.for}}, \code{\link{sarima.sim}} }
 \keyword{ ts }

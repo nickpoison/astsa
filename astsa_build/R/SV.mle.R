@@ -128,7 +128,7 @@ sv = .SVfilter(num, y, del, gamma=0, phi, sQ, alpha, sR0, mu1, sR1, rho=0)
 
 old.par <- par(no.readonly = TRUE)
 
-layout(matrix(1:2, 2), height=c(3,2))
+layout(matrix(1:2, 2), heights=c(3,2))
 # data/volatility plot
 tapp = tsp(y)
 tsxp = ts(sv$Xp, start=tapp[1], frequency=tapp[3] )
