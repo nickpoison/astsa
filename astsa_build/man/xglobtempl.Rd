@@ -1,7 +1,7 @@
 \name{xglobtempl}
 \alias{xglobtempl}
 \docType{data}
-\title{Superseded by \code{gtemp_land} - Global mean land-ocean temperature deviations. 
+\title{Superseded by \code{gtemp_land} - Global mean land temperature deviations. 
 } 
 \description{This data file is old and is scheduled to be deleted.
 }
