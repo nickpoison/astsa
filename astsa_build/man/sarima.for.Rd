@@ -7,7 +7,7 @@
 \usage{
 sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol = sqrt(.Machine$double.eps),
          no.constant = FALSE, plot = TRUE, plot.all = FALSE,
-         xreg = NULL, newxreg = NULL, fixed = NULL, data = NULL, ...)
+         xreg = NULL, newxreg = NULL, fixed = NULL, ...)
 }
 \arguments{
   \item{xdata}{univariate time series
@@ -43,8 +43,6 @@ sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol = sqrt(.Machine$double.eps),
 }
   \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
 }
-  \item{data}{an optional (multiple) time series (ts) object; useful if using \code{xreg} with lagged variables (see last example).  NOTE: It is best not to use names in the \code{data} object that are in the user environment [cf. \code{ls()}] because they will be removed if there are duplicates.
-}
   \item{...}{additional graphical arguments
 }
 }
@@ -71,11 +69,10 @@ sarima.for(log(AirPassengers),12,0,1,1,0,1,1,12)
 # fun with the graphic 
 sarima.for(log(AirPassengers),12,0,1,1,0,1,1,12, gg=TRUE, col=4, main='arf') 
 
-#  with regressors and data option 
-dog = cbind(SOI=soi, TIME=time(soi))
+# with regressors 
 nummy   = length(soi)
 n.ahead = 24 
 nureg   = time(soi)[nummy] + seq(1,n.ahead)/12
-sarima.for(SOI,n.ahead,2,0,0,2,0,0,12, xreg=TIME, newxreg=nureg, data=dog) 
+sarima.for(soi,n.ahead,2,0,0,2,0,0,12, xreg=time(soi), newxreg=nureg) 
 }
 \keyword{ ts }

@@ -1,25 +1,11 @@
 sarima.for <-
 function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
          no.constant=FALSE, plot=TRUE, plot.all=FALSE,
-         xreg = NULL, newxreg = NULL, fixed=NULL, data=NULL, ...){ 
+         xreg = NULL, newxreg = NULL, fixed=NULL, ...){ 
 #
 
   trans = ifelse (is.null(fixed), TRUE, FALSE)
   xname = deparse(substitute(xdata))
-
-
-  if(!is.null(data)) { 
-     if (!is.data.frame(data)){ 
-     tp = tsp(as.ts(data))
-     suppressWarnings(rm(list = colnames(data),  envir = .GlobalEnv))
-     attach(as.data.frame(data), warn.conflicts = FALSE)   # detached later
-     xdata = ts(xdata, start = tp[1], frequency = tp[3])
-  } else { 
-     suppressWarnings(rm(list = colnames(data),  envir = .GlobalEnv))
-     attach(data, warn.conflicts = FALSE)   # detached later
-     tp =tsp(data[,1])
-   }
- } 
 
 
   n = length(xdata)
@@ -38,18 +24,13 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
               fixed=fixed,transform.pars=trans,optim.control=list(reltol=tol))
       nureg=NULL   
     }
-  }
-  if (!is.null(xreg)) {
+  } else {
       fitit = stats::arima(xdata, order = c(p, d, q), seasonal = list(order = c(P, 
               D, Q), period = S), xreg = xreg, fixed=fixed, transform.pars=trans)
       nureg = newxreg 
   }
 
-if(!is.null(data)) { 
-    if (!is.data.frame(data)){ detach(as.data.frame(data))
-    } else { detach(data)
-    }   # detach data if there
-}
+
 ##--##
 fore <- stats::predict(fitit, n.ahead, newxreg=nureg)
 ##--##
@@ -75,9 +56,7 @@ fore <- stats::predict(fitit, n.ahead, newxreg=nureg)
      if(plot.all)  {strt=time(xdata)[1]} 
      xllim=c(strt,endd)
      typel = ifelse(plot.all, 'l', 'o')
-       if (!is.null(data)) { xdatanew= ts(c(xdata,fore$pred), start=tp[1], frequency=tp[3])
-      } else {
-      xdatanew = ts(c(xdata,fore$pred), start=tsp(xdata)[1], frequency=tsp(xdata)[3]) }
+     xdatanew = ts(c(xdata,fore$pred), start=tsp(xdata)[1], frequency=tsp(xdata)[3]) 
     tsplot(xdatanew, type=typel, xlim=xllim, ylim=c(minx,maxx), ylab=xname, ...)    
       xx = c(time(U), rev(time(U)))
       yy = c(L, rev(U))
