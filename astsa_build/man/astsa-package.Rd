@@ -24,8 +24,9 @@ David Stoffer <stoffer@pitt.edu>
 }
 \note{Some older scripts and data sets have been updated, and old versions have an x in front of them, for example \code{xgtemp} is an old data file that used to be called \code{gtemp}. These scripts and data sets have not changed (they will still work with the x name change), but they will be phased out eventually. 
 
-Also, due to the fact that, if loaded, the \code{dplyr} package corrupts \code{stats::filter} and \code{stats::lag}, 
-those are put in the global (or user) environment as \code{filter} and \code{lag} when \code{astsa} is loaded so they have precedent. You can use \code{rm()} to remove those from the global environment if necessary.
+Note that, if loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} 
+among other things. In this case, we suggest issuing the commands 
+\code{filter = stats::filter} and \code{lag = stats::lag} before analyzing time series data. 
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
