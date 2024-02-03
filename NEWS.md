@@ -33,6 +33,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - Jan 10, 2024:  v2.0.1:0018 is now v2.1 and all versions should be  on CRAN in a few days. 
 
+- after submission, in `mvspec` set `fxx` to `NULL` in univariate case
 
 #### v2.0.1.0018: (on GitHub) - some small and a few not so small updates after v2.0:
 
@@ -102,7 +103,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
    - Updated (to run with the new `Kfilter` and `Ksmooth` scripts): 
    
-      + the Forward Filtering Backward Smoothing script (`ffbs`) and 
+      + the Forward Filtering Backward Sampling script (`ffbs`) and 
       + the simple univariate state space model (`ssm`) script       
 
    - Updated data files `gtemp_land` and `gtemp_ocean` to 2021  
