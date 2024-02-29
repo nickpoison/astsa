@@ -31,11 +31,11 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### Version 2.1 (CRAN)
 
-- Jan 10, 2024:  v2.0.1:0018 is now v2.1 and all versions should be  on CRAN in a few days. 
+- Jan 2024:  v2.0.1 is now v2.1 and on CRAN
 
 - after submission, in `mvspec` set `fxx` to `NULL` in univariate case
 
-#### v2.0.1.0018: (on GitHub) - some small and a few not so small updates after v2.0:
+#### v2.0.1: (on GitHub) - some small and a few not so small updates after v2.0:
 
 - added `SV.mle` to fit an SV model [with feedback (aka leverage) if desired] via quasi-MLE. Details are in the help file.  `SVfilter` is now part of `SV.mle` and the original script is now in the xBox as `xSVfilter`.
 
