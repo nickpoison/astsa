@@ -1,6 +1,6 @@
 # fun with astsa &#x1F388;&#x1F388;&#x1F388;
 
-[![](https://cranlogs.r-pkg.org/badges/astsa)](https://cran.r-project.org/package=astsa) &nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa)
 
 
 #### we'll demonstrate some of the capabilities of the latest version of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.

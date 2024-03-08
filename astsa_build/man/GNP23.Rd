@@ -21,6 +21,6 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}. 
 }
-\seealso{\link{gnp}
+\seealso{\link{gnp}, \link{GDP}, \link{gdp}
 }
 \keyword{datasets}
