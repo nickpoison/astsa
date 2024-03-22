@@ -31,7 +31,9 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### Version 2.1 - Jan 2024 (on CRAN)
 
-- after submission, in `mvspec` set `fxx` to `NULL` in univariate case
+- after submission, in `mvspec` set `fxx` to `NULL` in univariate case ... and
+
+- added `gtemp.month` (monthly global data 1975-2023)
 
 #### changes after v2.0
 
