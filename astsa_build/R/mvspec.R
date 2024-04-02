@@ -28,6 +28,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         }	
     if (!is.null(kernel) && !is.tskernel(kernel)) 
         stop("must specify 'spans' or a valid kernel")
+    if (demean) detrend = FALSE
     if (detrend) {
         for (i in 1:nser) x[,i] = detrend(x[,i], lowess=lowess) 
     }

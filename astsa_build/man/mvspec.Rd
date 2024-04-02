@@ -25,9 +25,9 @@ mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE,
 }
   \item{demean }{if TRUE, series is demeaned first 
 }
-  \item{detrend }{if TRUE, series is detrended first 
+  \item{detrend }{if TRUE, series is detrended first (unless demean is TRUE)
 }
-  \item{lowess }{if TRUE and detrend TRUE, series is detrended using lowess first 
+  \item{lowess }{if TRUE and detrend TRUE (and demean FALSE), series is detrended using lowess first 
 }
   \item{log }{if \code{log='y'}, spectra plotted on a log scale; otherwise a log scale is not used
 }

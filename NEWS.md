@@ -31,11 +31,13 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### Version 2.1 - Jan 2024 (on CRAN)
 
-- after submission, in `mvspec` set `fxx` to `NULL` in univariate case ... and
+#### after v2.1 submission: 
 
-- added `gtemp.month` (monthly global data 1975-2023)
+- in `mvspec` set `fxx` to `NULL` in univariate case ... and in the call, if `demean=TRUE` (default is `FALSE`) `detrend` is set to `FALSE`; i.e., `demean=TRUE` sets `detrend=FALSE`.
 
-#### changes after v2.0
+- added `gtemp.month` (monthly global data 1975-2023) -- rows are month, columns are year to make it easy to plot as monthly functional data
+
+#### v.20 to v2.1:
 
 - added `SV.mle` to fit an SV model [with feedback (aka leverage) if desired] via quasi-MLE. Details are in the help file.  `SVfilter` is now part of `SV.mle` and the original script is now in the xBox as `xSVfilter`.
 
