@@ -28,12 +28,12 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         }	
     if (!is.null(kernel) && !is.tskernel(kernel)) 
         stop("must specify 'spans' or a valid kernel")
-    if (demean) detrend = FALSE
+    if (demean) {
+         detrend = FALSE
+         x <- sweep(x, 2, colMeans(x))
+    }
     if (detrend) {
         for (i in 1:nser) x[,i] = detrend(x[,i], lowess=lowess) 
-    }
-    else if (demean) {
-        x <- sweep(x, 2, colMeans(x))
     }
     x <- spec.taper(x, taper)
     u2 <- (1 - (5/8) * taper * 2)
