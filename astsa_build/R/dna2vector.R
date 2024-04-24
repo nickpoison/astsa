@@ -13,8 +13,8 @@ function(data, alphabet=NULL){
  } else {
      if (is.null(alphabet)) alphabet=1:4
      if (!.isString(data)) alphabet = alphabet
-     u = sapply(data, .cnvrt, alphabet)
-     x = 1*t(u)
+     u = sapply(data, .cnvrt, alphabet, simplify='array')
+     x = 1*drop(u)
  }
 invisible(x)
 }
