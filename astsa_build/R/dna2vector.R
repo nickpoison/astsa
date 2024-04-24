@@ -14,7 +14,7 @@ function(data, alphabet=NULL){
      if (is.null(alphabet)) alphabet=1:4
      if (!.isString(data)) alphabet = alphabet
      u = sapply(data, .cnvrt, alphabet, simplify='array')
-     x = 1*drop(u)
+     x = 1*t(drop(u))
  }
 invisible(x)
 }
