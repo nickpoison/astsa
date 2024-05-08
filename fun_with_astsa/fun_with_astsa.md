@@ -93,7 +93,6 @@ And you can get more information on any individual set using the `help()` comman
 |Hare                             |  Snowshoe Hare                                                                |
 |Lynx                             |  Canadian Lynx                                                                |
 |MEI                              |  Multivariate El Nino/Southern Oscillation Index (version 1)                  |
-|Months                           |  Month Labels                                                                 |
 |PLT                              |  Platelet Levels                                                              |
 |USpop                            |  U.S. Population - 1900 to 2010                                               |
 |UnempRate                        |  U.S. Unemployment Rate                                                       |
@@ -119,6 +118,7 @@ And you can get more information on any individual set using the `help()` comman
 |gas                              |  Gas Prices                                                                   |
 |gdp                              |  Quarterly U.S. GDP                                                           |
 |gnp                              |  Quarterly U.S. GNP                                                           |
+|gtemp.month                      |  Monthly global average surface temperatures by year                          |
 |gtemp_both                       |  Global mean land and open ocean temperature deviations, 1850-2023            |
 |gtemp_land                       |  Global mean land temperature deviations, 1850-2023                           |
 |gtemp_ocean                      |  Global mean ocean temperature deviations, 1850-2023                          |
@@ -293,7 +293,7 @@ lines(lowess(tempr, cmort), col=6, lwd=2)
 
 ### Trends
 
-&#128178; As of version 1.15, there are two new scripts to help with analyzing trends. They are
+&#128178; There are two new scripts to help with analyzing trends. They are
 
 > **`detrend()`** and **`trend()`**
 
@@ -349,7 +349,7 @@ acf1(soi)
 
 <br/>
 
-&#x1F4A1; Since version 1.13.2, the LAG axis label indicates the frequency of
+&#x1F4A1; Note the LAG axis label indicates the frequency of
 the data unless it is 1.  This way, you can see that the tick at LAG 1
 corresponds to 12 (months) and so on.
 
@@ -474,13 +474,14 @@ tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 
 ### ARIMA Estimation
 
-&#127817; Fitting ARIMA models to data is a breeze with the modern script
+&#127817; Fitting ARIMA models to data is a breeze with the  script
 
 > **`sarima()`**
 
 It can do everything for you but you have to choose the model.
 
-&#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK; see [Using an automated process to select the order of an ARMA time series model returns the true data generating process less than half the time even with simple data generating processes; and with more complex models the chance of success comes down nearly to zero even with long sample sizes.](http://freerangestats.info/blog/2015/09/30/autoarima-success-rates)
+&#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK.
+If you know what you are doing, fitting an ARIMA model to linear time series data is easy.
 
 <img src="figs/blackbox2.png" alt="blackbox"  width="70%"><br/>
 
@@ -507,15 +508,47 @@ forecast::auto.arima(x)  # BLACK BOX
      sigma^2 estimated as 0.9657:  log likelihood=-1400
      AIC=2808.01   AICc=2808.05   BIC=2827.64
 ````
-> HA! ... an ARMA(2,1) ??  BUT, if you KNOW what you are doing, you realize the model
+HA! ... an ARMA(2,1) ??  BUT, if you KNOW what you are doing, you realize the model
 is basically overparametrized white noise.
 
-&nbsp;
+Here's another humorous example. Using the data `cmort` (cardiovascular mortality)
 
-Ok - back to our regularly scheduled program, `sarima()`.
+```r
+forecast::auto.arima(cmort)
+
+   Series: cmort 
+   ARIMA(2,0,2)(0,1,0)[52] with drift 
+   
+   Coefficients:
+            ar1     ar2      ma1     ma2    drift
+         0.5826  0.0246  -0.3857  0.2479  -0.0203
+   s.e.  0.3623  0.3116   0.3606  0.2179   0.0148
+   
+   sigma^2 = 56.94:  log likelihood = -1566.28
+   AIC=3144.57   AICc=3144.76   BIC=3169.3
+``` 
+
+HA!  Five parameters and none significant in a rather complex seasonal model. AND, it took forever to run. 
+If you know what you're doing- difference to remove the trend, then it's obviously an AR(1):
+
+```r
+sarima(cmort, 1,1,0, no.constant=TRUE)
+
+  Coefficients: 
+      Estimate     SE  t.value p.value
+  ar1  -0.5064 0.0383 -13.2224       0
+
+  sigma^2 estimated as 33.81057 on 506 degrees of freedom 
+  AIC = 6.367124  AICc = 6.36714  BIC = 6.383805 
+```
+
+Yep!! 1 parameter and the residuals are perfect (white and normal).
+
+
+&#128125;  Ok - back to our regularly scheduled program, `sarima()`.
 As with everything else, there are many examples on the help page (`?sarima`) and we'll do a couple here.
 
-&nbsp;
+<br/> 
 
 
 &#x1F535; Everyone else does it, so why don't we.  Here's a seasonal ARIMA fit to the AirPassenger data set (for the millionth time).
@@ -1766,7 +1799,7 @@ R  # (actual .01)
 
 where _w<sub>t</sub>_ is standard Gaussian white noise.
 
-You just need to input the data and the order because the priors, the number of MCMC iterations (including burnin) have defaults. The method is fast and efficient; the ESSs are the same as the number of iterations (`n.iter`). The output includes two graphics (unless you set `plot = FALSE`) and some quantiles of the sampled parameters.  For further details and references, see the help file (`?ar.mcmc`); this is not covered in tsa4.
+You just need to input the data and the order because the priors, the number of MCMC iterations (including burnin) have defaults. The method is fast and efficient. The output includes two graphics (unless you set `plot = FALSE`) and some quantiles of the sampled parameters.  For further details and references, see the help file (`?ar.mcmc`).
 
 ```r
 u = ar.mcmc(rec, 2)
@@ -1834,10 +1867,6 @@ a change in how the noise covariance matrices are identified (
 [additional Chapter 6 info](https://github.com/nickpoison/tsa4/blob/master/chap6.md) ).
 In this case, the state noise covariance matrix is  Q = sQ sQ'  and for the observation noise it is  R =sR  sR', a slight change from the  `Kfilter_` and `Ksmooth_` scripts (where  Q = cQ' cQ and R = cR' cR).  Also, the measurement matrix A<sub>t</sub> does not have to be an array if it is constant.
 
-
-
-
-There are 2 examples that are similar to Examples 6.26 and 6.27 in the text.
 
 
 
@@ -1921,12 +1950,13 @@ abline(h=mean(draws[,2]), col=3, lwd=2)
 
 &#x1F6C2;  **Example: Structural Model** 
 
-Here's the model and some discussion.  $T_t$ is trend and $S_t$ is quarterly season and
+Here's the model and some discussion. $y_t =\log \text{jj}$,
+  $T_t$ is trend and $S_t$ is quarterly season and
 
 &emsp;&emsp; $y_t  = T_t + S_t + v_t$ &emsp; where &emsp; $T_t = \phi T_{t-1} + w_{t1}$
 &emsp; and &emsp; $S_t+S_{t-1}+S_{t-2}+S_{t-3} = w_{t2}$.
 
- We suggest looking at Example 6.27 in edition 4 of the text for more details.
+ We suggest looking at Example 6.26 in edition 5 of the text for more details.
 
 
 <img src="figs/ex627.png" alt="jj parameters">
