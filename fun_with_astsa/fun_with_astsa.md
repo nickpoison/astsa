@@ -1181,19 +1181,12 @@ tsplot(nyse, col=4)
 
 <br/>
 
-First, the new and improved
- ### Quick Kalman Filter and Smoother 
+ Kalman filtering and smoothing for linear state space models. The scripts are
 
- &#128293; We've added two new scripts to simplify Kalman filtering and smoothing for linear state space models. 
-
-
-
-The scripts are
 > `Kfilter` and `Ksmooth`
 
-and are meant to replace  `Kfilter0/Ksmooth0`,  `Kfilter1/Ksmooth1`, `Kfilter2/Ksmooth2` with simplified arguments and faster running times.  
 
-The default is
+The default (for both) is
 
 &diams; **Version 1:** 
 
@@ -1436,18 +1429,7 @@ List of 6
 
 <br/>
 
-### the old stuff
-&#9888; THE FOLLOWING HAS BEEN SUPERSCEDED BY `Kfilter` and `Ksmooth` DESCRIBED ABOVE
 
-
-> **`Kfilter0()/Ksmooth0()`**, **`Kfilter1()/Ksmooth1()`**, **`Kfilter2()/Ksmooth2()`**
-
-These are still in `astsa` for awhile, but there is an `x` in front of the names; e.g.,
-`Kfilter1()` is `xKilter1()` starting with version 2.0 of `astsa`. 
-The  old
- [special page on Kalman filtering and
-smoothing](https://github.com/nickpoison/tsa4/blob/master/chap6.md) page with the old 
-code is still up.
 
 
 
@@ -1458,13 +1440,10 @@ code is still up.
 ## 9. EM Algorithm and Missing Data
 
 &#x1F4A1;  To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) and discussed in detail in Chapter 6 of the
-text [Time Series Analysis and Its Applications: With R Examples](http://www.springer.com/us/book/9783319524511), use the new script 
+text [Time Series Analysis and Its Applications: With R Examples](http://www.springer.com/us/book/9783319524511), use the   script 
 
 
 > **`EM()`**
-
-which replaces `EM0` and `EM1`.  The new script is faster and allows inputs in both the state
-and observation equations.  
 
 The call looks like 
 
@@ -1540,6 +1519,7 @@ $cvg
 ```r
 tsplot(blood, type='o', col=c(6,4,2), lwd=2, pch=19, cex=1)
 ```
+
 <img src="figs/blood.png" alt="blood"  width="70%"><br/>
 
 + First the set up.
