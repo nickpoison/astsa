@@ -481,9 +481,11 @@ tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 It can do everything for you but you have to choose the model.
 
 
-<blockquote> 
+
 &#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK.
 If you know what you are doing, fitting an ARIMA model to linear time series data is easy.
+
+<blockquote> 
 
 <img src="figs/blackbox2.png" alt="blackbox"  width="70%"><br/>
 
