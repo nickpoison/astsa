@@ -83,7 +83,7 @@ And you can get more information on any individual set using the `help()` comman
 |----------|-------------|
 |BCJ                              |  Daily Returns of Three Banks                                                 |
 |EBV                              |  Entire Epstein-Barr Virus (EBV) Nucleotide Sequence                          |
-|ENSO                             |  El Nino - Southern Oscillation Index                                         |
+|ENSO                             |  El Ni&ntilde;o - Southern Oscillation Index                                         |
 |EQ5                              |  Seismic Trace of Earthquake number 5                                         |
 |EQcount                          |  EQ Counts                                                                    |
 |EXP6                             |  Seismic Trace of Explosion number 6                                          |
