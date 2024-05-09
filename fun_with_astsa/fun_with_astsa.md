@@ -293,7 +293,7 @@ lines(lowess(tempr, cmort), col=6, lwd=2)
 
 ### Trends
 
-&#128178; There are two new scripts to help with analyzing trends. They are
+&#128178; There are two scripts to help with analyzing trends. They are
 
 > **`detrend()`** and **`trend()`**
 
@@ -480,6 +480,8 @@ tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 
 It can do everything for you but you have to choose the model.
 
+
+<blockquote> 
 &#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK.
 If you know what you are doing, fitting an ARIMA model to linear time series data is easy.
 
@@ -528,8 +530,7 @@ forecast::auto.arima(cmort)
    AIC=3144.57   AICc=3144.76   BIC=3169.3
 ``` 
 
-HA!  Five parameters and none significant in a rather complex seasonal model. AND, it took forever to run. 
-If you know what you're doing- difference to remove the trend, then it's obviously an AR(1):
+HA!  Five parameters and none significant in a rather complex seasonal model. AND, it took forever to run during which my CPU fan speed high. If you know what you're doing- difference to remove the trend, then it's obviously an AR(1):
 
 ```r
 sarima(cmort, 1,1,0, no.constant=TRUE)
@@ -543,7 +544,7 @@ sarima(cmort, 1,1,0, no.constant=TRUE)
 ```
 
 Yep!! 1 parameter and the residuals are perfect (white and normal).
-
+</blockquote>
 
 &#128125;  Ok - back to our regularly scheduled program, `sarima()`.
 As with everything else, there are many examples on the help page (`?sarima`) and we'll do a couple here.
