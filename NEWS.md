@@ -33,7 +33,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 #### after v2.1 submission: 
 
-- the scripts and data sets that were marked 'x' have been removed to the [xBox](https://github.com/nickpoison/astsa/tree/master/xBox) ... and they won't be included in the next version.
+- the scripts and data sets that were marked 'x' have been removed to [here](https://github.com/nickpoison/astsa/tree/master/xBox) ... they won't be included in the next version.
 
 - `dna2vector` was updated (due to change in a base R script) - previous versions might not work
 
