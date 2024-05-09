@@ -485,6 +485,7 @@ It can do everything for you but you have to choose the model.
 &#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK.
 If you know what you are doing, fitting an ARIMA model to linear time series data is easy.
 
+---
 <blockquote> 
 
 <img src="figs/blackbox2.png" alt="blackbox"  width="70%"><br/>
@@ -532,7 +533,7 @@ forecast::auto.arima(cmort)
    AIC=3144.57   AICc=3144.76   BIC=3169.3
 ``` 
 
-HA!  Five parameters and none significant in a rather complex seasonal model. AND, it took forever to run during which my CPU fan speed high. If you know what you're doing- difference to remove the trend, then it's obviously an AR(1):
+HA!  Five parameters and none significant in a rather complex seasonal model. AND, it took forever to run during which my CPU fan speed ran on high. If you know what you're doing- difference to remove the trend, then it's obviously an AR(1):
 
 ```r
 sarima(cmort, 1,1,0, no.constant=TRUE)
@@ -546,6 +547,8 @@ sarima(cmort, 1,1,0, no.constant=TRUE)
 ```
 
 Yep!! 1 parameter and the residuals are perfect (white and normal).
+
+---
 </blockquote>
 
 &#128125;  Ok - back to our regularly scheduled program, `sarima()`.
