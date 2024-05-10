@@ -62,7 +62,7 @@ The webpages for the texts and some help on using R for time series analysis can
 \examples{
 \dontrun{
 
-u = ssm(gtemp_land, A=1, alpha=.01, phi=1, sigw=.05, sigv=.15)
+u = ssm(gtemp_land, A=1, alpha=.01, phi=1, sigw=.05, sigv=.15, fixphi=TRUE)
 tsplot(gtemp_land, type='o', col=4)
 lines(u$Xs, col=6, lwd=2)
 }
