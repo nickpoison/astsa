@@ -565,29 +565,14 @@ sarima(log(AirPassengers),0,1,1,0,1,1,12, gg=TRUE, col=4)
 and the partial output including the residual diagnostic plot is (`AIC` is basically `aic` divided by the sample size):
 
 ```r
-Coefficients:
-          ma1     sma1
-      -0.4018  -0.5569
-s.e.   0.0896   0.0731
-
-sigma^2 estimated as 0.001348:  log likelihood = 244.7,  aic = -483.4
-
-$degrees_of_freedom
-[1] 129
-
-$ttable
+Coefficients: 
      Estimate     SE t.value p.value
 ma1   -0.4018 0.0896 -4.4825       0
 sma1  -0.5569 0.0731 -7.6190       0
 
-$AIC
-[1] -3.690069
-
-$AICc
-[1] -3.689354
-
-$BIC
-[1] -3.624225
+sigma^2 estimated as 0.001348035 on 129 degrees of freedom 
+ 
+AIC = -3.690069  AICc = -3.689354  BIC = -3.624225 
 ```
 
 <img src="figs/airpass.png" alt="airpass"  width="70%"><br/>
@@ -608,29 +593,14 @@ sarima(x, 2,0,0, fixed=c(0,NA,NA))  # ar1 (fixed at 0), ar2 (free), mean (free)
 with output
 
 ```r
-Coefficients:
-      ar1      ar2    xmean
-        0  -0.8829  49.9881
-s.e.    0   0.0317   0.0381
-
-sigma^2 estimated as 1.02:  log likelihood = -287.3,  aic = 580.59
-
-$degrees_of_freedom
-[1] 198
-
-$ttable
+Coefficients: 
       Estimate     SE   t.value p.value
-ar2    -0.8829 0.0317  -27.8093       0
-xmean  49.9881 0.0381 1311.6366       0
+ar2    -0.9319 0.0246  -37.9526       0
+xmean  49.9527 0.0367 1361.7834       0
 
-$AIC
-[1] 2.954332
-
-$AICc
-[1] 2.954637
-
-$BIC
-[1] 3.003807
+sigma^2 estimated as 0.9946776 on 198 degrees of freedom 
+ 
+AIC = 2.882823  AICc = 2.883128  BIC = 2.932298 
 ```
 
 <br/>
@@ -645,26 +615,16 @@ sarima(pp$Lynx, 2,0,0, xreg=pp$HareL1)
 with partial output
 
 ```r
-sigma^2 estimated as 59.57:  log likelihood = -312.8,  aic = 635.59
-
-$degrees_of_freedom
-[1] 86
-
-$ttable
+Coefficients: 
           Estimate     SE t.value p.value
 ar1         1.3258 0.0732 18.1184  0.0000
 ar2        -0.7143 0.0731 -9.7689  0.0000
 intercept  25.1319 2.5469  9.8676  0.0000
 xreg        0.0692 0.0318  2.1727  0.0326
 
-$AIC
-[1] 7.062148
-
-$AICc
-[1] 7.067377
-
-$BIC
-[1] 7.201026
+sigma^2 estimated as 59.57091 on 86 degrees of freedom 
+ 
+AIC = 7.062148  AICc = 7.067377  BIC = 7.201026 
 ```
 
 <img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="70%"><br/>
