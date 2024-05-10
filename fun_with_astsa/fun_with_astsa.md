@@ -55,11 +55,11 @@ it's more than just data ...
   * [11. Stochastic Volatility Models - 	&#128150; NEW 	&#128150;](#11-stochastic-volatility-models)  
       * [Bayesian](#bayesian)
       * [Classical](#classical) 
-  * [12. Arithmetic](#11-arithmetic)
+  * [12. Arithmetic](#12-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
-  * [13. The Spectral Envelope](#12-the-spectral-envelope)
+  * [13. The Spectral Envelope](#13-the-spectral-envelope)
      * [DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
      * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)
 
@@ -1327,7 +1327,7 @@ To use the script, you have to give initial estimates and then the script fits t
 ```r
 u = ssm(gtemp_land, A=1, phi=1, alpha=.01, sigw=.01, sigv=.1, fixphi=TRUE)
 ```
-with output (estimates and standard errors)
+(remove the `fixphi=TRUE` to estimate &phi;) with output:
 
 ```r
           estimate          SE
@@ -1349,30 +1349,9 @@ polygon(xx, yy, border=8, col=gray(.6, alpha=.25) )
 <img src="figs/ssm.png" alt="ssm"  width="70%"><br/>
 
 
-&#x1F535; You can fix &phi;=1 in this case if you believe the series is taking a random walk with drift:
 
-```r
-ssm(gtemp_land, A=1, alpha=.01, phi=1, sigw=.01, sigv=.1, fixphi=TRUE)
 
-##-- output --##
-initial  value -79.270104
-iter   2 value -158.182337
-iter   3 value -160.835289
 
-iter  17 value -172.310970
-iter  18 value -172.312005
-iter  19 value -172.326951
-iter  20 value -172.326965
-iter  20 value -172.326965
-iter  20 value -172.326965
-final  value -172.326965
-converged
-
-        estimate          SE
-alpha 0.01356630 0.004279108
-sigw  0.04930987 0.011151130
-sigv  0.14727510 0.010881612
-```
 <br/>
 
 &#x1F535; The output of `ssm()` gives the predictors  [`Xp`] and MSPE [`Pp`], the
@@ -1382,12 +1361,12 @@ filtered values [`Xf` and `Pf`]  and the smoothers [`Xs` and `Ps`]:
 str(u)
 
 List of 6
- $ Xp: Time-Series [1:138] from 1880 to 2017: -0.591 -0.602 -0.538 -0.511 -0.537 ...
- $ Pp: Time-Series [1:138] from 1880 to 2017: 0.02441 0.01375 0.01053 0.00915 0.00846 ...
- $ Xf: Time-Series [1:138] from 1880 to 2017: -0.606 -0.544 -0.516 -0.543 -0.615 ...
- $ Pf: Time-Series [1:138] from 1880 to 2017: 0.01163 0.00849 0.00714 0.00648 0.00613 ...
- $ Xs: Time-Series [1:138] from 1880 to 2017: -0.595 -0.588 -0.593 -0.607 -0.621 ...
- $ Ps: Time-Series [1:138] from 1880 to 2017: 0.00432 0.0038 0.0035 0.00333 0.00324 ...
+ $ Xp: Time-Series [1:174] from 1850 to 2023: -0.446 -0.445 -0.467 -0.46 -0.454 ...
+ $ Pp: Time-Series [1:174] from 1850 to 2023: 0.0292 0.0263 0.0246 0.0236 0.023 ...
+ $ Xf: Time-Series [1:174] from 1850 to 2023: -0.459 -0.481 -0.474 -0.468 -0.401 ...
+ $ Pf: Time-Series [1:174] from 1850 to 2023: 0.0218 0.0202 0.0192 0.0186 0.0182 ...
+ $ Xs: Time-Series [1:174] from 1850 to 2023: -0.503 -0.497 -0.487 -0.475 -0.463 ...
+ $ Ps: Time-Series [1:174] from 1850 to 2023: 0.01094 0.01051 0.01023 0.01005 0.00994 ...
  ```
 
 <br/>
@@ -1410,12 +1389,11 @@ text [Time Series Analysis and Its Applications: With R Examples](http://www.spr
 
 The call looks like 
 
-&emsp; `EM(y, A, mu0, Sigma0, Phi, Q, R, Ups = NULL, Gam = NULL, input = NULL, max.iter = 100, tol = 1e-04)`
+&emsp; `EM(y, A, mu0, Sigma0, Phi, Q, R, Ups=NULL, Gam=NULL, input=NULL, max.iter=100, tol=1e-04)`
 
 and sort of mimics the `Kfilter` and `Ksmooth` calls but accepts `Q` and `R` directly. However, the code only works with the uncorrelated noise script (version 1). 
 
-&#x1F535;  We'll do the simple example that was used for [`ssm()`](#beginners-paradise) above.
-The model for `y = gtemp_land` is
+&#x1F535;  Here's a simple univariate example. With `y = gtemp_land`, the model we'll fit is
 
 &emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/>
 
@@ -1439,44 +1417,44 @@ with partial output
 
 ```r
 $Phi
-[1] 1.015942
+[1] 1.024571
 
 $Q
             [,1]
-[1,] 0.001348338
+[1,] 0.001541975
 
 $R
           [,1]
-[1,] 0.0224148
+[1,] 0.0941836
 
 $Ups
-[1] 0.01241722
+[1] 0.01301747
 
 $Gam
 NULL
 
 $mu0
            [,1]
-[1,] -0.5687667
+[1,]  -0.5036954
 
 $Sigma0
             [,1]
-[1,] 0.000559381
+[1,]  0.001961116
+
 
 $like
- [1] -148.1577 -178.8155 -179.5830 -179.6668 -179.7122 -179.7460 -179.7730 -179.7951 -179.8137
-[10] -179.8295
+[1]  328.3526 -110.5628 -112.3838 -112.3874
 
 $niter
-[1] 10
+[1]  4
 
 $cvg
-[1] 8.80397e-05
+[1]  3.194832e-05
 ```
 
 **NOTE: Missing data can now be entered as NA or zero (0) in the data (y) and measurement matrices (A<sub>t</sub>).
 
-&#x1F535; Next, we'll do a missing data  `blood` example, which contains the daily blood work of a patient for 90 days and where there are many missing observations after the first month.
+&#x1F535; Next, we'll do a missing data  `blood` example, which contains the daily blood work of a patient for 91 days and where there are many missing observations after the first month.
 
 
 ```r
@@ -1663,7 +1641,9 @@ Phi[1,1]=.1 ; Phi[1,2]=.1
 Q[1,1] = .1
 R = .1
 
-# run EM one at a time, then re-constrain the parms
+###########################################################
+#### run EM one at a time, then re-constrain the parms ####
+###########################################################
 ###-- with some extra coding, the loop can be stopped when a given
 ###-- tolerance is reached  by monitoring em$like at each iteration ... 
 for (i in 1:75){
@@ -1725,12 +1705,13 @@ R  # (actual .01)
 
 ## 10. Bayesian Techniques
 
-&#x1F4A1; We're adding some scripts to handle Bayesian analysis. So far we have
+&#x1F4A1; We've added some scripts to handle Bayesian analysis. So far we have
+
 > `ar.mcmc` to fit AR models 
 
 > `SV.mcmc` to fit stochastic volatility models 
 
-> `ffbs` the forward filter backward sampling (FFBS) algorithm - part of Gibbs sampler
+> `ffbs` the forward filter backward sampling (FFBS) algorithm - part of Gibbs for SS models
 
 <br/>
 
@@ -1742,7 +1723,7 @@ R  # (actual .01)
 
 where _w<sub>t</sub>_ is standard Gaussian white noise.
 
-You just need to input the data and the order because the priors, the number of MCMC iterations (including burnin) have defaults. The method is fast and efficient. The output includes two graphics (unless you set `plot = FALSE`) and some quantiles of the sampled parameters.  For further details and references, see the help file (`?ar.mcmc`).
+You just need to input the data and the order because the priors, the number of MCMC iterations (including burnin) have defaults. The method is fast and efficient. The output includes two graphics (unless `plot = FALSE`) and some quantiles of the sampled parameters.  For further details and references, see the help file (`?ar.mcmc`).
 
 ```r
 u = ar.mcmc(rec, 2)
@@ -1789,7 +1770,7 @@ head(u)
 
 ### Gibbs Sampling for Linear State Space Models
 
-&#x1F535; The package now contains `ffbs` (**Forward Filtering Backward Sampling - FFBS**)
+&#x1F535; The package has an `ffbs` script (**Forward Filtering Backward Sampling - FFBS**)
  to facilitate Gibbs sampling for linear state space models:  
 
 &emsp;&emsp;  x<sub>t</sub> = &Phi; x<sub>t-1</sub> +  &Upsilon; u<sub>t</sub> + sQ w<sub>t</sub>,  &nbsp; &nbsp;  y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> +  &Gamma; u<sub>t</sub> + sR v<sub>t</sub>, 
@@ -1802,14 +1783,7 @@ If $\Theta$ represents the parameters, $x_{0:n}$ the states, $y_{1:n}$ the data,
 &emsp;&emsp; (1) sample $\Theta' \sim p(\Theta \mid x_{0:n}, y_{1:n})$ <br/>
 &emsp;&emsp; (2) sample $x_{0:n}' \sim p(x_{0:n} \mid \Theta', y_{1:n})$
 
-`ffbs` accomplishes (2). There is NOT a script to do (1) because the model is too general to build a decent script to cover the possibilities.  
-
-
-The script uses  _Level 1_ of the text's Kalman filtering and smoothing set up with
-a change in how the noise covariance matrices are identified ( 
-[additional Chapter 6 info](https://github.com/nickpoison/tsa4/blob/master/chap6.md) ).
-In this case, the state noise covariance matrix is  Q = sQ sQ'  and for the observation noise it is  R =sR  sR', a slight change from the  `Kfilter_` and `Ksmooth_` scripts (where  Q = cQ' cQ and R = cR' cR).  Also, the measurement matrix A<sub>t</sub> does not have to be an array if it is constant.
-
+`ffbs` accomplishes (2). There is NOT a script to do (1) because the model is too general to build a decent script to cover the possibilities.  The script uses version 1 of `Kfilter` and `Ksmooth`.
 
 
 
@@ -2041,7 +2015,7 @@ u = ar.mcmc(rec, 2, n.iter = 1000, plot = FALSE)
 apply(u, 2, ESS)
  phi0  phi1  phi2 sigma 
  1000  1000  1000  1000
-# ar.mcmc is efficient
+# nice
 ```
 
 
@@ -2122,7 +2096,7 @@ SV.mle(BCJ[,'boa'], feedback=TRUE, rho=0)  # rho not included if no start value 
   SE         0.5063 0.0023 0.0266  0.7049 0.0509  0.1778 0.1085 0.3970
 ```
 
-Notice that $\rho$ is not significant and its SE is huge! And you get a graphic of the predicted $x_t$ superimpose on $r_t$ (times 10), and a comparison of the distribution of $\eta$ vs $\log \chi_1^2$,
+Notice that $\rho$ is not significant and its SE is huge! And you get a graphic of the predicted $x_t$ superimpose on $r_t$ (times 10), and a comparison of the distribution of $\eta_t$ vs $\log \chi_1^2$,
 
 
 
@@ -2172,8 +2146,8 @@ arma.spec(ar = c(1.5, -.75), ma = c(-.8,-.4))
 
 ### Matrix Powers
 
-&#x1F535;  We  compute _&Sigma;<sup>&nbsp;-&frac12;</sup>_ where _&Sigma;_ is a variance-covariance matrix  when calculating the [_spectral envelope_](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full)
-so we built in a script called `matrixpwr` that computes powers of a square matrix, including negative powers for nonsingular matrices.
+&#x1F535;   We  compute _&Sigma;<sup>&nbsp;-&frac12;</sup>_ where _&Sigma;_ is a variance-covariance matrix  when calculating the [_spectral envelope_](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full). Also, the square root of a  covariance matrix can be useful for state space modeling via `Kfilter`, `Ksmooth`, and `EM`.
+So, we built in a script called `matrixpwr` that computes powers of a square matrix, including negative powers for nonsingular matrices.
 Also, `%^%` is available as a more intuitive operator. For example,
 
 ```r
@@ -2220,7 +2194,7 @@ round(var(econ5), 1)
   [1,] 0.625 0.375
   [2,] 0.625 0.375
 ```
-_&pi;(1)_ = 5/(3+5) and _&pi;(2)_ = 3/(3+5) and almost there in 5 steps.
+_&pi;(1)_ = 5/(3+5) = .625 and _&pi;(2)_ = 3/(3+5)=.375 and almost there in 5 steps.
 
 A note - if you use it in an expression, surround the operation with parentheses:
 ```r
@@ -2238,7 +2212,7 @@ c(.5,.5) %*% P %^% 50
 ### Polynomial Multiplication
 
 &#x1F535;  The script `sarima.sim` uses `polyMul` when simulating data from seasonal ARIMA models.
-For folks who may have forgotten the stuff they learned about polynomials in 2nd grade math, it might help to see what happens with a multiplicative model such as<br/>
+For example,<br/>
 _&emsp; &emsp; (1 - 1.5B<sup>1</sup> + .75B<sup>2</sup>)&times;(1 - .9B<sup>12</sup>) x<sub>t</sub>   =w<sub>t</sub>_<br/>
 which is an ARIMA(2,0,0)&times;(1,0,0)<sub>12</sub> model.  You can add MA and SMA parts to your liking in the same manner.  Here's the AR polynomial on the left (`ARpoly`) and then the AR coefficients when on the right (`ARparm`):
 
@@ -2407,7 +2381,7 @@ head(xdata)
   [5,]    0    0    0    1
 ```
 
-&#x1F4A1;  `specenv` calculates the spectral envelope defined in [the original paper](https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf), summarized in  [Statistical Science](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full) and discussed in Chapter 7 of [Time Series Analysis and Its Applications: With R Examples](https://www.stat.pitt.edu/stoffer/tsa4/).
+&#x1F4A1;  `specenv` calculates the spectral envelope defined in [the original paper](https://www.stat.pitt.edu/stoffer/dss_files/spenv.pdf), summarized in  [Statistical Science](https://projecteuclid.org/journals/statistical-science/volume-15/issue-3/The-spectral-envelope-and-its-applications/10.1214/ss/1009212816.full) and discussed in Chapter 7 of the text.
 
 By default, it produces a graph of the spectral envelope and an approximate significance threshold and invisibly return a matrix containing: _frequency, spectral envelope ordinates, and scaling of the categories_ in the order of the categories in the alphabet.
 
