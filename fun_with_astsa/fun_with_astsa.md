@@ -45,8 +45,7 @@ it's more than just data ...
   * [7. Testing for Linearity](#7-linearity-test)
   * [8. State Space Models and Kalman Filtering](#8-state-space-models)
      * [Quick Kalman Filter and Smoother - 	&#128150; NEW 	&#128150;](#quick-kalman-filter-and-smoother)
-     * [Beginners Paradise - SSM](#beginners-paradise)
-     * [The Old Stuff](#the-old-stuff)
+     * [SSM - for beginners](#beginners-paradise)
   * [9. EM Algorithm and Missing Data - &#128150; NEW &#128150;](#9-em-algorithm-and-missing-data)
      * [Parameter Constraints](#parameter-constraints)
   * [10. Bayesian Techniques - &#128150; NEW &#128150;](#10-bayesian-techniques)
@@ -1315,8 +1314,7 @@ legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,
 > **`ssm()`**
 
 
-&#x1F535; First, consider a simple univariate model.
-We write the **states** as _x<sub>t</sub>_ and the **observations** as _y<sub>t</sub>_.
+&#x1F535; For a univariate model (both $p=q=1$), write the **states** as _x<sub>t</sub>_ and the **observations** as _y<sub>t</sub>_.
 
 
 &emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/>
@@ -1324,19 +1322,18 @@ We write the **states** as _x<sub>t</sub>_ and the **observations** as _y<sub>t<
 where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
 
 &#x1F535; We'll fit the model to one of the global temperature series.
-To use the script, you have to give initial estimates and then the script fits the model via MLE. The initial values of &mu;<sub>0</sub> and &sigma;<sub>0</sub> are chosen automatically.
+To use the script, you have to give initial estimates and then the script fits the model via MLE. The initial values of &mu;<sub>0</sub> and &sigma;<sub>0</sub> are chosen automatically. In this example, we hold &phi; fixed at 1.
 
 ```r
-u = ssm(gtemp_land, A=1, phi=1, alpha=.01, sigw=.01, sigv=.1)
+u = ssm(gtemp_land, A=1, phi=1, alpha=.01, sigw=.01, sigv=.1, fixphi=TRUE)
 ```
 with output (estimates and standard errors)
 
 ```r
-        estimate          SE
-phi   1.01350314 0.009171042
-alpha 0.01270687 0.003749046
-sigw  0.04252969 0.010688521
-sigv  0.14902612 0.010685375
+          estimate          SE
+  alpha 0.01428210 0.005138887
+  sigw  0.06643393 0.013368981
+  sigv  0.29494720 0.017370440
 ```
 
 and a nice picture - the data [_y<sub>t</sub>_], the smoothers [ E(_x<sub>t</sub>_ | _y<sub>1</sub> ,..., y<sub>n</sub>_) ] and  &#177;2 root MSPEs.  The smoothers are
