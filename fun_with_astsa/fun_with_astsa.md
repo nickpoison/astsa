@@ -513,7 +513,8 @@ forecast::auto.arima(x)  # BLACK BOX
      AIC=2808.01   AICc=2808.05   BIC=2827.64
 ````
 HA! ... an ARMA(2,1) ??  BUT, if you KNOW what you are doing, you realize the model
-is basically overparametrized white noise.
+is basically overparametrized white noise.  
+
 
 Here's another humorous example. Using the data `cmort` (cardiovascular mortality)
 
