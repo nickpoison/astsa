@@ -2,14 +2,15 @@
 
 [![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa)
 
+#### We'll demonstrate some of the capabilities of the latest version of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
 
-#### we'll demonstrate some of the capabilities of the latest version of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
+
 
 Remember to load `astsa` at the start of a session.  
 
 > **`library(astsa)`**
 
-it's more than just data ...
+it's more than just data ... it's a palindrome 
 
 
 -----
@@ -185,9 +186,11 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), names=rep(3:6, 2), add=TRUE)
 ```
 **Notice each color display has diagonal lines behind it to demonstrate opacity.**
 
-<img src="figs/palette.png" alt="palette"  width="70%"><br/>
+<img src="figs/palette.png" alt="palette"  width="70%">
 
-<br/>
+
+
+<br/><br/>
 
 ### tsplot
 
@@ -312,7 +315,7 @@ tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon - USD per KG')
 
  ```r
  trend(soi, lowess=TRUE)
- ``` 
+ ```
 
  
 
@@ -406,8 +409,7 @@ ccf2(cmort, part)
 &#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).
 
 
-&#x1F535; For multiple series, you can look at all sample ACFs (diagonal)
-and CCFs (off-diagonal) simultaneously:
+&#x1F535; For multiple series, you can look at all sample ACFs (diagonal) and CCFs (off-diagonal) simultaneously:
 
 ```r
 acfm(diff(log(econ5)))
@@ -416,21 +418,15 @@ acfm(diff(log(econ5)))
 
 <br/>
 
-What you see are estimates of
-_corr( x<sub>t+LAG</sub> , y<sub>t</sub> )_ where
-_x<sub>t</sub>_ is a column series and _y<sub>t</sub>_ is a row
-series. _x<sub>t</sub>_  leads when LAG is positive and
-_x<sub>t</sub>_ lags when LAG is negative -
-column-wise, the top series leads and row-wise, the side series lags.
+What you see are estimates of _corr( x<sub>t+LAG</sub> , y<sub>t</sub> )_ where _x<sub>t</sub>_ is a column series and _y<sub>t</sub>_ is a row series. _x<sub>t</sub>_  leads when LAG is positive and _x<sub>t</sub>_ lags when LAG is negative. In the figure, the top (columns) series leads and the side series (rows) lags.
 
-The script uses `tsplot` so there are various options for the output.
-For example, you can suppress the minor ticks if it's too much, or
-you can do a "gris-gris" plot (the grammar of `astsa` is voodoo):
+The script uses `tsplot` so there are various options for the output. For example, you can suppress the minor ticks if it's too much, or you can do a "gris-gris" plot (the grammar of `astsa` is voodoo):
 
 ```r
 acfm(diff(log(econ5)), nxm=0)    #  no minor ticks on LAG axis
 
 acfm(diff(log(econ5)), gg=TRUE, acf.highlight=FALSE)  # Gris-Gris Gumbo Ya Ya
+
 ```
 
 
@@ -457,7 +453,9 @@ The syntax are simple and we'll demonstrate with a couple of examples. There are
 y = sarima.sim(ar=c(1.5,-.75)) + 50
 tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
 ```
-<img src="figs/ar2sim.png" alt="ar2sim"  width="70%"><br/>
+<img src="figs/ar2sim.png" alt="ar2sim"  width="70%">
+
+<br/>
 
 &#x1F535; Now we'll simulate from a seasonal model, `SARIMA(0,1,1)x(0,1,1)`<sub>`12`</sub>  --- B&J's favorite
 
@@ -467,7 +465,7 @@ x = sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120) + 100
 tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 ```
 
-<img src="figs/sarima.sim.png" alt="sarima.sim"  width="70%"><br/>
+<img src="figs/sarima.sim.png" alt="sarima.sim"  width="70%">br/>
 
 <br/>
 
@@ -486,12 +484,10 @@ If you know what you are doing, fitting an ARIMA model to linear time series dat
 
 ---
 <blockquote> 
-
 <img src="figs/blackbox2.png" alt="blackbox"  width="70%"><br/>
 
 
-Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T WORK and was scrapped.
- The bottom line is, if you don't know what you're doing (aka _ZERO KNOWLEDGE_), why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
+Originally, `astsa` had a version of automatic fitting of models but IT DIDN'T WORK and was scrapped.  The bottom line is, if you don't know what you're doing (aka _ZERO KNOWLEDGE_), why are you doing it? Maybe a better idea is to [take a short course on fitting ARIMA models to data](https://www.datacamp.com/courses/arima-models-in-r).
 
 > DON'T BELIEVE IT?? OK... HERE YOU GO:
 
@@ -512,8 +508,7 @@ forecast::auto.arima(x)  # BLACK BOX
      sigma^2 estimated as 0.9657:  log likelihood=-1400
      AIC=2808.01   AICc=2808.05   BIC=2827.64
 ````
-HA! ... an ARMA(2,1) ??  BUT, if you KNOW what you are doing, you realize the model
-is basically overparametrized white noise.  
+HA! ... an ARMA(2,1) ??  BUT, if you KNOW what you are doing, you realize the model is basically overparametrized white noise.  
 
 
 Here's another humorous example. Using the data `cmort` (cardiovascular mortality)
@@ -531,7 +526,7 @@ forecast::auto.arima(cmort)
    
    sigma^2 = 56.94:  log likelihood = -1566.28
    AIC=3144.57   AICc=3144.76   BIC=3169.3
-``` 
+```
 
 HA!  Five parameters and none significant in a rather complex seasonal model. AND, it took forever to run during which my CPU fan speed ran on high. If you know what you're doing- difference to remove the trend, then it's obviously an AR(1):
 
@@ -575,7 +570,9 @@ sigma^2 estimated as 0.001348035 on 129 degrees of freedom
 AIC = -3.690069  AICc = -3.689354  BIC = -3.624225 
 ```
 
-<img src="figs/airpass.png" alt="airpass"  width="70%"><br/>
+<img src="figs/airpass.png" alt="airpass"  width="70%">
+
+<br/>
 
 &#x1F535; You can shut off the diagnostics using `details=FALSE`
 
@@ -605,8 +602,7 @@ AIC = 2.882823  AICc = 2.883128  BIC = 2.932298
 
 <br/>
 
-&#x1F535; And one more with exogenous variables - this is the regression
-of `Lynx` on `Hare` lagged one year with AR(2) errors.
+&#x1F535; And one more with exogenous variables - this is the regression of `Lynx` on `Hare` lagged one year with AR(2) errors.
 
 ```r
 pp = ts.intersect(Lynx, HareL1 = lag(Hare,-1), dframe=TRUE)
@@ -627,7 +623,7 @@ sigma^2 estimated as 59.57091 on 86 degrees of freedom
 AIC = 7.062148  AICc = 7.067377  BIC = 7.201026 
 ```
 
-<img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="70%"><br/>
+<img src="figs/sarimalynxhare.png" alt="sarimalynxhare"  width="70%">
 
 <br/>
 
@@ -665,7 +661,9 @@ rMSE:
 
 and a picture:
 
-<img src="figs/ar.boot.png" alt="ar.boot"  width="70%"><br/>
+<img src="figs/ar.boot.png" alt="ar.boot"  width="70%">
+
+<br/>
 
 
 
@@ -675,8 +673,7 @@ and a picture:
 
 > **`sarima.for()`**
 
-You get a graphic showing  ± 1 and 2 root mean square prediction errors and the predictions and standard errors are printed.   The syntax are similar to `sarima` but the
-number of periods to forecast, `n.ahead`, has to be specified.
+You get a graphic showing  ± 1 and 2 root mean square prediction errors and the predictions and standard errors are printed.   The syntax are similar to `sarima` but the number of periods to forecast, `n.ahead`, has to be specified.
 
 
 &#x1F535; Here's a simple example.  We'll generate some data from an ARIMA(1,1,0), forecast some of it and then compare the forecasts to the actual values.
@@ -707,7 +704,9 @@ End = 150
 Frequency = 1
  [1]  1.136849  2.427539  3.889295  5.459392  7.096606  8.772528 10.466926 ...
 ```
-<img src="figs/fore1.png" alt="fore1"  width="70%"><br/>
+<img src="figs/fore1.png" alt="fore1"  width="70%">
+
+<br/>
 
 &#x1F535; Notice the `plot.all=TRUE` in the `sarima.for` call. The default is `FALSE` in which case the graphic shows only the final 100 observations and the forecasts to make it easier to see what's going on (like in the next example).
 
@@ -759,7 +758,9 @@ and if you want to do a seasonal model, you have to be a little creative; e.g., 
 arma.spec(ar=c(rep(0,11),.4), ma=.5, col=5, lwd=3, frequency=12)
 ```
 
-<img src="figs/arma_spec_season.png" alt="arma_spec_season" width="70%"><br/>
+<img src="figs/arma_spec_season.png" alt="arma_spec_season" width="70%">
+
+<br/>
 
 
 Some goofs
@@ -806,7 +807,9 @@ sois  = mvspec(soi, spans=c(7,7), taper=.1, col=4, lwd=2)
 soisl = mvspec(soi, spans=c(7,7), taper=.5, col=4, lwd=2, log='y')
 ```
 
-<img src="figs/soispec.png" alt="soispec" width="70%"><br/>
+<img src="figs/soispec.png" alt="soispec" width="70%">
+
+<br/>
 
 &#x1F535; and you can get the usual information
 
@@ -965,49 +968,9 @@ refer to frequency ordinate:
 
 and most of the inputs have default settings.  
 
-<!--
-&#128526; ENSO ... this is like the main example in the paper but the data have been updated.  The input `min.freq` and `max.freq` specify the frequency range 
-(min, max) over which to calculate the Whittle likelihood; the default is (0, &half;), which is the max frequency range.
-
-
-```r
-autoSpec(ENSO, max.freq=.25)  
-
-  #  returned breakpoints include the endpoints 
-  # $breakpoints
-  # [1]   1 238 862
-  # 
-  # $number_of_segments
-  # [1] 2
-  # 
-  # $segment_kernel_orders_m
-  # [1] 1 4
-
-z = time(ENSO)
-z[238]
-  # 1970.75
-
-x1 =  window(ENSO, start=z[1], end=z[237])
-x2 =  window(ENSO, start=z[238], end=z[862])
-
-par(mfrow=c(3,1))
-tsplot(ENSO, col=4, ylab='SOI')
- abline(v=z[238], col=6, lty=2, lwd=2)
-mvspec(x1, taper=.5, kernel=bart(1), main='Segment 1', col=4, lwd=2)
- rect(1/7, -1e5, 1/2, 1e5, density=NA, col=gray(.5,.2))
-mvspec(x2, taper=.5, kernel=bart(4),   main='Segment 2', col=4, lwd=2)
- rect(1/7, -1e5, 1/2, 1e5, density=NA, col=gray(.5,.2))
-```
-
-<img src="figs/autospec_enso.png" alt="autoSpec_ENSO"  width="70%"><br/>
-
-<br/>
--->
-
 &#128526; Here's an example where other techniques tend to fail (try it with `autoParm` below). A narrowband signal is modulated until halfway through. 
 
-Part of the input are `min.freq` and `max.freq` that specify the frequency range 
-(`min`, `max`) over which to calculate the Whittle likelihood; the default is (0, &half;), which is the entire frequency range.
+Part of the input are `min.freq` and `max.freq` that specify the frequency range (`min`, `max`) over which to calculate the Whittle likelihood; the default is (0, &half;), which is the entire frequency range.
 
 ```r
 # simulate data
@@ -1309,7 +1272,7 @@ legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,
 <br/> 
 
 ### Beginners Paradise
- 
+
  &#x1F4A1;  There is a basic state space model script in `astsa` for beginners:
 
 > **`ssm()`**
@@ -1368,7 +1331,7 @@ List of 6
  $ Pf: Time-Series [1:174] from 1850 to 2023: 0.0218 0.0202 0.0192 0.0186 0.0182 ...
  $ Xs: Time-Series [1:174] from 1850 to 2023: -0.503 -0.497 -0.487 -0.475 -0.463 ...
  $ Ps: Time-Series [1:174] from 1850 to 2023: 0.01094 0.01051 0.01023 0.01005 0.00994 ...
- ```
+```
 
 <br/>
 
@@ -2050,7 +2013,7 @@ where _w<sub>t</sub>_ and  _&epsilon;<sub>t</sub>_  are independent standard Gau
      user  system elapsed 
     42.02    0.71   44.73 
    The acceptance rate is: 29.7%
-```
+ ```
 and graphics (traces, effective sample sizes, ACFs, histograms with 2.5%-50%-97.5% quantiles
 followed by the posterior mean log-volatility with 95% credible intervals).
 
@@ -2325,7 +2288,7 @@ the following code can be used to read the data into the session, create the ind
   bone    <- dna2vector(data)       # convert it to indicators
   save(bone, file='bone.rda')       # save the file as a compressed file
   load('bone.rda')                  # and load 'bone' when you need it
- ```
+```
 
 &#129002; Here are some other examples using `dna2vector`, which takes two arguments,
 `data` and `alphabet`.  Of course `data` is the object that contains the sequence data, and `alphabet` is the particular alphabet used in the file, which defaults to ` alphabet = c("A", "C", "G", "T")` for strings and `alphabet = 1:4` for numeric data such as `bnrf1ebv`.
