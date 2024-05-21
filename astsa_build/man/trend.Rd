@@ -32,7 +32,7 @@ Vector of two colors for the graphic, first the color of the data (default is bl
 Label for the vertical axis (default is the name of the series).
 }
   \item{ci}{
-If TRUE (default), pointwise 95% confidence intervals are drawn.
+If TRUE (default), pointwise 95\% confidence intervals are drawn.
 }
   \item{\dots}{
 Other graphical parameters.
