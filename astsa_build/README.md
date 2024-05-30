@@ -10,23 +10,18 @@
 
 
 
-* __Note:__ scripts and data sets starting with `x` will be phased out eventually. Old code will run by adding an `x`; e.g., `xKfilter1(...)` instead of `Kfilter1()`.
-
 
 We do not always push the latest version of the package to CRAN, but [the latest working version of the package will always be at Github](https://github.com/nickpoison/astsa/).
 
 * The [ROAD MAP](https://nickpoison.github.io/) is a good place to start to find all the links to the webpages for the texts and some help on using R for time series analysis. 
-
 * See the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) for further details about the state of the package, how to install the latest version, and the changelog.
-
-* __Warning:__  If loaded, the package _dplyr_ may corrupt the base scripts `filter` and `lag` that we use often. In this case, to avoid problems, issue the commands 
-`filter=stats::filter` and `lag=stats::lag` before analyzing time series data.
+* __Warning:__  If loaded, the package _dplyr_ may corrupt the base scripts `filter` and `lag` that we use often. In this case, to avoid problems,  either detach _dplyr_: `detach(package:dplyr)` or issue the commands `filter=stats::filter` and `lag=stats::lag` before analyzing time series data. 
 
 
 * A list of data sets, scripts, and demonstrations of the capabilities of `astsa` can be found  at [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md)...  it's more fun than high school.
 
 
-* The updated [code for the graduate level text](https://github.com/nickpoison/tsa5/blob/master/textRcode.md) is here: [TSA5](https://github.com/nickpoison/tsa5/blob/master/textRcode.md).
+* The [code for the graduate level text](https://github.com/nickpoison/tsa5/blob/master/textRcode.md) is here: [TSA5](https://github.com/nickpoison/tsa5/blob/master/textRcode.md).
 
 * The updated [code for the data science text](https://github.com/nickpoison/tsda/blob/master/Rcode.md) is here: [TSDA](https://github.com/nickpoison/tsda/blob/master/Rcode.md).
 

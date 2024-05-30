@@ -1,6 +1,6 @@
 trend <-
 function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE, 
-          col=c(4,6), ylab=NULL, ci=TRUE, ...){
+          col=c(4,6), ylab=NULL, ci=TRUE, results=FALSE, ...){
   if (NCOL(series) > 1) stop("univariate time series only")
   if (length(col) < 2) col = rep(col, 2)  
     name   = deparse(substitute(series))
@@ -24,8 +24,14 @@ function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE,
       }
       invisible(cbind(trnd, L, U))  
     } else {
-      x = as.vector(time(series))
-      u = stats::lm(series~ poly(x, order), na.action=NULL)
+       x = as.vector(time(series))
+       u = stats::lm(series~ poly(x, order), na.action=NULL)
+       if (results){ 
+            if (order==1) {time = x; u = stats::lm(series~ time, na.action=NULL)} 
+            uu = summary(u)
+            print(round(coef(uu),2))
+            cat('Noise SE estimated as:', round(uu$sigma,2), 'on', uu$df[2], 'df', '\n')
+          }
       up = stats::predict(u, interval="confidence", level = 0.95)
       upts = ts(up, start=tspar[1], frequency=tspar[3])
       tsplot(series, col=col[1], ylab=ylab, ...)

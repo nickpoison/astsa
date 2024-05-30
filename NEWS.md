@@ -25,13 +25,15 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 #### &#10024; Here is [A Road Map](https://nickpoison.github.io/) if you want a broad view of what is available. 
 
- 
+
 ---
 ---
 
 ### Version 2.1 - Jan 2024 (on CRAN)
 
 #### after v2.1 submission: 
+
+- for `trend`, if `results=TRUE` a summary of the regression (if used) results is printed  
 
 - the scripts and data sets that were marked 'x' have been removed to [here](https://github.com/nickpoison/astsa/tree/master/xBox) ... they won't be included in the next version.
 
@@ -102,7 +104,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
    - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfilter` and `Ksmooth` scripts. **In addition, the script now accepts inputs in both the state and observations equations.** There's an example in the help file (?EM) and other examples on [FUN WITH ASTSA - EM algorithm and missing data](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md#9-em-algorithm-and-missing-data).
 
- 
+
  > __Warning__  the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now: `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
 
 &#128312;&#128312;&#128312;&#128312;&#128312;
@@ -134,7 +136,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
      - ... and some financial data sets `sp500.gr` (S&P 500 daily returns) and `BCJ` (returns of 3 banks) 
      - Added `ffbs` (forward filter backward sample algorithm) for linear state space models
      - Added `ESS` to estimate the effective sample size 
-   
+     
     - Added a line to `detrend` to make sure the input series is univariate (already there in `trend`).  Also, in `trend`, forgot to add the span option for lowess (actually `stats::loess` with a robust option) - this has been corrected.  
     
     - Added the ability to change the legend text color in `lag1.plot` and `lag2.plot` and set the default to black - it makes the values easier to see, especially if the background of the legend is transparent.
@@ -154,7 +156,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ### Versions 1.14 - Sept 2021
 
 + v1.14.3  (Dec 2021)
-   
+  
    + Added sleep state and movement data (`sleep1` and `sleep2`) - more details in the help files. 
 
    + Added option to specify a kernel in `specenv` and if `spans` and `kernel` are both `NULL`, the spectral envelope will be based on the periodogram.  Also changed the way it checks if `section` is a proper sequence and added option to taper the data prior to estimating spectra.  
@@ -164,7 +166,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
      - In `matrixpwr` changed `isSymmetric(A)` to `isSymmetric(unname(A))`  because a symmetric matrix is not taken as such if the column and row names are not the same.  
      
      - In `arma.spec` if there is near parameter redundancy, `ylim` is now adjusted so the figure will be close to the white noise (uniform) density.
-    
+   
 + v1.14 (Sept 2021) Just in time for a new skool year - v1.14 is on CRAN -  it is v1.13.2 with minor changes to please the CRAN gods.
 
 ---
@@ -200,7 +202,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 
     - `dna2vector` is used to preprocess a categorical sequence.
-
+    
     - `EBV` is the entire Epstein-Barr sequence as a long single string. It's not useful on its own, but thru `dna2vector`, different regions can be explored via `specenv`.
 
 
@@ -217,8 +219,8 @@ For example, `var(econ5)%^%-.5` to calculate an inverse square root matrix.
     - `Grid` and `tsplot` will produce grid lines at the minor ticks.  These can be shut off individually on either axis.  
 
    - For `sarima.sim`, now allow seasonal period without having to specify 
-other seasonal parameters - doing so gives a message to make sure you're doing it on purpose,  whereas it used to stop the execution.  There's an example of the advantage of this in its man page.
-  
+  other seasonal parameters - doing so gives a message to make sure you're doing it on purpose,  whereas it used to stop the execution.  There's an example of the advantage of this in its man page.
+    
     - For `tsplot` and `mvspec`, by default now, there is one minor tick on the x-axis and none on the y-axis.  Also, `mvspec` doesn't display the bandwidth
 on the axis - it's still there in the CI if the plot is on log-scale and it's still part of the "spec" object.
 
@@ -388,7 +390,7 @@ changes to satisfy the CRANks. Also, the   GitHub version is slightly improved, 
 1.7.11. 
        
 + added `ARMAtoAR` to give the pi-weights in the invertible representation of an ARMA model ... this is included mainly for pedagogical reasons
-   
+  
 + changed the `max.lag` default in `acf1` and `acf2` so if the series is
 seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 `acf2(soi, 48)` in class ... now `acf2(soi)` is the same.  
@@ -425,10 +427,11 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 +  changed degrees of freedom calculation (wasn't sure
 	 the commands I used to get it were correct... now I'm sure).
 +   made `details=FALSE` also shut off the diagnostic plot, so if you run<br/>
- `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
+	 `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
 	 then everything (except the graphic) is stored in `dog` and you won't see any output.
 
 	
+
 1.7  On CRAN Dec 2016
 
 + fixed `x0n` and `P0n` in `Ksmooth0` and `Ksmooth1` (minor fix) 
@@ -505,7 +508,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
    * Inputs are not allowed. The script uses `Ksmooth1`, but everything 
      related to inputs are set equal to zero.  That was the original 
      intent of this script.
-  
+    
    * It would be relatively easy to include estimates of `Ups` and `Gam`  because conditional on the states, these are just regression coefficients. If you decide to alter `EM1` to include estimates of the `Ups` or `Gam`, feel free to notify me with a working example and I'll include it in the  next update (assuming it's correct, of course). Instructors... this would bean awesome class project.
 
 -------------------------
@@ -525,12 +528,12 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 + `Kfilter1`; changed `Ups` and `Gam == 0` case to match `Kfilter2`s appropriate method
 
 + `astsadata()` is gone, `LazyData: true` instead
- 
+
 -------------------------
 ### Version 1.1  - July 2012
 
 + Associated namespace with all but 'base' function calls
- 
+
 + Added data set `blood` (based on code in Example 6.1) as an mts object of the Jones data set with `NA` as missing data code. Example 6.9 still uses 0 for missing data.  
 
 + Added links to related data sets in some man pages (e.g., `oil` <-> `gas` ...)
@@ -577,12 +580,12 @@ You had to extract the files to a floppy (3.5" by that time) and then install `A
 
 
 
- 
+
 -----------------
 ### Version 0.1 - 1988
 
 <img src="fun_with_astsa/figs/astsa_v0.jpg" alt="floppy"  height="300">
 
 The first version of `ASTSA` was developed by R.H. Shumway for the new text *Applied Statistical Time Series Analysis* published by Prentice Hall.  The package was written in Microsoft basic and was distributed on a 5.25" floppy disk that was included with the text. 
- 
+
 The instruction manual has been preserved for historical purposes: [http://www.stat.pitt.edu/stoffer/astsaman.pdf](http://www.stat.pitt.edu/stoffer/astsaman.pdf)
