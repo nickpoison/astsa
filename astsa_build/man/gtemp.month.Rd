@@ -8,7 +8,7 @@ Monthly global average surface temperatures by year
 Monthly global average surface temperatures by year. The temperature of the air measured 2 meters above the ground, encompassing land, sea, and in-land water surfaces.
 }
 \format{
-  A data frame with 12 monthly observations on the 49 years 1950-2023.
+  A data frame with 12 monthly observations (as rows) for the years 1975-2023 (as columns in reverse order).
 }
 \details{
 Monthly global average surface temperatures by year. The temperature of the air measured 2 meters above the ground, encompassing land, sea, and in-land water surfaces.
