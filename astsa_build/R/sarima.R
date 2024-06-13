@@ -48,9 +48,11 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
 # print  results
   cat('<><><><><><><><><><><><><><>')
   cat('\n','\n')
-  cat('Coefficients:', '\n')
-  print(ttable)
-  cat('\n')
+  if (k > 0) {
+   cat('Coefficients:', '\n')
+   print(ttable)
+   cat('\n') 
+  } 
   cat('sigma^2 estimated as', fitit$sigma2, 'on', dfree, 'degrees of freedom', '\n','\n')
   cat('AIC =', AIC, ' AICc =', AICc, ' BIC =', BIC, '\n', '\n')
   out = list(fit=fitit, degrees_of_freedom=dfree, ttable=ttable, 
