@@ -22,10 +22,25 @@ LazyData: \tab yes\cr
 \author{
 David Stoffer <stoffer@pitt.edu>
 }
-\note{Some older scripts and data sets have been updated, and old versions have an x in front of them, for example \code{xgtemp} is an old data file that used to be called \code{gtemp}. These scripts and data sets have not changed (they will still work with the x name change), but they will be phased out eventually. 
+\note{If loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
 
-Note that, if loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, we suggest either detaching it: \code{detach:package:dplyr}, or issuing the commands \code{filter = stats::filter} and \code{lag = stats::lag} before analyzing time series data. 
+(1) Detach it:\cr 
+\code{detach:package:dplyr} 
+
+(2) If you want to use \code{dplyr}, fix it: 
+\verb{
+library(dplyr, exclude = c("filter", "lag"))   # load it but remove the culprits 
+Lag <- dplyr::lag            # and do what the dplyr ... 
+Filter <- dplyr::filter      # ... maintainers refuse to do 
 }
+
+(3) Or just take back the commands:\cr
+\code{filter = stats::filter} \cr  
+\code{lag = stats::lag}
+
+You can put (3) in your .First file and then you don't have to think about this mess any longer.
+}
+
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
