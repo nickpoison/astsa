@@ -125,6 +125,7 @@ And you can get more information on any individual set using the `help()` comman
 |hor                              |  Hawaiian occupancy rates                                                     |
 |jj                               |  Johnson and Johnson Quarterly Earnings Per Share                             |
 |lap                              |  LA Pollution-Mortality Study                                                 |
+|lap.xts                 |  LA Pollution-Mortality Study Daily Observations                                   |
 |lead                             |  Leading Indicator                                                            |
 |nyse                             |  Returns of the New York Stock Exchange                                       |
 |oil                              |  Crude oil, WTI spot price FOB                                                |

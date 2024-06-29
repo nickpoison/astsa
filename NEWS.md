@@ -33,6 +33,8 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 #### after v2.1 submission: 
 
+- added `lap.xts`, which are the original daily observations from the LA Pollution-Mortality study.  How to easily get a data set of weekly averages is given in the examples in the man page `help(lap.xts)`.
+
 - for `trend`, if `results=TRUE` a summary of the regression (if used) results is printed  
 
 - the scripts and data sets that were marked 'x' have been removed to [here](https://github.com/nickpoison/astsa/tree/master/xBox) ... they won't be included in the next version.
@@ -508,7 +510,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
    * Inputs are not allowed. The script uses `Ksmooth1`, but everything 
      related to inputs are set equal to zero.  That was the original 
      intent of this script.
-    
+   
    * It would be relatively easy to include estimates of `Ups` and `Gam`  because conditional on the states, these are just regression coefficients. If you decide to alter `EM1` to include estimates of the `Ups` or `Gam`, feel free to notify me with a working example and I'll include it in the  next update (assuming it's correct, of course). Instructors... this would bean awesome class project.
 
 -------------------------
