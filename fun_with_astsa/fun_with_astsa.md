@@ -92,7 +92,7 @@ And you can get more information on any individual set using the `help()` comman
 |HCT                              |  Hematocrit Levels                                                            |
 |Hare                             |  Snowshoe Hare                                                                |
 |Lynx                             |  Canadian Lynx                                                                |
-|MEI                              |  Multivariate El Nino/Southern Oscillation Index (version 1)                  |
+|MEI                              | Multivariate El Ni&ntilde;o/Southern Oscillation Index (version 1) |
 |PLT                              |  Platelet Levels                                                              |
 |USpop                            |  U.S. Population - 1900 to 2010                                               |
 |UnempRate                        |  U.S. Unemployment Rate                                                       |

@@ -25,18 +25,20 @@ David Stoffer <stoffer@pitt.edu>
 \note{If loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
 
 (1) Detach it:\cr 
-\code{detach:package:dplyr} 
+\verb{   detach:package:dplyr} 
 
 (2) If you want to use \code{dplyr}, fix it: 
 \verb{
-library(dplyr, exclude = c("filter", "lag"))   # load it but remove the culprits 
-Lag <- dplyr::lag            # and do what the dplyr ... 
-Filter <- dplyr::filter      # ... maintainers refuse to do 
-}
+   library(dplyr, exclude = c("filter", "lag"))   # load it but remove the culprits 
+   Lag <- dplyr::lag            # and do what the dplyr ... 
+   Filter <- dplyr::filter      # ... maintainers refuse to do}\cr
+then use \code{Lag} and \code{Filter} for \code{dplyr} scripts \cr
+and \code{lag} and \code{filter} can be use as originally intended
+
 
 (3) Or just take back the commands:\cr
-\code{filter = stats::filter} \cr  
-\code{lag = stats::lag}
+\verb{   filter = stats::filter} \cr  
+\verb{   lag = stats::lag }
 
 You can put (3) in your .First file and then you don't have to think about this mess any longer.
 }
