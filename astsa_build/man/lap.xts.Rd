@@ -6,9 +6,7 @@
 \description{
 Original data from a study of the effects of pollution and weather on mortality, LA, 
 1970-1979. These are 3652 daily observations for the 10 year period. The data set is
-an xts object indexed by Date, and the columns are: Total Mortality, Respiratory Mortality, 
-Cardiovascular Mortality, Temperature, Relative Humidity, Carbon Monoxide, Sulfur Dioxide, 
-Nitrogen Dioxide, Hydrocarbons, Ozone, Particulate Pollution.
+an xts object indexed by Date.
 }
 \format{
   The format is:
@@ -18,14 +16,30 @@ An xts object on 1970-01-01 / 1979-12-31 containing: \cr
   Index:   Date [3652] (TZ: "UTC") 
 }
 \details{
-These are the original data from \kbd{http://www.sungpark.net/ShumwayAzariPawitan88.pdf}.
+\tabular{ll}{
+columns are time series       \tab   with names \cr
+ (1) Total Mortality          \tab   \code{Tmort}\cr
+ (2) Respiratory Mortality    \tab   \code{Rmort}\cr
+ (3) Cardiovascular Mortality \tab   \code{Cmort}\cr
+ (4) Temperature              \tab   \code{Temp} \cr
+ (5) Relative Humidity        \tab   \code{Rhumid}\cr
+ (6) Carbon Monoxide          \tab   \code{CO}\cr
+ (7) Sulfur Dioxide           \tab   \code{SO2}\cr
+ (8) Nitrogen Dioxide         \tab   \code{NO2}\cr
+ (9) Hydrocarbons             \tab   \code{HC}\cr
+(10) Ozone                    \tab   \code{Ozone}\cr
+(11) Particulates             \tab   \code{Part} \cr
+}
 }
 
-\note{The data in \code{lap} are taken from this file, but the details were never entirely 
-clear and it's too late to get precise details now.  Hence, the weekly averages data set 
-\code{lapw.xts} that is computed in the examples below is a slightly different data set than 
-\code{lap}. The names for this data set are different from \code{lap}, the main difference
-is these names have capitals.
+\note{
+These are the original data from \kbd{https://github.com/DSStoffer/dsstoffer.github.io/blob/main/files/LAP.pdf}.
+
+The weekly data in \code{\link{lap}} were taken from this data set last century.  The details, however, 
+were never entirely made clear and it's too late to get them now.  It is easy to pull out the 
+weekly averages from this data set, and how to do so is given in the Examples section below; 
+the resulting data set will be slightly different than \code{lap}. The names for this data set 
+are different from \code{lap},  the main difference is these names have capitals.
 }
 
 \references{You can find demonstrations of  astsa capabilities at
@@ -47,11 +61,12 @@ library(xts)   # assumes package has been installed
 
 plot(lap.xts$Cmort, col=4)   
 
-lapw.xts = apply.weekly(lap.xts, FUN=colMeans)  # get weekly averages
+lapw = apply.weekly(lap.xts, FUN=colMeans)  # get weekly averages
 
-plot(lapw.xts[,c('Cmort', 'Temp', 'Part')], col=astsa.col(2:4, .7)) 
+plot(lapw[,c('Cmort', 'Temp', 'Part')], col=astsa.col(2:4, .7), main=NA) 
+addLegend(col=2:4, lty=1, lwd=2, ncol=3, bty="white")
 
-sarima(lapw.xts$Cmort, 0,1,1)  # fit ARIMA(0,1,1) to weekly Cmort
+sarima(lapw$Cmort, 0,1,1, no.constant=TRUE)  # fit ARIMA(0,1,1) to weekly Cmort
 }
 }
 \keyword{datasets}

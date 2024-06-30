@@ -33,7 +33,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 #### after v2.1 submission: 
 
-- added `lap.xts`, which are the original daily observations from the LA Pollution-Mortality study.  How to easily get a data set of weekly averages is given in the examples in the man page `help(lap.xts)`.
+- added `lap.xts` (an xts object), which are the original daily observations from the LA Pollution-Mortality study.  How to easily get weekly averages is given in the examples section of the man page.
 
 - for `trend`, if `results=TRUE` a summary of the regression (if used) results is printed  
 
