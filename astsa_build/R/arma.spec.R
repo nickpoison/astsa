@@ -1,5 +1,5 @@
 arma.spec <-
-function(ar=0, ma=0, var.noise=1, n.freq=500,  main='from specified model', 
+function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL, 
           frequency=1, ylim=NULL, plot=TRUE, ...)
 {  
      check <- 0
@@ -31,6 +31,15 @@ function(ar=0, ma=0, var.noise=1, n.freq=500,  main='from specified model',
     
     spg.out <- list(freq=freq*xfreq, spec=spec)
    if(plot){
+    if (is.null(main)){
+     if ((ar[1] == 0 && ar.order == 1) && (ma[1] == 0 && ma.order == 1)){
+       main = 'White Noise'
+       } else {
+       pAR = ar.order - (ar[1]==0 && ar.order==1)
+       qMA = ma.order - (ma[1]==0 && ma.order==1) 
+       main = bquote(ARMA(.(pAR),.(qMA)))
+      }
+    }
     Ylab = 'spectrum'
     Xlab = ifelse(xfreq>1, paste('frequency \u00D7', xfreq), 'frequency')
      m1  = min(spec) 

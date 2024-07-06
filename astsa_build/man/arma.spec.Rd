@@ -6,8 +6,8 @@
  common zeros.
 }
 \usage{
-arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500,
-          main='from specified model', frequency=1, ylim=NULL, plot=TRUE, ...)
+arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL, 
+           frequency = 1, ylim = NULL, plot = TRUE, ...)
 }
 \arguments{
   \item{ar}{vector of AR parameters
@@ -18,7 +18,7 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500,
 }
   \item{n.freq}{number of frequencies
 }
-  \item{main}{title of graphic
+  \item{main}{title of graphic; default is "ARMA" with orders "(p, q)"
 }
   \item{frequency}{for seasonal models, adjusts the frequency scale
 }
