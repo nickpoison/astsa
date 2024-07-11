@@ -15,7 +15,7 @@ We do not always push the latest version of the package to CRAN, but [the latest
 
 * The [ROAD MAP](https://nickpoison.github.io/) is a good place to start to find all the links to the webpages for the texts and some help on using R for time series analysis. 
 * See the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) for further details about the state of the package, how to install the latest version, and the changelog.
-* __WARNING:__  If loaded, the package `dplyr` may (and probably will) corrupt the base scripts `filter` and `lag` that we use often.  An easy fix if you’re analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is being used:
+* __WARNING:__  If loaded, the package `dplyr` may (and probably will) corrupt the base scripts `filter` and `lag` that a time series analyst uses often. An easy fix if you’re analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is being used:
 
 ```r
 # either detach it
