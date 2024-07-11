@@ -17,7 +17,7 @@ We do not always push the latest version of the package to CRAN, but [the latest
 * See the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) for further details about the state of the package, how to install the latest version, and the changelog.
 * __WARNING:__  If loaded, the package `dplyr` may (and probably will) corrupt the base scripts `filter` and `lag` that we use often.  An easy fix if you’re analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is being used:
 
-```
+```r
 # either detach it
 detach(package:dplyr)  
 
