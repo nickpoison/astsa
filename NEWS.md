@@ -17,11 +17,10 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 >  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
-&#x1F4A1;  You can also install `astsa` from the archive (which is always current)
-[astsa_2.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.1.tar.gz). Download it (there's a download button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+&#x1F4A1;  You can also install `astsa` from the archive (which is always current):  [astsa_2.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.1.tar.gz). Download it (there's a download button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
-&#128036; You can find a short guide to  astsa scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
+&#128036; You can find a short guide to  `astsa` scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
 
 #### &#10024; Here is [A Road Map](https://nickpoison.github.io/) if you want a broad view of what is available. 
 
@@ -29,9 +28,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ---
 ---
 
-### Version 2.1 - Jan 2024 (on CRAN)
-
-#### after v2.1 submission: 
+### Heading to v2.2 - in progress
 
 - `arma.spec` gets better default title 
 
@@ -47,7 +44,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - added `gtemp.month` (monthly global data 1975-2023) -- rows are month, columns are year to make it easy to plot as monthly functional data
 
-####   v2.1:
+###   Version 2.1 - Jan 2024 (on CRAN) - current version
 
 - added `SV.mle` to fit an SV model [with feedback (aka leverage) if desired] via quasi-MLE. Details are in the help file.  `SVfilter` is now part of `SV.mle` and the original script is now in the xBox as `xSVfilter`.
 
@@ -102,11 +99,11 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 
 
-   - Added `Kfilter` and `Ksmooth` which are faster than the older `Kfilter0-1-2` and  `Ksmooth0-1-2`, are easier to work with, and removes the need for 3 different scripts.  Simple examples are in the help files and other examples are on  [FUN WITH ASTSA - Kalman filtering and smoothing](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md#quick-kalman-filter-and-smoother).
+   - Added `Kfilter` and `Ksmooth` which are faster than the older `Kfilter0-1-2` and  `Ksmooth0-1-2`, are easier to work with, and removes the need for 3 different scripts.  
 
  
 
-   - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfilter` and `Ksmooth` scripts. **In addition, the script now accepts inputs in both the state and observations equations.** There's an example in the help file (?EM) and other examples on [FUN WITH ASTSA - EM algorithm and missing data](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md#9-em-algorithm-and-missing-data).
+   - Added `EM` which supersedes `EM0` and `EM1` and uses the quicker `Kfilter` and `Ksmooth` scripts. **In addition, the script now accepts inputs in both the state and observations equations.** 
 
 
  > __Warning__  the old script names  `EM0-1`, `Kfilter0-1-2`, and `Ksmooth0-1-2` have an `x` in front of them now: `xEM0-1`, `xKfilter0-1-2`, and `xKsmooth0-1-2`.  The scripts haven't changed (old scripts will still work with the `x` name change), but they will be phased out eventually.  Converting code that used the old scripts to use the newer scripts should be easy with only a few minor changes in the call.  
@@ -202,17 +199,13 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 + Minor updates to `tsplot`, `SigExtract` and  `LagReg` to improve the displays.
 
-+ Added scripts for the analysis of DNA sequences and other categorical time series: `specenv`, `dna2vector`, and the data set `EBV`.  And `specenv` can also handle real-valued series; see the examples included in the man page for `specenv` or in  [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md).
++ Added scripts for the analysis of DNA sequences and other categorical time series: `specenv`, `dna2vector`, and the data set `EBV`.  And `specenv` can also handle real-valued series.
 
+ - `dna2vector` is used to preprocess a categorical sequence.
+   
+- `EBV` is the entire Epstein-Barr sequence as a long single string. It's not useful on its own, but thru `dna2vector`, different regions can be explored via `specenv`.
 
-    - `dna2vector` is used to preprocess a categorical sequence.
-    
-    - `EBV` is the entire Epstein-Barr sequence as a long single string. It's not useful on its own, but thru `dna2vector`, different regions can be explored via `specenv`.
-
-
-
-+ We needed powers of matrices enough where we thought we'd include it in `astsa`.  The script is called `matrixpwr` and includes `%^%` as a more intuitive operator.
-For example, `var(econ5)%^%-.5` to calculate an inverse square root matrix.
++ We needed powers of matrices enough where we thought we'd include it in `astsa`.  The script is called `matrixpwr` and includes `%^%` as a more intuitive operator. For example, `var(econ5)%^%-.5` to calculate an inverse square root matrix.
 
 
 + Added `test.linear`, a script to test the null hypothesis that the data are generated from a linear process with iid innovations. 
@@ -377,7 +370,7 @@ column wise (`FALSE`) for multiple plots.
 1.8.1 minor change to the way `acf2` calls `main` (cleaner)  - this was done at the beginning of v1.8 - it just never made it to CRAN 
 
 
-<b> Time Series Analysis and Its Applications With R Examples -- Edition 4 was written under this version, so you don't need more recent updates to get through the text. </b>
+<b> Time Series Analysis and Its Applications With R Examples -- Edition 4 was written under this version.</b>
 
 + Version 1.8 is on CRAN 
 
