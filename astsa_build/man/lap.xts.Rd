@@ -33,7 +33,7 @@ columns are time series       \tab   with names \cr
 }
 
 \note{
-These are the original data from \kbd{https://github.com/DSStoffer/dsstoffer.github.io/blob/main/files/LAP.pdf}.
+These are the original data from \url{https://github.com/DSStoffer/dsstoffer.github.io/blob/main/files/LAP.pdf}.
 
 The weekly data in \code{\link{lap}} were taken from this data set last century.  The details, however, 
 were never entirely made clear and it's too late to get them now.  It is easy to pull out the 
