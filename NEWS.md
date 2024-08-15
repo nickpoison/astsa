@@ -30,7 +30,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### Heading to v2.2 - in progress
 
-- `arma.spec` gets better default title 
+- `arma.spec` gets better default title and `sarima.for` gets a `ylab` option (we didn't realize that there was no option and no one complained)
 
 - added `lap.xts` (an xts object), which are the original daily observations from the LA Pollution-Mortality study.  How to easily get weekly averages is given in the examples section of the man page.
 

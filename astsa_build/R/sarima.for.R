@@ -1,11 +1,11 @@
 sarima.for <-
 function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
-         no.constant=FALSE, plot=TRUE, plot.all=FALSE,
+         no.constant=FALSE, plot=TRUE, plot.all=FALSE, ylab=NULL,
          xreg = NULL, newxreg = NULL, fixed=NULL, ...){ 
 #
 
   trans = ifelse (is.null(fixed), TRUE, FALSE)
-  xname = deparse(substitute(xdata))
+  if (is.null(ylab)) ylab = deparse(substitute(xdata))
 
 
   n = length(xdata)
@@ -57,7 +57,7 @@ fore <- stats::predict(fitit, n.ahead, newxreg=nureg)
      xllim=c(strt,endd)
      typel = ifelse(plot.all, 'l', 'o')
      xdatanew = ts(c(xdata,fore$pred), start=tsp(xdata)[1], frequency=tsp(xdata)[3]) 
-    tsplot(xdatanew, type=typel, xlim=xllim, ylim=c(minx,maxx), ylab=xname, ...)    
+    tsplot(xdatanew, type=typel, xlim=xllim, ylim=c(minx,maxx), ylab=ylab, ...)    
       xx = c(time(U), rev(time(U)))
       yy = c(L, rev(U))
      polygon(xx, yy, border=8, col=gray(.6, alpha=.2) ) 

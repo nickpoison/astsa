@@ -5,8 +5,8 @@
 \description{ARIMA forecasting.
 }
 \usage{
-sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol = sqrt(.Machine$double.eps),
-         no.constant = FALSE, plot = TRUE, plot.all = FALSE,
+sarima.for(xdata, n.ahead, p, d, q, P=0, D=0, Q=0, S=-1, tol = sqrt(.Machine$double.eps),
+         no.constant = FALSE, plot = TRUE, plot.all = FALSE,  ylab = NULL,
          xreg = NULL, newxreg = NULL, fixed = NULL, ...)
 }
 \arguments{
@@ -36,6 +36,8 @@ sarima.for(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol = sqrt(.Machine$double.eps),
   \item{plot}{if TRUE (default) the data (or some of it) and the forecasts and bounds are plotted
 }  
   \item{plot.all}{if TRUE, all the data are plotted in the graphic; otherwise, only the last 100 observations are plotted in the graphic.
+}
+  \item{ylab}{if NULL (default), the y-axis label is the name of the series.
 }
   \item{xreg}{Optionally, a vector or matrix of external regressors, which must have the same number of rows as the series. If this is used, \code{newxreg} MUST be specified.
 }
