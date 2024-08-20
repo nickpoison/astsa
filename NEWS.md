@@ -17,7 +17,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 >  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
-&#x1F4A1;  You can also install `astsa` from the archive (which is always current):  [astsa_2.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.1.tar.gz). Download it (there's a download button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+&#x1F4A1;  You can also install `astsa` from the archive (which is __always current__):  [astsa_2.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.1.tar.gz). Download it (there's a download button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
 &#128036; You can find a short guide to  `astsa` scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
@@ -30,7 +30,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### Heading to v2.2 - in progress
 
-- `arma.spec` gets better default title and `sarima.for` gets a `ylab` option (we didn't realize that there was no option and no one complained)
+- `arma.spec` gets better default title and `sarima.for` gets a `ylab` option.
 
 - added `lap.xts` (an xts object), which are the original daily observations from the LA Pollution-Mortality study.  How to easily get weekly averages is given in the examples section of the man page.
 
