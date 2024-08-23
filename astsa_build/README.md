@@ -1,3 +1,5 @@
+
+
 ## astsa &mdash; applied statistical time series analysis
 
 <img src="https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/figs/astsa.gif" alt="&nbsp; &nbsp; ASTSA ..."  height="100">
@@ -15,24 +17,33 @@ We do not always push the latest version of the package to CRAN, but [the latest
 
 * The [ROAD MAP](https://nickpoison.github.io/) is a good place to start to find all the links to the webpages for the texts and some help on using R for time series analysis. 
 * See the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) for further details about the state of the package, how to install the latest version, and the changelog.
+
+---
+
 * __WARNING:__  If loaded, the package `dplyr` may (and probably will) corrupt the base scripts `filter` and `lag` that a time series analyst uses often. An easy fix if you’re analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is being used:
 
 ```r
-# either detach it
+# [1] either detach it if it's loaded
 detach(package:dplyr)  
 
-# or fix it yourself if you want dplyr 
+# [2] or fix it yourself if you want dplyr 
 # this is a great idea from  https://stackoverflow.com/a/65186251
 library(dplyr, exclude = c("filter", "lag"))  # remove the culprits
 Lag <- dplyr::lag            # and do what the dplyr ... 
-Filter <- dplyr::filter      # ... maintainers refuse to do
+Filter <- dplyr::filter      # ... maintainer refuses to do
 # then use `Lag` and `Filter` in dplyr scripts and
 # `lag` and `filter` can be use as originally intended
 
-# or just take back the commands
+# [3] or just take back the commands
 filter = stats::filter
 lag = stats::lag
+
+# in this case, you can still use these for dplyr
+Lag <- dplyr::lag     
+Filter <- dplyr::filter 
 ```
+
+---
 
 
 * A list of data sets, scripts, and demonstrations of the capabilities of `astsa` can be found  at [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md)...  it's more fun than high school.
