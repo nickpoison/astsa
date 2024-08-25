@@ -336,10 +336,10 @@ tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon - USD per KG')
 
 ## 3. Correlations
 
-&#128125; There are four basic correlation scripts in `astsa`.  They are
+&#128125; There are four basic correlation scripts and one not so basic script in `astsa`. They are
 
 
-> **`acf1()`**, **`acf2()`,**  **`ccf2()`**, and **`acfm()`**
+> **`acf1()`**, **`acf2()`,**  **`ccf2()`**,  **`acfm()`**, and **`pre.white()`**
 
 The first one will give the sample ACF or PACF of a series.  The second one gives both the sample ACF and PACF in a multifigure plot and both on the same scale.  The graphics do not display the lag 0 value because it is always 1.  The third one plots the sample CCF. The first two also print the values; the third one returns the values invisibly.  The last one is for multiple time series and it produces a grid of plots of the sample ACFs and CCFs.
 
@@ -355,8 +355,7 @@ acf1(soi)
 
 <br/>
 
-&#x1F4A1; Note the LAG axis label indicates the frequency of
-the data unless it is 1.  This way, you can see that the tick at LAG 1
+&#x1F4A1; Note the LAG axis label indicates the frequency of the data unless it is 1.  This way, you can see that the tick at LAG 1
 corresponds to 12 (months) and so on.
 
 ```r
@@ -410,7 +409,17 @@ ccf2(cmort, part)
 
 <br/>
 
-&#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).
+&#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).  Here you go:
+
+```r
+pre.white(cmort, part, diff=TRUE, col=4)    # this will be in version 2.2 and beyond
+```
+
+You get a graphic and the transformed series are returned invisibly:
+
+<img src="figs/pre.white.png" alt="pre.white"  width="70%">
+
+
 
 
 &#x1F535; For multiple series, you can look at all sample ACFs (diagonal) and CCFs (off-diagonal) simultaneously:
