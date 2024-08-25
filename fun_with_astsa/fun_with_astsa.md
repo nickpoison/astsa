@@ -413,6 +413,9 @@ ccf2(cmort, part)
 
 ```r
 pre.white(cmort, part, diff=TRUE, col=4)    # this will be in version 2.2 and beyond
+
+#  cmort prewhitened using an AR p = 3 
+#  after differencing d = 1
 ```
 
 You get a graphic and the transformed series are returned invisibly:

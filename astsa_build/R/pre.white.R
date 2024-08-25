@@ -3,7 +3,8 @@ pre.white = function(series1, series2, diff=FALSE, max.lag=NULL, main=NULL,
 
  if ( NCOL(series1) > 1 | NCOL(series2) > 1 ) stop('univariate series only')
 
- nam1 = paste(deparse(substitute(series1)), '.w', sep='')
+ nam  = deparse(substitute(series1))
+ nam1 = paste(nam, '.w', sep='')
  nam2 = paste(deparse(substitute(series2)), '.f', sep='')
 
  if (diff > 0) {    # diff can be a number also 
@@ -23,6 +24,9 @@ pre.white = function(series1, series2, diff=FALSE, max.lag=NULL, main=NULL,
  if (is.null(main)) main=paste(nam1, " & ", nam2)
 
  if (plot) ccf2(both[,1], both[,2], max.lag=max.lag, main=main, ...)
+
+ cat(nam, 'prewhitened using an AR p =', u$order, '\n')
+ if (diff > 0) cat('after differencing d =', as.integer(diff), '\n')
 
  invisible(both)
 }
