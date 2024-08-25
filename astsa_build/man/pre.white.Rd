@@ -2,7 +2,7 @@
 \alias{pre.white}
 \title{Cross-Correlation Analysis With Automatic Prewhitening
 }
-\description{Does a cross-correlation analysis on two series after prewhitening the first series and filtering the second series accordingly.
+\description{Performs a cross-correlation analysis on two series after prewhitening the first series and filtering the second series accordingly.
 }
 \usage{
 pre.white(series1, series2, diff = FALSE, max.lag = NULL, main = NULL, 

@@ -1,6 +1,8 @@
 pre.white = function(series1, series2, diff=FALSE, max.lag=NULL, main=NULL, 
                       order.max=NULL, plot=TRUE, ...){
 
+ if ( NCOL(series1) > 1 | NCOL(series2) > 1 ) stop('univariate series only')
+
  nam1 = paste(deparse(substitute(series1)), '.w', sep='')
  nam2 = paste(deparse(substitute(series2)), '.f', sep='')
 

@@ -30,7 +30,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### Heading to v2.2 - in progress
 
-- add `pre.white` to do cross-correlation analysis with automatic prewhitening
+- added `pre.white` to do cross-correlation analysis with automatic prewhitening
 
 - `arma.spec` gets better default title and `sarima.for` gets a `ylab` option.
 
