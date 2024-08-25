@@ -18,7 +18,7 @@ a univariate time series.
   \item{BIC}{
 if TRUE, fit is based on BIC. If FALSE (default), fit is based on AIC.
 }
-  \item{order.max}{
+  \item{order.max}{ 
 maximum order of model to fit. Defaults (if NULL) to the minimum of 100 
 and 10\% of the number of observations. 
 }
@@ -83,3 +83,4 @@ spec.ic(soi, BIC=TRUE, detrend=TRUE, log='y')
 tsplot(0:30, spec.ic(soi, plot=FALSE)[[1]][,2:3], type='o', xlab='order', nxm=5)  
 }
 }
+\keyword{ ts }
