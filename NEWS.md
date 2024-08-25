@@ -1,7 +1,6 @@
 
 ## This is the changelog for 
 
-
 <img src="fun_with_astsa/figs/astsa.gif" alt="astsa"  height="100">
 
 **more than just data ... it's a palindrome**  
@@ -17,7 +16,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 >  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
-&#x1F4A1;  You can also install `astsa` from the archive (which is __always current__):  [astsa_2.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.1.tar.gz). Download it (there's a download button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+&#x1F4A1;  You can also install `astsa` from the archive (which is __always current__):  [astsa_2.1+.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.1.tar.gz). Download it (there's a download button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
 &#128036; You can find a short guide to  `astsa` scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
@@ -26,9 +25,9 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 
 ---
----
 
-### Heading to v2.2 - in progress
+
+### &#9654; v2.1+ ... in progress
 
 - added `pre.white` to do cross-correlation analysis with automatic prewhitening
 
