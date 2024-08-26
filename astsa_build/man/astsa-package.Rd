@@ -25,7 +25,7 @@ David Stoffer <stoffer@pitt.edu>
 \note{If loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
 
 (1) Detach it:\cr 
-\verb{   detach:package:dplyr} 
+\verb{   detach(package:dplyr)} 
 
 (2) If you want to use \code{dplyr}, fix it: 
 \verb{
