@@ -38,9 +38,9 @@ and \code{lag} and \code{filter} can be use as originally intended
 
 (3) Or just take back the commands:\cr
 \verb{   filter = stats::filter} \cr  
-\verb{   lag = stats::lag }
+\verb{   lag = stats::lag }\cr
 
-You can put (3) in your .First file and then you don't have to think about this mess any longer.
+In this case you can still use \verb{Lag <- dplyr::lag} and \verb{Filter <- dplyr::filter} for \code{dpylr}.
 }
 
 \references{You can find demonstrations of  astsa capabilities at
