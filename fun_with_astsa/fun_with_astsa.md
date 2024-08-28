@@ -341,7 +341,17 @@ tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon - USD per KG')
 
 > **`acf1()`**, **`acf2()`,**  **`ccf2()`**,  **`acfm()`**, and **`pre.white()`**
 
-The first one will give the sample ACF or PACF of a series.  The second one gives both the sample ACF and PACF in a multifigure plot and both on the same scale.  The graphics do not display the lag 0 value because it is always 1.  The third one plots the sample CCF. The first two also print the values; the third one returns the values invisibly.  The fourth one is for multiple time series and it produces a grid of plots of the sample ACFs and CCFs.  The last script will prewhiten automatically and perform a cross-correlation analysis.
+- `acf1` gives the sample ACF or PACF of a series.  
+
+- `acf2` gives both the sample ACF and PACF in a multifigure plot and both on the same scale.  The graphics do not display the lag 0 ACF value because it is always 1.  
+
+- `ccf2` plots the sample CCF (the first two also print the values; the third one returns the values invisibly).  
+
+- `acfm` is for multiple time series and it produces a grid of plots of the sample ACFs and CCFs.  
+
+- `pre.white` will prewhiten the first series automatically, filter the second accordingly, and perform a cross-correlation analysis.
+
+<br/>
 
 
 &#x1F535; The individual sample ACF or PACF
@@ -414,8 +424,8 @@ ccf2(cmort, part)
 ```r
 pre.white(cmort, part, diff=TRUE, col=4)    # this will be in version 2.2 and beyond
 
-#  cmort prewhitened using an AR p = 3 
-#  after differencing d = 1
+#    cmort prewhitened using an AR p = 3 
+#    after differencing d = 1
 ```
 
 You get a graphic and the transformed series are returned invisibly:
