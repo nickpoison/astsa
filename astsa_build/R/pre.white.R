@@ -15,7 +15,7 @@ pre.white = function(series1, series2, diff=FALSE, max.lag=NULL, main=NULL,
  if (is.null(order.max)) order.max = min(30, ceiling(.15*length(series1)))
  if (is.null(max.lag)) max.lag = min(50, floor(.2*length(series1))) 
 
- u = ar(series1, aic=TRUE, order.max=order.max)
+ u = stats::ar(series1, aic=TRUE, order.max=order.max)
  x1 = u$resid
  x2 = stats::filter(series2, filter=c(1, -u$ar), sides=1)
 
