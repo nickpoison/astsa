@@ -15,7 +15,6 @@ resids = na.omit(fit$resid)       # the residuals
 
 # start boots
 set.seed(seed)
-nboot    = nboot                 # number of bootstrap replicates
 x.star   = series                # initialize x*
 phi      = matrix(phi)           # p x 1
 phi.star = matrix(0, arp, nboot)

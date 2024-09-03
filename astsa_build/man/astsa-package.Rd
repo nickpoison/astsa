@@ -22,7 +22,7 @@ LazyData: \tab yes\cr
 \author{
 David Stoffer <stoffer@pitt.edu>
 }
-\note{If loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
+\section{Warning}{If loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
 
 (1) Detach it:\cr 
 \verb{   detach(package:dplyr)} 
@@ -37,10 +37,14 @@ and \code{lag} and \code{filter} can be use as originally intended
 
 
 (3) Or just take back the commands:\cr
-\verb{   filter = stats::filter} \cr  
+\verb{   filter = stats::filter} \cr 
 \verb{   lag = stats::lag }\cr
 
-In this case you can still use \verb{Lag <- dplyr::lag} and \verb{Filter <- dplyr::filter} for \code{dpylr}.
+In this case you can still use \cr 
+\verb{  Lag <- dplyr::lag} \cr 
+and \cr 
+\verb{  Filter <- dplyr::filter} \cr
+for \code{dpylr}.
 }
 
 \references{You can find demonstrations of  astsa capabilities at
