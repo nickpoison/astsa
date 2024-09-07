@@ -73,8 +73,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
                   adj=0) }     
     }
 
-    alag  <- max(10+sqrt(num), 3*S) 
-  acf1(rs, alag, main = "ACF of Residuals", ...)
+  acf1(rs, max.lag=NULL, main = "ACF of Residuals", ...)
 
     u = qqnorm(stdres, plot.it=FALSE)
     lwr = min(-4, min(stdres, na.rm=TRUE)); upr = max(4, max(stdres), na.rm=TRUE)

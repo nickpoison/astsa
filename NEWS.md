@@ -26,8 +26,9 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ---
 
-
 ### &#9654; v2.1+ ... in progress
+
+- changed `sarima` so it works for tiny sample sizes (thought about including a "tiny" warning, but the sample SEs will be ginormous - that should be warning enough) 
 
 - added `pre.white` to do cross-correlation analysis with automatic prewhitening
 
