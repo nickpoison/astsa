@@ -16,7 +16,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 >  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
-&#x1F4A1;  You can also install `astsa` from the archive (which is __always current__):  [astsa_2.1+.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.1.tar.gz). Download it (there's a download button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+&#x1F4A1;  You can also install `astsa` from the archive (which is __always current__):  [astsa_2.1+.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.1.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
 &#128036; You can find a short guide to  `astsa` scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
@@ -26,7 +26,9 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ---
 
-### &#9654; v2.1+ ... in progress
+### &#9654;  ... in progress
+
+- in `tsplot`, if `spaghetti=TRUE`, added the ability to include a simple legend without more coding (e.g., you don't have to use `legend`).   An example is in the help file.
 
 - changed `sarima` so it works for tiny sample sizes (thought about including a "tiny" warning, but the sample SEs will be ginormous - that should be warning enough) 
 
@@ -99,8 +101,6 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 &#128312;&#128312;&#128312;&#128312;&#128312;
 
-
-
    - Added `Kfilter` and `Ksmooth` which are faster than the older `Kfilter0-1-2` and  `Ksmooth0-1-2`, are easier to work with, and removes the need for 3 different scripts.  
 
  
@@ -150,10 +150,6 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 +   v1.15 is v1.14.3 plus the following 2 additions and (of course) minor changes to appease the CRAN warlords:
 
     + Added two new scripts ```detrend()``` and ```trend()```.  The first one returns a detrended series using a polynomial regression (default is linear) or lowess (with the default span).  The second script fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
-
-
-
-
 
 ---
 ### Versions 1.14 - Sept 2021

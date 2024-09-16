@@ -2,7 +2,8 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
                     margins=.25, ncolm=1, byrow=TRUE, nx = NULL, ny = nx, 
                     minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
                     gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, lwd=1, mgpp=0, 
-                    topper=NULL, ...)
+                    topper=NULL, addLegend=FALSE, location='topright', horiz=FALSE,
+                    ...)
 {
   nser   = max(NCOL(x), NCOL(y))
   if (is.null(topper)){
@@ -104,6 +105,15 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
                main=main, pch=pch[1], margins=margins, ...)
    for (h in 1:nser) { lines(x, y[,h], col=culer[h], type=type1, pch=pch[h], 
                           lty=lty[h], lwd=lwd[h], ...) }
+   }
+   if (!addLegend) {   
+     } else {
+     if (is.null(y)){
+     namez = colnames(as.matrix(x))
+      } else {
+     namez = colnames(as.matrix(y))
+     } 
+     legend(location, legend=namez, lty=lty, col=col, bty='n', lwd=lwd, pch=pch, horiz=horiz) 
    }
 }
 return(invisible(grDevices::recordPlot()))
