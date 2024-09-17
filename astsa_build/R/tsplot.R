@@ -106,8 +106,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    for (h in 1:nser) { lines(x, y[,h], col=culer[h], type=type1, pch=pch[h], 
                           lty=lty[h], lwd=lwd[h], ...) }
    }
-   if (!addLegend) {   
-     } else {
+   if (addLegend){ 
      if (is.null(y)){
      namez = colnames(as.matrix(x))
       } else {
