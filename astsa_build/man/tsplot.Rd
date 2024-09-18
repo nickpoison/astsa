@@ -10,7 +10,7 @@ tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,  margins=.25,
         ncolm=1, byrow=TRUE, nx=NULL, ny=nx, minor=TRUE, nxm=2, nym=1, 
         xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, pch=NULL, 
         lty=1, lwd=1, mgpp=0, topper=NULL, addLegend=FALSE, location='topright', 
-        boxit=TRUE, horiz=FALSE, ...)
+        boxit=TRUE, horiz=FALSE, legend=NULL, llwd=NULL, ...)
 }
 \arguments{
   \item{x, y}{
@@ -78,11 +78,17 @@ non-negative value to add to the top outer margin; if NULL (default) a suitable 
  \item{location}{ 
  if \code{addLegend=TRUE}, the location of the legend with options \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"} (the default), \code{"right"} and \code{"center"}.  
 }
+ \item{boxit}{
+ if TRUE (default), the legend is in a box; if FALSE, no box is drawn.
+}
  \item{horiz}{
  if \code{addLegend=TRUE}, should the legend be horizontal (default is FALSE - vertical).
 }
- \item{boxit}{
- if TRUE (default), the legend is in a box; if FALSE, no box is drawn.
+ \item{legend}{
+ if NULL (default), the legend uses names of each time series; otherwise, use to customize legend.
+}
+ \item{llwd}{
+ line width for the legend if different from the plotted lines.
 }
  \item{\dots}{
 other graphical parameteres; see \link[graphics]{par}.
@@ -113,12 +119,6 @@ tsplot(soi)
 # prettified
 tsplot(soi, col=4, main="Southern Oscillation Index")
 
-# compare these
-par(mfrow=2:1)
-tsplot(1:453, soi, ylab='SOI', xlab='Month')
-# now recklessly add to the margins and add to mgp to get to the default
-tsplot(1:453, soi, ylab='SOI', xlab='Month', margins=c(2,3,4,5), las=1, mgpp=c(1.4,.4,0))
-
 # gris-gris multiple plot 
 tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2)  
 
@@ -127,8 +127,19 @@ x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 u <- tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
 u   #  plot on demand
 
-# quick legend
-tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, addLegend=TRUE)
+# quick legend with spaghetti
+tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, 
+          addLegend=TRUE)
+# ... and a little more control
+tsplot(cbind(cmort, part), col=5:6, gg=TRUE, spag=TRUE, addLegend=TRUE, 
+          legend=c('extinctions','from taint'), llwd=2, location='top', horiz=TRUE)
+
+
+# compare these
+par(mfrow=2:1)
+tsplot(1:453, soi, ylab='SOI', xlab='Month')
+# now recklessly add to the margins and add to mgp to get to the default
+tsplot(1:453, soi, ylab='SOI', xlab='Month', margins=c(2,3,4,5), las=1, mgpp=c(1.4,.4,0))
 
 }
 }

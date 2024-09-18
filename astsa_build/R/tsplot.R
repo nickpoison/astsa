@@ -3,7 +3,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
                     minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
                     gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, lwd=1, mgpp=0, 
                     topper=NULL, addLegend=FALSE, location='topright', boxit=TRUE,
-                    horiz=FALSE, ...)
+                    horiz=FALSE, legend=NULL, llwd=NULL, ...)
 {
   nser   = max(NCOL(x), NCOL(y))
   if (is.null(topper)){
@@ -106,17 +106,20 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    for (h in 1:nser) { lines(x, y[,h], col=culer[h], type=type1, pch=pch[h], 
                           lty=lty[h], lwd=lwd[h], ...) }
    }
-   if (addLegend){ 
-     if (is.null(y)){
-     namez = colnames(as.matrix(x))
-      } else {
-     namez = colnames(as.matrix(y))
-     } 
+  if (addLegend){ 
+    if (is.null(legend)){
+      if (is.null(y)){ namez = colnames(as.matrix(x))
+       } else { namez = colnames(as.matrix(y))
+      }
+     } else {
+      namez = legend
+     }
    if (gg) { box.col=gray(1,.7); bg=gray(.92,.8) } else { box.col=gray(.62,.3); bg=gray(1,.8) }
    if (boxit) bty='o' else bty='n'
+   if (!is.null(llwd)) lwd=llwd 
    legend(location, legend=namez, lty=lty, col=col, bty=bty, box.col=box.col, bg=bg,
           lwd=lwd, pch=pch, horiz=horiz, cex=.9) 
-   }
+  }
     if (gg) { box(col=gray(1)) } else { box(col=gray(.62)) }
 }
 return(invisible(grDevices::recordPlot()))
