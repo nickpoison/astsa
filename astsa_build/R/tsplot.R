@@ -112,8 +112,11 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
       } else {
      namez = colnames(as.matrix(y))
      } 
-     legend(location, legend=namez, lty=lty, col=col, bty='n', lwd=lwd, pch=pch, horiz=horiz) 
+   if (gg) { box.col=gray(1,.7); bg=gray(.92,.8) } else { box.col=gray(.62,.3); bg=gray(1,.8) }
+   legend(location, legend=namez, lty=lty, col=col, bty='o', box.col=box.col, bg=bg,
+          lwd=lwd, pch=pch, horiz=horiz, cex=.9) 
    }
+    if (gg) { box(col=gray(1)) } else { box(col=gray(.62)) }
 }
 return(invisible(grDevices::recordPlot()))
 }
