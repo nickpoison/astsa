@@ -10,7 +10,7 @@ tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,  margins=.25,
         ncolm=1, byrow=TRUE, nx=NULL, ny=nx, minor=TRUE, nxm=2, nym=1, 
         xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, pch=NULL, 
         lty=1, lwd=1, mgpp=0, topper=NULL, addLegend=FALSE, location='topright', 
-        horiz=FALSE, ...)
+        boxit=TRUE, horiz=FALSE, ...)
 }
 \arguments{
   \item{x, y}{
@@ -79,9 +79,12 @@ non-negative value to add to the top outer margin; if NULL (default) a suitable 
  if \code{addLegend=TRUE}, the location of the legend with options \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"} (the default), \code{"right"} and \code{"center"}.  
 }
  \item{horiz}{
- if \code{addLegend=TRUE}, should the legend be horizontal (default is FALSE - vertical)
+ if \code{addLegend=TRUE}, should the legend be horizontal (default is FALSE - vertical).
 }
-  \item{\dots}{
+ \item{boxit}{
+ if TRUE (default), the legend is in a box; if FALSE, no box is drawn.
+}
+ \item{\dots}{
 other graphical parameteres; see \link[graphics]{par}.
 }
 }

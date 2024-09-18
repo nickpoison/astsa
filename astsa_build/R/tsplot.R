@@ -2,8 +2,8 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
                     margins=.25, ncolm=1, byrow=TRUE, nx = NULL, ny = nx, 
                     minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
                     gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, lwd=1, mgpp=0, 
-                    topper=NULL, addLegend=FALSE, location='topright', horiz=FALSE,
-                    ...)
+                    topper=NULL, addLegend=FALSE, location='topright', boxit=TRUE,
+                    horiz=FALSE, ...)
 {
   nser   = max(NCOL(x), NCOL(y))
   if (is.null(topper)){
@@ -113,7 +113,8 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
      namez = colnames(as.matrix(y))
      } 
    if (gg) { box.col=gray(1,.7); bg=gray(.92,.8) } else { box.col=gray(.62,.3); bg=gray(1,.8) }
-   legend(location, legend=namez, lty=lty, col=col, bty='o', box.col=box.col, bg=bg,
+   if (boxit) bty='o' else bty='n'
+   legend(location, legend=namez, lty=lty, col=col, bty=bty, box.col=box.col, bg=bg,
           lwd=lwd, pch=pch, horiz=horiz, cex=.9) 
    }
     if (gg) { box(col=gray(1)) } else { box(col=gray(.62)) }
