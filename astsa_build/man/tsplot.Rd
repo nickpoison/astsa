@@ -52,7 +52,8 @@ line color(s), can be a vector for multiple time series.
 }
  \item{gg}{
 if TRUE, will produce a gris-gris plot (gray graphic interior with white grid lines); the default is FALSE.
-The grammar of astsa is voodoo;  see \kbd{https://www.youtube.com/watch?v=b4J8VrprrGE}
+The grammar of astsa is voodoo;  see \cr 
+\kbd{https://www.youtube.com/watch?v=b4J8VrprrGE}
 }
   \item{spaghetti}{
 if TRUE, will produce a spaghetti plot (all series on same plot).
@@ -128,8 +129,7 @@ u <- tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
 u   #  plot on demand
 
 # quick legend with spaghetti
-tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, 
-          addLegend=TRUE)
+tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, addLegend=TRUE)
 # ... and a little more control
 tsplot(cbind(cmort, part), col=5:6, gg=TRUE, spag=TRUE, addLegend=TRUE, 
           legend=c('extinctions','from taint'), llwd=2, location='top', horiz=TRUE)
