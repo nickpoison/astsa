@@ -231,7 +231,18 @@ tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),
 mtext(bquote('\u00D7'~1000), side=2, adj=1, line=1.5, cex=.8)
 legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
 ```
+
+&#10004; In version 2.2 and beyond, this can be done with `addLegend` in `tsplot` (new - more below)
+
+```r
+tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),
+          ylab='Number', spaghetti=TRUE, addLegend=TRUE)
+mtext(bquote('\u00D7'~1000), side=2, adj=1, line=1.5, cex=.8)
+```
+
 <img src="figs/lynxhare.png" alt="lynxhare"  width="70%">
+
+
 
 <br/>
 
@@ -249,7 +260,7 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 
 <br/>
 
-&#127378; In version 2.2 and beyond, you can easily add a legend to a spaghetti plot (for more control you can still use `legend`)
+&#127378; Now (v2.2+) you can easily add a legend to a spaghetti plot (for more control you can still use `legend`)
 
 ```r
 # quick and easy legend
