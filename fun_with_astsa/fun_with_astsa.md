@@ -247,7 +247,27 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 
 <img src="figs/tsplot2.png" alt="tsplot"  width="70%">
 
-<br/><br/>
+<br/>
+
+&#127378; In version 2.2 and beyond, you can easily add a legend to a spaghetti plot (for more control you can still use `legend`)
+
+```r
+# quick and easy legend
+tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, addLegend=TRUE, llwd=2)
+```
+
+<img src="figs/legend.png" alt="tsplot easy legend"  width="70%">
+
+<br/>
+
+&#127922; and if you need a little more control (not shown)
+```r
+tsplot(cbind(cmort, part), col=5:6, gg=TRUE, spag=TRUE, addLegend=TRUE, legend=c('extinctions', 'from taint'), llwd=2, location='top', horiz=TRUE)
+```
+
+
+
+<br/>
 
 
 ### Lag Plots
