@@ -41,8 +41,7 @@ for multiple time series - if TRUE (default), plot series row wise; if FALSE, pl
 number of major cells of the grid in x and y direction. When NULL, as per default, the grid aligns with the tick marks on the corresponding default axis (i.e., tickmarks as computed by axTicks). When NA, no grid lines are drawn in the corresponding direction.
 }
   \item{minor, nxm, nym}{
-if minor=TRUE, the number of minor tick marks on x-axis, y-axis.  minor=FALSE removes both or set either to 0 or 1 to remove.
-The default is one minor tick on the x-axis and none on the y-axis.
+if minor=TRUE, the number of minor tick marks on x-axis, y-axis.  minor=FALSE removes both or set either to 0 or 1 to remove. The default is one minor tick on the x-axis and none on the y-axis.
 }
   \item{xm.grid, ym.grid}{
 if TRUE (default), adds grid lines at minor x-axis, y-axis ticks.
@@ -74,7 +73,7 @@ this is used to adjust (add to) the \code{mgp} graphics parameters settings (\co
 non-negative value to add to the top outer margin; if NULL (default) a suitable value is chosen
 }
  \item{addLegend}{
- if TRUE and \code{spaghetti=TRUE}, will add a simple legend. If more details are needed, leave this set to FALSE (the default) and use \code{\link{legend}} directly.
+ if TRUE and \code{spaghetti=TRUE}, will add a simple legend. If more details are needed, leave this set to FALSE (the default) and use \code{\link{legend}} directly. 
 }
  \item{location}{ 
  if \code{addLegend=TRUE}, the location of the legend with options \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"} (the default), \code{"right"} and \code{"center"}.  
@@ -92,12 +91,14 @@ non-negative value to add to the top outer margin; if NULL (default) a suitable 
  line width for the legend if different from the plotted lines.
 }
  \item{\dots}{
-other graphical parameteres; see \link[graphics]{par}.
+other graphical parameters; see \link[graphics]{par}.
 }
 }
 \value{
 Produces a graphic and returns it invisibly so it can be saved in an R variable with the ability to replay it;
 see \code{\link{recordPlot}}.
+}
+\note{A legend can be added using \code{addLegend=TRUE} for spaghetti plots only. Spaghetti plots work if \code{spaghetti=TRUE} and there is more than one series being plotted.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
@@ -131,8 +132,9 @@ u   #  plot on demand
 # quick legend with spaghetti
 tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, addLegend=TRUE)
 # ... and a little more control
-tsplot(cbind(cmort, part), col=5:6, gg=TRUE, spag=TRUE, addLegend=TRUE, 
-          legend=c('extinctions','from taint'), llwd=2, location='top', horiz=TRUE)
+tsplot(cbind(gtemp_land, gtemp_ocean), spaghetti=TRUE, lwd=2, col=astsa.col(c(4,2),.7), 
+  ylab="\u00B0C", main="Global Temperature Anomalies", addLegend=TRUE, location='topleft', 
+  horiz=TRUE, legend=c("Land Surface","Sea Surface"))
 
 
 # compare these
