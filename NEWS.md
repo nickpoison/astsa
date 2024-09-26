@@ -5,7 +5,7 @@
 
 **more than just data ... it's a palindrome**  
 
-... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and  [Time Series A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/). 
+... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](https://link.springer.com/book/9783031705830)  and  [Time Series A Data Analysis Approach using R](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096). 
 
 The GitHub version is updated before the CRAN version.   To update the package to the most recent working version, you just need the following two lines:
 
