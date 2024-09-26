@@ -3,9 +3,10 @@
 <img src="fun_with_astsa/figs/astsa.gif" alt="astsa"  height="100">
                        
                                         
+
 > The package is now in the folder [astsa_build](https://github.com/nickpoison/astsa/tree/master/astsa_build) 
 
-... `astsa` is the R package to accompany the [Springer](http://www.springer.com/us/book/9783319524511) text, [Time Series Analysis and Its Applications: With R Examples](http://www.stat.pitt.edu/stoffer/tsa4/)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series: A Data Analysis Approach using R](http://www.stat.pitt.edu/stoffer/tsda/). 
+... `astsa` is the R package to accompany the [Springer](https://link.springer.com/book/9783031705830) text, [Time Series Analysis and Its Applications: With R Examples](https://github.com/nickpoison/tsa5/blob/main/README.md)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series: A Data Analysis Approach using R](https://github.com/nickpoison/tsda/blob/main/Rcode.md). 
 
 
 #### &#10024;  [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) has further details about the state of the package and the changelog.
