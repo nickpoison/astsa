@@ -21,7 +21,7 @@ The particular alphabet  being used. The default is \code{alphabet=c("A", "C", "
 
 The indicator vectors (as a matrix) are returned invisibly in case the user forgets to put the results in an object wherein the screen would scroll displaying the entire sequence.  In other words, the user should do something like \code{xdata = dna2vector(data)} where \code{data} is the original sequence.
 
-As an example, if the DNA sequence is in a FASTA file, say \code{sequence.fasta}, remove the first line, which will look like \code{>V01555.2 ... }. Then the following code can be used to read the data into the session, create the indicator sequence and save it as a compressed R data file:
+If the DNA sequence is in a FASTA file, say \code{sequence.fasta}, the following code can be used to read the data into the session, create the indicator sequence and save it as a compressed R data file:
 
 \preformatted{
   fileName <- 'sequence.fasta'      # name of FASTA file
