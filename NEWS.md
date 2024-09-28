@@ -30,7 +30,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 > should be available on cRan by the time edition 5 is published (Dec 2024)
 
-- in `tsplot`, if `spaghetti=TRUE`, added the ability to include a simple legend without more coding (e.g., you don't have to use `legend`).   An example is in the help file.
+- in `tsplot`, if `spaghetti=TRUE`, added the ability to include a simple legend (so you don't have to use `legend`).   An example is in the help file.
 
 - changed `sarima` so it works for tiny sample sizes (thought about including a "tiny" warning, but the sample SEs will be ginormous - that should be warning enough) 
 
@@ -38,7 +38,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - `arma.spec` gets better default title and `sarima.for` gets a `ylab` option.
 
-- added `lap.xts` (an xts object), which are the original daily observations from the LA Pollution-Mortality study.  How to easily get weekly averages is given in the examples section of the man page.
+- added `lap.xts` (an xts object), which contains the original daily observations from the LA Pollution-Mortality study.  How to easily get weekly averages is given in the examples section of the man page.
 
 - for `trend`, if `results=TRUE` a summary of the regression (if used) results is printed  
 
