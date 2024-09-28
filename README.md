@@ -23,15 +23,15 @@ We won't always push the latest version of the package to CRAN, but the latest w
 [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
 
 
-* The updated [code for the graduate level text](https://github.com/nickpoison/tsa4/blob/master/textRcode.md) is here: [TSA4](https://github.com/nickpoison/tsa4).
+* The  [code for the graduate level text](https://github.com/nickpoison/tsa5/blob/master/textRcode.md) is here: [TSA5](https://github.com/nickpoison/tsa5/blob/master/textRcode.md).
 
-* The updated [code for the data science text](https://github.com/nickpoison/tsda/blob/master/Rcode.md) is here: [TSDA](https://github.com/nickpoison/tsda).
+* The updated [code for the data science text](https://github.com/nickpoison/tsda/blob/master/Rcode.md) is here: [TSDA](https://github.com/nickpoison/tsda/blob/master/Rcode.md).
 
 * Python:
 
-    - The [code in the first 3 chapters of the Springer text has been converted to Python here.](https://github.com/borisgarbuzov/tsa4-python/tree/master/src) 
+    - The [code in the first 3 chapters of the Springer text (edition 4) has been converted to Python here.](https://github.com/borisgarbuzov/tsa4-python/tree/master/src) 
 
-    - And a [Python package that contains datasets from astsa is here.](https://pypi.org/project/astsadata/)
+    - And a [Python package that contains many of the datasets from astsa is here.](https://pypi.org/project/astsadata/)
 
 <br/>
 

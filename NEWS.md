@@ -26,7 +26,9 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ---
 
-### &#9654;  ... in progress
+### &#9654; v2.2 ... in progress 
+
+> should be available on cRan by the time edition 5 is published (Dec 2024)
 
 - in `tsplot`, if `spaghetti=TRUE`, added the ability to include a simple legend without more coding (e.g., you don't have to use `legend`).   An example is in the help file.
 

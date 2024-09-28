@@ -459,7 +459,7 @@ pre.white(cmort, part, diff=TRUE, col=4)    # this will be in version 2.2 and be
 #    after differencing d = 1
 ```
 
-You get a graphic and the transformed series are returned invisibly:
+You get a graphic and the transformed series are returned invisibly (the .w is for whitened and the .f is for filtered):
 
 <img src="figs/pre.white.png" alt="pre.white"  width="70%">
 
