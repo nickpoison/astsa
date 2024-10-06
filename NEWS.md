@@ -30,6 +30,8 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 > should be available on cRan by the time edition 5 is published (Dec 2024)
 
+- `lag1.plot` and `lag2.plot` got little facelifts.
+
 - in `tsplot`, if `spaghetti=TRUE`, added the ability to include a simple legend (so you don't have to use `legend`).   An example is in the help file.
 
 - changed `sarima` so it works for tiny sample sizes (thought about including a "tiny" warning, but the sample SEs will be ginormous - that should be warning enough) 
@@ -44,7 +46,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - the scripts and data sets that were marked 'x' have been removed to [here](https://github.com/nickpoison/astsa/tree/master/xBox) ... they won't be included in the next version.
 
-- `dna2vector` was updated (due to change in a base R script) - previous versions might not work
+- `dna2vector` was updated (&#128545; due to change in a base R script) - previous versions might not work 
 
 - in `mvspec` set `fxx` to `NULL` in univariate case ... and in the call, if `demean=TRUE` (default is `FALSE`) `detrend` is set to `FALSE`; i.e., `demean=TRUE` sets `detrend=FALSE`.
 

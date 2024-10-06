@@ -260,7 +260,7 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 
 <br/>
 
-&#127378; Now (v2.2+) you can easily add a legend to a spaghetti plot (for more control you can still use `legend`)
+&#127378; In v2.2 (and beyond), easily add a legend to a spaghetti plot (for more control you can still use `legend`)
 
 ```r
 # quick and easy legend
@@ -287,8 +287,7 @@ tsplot(cbind(cmort, part), col=5:6, gg=TRUE, spag=TRUE, addLegend=TRUE, legend=c
 
 > **`lag1.plot()`** or **`lag2.plot()`**
 
-By default, the graphic displays the sample ACF or CCF and a `lowess` fit.
-They can be turned off individually (`?lag1.plot` or `?lag2.plot` for more info).
+By default, the graphic displays the sample ACF or CCF and a `lowess` fit. They can be turned off individually (`?lag1.plot` or `?lag2.plot` for more info).
 
 First,  for one series
 

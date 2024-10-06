@@ -13,7 +13,7 @@ Contains data sets and scripts for analyzing time series in both the frequency a
 Package: \tab astsa\cr
 Type: \tab Package\cr
 Version: \tab 2.2\cr
-Date: \tab 2024-09-01\cr
+Date: \tab 2024-00-00\cr
 License: \tab GPL-3\cr
 LazyLoad: \tab yes\cr
 LazyData: \tab yes\cr
@@ -31,7 +31,7 @@ David Stoffer <stoffer@pitt.edu>
 \verb{
    library(dplyr, exclude = c("filter", "lag"))   # load it but remove the culprits 
    Lag <- dplyr::lag            # and do what the dplyr ... 
-   Filter <- dplyr::filter      # ... maintainers refuse to do}\cr
+   Filter <- dplyr::filter      # ... maintainer refuses to do}\cr
 then use \code{Lag} and \code{Filter} for \code{dplyr} scripts \cr
 and \code{lag} and \code{filter} can be use as originally intended
 

@@ -1,6 +1,6 @@
 lag1.plot <-
 function(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1), 
-         lwl=1, lwc=2, bgl=gray(1,.65), ltcol=1, box.col=8, cex=.9, ...){ 
+         lwl=1, lwc=2, bgl=NULL, ltcol=1, box.col=NULL, cex=.9, gg=FALSE, ...){ 
 
   name1   = paste(deparse(substitute(series)),"(t-",sep="")
   name2   = paste(deparse(substitute(series)),"(t)",sep="")
@@ -9,19 +9,27 @@ function(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1),
   pcol    = ceiling(max.lag/prow)
   a       = acf1(series, max.lag, plot=FALSE) 
   old.par <- par(no.readonly = TRUE)
+ if (is.null(box.col)) { 
+  box.col = ifelse(gg, gray(1,.7), gray(.62,.7)) 
+  }
+ if (is.null(bgl)) { 
+  bg = ifelse(gg, gray(.92,.8), gray(1,.8))
+  }
 
  series = as.ts(series)
  par(mfrow = c(prow, pcol))
  for(h in 1:max.lag){
    u = ts.intersect(stats::lag(series,-h), series)
-  tsplot(u[,1], u[,2], type='p', xy.labels=FALSE, xy.lines=FALSE,
+  tsplot(u[,1], u[,2], type='p', xy.labels=FALSE, xy.lines=FALSE, gg=gg,
           xlab=paste(name1,h,")",sep=""), ylab=name2, col=col, cex=cex, ...) 
   if (smooth) 
    lines(stats::lowess(u[,1], u[,2]), col=lwc, lwd=lwl)
-  if (corr)
+  if (corr) {
    legend("topright", legend=format(round(a[h], digits=2), nsmall=2), 
            text.col=ltcol, bg=bgl, adj=.25, box.col=box.col, cex=.9)
+   if (gg) { box(col=gray(1)) } else { box(col=gray(.62)) }
  }
  on.exit(par(old.par))
+}
 }
 
