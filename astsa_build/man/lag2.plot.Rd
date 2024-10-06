@@ -6,7 +6,7 @@
 }
 \usage{
 lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1), 
-          lwl = 1, lwc = 2, bgl = NULL, ltcol = 1, box.col = NULL, cex = .9, 
+          bg = NA, lwl = 1, lwc = 2, bgl = NULL, ltcol = 1, box.col = NULL, cex = .9, 
           gg = FALSE, ...)
 }
 \arguments{
@@ -21,6 +21,8 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
   \item{smooth}{if TRUE, adds a lowess fit to each scatterplot
 }
   \item{col}{color of points; default is \code{gray(.1)}
+}
+  \item{bg}{background color for filled plot characters
 }
   \item{lwl}{width of lowess line; default is 1
 }
@@ -52,7 +54,7 @@ The webpages for the texts and some help on using R for time series analysis can
 \author{D.S. Stoffer
 }
 \examples{
-lag2.plot(soi, rec, max.lag=3)
+lag2.plot(Hare, Lynx, max.lag=5, lwl=2, lwc=3, cex=1.5, pch=24, bg='orange')
 lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, lwl=2)
 }
 \seealso{\code{\link{lag1.plot}}}

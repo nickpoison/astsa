@@ -5,8 +5,8 @@
 \description{Produces a grid of scatterplots of a series versus lagged values of the series.
 }
 \usage{
-lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1), lwl = 1,
-            lwc = 2, bgl = NULL, ltcol = 1, box.col = NULL, cex = .9, gg = FALSE, ...)
+lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1), bg=NA, lwl = 1,
+           lwc = 2, bgl = NULL, ltcol = 1, box.col = NULL, cex = .9, gg = FALSE, ...)
 }
 \arguments{
   \item{series}{the data
@@ -18,6 +18,8 @@ lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1), lwl =
   \item{smooth}{if TRUE, adds a lowess fit to each scatterplot
 }
   \item{col}{color of points; default is \code{gray(.1)}
+}
+  \item{bg}{background color for filled plot characters
 }
   \item{lwl}{width of lowess line; default is 1
 }
@@ -50,7 +52,7 @@ The webpages for the texts and some help on using R for time series analysis can
 }
 \examples{
 lag1.plot(log(varve), max.lag=9)
-lag1.plot(soi, 12, cex=1, pch=19, col=astsa.col(4, .3), gg=TRUE, corr=FALSE)
+lag1.plot(soi, 12, cex=1, pch=19, col=astsa.col(4, .3), gg=TRUE)
 }
 \seealso{\code{\link{lag2.plot}}}
 \keyword{ ts }
