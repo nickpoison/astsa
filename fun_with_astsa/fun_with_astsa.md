@@ -307,7 +307,7 @@ and for two series (the first one gets lagged)
 # minimal call - the first series gets lagged
 lag2.plot(soi, rec, 8)
 # but prettified
-lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, bgl='transparent', lwl=2, gg=T, box.col=gray(1))
+lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, lwl=2, gg=TRUE)
 ```
 <img src="figs/lag2plot.png" alt="lag2plot"  width="70%">
 
