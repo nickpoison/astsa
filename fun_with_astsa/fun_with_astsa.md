@@ -15,7 +15,8 @@ it's more than just data ... it's a palindrome
 
 -----
 -----
-> __Note__  when you are in a code block below, you can copy the contents of the block by moving your mouse to the upper right corner and clicking on the copy icon ( &#128203; ).
+&#128226; __Note:__  When you are in a code block below, you can copy the contents of the block by moving your mouse to the upper right corner and clicking on the copy icon ( __&#10697;__ ).
+
 ------
 -----
 
@@ -45,7 +46,7 @@ it's more than just data ... it's a palindrome
     * [autoParm - changepoint detection - parametric](#autoparm) 
   * [7. Testing for Linearity](#7-linearity-test)
   * [8. State Space Models and Kalman Filtering](#8-state-space-models)
-     * [Quick Kalman Filter and Smoother - 	&#128150; NEW 	&#128150;](#quick-kalman-filter-and-smoother)
+     * [Quick Kalman Filter and Smoother - 	&#128150; NEW &#128150;](#quick-kalman-filter-and-smoother)
      * [SSM - for beginners](#beginners-paradise)
   * [9. EM Algorithm and Missing Data - &#128150; NEW &#128150;](#9-em-algorithm-and-missing-data)
      * [Parameter Constraints](#parameter-constraints)
@@ -53,7 +54,7 @@ it's more than just data ... it's a palindrome
       * [AR Models](#ar-models)
       * [Gibbs Sampling for State Space Models - the FFBS Algorithm](#gibbs-sampling-for-linear-state-space-models)
       * [Effective Sample Size (ESS)](#ess)
-  * [11. Stochastic Volatility Models - 	&#128150; NEW 	&#128150;](#11-stochastic-volatility-models)  
+  * [11. Stochastic Volatility Models - 	&#128150; NEW &#128150;](#11-stochastic-volatility-models)  
       * [Bayesian](#bayesian)
       * [Classical](#classical) 
   * [12. Arithmetic](#12-arithmetic)
@@ -337,7 +338,7 @@ lines(lowess(tempr, cmort), col=6, lwd=2)
  &#x1F535;  `detrend` returns a detrended series using a polynomial regression (default is linear) or lowess (with the default span).  For example,
 
  ```r
-tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon - USD per KG')
+tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon (USD/KG)', lwd=2, col=5:6)
  ```
 
 <img src="figs/detrend.png" alt="detrend"  width="70%">
@@ -452,7 +453,7 @@ ccf2(cmort, part)
 &#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).  Here you go:
 
 ```r
-pre.white(cmort, part, diff=TRUE, col=4)    # this will be in version 2.2 and beyond
+pre.white(cmort, part, diff=TRUE, col=4)    # in version 2.2 and beyond
 
 #    cmort prewhitened using an AR p = 3 
 #    after differencing d = 1
@@ -464,6 +465,7 @@ You get a graphic and the transformed series are returned invisibly (the .w is f
 
 
 
+<br/>
 
 &#x1F535; For multiple series, you can look at all sample ACFs (diagonal) and CCFs (off-diagonal) simultaneously:
 
@@ -683,36 +685,37 @@ AIC = 7.062148  AICc = 7.067377  BIC = 7.201026
 
 <br/>
 
-&#128126; And you can fit AR models using the bootstrap. Let's fit an AR(2) to the recruitment series.
+&#128126; And you can fit AR models using the bootstrap. Let's fit an AR(2) to the Recruitment series.
 
 ```r
 ar.boot(rec, 2)
  
- Quantiles: 
+## output: ## 
+   Quantiles: 
          ar1     ar2
- 1%    1.205 -0.5338
- 2.5%  1.234 -0.5186
- 5%    1.249 -0.5021
- 10%   1.266 -0.4912
- 25%   1.294 -0.4656
- 50%   1.326 -0.4429
- 75%   1.354 -0.4121
- 90%   1.376 -0.3874
- 95%   1.393 -0.3682
- 97.5% 1.406 -0.3589
- 99%   1.413 -0.3443
+   1%    1.205 -0.5338
+   2.5%  1.234 -0.5186
+   5%    1.249 -0.5021
+   10%   1.266 -0.4912
+   25%   1.294 -0.4656
+   50%   1.326 -0.4429
+   75%   1.354 -0.4121
+   90%   1.376 -0.3874
+   95%   1.393 -0.3682
+   97.5% 1.406 -0.3589
+   99%   1.413 -0.3443  
 
-Mean: 
-    ar1     ar2 
- 1.3229 -0.4404 
+  Mean: 
+      ar1     ar2 
+   1.3229 -0.4404   
 
-Bias: 
-           ar1      ar2
-[1,] -0.008703 0.004168
+  Bias: 
+             ar1      ar2
+  [1,] -0.008703 0.004168  
 
-rMSE: 
-         ar1     ar2
-[1,] 0.04479 0.04192
+  rMSE: 
+           ar1     ar2
+  [1,] 0.04479 0.04192
 ```
 
 and a picture:
@@ -860,6 +863,9 @@ mvspec(x, col=4, lwd=2, type='o', pch=20)
 ```r
 par(mfrow=c(2,1))
 sois  = mvspec(soi, spans=c(7,7), taper=.1, col=4, lwd=2)
+##-- these get printed unless plot=FALSE--##
+ # Bandwidth: 0.231    
+ # Degrees of Freedom: 15.61 
 soisl = mvspec(soi, spans=c(7,7), taper=.5, col=4, lwd=2, log='y')
 ```
 
@@ -867,15 +873,7 @@ soisl = mvspec(soi, spans=c(7,7), taper=.5, col=4, lwd=2, log='y')
 
 <br/>
 
-&#x1F535; and you can get the usual information
-
-```r
-c(sois$df, sois$bandwidth)
-
-  [1] 17.4261799  0.2308103
-```
-
-and easily locate the peaks
+&#x1F535; and you can easily locate the peaks
 
 ```r
  sois$details[1:45,]
@@ -901,7 +899,10 @@ and easily locate the peaks
 &#x1F535; and cross-spectra
 
 ```r
-mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitment")
+mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, gg=TRUE, main="SOI & Recruitment")
+
+# Bandwidth: 0.513 
+# Degrees of Freedom: 38.72
 ```
 
 <img src="figs/coher.png" alt="coher"  width="70%"><br/>
@@ -913,7 +914,7 @@ mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, main="SOI & Recruitm
 
 
 
-&#x1F4A1; `spec.ic` is similar to `spec.ar` but the option to use BIC instead of AIC is available.  Also, you can use the script to compare  AIC and BIC for AR fits to the data.
+&#x1F4A1; `spec.ic` (in astsa) is similar to `spec.ar` (in stats) but the option to use BIC instead of AIC is available.  Also, you can use the script to compare  AIC and BIC for AR fits to the data.
 
 &#x1F535; Based on BIC after detrending (default is using AIC with `BIC=FALSE`)
 
@@ -1731,7 +1732,7 @@ R  # (actual .01)
 
 > `SV.mcmc` to fit stochastic volatility models 
 
-> `ffbs` the forward filter backward sampling (FFBS) algorithm - part of Gibbs for SS models
+> `ffbs` the forward filter backward sampling (FFBS) algorithm - part of Gibbs for LINEAR SS models
 
 <br/>
 
@@ -1818,7 +1819,7 @@ where  _w<sub>t</sub>_ and _v<sub>t</sub>_ are independent standard Gaussian noi
 # generate some data from the model - 2 parameters
 set.seed(1)
 sQ = 1; sR = 3; n  = 100
-mu0 = 0; Sigma0=10; x0=rnorm(1,mu0,Sigma0)
+mu0 = 0; Sigma0 = 10; x0 = rnorm(1,mu0,Sigma0)
 w  = rnorm(n); v  = rnorm(n)
 x = c(x0   + sQ*w[1])  # initialize states
 y = c(x[1] + sR*v[1])  # initialize obs
@@ -1834,7 +1835,7 @@ draws  = c()
 # priors for R (a,b) and Q (c,d) IG distributions
 a = 2; b = 2; c = 2; d = 1  
 # (1) initialize - sample sQ and sR  
-sR = sqrt(1/rgamma(1,a,b)); sQ =  sqrt(1/rgamma(1,c,d))
+sR = sqrt(1/rgamma(1,a,b)); sQ = sqrt(1/rgamma(1,c,d))
 
 # progress bar
 pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  
@@ -2335,8 +2336,7 @@ ATAAACAGTGCTGGAGGCTGGCGGGGCAGGCCAGCTGAGTCCTGAGCAGCAGCCCAGCGCAGCCACCGAGACACC
 ATGAGAGCCCTCACACTCCTCGCCCTATTGGCCCTGGCCGCACTTTGCATCGCTGGCCAGGCAGGTGAGTGCCCC
 ```
 
-Remove the first line using a text editor. If the file is in the working directory,
-the following code can be used to read the data into the session, create the indicator sequence and save it as a compressed R data file:
+If the file is in the working directory, the following code can be used to read the data into the session, create the indicator sequence and save it as a compressed R data file:
 
 ```r
   fileName <- 'sequence.fasta'      # name of FASTA file
