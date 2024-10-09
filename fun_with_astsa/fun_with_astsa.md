@@ -1888,8 +1888,7 @@ abline(h=mean(draws[,2]), col=3, lwd=2)
 
 &#x1F6C2;  **Example: Structural Model** 
 
-Here's the model and some discussion. $y_t =\log \text{jj}$,
-  $T_t$ is trend and $S_t$ is quarterly season and
+Here's the model and some discussion. $y_t = \text{jj}$ (Johnson & Johnson data), $T_t$ is trend and $S_t$ is quarterly season and
 
 &emsp;&emsp; $y_t  = T_t + S_t + v_t$ &emsp; where &emsp; $T_t = \phi T_{t-1} + w_{t1}$
 &emsp; and &emsp; $S_t+S_{t-1}+S_{t-2}+S_{t-3} = w_{t2}$.
