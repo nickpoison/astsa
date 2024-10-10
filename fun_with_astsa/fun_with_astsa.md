@@ -1321,7 +1321,7 @@ y = ts(y, start=3000)
 # run and plot the filter  
 run = Ksmooth(y, A=1, mu0, Sigma0, Phi=1, sQ, sR)
 
-# the smoother comes back as an array, so you have to un-array it
+# the smoother comes back as an array, so you have to un-array (drop) it
 tsplot(cbind(y, drop(run$Xs)), spaghetti=TRUE, type='o', col=c(4,6), pch=c(1,NA))
 legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,NA))
 ```
@@ -1330,7 +1330,7 @@ legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,
 
 ### Beginners Paradise
 
- &#x1F4A1;  There is a basic state space model script in `astsa` for beginners:
+ &#x1F4A1;  There is a basic linear state space model script in `astsa` for beginners - kind of like fitting ARMA models :
 
 > **`ssm()`**
 
@@ -1342,8 +1342,7 @@ legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,
 
 where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
 
-&#x1F535; We'll fit the model to one of the global temperature series.
-To use the script, you have to give initial estimates and then the script fits the model via MLE. The initial values of &mu;<sub>0</sub> and &sigma;<sub>0</sub> are chosen automatically. In this example, we hold &phi; fixed at 1.
+&#x1F535; We'll fit the model to one of the global temperature series. To use the script, you have to give initial estimates and then the script fits the model via MLE. The initial values of &mu;<sub>0</sub> and &sigma;<sub>0</sub> are chosen automatically. In this example, we hold &phi; fixed at 1.
 
 ```r
 u = ssm(gtemp_land, A=1, phi=1, alpha=.01, sigw=.01, sigv=.1, fixphi=TRUE)
@@ -1422,7 +1421,7 @@ where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~
 
 ```r
 y   = gtemp_land
-A   = 1        # if A is constant, enter it that way now
+A   = 1        # if A is constant, enter it that way 
 Ups = 0.01     # alpha
 Phi = 1 
 Q   = 0.001    # notice you input Q 
@@ -1473,9 +1472,9 @@ $cvg
 [1]  3.194832e-05
 ```
 
-**NOTE: Missing data can now be entered as NA or zero (0) in the data (y) and measurement matrices (A<sub>t</sub>).
+<br/>
 
-&#x1F535; Next, we'll do a missing data  `blood` example, which contains the daily blood work of a patient for 91 days and where there are many missing observations after the first month.
+&#x1F535; Missing data can be entered as NA or zero (0) in the data (y) and measurement matrices (A<sub>t</sub>).  Next, we'll do a missing data   example, `blood`, which contains the daily blood work of a patient for 91 days and where there are many missing observations after the first month.
 
 
 ```r
@@ -1488,8 +1487,7 @@ tsplot(blood, type='o', col=c(6,4,2), lwd=2, pch=19, cex=1)
 
 &emsp;&emsp;_x<sub>t</sub> =   &Phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> + v<sub>t</sub>_
 
-where _A<sub>t</sub>_ is 3x3 identity when observed, and 0 matrix when missing.
-The errors are  _w<sub>t</sub> ~ iid N<sub>3</sub>(0, Q)_ &perp;   _v<sub>t</sub> ~ iid N<sub>3</sub>(0, V)_ &perp; _x<sub>0</sub> ~ N<sub>3</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>)_.
+where _A<sub>t</sub>_ is 3x3 identity when observed, and 0 matrix when missing. The errors are  _w<sub>t</sub> ~ iid N<sub>3</sub>(0, Q)_ &perp;   _v<sub>t</sub> ~ iid N<sub>3</sub>(0, V)_ &perp; _x<sub>0</sub> ~ N<sub>3</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>)_.
 
 
 
@@ -1620,7 +1618,7 @@ polygon(xx, yy, border=8, col=astsa.col(8, alpha = .1))
 
 <br/><br/>
 
-### Parameter Constraints
+### &#129299; EM with Parameter Constraints
 
 &#x1F4A1; The script doesn't allow constraints on the parameters, but constrained parameter estimation can be accomplished by being a little clever.  We demonstrate by fitting an AR(2) with noise.  
 
@@ -1752,19 +1750,19 @@ u = ar.mcmc(rec, 2)
 
 with screen output
 ```r
-#  Quantiles: 
-#            phi0     phi1       phi2     sigma
-#  1%    3.991699 1.268724 -0.5604687  8.799926
-#  2.5%  4.504180 1.276576 -0.5460294  8.903435
-#  5%    4.897493 1.289001 -0.5306669  9.001894
-#  10%   5.312776 1.302280 -0.5163514  9.109764
-#  25%   5.976938 1.325613 -0.4907099  9.291095
-#  50%   6.780525 1.353442 -0.4614311  9.498246
-#  75%   7.571304 1.380684 -0.4361400  9.703718
-#  90%   8.235147 1.406633 -0.4130296  9.913079
-#  95%   8.643331 1.424673 -0.3985069 10.018678
-#  97.5% 8.928998 1.435397 -0.3874075 10.130158
-#  99%   9.482394 1.458155 -0.3751349 10.335975  
+ Quantiles: 
+            phi0     phi1       phi2     sigma
+  1%    3.991699 1.268724 -0.5604687  8.799926
+  2.5%  4.504180 1.276576 -0.5460294  8.903435
+  5%    4.897493 1.289001 -0.5306669  9.001894
+  10%   5.312776 1.302280 -0.5163514  9.109764
+  25%   5.976938 1.325613 -0.4907099  9.291095
+  50%   6.780525 1.353442 -0.4614311  9.498246
+  75%   7.571304 1.380684 -0.4361400  9.703718
+  90%   8.235147 1.406633 -0.4130296  9.913079
+  95%   8.643331 1.424673 -0.3985069 10.018678
+  97.5% 8.928998 1.435397 -0.3874075 10.130158
+  99%   9.482394 1.458155 -0.3751349 10.335975  
 ```
 
 and graphics
@@ -1810,30 +1808,32 @@ If $\Theta$ represents the parameters, $x_{0:n}$ the states, $y_{1:n}$ the data,
 
 &#x1F6C2;  **Example: Local Level Model** 
 
-&emsp;&emsp;_x<sub>t</sub> =  x<sub>t-1</sub>  +  w<sub>t</sub>_ , &nbsp; &nbsp; and &nbsp;  &nbsp;
-_y<sub>t</sub> = x<sub>t</sub> + 3 v<sub>t</sub>_
+&emsp;&emsp;_x<sub>t</sub> =  x<sub>t-1</sub>  +  w<sub>t</sub>_  &nbsp; &nbsp; and &nbsp;  &nbsp; _y<sub>t</sub> = x<sub>t</sub> + 3 v<sub>t</sub>_
 
 where  _w<sub>t</sub>_ and _v<sub>t</sub>_ are independent standard Gaussian noise.
 
 ```r
-# generate some data from the model - 2 parameters
+# generate some data from the model 
 set.seed(1)
-sQ = 1; sR = 3; n  = 100
-mu0 = 0; Sigma0 = 10; x0 = rnorm(1,mu0,Sigma0)
-w  = rnorm(n); v  = rnorm(n)
+sQ = 1;  sR = 3        # 2 parameters
+mu0 = 0; Sigma0 = 10; x0 = rnorm(1,mu0,Sigma0)  # initial state
+n  = 100; w = rnorm(n); v = rnorm(n)
 x = c(x0   + sQ*w[1])  # initialize states
 y = c(x[1] + sR*v[1])  # initialize obs
 for (t in 2:n){ 
   x[t] = x[t-1] + sQ*w[t]
   y[t] = x[t] + sR*v[t]
   }
+# we'll plot these below
 
 # set up the Gibbs sampler
 burn   = 50;  n.iter = 1000
 niter  = burn + n.iter
 draws  = c()
+
 # priors for R (a,b) and Q (c,d) IG distributions
 a = 2; b = 2; c = 2; d = 1  
+
 # (1) initialize - sample sQ and sR  
 sR = sqrt(1/rgamma(1,a,b)); sQ = sqrt(1/rgamma(1,c,d))
 
@@ -1852,7 +1852,7 @@ for (iter in 1:niter){
  sQ    = sqrt(Q)
 ## store everything 
  draws = rbind(draws,c(sQ,sR,xs))
- setTxtProgressBar(pb,iter)  
+ setTxtProgressBar(pb, iter)  
 }
 close(pb)
 
@@ -1890,11 +1890,9 @@ abline(h=mean(draws[,2]), col=3, lwd=2)
 
 Here's the model and some discussion. $y_t = \text{jj}$ (Johnson & Johnson data), $T_t$ is trend and $S_t$ is quarterly season and
 
-&emsp;&emsp; $y_t  = T_t + S_t + v_t$ &emsp; where &emsp; $T_t = \phi T_{t-1} + w_{t1}$
-&emsp; and &emsp; $S_t+S_{t-1}+S_{t-2}+S_{t-3} = w_{t2}$.
+&emsp;&emsp; $y_t  = T_t + S_t + v_t$ &emsp; where &emsp; $T_t = \phi T_{t-1} + w_{t1}$   &emsp; and &emsp; $S_t+S_{t-1}+S_{t-2}+S_{t-3} = w_{t2}$.
 
- We suggest looking at Example 6.26 in edition 5 of the text for more details.
-
+ The set  up (Example 6.26 in edition 5 of the text for more details):
 
 <img src="figs/ex627.png" alt="jj parameters">
 
@@ -2044,19 +2042,17 @@ apply(u, 2, ESS)
 ---
 
 
-## 11. Stochastic Volatility Models
+## 11. Stochastic Volatility Models 
+
+####  &nbsp;&nbsp; &#128111;`astsa` has classical and Bayesian versions ... 
 
 ### Bayesian:
 
-&#x1F535; For an example, we'll fit a stochastic volatility model to the S&P500 weekly returns(`sp500w`).  We've also added some new financial data sets, `sp500.gr` (daily S&P 500 returns) and
-`BCJ` (daily returns for 3 banks, Bank of America, Citi, and JP Morgan Chase).  The model is
+&#x1F535; For an example, we'll fit a stochastic volatility model to the S&P500 weekly returns(`sp500w`).  We've also added some new financial data sets, `sp500.gr` (daily S&P 500 returns) and `BCJ` (daily returns for 3 banks, Bank of America, Citi, and JP Morgan Chase).  The model is
 
-&emsp;&emsp;_x<sub>t</sub> =  &phi; x<sub>t-1</sub>  + &sigma; w<sub>t</sub>_ , &nbsp; &nbsp; and &nbsp;  &nbsp;
-_y<sub>t</sub> =&beta;_ exp _(&half; x<sub>t</sub>) &epsilon;<sub>t</sub>_
+&emsp;&emsp;_x<sub>t</sub> =  &phi; x<sub>t-1</sub>  + &sigma; w<sub>t</sub>_ , &nbsp; &nbsp; and &nbsp;  &nbsp; _y<sub>t</sub> =&beta;_ exp _(&half; x<sub>t</sub>) &epsilon;<sub>t</sub>_
 
-where _w<sub>t</sub>_ and  _&epsilon;<sub>t</sub>_  are independent standard Gaussian white noise,
- _x<sub>t</sub>_ is the hidden log-volatility process and _y<sub>t</sub>_ are the returns.
- Most of the inputs have defaults, so a minimal run just needs the data specified.
+where _w<sub>t</sub>_ and  _&epsilon;<sub>t</sub>_  are independent standard Gaussian white noise,  _x<sub>t</sub>_ is the hidden log-volatility process and _y<sub>t</sub>_ are the returns.  Most of the inputs have defaults, so a minimal run just needs the data specified.
 
  ```r
  u = SV.mcmc(sp500w)   # put the results in an object - it's important
@@ -2070,12 +2066,11 @@ where _w<sub>t</sub>_ and  _&epsilon;<sub>t</sub>_  are independent standard Gau
     42.02    0.71   44.73 
    The acceptance rate is: 29.7%
  ```
-and graphics (traces, effective sample sizes, ACFs, histograms with 2.5%-50%-97.5% quantiles
-followed by the posterior mean log-volatility with 95% credible intervals).
+and graphics (traces, effective sample sizes, ACFs, histograms with 2.5%-50%-97.5% quantiles followed by the posterior mean log-volatility with 95% credible intervals).
 
 <img src="figs/bayes_sv.png" alt="bayes_sv"  width="70%"><br/>
 
-&#x1F429;  The **Effective Sample Size (ESS)** in the graphic above were calculated using the script `ESS`, which became available in version 1.16 of the package.
+&#x1F429;  The **Effective Sample Size (ESS)** in the graphic above were calculated using the script `ESS`.
 
 <img src="figs/bayes_sv2.png" alt="bayes_sv"  width="70%"><br/>
 
@@ -2116,11 +2111,19 @@ SV.mle(BCJ[,'boa'], feedback=TRUE, rho=0)  # rho not included if no start value 
   SE         0.5063 0.0023 0.0266  0.7049 0.0509  0.1778 0.1085 0.3970
 ```
 
-Notice that $\rho$ is not significant and its SE is huge! And you get a graphic of the predicted $x_t$ superimpose on $r_t$ (times 10), and a comparison of the distribution of $\eta_t$ vs $\log \chi_1^2$,
+Notice that $\rho$ is not significant and its SE is huge! And you get a graphic of the predicted $x_t$ superimpose on $r_t$ (times 10), and a comparison of the distribution of $\eta_t$ vs $\log \chi_1^2$, 
 
 
 
 <img src='figs/svmle.png' alt="SV.mle" width="70%"><br/>
+
+To do the same run but without $\rho$, just don't give it an initial value:
+
+```r
+SV.mle(BCJ[,'boa'], feedback=TRUE)
+```
+
+and to ignore the feedback term, just leave it out of the call (but why would you?): `SV.mle(BCJ[,'boa'])`
 
 [<sub>top</sub>](#table-of-contents)
 <br/>
