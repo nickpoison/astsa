@@ -229,16 +229,18 @@ tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2)  # another gris-gris plot
 ```r
 tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),
           ylab='Number',  spaghetti=TRUE)
-mtext(bquote('\u00D7'~1000), side=2, adj=1, line=1.5, cex=.8)
+mtext('\u00D7' 1000', side=2, adj=1, line=1.5, cex=.8)
 legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
 ```
 
-&#10004; In version 2.2 and beyond, this can be done with `addLegend` in `tsplot` (new - more below)
+<br/>
+
+&#10004; In version 2.2 (not at CRAN yet) and beyond, this can be done with `addLegend` in `tsplot` (a few more examples below)
 
 ```r
 tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),
           ylab='Number', spaghetti=TRUE, addLegend=TRUE)
-mtext(bquote('\u00D7'~1000), side=2, adj=1, line=1.5, cex=.8)
+mtext('\u00D7 1000', side=2, adj=1, line=1.5, cex=.8)
 ```
 
 <img src="figs/lynxhare.png" alt="lynxhare"  width="70%">
@@ -380,7 +382,7 @@ tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon (USD/KG)', lwd=2, 
 
 - `acfm` is for multiple time series and it produces a grid of plots of the sample ACFs and CCFs.  
 
-- `pre.white` will prewhiten the first series automatically, filter the second accordingly, and perform a cross-correlation analysis.
+- `pre.white` (version 2.2+) will prewhiten the first series automatically, filter the second accordingly, and perform a cross-correlation analysis.
 
 <br/>
 
