@@ -26,7 +26,7 @@ pre.white(series1, series2, diff = FALSE, max.lag = NULL, main = NULL,
 }
 \details{The first series is prewhitened by fitting a long AR based on AIC and the second series is filtered appropriately. Then a cross-correlation analysis is performed via \code{\link{ccf2}}. If differencing is specified, both series are differenced the same way prior to the prewhitening. The resulting series are returned invisibly.
 
-The default is no differencing (FALSE). Differences of order 1 can be set be entering \code{diff = TRUE} or \code{diff = 1}. If it is necessary to use higher orders, then enter a positive integer (this is rare). 
+The default is no differencing. Differences of order 1 can be set be entering \code{diff = TRUE} or \code{diff = 1}. If it is necessary to use higher orders, then enter a positive integer (this is rare). 
 
 The maximum lag (\code{max.lag}) in the CCF graphic defaults (if NULL) to the smaller of 50 and 20\% of the sample size. 
 

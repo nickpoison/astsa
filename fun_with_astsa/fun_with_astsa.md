@@ -86,7 +86,7 @@ And you can get more information on any individual set using the `help()` comman
 |EBV                              |  Entire Epstein-Barr Virus (EBV) Nucleotide Sequence                          |
 |ENSO                             |  El Ni&ntilde;o - Southern Oscillation Index                                         |
 |EQ5                              |  Seismic Trace of Earthquake number 5                                         |
-|EQcount                          |  EQ Counts                                                                    |
+|EQcount                          |  Earthquake Counts                                                   |
 |EXP6                             |  Seismic Trace of Explosion number 6                                          |
 |GDP (GDP23)                      |  Quarterly U.S. GDP - updated to 2023                                         |
 |GNP (GNP23)                      |  Quarterly U.S. GNP - updated to 2023                                         |
@@ -378,11 +378,13 @@ tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon (USD/KG)', lwd=2, 
 
 - `acf2` gives both the sample ACF and PACF in a multifigure plot and both on the same scale.  The graphics do not display the lag 0 ACF value because it is always 1.  
 
-- `ccf2` plots the sample CCF (the first two also print the values; the third one returns the values invisibly).  
+- `ccf2` plots the sample CCF 
+
+  >  `acf1` and `acf2` also print the values, but rounded - `ccf2` returns the values invisibly  
 
 - `acfm` is for multiple time series and it produces a grid of plots of the sample ACFs and CCFs.  
 
-- `pre.white` (version 2.2+) will prewhiten the first series automatically, filter the second accordingly, and perform a cross-correlation analysis.
+- `pre.white` (in version 2.2+) will prewhiten the first series automatically, filter the second accordingly, and perform a cross-correlation analysis.
 
 <br/>
 
@@ -423,7 +425,7 @@ acf2(diff(log(varve)))
 
 <br/>
 
-&#x1F535; If you just want the values, use `plot=FALSE` (works for `acf1` too)
+&#x1F535; If you just want the values (not rounded by the script), use `plot=FALSE` (works for `acf1` too)
 ```r
 acf2(diff(log(varve)), plot=FALSE)
 
@@ -434,7 +436,7 @@ acf2(diff(log(varve)), plot=FALSE)
  [4,]  0.0092043800 -0.175778181
  [5,] -0.0029272130 -0.148565114
  [6,]  0.0353209520 -0.080800502
-
+  .         .             .
 [33,] -0.0516758878 -0.017946464
 [34,] -0.0308370865 -0.021854959
 [35,]  0.0431050489  0.010867281
@@ -469,7 +471,7 @@ You get a graphic and the transformed series are returned invisibly (the .w is f
 
 <br/>
 
-&#x1F535; For multiple series, you can look at all sample ACFs (diagonal) and CCFs (off-diagonal) simultaneously:
+&#x1F535; For multiple series, you can look at all sample ACFs (highlighted a bit on the diagonal) and CCFs (off-diagonal) simultaneously:
 
 ```r
 acfm(diff(log(econ5)))
@@ -480,7 +482,7 @@ acfm(diff(log(econ5)))
 
 What you see are estimates of _corr( x<sub>t+LAG</sub> , y<sub>t</sub> )_ where _x<sub>t</sub>_ is a column series and _y<sub>t</sub>_ is a row series. _x<sub>t</sub>_  leads when LAG is positive and _x<sub>t</sub>_ lags when LAG is negative. In the figure, the top (columns) series leads and the side series (rows) lags.
 
-The script uses `tsplot` so there are various options for the output. For example, you can suppress the minor ticks if it's too much, or you can do a "gris-gris" plot (the grammar of `astsa` is voodoo):
+All of these scripts use `tsplot` so there are various options for plotting. For example, you can suppress the minor ticks if it's too much, or you can do a "gris-gris" plot (the grammar of `astsa` is voodoo):
 
 ```r
 acfm(diff(log(econ5)), nxm=0)    #  no minor ticks on LAG axis
@@ -535,12 +537,11 @@ tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 
 > **`sarima()`**
 
-It can do everything for you but you have to choose the model.
+It can do everything for you but you have to choose the model ... speaking of which ...
 
 
 
-&#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK.
-If you know what you are doing, fitting an ARIMA model to linear time series data is easy.
+&#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK well. If you know what you are doing, fitting an ARIMA model to linear time series data is easy.
 
 ---
 <blockquote> 
@@ -568,7 +569,7 @@ forecast::auto.arima(x)  # BLACK BOX
      sigma^2 estimated as 0.9657:  log likelihood=-1400
      AIC=2808.01   AICc=2808.05   BIC=2827.64
 ````
-HA! ... an ARMA(2,1) ??  BUT, if you KNOW what you are doing, you realize the model is basically overparametrized white noise.  
+HA! ... an ARMA(2,1) ??  BUT, if you KNOW what you are doing, you realize the model is basically overparametrized white noise (because &nbsp;&nbsp;  -ar1 &approx; ma1 &nbsp;&nbsp; and &nbsp;&nbsp; ar2 &approx; 0)
 
 
 Here's another humorous example. Using the data `cmort` (cardiovascular mortality)
@@ -582,13 +583,15 @@ forecast::auto.arima(cmort)
    Coefficients:
             ar1     ar2      ma1     ma2    drift
          0.5826  0.0246  -0.3857  0.2479  -0.0203
-   s.e.  0.3623  0.3116   0.3606  0.2179   0.0148
+   s.e.  0.3623  0.3116   0.3606  0.2179   0.0148  
    
    sigma^2 = 56.94:  log likelihood = -1566.28
    AIC=3144.57   AICc=3144.76   BIC=3169.3
 ```
 
-HA!  Five parameters and none significant in a rather complex seasonal model. AND, it took forever to run during which my CPU fan speed ran on high. If you know what you're doing- difference to remove the trend, then it's obviously an AR(1):
+HA!  __Five parameters and none significant__ in a rather complex seasonal model. AND, it took forever to run during which my CPU fan speed ran on high.  By overfitting, the standard errors are inflated. 
+
+ But, if you know what you're doing, difference to remove the trend, then it's obviously an AR(1):
 
 ```r
 sarima(cmort, 1,1,0, no.constant=TRUE)
@@ -601,7 +604,7 @@ sarima(cmort, 1,1,0, no.constant=TRUE)
   AIC = 6.367124  AICc = 6.36714  BIC = 6.383805 
 ```
 
-Yep!! 1 parameter and the residuals are perfect (white and normal).
+Yep!! 1 parameter with a decent standard error and the residuals are perfect (white and normal).
 
 ---
 </blockquote>
@@ -645,7 +648,7 @@ AIC = -3.690069  AICc = -3.689354  BIC = -3.624225
 
 ```r
 x = sarima.sim( ar=c(0,-.9), n=200 ) + 50
-sarima(x, 2,0,0, fixed=c(0,NA,NA))  # ar1 (fixed at 0), ar2 (free), mean (free)
+sarima(x, 2,0,0, fixed=c(0,NA,NA))  # ar1 (fixed at 0), ar2 (NA -> free), mean (NA -> free)
 ```
 with output
 
@@ -741,8 +744,8 @@ You get a graphic showing  ± 1 and 2 root mean square prediction errors and the
 
 ```r
 set.seed(12345)
-x <- sarima.sim(ar=.9, d=1, n=150)
-y <- window(x, start=1, end=100)
+x <- sarima.sim(ar=.9, d=1, n=150)   # 150 observations
+y <- window(x, start=1, end=100)     # use first 100 to forecast
 sarima.for(y, n.ahead=50, p=1, d=1, q=0, plot.all=TRUE)
 text(85, 375, "PAST"); text(115, 375, "FUTURE")
 abline(v=100, lty=2, col=4)
@@ -985,8 +988,7 @@ round(gr.spec$fxx, 2)
 ```
 <img src="figs/econ5.png" alt="econ5" width="70%"><br/>
 
-And a sample of the output of the last line giving the matrix estimate. The numbers at top
-refer to frequency ordinate:
+And a sample of the output of the last line giving the matrix estimate. The numbers at top refer to frequency ordinate:
 
 ```r
 , , 49
@@ -1152,8 +1154,8 @@ test.linear(soi)
 &#x1F535; Notoriously nonlinear processes are financial series, for example the returns of the New York Stock Exchange (NYSE) from February 2, 1984 to December 31, 1991
 
 ```r
-# other packages have an 'nyse' data set
-# nyse = astsa::nyse  # if you have one of those other packages loaded
+# other packages have an 'nyse' data so to be safe we're setting
+nyse = astsa::nyse   # just to be sure 
 test.linear(nyse)
 tsplot(nyse, col=4)
 ```
@@ -1169,18 +1171,18 @@ tsplot(nyse, col=4)
 
 <br/>
 
- Kalman filtering and smoothing for linear state space models. The scripts are
+For Kalman filtering and smoothing the scripts are
 
 > `Kfilter` and `Ksmooth`
 
 
-The default (for both) is
+The default model (for both) is
 
 &diams; **Version 1:** 
 
  &emsp; &emsp;  x<sub>t</sub> = &Phi; x<sub>t-1</sub> +  &Upsilon; u<sub>t</sub> + sQ w<sub>t</sub>  &nbsp; and &nbsp;  y<sub>t</sub> = A<sub>t</sub> x<sub>t</sub> +  &Gamma; u<sub>t</sub> + sR v<sub>t</sub>,
 
-where w<sub>t</sub> ~ iid N(0, <span style="font-family: serif;">I</span>) &perp;   v<sub>t</sub> ~ iid N(0, <span style="font-family: serif;">I</span>) &perp; x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>).  In this case Q = sQ sQ' and R = sR sR'.  If it's easier to model by specifying Q and/or R, you can use `sQ = t(chol(Q))` or `sQ = Q %^% .5` and so on.  
+where w<sub>t</sub> ~ iid N<sub>p</sub>(0, <span style="font-family: serif;">I</span>) &perp; v<sub>t</sub> ~ iid N<sub>q</sub>(0, <span style="font-family: serif;">I</span>) &perp; x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>).  In this case Q = sQ sQ' and R = sR sR'.  If it's easier to model by specifying Q and/or R, you can use `sQ = t(chol(Q))` or `sQ = Q %^% .5` and so on.  
 
 <br/>
 
@@ -1194,8 +1196,7 @@ where cov(w<sub>s</sub>, v<sub>t</sub>) = S &delta;<sub>s</sub><span style="posi
 
 <br/>
 
-&#10067;  See the help files `?Kfilter` and `?Ksmooth` to see how the models are specified, but the calls 
-look like
+&#10067;  See the help files `?Kfilter` and `?Ksmooth` to see how the models are specified, but the calls look like
 
 &emsp; `Kfilter(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL, input = NULL, S = NULL, version = 1)`.
 
@@ -1203,7 +1204,7 @@ The "always needed" stuff comes first, and the "sometimes needed" comes last.  A
 
 <br/>
 
-&#x1F535; We'll do the bootstrap example from the text, which used to take a long time... but now is very fast.
+&#x1F535; We'll do the bootstrap example from the text, which used to take a long time... but now is fast.
 
 ```r
 # Example 6.13  
@@ -1218,7 +1219,7 @@ A     = array(z, dim=c(1,1,num))
 input = matrix(1,num,1)  
 
 # Function to Calculate Likelihood   
-Linn  = function(para, y.data){  # pass data also
+Linn  = function(para, y.data){  # pass parameters and data 
    phi = para[1];  alpha = para[2]
    b   = para[3];  Ups   = (1-phi)*b
    sQ  = para[4];  sR    = para[5]  
@@ -1274,11 +1275,11 @@ for (i in 1:nboot){
  e.star[k] = sample(e[k], replace=TRUE)   
  for (j in k){ 
    K = (phi*Pp[j]*z[j])/sig[j]  
-  xp.star[j] = phi*xp.star[j-1] + Ups + K*sqrt(sig[j])*e.star[j]
+   xp.star[j] = phi*xp.star[j-1] + Ups + K*sqrt(sig[j])*e.star[j]
   } 
    y.star[k] = z[k]*xp.star[k] + alpha + sqrt(sig[k])*e.star[k]  
- est.star  = optim(init.par, Linn, NULL, y.data=y.star, method='BFGS', control=list(reltol=tol))     
- para.star[i,] = cbind(est.star$par[1], est.star$par[2], est.star$par[3], 
+   est.star  = optim(init.par, Linn, NULL, y.data=y.star, method='BFGS', control=list(reltol=tol))     
+  para.star[i,] = cbind(est.star$par[1], est.star$par[2], est.star$par[3], 
                        abs(est.star$par[4]), abs(est.star$par[5]))   
 }
 close(pb) 
@@ -1332,17 +1333,14 @@ legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,
 
 ### Beginners Paradise
 
- &#x1F4A1;  There is a basic linear state space model script in `astsa` for beginners - kind of like fitting ARMA models :
+ &#x1F4A1;  There is a basic linear state space model script in `astsa` :
 
 > **`ssm()`**
 
 
 &#x1F535; For a univariate model (both $p=q=1$), write the **states** as _x<sub>t</sub>_ and the **observations** as _y<sub>t</sub>_.
 
-
-&emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/>
-
-where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
+&emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_  <br/>where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
 
 &#x1F535; We'll fit the model to one of the global temperature series. To use the script, you have to give initial estimates and then the script fits the model via MLE. The initial values of &mu;<sub>0</sub> and &sigma;<sub>0</sub> are chosen automatically. In this example, we hold &phi; fixed at 1.
 
@@ -1417,7 +1415,7 @@ and sort of mimics the `Kfilter` and `Ksmooth` calls but accepts `Q` and `R` dir
 
 &#x1F535;  Here's a simple univariate example. With `y = gtemp_land`, the model we'll fit is
 
-&emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_<br/>
+&emsp;&emsp;_x<sub>t</sub> = &alpha; + &phi; x<sub>t-1</sub> + w<sub>t</sub>_    &nbsp;&nbsp; and  &nbsp;&nbsp; _y<sub>t</sub> = A x<sub>t</sub> + v<sub>t</sub>_
 
 where  _w<sub>t</sub> ~ iid N(0, &sigma;<sub>w</sub>)_ &perp;   _v<sub>t</sub> ~ iid N(0, &sigma;<sub>v</sub>)_ &perp; _x<sub>0</sub> ~ N(&mu;<sub>0</sub>, &sigma;<sub>0</sub>)_
 
@@ -1799,7 +1797,7 @@ head(u)
 w<sub>t</sub> ~ iid N<sub>p</sub>(0, I) &perp;   v<sub>t</sub> ~ iid N<sub>q</sub>(0, I) &perp; x<sub>0</sub> ~ N<sub>p</sub>(&mu;<sub>0</sub>, &Sigma;<sub>0</sub>)
 and  u<sub>t</sub> is an r-dimensional input sequence.
 
-If $\Theta$ represents the parameters, $x_{0:n}$ the states, $y_{1:n}$ the data, then the generic Gibbs sampler is (repeat and rinse)
+If $\Theta$ represents the parameters, $x_{0:n}$ the states, $y_{1:n}$ the data, then the generic Gibbs sampler is (rinse and repeat)
 
 &emsp;&emsp; (1) sample $\Theta' \sim p(\Theta \mid x_{0:n}, y_{1:n})$ <br/>
 &emsp;&emsp; (2) sample $x_{0:n}' \sim p(x_{0:n} \mid \Theta', y_{1:n})$
@@ -1836,21 +1834,22 @@ draws  = c()
 # priors for R (a,b) and Q (c,d) IG distributions
 a = 2; b = 2; c = 2; d = 1  
 
-# (1) initialize - sample sQ and sR  
-sR = sqrt(1/rgamma(1,a,b)); sQ = sqrt(1/rgamma(1,c,d))
+###-- (1) initialize - sample sQ and sR --###
+sR = sqrt(1/rgamma(1,a,b)) 
+sQ = sqrt(1/rgamma(1,c,d))
 
 # progress bar
 pb = txtProgressBar(min = 0, max = niter, initial = 0, style=3)  
 
 # run it
 for (iter in 1:niter){
-## (2)  sample the states  
+###-- (2)  sample the states --###  
  run   = ffbs(y,A=1,mu0=0,Sigma0=10,Phi=1,sQ,sR) 
-## (1)  sample the parameters    
+###-- (1)  sample the parameters --###   
   xs   = as.matrix(run$Xs)
-  R    = 1/rgamma(1,a+n/2,b+sum((y-xs)^2)/2)
+  R    = 1/rgamma(1, a+n/2, b+sum((y-xs)^2)/2)
  sR    = sqrt(R)
-  Q    = 1/rgamma(1,c+(n-1)/2,d+sum(diff(xs)^2)/2)
+  Q    = 1/rgamma(1, c+(n-1)/2, d+sum(diff(xs)^2)/2)
  sQ    = sqrt(Q)
 ## store everything 
  draws = rbind(draws,c(sQ,sR,xs))
@@ -2018,8 +2017,7 @@ acfm(parms)                     # view the ACFs
 
 ### ESS
 
-&#x1F437; The effective sample size (ESS) is a measure of efficiency of an MCMC procedure based on estimating a posterior mean.  The package now includes a script to estimate ESS given a sequence of samples. It was used in the display for the  [Stochastic Volatility](#stochastic-volatility) example
-and just above in the structural equation model.
+&#x1F437; The effective sample size (ESS) is a measure of efficiency of an MCMC procedure based on estimating a posterior mean.  The package now includes a script to estimate ESS given a sequence of samples. It was used in the display for the  [Stochastic Volatility](#stochastic-volatility) example and just above in the structural equation model.
 
 Here's another example.
 

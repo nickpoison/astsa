@@ -5,7 +5,7 @@
 \description{Produces a grid of scatterplots of a series versus lagged values of the series.
 }
 \usage{
-lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1), bg=NA, lwl = 1,
+lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1), bg = NA, lwl = 1,
            lwc = 2, bgl = NULL, ltcol = 1, box.col = NULL, cex = .9, gg = FALSE, ...)
 }
 \arguments{

@@ -1,7 +1,7 @@
 \name{EQcount}
 \alias{EQcount}
 \docType{data}
-\title{EQ Counts
+\title{Earthquake Counts
 } 
 \description{Series of annual counts of major earthquakes (magnitude 7 and above) in the
 world between 1900 and 2006. }
