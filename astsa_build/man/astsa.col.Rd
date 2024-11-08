@@ -49,10 +49,11 @@ D.S.Stoffer
 \examples{
 # plotting 2 series that touch (but in a nice way)
 tsplot(cbind(gtemp_land, gtemp_ocean), col=astsa.col(c(4,2), .5), lwd=2, spaghetti=TRUE, 
-         type='o', pch=20, ylab="Temperature Deviations")
-legend('topleft', legend=c("Land Only", "Ocean Only"), col=c(4,2), lwd=2, pch=20, bty='n')  
+       type='o', pch=20, ylab="Temperature Deviations", addLegend=TRUE, location='topleft',
+       legend=c("Land Only", "Ocean Only"), gg=TRUE)  
 
 # View the astsa palette
-barplot(rep(1,8), col=1:8, main='astsa palette', names=1:8)
+pie(rep(1,8), col=1:8, main='astsa palette', labels=1:8)
+legend('topright', legend=astsa.col(1:8), fill=1:8, title='Hex Color Code')
 }
 \keyword{ color }
