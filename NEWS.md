@@ -30,11 +30,13 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 > should be available on cRan by the time edition 5 is published (Dec 2024)
 
+- `tsplot` gets a multifigure scale factor so characters do not get too small - examples in the help file.  
+
 - `lag1.plot` and `lag2.plot` got little facelifts.
 
 - in `tsplot`, if `spaghetti=TRUE`, added the ability to include a simple legend (so you don't have to use `legend`).   An example is in the help file.
 
-- changed `sarima` so it works for tiny sample sizes (thought about including a "tiny" warning, but the sample SEs will be ginormous - that should be warning enough) 
+- changed `sarima` so it works for tiny sample sizes (thought about including a "tiny" warning, but didn't ... maybe some other time) 
 
 - added `pre.white` to do cross-correlation analysis with automatic prewhitening
 

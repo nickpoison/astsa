@@ -10,7 +10,7 @@ tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,  margins=.25,
         ncolm=1, byrow=TRUE, nx=NULL, ny=nx, minor=TRUE, nxm=2, nym=1, 
         xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, pch=NULL, 
         lty=1, lwd=1, mgpp=0, topper=NULL, addLegend=FALSE, location='topright', 
-        boxit=TRUE, horiz=FALSE, legend=NULL, llwd=NULL, ...)
+        boxit=TRUE, horiz=FALSE, legend=NULL, llwd=NULL, scale=1, ...)
 }
 \arguments{
   \item{x, y}{
@@ -90,6 +90,9 @@ non-negative value to add to the top outer margin; if NULL (default) a suitable 
  \item{llwd}{
  line width for the legend if different from the plotted lines.
 }
+ \item{scale}{
+ for multiple series, the scale for character expansion (cex = .9*scale).
+}
  \item{\dots}{
 other graphical parameters; see \link[graphics]{par}.
 }
@@ -143,6 +146,16 @@ tsplot(1:453, soi, ylab='SOI', xlab='Month')
 # now recklessly add to the margins and add to mgp to get to the default
 tsplot(1:453, soi, ylab='SOI', xlab='Month', margins=c(2,3,4,5), las=1, mgpp=c(1.4,.4,0))
 
+
+# cex (and scale)
+par(mfrow=c(3,1))  # cex gets small with mf plots 
+  tsplot(cmort); tsplot(tempr); tsplot(part)
+par(mfrow=c(3,1), cex=.9)  # so fix it 
+  tsplot(cmort); tsplot(tempr); tsplot(part)
+
+# it's rescaled here for your pleasure
+tsplot(cbind(big=rnorm(100), bad=rnorm(100), john=rnorm(100))) 
+tsplot(cbind(big=rnorm(100), bad=rnorm(100), john=rnorm(100)), scale=1.5)  # big
 }
 }
 \keyword{ ts }

@@ -3,7 +3,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
                     minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
                     gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, lwd=1, mgpp=0, 
                     topper=NULL, addLegend=FALSE, location='topright', boxit=TRUE,
-                    horiz=FALSE, legend=NULL, llwd=NULL, ...)
+                    horiz=FALSE, legend=NULL, llwd=NULL, scale=1, ...)
 {
   nser   = max(NCOL(x), NCOL(y))
   if (is.null(topper)){
@@ -36,8 +36,9 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    if(byrow){
    par(mfrow = c(prow, ncolm),  cex.lab=1.1, oma = c(0,0,3*topper,0))
    } else {
-   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0))
+   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0) )
    }
+par(cex=.9*scale)
    if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
    if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
    for (h in 1:nser) {
@@ -70,11 +71,12 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    culer = rep(col, nser)
    if(byrow){
    par(mfrow = c(prow, ncolm), cex.lab=1.1, oma = c(0,.25,3*topper,0)+margins, tcl=-.2, 
-         cex.axis=.9)
+         cex.axis=.9, cex=.9*scale)
    } else {
    par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,.25,3*topper,0)+margins, tcl=-.2, 
-         cex.axis=.9)
+         cex.axis=.9, cex=.9*scale)
    }
+par(cex=.9*scale)
    if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
    if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
    for (h in 1:nser) {
