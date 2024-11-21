@@ -63,14 +63,15 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
  if(details){
   old.par  <- par(no.readonly = TRUE)
   layout(matrix(c(1,2,4, 1,3,4), ncol=2))
+  par(cex=.85)
     rs <-  fitit$residuals 
    stdres <- rs/sqrt(fitit$sigma2)
    num    <- sum(!is.na(rs))
   tsplot(stdres, main = "Standardized Residuals", ylab = "", ...)
     if(Model){
-     if (S<0) {title(bquote('Model: ('~.(p)*','*.(d)*','*.(q)~')'), adj=0) }
+     if (S<0) {title(bquote('Model: ('~.(p)*','*.(d)*','*.(q)~')'), adj=0, cex.main=.95) }
      else {title(bquote('Model: ('~.(p)*','*.(d)*','*.(q)~')'~'\u00D7'~'('~.(P)*','*.(D)*','*.(Q)~')'[~.(S)]), 
-                  adj=0) }     
+                  adj=0, cex.main=.95) }     
     }
 
   acf1(rs, max.lag=NULL, main = "ACF of Residuals", ...)

@@ -32,7 +32,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - `tsplot` gets a multifigure scale factor so characters do not get too small - examples in the help file.  
 
-- `lag1.plot` and `lag2.plot` got little facelifts.
+- `lag1.plot` and `lag2.plot` got little facelifts including increasing the character expansion (`cex`) a bit to prevent characters from getting too small.
 
 - in `tsplot`, if `spaghetti=TRUE`, added the ability to include a simple legend (so you don't have to use `legend`).   An example is in the help file.
 

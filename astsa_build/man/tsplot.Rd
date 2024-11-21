@@ -154,7 +154,7 @@ par(mfrow=c(3,1), cex=.9)  # so fix it
   tsplot(cmort); tsplot(tempr); tsplot(part)
 
 # it's rescaled here for your pleasure
-tsplot(cbind(big=rnorm(100), bad=rnorm(100), john=rnorm(100))) 
+tsplot(cbind(big=rnorm(100), bad=rnorm(100), john=rnorm(100)))  # default scale=1
 tsplot(cbind(big=rnorm(100), bad=rnorm(100), john=rnorm(100)), scale=1.5)  # big
 }
 }

@@ -22,6 +22,7 @@ function(series1, series2, max.lag=0, corr=TRUE, smooth=TRUE, col=gray(.1), bg=N
   series1 = as.ts(series1)
   series2 = as.ts(series2)
  par(mfrow = c(prow,pcol))
+ if (par('cex') < .9) par(cex =.9)
  for(h in 0:max.lag){       
    u = ts.intersect(stats::lag(series1,-h), series2)            
    Xlab = ifelse(h==0, name10, paste(name1,h,")",sep="")) 
@@ -31,7 +32,7 @@ function(series1, series2, max.lag=0, corr=TRUE, smooth=TRUE, col=gray(.1), bg=N
    lines(stats::lowess(u[,1], u[,2]), col=lwc, lwd=lwl)
   if (corr){ 
    legend("topright", legend=format(round(a[m1-h], digits=2),nsmall=2), 
-           text.col=ltcol, bg=bgl, adj=.25, box.col=box.col, cex=.9)
+           text.col=ltcol, bg=bgl, adj=.25, box.col=box.col, cex=.8)
   if (gg) { box(col=gray(1)) } else { box(col=gray(.62)) }
  }
  on.exit(par(old.par))

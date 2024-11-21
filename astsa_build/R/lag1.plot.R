@@ -18,15 +18,16 @@ function(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1), bg=NA,
 
  series = as.ts(series)
  par(mfrow = c(prow, pcol))
+ if (par('cex') < .9) par(cex =.9)
  for(h in 1:max.lag){ 
    u = ts.intersect(stats::lag(series,-h), series)
   tsplot(u[,1], u[,2], type='p', xy.labels=FALSE, xy.lines=FALSE, gg=gg,
-          xlab=paste(name1,h,")",sep=""), ylab=name2, col=col, cex=cex, bg=bg,  ...) 
+          xlab=paste(name1,h,")",sep=""), ylab=name2, col=col, cex=cex, bg=bg, ...) 
   if (smooth) 
    lines(stats::lowess(u[,1], u[,2]), col=lwc, lwd=lwl)
   if (corr) {  
    legend("topright", legend=format(round(a[h], digits=2), nsmall=2), 
-           text.col=ltcol, bg=bgl, adj=.25, box.col=box.col, cex=.9)
+           text.col=ltcol, bg=bgl, adj=.25, box.col=box.col, cex=.8)
    if (gg) { box(col=gray(1)) } else { box(col=gray(.62)) }
  }
  on.exit(par(old.par))
