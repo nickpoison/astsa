@@ -28,7 +28,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### &#9654; v2.2 ... in progress 
 
-> should be available on cRan by the time edition 5 is published (Jan 2025 ??)
+> should be available on cRan by the time edition 5 is published (Jan-Feb 2025)
 
 - `tsplot` gets a multifigure scale factor so characters do not get too small - examples in the help file.  
 
