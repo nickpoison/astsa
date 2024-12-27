@@ -1,5 +1,5 @@
 QQnorm = 
-function(xdata, pch=19, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles', 
+function(xdata, pch=20, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles', 
          main="Normal Q-Q Plot", ylim=NULL, ci=TRUE, width.ci=99.995, qqlwd=2,...){
 
   scat = stats::qqnorm(xdata, plot.it=FALSE)
