@@ -30,6 +30,8 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 > should be available on cRan by the time edition 5 is published (Jan-Feb 2025)
 
+- added `QQnorm` - a much nicer version of `qqnorm` from the stats package. 
+
 - `tsplot` gets a multifigure scale factor so characters do not get too small - examples in the help file.  
 
 - `lag1.plot` and `lag2.plot` got little facelifts including increasing the character expansion (`cex`) a bit to prevent characters from getting too small.
