@@ -67,7 +67,7 @@ Note that the script does not taper by default (\code{taper=0}); this forces the
 }
 \value{All results are returned invisibly.  
 
-If \code{plot} is TRUE, the bandwidth and degrees of freedom are printed. 
+If \code{plot} is TRUE and smoothing is used, the bandwidth, degrees of freedom, and taper amount are printed. 
 
 An object of class "spec", which is a list containing at least the following components:
 
@@ -107,9 +107,9 @@ mvspec(soi, spans=c(7,7), taper=.5)$details[1:45,]
 deth = cbind(mdeaths, fdeaths)    # two R data sets, male/female monthly deaths ...
 tsplot(deth, type='b', col=c(4,6), spaghetti=TRUE, pch=c('M','F'))
 dog = mvspec(deth, spans=c(3,3), taper=.1)
-dog$fxx        # look at spectral matrix estimates
-dog$bandwidth  # bandwidth with time unit = year
-dog$df         # degrees of freedom
-plot(dog, plot.type="coherency")  # plot of squared coherency
+dog$fxx[,,1:5]  # look at a few spectral matrix estimates
+dog$bandwidth   # bandwidth with time unit = year
+dog$df          # degrees of freedom
+mvspec(deth, spans=c(3,3), taper=.1, plot.type='coh')  # coherence
 }
 \keyword{ ts }

@@ -52,7 +52,12 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - `dna2vector` was updated (&#128545; due to change in a base R script) - previous versions might not work 
 
-- in `mvspec` set `fxx` to `NULL` in univariate case ... and in the call, if `demean=TRUE` (default is `FALSE`) `detrend` is set to `FALSE`; i.e., `demean=TRUE` sets `detrend=FALSE`.
+- in `mvspec` 
+
+    - set `fxx` to `NULL` in univariate case, 
+    - and in the call, if `demean=TRUE` (default is `FALSE`) `detrend` is set to `FALSE`,
+
+    - and removed `taper` output from the graphic to the printout with bandwidth and df (if plot is TRUE and smoothing is used) and put them all on one line.
 
 - added `gtemp.month` (monthly global data 1975-2023) -- rows are month, columns are year to make it easy to plot as monthly functional data
 

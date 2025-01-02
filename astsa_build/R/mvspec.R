@@ -111,9 +111,9 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
     if (plot) {
-        if (Lh > 1) {cat("Bandwidth:", round(bandwidth,3), "\nDegrees of Freedom:", round(df,2), '\n')}
+        if (Lh > 1) {cat("Bandwidth:", round(bandwidth,3), "|", "Degrees of Freedom:", round(df,2),"|", "split taper:", paste(100*taper,"%",sep=''), '\n')}
         if (is.null(cex.main)) cex.main=1
-        if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method, " | ", 'taper =', taper)
+        if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method) 
         topper = ifelse (is.na(main), 1, 0)
         if (!gg){
         par(mar = c(2.75, 2.75, 2-topper, 0.75), mgp = c(1.6, 0.6, 0), cex.main = cex.main)
