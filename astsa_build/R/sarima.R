@@ -1,8 +1,8 @@
 sarima <-  
 function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
-          fixed=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE, ...)
+          fixed=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE, col, ...)
 { 
-
+   if (missing(col)) col=1
    trans = ifelse (is.null(fixed), TRUE, FALSE)
    trc   = ifelse(details, 1, 0)
    n     = length(xdata) 
@@ -61,57 +61,43 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
 
 #  replace tsdiag with a better version
  if(details){
-  old.par  <- par(no.readonly = TRUE)
-  layout(matrix(c(1,2,4, 1,3,4), ncol=2))
-  par(cex=.85)
-    rs <-  fitit$residuals 
-   stdres <- rs/sqrt(fitit$sigma2)
-   num    <- sum(!is.na(rs))
-  tsplot(stdres, main = "Standardized Residuals", ylab = "", ...)
+   old.par  <- par(no.readonly = TRUE)
+   layout(matrix(c(1,2,4, 1,3,4), ncol=2))
+   par(cex=.85)
+   rs     = fitit$residuals 
+   stdres = rs/sqrt(fitit$sigma2)
+   num    = sum(!is.na(rs))
+
+# [1] 
+  tsplot(stdres, main = "Standardized Residuals", ylab = "", col=col, ...)
     if(Model){
-     if (S<0) {title(bquote('Model: ('~.(p)*','*.(d)*','*.(q)~')'), adj=0, cex.main=.95) }
-     else {title(bquote('Model: ('~.(p)*','*.(d)*','*.(q)~')'~'\u00D7'~'('~.(P)*','*.(D)*','*.(Q)~')'[~.(S)]), 
-                  adj=0, cex.main=.95) }     
+     if (S<0) {
+      title(bquote('Model: ('~.(p)*','*.(d)*','*.(q)~')'), adj=0, cex.main=.95) 
+      } else {
+      title(bquote('Model: ('~.(p)*','*.(d)*','*.(q)~')'~'\u00D7'~'('~.(P)*','*.(D)*','*.(Q)~')'[~.(S)]), adj=0, cex.main=.95) 
+      }
     }
 
-  acf1(rs, max.lag=NULL, main = "ACF of Residuals", ...)
+# [2]
+  acf1(rs, max.lag=NULL, main = "ACF of Residuals", col=col, ...)
 
-    u = qqnorm(stdres, plot.it=FALSE)
-    lwr = min(-4, min(stdres, na.rm=TRUE)); upr = max(4, max(stdres), na.rm=TRUE)
-  tsplot(u$x, u$y, type='p', ylim=c(lwr,upr), ylab="Sample Quantiles", xlab="Theoretical Quantiles",  
-           main="Normal Q-Q Plot of Std Residuals",  ...)	
+# [3]
+  QQnorm(stdres, col=col, main="Normal Q-Q Plot of Std Residuals", ...)
 
-     ################ qq error bnds ###########
-       sR  <- !is.na(stdres)
-       ord <- order(stdres[sR])
-       ord.stdres <- stdres[sR][ord]
-       PP  <- stats::ppoints(num)
-       z   <- stats::qnorm(PP)
-       y   <- stats::quantile(ord.stdres, c(.25,.75), names = FALSE, type = 7, na.rm = TRUE)
-       x   <- stats::qnorm(c(.25,.75))
-       b   <- diff(y)/diff(x)
-       a   <- y[1L] - b * x[1L]
-       abline(a,b,col=4)  #qqline
-       SE  <- (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
-       qqfit <- a + b*z
-       U <- qqfit+3.9*SE   # puts .00005 in tails
-       L <- qqfit-3.9*SE
-         z[1]=z[1]-.1      # extend plot -- misses the end otherwise
-         z[length(z)]= z[length(z)]+.1
-         xx <- c(z, rev(z))
-         yy <- c(L, rev(U))
-        polygon(xx, yy, border=NA, col=gray(.5, alpha=.2) )   
-    ############ end qq error bnds ##########################
-    nlag <- ifelse(S<7, 20, 3*S)
-    ppq  <- p+q+P+Q - sum(!is.na(fixed))   # decrease by number of fixed parameters
-    if (nlag < ppq + 8) {nlag = ppq + 8}
-    pval <- numeric(nlag)
-    for (i in (ppq+1):nlag) {u <- stats::Box.test(rs, i, type = "Ljung-Box")$statistic
-                             pval[i] <- stats::pchisq(u, i-ppq, lower.tail=FALSE)}            
+# [4] 
+    nlag = ifelse(S<7, 20, 3*S)
+    ppq  = p+q+P+Q - sum(!is.na(fixed))   # decrease by number of fixed parameters
+    if (nlag < ppq + 8) { nlag = ppq + 8 }
+    pval = numeric(nlag)
+    for (i in (ppq+1):nlag) {
+     u   = stats::Box.test(rs, i, type = "Ljung-Box")$statistic
+     pval[i] = stats::pchisq(u, i-ppq, lower.tail=FALSE)
+    } 
   tsplot( (ppq+1):nlag, pval[(ppq+1):nlag], type='p', xlab = "LAG (H)", ylab = "p value", 
-              ylim = c(-.14, 1), main = "p values for Ljung-Box statistic", ...)
+          ylim = c(-.14, 1), main = "p values for Ljung-Box statistic", col=col, ...)
    abline(h = 0.05, lty = 2, col = 4)  
    on.exit(par(old.par)) 
-}  #  end new tsdiag
+ }  #  end new tsdiag
+
 invisible(out)
 }

@@ -30,35 +30,26 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 > should be available on cRan by the time edition 5 is published (Jan-Feb 2025)
 
-- added `QQnorm` - a much nicer version of `qqnorm` from the stats package. 
-
-- `tsplot` gets a multifigure scale factor so characters do not get too small - examples in the help file.  
-
+- added `QQnorm` - a much nicer version of `qqnorm` from the `stats` package because the importance of appearance extends well beyond the pleasant experiences we have when we look at attractive plots. 
 - `lag1.plot` and `lag2.plot` got little facelifts including increasing the character expansion (`cex`) a bit to prevent characters from getting too small.
+- in `tsplot`,
+    - if `spaghetti=TRUE`, added the ability to include a simple legend (so you don't have to use `legend`).   An example is in the help file.
 
-- in `tsplot`, if `spaghetti=TRUE`, added the ability to include a simple legend (so you don't have to use `legend`).   An example is in the help file.
+    - added a multifigure scale factor so characters do not get too small - examples in the help file.  
 
 - changed `sarima` so it works for tiny sample sizes (thought about including a "tiny" warning, but didn't ... maybe some other time) 
-
 - added `pre.white` to do cross-correlation analysis with automatic prewhitening
-
 - `arma.spec` gets better default title and `sarima.for` gets a `ylab` option.
-
 - added `lap.xts` (an xts object), which contains the original daily observations from the LA Pollution-Mortality study.  How to easily get weekly averages is given in the examples section of the man page.
-
 - for `trend`, if `results=TRUE` a summary of the regression (if used) results is printed  
-
 - the scripts and data sets that were marked 'x' have been removed to [here](https://github.com/nickpoison/astsa/tree/master/xBox) ... they won't be included in the next version.
-
 - `dna2vector` was updated (&#128545; due to change in a base R script) - previous versions might not work 
-
 - in `mvspec` 
 
     - set `fxx` to `NULL` in univariate case, 
     - and in the call, if `demean=TRUE` (default is `FALSE`) `detrend` is set to `FALSE`,
 
     - and removed `taper` output from the graphic to the printout with bandwidth and df (if plot is TRUE and smoothing is used) and put them all on one line.
-
 - added `gtemp.month` (monthly global data 1975-2023) -- rows are month, columns are year to make it easy to plot as monthly functional data
 
 ###   Version 2.1 - Jan 2024 (on CRAN) - current version

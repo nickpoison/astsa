@@ -1,6 +1,6 @@
 QQnorm = 
-function(xdata, pch=20, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles', 
-         main="Normal Q-Q Plot", ylim=NULL, ci=TRUE, width.ci=99.995, qqlwd=2,...){
+function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles', 
+         main="Normal Q-Q Plot", ylim=NULL, ci=TRUE, width.ci=99.995, qqlwd=1, ...){
 
   scat = stats::qqnorm(xdata, plot.it=FALSE)
    # check colors and CI width are valid
@@ -8,7 +8,6 @@ function(xdata, pch=20, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Q
    if (width.ci <= 1) width.ci = 100*width.ci
    if (width.ci >= 100) width.ci = 99.995
 
-# line and  bnds
    num  = length(xdata)
    xord = xdata[order(xdata)]
    PP   = stats::ppoints(num)
@@ -17,16 +16,15 @@ function(xdata, pch=20, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Q
    x    = stats::qnorm(c(.25,.75))
    b    = diff(y)/diff(x)
    a    = y[1] - b*x[1]
-
-# get ylim and qqline
    SE    = (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
    qqfit = a + b*z
    wde   = stats::qnorm(width.ci/100)
    U     = qqfit + wde*SE   # default puts .00005 in tails
    L     = qqfit - wde*SE
+
 # start plotting
   if (is.null(ylim)) ylim=c(min(xord[1],L[1],na.rm=TRUE), max(xord[num],U[num],na.rm=TRUE))
-  tsplot(scat$x, scat$y, type='p', pch=pch, col=col[1], ylab=ylab, xlab=xlab, main=main, ylim=ylim, ...)
+  tsplot(scat$x, scat$y, type='p', col=col[1], ylab=ylab, xlab=xlab, main=main, ylim=ylim, ...)
   abline(a, b, col=col[2], lwd=qqlwd)  # qqline
   if (ci){
      z[1]=z[1]-.1      # extend CI -- misses the end otherwise

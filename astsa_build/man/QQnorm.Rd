@@ -10,7 +10,7 @@ Produces a normal QQ plot with a line of equality and a confidence band (by defa
 \usage{
 QQnorm(xdata, pch = 20, col = c(4, 6), ylab = "Sample Quantiles", 
          xlab = "Theoretical Quantiles", main = "Normal Q-Q Plot", 
-         ylim = NULL, ci = TRUE, width.ci = 99.995, qqlwd = 2, ...)
+         ylim = NULL, ci = TRUE, width.ci = 99.995, qqlwd = 1, ...)
 }
 \arguments{
   \item{xdata}{
@@ -41,7 +41,7 @@ logical; if TRUE (default) draws pointwise CIs as a band.
 width of the CI in terms of percent (default is 99.995).
 }
   \item{qqlwd}{
-line width of the qqline (default is 2).
+line width of the qqline (default is 1).
 }
   \item{\dots}{
 other graphical parameters sent to \code{\link{tsplot}}.
