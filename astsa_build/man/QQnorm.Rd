@@ -14,7 +14,7 @@ QQnorm(xdata, pch = 20, col = c(4, 6), ylab = "Sample Quantiles",
 }
 \arguments{
   \item{xdata}{
-the data.
+the data. If a matrix, the data are collapsed.
 }
   \item{pch}{
 plot character (default is solid point, 20).

@@ -2,7 +2,8 @@ QQnorm =
 function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles', 
          main="Normal Q-Q Plot", ylim=NULL, ci=TRUE, width.ci=99.995, qqlwd=1, ...){
 
-  scat = stats::qqnorm(xdata, plot.it=FALSE)
+  xdata = c(xdata)
+  scat  = stats::qqnorm(xdata, plot.it=FALSE)
    # check colors and CI width are valid
    if (length(col) < 2) col= rep(col,2)
    if (width.ci <=0) stop('width.ci should be greater than 0')
