@@ -8,16 +8,13 @@ Normal Quantile-Quantile Plot
 Produces a normal QQ plot with a line of equality and a confidence band (by default) of the input data. This is basically a prettier version of \code{qqnorm} from the \code{stats} package. 
 }
 \usage{
-QQnorm(xdata, pch = 20, col = c(4, 6), ylab = "Sample Quantiles", 
-         xlab = "Theoretical Quantiles", main = "Normal Q-Q Plot", 
-         ylim = NULL, ci = TRUE, width.ci = 99.995, qqlwd = 1, ...)
+QQnorm(xdata, col = c(4, 6), ylab = "Sample Quantiles", xlab = "Theoretical Quantiles", 
+        main = "Normal Q-Q Plot", ylim = NULL, ci = TRUE, width.ci = 99.995, 
+        qqlwd = 1, ...)
 }
 \arguments{
   \item{xdata}{
 the data. If a matrix, the data are collapsed.
-}
-  \item{pch}{
-plot character (default is solid point, 20).
 }
   \item{col}{
 vector of 2, first is point color, second is line color (default is blue-4 and magenta-6).
