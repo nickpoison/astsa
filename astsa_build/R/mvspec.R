@@ -95,11 +95,11 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
     for (i in 1:nser) spec[, i] <- spec[, i]/u2
     spec <- drop(spec)
 ##== rearrange pgram for more useful display
-    if (nser == 1) { 
-     fxx=NULL 
-     } else {
+#    if (nser == 1) {  # this was to prevent double output for 
+#     fxx=NULL         # univariate case, but was not compatible 
+#     } else {         # with dependent package
      fxx = base::aperm(pgram, c(2,3,1))
-    }
+#    }
 ##== show details to help find peaks 
     details <- round( cbind(frequency=freq, period=1/freq, spectrum=spec), 4)
 ##== output

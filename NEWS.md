@@ -26,9 +26,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ---
 
-### &#9654; v2.2 ... in progress 
-
-> should be available on cRan by the time edition 5 is published (Jan-Feb 2025)
+### &#9654; Version 2.2 - Jan 2025 (on CRAN) - current version
 
 - added `QQnorm` - a much nicer version of `qqnorm` from the `stats` package because the importance of appearance extends well beyond the pleasant experiences we have when we look at attractive plots. 
 - `lag1.plot` and `lag2.plot` got little facelifts including increasing the character expansion (`cex`) a bit to prevent characters from getting too small.
@@ -46,13 +44,13 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 - `dna2vector` was updated (&#128545; due to change in a base R script) - previous versions might not work 
 - in `mvspec` 
 
-    - set `fxx` to `NULL` in univariate case, 
+    - <s>set `fxx` to `NULL` in univariate case,</s> (reverted back) 
     - and in the call, if `demean=TRUE` (default is `FALSE`) `detrend` is set to `FALSE`,
 
     - and removed `taper` output from the graphic to the printout with bandwidth and df (if plot is TRUE and smoothing is used) and put them all on one line.
 - added `gtemp.month` (monthly global data 1975-2023) -- rows are month, columns are year to make it easy to plot as monthly functional data
 
-###   Version 2.1 - Jan 2024 (on CRAN) - current version
+####   Version 2.1 - Jan 2024 (on CRAN)  
 
 - added `SV.mle` to fit an SV model [with feedback (aka leverage) if desired] via quasi-MLE. Details are in the help file.  `SVfilter` is now part of `SV.mle` and the original script is now in the xBox as `xSVfilter`.
 
@@ -89,7 +87,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - added US population data (`USpop`) ... we thought it was in already, now it is 
 
-### Version 2.0 - Jan 2023 (on CRAN)
+####  Version 2.0 - Jan 2023 (on CRAN)
 
  >  **Note**  There are a number of new scripts and some old ones are set to be retired eventually.  
 
@@ -129,7 +127,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ---
 
 
-### Version v1.16 - Sept 2022 (on CRAN)
+#### Version v1.16 - Sept 2022 (on CRAN)
 
    - Added `Months` to use with `pch` for monthly data; see the help file `?Months`.
    
@@ -150,13 +148,13 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
     
 ---
-### Version 1.15 - May 2022
+#### Version 1.15 - May 2022
 +   v1.15 is v1.14.3 plus the following 2 additions and (of course) minor changes to appease the CRAN warlords:
 
     + Added two new scripts ```detrend()``` and ```trend()```.  The first one returns a detrended series using a polynomial regression (default is linear) or lowess (with the default span).  The second script fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
 
 ---
-### Versions 1.14 - Sept 2021
+#### Versions 1.14 - Sept 2021
 
 + v1.14.3  (Dec 2021)
   
@@ -173,7 +171,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 + v1.14 (Sept 2021) Just in time for a new skool year - v1.14 is on CRAN -  it is v1.13.2 with minor changes to please the CRAN gods.
 
 ---
-### Versions 1.13 - May 2021
+#### Versions 1.13 - May 2021
 
 + v1.13.2 (Aug 2021) Added `acfm` for multiple time series. Produces a matrix of plots of sample ACFs on the diagonal and sample CCFs on the off-diagonals. It's just a nicer version of `acf` for multiple time series. 
 
@@ -193,7 +191,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ---
 
-### Versions 1.12 - started Dec 2020
+#### Versions 1.12 - started Dec 2020
 
 1.12.9 (GitHub - May 2021) 
 
@@ -253,13 +251,13 @@ time is up to the user (with default `t0=0`).
 
 
 ---
-#### <s>Version 1.11</s> -- in the garbage
+##### <s>Version 1.11</s> -- in the garbage
 
 &nbsp;&nbsp; keep moving ... nothing to see here 
 
 ---
 
-### Versions 1.10 - May 2020 
+#### Versions 1.10 - May 2020 
 
 
 1.10.6 (Nov 2020 - Github)
@@ -289,7 +287,7 @@ column wise (`FALSE`) for multiple plots.
 
 ------------------------------
 
-### Versions 1.9 - May 2019  
+#### Versions 1.9 - May 2019  
 
 
 
@@ -331,7 +329,7 @@ column wise (`FALSE`) for multiple plots.
 + For the Springer text, you can see the difference between v1.8 and v1.9 by looking at the changelog below v1.8.8.  Some scripts have added capabilities, but it won't change any data analysis. The only real difference will be slight numerical differences in the reported ICs in `sarima`.     
 
 -------------------------------------------
-### Versions 1.8 - Dec 2017  
+#### Versions 1.8 - Dec 2017  
 
 
 1.8.8 
@@ -383,7 +381,7 @@ changes to satisfy the CRANks. Also, the   GitHub version is slightly improved, 
 
 
 ----------------------------
-### Versions 1.7 - Dec 2016  
+#### Versions 1.7 - Dec 2016  
 &starf; Just for historical record, version 1.7 was when CRAN maintainers got CRANky and started asking for arbitrary changes that no one would notice. I'm talking about asking to change one word in the DESCRIPTION file kind of stupid stuff.  This is when the GitHub versions started. 
 
 1.7.11. 
@@ -451,7 +449,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 + added time series `UnempRate`, which can be taken as an update to `unemp` (still there) - the data are monthly US unemployment rate (% unemployed) from 1948 to Nov 2016.
 
 ----------------------------
-### Version 1.6 - October 2016 
+#### Version 1.6 - October 2016 
 
 
 + added series `globtemp` and `globtempl` ... they are updates to the global temperature deviation series `gtemp` and `gtemp2`, respectively.  `globtempℓ` is land only.  `gtemp` and `gtemp2` are still in astsa so as not to cause problems - the temperature data sets were reformulated in 2011 so the series do not match up in the overlapping time frame - see the help file for more info
@@ -459,7 +457,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 + added new series `chicken`  ... the price of chicken, which is a decent example of trend stationarity 
 
 ----------------------------
-### Version 1.5 - August 2016
+#### Version 1.5 - August 2016
 
 
 + needed a minor fix to `acf2`, so while I'm here: 
@@ -472,7 +470,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 
 
 ---------------------------
-### Version 1.4 - July 2016
+#### Version 1.4 - July 2016
 
 
 + `sarima` has a t-table now (no p-values)
@@ -487,7 +485,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 
 
 -------------------------
-### Version 1.3  -  Nov 2014
+#### Version 1.3  -  Nov 2014
 
 
 + `sarima` now allows inclusion of `xreg` to facilitate regression with autocorrelated errors 
@@ -511,7 +509,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
    * It would be relatively easy to include estimates of `Ups` and `Gam`  because conditional on the states, these are just regression coefficients. If you decide to alter `EM1` to include estimates of the `Ups` or `Gam`, feel free to notify me with a working example and I'll include it in the  next update (assuming it's correct, of course). Instructors... this would bean awesome class project.
 
 -------------------------
-### Version 1.2  - March 2014
+#### Version 1.2  - March 2014
 
 
 + Fixed man page for the scripts `stoch.reg` and for the `Kfilter`s and `Ksmooth`s
@@ -529,7 +527,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 + `astsadata()` is gone, `LazyData: true` instead
 
 -------------------------
-### Version 1.1  - July 2012
+#### Version 1.1  - July 2012
 
 + Associated namespace with all but 'base' function calls
 
@@ -542,7 +540,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 + Changed `mvspec.R` so it could be used in place of `spec.pgram` and `spectrum`.  The defaults are similar now to `spec.prgram`, but the default is not to taper, forcing the user to think about it.  It also returns the book's more useful definition of bandwidth.  
 
 -------------------------
-### Version 1.0  - June 2012
+#### Version 1.0  - June 2012
 
 
 + `astsa` built from `tsa3.rda` (which is gone now) with the following changes:<br/>
@@ -564,13 +562,13 @@ called `tsa3.rda` and the basic version of ASTSA was abandoned.  Two years later
 
 
 -----------------
-### Version 0.3 - 2005
+#### Version 0.3 - 2005
 
 The second edition of the text, which included the subtitle  *With R Examples* was when we started
 giving R code in the text and writing R scripts to compensate for the fact that S and consequently R provided scripts for time series as an afterthought.  Still, much of the analysis in the text was done using Matlab.
 
 -----------------
-### Version 0.2 -  2000  
+#### Version 0.2 -  2000  
 
 The first edition of *Time Series Analysis and Its Applications* used 
 an updated version of the basic  `ASTSA` and it was distributed on the website for that
@@ -581,7 +579,7 @@ You had to extract the files to a floppy (3.5" by that time) and then install `A
 
 
 -----------------
-### Version 0.1 - 1988
+#### Version 0.1 - 1988
 
 <img src="fun_with_astsa/figs/astsa_v0.jpg" alt="floppy"  height="300">
 

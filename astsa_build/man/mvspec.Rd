@@ -71,7 +71,7 @@ If \code{plot} is TRUE and smoothing is used, the bandwidth, degrees of freedom,
 
 An object of class "spec", which is a list containing at least the following components:
 
-\item{fxx }{spectral matrix estimates; an array of dimensions \code{dim = c(p,p,nfreq)} - returned as NULL in the univariate case.}
+\item{fxx }{spectral matrix estimates; an array of dimensions \code{dim = c(p,p,nfreq)}.}
 \item{freq }{vector of frequencies at which the spectral density is estimated.}
 \item{spec }{vector (for univariate series) or matrix (for multivariate series) of estimates of the spectral density at frequencies corresponding to freq.}
 \item{details }{matrix with columns: frequency, period, spectral ordinate(s)}

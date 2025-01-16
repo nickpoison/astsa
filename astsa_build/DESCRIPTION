@@ -5,6 +5,13 @@ Version: 2.2
 Date: 2025-01-15 
 Depends: R (>= 3.5)
 Author: David Stoffer [aut, cre],  Nicky Poison [ctb, mus, spy]
+Authors@R: c(person(given = "David",
+                    family = "Stoffer",
+                    role = c("aut", "cre"),
+                    email = "stoffer@pitt.edu"),
+             person(given = "Nicky",
+                    family = "Poison",
+                    role = c("ctb", "mus", "spy")))
 Maintainer: David Stoffer <stoffer@pitt.edu>
 BugReports: https://github.com/nickpoison/astsa/issues
 Description: Contains data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the texts Time Series Analysis and Its Applications: With R Examples (5th ed), by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2025, <https://link.springer.com/book/9783031705830>, and Time Series: A Data Analysis Approach Using R. Chapman-Hall, 2019, <DOI:10.1201/9780429273285>.
