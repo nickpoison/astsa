@@ -16,7 +16,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 >  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
 
-&#x1F4A1;  You can also install `astsa` from the archive (which is __always current__):  [astsa_2.2.tar.gz - in progress](https://github.com/nickpoison/astsa/blob/master/astsa_2.2.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+&#x1F4A1;  You can also install `astsa` from the archive (which is __always current__):  [astsa_2.2.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.2.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.
 
 
 &#128036; You can find a short guide to  `astsa` scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
