@@ -31,6 +31,7 @@ it's more than just data ... it's a palindrome
      * [Lag Plots](#lag-plots)
      * [Scatterplots](#scatterplots)
      * [Trends](#trends)
+     * [QQ Normal Plots](#qqnorm)
   * [3. Correlations](#3-correlations)
   * [4. ARIMA](#4-arima)
      * [Simulation](#arima-simulation)
@@ -357,6 +358,21 @@ tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon (USD/KG)', lwd=2, 
  
 
 <img src="figs/trend.png" alt="trend"  width="70%">
+
+<br/>
+
+### QQnorm
+
+&#129412; The texts have a few QQ plots and we needed them to look good because the importance of appearance extends well beyond the pleasant experiences we have when we look at attractive plots. 
+And the code was sitting there in `sarima` as part of the diagnostics, so we just pulled it out.
+
+```R
+par(mfrow=1:2)
+QQnorm(varve, main='varve', gg=TRUE)
+QQnorm(log(varve), main='log(varve)')
+```
+
+<img src="figs/QQ.png" alt="QQnorm"  width="70%">
 
 <br/>
 
