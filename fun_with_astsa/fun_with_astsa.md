@@ -85,16 +85,16 @@ And you can get more information on any individual set using the `help()` comman
 |----------|-------------|
 |BCJ                              |  Daily Returns of Three Banks                                                 |
 |EBV                              |  Entire Epstein-Barr Virus (EBV) Nucleotide Sequence                          |
-|ENSO                             |  El Ni&ntilde;o - Southern Oscillation Index                                         |
+|ENSO                             |  El Ni&ntilde;o - Southern Oscillation Index                                  |
 |EQ5                              |  Seismic Trace of Earthquake number 5                                         |
-|EQcount                          |  Earthquake Counts                                                   |
+|EQcount                          |  Earthquake Counts                                                            |
 |EXP6                             |  Seismic Trace of Explosion number 6                                          |
 |GDP (GDP23)                      |  Quarterly U.S. GDP - updated to 2023                                         |
 |GNP (GNP23)                      |  Quarterly U.S. GNP - updated to 2023                                         |
 |HCT                              |  Hematocrit Levels                                                            |
 |Hare                             |  Snowshoe Hare                                                                |
-|Lynx                             |  Canadian Lynx                                                                |
-|MEI                              | Multivariate El Ni&ntilde;o/Southern Oscillation Index (version 1) |
+|Lynx                             |  Canadian Lynx (not the same as R dataset `lynx` )                            |
+|MEI                              | Multivariate El Ni&ntilde;o/Southern Oscillation Index (version 1)            |
 |PLT                              |  Platelet Levels                                                              |
 |USpop                            |  U.S. Population - 1900 to 2010                                               |
 |UnempRate                        |  U.S. Unemployment Rate                                                       |
@@ -127,7 +127,7 @@ And you can get more information on any individual set using the `help()` comman
 |hor                              |  Hawaiian occupancy rates                                                     |
 |jj                               |  Johnson and Johnson Quarterly Earnings Per Share                             |
 |lap                              |  LA Pollution-Mortality Study                                                 |
-|lap.xts                 |  LA Pollution-Mortality Study Daily Observations                                   |
+|lap.xts                          |  LA Pollution-Mortality Study Daily Observations                              |
 |lead                             |  Leading Indicator                                                            |
 |nyse                             |  Returns of the New York Stock Exchange                                       |
 |oil                              |  Crude oil, WTI spot price FOB                                                |
