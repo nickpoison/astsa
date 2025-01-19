@@ -1,6 +1,6 @@
 # fun with astsa &#x1F388;&#x1F388;&#x1F388;
 
-[![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current version of `astsa`</sup>
 
 #### We'll demonstrate some of the capabilities of the latest version of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
 
@@ -228,19 +228,17 @@ tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2)  # another gris-gris plot
 
 
 ```r
-tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),
-          ylab='Number',  spaghetti=TRUE)
+tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2), ylab='Number',  spaghetti=TRUE)
 mtext('\u00D7' 1000', side=2, adj=1, line=1.5, cex=.8)
 legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
 ```
 
 <br/>
 
-&#10004; In version 2.2 (not at CRAN yet) and beyond, this can be done with `addLegend` in `tsplot` (a few more examples below)
+&#10004; In version 2.2 and beyond, this can be done with `addLegend` in `tsplot` (a few more examples below)
 
 ```r
-tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),
-          ylab='Number', spaghetti=TRUE, addLegend=TRUE)
+tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),ylab='Number', spaghetti=TRUE, addLegend=TRUE)
 mtext('\u00D7 1000', side=2, adj=1, line=1.5, cex=.8)
 ```
 
@@ -400,7 +398,7 @@ QQnorm(log(varve), main='log(varve)')
 
 - `acfm` is for multiple time series and it produces a grid of plots of the sample ACFs and CCFs.  
 
-- `pre.white` (in version 2.2+) will prewhiten the first series automatically, filter the second accordingly, and perform a cross-correlation analysis.
+- `pre.white` (in version 2.2) will prewhiten the first series automatically, filter the second accordingly, and perform a cross-correlation analysis.
 
 <br/>
 
@@ -470,10 +468,10 @@ ccf2(cmort, part)
 
 <br/>
 
-&#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).  Here you go:
+&#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).  Here you go (the user has to decide if differencing is necessary):
 
 ```r
-pre.white(cmort, part, diff=TRUE, col=4)    # in version 2.2 and beyond
+pre.white(cmort, part, diff=TRUE, col=4)    # in version 2.2 
 
 #    cmort prewhitened using an AR p = 3 
 #    after differencing d = 1
