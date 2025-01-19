@@ -222,6 +222,12 @@ tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2)  # another gris-gris plot
 ```
 <img src="figs/climhyd.png" alt="climhyd"  width="70%"> 
 
+Actually that figure has a little more to it ... in version 2.2, you can use `scale` to control the character expansion (`cex`) of the plot so the axis values don't get too small if there are many series being plotted.
+So what you see is from this:
+```r
+climhyd[,5:6] = sqrt(climhyd[,5:6])
+tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2, scale=.9) 
+```
 <br/>
 
 &#x1F535; Do you like `spaghetti` (you can shorten it to `spag`):
