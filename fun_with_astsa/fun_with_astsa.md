@@ -241,7 +241,7 @@ legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="
 
 <br/>
 
-&#10004; In version 2.2 and beyond, this can be done with `addLegend` in `tsplot` (a few more examples below)
+&#10004; In version 2.2 and beyond, this can be done with `addLegend` in `tsplot` (and a few more examples below)
 
 ```r
 tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),ylab='Number', spaghetti=TRUE, addLegend=TRUE)
@@ -268,7 +268,7 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 
 <br/>
 
-&#127378; In v2.2 (and beyond), easily add a legend to a spaghetti plot (for more control you can still use `legend`)
+&#127378; And another easy-add legend for spaghetti plots (for more control you can still use `legend`)
 
 ```r
 # quick and easy legend
@@ -277,16 +277,7 @@ tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE,
 
 <img src="figs/legend.png" alt="tsplot easy legend"  width="70%">
 
-<br/>
-
-&#127922; and if you need a little more control (not shown)
-```r
-tsplot(cbind(cmort, part), col=5:6, gg=TRUE, spag=TRUE, addLegend=TRUE, legend=c('extinctions', 'from taint'), llwd=2, location='top', horiz=TRUE)
-```
-
-
-
-<br/>
+<br/><br/>
 
 
 ### Lag Plots
@@ -315,7 +306,7 @@ and for two series (the first one gets lagged)
 # minimal call - the first series gets lagged
 lag2.plot(soi, rec, 8)
 # but prettified
-lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, lwl=2, gg=TRUE)
+lag2.plot(soi, rec, 8, pch=19, col=5, lwl=2, gg=TRUE)
 ```
 <img src="figs/lag2plot.png" alt="lag2plot"  width="70%">
 
@@ -328,7 +319,7 @@ lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, lwl=2, gg=TRUE)
 
 ```r
 scatter.hist(tempr, cmort, hist.col=astsa.col(5,.4), pt.col=5, pt.size=1.5, reset=FALSE)
-lines(lowess(tempr, cmort), col=6, lwd=2)
+lines(lowess(tempr, cmort), col=6, lwd=2)  # with reset=FALSE, can add to the scatterplot
 ```
 
 <img src="figs/scatterhist.png" alt="scatterhist"  width="70%"> 
@@ -367,8 +358,7 @@ tsplot(cbind(salmon, detrend(salmon)), main='Norwegian Salmon (USD/KG)', lwd=2, 
 
 ### QQnorm
 
-&#129412; The texts have a few QQ plots and we needed them to look good because the importance of appearance extends well beyond the pleasant experiences we have when we look at attractive plots. 
-And the code was sitting there in `sarima` as part of the diagnostics, so we just pulled it out.
+&#129412; The texts have a few QQ plots and we needed them to look good because the importance of appearance extends well beyond the pleasant experiences we have when we look at attractive plots.  And the code was sitting there in `sarima` as part of the diagnostics, so we just pulled it out.
 
 ```R
 par(mfrow=1:2)
@@ -474,16 +464,20 @@ ccf2(cmort, part)
 
 <br/>
 
-&#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).  Here you go (the user has to decide if differencing is necessary):
+&#x1F6AB; **Don't be fooled because neither series is white noise - far from it.**  Prewhiten before a real cross-correlation analysis (but you know that already because you've read it in one of the books).  
+
+&#129297; Here's a way to do it using `pre.white` from `astsa` version 2.2  (it's semiautomatic- the user has to decide if differencing is necessary):
 
 ```r
 pre.white(cmort, part, diff=TRUE, col=4)    # in version 2.2 
 
-#    cmort prewhitened using an AR p = 3 
-#    after differencing d = 1
+# with output
+   cmort prewhitened using an AR p = 3 
+   after differencing d = 1
+# and ...
 ```
 
-You get a graphic and the transformed series are returned invisibly (the .w is for whitened and the .f is for filtered):
+**…**  you get a graphic. The transformed series are returned invisibly (the .w is for whitened and the .f is for filtered):
 
 <img src="figs/pre.white.png" alt="pre.white"  width="70%">
 
@@ -523,7 +517,7 @@ acfm(diff(log(econ5)), gg=TRUE, acf.highlight=FALSE)  # Gris-Gris Gumbo Ya Ya
 
 ### ARIMA Simulation
 
-&#128171; You can simulate data from seasonal ARIMA or non-seasonal ARIMA models via
+&#128171; You can simulate from ARIMA models - seasonal  or non-seasonal  - via
 
 > **`sarima.sim()`**
 
@@ -533,7 +527,7 @@ The syntax are simple and we'll demonstrate with a couple of examples. There are
 
 ```r
 y = sarima.sim(ar=c(1.5,-.75)) + 50
-tsplot(y, main=expression(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
+tsplot(y, main=bquote(AR(2)~~~phi[1]==1.5~~phi[2]==-.75), col=4)
 ```
 <img src="figs/ar2sim.png" alt="ar2sim"  width="70%">
 
@@ -629,8 +623,7 @@ Yep!! 1 parameter with a decent standard error and the residuals are perfect (wh
 ---
 </blockquote>
 
-&#128125;  Ok - back to our regularly scheduled program, `sarima()`.
-As with everything else, there are many examples on the help page (`?sarima`) and we'll do a couple here.
+&#128125;  Ok - back to our regularly scheduled program, `sarima()`.  As with everything else, there are many examples on the help page (`?sarima`) and we'll do a couple here.
 
 <br/> 
 
@@ -867,7 +860,7 @@ arma.spec(ar= .9, ma= -.9, main="It's White Noise, Dingus")
 
 ### nonparametric spectral analysis
 
-&#127929; `mvspec` was originally just a way to  get the multivariate spectral density estimate out of `spec.pgram` directly (without additional calculations), but then it turned into its own little monster with different defaults and bandwidth calculations.
+&#127929; `mvspec` was originally just a way to  get the multivariate spectral density estimate out of `spec.pgram` directly (without additional calculations), but then it turned into its own pretty little monster with lots of bells and whistles.
 
 &#x1F535; If you want the periodogram, you got it (tapering is not done automatically because you're old enough to do it by yourself):
 
@@ -889,9 +882,9 @@ mvspec(x, col=4, lwd=2, type='o', pch=20)
 par(mfrow=c(2,1))
 sois  = mvspec(soi, spans=c(7,7), taper=.1, col=4, lwd=2)
 ##-- these get printed unless plot=FALSE--##
- # Bandwidth: 0.231    
- # Degrees of Freedom: 15.61 
+# Bandwidth: 0.231 | Degrees of Freedom: 8.96 | split taper: 10%
 soisl = mvspec(soi, spans=c(7,7), taper=.5, col=4, lwd=2, log='y')
+# ditto
 ```
 
 <img src="figs/soispec.png" alt="soispec" width="70%">
@@ -924,10 +917,9 @@ soisl = mvspec(soi, spans=c(7,7), taper=.5, col=4, lwd=2, log='y')
 &#x1F535; and cross-spectra
 
 ```r
-mvspec(cbind(soi,rec), spans=20, plot.type="coh", ci.lty=2, gg=TRUE, main="SOI & Recruitment")
+mvspec(cbind(soi,rec), spans=20, plot.type="coh", taper=.1, ci.lty=2, gg=TRUE, main="SOI & Recruitment")
 
-# Bandwidth: 0.513 
-# Degrees of Freedom: 38.72
+#  Bandwidth: 0.513 | Degrees of Freedom: 34.68 | split taper: 10% 
 ```
 
 <img src="figs/coher.png" alt="coher"  width="70%"><br/>
