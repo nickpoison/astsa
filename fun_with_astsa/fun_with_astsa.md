@@ -2133,6 +2133,13 @@ To do the same run but without $\rho$, just don't give it an initial value:
 
 ```r
 SV.mle(BCJ[,'boa'], feedback=TRUE)
+
+# and output (the graphics are nearly the same so it's a no show)
+ 
+  Coefficients: 
+              gamma    phi     sQ   alpha  sigv0     mu1  sigv1
+  estimates -1.9514 0.9968 0.1287 -8.5241 1.1925 -2.1916 3.6965
+  SE         0.5029 0.0023 0.0267  0.7215 0.0455  0.1806 0.1083
 ```
 
 and to ignore the feedback term, just leave it out of the call (but why would you?): `SV.mle(BCJ[,'boa'])`
