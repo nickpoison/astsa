@@ -235,7 +235,7 @@ tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2, scale=.9)
 
 ```r
 tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2), ylab='Number',  spaghetti=TRUE)
-mtext('\u00D7' 1000', side=2, adj=1, line=1.5, cex=.8)
+mtext('\u00D7 1000', side=2, adj=1, line=1.5, cex=.8)
 legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="n")
 ```
 
