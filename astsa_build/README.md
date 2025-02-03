@@ -23,7 +23,7 @@ We do not always push the latest version of the package to CRAN, but [the latest
 * __WARNING:__  If loaded, the package `dplyr` may (and probably will) corrupt the base scripts `filter` and `lag` that a time series analyst uses often. An easy fix if you’re analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is going being used:
 
 ```r
-# [1] either detach it if it's loaded
+# [1] either detach it if it's loaded but no longer needed
 detach(package:dplyr)  
 
 # [2] or fix it yourself when loading dplyr 

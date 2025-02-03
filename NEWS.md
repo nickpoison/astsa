@@ -5,19 +5,17 @@
 
 **more than just data ... it's a palindrome**  
 
-... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](https://link.springer.com/book/9783031705830)  and  [Time Series A Data Analysis Approach using R](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096). 
+... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](https://link.springer.com/book/9783031705830)  and  [Time Series A Data Analysis Approach using R](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096).
 
-The GitHub version is updated before the CRAN version.   To update the package to the most recent working version, you just need the following two lines:
+---
 
-```r
-install.packages("remotes")   # if you don't have the package already
-remotes::install_github("nickpoison/astsa/astsa_build")
-```
+&#x1F4A1; The GitHub version is updated before the CRAN version.   To get the most recent working version,  install `astsa` from the archive  [astsa_2.2.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.2.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
 
->  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  If you get a warning to install Rtools, ignore it. After successful installation, don't forget to reload  `astsa`. If you get an error, just restart R and reload `astsa`.
+&#128038; Right now, the 2 versions are the same.
 
-&#x1F4A1;  You can also install `astsa` from the archive (which is __always current__):  [astsa_2.2.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.2.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.
+> If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  After successful installation, the best thing to do is to restart R and load the new `astsa`.
 
+---
 
 &#128036; You can find a short guide to  `astsa` scripts right here at [**FUN WITH ASTSA**](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
 
