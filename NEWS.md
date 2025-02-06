@@ -11,9 +11,11 @@
 
 &#x1F4A1; The GitHub version is updated before the CRAN version.   To get the most recent working version,  install `astsa` from the archive  [astsa_2.2.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.2.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
 
-&#128038; Right now, the 2 versions are the same.
+In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` and just give the path to the `tar.gz` file.
 
 > If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  After successful installation, the best thing to do is to restart R and load the new `astsa`.
+
+ &#128038; __Right now, the 2 versions are the same.__
 
 ---
 
