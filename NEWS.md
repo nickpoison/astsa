@@ -9,13 +9,13 @@
 
 ---
 
-&#x1F4A1; The GitHub version is updated before the CRAN version.   To get the most recent working version,  install `astsa` from the archive  [astsa_2.2.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.2.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
+&#x1F4A1; The GitHub version is updated before the CRAN version.   To get the most recent working version,  install `astsa` from the archive  [astsa_2.2+.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.2.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
 
 In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` and just give the path to the `tar.gz` file.
 
 > If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  After successful installation, the best thing to do is to restart R and load the new `astsa`.
 
- &#128038; __Right now, the 2 versions are the same.__
+ &#128038; __Right now,  the 2 versions are NOT the same.__
 
 ---
 
@@ -26,7 +26,15 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 ---
 
-### &#9654; Version 2.2 - Jan 2025 (on CRAN) - current version
+#### &#128700; v2.2+ &hellip; Beyond Version 2.2 (GitHub only)
+
+- `mvspec` can now handle coherency and phase plots in the multivariate (3 or more series) case. 
+
+> Prior to this, we suggested the `stats` package (although it's not used for displays in the texts). The problem was/is the graphics are ugly like the rest of vanilla R graphics... &#128530; _and why would someone spend so much time writing code to produce graphics and then be satisfied with awful results when a little bit of tweaking would have done the job???_ All we did for `mvspec` was to tweak the plotting routines.  Tufte's _The Visual Display of Quantitative Information_ came out in 1983 ... it wouldn't have influenced S, but it sure should have influenced Splus and consequently R.
+
+<br/>
+
+### &#9654; Version 2.2 - Jan 2025 (on CRAN)  
 
 - added `QQnorm` - a much nicer version of `qqnorm` from the `stats` package because the importance of appearance extends well beyond the pleasant experiences we have when we look at attractive plots. 
 - `lag1.plot` and `lag2.plot` got little facelifts including increasing the character expansion (`cex`) a bit to prevent characters from getting too small.

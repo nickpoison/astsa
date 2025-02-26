@@ -8,7 +8,7 @@
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
         demean = FALSE, detrend = TRUE, lowess = FALSE, log = 'n', plot = TRUE, 
         gg = FALSE, type = NULL, na.action = na.fail, nxm = 2, nym = 1, 
-        main = NULL, xlab=NULL, cex.main=NULL, ci.col=4, ...) 
+        main = NULL, xlab=NULL, cex.main=NULL, ci.col=4,  plot.type, ...) 
 }
 \arguments{
   \item{x }{univariate or multivariate time series (i.e., the p columns of x are time series)
@@ -46,13 +46,16 @@ the number of minor tick mark divisions on x-axis, y-axis; the default is one mi
 }
  \item{xlab }{label for frequency axis; if NULL (default), a totally awesome label is generated for your viewing pleasure
 }
- \item{cex.main}{
+ \item{cex.main }{
 magnification for main title; default is 1.
 }
- \item{ci.col}{
+ \item{ci.col }{
 color of the confidence interval if one is drawn.
 }
- \item{\dots }{graphical arguments passed to \code{plot.spec}
+ \item{plot.type }{ plot type for multivariate time series; leave blank or specify 'marginal' if a marginal plot of the spectra is desired, or set \code{plot.type='coh'} for coherency plot(s), or \code{plot.type='phase'} for phase plot(s).
+.  
+}
+ \item{\dots }{additional graphical arguments.
 }
 }
 \details{This is built off of \code{spec.pgram} from the stats package with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. 
@@ -64,6 +67,10 @@ The bandwidth calculation has been changed to the more practical definition give
 Although initially meant to be used to easily obtain multivariate (mv) spectral (spec) estimates, this script can be used for univariate time series as a replacement for \code{spec.pgram}.
 
 Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
+
+In the multivariate case (more than 2 series), if "coherency" or "phase" plots are desired, the result is a grid of plots. There is a "scale" factor that can be set to prevent the labels from getting too small if there are many series.  The default is \code{scale=1}, and to expand the labels by 10\% for example, set \code{scale=1.1}. 
+
+
 }
 \value{All results are returned invisibly.  
 
@@ -103,7 +110,7 @@ mvspec(soi, log='y')  # on a log scale
 # smooth and some details printed
 mvspec(soi, spans=c(7,7), taper=.5)$details[1:45,]
 
-# multivariate example
+# bivariate example
 deth = cbind(mdeaths, fdeaths)    # two R data sets, male/female monthly deaths ...
 tsplot(deth, type='b', col=c(4,6), spaghetti=TRUE, pch=c('M','F'))
 dog = mvspec(deth, spans=c(3,3), taper=.1)
@@ -111,5 +118,8 @@ dog$fxx[,,1:5]  # look at a few spectral matrix estimates
 dog$bandwidth   # bandwidth with time unit = year
 dog$df          # degrees of freedom
 mvspec(deth, spans=c(3,3), taper=.1, plot.type='coh')  # coherence
+
+# multivariate example
+mvspec(diff(log(econ5)), spans=c(5,5), col=5, lwd=2, ci=NA, gg=TRUE, plot.type='coh')   
 }
 \keyword{ ts }

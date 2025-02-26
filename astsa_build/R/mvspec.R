@@ -1,9 +1,9 @@
 mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
          demean = FALSE, detrend = TRUE, lowess=FALSE, log='n', plot = TRUE, gg=FALSE,
          type = NULL, na.action = na.fail, nxm=2, nym=1, main=NULL, xlab=NULL, 
-         cex.main=NULL, ci.col=4, ...)  
+         cex.main=NULL, ci=.95, ci.col=4, plot.type, ...)  
 {
-     #
+ 
      na.fail = stats::na.fail
      as.ts = stats::as.ts
      frequency = stats::frequency
@@ -20,6 +20,12 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
     x <- as.matrix(x)
     N <- N0 <- nrow(x)
     nser <- ncol(x)
+          # marginal plot works for any dimension; coh has 2 conditions on nser 
+          trigger = ifelse(nser < 3, 0L, 1L)   # univar or bivar = 0, else > 1
+          if (missing(plot.type)) {plot.type='marginal'}
+          if (grepl('marginal',  plot.type)) {plot.type='marginal'; trigger=0L}
+          if (grepl('coherency', plot.type)) plot.type='coherency'; trigger=trigger*1L
+          if (grepl('phase',  plot.type)) {plot.type='phase'; trigger=trigger*2L}
     if (!is.null(spans)) 
         kernel <- {
             if (is.tskernel(spans)) 
@@ -110,7 +116,9 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
             "Smoothed Periodogram", "Raw Periodogram"), taper = taper, 
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
-    if (plot) {
+#   
+    if (plot & trigger < 1) {   #  but not for coh nser>2
+         old.par <- par(no.readonly = TRUE)          # orig par
         if (Lh > 1) {cat("Bandwidth:", round(bandwidth,3), "|", "Degrees of Freedom:", round(df,2),"|", "split taper:", paste(100*taper,"%",sep=''), '\n')}
         if (is.null(cex.main)) cex.main=1
         if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method) 
@@ -119,12 +127,12 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         par(mar = c(2.75, 2.75, 2-topper, 0.75), mgp = c(1.6, 0.6, 0), cex.main = cex.main)
          col.grid=gray(.9)
          } else {
-         par(mar=c(2.75,2.75,2-topper,.5), mgp=c(1.6,.3,0), cex.main=1.1, tcl=-.2, cex.axis=.8, las=1)
+         par(mar=c(2.75,2.75,2-topper,.5), mgp=c(1.6,.3,0), cex.main=1.1, tcl=-.2, cex.axis=.8, las=0)
          }
         type0 <- 'n' 
         type1 <- ifelse(is.null(type), 'l', type) 
         if (is.null(xlab)) xlab = ifelse(xfreq>1, paste('frequency', expression('\u00D7'), xfreq), 'frequency')
-        plot(spg.out, type = type0, sub=NA, axes=FALSE, ann=FALSE, log = log, main='', ...) 
+        plot(spg.out, type = type0, sub=NA, axes=FALSE, ann=FALSE, log = log, main='', plot.type=plot.type, ...) 
         if (gg) { 
         brdr = par("usr")
         rect(brdr[1], brdr[3], brdr[2], brdr[4], col=gray(.92), border='white')
@@ -132,9 +140,97 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         }          
         Grid(nxm=nxm, nym=nym, col=col.grid)
         par(new=TRUE)
-        plot(spg.out, xlab=xlab, log = log, type = type1, sub=NA, main=main, ci.col=ci.col, ...) 
+        plot(spg.out, xlab=xlab, log = log, type = type1, sub=NA, main=main, ci.col=ci.col, plot.type=plot.type, ...) 
         if (gg) box(col=col.grid, lwd=2)
+        on.exit(par(old.par))
+    }
+    if (plot & trigger == 1) {  # coherency plot for nser > 2 
+        old.par <- par(no.readonly = TRUE)          # orig par
+       .plotcoh(spg.out, ci=ci, gg=gg, main=main,  ...)
+        on.exit(par(old.par))
+    }
+        if (plot & trigger == 2) {  # phase plot for nser > 2 
+        old.par <- par(no.readonly = TRUE)          # orig par
+       .plotphase(spg.out, ci=ci, gg=gg, main=main,  ...)
+        on.exit(par(old.par))
     }
     return(invisible(spg.out))
 }
 
+
+
+
+##############################################
+.plotcoh <-
+    function(x, ci = 0.95, ylim=c(0,1), gg=FALSE,
+              main=NULL, ci.col=4, ci.lty = 3, scale=1, ...)
+{
+    nser <- NCOL(x$spec)
+    gg2 <- 2/x$df
+    se <- sqrt(gg2/2)
+    z <- -qnorm((1-ci)/2)
+       if (gg) scale = scale*1.05
+       dev.hold(); on.exit(dev.flush())
+        if (is.null(main)) main='Squared Coherencies'
+        topper = ifelse(is.na(main),0,.65) 
+        opar <- par(mfrow = c(nser-1, nser-1), mgp=c(1.6,.6,0), mar=c(1,1,0,0)+.5,
+                   oma = c(.25,.25,0+topper,0))
+        on.exit(par(opar), add = TRUE)
+        plot.new()
+        par(cex = par('cex')*scale)
+        for (j in 2:nser) for (i in 1L:(j-1)) {
+            par(mfg=c(j-1,i, nser-1, nser-1)) 
+            ind <- i + (j - 1) * (j - 2)/2
+            tsplot(x$freq, x$coh[, ind], ylim=ylim, xlab=NA, ylab=NA, gg=gg, las=0, ...)  
+            coh <- pmin(0.99999, sqrt(x$coh[, ind]))
+            lines(x$freq, (tanh(atanh(coh) + z*se))^2, lty=ci.lty, col=ci.col)
+            lines(x$freq, (pmax(0, tanh(atanh(coh) - z*se)))^2,
+                  lty=ci.lty, col=ci.col)
+          if (i == 1) {
+              title(ylab=x$snames[j], xpd = NA, cex.lab=1.25 )
+          }
+          if (j == nser) {
+              title(xlab=x$snames[i], xpd = NA, cex.lab=1.25)
+          }
+            mtext(main, side=3, line=-.65*scale, outer=TRUE, cex = 1.025*scale, font = 1)
+        }
+     invisible()
+}
+
+##############################################
+.plotphase <-
+    function(x, ci = 0.95, ylim=c(-.5, .5), gg=FALSE,
+              main=NULL, ci.col=4, ci.lty = 3, scale=1, ...)
+{
+    nser <- NCOL(x$spec)
+    gg2 <- 2/x$df
+    se <- sqrt(gg2/2)
+    z <- -qnorm((1-ci)/2)
+       if (gg) scale = scale*1.05
+       dev.hold(); on.exit(dev.flush())
+        if (is.null(main)) main="Phase Spectrum"
+        topper = ifelse(is.na(main),0,.65) 
+        opar <- par(mfrow = c(nser-1, nser-1), mgp=c(1.6,.6,0), mar=c(1,1,0,0)+.5,
+                   oma = c(.25,.25,0+topper,0))
+        on.exit(par(opar), add = TRUE)
+        plot.new()
+        par(cex = par('cex')*scale)
+        for (j in 2:nser) for (i in 1L:(j-1)) {
+            par(mfg=c(j-1,i, nser-1, nser-1)) 
+            ind <- i + (j - 1) * (j - 2)/2
+            tsplot(x$freq, x$phase[, ind]/(2*pi), ylim=ylim, xlab=NA, ylab=NA, gg=gg, las=0, ...)  
+            coh <- pmin(0.99999, sqrt(x$coh[, ind]))
+            cl <- asin( pmin( 0.9999, qt(ci, 2/gg2-2)*
+                             sqrt(gg2*(coh^{-2} - 1)/(2*(1-gg2)) ) ) )
+            lines(x$freq, (x$phase[, ind] + cl)/(2*pi), lty=ci.lty, col=ci.col)
+            lines(x$freq, (x$phase[, ind] - cl)/(2*pi), lty=ci.lty, col=ci.col)
+          if (i == 1) {
+              title(ylab=x$snames[j], xpd = NA, cex.lab=1.25 )
+          }
+          if (j == nser) {
+              title(xlab=x$snames[i], xpd = NA, cex.lab=1.25)
+          }
+            mtext(main, side=3, line=-.65*scale, outer=TRUE, cex = 1.025*scale, font = 1)
+        }
+     invisible()
+}
