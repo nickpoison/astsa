@@ -28,10 +28,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 #### &#128700; v2.2+ &hellip; Beyond Version 2.2 (GitHub only)
 
-- `mvspec` can now handle coherency and phase plots in the multivariate (3 or more series) case. 
-
-> Prior to this, we suggested the `stats` package (although it's not used for displays in the texts). The problem was/is the graphics are ugly like the rest of vanilla R graphics... &#128530; _and why would someone spend so much time writing code to produce graphics and then be satisfied with awful results when a little bit of tweaking would have done the job???_ All we did for `mvspec` was to tweak the plotting routines.  Tufte's _The Visual Display of Quantitative Information_ came out in 1983 ... it wouldn't have influenced S, but it sure should have influenced Splus and consequently R.
-
+- `mvspec` can now handle coherency and phase plots in the multivariate (3 or more series) case without having to use the stats package.
 <br/>
 
 ### &#9654; Version 2.2 - Jan 2025 (on CRAN)  
