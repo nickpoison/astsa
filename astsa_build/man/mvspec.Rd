@@ -2,7 +2,7 @@
 \alias{mvspec}
 \title{Univariate and Multivariate Spectral Estimation
 }
-\description{This is \code{spec.pgram} with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}.  The bandwidth calculation has been changed to the more practical definition given in the text and this can be used to replace \code{spec.pgram}.
+\description{This is \code{spec.pgram} with a number changes and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}.  The bandwidth calculation has been changed to the more practical definition given in the text and this can be used to replace \code{spec.pgram}. 
 } 
 \usage{
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
@@ -60,7 +60,7 @@ color of the confidence interval if one is drawn.
 }
 \details{This is built off of \code{spec.pgram} from the stats package with a few changes in the defaults and written so you can easily extract the estimate of the multivariate spectral matrix as \code{fxx}. 
 
-The default for the plot is NOT to plot on a log scale and the graphic will have a grid. 
+The default for the plot is NOT to plot on a log scale and the graphic will have a grid. Overall, the graphics have been improved.
 
 The bandwidth calculation has been changed to the more practical definition given in the text, \eqn{(L_h/n.used)*frequency(x)}.  Also, the bandwidth is not displayed in the graphic, but is returned. 
 

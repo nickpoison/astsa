@@ -9,7 +9,7 @@
 
 ---
 
-&#x1F4A1; The GitHub version is updated before the CRAN version.   To get the most recent working version,  install `astsa` from the archive  [astsa_2.2+.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.2.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
+&#x1F4A1; The GitHub version is updated before the CRAN version.   To get the most recent working version,  install `astsa` from the archive  [astsa_2.2+.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.2+.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
 
 In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` and just give the path to the `tar.gz` file.
 
@@ -28,7 +28,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 #### &#128700; v2.2+ &hellip; Beyond Version 2.2 (GitHub only)
 
-- `mvspec` can now handle coherency and phase plots in the multivariate (3 or more series) case without having to use the stats package.
+- `mvspec` can now handle coherency and phase plots in the multivariate (3 or more series) case without having to use `plot.spec` from the stats package .
 <br/>
 
 ### &#9654; Version 2.2 - Jan 2025 (on CRAN)  

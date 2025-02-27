@@ -118,7 +118,6 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
     class(spg.out) <- "spec"
 #   
     if (plot & trigger < 1) {   #  but not for coh nser>2
-         old.par <- par(no.readonly = TRUE)          # orig par
         if (Lh > 1) {cat("Bandwidth:", round(bandwidth,3), "|", "Degrees of Freedom:", round(df,2),"|", "split taper:", paste(100*taper,"%",sep=''), '\n')}
         if (is.null(cex.main)) cex.main=1
         if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method) 
@@ -142,17 +141,12 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         par(new=TRUE)
         plot(spg.out, xlab=xlab, log = log, type = type1, sub=NA, main=main, ci.col=ci.col, plot.type=plot.type, ...) 
         if (gg) box(col=col.grid, lwd=2)
-        on.exit(par(old.par))
     }
     if (plot & trigger == 1) {  # coherency plot for nser > 2 
-        old.par <- par(no.readonly = TRUE)          # orig par
        .plotcoh(spg.out, ci=ci, gg=gg, main=main,  ...)
-        on.exit(par(old.par))
     }
         if (plot & trigger == 2) {  # phase plot for nser > 2 
-        old.par <- par(no.readonly = TRUE)          # orig par
        .plotphase(spg.out, ci=ci, gg=gg, main=main,  ...)
-        on.exit(par(old.par))
     }
     return(invisible(spg.out))
 }
