@@ -23,9 +23,9 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
           # marginal plot works for any dimension; coh/phase have 2 conditions on nser 
           trigger = ifelse(nser < 3, 0L, 1L)   # univar or bivar = 0, else = 1
           if (missing(plot.type)) {plot.type='marginal'}
-          if (grepl('marginal',  plot.type)) {plot.type='marginal'; trigger=0L}
-          if (grepl('coherency', plot.type)) plot.type='coherency'; trigger=trigger*1L
-          if (grepl('phase',  plot.type)) {plot.type='phase'; trigger=trigger*2L}
+          if (grepl('marg',  plot.type)) {plot.type='marginal'; trigger=0L}
+          if (grepl('coh', plot.type)) {plot.type='coherency'; trigger=trigger*1L}
+          if (grepl('phas',  plot.type)) {plot.type='phase'; trigger=trigger*2L}
     if (!is.null(spans)) 
         kernel <- {
             if (is.tskernel(spans)) 
