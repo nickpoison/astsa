@@ -68,7 +68,7 @@ Although initially meant to be used to easily obtain multivariate (mv) spectral 
 
 Note that the script does not taper by default (\code{taper=0}); this forces the user to do "conscious tapering".  
 
-In the multivariate case (more than 2 series), if "coherency" or "phase" plots are desired, the result is a grid of plots. There is a "scale" factor that can be set to prevent the labels from getting too small if there are many series.  The default is \code{scale=1}, and to expand the labels by 10\% for example, set \code{scale=1.1}. 
+In the multivariate case (more than 2 series), if "coherency" or "phase" plots are desired, the result is a grid of plots. There is a "scale" factor that can be set to prevent the labels from getting too small if there are many series.  The default is \code{scale=1}, and to expand the labels by 10\% for example, set \code{scale=1.1}. Also, if there are many series, having minor tick marks can make the graphic look crowded; in this case, set \code{minor=FALSE}.
 
 
 }
@@ -120,6 +120,7 @@ dog$df          # degrees of freedom
 mvspec(deth, spans=c(3,3), taper=.1, plot.type='coh')  # coherence
 
 # multivariate example
-mvspec(diff(log(econ5)), spans=c(5,5), col=5, lwd=2, ci=NA, gg=TRUE, plot.type='coh')   
+mvspec(diff(log(econ5)), spans=c(5,5), col=5, lwd=2, ci=NA, gg=TRUE, minor=FALSE, 
+       plot.type='coh')   
 }
 \keyword{ ts }

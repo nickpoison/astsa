@@ -163,15 +163,16 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
        dev.hold(); on.exit(dev.flush())
         if (is.null(main)) main='Squared Coherencies'
         topper = ifelse(is.na(main),0,.65) 
-        opar <- par(mfrow = c(nser-1, nser-1), mgp=c(1.6,.6,0), mar=c(1,1,0,0)+.5,
-                   oma = c(.25,.25,0+topper,0))
+        opar <- par(mfrow = c(nser-1, nser-1), mgp=c(1.6,.6,0), mar=c(0,0,0,0)+.5,
+                   oma =  c(.25,.25,0+topper,0))
         on.exit(par(opar), add = TRUE)
         plot.new()
         par(cex = par('cex')*scale)
         for (j in 2:nser) for (i in 1L:(j-1)) {
             par(mfg=c(j-1,i, nser-1, nser-1)) 
             ind <- i + (j - 1) * (j - 2)/2
-            tsplot(x$freq, x$coh[, ind], ylim=ylim, xlab=NA, ylab=NA, gg=gg, las=0, ...)  
+            tsplot(x$freq, x$coh[, ind], ylim=ylim, xlab=NA, ylab=NA, gg=gg, las=0, 
+                   margins=c(0,0,-.8,0)+.2, ...)  
             coh <- pmin(0.99999, sqrt(x$coh[, ind]))
             lines(x$freq, (tanh(atanh(coh) + z*se))^2, lty=ci.lty, col=ci.col)
             lines(x$freq, (pmax(0, tanh(atanh(coh) - z*se)))^2,
@@ -200,7 +201,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
        dev.hold(); on.exit(dev.flush())
         if (is.null(main)) main="Phase Spectrum"
         topper = ifelse(is.na(main),0,.65) 
-        opar <- par(mfrow = c(nser-1, nser-1), mgp=c(1.6,.6,0), mar=c(1,1,0,0)+.5,
+        opar <- par(mfrow = c(nser-1, nser-1), mgp=c(1.6,.6,0), mar=c(0,0,0,0)+.5,
                    oma = c(.25,.25,0+topper,0))
         on.exit(par(opar), add = TRUE)
         plot.new()
@@ -208,7 +209,8 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         for (j in 2:nser) for (i in 1L:(j-1)) {
             par(mfg=c(j-1,i, nser-1, nser-1)) 
             ind <- i + (j - 1) * (j - 2)/2
-            tsplot(x$freq, x$phase[, ind]/(2*pi), ylim=ylim, xlab=NA, ylab=NA, gg=gg, las=0, ...)  
+            tsplot(x$freq, x$phase[, ind]/(2*pi), ylim=ylim, xlab=NA, ylab=NA, gg=gg, las=0,
+                   margins=c(0,0,-.8,0)+.2, ...)  
             coh <- pmin(0.99999, sqrt(x$coh[, ind]))
             cl <- asin( pmin( 0.9999, qt(ci, 2/gg2-2)*
                              sqrt(gg2*(coh^{-2} - 1)/(2*(1-gg2)) ) ) )
