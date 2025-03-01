@@ -20,8 +20,8 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
     x <- as.matrix(x)
     N <- N0 <- nrow(x)
     nser <- ncol(x)
-          # marginal plot works for any dimension; coh has 2 conditions on nser 
-          trigger = ifelse(nser < 3, 0L, 1L)   # univar or bivar = 0, else > 1
+          # marginal plot works for any dimension; coh/phase have 2 conditions on nser 
+          trigger = ifelse(nser < 3, 0L, 1L)   # univar or bivar = 0, else = 1
           if (missing(plot.type)) {plot.type='marginal'}
           if (grepl('marginal',  plot.type)) {plot.type='marginal'; trigger=0L}
           if (grepl('coherency', plot.type)) plot.type='coherency'; trigger=trigger*1L
@@ -68,12 +68,8 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
     if (!is.null(kernel)) {
         for (i in 1:ncol(x)) for (j in 1:ncol(x)) pgram[, i, 
             j] <- kernapply(pgram[, i, j], kernel, circular = TRUE)
-        # df <- df.kernel(kernel)
-        ######### bandwidth <- bandwidth.kernel(kernel)
-        Lh = 1/sum(kernel[-kernel$m:kernel$m]^2)    # this is Lh  - it gets divided by N below
+        Lh = 1/sum(kernel[-kernel$m:kernel$m]^2)    #  L_h gets divided by N below
     } else {
-        # df <- 2
-        #########   bandwidth <- sqrt(1/12)    ############ fix this
         Lh <- 1
     }
     df <- 2*Lh    
@@ -117,7 +113,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         pad = pad, detrend = detrend, demean = demean)
     class(spg.out) <- "spec"
 #   
-    if (plot & trigger < 1) {   #  but not for coh nser>2
+    if (plot & trigger < 1) {   #  for any univar or bivar plot
         if (Lh > 1) {cat("Bandwidth:", round(bandwidth,3), "|", "Degrees of Freedom:", round(df,2),"|", "split taper:", paste(100*taper,"%",sep=''), '\n')}
         if (is.null(cex.main)) cex.main=1
         if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method) 
