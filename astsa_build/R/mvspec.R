@@ -16,6 +16,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
     #
     series <- deparse(substitute(x))
     x <- na.action(as.ts(x))
+    tspar <- tsp(x)
     xfreq <- frequency(x)
     x <- as.matrix(x)
     N <- N0 <- nrow(x)
@@ -110,7 +111,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
         fxx=fxx, Lh=Lh, n.used = N, details=details,
         orig.n = N0, series = series, snames = colnames(x), method = ifelse(!is.null(kernel), 
             "Smoothed Periodogram", "Raw Periodogram"), taper = taper, 
-        pad = pad, detrend = detrend, demean = demean)
+        pad = pad, detrend = detrend, demean = demean, tspar = tspar)
     class(spg.out) <- "spec"
 #   
     if (plot & trigger < 1) {   #  for any univar or bivar plot
@@ -153,7 +154,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
 ##############################################
 .plotcoh <-
     function(x, ci = 0.95, ylim=c(0,1), gg=FALSE,
-              main=NULL, ci.col=4, ci.lty = 3, scale=1, ...)
+              main=NULL, ci.col=4, ci.lty = 3, scale=1, addLegend=TRUE, ...)
 {
     nser <- NCOL(x$spec)
     gg2 <- 2/x$df
@@ -163,13 +164,14 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
        dev.hold(); on.exit(dev.flush())
         if (is.null(main)) main='Squared Coherencies'
         topper = ifelse(is.na(main),0,.65) 
+        if (nser > 3) topper = topper+.15
         opar <- par(mfrow = c(nser-1, nser-1), mgp=c(1.6,.6,0), mar=c(0,0,0,0)+.5,
                    oma =  c(.25,.25,0+topper,0))
         on.exit(par(opar), add = TRUE)
         plot.new()
         par(cex = par('cex')*scale)
         for (j in 2:nser) for (i in 1L:(j-1)) {
-            par(mfg=c(j-1,i, nser-1, nser-1)) 
+            par(mfg=c(j-1,i, nser-1, nser-1), bty='L') 
             ind <- i + (j - 1) * (j - 2)/2
             tsplot(x$freq, x$coh[, ind], ylim=ylim, xlab=NA, ylab=NA, gg=gg, las=0, 
                    margins=c(0,0,-.8,0)+.2, ...)  
@@ -184,14 +186,21 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
               title(xlab=x$snames[i], xpd = NA, cex.lab=1.25)
           }
             mtext(main, side=3, line=-.65*scale, outer=TRUE, cex = 1.025*scale, font = 1)
-        }
+        } 
+           if (addLegend){
+            mult = ifelse(nser < 5, 1, 1.05) 
+            par(fig = c(.75*mult, 1,.75*mult,1), new=TRUE, bty="L", cex.axis=.7*mult, cex.lab=.8*mult)
+            xlab = ifelse(x$tspar[3]>1, paste('frequency', expression('\u00D7'), x$tspar[3]), 'frequency')
+            plot(x$freq, x$coh[,1], type='n', ylab='Sq. Coh.', xlab=xlab, axes=FALSE, col.lab=gray(.4))
+            axis(1, col=gray(.5)); axis(2, col=gray(.5))
+            }
      invisible()
 }
 
 ##############################################
 .plotphase <-
     function(x, ci = 0.95, ylim=c(-.5, .5), gg=FALSE,
-              main=NULL, ci.col=4, ci.lty = 3, scale=1, ...)
+              main=NULL, ci.col=4, ci.lty = 3, scale=1, addLegend=TRUE, ...)
 {
     nser <- NCOL(x$spec)
     gg2 <- 2/x$df
@@ -224,5 +233,12 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
           }
             mtext(main, side=3, line=-.65*scale, outer=TRUE, cex = 1.025*scale, font = 1)
         }
+           if (addLegend){
+            mult = ifelse(nser < 5, 1, 1.05) 
+            par(fig = c(.75*mult, 1,.75*mult,1), new=TRUE, bty="L", cex.axis=.7*mult, cex.lab=.8*mult)
+            xlab = ifelse(x$tspar[3]>1, paste('frequency', expression('\u00D7'), x$tspar[3]), 'frequency')
+            plot(x$freq, x$coh[,1], type='n', ylab='phase', xlab=xlab, axes=FALSE, col.lab=gray(.4))
+            axis(1, col=gray(.5)); axis(2, col=gray(.5))
+            }
      invisible()
 }
