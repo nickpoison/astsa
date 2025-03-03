@@ -29,6 +29,8 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 #### &#128700; v2.2+ &hellip; Beyond Version 2.2 (GitHub only)
 
 - `mvspec` can now handle coherency and phase plots in the multivariate (3 or more series) case without having to use `plot.spec` from the stats package .
+
+- and after beautifying `mvspec`, the multivariate auto/cross- correlation matrix plot `acfm` is now more beautiful than ever.
 <br/>
 
 ### &#9654; Version 2.2 - Jan 2025 (on CRAN)  

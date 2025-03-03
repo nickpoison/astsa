@@ -27,7 +27,7 @@ uppr = min(uppr, 1)
 
 if (plot){
  old.par <- par(no.readonly = TRUE)
- par(mfrow=c(nser,nser), oma=c(0,2,2,0), cex.main=1)
+ par(mfrow=c(nser,nser), oma=c(0,2,2,0), cex.main=1, bty='L')
   Xlab = ifelse(xfreq>1, paste('LAG \u00F7', xfreq), 'LAG')
   for (i in 1:nser){ 
    for (j in 1:nser){ 
@@ -39,7 +39,7 @@ if (plot){
        mtext(txt2, side=2, font=2, line=2, las=0, cex=.65*(nser+1)/nser)
       txt3 = ifelse (i==1,u$snames[j],"") 
         mtext(txt3, side=3, font=2, line=.75, las=0, cex=.65*(nser+1)/nser)
-       if(i==j && acf.highlight) box(col=1)
+       if(i==j && acf.highlight) box(col=8, bty='o')
    }   
   } 
  mtext('Leads', side=3, line=.65, outer=TRUE, cex=.9) 
