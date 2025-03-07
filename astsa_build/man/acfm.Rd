@@ -51,7 +51,7 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \examples{
-acfm(diff(log(econ5)), gg=TRUE, acf.highlight=FALSE)
+acfm(diff(log(econ5)), gg=TRUE)
 
 ( acfm(diff(log(econ5)), 2, plot=FALSE) )
 }

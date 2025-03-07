@@ -46,6 +46,6 @@ if (plot){
  mtext('Lags',  side=2, line=.65, outer=TRUE, cex=.9, las=0)  
  par(old.par)
 }
-return(invisible(ACF))
+if (plot) { return(invisible(ACF)) } else { return(ACF) }
 }
 

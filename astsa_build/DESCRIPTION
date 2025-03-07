@@ -14,7 +14,7 @@ Authors@R: c(person(given = "David",
                     role = c("ctb", "mus", "spy")))
 Maintainer: David Stoffer <stoffer@pitt.edu>
 BugReports: https://github.com/nickpoison/astsa/issues
-Description: Contains data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the texts Time Series Analysis and Its Applications: With R Examples (5th ed), by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2025, <https://link.springer.com/book/9783031705830>, and Time Series: A Data Analysis Approach Using R. Chapman-Hall, 2019, <DOI:10.1201/9780429273285>.
+Description: Contains data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the texts Time Series Analysis and Its Applications: With R Examples (5th ed), by R.H. Shumway and D.S. Stoffer. Springer Texts in Statistics, 2025, <DOI:10.1007/978-3-031-70584-7>, and Time Series: A Data Analysis Approach Using R. Chapman-Hall, 2019, <DOI:10.1201/9780429273285>.
 URL: https://dsstoffer.github.io/,  https://nickpoison.github.io/
 License:  GPL (>= 2)
 LazyLoad: yes
