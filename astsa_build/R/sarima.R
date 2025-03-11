@@ -94,7 +94,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
      pval[i] = stats::pchisq(u, i-ppq, lower.tail=FALSE)
     } 
   tsplot( (ppq+1):nlag, pval[(ppq+1):nlag], type='p', xlab = "LAG (H)", ylab = "p value", 
-          ylim = c(-.14, 1), main = "p values for Ljung-Box statistic", col=col, ...)
+          ylim = c(-.14, 1), main = "p values for Ljung-Box Statistic", col=col, minor=FALSE, ...)
    abline(h = 0.05, lty = 2, col = 4)  
    on.exit(par(old.par)) 
  }  #  end new tsdiag
