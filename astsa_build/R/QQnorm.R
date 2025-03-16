@@ -18,7 +18,7 @@ function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles
    qqfit = a + b*z
  
   if (ci){
-   # check CI width are valid
+   # check CI width is valid
    if (width.ci <=0) stop('width.ci should be greater than 0')
    if (width.ci <= 1) width.ci = 100*width.ci
    if (width.ci >= 100) width.ci = 99.995
