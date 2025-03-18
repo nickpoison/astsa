@@ -6,7 +6,7 @@
 Uses Gibbs sampling to fit an AR model to time series data.
 }
 \usage{
-ar.mcmc(xdata, porder, n.iter = 1000, n.warmup = 100, plot = TRUE, col = 4, 
+ar.mcmc(xdata, porder, n.iter = 1000, n.warmup = 100, plot = TRUE,  
         prior_var_phi = 50, prior_sig_a = 1, prior_sig_b = 2, ...)
 }
 \arguments{
@@ -23,11 +23,8 @@ number of iterations for the sampler
 number of startup iterations for the sampler (these are removed)
 }
   \item{plot}{
-if TRUE (default) returns two graphics, (1) the draws after warmup and (2) a
-scatterplot matrix of the draws with histograms on the diagonal
-}
-  \item{col}{
-color of the plots
+if TRUE (default) returns the draws after warmup (diagonal) and a
+scatterplot matrix of the draws (off-diagonal)
 }
   \item{prior_var_phi}{
 prior variance of the vector of AR coefficients; see details
@@ -39,7 +36,7 @@ first prior for the variance component; see details
 second prior for the variance component; see details
 }
   \item{...}{
-additional graphic parameters for the scatterplots
+additional graphic parameters passed to \code{tspairs}
 }
 }
 \details{
@@ -60,8 +57,7 @@ Springer text.
 }
 \value{In addition to the graphics (if plot is TRUE), 
 the  draws of each parameter (\code{phi0, phi1, ..., sigma})
- are returned invisibly and
-various quantiles are displayed.  
+ are returned invisibly and various quantiles are displayed.  
 }
 \author{
 D.S. Stoffer
@@ -83,9 +79,11 @@ The webpages for the texts and some help on using R for time series analysis can
 \examples{
 \dontrun{
 
-u = ar.mcmc(rec, 2)
+ar.mcmc(rec, 2)
 
-tsplot(u, ncolm=2, col=4)  # plot the traces
+u = ar.mcmc(rec, 2, hist=FALSE)  # traces instead of histograms
+
+tsplot(u, ncol=2, col=4)  # plot the traces
 
 apply(u, 2, ESS)    # effective sample sizes
 }

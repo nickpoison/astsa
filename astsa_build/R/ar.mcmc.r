@@ -1,6 +1,6 @@
 ar.mcmc <- 
 function(xdata, porder, n.iter=1000, n.warmup=100, plot=TRUE, 
-          col=4, prior_var_phi=50, prior_sig_a=1, prior_sig_b=2, ...){
+           prior_var_phi=50, prior_sig_a=1, prior_sig_b=2, ...){
 #
 if (NCOL(xdata) > 1) stop("univariate time series only")
 
@@ -47,18 +47,19 @@ print(apply(u, 2, stats::quantile, c(.01,.025,.05,.1,.25,.50,.75,.9,.95,.975,.99
 cat('\n')
 
 if (plot){
-  old.par = par(no.readonly = TRUE)
-  ncols   = floor(sqrt(porder + 2))
- tsplot(u, main="sample traces", xlab="Iteration", col=col, ncolm=ncols)
-   cat("Press [Enter] or [Left Mouse] on the active graphic device", "\n")
-   par(ask=TRUE)
- pairs(u, col=astsa.col(col,.4), lower.panel=.panelcor,  diag.panel=.panelhist, ...)
-  par(old.par)
+  tspairs(u, smooth=FALSE, ...)
+  #old.par = par(no.readonly = TRUE)
+ # ncols   = floor(sqrt(porder + 2))
+ #tsplot(u, main="sample traces", xlab="Iteration", col=col, ncolm=ncols)
+  # cat("Press [Enter] or [Left Mouse] on the active graphic device", "\n")
+ #  par(ask=TRUE)
+ #pairs(u, col=astsa.col(col,.4), lower.panel=.panelcor,  diag.panel=.panelhist, ...)
+ # par(old.par)
 }
 return(invisible(u))
 }
 
-
+# leave this b/c it's in the 5th edition of tsa5 for something else
 .panelcor <- function(x, y, ...){
 usr <- par("usr") 
 par(usr = c(0, 1, 0, 1))
@@ -66,12 +67,13 @@ r <- round(cor(x, y), 2)
 text(0.5, 0.5, r, cex = 1.5)
 }
 
-.panelhist <- function(x, ...){
-    usr <- par("usr") 
-    par(usr = c(usr[1:2], 0, 1.5) )
-    h <- hist(x, plot = FALSE)
-    breaks <- h$breaks; nB <- length(breaks)
-    y <- h$counts; y <- y/max(y)
-    rect(breaks[-nB], 0, breaks[-1], y, ...)
-}
+# this can go
+#.panelhist <- function(x, ...){
+#    usr <- par("usr") 
+#    par(usr = c(usr[1:2], 0, 1.5) )
+#    h <- hist(x, plot = FALSE)
+#    breaks <- h$breaks; nB <- length(breaks)
+#    y <- h$counts; y <- y/max(y)
+#    rect(breaks[-nB], 0, breaks[-1], y, ...)
+#}
 

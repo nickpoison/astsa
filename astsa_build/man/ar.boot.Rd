@@ -6,7 +6,7 @@
 Performs a nonparametric bootstrap to obtain the distribution of the AR model parameters.
 }
 \usage{
-ar.boot(series, order.ar, nboot = 500, seed = NULL, plot = TRUE, col = 5)
+ar.boot(series, order.ar, nboot = 500, seed = NULL, plot = TRUE, ...)
 }
 \arguments{
   \item{series}{
@@ -22,11 +22,10 @@ number of bootstrap iterations (default is 500)
 seed for the bootstrap sampling (defalut is NULL)
 }
   \item{plot}{
-if TRUE (default) and \code{order.ar > 1}, returns a scatterplot matrix of the bootstrapped parameters, - the diagonals
-of the matrix show a histogram (or just a histogram if the order is 1) with the 2.5\%, 50\%, and 97.5\% quantiles marked
+if TRUE (default) and \code{order.ar > 1}, returns a scatterplot matrix of the bootstrapped parameters, - the diagonals show a histogram. 
 }
-  \item{col}{
-color used in the display
+  \item{...}{
+if \code{plot=TRUE} and order.ar > 1, graphical parameters sent to \code{tspairs}
 }
 }
 \details{
@@ -59,7 +58,8 @@ D.S. Stoffer
 \examples{
 \dontrun{
 
-u = ar.boot(rec, 2)
+ar.boot(rec, 2, hist=FALSE)  # traces on the diagonal
+u = ar.boot(rec, 2)          # histogram on the diagonal
 head(u[[1]])       # some booted AR parameters
 head(u[[2]][,1:5]) # some booted data
 }
