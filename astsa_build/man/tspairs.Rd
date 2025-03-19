@@ -7,9 +7,9 @@ Scatterplot Matrix for Time Series
 Produces a matrix of scatterplots with the time series (or a histogram) plotted on the diagonal.
 }
 \usage{
-tspairs(x, main = NA, pt.col = astsa.col(4, 0.6), pch = 20, pt.size = 1.1, 
-  lab.size = 1.25, title.size = 1.5, scale = 1, corr = TRUE, smooth = TRUE, lwl = 1, 
-  lwc = 2, gg = FALSE, hist.diag = TRUE, col.diag = 4, ...)
+tspairs(x, main = NA, pt.col = astsa.col(4, 0.6), pt.size = 1.1, lab.size = 1.25, 
+        title.size = 1.5, scale = 1, corr = TRUE, smooth = TRUE, lwl = 1, 
+        lwc = 2, gg = FALSE, hist.diag = TRUE, col.diag = 4, ...)
 }
 \arguments{
   \item{x}{
@@ -20,9 +20,6 @@ title (default is no title).
 }
   \item{pt.col}{
 point color.
-}
-  \item{pch}{
-plot character.
 }
   \item{pt.size}{
 point size.

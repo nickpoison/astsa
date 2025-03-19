@@ -1,5 +1,5 @@
 tspairs <-
-    function(x, main=NA, pt.col=astsa.col(4,.6), pch=20, pt.size=1.1, lab.size=1.25, 
+    function(x, main=NA, pt.col=astsa.col(4,.6), pt.size=1.1, lab.size=1.25, 
              title.size=1.5,scale=1, corr=TRUE, smooth=TRUE, lwl=1, lwc=2, gg=FALSE, 
              hist.diag=TRUE, col.diag=4, ...)
 {
@@ -25,7 +25,7 @@ tspairs <-
         box(col=gray(1)) 
         }
        } else {
-       tsplot(x[,i], x[,j], type='p', pch=pch, xlab=NA, ylab=NA, 
+       tsplot(x[,i], x[,j], type='p', xlab=NA, ylab=NA, 
               margins=c(0,0,-.8,0)+.2, col=pt.col, cex=pt.size, gg=gg, ...) 
       if (smooth) { lines(stats::lowess(x[,i], x[,j]), col=lwc, lwd=lwl) }
       if (corr) {
