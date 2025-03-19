@@ -1,9 +1,8 @@
 tspairs <-
     function(x, main=NA, pt.col=astsa.col(4,.6), pt.size=1.1, lab.size=1.25, 
-             title.size=1.5,scale=1, corr=TRUE, smooth=TRUE, lwl=1, lwc=2, gg=FALSE, 
+             title.size=1.5, scale=1, corr=TRUE, smooth=TRUE, lwl=1, lwc=2, gg=FALSE, 
              hist.diag=TRUE, col.diag=4, ...)
 {
-    plot.new()
     old.par <- par(no.readonly = TRUE)
     nser <- NCOL(x)
     colnames(x) = colnames(x, do.NULL=FALSE, prefix= "Ser.") 
@@ -14,16 +13,17 @@ tspairs <-
     par(cex = par('cex')*scale)   
    for (j in 1:nser) for (i in 1:nser) {
       if (i==j) {      
+       par(bty='l')
         if (hist.diag) {
           xh <- hist(x[,i], plot = FALSE) 
           tsplot(xh$mids, xh$counts, ylab=NA, xlab=NA, type='n', gg=gg, 
             main=NA, minor=FALSE, ...)
          hist(x[,i], col=grDevices::adjustcolor(col.diag,.5), border=col.diag, add=TRUE)
          } else {
-        tsplot(x[,i], ylab=NA, xlab=NA, col=col.diag, gg=gg, main=NA, ...)
-        box(col=gray(1)) 
+        tsplot(x[,i], ylab=NA, xlab=NA, col=col.diag, gg=gg, main=NA, bty='l', ...)
         }
        } else {
+       par(bty='o')
        tsplot(x[,i], x[,j], type='p', xlab=NA, ylab=NA, 
               margins=c(0,0,-.8,0)+.2, col=pt.col, cex=pt.size, gg=gg, ...) 
       if (smooth) { lines(stats::lowess(x[,i], x[,j]), col=lwc, lwd=lwl) }
@@ -44,6 +44,3 @@ tspairs <-
       on.exit(par(old.par))
 }
 
-
-## an example if want to use lagged variables
-# tspairs(ts.intersect(cmort,tempr, partL4=lag(part,-4)),pt=1.1 ,gg=T,  scale=1.1)
