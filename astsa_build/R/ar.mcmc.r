@@ -48,32 +48,18 @@ cat('\n')
 
 if (plot){
   tspairs(u, smooth=FALSE, ...)
-  #old.par = par(no.readonly = TRUE)
- # ncols   = floor(sqrt(porder + 2))
- #tsplot(u, main="sample traces", xlab="Iteration", col=col, ncolm=ncols)
-  # cat("Press [Enter] or [Left Mouse] on the active graphic device", "\n")
- #  par(ask=TRUE)
- #pairs(u, col=astsa.col(col,.4), lower.panel=.panelcor,  diag.panel=.panelhist, ...)
- # par(old.par)
 }
 return(invisible(u))
 }
 
-# leave this b/c it's in the 5th edition of tsa5 for something else
-.panelcor <- function(x, y, ...){
-usr <- par("usr") 
-par(usr = c(0, 1, 0, 1))
-r <- round(cor(x, y), 2)
-text(0.5, 0.5, r, cex = 1.5)
-}
 
-# this can go
-#.panelhist <- function(x, ...){
-#    usr <- par("usr") 
-#    par(usr = c(usr[1:2], 0, 1.5) )
-#    h <- hist(x, plot = FALSE)
-#    breaks <- h$breaks; nB <- length(breaks)
-#    y <- h$counts; y <- y/max(y)
-#    rect(breaks[-nB], 0, breaks[-1], y, ...)
-#}
+# the old v2.2 and below `if (plot)`:
+
+# old.par = par(no.readonly = TRUE)
+# ncols   = floor(sqrt(porder + 2))
+# tsplot(u, main="sample traces", xlab="Iteration", col=col, ncolm=ncols)
+# cat("Press [Enter] or [Left Mouse] on the active graphic device", "\n")
+# par(ask=TRUE)
+# pairs(u, col=astsa.col(col,.4), lower.panel=.panelcor,  diag.panel=.panelhist, ...)
+# par(old.par)
 

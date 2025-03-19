@@ -10,8 +10,7 @@ tspairs <-
     if (nser < 2) stop('need at least 2 series')
     topper = ifelse(is.na(main),0,2) 
     Corr = cor(x)
-    par(mfrow = c(nser, nser), mgp=c(1.6,.6,0), mar=c(0,0,0,0)+.5,
-         oma =  c(.25,.25,0+topper,0))
+    par(mfrow = c(nser, nser), mgp=c(1.6,.6,0), oma = c(.25,.25,.1+topper,.1)*scale)
     par(cex = par('cex')*scale)   
    for (j in 1:nser) for (i in 1:nser) {
       if (i==j) {      
@@ -32,7 +31,7 @@ tspairs <-
        if (gg) { boxc=gray(1,.7); bgc=gray(.92,.8) 
                 } else { boxc=gray(.62,.3); bgc=gray(1,.8) }
         legend("topright", legend=format(round(Corr[i,j], digits=2), nsmall=2),  
-                box.col=boxc, bg=bgc, cex=.9*scale, adj=.25) 
+                box.col=boxc, bg=bgc, adj=.25)
       }
       if (gg) { box(col=gray(.8)) } else { box(col=gray(.62)) } 
    }

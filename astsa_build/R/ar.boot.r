@@ -60,9 +60,6 @@ cat('\n')
 if (plot){
   if(arp>1){
    tspairs(phi.star, smooth=FALSE,  ...)
-  # old.par = par(no.readonly = TRUE)
-  # pairs(phi.star, col=astsa.col(col,.4), pch=19, diag.panel=.panhist, oma=rep(2,4), horOdd = TRUE, verOdd = FALSE)
-   #par(old.par)
   } else {
    hist(phi.star, main='', xlab=expression(phi^'*'), col=astsa.col(col, .4), breaks='FD', freq=FALSE)
    abline(v=c(stats::quantile(phi.star, probs=c(.025,.5,.975))), col=6) 
@@ -73,6 +70,13 @@ out = list(phi.star, x.sim)
 return(invisible(out))
 
 }
+
+# the old if plot:
+  # old.par = par(no.readonly = TRUE)
+  # pairs(phi.star, col=astsa.col(col,.4), pch=19, diag.panel=.panhist, oma=rep(2,4), horOdd = TRUE, verOdd = FALSE)
+  # par(old.par)
+
+# with:
 
 # .panhist <- function(x, ...){
 #     usr <- par("usr") 

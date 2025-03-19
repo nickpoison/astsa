@@ -84,9 +84,9 @@ D.S. Stoffer
 \examples{
 \dontrun{
 
-tspairs(diff(log(econ5)), col.diag=6, pt.size=1.5, lwl=2, scale=1.1, gg=TRUE, las=0)
+tspairs(diff(log(econ5)), col.diag=6, pt.size=1.5, lwl=2, gg=TRUE, las=0)
 
-tspairs(ts.intersect(cmort,tempr,partL4=lag(part,-4)), hist=FALSE, pch=9, scale=1.2)
+tspairs(ts.intersect(cmort,tempr,partL4=lag(part,-4)), hist=FALSE, pch=9, scale=1.1)
 }
 }
 \keyword{ ts }
