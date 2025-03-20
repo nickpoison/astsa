@@ -28,8 +28,8 @@ tspairs <-
               margins=c(0,0,-.8,0)+.2, col=pt.col, cex=pt.size, gg=gg, ...) 
       if (smooth) { lines(stats::lowess(x[,i], x[,j]), col=lwc, lwd=lwl) }
       if (corr) {
-       if (gg) { boxc=gray(1,.7); bgc=gray(.92,.8) 
-                } else { boxc=gray(.62,.3); bgc=gray(1,.8) }
+       if (gg) { boxc=gray(1,.3); bgc=gray(.92,.3) 
+                } else { boxc=gray(.62,.3); bgc=gray(1,.3) }
         legend("topright", legend=format(round(Corr[i,j], digits=2), nsmall=2),  
                 box.col=boxc, bg=bgc, adj=.25)
       }
