@@ -20,7 +20,7 @@ tspairs <-
             main=NA, minor=FALSE, ...)
          hist(x[,i], col=grDevices::adjustcolor(col.diag,.5), border=col.diag, add=TRUE)
          } else {
-        tsplot(x[,i], ylab=NA, xlab=NA, col=col.diag, gg=gg, main=NA, bty='l', ...)
+        tsplot(x[,i], ylab=NA, xlab=NA, col=col.diag, gg=gg, main=NA, ...)
         }
        } else {
        par(bty='o')
