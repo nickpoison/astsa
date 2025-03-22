@@ -314,6 +314,22 @@ lag2.plot(soi, rec, 8, pch=19, col=5, lwl=2, gg=TRUE)
 
 
 ### Scatterplots
+Aside from lag plots, we have some additional scripts for doing scatterplot matrices.
+
+&#128057; There is now `tspairs`, which is an `astsa` version of `stats::pairs` for time series.  It's used in `ar.boot` and `ar.mcmc` now. Here are two examples: 
+
+```r
+tspairs(diff(log(econ5[,1:3])), col.diag=6, pt.size=1.5, lwl=2, gg=TRUE, las=0)
+```
+
+<img src="figs/tspairs1.png" alt="tspairs1"  width="70%"> 
+
+```r
+tspairs(ts.intersect(cmort,tempr,partL4=lag(part,-4)), hist=FALSE, pch=9, scale=1.1)
+```
+
+<img src="figs/tspairs2.png" alt="tspairs2"  width="70%"> 
+
 
 &#128027; Sometimes it's nice to have a scatterplot with marginal histograms...
 
@@ -736,7 +752,7 @@ ar.boot(rec, 2)
   [1,] 0.04479 0.04192
 ```
 
-and a picture:
+and a picture (uses `tspairs` for output):
 
 <img src="figs/ar.boot.png" alt="ar.boot"  width="70%">
 
@@ -1777,11 +1793,10 @@ with screen output
   99%   9.482394 1.458155 -0.3751349 10.335975  
 ```
 
-and graphics
+and graphics (now uses `tspairs`)
 
 <img src="figs/bayes_ar.png" alt="bayes_ar"  width="70%"><br/>
 
-<img src="figs/bayes_ar2.png" alt="bayes_ar"  width="70%"><br/>
 <br/>
 
 The draws are returned invisibly:
