@@ -328,7 +328,9 @@ tspairs(diff(log(econ5[,1:3])), col.diag=6, pt.size=1.5, lwl=2, gg=TRUE, las=0)
 tspairs(ts.intersect(cmort,tempr,partL4=lag(part,-4)), hist=FALSE, pch=9, scale=1.1)
 ```
 
-<img src="figs/tspairs2.png" alt="tspairs2"  width="70%"> 
+<img src="figs/tspairs2.png" alt="tspairs2"  width="70%"> <br/>
+
+<br/>
 
 
 &#128027; Sometimes it's nice to have a scatterplot with marginal histograms...
