@@ -1772,7 +1772,7 @@ R  # (actual .01)
 
 where _w<sub>t</sub>_ is standard Gaussian white noise.
 
-You just need to input the data and the order because the priors, the number of MCMC iterations (including burnin) have defaults. The method is fast and efficient. The output includes two graphics (unless `plot = FALSE`) and some quantiles of the sampled parameters.  For further details and references, see the help file (`?ar.mcmc`).
+You just need to input the data and the order because the priors, the number of MCMC iterations (including burnin) have defaults. The method is fast and efficient. The output includes a graphic (unless `plot = FALSE`) and some quantiles of the sampled parameters.  For further details and references, see the help file (`?ar.mcmc`).
 
 ```r
 u = ar.mcmc(rec, 2)
