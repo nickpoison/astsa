@@ -3,10 +3,10 @@ tspairs <-
              title.size=1.5, scale=1, corr=TRUE, smooth=TRUE, lwl=1, lwc=2, gg=FALSE, 
              hist.diag=TRUE, col.diag=4, ...)
 {
-    old.par <- par(no.readonly = TRUE)
     nser <- NCOL(x)
-    colnames(x) = colnames(x, do.NULL=FALSE, prefix= "Ser.") 
     if (nser < 2) stop('need at least 2 series')
+    old.par <- par(no.readonly = TRUE)
+    colnames(x) = colnames(x, do.NULL=FALSE, prefix= "Ser.") 
     topper = ifelse(is.na(main),0,2) 
     Corr = cor(x)
     par(mfrow = c(nser, nser), mgp=c(1.6,.6,0), oma = c(.25,.25,.1+topper,.1)*scale)
@@ -16,9 +16,10 @@ tspairs <-
        par(bty='l')
         if (hist.diag) {
           xh <- hist(x[,i], plot = FALSE) 
-          tsplot(xh$mids, xh$counts, ylab=NA, xlab=NA, type='n', gg=gg, 
-            main=NA, minor=FALSE, ...)
-         hist(x[,i], col=grDevices::adjustcolor(col.diag,.5), border=col.diag, add=TRUE)
+          tsplot(xh$counts, ylab=NA, xlab=NA, type='n', gg=gg, main=NA, minor=FALSE, 
+                  xlim=range(xh$breaks), ylim=c(0, max(xh$counts)), ...)
+         hist(x[,i], col=grDevices::adjustcolor(col.diag,.5), border=col.diag, axes=FALSE, add=TRUE)
+                   if (gg) box(col=gray(1))
          } else {
         tsplot(x[,i], ylab=NA, xlab=NA, col=col.diag, gg=gg, main=NA, ...)
         }
