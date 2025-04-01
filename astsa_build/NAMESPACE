@@ -11,7 +11,7 @@ importFrom("stats", "as.ts", "ccf", "df.kernel", "frequency", "acf",  "time",
              "resid", "rnorm", "spec.taper", "ts", "ts.intersect", "ts.plot", 
              "qnorm", "coef", "dnorm", "quantile", "optim", "ar", "spec.ar", 
              "filter", "diffinv", "tsp", "var", "fft", "is.ts", "pchisq", 
-             "qqnorm", "qt", "cor", "rgamma", "runif", "arima")           
+             "qqnorm", "qt", "cor", "rgamma", "runif", "arima", "summary.lm")
 importFrom("utils", "setTxtProgressBar", "txtProgressBar")        
                  
 
