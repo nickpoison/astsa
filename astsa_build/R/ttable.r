@@ -1,4 +1,4 @@
-ttable <-
+ttable<-
 function (obj, digits = 4, ...){
    x = stats::summary.lm(obj)
    resid <- x$residuals
@@ -37,7 +37,7 @@ function (obj, digits = 4, ...){
        }
         else {
         if (attr(x$coef, 'dimnames')[[1]][1] ==  "(Intercept)"){
-             VIF = c(NA,.vif(x))} else {VIF = .vif(x) }
+             VIF = c(NA,.vif(obj))} else {VIF = .vif(obj) }
         cat("\nCoefficients:\n")
         coefs <- cbind(x$coefficients, VIF)
         if(!is.null(aliased <- x$aliased) && any(aliased)) {
@@ -87,17 +87,17 @@ function (obj, digits = 4, ...){
     invisible(x)
 }
 
-.vif <- function(mod) {  # mod here is output from summary - it's not the model
+
+.vif <- function(mod) {
     if (any(is.na(coef(mod)))) 
         stop ("there are aliased coefficients in the model")
     v <- vcov(mod)
     assign <- attr(model.matrix(mod), "assign")
-
-    if (attr(mod$coef, 'dimnames')[[1]][1] ==  "(Intercept)") {
+    if (names(coefficients(mod)[1]) == "(Intercept)") {
         v <- v[-1, -1]
         assign <- assign[-1]
     }
-    else warning("No intercept: VIFs may not be sensible.")
+    else warning("No intercept: vifs may not be sensible.")
     terms <- labels(terms(mod))
     n.terms <- length(terms)
     if (n.terms < 2) { result=1 } else { 
