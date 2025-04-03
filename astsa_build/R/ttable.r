@@ -32,6 +32,32 @@ function (obj, digits = 4, ...){
         format.pval(pf(x$fstatistic[1L], x$fstatistic[2L],
                            x$fstatistic[3L], lower.tail = FALSE),
                         digits = digits)) }
+        cat('\n','\nWarning:','Due to perfect multicollinearity, at least \none variable has been kicked out of the regression. \nConsider changing the model and trying again.','\n')
+        .stopquiet()
+        }
+       }
+       if (!is.null(obj$contrasts)){
+        cat("\nCoefficients:\n")
+        coefs <- cbind(x$coefficients)
+        if(!is.null(aliased <- x$aliased) && any(aliased)) {
+            cn <- names(aliased)
+            coefs <- matrix(NA, length(aliased), 4, dimnames=list(cn, colnames(coefs)))
+            coefs[!aliased, ] <- cbind(x$coefficients)
+            print(round(coefs,digits), ... ) 
+        cat("\nResidual standard error:",
+        format(signif(x$sigma, digits)), "on", rdf, "degrees of freedom")
+        cat("\n")
+        if(nzchar(mess <- naprint(x$na.action))) cat("  (",mess, ")\n", sep = "")
+        if (!is.null(x$fstatistic)) {
+        cat("Multiple R-squared: ", formatC(x$r.squared, digits = digits))
+        cat(",\tAdjusted R-squared: ",formatC(x$adj.r.squared, digits = digits),
+        "\nF-statistic:", formatC(x$fstatistic[1L], digits = digits),
+         "on", x$fstatistic[2L], "and",
+        x$fstatistic[3L], "DF,  p-value:",
+        format.pval(pf(x$fstatistic[1L], x$fstatistic[2L],
+                           x$fstatistic[3L], lower.tail = FALSE),
+                        digits = digits)) }
+         cat('\n','\nNote:','No VIFs are printed because the model includes factors.','\n')
         .stopquiet()
         }
        }
@@ -91,6 +117,7 @@ function (obj, digits = 4, ...){
 .vif <- function(mod) {
     if (any(is.na(coef(mod)))) 
         stop ("there are aliased coefficients in the model")
+    
     v <- vcov(mod)
     assign <- attr(model.matrix(mod), "assign")
     if (names(coefficients(mod)[1]) == "(Intercept)") {
@@ -121,6 +148,6 @@ function (obj, digits = 4, ...){
 .stopquiet <- function() {  
   opt <- options(show.error.messages = FALSE)
   on.exit(options(opt))
-  cat('\n','\nWarning:','Due to perfect multicollinearity, at least \none variable has been kicked out of the regression. \nConsider changing the model and trying again.','\n')
   stop()
 }
+

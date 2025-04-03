@@ -21,7 +21,7 @@ further arguments passed to or from other methods.
 }
 \details{
 Produces a t-table for an \code{lm} object much like \code{\link{print.summary.lm}} 
-with added information including VIF, AIC, AICc, and BIC to the output. There 
+with added information including VIF (if applicable), AIC, AICc, and BIC to the output. There 
 are no significance stars. In fact, there are no stars at all.
 }
 \value{
@@ -41,8 +41,8 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \source{
-Combines \code{print.summary.lm}, \code{AIC}, and \code{BIC}, from the "stats" package',
-and \code{vif} from the "cars" package.
+Built from \code{print.summary.lm}, \code{AIC}, and \code{BIC}, from the "stats" package',
+and \code{vif.default} from the "cars" package.
 }
 \seealso{
 \code{\link{summary.lm}}, \code{\link{print.summary.lm}}, \code{\link{lm}}
