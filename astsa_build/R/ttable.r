@@ -7,6 +7,7 @@ function (obj, digits = 4, ...){
    rdf <- df[2L]
    aic  =  AIC(obj)/num - log(2*pi)
    bic  =  BIC(obj)/num - log(2*pi)
+   ucfactors = FALSE
 
     if (length(x$aliased) == 0L) { 
         cat("\nNo Coefficients\n")
@@ -33,10 +34,12 @@ function (obj, digits = 4, ...){
                            x$fstatistic[3L], lower.tail = FALSE),
                         digits = digits)) }
         cat('\n','\nWarning:','Due to perfect multicollinearity, at least \none variable has been kicked out of the regression. \nConsider changing the model and trying again.','\n')
+        return(invisible(x))
         .stopquiet()
         }
        }
        if (!is.null(obj$contrasts)){
+        ucfactors = TRUE
         cat("\nCoefficients:\n")
         coefs <- cbind(x$coefficients)
         if(!is.null(aliased <- x$aliased) && any(aliased)) {
@@ -57,8 +60,6 @@ function (obj, digits = 4, ...){
         format.pval(pf(x$fstatistic[1L], x$fstatistic[2L],
                            x$fstatistic[3L], lower.tail = FALSE),
                         digits = digits)) }
-         cat('\n','\nNote:','No VIFs are printed because the model includes factors.','\n')
-        .stopquiet()
         }
        }
         else {
@@ -109,6 +110,7 @@ function (obj, digits = 4, ...){
             }
 	}
     }
+    if (ucfactors) cat('\nNote:','No VIFs are printed because the model includes factors.')
     cat("\n")#- not in S
     invisible(x)
 }
@@ -117,7 +119,6 @@ function (obj, digits = 4, ...){
 .vif <- function(mod) {
     if (any(is.na(coef(mod)))) 
         stop ("there are aliased coefficients in the model")
-    
     v <- vcov(mod)
     assign <- attr(model.matrix(mod), "assign")
     if (names(coefficients(mod)[1]) == "(Intercept)") {
@@ -131,8 +132,6 @@ function (obj, digits = 4, ...){
     R <- cov2cor(v)
     detR <- det(R)
     result <- matrix(0, n.terms, 3)
-    rownames(result) <- terms
-    colnames(result) <- c("GVIF", "Df", "GVIF^(1/(2*Df))")
     for (term in 1:n.terms) {
         subs <- which(assign == term)
         result[term, 1] <- det(as.matrix(R[subs, subs])) *

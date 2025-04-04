@@ -23,12 +23,12 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 #### &#10024; Here is [A Road Map](https://nickpoison.github.io/) if you want a broad view of what is available. 
 
-
+---
 ---
 
 #### &#128700; v2.2+ &hellip; Beyond Version 2.2 (GitHub only)
 
-- `ttable` is new ... it's not really a time series thing, it's more of a  sophisticated replacement for `summary.lm` that also shows VIFs and ICs but does/will NOT show stars (but for the sake of the kids, it still shows adjusted R^2).  
+- `ttable` is new ... it's not really a time series thing, it's basically  `summary.lm` but also shows VIFs and ICs but does/will NOT show stars (but for the sake of the kids, it still shows adjusted R^2).   
 
 - `tspairs` is new ... it's sort of `pairs` (scatterplot matrix) for time series... the diagonals can be a time plot or a histogram (default). Also, `ar.boot` and `ar.mcmc` now use `tspairs` instead of `pairs`. 
 
@@ -36,6 +36,8 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 - and after beautifying `mvspec`, the multivariate auto/cross- correlation matrix plot `acfm` is now more beautiful than ever.
 <br/>
+
+---
 
 ### &#9654; Version 2.2 - Jan 2025 (on CRAN)  
 
@@ -62,9 +64,9 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 - added `gtemp.month` (monthly global data 1975-2023) -- rows are month, columns are year to make it easy to plot as monthly functional data
 
 ---
----
+ 
 
-####   Version 2.1 - Jan 2024 (on CRAN)  
+####   Version 2.1 - Jan 2024    
 
 - added `SV.mle` to fit an SV model [with feedback (aka leverage) if desired] via quasi-MLE. Details are in the help file.  `SVfilter` is now part of `SV.mle` and the original script is now in the xBox as `xSVfilter`.
 
@@ -101,7 +103,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 - added US population data (`USpop`) ... we thought it was in already, now it is 
 
-####  Version 2.0 - Jan 2023 (on CRAN)
+####  Version 2.0 - Jan 2023  
 
  >  **Note**  There are a number of new scripts and some old ones are set to be retired eventually.  
 
@@ -138,10 +140,10 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
    - Made `lag1.plot` and `lag2.plot` look more purty. 
 
 ---
----
 
 
-#### Version v1.16 - Sept 2022 (on CRAN)
+
+#### Version v1.16 - Sept 2022  
 
    - Added `Months` to use with `pch` for monthly data; see the help file `?Months`.
    
@@ -163,14 +165,12 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
     
 ---
 #### Version 1.15 - May 2022
-+   v1.15 is v1.14.3 plus the following 2 additions and (of course) minor changes to appease the CRAN warlords:
-
-    + Added two new scripts ```detrend()``` and ```trend()```.  The first one returns a detrended series using a polynomial regression (default is linear) or lowess (with the default span).  The second script fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
+ 
+   + Added two new scripts `detrend()` and `trend()`.  The first one returns a detrended series using a polynomial regression (default is linear) or lowess (with the default span).  The second script fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
 
 ---
-#### Versions 1.14 - Sept 2021
+#### Version 1.14 - Sept 2021
 
-+ v1.14.3  (Dec 2021)
   
    + Added sleep state and movement data (`sleep1` and `sleep2`) - more details in the help files. 
 
@@ -182,32 +182,25 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
      
      - In `arma.spec` if there is near parameter redundancy, `ylim` is now adjusted so the figure will be close to the white noise (uniform) density.
    
-+ v1.14 (Sept 2021) Just in time for a new skool year - v1.14 is on CRAN -  it is v1.13.2 with minor changes to please the CRAN gods.
 
 ---
-#### Versions 1.13 - May 2021
+#### Version 1.13 - May 2021
 
-+ v1.13.2 (Aug 2021) Added `acfm` for multiple time series. Produces a matrix of plots of sample ACFs on the diagonal and sample CCFs on the off-diagonals. It's just a nicer version of `acf` for multiple time series. 
++  Added `acfm` for multiple time series. Produces a matrix of plots of sample ACFs on the diagonal and sample CCFs on the off-diagonals. It's just a nicer version of `acf` for multiple time series. 
 
-   + Also, changed the LAG axis labels on `acf1`, `acf2`, and `ccf2` to show the 
-   frequency of the series if it's bigger than one.  For example, `soi` has
-   frequency 12 and the LAG axis of `acf1(soi)`  will be ticked as 1, 2, 3, ...
-   but the label now emphasizes that each tick is LAG divided by 12.
+   + Also, changed the LAG axis labels on `acf1`, `acf2`, and `ccf2` to show the    frequency of the series if it's bigger than one.  For example, `soi` has    frequency 12 and the LAG axis of `acf1(soi)`  will be ticked as 1, 2, 3, ...    but the label now emphasizes that each tick is LAG divided by 12.
 
-+ v1.13.1 (July 2021) Some minor improvements  to `tsplot-spaghetti`, `sarima.sim`, `sarima`, and `arma.spec`.
++  Some minor improvements  to `tsplot-spaghetti`, `sarima.sim`, `sarima`, and `arma.spec`.
 
     + For `sarima.sim`, I forgot to add the `innov` argument in the call (only a problem if you wanted to use your own innovations), but it seemed to work in the examples I tried (maybe it got passed in ...) ¿Quién sabe?   Or maybe it was just voodoo. 
 
     + Updated some man page (adding sources and subtracting typos).
 
-+ v1.13 is on CRAN.   There are lots of additions to the package that are listed below.
-
 
 ---
 
-#### Versions 1.12 - started Dec 2020
+#### Version 1.12 - started Dec 2020
 
-1.12.9 (GitHub - May 2021) 
 
 + Added `scatter.hist` to draw a scatterplot with marginal histograms - never really liked other versions.
 
@@ -243,10 +236,7 @@ on the axis - it's still there in the CI if the plot is on log-scale and it's st
 `x <- replicate(100, cumsum(rcauchy(1000))/1:1000)`<br/>
 `tsplot(x, col=1:8, spaghetti=TRUE)`
 
-+ The package now has its own color palette that is attached
-when the package is attached. The palette is  especially  suited for plotting
- time series. It is a bit darker than the new default R4 palette.
-You can revert back using  `palette("default")`. 
++ The package now has its own color palette that is attached when the package is attached. The palette is  especially  suited for plotting  time series. It is a bit darker than the new default R4 palette. You can revert back using  `palette("default")`. 
 
   - In addition, added `astsa.col` script to easily adjust opacity of the astsa color palette - examples on its man page. 
 
@@ -257,24 +247,19 @@ You can revert back using  `palette("default")`.
 
 + `sarima.sim` output used to start at time `0` - now the start
 time is up to the user (with default `t0=0`).
-
-
-
-
-1.12 (CRAN - Dec 2020) The main change  was to add a  simulation script `sarima.sim` for seasonal ARIMA models.   
+  
 
 
 ---
 ##### <s>Version 1.11</s> -- in the garbage
 
-&nbsp;&nbsp; keep moving ... nothing to see here 
+&nbsp;&nbsp; keep moving ... nothing to see here (basically, we forgot R is not zero-based)
 
 ---
 
-#### Versions 1.10 - May 2020 
+#### Version 1.10 - May 2020 
 
 
-1.10.6 (Nov 2020 - Github)
 
 + added `sarima.sim` to simulate data from (possibly seasonal) ARIMA models ... as usual, it has simplified `astsa` syntax - the model is specified by the parameters, no lists are needed.  The script uses `polyMul` (also added) to obtain the appropriate autoregessive and moving average polynomials from the specified model.  
 
@@ -288,28 +273,22 @@ time is up to the user (with default `t0=0`).
 
 + fixed `tsplot` - the minor ticks weren't changing on multiple plots
 
-1.10 (May 2020 - CRAN)
-Since Version 1.9, see the updates 1.9.1-4 below.  The major change was to fix routines
-that produced graphics but  didn't work on Apple's OS. In addition, I made `tsplot` even more useful:
++ A major change was to fix routines that produced graphics but  didn't work on Apple's OS. In addition, I made `tsplot` even more useful:
 
 
-+ For `tsplot`, I added an argument (`byrow`) where you can plot row wise (`TRUE`) or 
+   + For `tsplot`, I added an argument (`byrow`) where you can plot row wise (`TRUE`) or 
 column wise (`FALSE`) for multiple plots. 
 
-+ Also, for `tsplot`, added an argument `gg` so if it's true the plot will have a g-gray interior ... e.g., `tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2)`
+   + Also, for `tsplot`, added an argument `gg` so if it's true the plot will have a g-gray interior ... e.g., `tsplot(climhyd, ncolm=2, gg=TRUE, col=rainbow(6,v=.8), lwd=2)`
 
 
 ------------------------------
 
-#### Versions 1.9 - May 2019  
+#### Version 1.9 - May 2019  
 
 
++ Added the polio data (`polio`) set from the gamlss.data package.  It is used in Chapter 6 problems. I added it because `gamlss.data` has data sets with names that are the same as those in astsa. I hate to see package fights.
 
-1.9.4  
-
-+ Added the polio data (`polio`) set from the gamlss.data package.  It is used in Chapter 6 problems. I added it because gamlss.data has data sets with names that are the same as those in astsa. I hate to see package fights.
-
-1.9.3  
 
 + Updated correlation scripts: 
 
@@ -317,7 +296,7 @@ column wise (`FALSE`) for multiple plots.
 
     - and `ccf2`, the values are now returned invisibly.
 
-1.9.2  
+
 
 + Updated `mvspec` due to possible plot error  being caused by use of `panel.first` (tries to draw `grid` before `plot` is called on some machines or OS).  Note to self: avoid `panel.first` dumb ass.
 
@@ -325,7 +304,7 @@ column wise (`FALSE`) for multiple plots.
 
 + While I'm here, updated `tsplot` to avoid similar problems.
 
-1.9.1 
+
 
 + added the ability of `tsplot` to do multiple plots, for example,<br/> 
 `tsplot(eqexp[,1:8], col=rainbow(8), ncolm=2, lwd=2, main='EQs')` <br/> - there's no change for univariate time series. 
@@ -334,19 +313,12 @@ column wise (`FALSE`) for multiple plots.
 + added ellipses ( &hellip; ) to `lag1.plot` and `lag2.plot` so you can change some of the graphical parameters; e.g., `lag1.plot(soi, max.lag=4, pch=20, cex=1.5, col=rgb(0,.5,1,.5))
 `
 
-+ fixed some man pages (after cRan submission)
-
-1.9 (CRAN - May 2019)
-
-+ This version is essentially version 1.8.8 but with changes made to pass the CRAN tests, which mainly deal with the man pages (help files). 
-
-+ For the Springer text, you can see the difference between v1.8 and v1.9 by looking at the changelog below v1.8.8.  Some scripts have added capabilities, but it won't change any data analysis. The only real difference will be slight numerical differences in the reported ICs in `sarima`.     
++ fixed some man pages (after cRan submission) 
 
 -------------------------------------------
-#### Versions 1.8 - Dec 2017  
+#### Version 1.8 - Dec 2017  
 
-
-1.8.8 
+>  Time Series Analysis and Its ... __Edition 4__ was written under this version.</b>
 
 + Fixed &beta; reporting for `LagReg()` when `inverse=TRUE`... it is correct in the text example.
 
@@ -354,52 +326,41 @@ column wise (`FALSE`) for multiple plots.
 
 + Added a little explanation of how ICs are calculated in the `sarima()` man page.
 
-1.8.7 Added `Grid()` combining `grid(lty=1, col=gray(.9))` and `minor.ticks()` from Graphics and Hmisc packages.  It's used in most scripts that used to call `grid()`.
++ Added `Grid()` combining `grid(lty=1, col=gray(.9))` and `minor.ticks()` from Graphics and Hmisc packages.  It's used in most scripts that used to call `grid()`.
 
-1.8.6 Added `ssm()` for fitting a simple univariate state space model. This will be used in the forthcoming text.
++ Added `ssm()` for fitting a simple univariate state space model. This will be used in the forthcoming text.
 
-1.8.5 
 
 + `lag1.plot` and `lag2.plot` now have color option for the points with default `gray(.1)` for a little nicer display 
 +  added `cardox` data set, an update to `co2` in the datasets package, which stopped in 1997 (now to the end of 2018) 
 + tweaked `sarima` residual analysis graphic so it has less white space - nothing else has changed
 
 
-1.8.4 changed `mvspec` and `arma.spec` so the default is NOT to plot on a log scale and the graphics now have a grid ... also, for `mvspec`, added a `details` value, which is a matrix of *frequency, period, spectral ordinate*- e.g., `mvspec(soi)$details[1:45,]`
++ changed `mvspec` and `arma.spec` so the default is NOT to plot on a log scale and the graphics now have a grid ... also, for `mvspec`, added a `details` value, which is a matrix of *frequency, period, spectral ordinate*- e.g., `mvspec(soi)$details[1:45,]`
 
-1.8.3 changed calculation of the ICs in `sarima` ... there will be a slight difference because I didn't remove the log(2&pi;) part.
++ changed calculation of the ICs in `sarima` ... there will be a slight difference because I didn't remove the log(2&pi;) part.
 
-1.8.2 (basically adding some new data sets)
++ (basically adding some new data sets):
 
-+ added US GDP - quarterly adjusted to 1947-1 to 2018-3
-+ slight change to `acf1` and `acf2` so user can change `ylim` 
-+ `Hare` and `Lynx` the 90-year data sets of snowshoe hare and lynx pelts purchased by the Hudson's Bay Company of Canada - note `Lynx` differs from the R data set `lynx`. 
-+ `gtemp_land`    land only - updated global temps to 2017
-+ `gtemp_ocean`   open ocean only to 2017
-+ added data set `salmon` 
-+ added source of data to `gnp` man page
-+ added `plot` option to `acf1` with default `TRUE` and a few additional minor changes
-
-
-1.8.1 minor change to the way `acf2` calls `main` (cleaner)  - this was done at the beginning of v1.8 - it just never made it to CRAN 
+   + added US GDP - quarterly adjusted to 1947-1 to 2018-3
+   + slight change to `acf1` and `acf2` so user can change `ylim` 
+   + `Hare` and `Lynx` the 90-year data sets of snowshoe hare and lynx pelts purchased by the Hudson's Bay Company of Canada - note `Lynx` differs from the R data set `lynx`. 
+   + `gtemp_land`    land only - updated global temps to 2017
+   + `gtemp_ocean`   open ocean only to 2017
+   + added data set `salmon` 
+   + added source of data to `gnp` man page
+   + added `plot` option to `acf1` with default `TRUE` and a few additional minor changes
 
 
-<b> Time Series Analysis and Its Applications With R Examples -- Edition 4 was written under this version.</b>
++ minor change to the way `acf2` calls `main` (cleaner) 
 
-+ Version 1.8 is on CRAN 
-
-+ Version 1.8.1 is here on GitHub.
-
-+ These versions are essentially version 1.7.11 but with some minor
-changes to satisfy the CRANks. Also, the   GitHub version is slightly improved, so call it v1.8.1. The changes are things no one would notice in places where no one looks.
 
 
 ----------------------------
-#### Versions 1.7 - Dec 2016  
+#### Version 1.7 - Dec 2016  
+
 &starf; Just for historical record, version 1.7 was when CRAN maintainers got CRANky and started asking for arbitrary changes that no one would notice. I'm talking about asking to change one word in the DESCRIPTION file kind of stupid stuff.  This is when the GitHub versions started. 
 
-1.7.11. 
-       
 + added `ARMAtoAR` to give the pi-weights in the invertible representation of an ARMA model ... this is included mainly for pedagogical reasons
   
 + changed the `max.lag` default in `acf1` and `acf2` so if the series is
@@ -407,43 +368,38 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 `acf2(soi, 48)` in class ... now `acf2(soi)` is the same.  
 
 
-1.7.10. in `sarima.for`, added the option to include regressors in the forecast
++ in `sarima.for`, added the option to include regressors in the forecast
 
-1.7.9. changed `na.action` to `na.pass` in `acf1`, `acf2`, and `ccf2`... these used to be `na.fail` which is the R stats package default
++  changed `na.action` to `na.pass` in `acf1`, `acf2`, and `ccf2`... these used to be `na.fail` which is the R stats package default
 
-1.7.8. updated `tsplot` so the time index can be changed
++ updated `tsplot` so the time index can be changed
 
-1.7.7. added `tsplot` to give a nice plot of a univariate time series in one easy command ... works like `plot` for a `ts` object.
++ added `tsplot` to give a nice plot of a univariate time series in one easy command ... works like `plot` for a `ts` object.
 
 
-1.7.6. added `ccf2`, which plots the sample CCF of two series... it operates like `ccf` but the graphic is nicer
++ added `ccf2`, which plots the sample CCF of two series... it operates like `ccf` but the graphic is nicer
 
-1.7.5. added `acf1` giving the sample ACF of a series without the  zero lag... it operates like `acf2` but doesn't give the PACF
++ added `acf1` giving the sample ACF of a series without the  zero lag... it operates like `acf2` but doesn't give the PACF
 	
-1.7.4.  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms)
++  added data set `hor`, quarterly Hawaiian Occupancy Rate (% of rooms)
 
-1.7.3.  some additons to `acf2` allowing a plot title change, and
++  some additons to `acf2` allowing a plot title change, and
      an option not to produce a graphic (if you only want to use or see the
 	 values in a nice form)
 
-1.7.2.   added `plot.all` option to `sarima.for` so that if TRUE, all the data are plotted in the graphic; otherwise,
++   added `plot.all` option to `sarima.for` so that if TRUE, all the data are plotted in the graphic; otherwise,
       only the last 100 observations are plotted.  The default is `plot.all=FALSE`  because it's easier to see 
       the forecasts if only 100 observations are plotted.
 
-1.7.1.  minor changes to `sarima`   
++  minor changes to `sarima`:  
 
-  + diagnostic QQplot used to
-     depend on `MASS` package until it gave warnings on some
-	 simple examples ... now it's done "inhouse"<br/>
-+  changed degrees of freedom calculation (wasn't sure
+   + diagnostic QQplot used to  depend on `MASS` package until it gave warnings on some simple examples ... now it's done "inhouse"<br/>
+   +  changed degrees of freedom calculation (wasn't sure
 	 the commands I used to get it were correct... now I'm sure).
-+   made `details=FALSE` also shut off the diagnostic plot, so if you run<br/>
+   + made `details=FALSE` also shut off the diagnostic plot, so if you run<br/>
 	 `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
 	 then everything (except the graphic) is stored in `dog` and you won't see any output.
 
-	
-
-1.7  On CRAN Dec 2016
 
 + fixed `x0n` and `P0n` in `Ksmooth0` and `Ksmooth1` (minor fix) 
 
@@ -568,7 +524,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 
 
 -----------------
-### Version 0.4 - 2010
+#### Version 0.4 - 2010
 
 For the 3rd edition of the text, we included data and scripts as a compressed file
 called `tsa3.rda` and the basic version of ASTSA was abandoned.  Two years later,

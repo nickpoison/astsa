@@ -26,6 +26,7 @@ are no significance stars. In fact, there are no stars at all.
 }
 \value{
 Prints a typical t-table with additional information as mentioned in the details.
+Also silently returns the same values as described in \code{\link{summary.lm}}.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
