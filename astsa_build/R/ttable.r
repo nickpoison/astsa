@@ -1,5 +1,5 @@
 ttable<-
-function (obj, digits = 4, ...){
+function (obj, digits = 4, vif = TRUE, ...){
    x = stats::summary.lm(obj)
    resid <- x$residuals
    num = length(resid)
@@ -38,8 +38,8 @@ function (obj, digits = 4, ...){
         .stopquiet()
         }
        }
-       if (!is.null(obj$contrasts)){
-        ucfactors = TRUE
+       if (!is.null(obj$contrasts)){ ucfactors = TRUE; vif = FALSE}
+       if (!vif) {
         cat("\nCoefficients:\n")
         coefs <- cbind(x$coefficients)
         if(!is.null(aliased <- x$aliased) && any(aliased)) {

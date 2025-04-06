@@ -7,7 +7,7 @@ t-table summary for an \code{lm} object
 Works like \code{summary} for an \code{lm} object but adds VIF, AIC, AICc, and BIC to the output.
 }
 \usage{
-ttable(obj, digits = 4, ...)
+ttable(obj, digits = 4, vif = TRUE, ...)
 }
 \arguments{
   \item{obj}{an object of class "lm", typically a result of a call to \code{\link{lm}}.
@@ -15,14 +15,17 @@ ttable(obj, digits = 4, ...)
   \item{digits}{
 the (approximate) number of significant digits to use when printing. 
 }
+  \item{vif}{
+if TRUE (default), variance inflation factors are printed.
+}
   \item{\dots}{
 further arguments passed to or from other methods.
 }
 }
 \details{
 Produces a t-table for an \code{lm} object much like \code{\link{print.summary.lm}} 
-with added information including VIF (if applicable), AIC, AICc, and BIC to the output. There 
-are no significance stars. In fact, there are no stars at all.
+with added information including VIF (if applicable), AIC, AICc, and BIC to the output. 
+The output is rounded and there are no significance stars. In fact, there are no stars at all.
 }
 \value{
 Prints a typical t-table with additional information as mentioned in the details.
