@@ -28,7 +28,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 #### &#128700; v2.2+ &hellip; Beyond Version 2.2 (GitHub only)
 
-- `ttable` is new ... it's not really a time series thing, it's basically  `summary.lm` but also shows VIFs and ICs but does/will NOT show stars (but for the sake of the kids, it still shows adjusted R^2).   
+
 
 - `tspairs` is new ... it's sort of `pairs` (scatterplot matrix) for time series... the diagonals can be a time plot or a histogram (default). Also, `ar.boot` and `ar.mcmc` now use `tspairs` instead of `pairs`. 
 

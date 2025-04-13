@@ -40,7 +40,7 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
          x <- sweep(x, 2, colMeans(x))
     }
     if (detrend) {
-        for (i in 1:nser) x[,i] = detrend(x[,i], lowess=lowess) 
+         x = apply(x, 2, detrend, lowess=lowess)
     }
     x <- spec.taper(x, taper)
     u2 <- (1 - (5/8) * taper * 2)
