@@ -4,7 +4,7 @@
 t-table summary for an \code{lm} object
 }
 \description{
-Works like \code{summary} for an \code{lm} object but adds AIC, AICc, and BIC to the output with the option to display VIF.
+Works like \code{summary} for an \code{lm} object but adds AIC, AICc, and BIC to the output with the option to display VIFs.
 }
 \usage{
 ttable(obj, digits = 4, vif = FALSE, ...)
@@ -46,7 +46,7 @@ D.S. Stoffer
 }
 \source{
 Built from \code{print.summary.lm}, \code{AIC}, and \code{BIC}, from the "stats" package,
-and \code{vif.default} from the "cars" package.
+and \code{vif.default} from the "car" package.
 }
 \seealso{
 \code{\link{summary.lm}}, \code{\link{print.summary.lm}}, \code{\link{lm}}
