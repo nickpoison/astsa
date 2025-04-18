@@ -8,21 +8,20 @@ function (obj, digits = 4, vif = FALSE, ...){
    aic  =  AIC(obj)/num - log(2*pi)
    bic  =  BIC(obj)/num - log(2*pi)
 
-
     if (length(x$aliased) == 0L) { 
         cat("\nNo Coefficients\n")
     } else {
        if (nsingular <- df[3L] - df[1L]){
         cat("\nCoefficients: (", nsingular,  " not defined because of singularities)\n", sep = "")
         coefs <- cbind(x$coefficients)
+############################### for nicer display
+        dimnames(x$coefficients) <- list(names(cbind(coefs)), 
+           c("Estimate", "     SE", " t.value", " p.value"))
+##############################
         if(!is.null(aliased <- x$aliased) && any(aliased)) {
             cn <- names(aliased)
             coefs <- matrix(NA, length(aliased), 4, dimnames=list(cn, colnames(coefs)))
             coefs[!aliased, ] <- cbind(x$coefficients)
-###############################
-            dimnames(x$coefficients) <- list(names(coefs), 
-              c("Estimate", "     SE", " t.value", " p.value"))
-##############################
             print(round(coefs, digits), ... ) 
         cat("\nResidual standard error:",
         format(signif(x$sigma, digits)), "on", rdf, "degrees of freedom")
@@ -42,25 +41,24 @@ function (obj, digits = 4, vif = FALSE, ...){
         .stopquiet()
         }
        }
-# check if more than one predictor
+# check if only one predictor
    if (vif){  
-       terms <- labels(coef(obj))
-       n.terms <- length(terms) - ("(Intercept)" %in% terms)
-      if (n.terms < 2) { 
+       Xterms <- labels(coef(obj))
+       n.Xterms <- length(Xterms) - ("(Intercept)" %in% Xterms)
+      if (n.Xterms < 2) { 
         vif = FALSE
         cat("No VIFs printed because the model has only one predictor. \n")
        }
-# check aliases
-        if (any(is.na(coef(obj)))) {
-         vif = FALSE
-         cat("No VIFs are printed because there are aliased coefficients. \n")
-         }
    }
 
-##################
+
        if (!vif) {
         cat("\nCoefficients:\n")
         coefs <- cbind(x$coefficients)
+############################### for nicer display
+        dimnames(x$coefficients) <- list(names(cbind(coefs)), 
+           c("Estimate", "     SE", " t.value", " p.value"))
+##############################
         if(!is.null(aliased <- x$aliased) && any(aliased)) {
             cn <- names(aliased)
             coefs <- matrix(NA, length(aliased), 4, dimnames=list(cn, colnames(coefs)))
@@ -82,7 +80,7 @@ function (obj, digits = 4, vif = FALSE, ...){
         }
        }
         else {
-        if (("(Intercept)" %in% labels(coef(obj)))){
+        if ("(Intercept)" %in% labels(coef(obj))){
              VIF = c(NA, .VIF(obj))} else {VIF = .VIF(obj) } 
         cat("\nCoefficients:\n")
         coefs <- cbind(x$coefficients, NA, VIF)
@@ -119,12 +117,11 @@ function (obj, digits = 4, vif = FALSE, ...){
     invisible(x)
 }
 
+
 .VIF = function(obj){
-   modmat  = model.matrix(obj)
-   Intrcpt = ("(Intercept)" %in% labels(coef(obj)))
-   if (!Intrcpt){ warning("VIFs may not make sense if there is no intercept.")}
    varX = vcov(obj)
-   if (Intrcpt) varX = varX[-1,-1]
+   if ("(Intercept)" %in% labels(coef(obj))) { varX = varX[-1,-1] } else 
+       { cat("VIFs may not make sense if there is no intercept.\n") }
    corX = cov2cor(varX)
    return(diag(solve(corX)))
 }
