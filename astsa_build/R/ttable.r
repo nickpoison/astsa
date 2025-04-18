@@ -7,17 +7,16 @@ function (obj, digits = 4, vif = FALSE, ...){
    rdf <- df[2L]
    aic  =  AIC(obj)/num - log(2*pi)
    bic  =  BIC(obj)/num - log(2*pi)
-
+############################### for nicer display
+   dimnames(x$coefficients) <- list(dimnames(x$coefficients)[[1]], 
+            c("Estimate", "     SE", " t.value", " p.value"))
+##############################
     if (length(x$aliased) == 0L) { 
         cat("\nNo Coefficients\n")
     } else {
        if (nsingular <- df[3L] - df[1L]){
         cat("\nCoefficients: (", nsingular,  " not defined because of singularities)\n", sep = "")
         coefs <- cbind(x$coefficients)
-############################### for nicer display
-        dimnames(x$coefficients) <- list(names(cbind(coefs)), 
-           c("Estimate", "     SE", " t.value", " p.value"))
-##############################
         if(!is.null(aliased <- x$aliased) && any(aliased)) {
             cn <- names(aliased)
             coefs <- matrix(NA, length(aliased), 4, dimnames=list(cn, colnames(coefs)))
@@ -55,10 +54,7 @@ function (obj, digits = 4, vif = FALSE, ...){
        if (!vif) {
         cat("\nCoefficients:\n")
         coefs <- cbind(x$coefficients)
-############################### for nicer display
-        dimnames(x$coefficients) <- list(names(cbind(coefs)), 
-           c("Estimate", "     SE", " t.value", " p.value"))
-##############################
+
         if(!is.null(aliased <- x$aliased) && any(aliased)) {
             cn <- names(aliased)
             coefs <- matrix(NA, length(aliased), 4, dimnames=list(cn, colnames(coefs)))
