@@ -29,6 +29,7 @@ The output is rounded and there are no significance stars. In fact, there are no
 }
 \value{
 Prints a typical t-table with additional information as mentioned in the details.
+The p-values are two-sided. 
 Also silently returns the same values as described in \code{\link{summary.lm}}.
 }
 \references{You can find demonstrations of  astsa capabilities at
@@ -45,8 +46,7 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \source{
-Built from \code{print.summary.lm}, \code{AIC}, and \code{BIC}, from the "stats" package,
-and \code{vif.default} from the "car" package.
+Built from \code{print.summary.lm}, \code{AIC}, and \code{BIC}, almost 'as is' from the "stats" package but with minor changes to the aesthetics of the output and with the ability to include VIFs. 
 }
 \seealso{
 \code{\link{summary.lm}}, \code{\link{print.summary.lm}}, \code{\link{lm}}

@@ -28,7 +28,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 #### &#128700; v2.2+ &hellip; Beyond Version 2.2 (GitHub only)
 
-- `ttable` is new (but it's not a time series thing) ... it works like `summmary.lm` for an `lm` object but it's a little cleaner and includes AIC, AICc, and BIC.  There is also the option to get VIFs (if appropriate).
+- `ttable` is new (but it's not a time series thing) ... it works like `summmary` for an `lm` object but it's a little cleaner and includes AIC, AICc, and BIC.  There is also the option to get VIFs (if appropriate).
 
 - `tspairs` is new ... it's sort of `pairs` (scatterplot matrix) for time series... the diagonals can be a time plot or a histogram (default). Also, `ar.boot` and `ar.mcmc` now use `tspairs` instead of `pairs`. 
 

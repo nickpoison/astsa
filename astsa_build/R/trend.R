@@ -27,9 +27,11 @@ function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE,
        x = as.vector(time(series))
        u = stats::lm(series~ poly(x, order), na.action=NULL)
        if (results){ 
-            if (order==1) {time = x; u = stats::lm(series~ time, na.action=NULL)} 
-            uu = summary(u)
-            print(round(coef(uu),2))
+           if (order==1) {time = x; u = stats::lm(series~ time, na.action=NULL)} 
+           uu = summary(u) 
+           dimnames(uu$coefficients) <- list(names(u$coefficients), 
+                  c("Estimate", "     SE", " t.value", " p.value"))
+            print(round(coef(uu), 2))
             cat('Noise SE estimated as:', round(uu$sigma,2), 'on', uu$df[2], 'df', '\n')
           }
       up = stats::predict(u, interval="confidence", level = 0.95)
@@ -45,3 +47,4 @@ function(series, order=1, lowess=FALSE, lowspan=.75, robust=TRUE,
       invisible(upts)
     }
  }
+

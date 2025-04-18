@@ -7,7 +7,7 @@ function (obj, digits = 4, vif = FALSE, ...){
    rdf <- df[2L]
    aic  =  AIC(obj)/num - log(2*pi)
    bic  =  BIC(obj)/num - log(2*pi)
-   ucfactors = FALSE
+
 
     if (length(x$aliased) == 0L) { 
         cat("\nNo Coefficients\n")
@@ -19,7 +19,11 @@ function (obj, digits = 4, vif = FALSE, ...){
             cn <- names(aliased)
             coefs <- matrix(NA, length(aliased), 4, dimnames=list(cn, colnames(coefs)))
             coefs[!aliased, ] <- cbind(x$coefficients)
-            print(round(coefs,digits), ... ) 
+###############################
+            dimnames(x$coefficients) <- list(names(coefs), 
+              c("Estimate", "     SE", " t.value", " p.value"))
+##############################
+            print(round(coefs, digits), ... ) 
         cat("\nResidual standard error:",
         format(signif(x$sigma, digits)), "on", rdf, "degrees of freedom")
         cat("\n")
@@ -38,26 +42,19 @@ function (obj, digits = 4, vif = FALSE, ...){
         .stopquiet()
         }
        }
-# 
-   if (vif){
- # check if factors
-       if (!is.null(obj$contrasts)){ ucfactors = TRUE; vif = FALSE}
- # check if dummy variables used 
-      if (attr(x$coef, 'dimnames')[[1]][1] ==  "(Intercept)"){
-       tempx = as.matrix(model.matrix(obj)[,-1]) 
-      } else { tempx = as.matrix(model.matrix(obj)) }
-       for (i in 1:ncol(tempx)){
-       if ( sum( tempx[,i] %in% c(-1,0,1)) > 1){
-           ucfactors = TRUE; vif = FALSE} 
-       } 
- # check if only one ind variable
-        terms <- labels(coef(obj))
-        n.terms <- length(terms) - ("(Intercept)" %in% terms)
-       if (n.terms < 2) { 
+# check if more than one predictor
+   if (vif){  
+       terms <- labels(coef(obj))
+       n.terms <- length(terms) - ("(Intercept)" %in% terms)
+      if (n.terms < 2) { 
+        vif = FALSE
+        cat("No VIFs printed because the model has only one predictor. \n")
+       }
+# check aliases
+        if (any(is.na(coef(obj)))) {
          vif = FALSE
-         cat("No VIFs printed because model contains fewer than 2 terms. \n")
-        }
-   if (ucfactors) cat('Note:  No VIFs are printed because the model includes factors.\n')
+         cat("No VIFs are printed because there are aliased coefficients. \n")
+         }
    }
 
 ##################
@@ -85,10 +82,10 @@ function (obj, digits = 4, vif = FALSE, ...){
         }
        }
         else {
-        if (attr(x$coef, 'dimnames')[[1]][1] ==  "(Intercept)"){
-             VIF = c(NA,.VIF(obj))} else {VIF = .VIF(obj) } 
+        if (("(Intercept)" %in% labels(coef(obj)))){
+             VIF = c(NA, .VIF(obj))} else {VIF = .VIF(obj) } 
         cat("\nCoefficients:\n")
-        coefs <- cbind(x$coefficients, VIF)
+        coefs <- cbind(x$coefficients, NA, VIF)
         if(!is.null(aliased <- x$aliased) && any(aliased)) {
             cn <- names(aliased)
             coefs <- matrix(NA, length(aliased), 5, dimnames=list(cn, colnames(coefs), ' VIF'))
@@ -96,7 +93,7 @@ function (obj, digits = 4, vif = FALSE, ...){
         }
         }
         print(round(coefs, digits), na.print = " ", ... )  
-}
+    }
     k = nrow(coefs)
     aicc = ( num*aic + ((2*k^2+2*k)/(num-k-1)) )/num
     ##
@@ -118,57 +115,18 @@ function (obj, digits = 4, vif = FALSE, ...){
             'AICc = ', round(aicc, digits), '  ', 
             'BIC = ',  round(bic,  digits), '\n') 
     }
-    correl <- x$correlation
-    if (!is.null(correl)) {
-	p <- NCOL(correl)
-	if (p > 1L) {
-	    cat("\nCorrelation of Coefficients:\n")
-	    if(is.logical(symbolic.cor) && symbolic.cor) {# NULL < 1.7.0 objects
-		print(symnum(correl, abbr.colnames = NULL))
-	    } else {
-                correl <- format(round(correl, 2), nsmall = 2, digits = digits)
-                correl[!lower.tri(correl)] <- ""
-                print(correl[-1, -p, drop=FALSE], quote = FALSE)
-            }
-	}
-    }
     cat("\n")
     invisible(x)
 }
 
-
-
-
-.VIF <- function (obj) 
-{
-  if (any(is.na(coef(obj)))) 
-    stop("There are aliased coefficients in the model.")
-  v <- vcov(obj)
-  assign <- attr(model.matrix(obj), "assign")
-    Intrcpt = FALSE
-  if (names(coefficients(obj)[1]) == "(Intercept)") {
-    v <- v[-1, -1]
-    assign <- assign[-1]
-    Intrcpt = TRUE
-  }
-  else warning("No intercept: VIFs may not be sensible.")
-#
-  modmat = model.matrix(obj)
-  if (Intrcpt){
-  terms <- colnames(modmat[,-1])
-  n.terms <- ncol(modmat) -1 
-  } else {
-  terms <- colnames(modmat)
-  n.terms <- ncol(modmat)
-} 
-  R <- cov2cor(v)
-  detR <- det(R)
-  result <- c()
-  for (term in 1:n.terms) {
-    subs <- which(assign == term)
-    result[term]  <- det(as.matrix(R[subs, subs])) * det(as.matrix(R[-subs, -subs]))/detR
-  }
-  return(result)
+.VIF = function(obj){
+   modmat  = model.matrix(obj)
+   Intrcpt = ("(Intercept)" %in% labels(coef(obj)))
+   if (!Intrcpt){ warning("VIFs may not make sense if there is no intercept.")}
+   varX = vcov(obj)
+   if (Intrcpt) varX = varX[-1,-1]
+   corX = cov2cor(varX)
+   return(diag(solve(corX)))
 }
 
 

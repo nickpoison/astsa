@@ -35,7 +35,7 @@ Label for the vertical axis (default is the name of the series).
 If TRUE (default), pointwise 95\% confidence intervals are drawn.
 }
   \item{results}{
-For polynomial regression, if TRUE, will print a summary of the regression results.
+For polynomial regression, if TRUE, will print a summary (using \code{\link{ttable}}) of the regression results.
 }
   \item{\dots}{
 Other graphical parameters.
