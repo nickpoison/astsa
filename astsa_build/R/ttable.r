@@ -7,10 +7,10 @@ function (obj, digits = 4, vif = FALSE, ...){
    rdf <- df[2L]
    aic  =  AIC(obj)/num - log(2*pi)
    bic  =  BIC(obj)/num - log(2*pi)
-############################### for nicer display
+##### for nicer display
    dimnames(x$coefficients) <- list(dimnames(x$coefficients)[[1]], 
             c("Estimate", "     SE", " t.value", " p.value"))
-##############################
+#####
     if (length(x$aliased) == 0L) { 
         cat("\nNo Coefficients\n")
     } else {
@@ -40,6 +40,7 @@ function (obj, digits = 4, vif = FALSE, ...){
         .stopquiet()
         }
        }
+
 # check if only one predictor
    if (vif){  
        Xterms <- labels(coef(obj))
@@ -50,11 +51,9 @@ function (obj, digits = 4, vif = FALSE, ...){
        }
    }
 
-
-       if (!vif) {
+   if (!vif) {
         cat("\nCoefficients:\n")
         coefs <- cbind(x$coefficients)
-
         if(!is.null(aliased <- x$aliased) && any(aliased)) {
             cn <- names(aliased)
             coefs <- matrix(NA, length(aliased), 4, dimnames=list(cn, colnames(coefs)))
@@ -74,8 +73,7 @@ function (obj, digits = 4, vif = FALSE, ...){
                            x$fstatistic[3L], lower.tail = FALSE),
                         digits = digits)) }
         }
-       }
-        else {
+   } else { # vif TRUE
         if ("(Intercept)" %in% labels(coef(obj))){
              VIF = c(NA, .VIF(obj))} else {VIF = .VIF(obj) } 
         cat("\nCoefficients:\n")
@@ -87,21 +85,21 @@ function (obj, digits = 4, vif = FALSE, ...){
         }
         }
         print(round(coefs, digits), na.print = " ", ... )  
-    }
+   }
     k = nrow(coefs)
     aicc = ( num*aic + ((2*k^2+2*k)/(num-k-1)) )/num
     ##
     cat("\nResidual standard error:",
-	format(signif(x$sigma, digits)), "on", rdf, "degrees of freedom")
+    format(signif(x$sigma, digits)), "on", rdf, "degrees of freedom")
     cat("\n")
     if(nzchar(mess <- naprint(x$na.action))) cat("  (",mess, ")\n", sep = "")
     if (!is.null(x$fstatistic)) {
-	cat("Multiple R-squared: ", formatC(x$r.squared, digits = digits))
-	cat(",\tAdjusted R-squared: ",formatC(x$adj.r.squared, digits = digits),
-	    "\nF-statistic:", formatC(x$fstatistic[1L], digits = digits),
-	    "on", x$fstatistic[2L], "and",
-	    x$fstatistic[3L], "DF,  p-value:",
-	    format.pval(pf(x$fstatistic[1L], x$fstatistic[2L],
+    cat("Multiple R-squared: ", formatC(x$r.squared, digits = digits))
+    cat(",\tAdjusted R-squared: ",formatC(x$adj.r.squared, digits = digits),
+        "\nF-statistic:", formatC(x$fstatistic[1L], digits = digits),
+        "on", x$fstatistic[2L], "and",
+        x$fstatistic[3L], "DF,  p-value:",
+        format.pval(pf(x$fstatistic[1L], x$fstatistic[2L],
                            x$fstatistic[3L], lower.tail = FALSE),
                         digits = digits))
         cat("\n")
