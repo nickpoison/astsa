@@ -53,5 +53,5 @@ ccf2(soi, rec)              # now you don't
 # happy birthday mom
 ccf2(soi, rec, col=rainbow(36, v=.8), lwd=4, gg=TRUE)
 }
-\seealso{\code{\link{acf1}}, \code{\link{acf2}}, \code{\link{acfm}} }
+\seealso{\code{\link{pre.white}}, \code{\link{acf1}}, \code{\link{acf2}}, \code{\link{acfm}} }
 \keyword{ ts } 
