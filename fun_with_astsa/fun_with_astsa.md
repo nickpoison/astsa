@@ -29,9 +29,10 @@ it's more than just data ... it's a palindrome
      * [astsa Color Palette](#colors)
      * [Time Series Plots](#tsplot)
      * [Lag Plots](#lag-plots)
-     * [Scatterplots](#scatterplots)
+     * [Time Series Scatterplots](#scatterplots)
      * [Trends](#trends)
      * [QQ Normal Plots](#qqnorm)
+     * [Regression t-table with VIFs](#regression-t-table-with-vifs)
   * [3. Correlations](#3-correlations)
   * [4. ARIMA](#4-arima)
      * [Simulation](#arima-simulation)
@@ -322,7 +323,9 @@ Aside from lag plots, we have some additional scripts for doing scatterplot matr
 tspairs(diff(log(econ5[,1:3])), col.diag=6, pt.size=1.5, lwl=2, gg=TRUE, las=0)
 ```
 
-<img src="figs/tspairs1.png" alt="tspairs1"  width="70%"> 
+<img src="figs/tspairs1.png" alt="tspairs1"  width="70%"> <br/>
+
+<br/>
 
 ```r
 tspairs(ts.intersect(cmort,tempr,partL4=lag(part,-4)), hist=FALSE, pch=9, scale=1.1)
@@ -388,9 +391,10 @@ QQnorm(log(varve), main='log(varve)')
 
 <br/>
 
+
 ### Regression t-table with VIFs
 
-&#128045; It's not a graphic thing, but there was no other place to put this with ease.  This is used in the 2nd edition of the Chapman Hall text. It will be available in `astsa` version 2.3 and beyond.  It's a replacement for `summary.lm` and it goes like this: 
+&#128045; It's not a graphic thing, but there was no other place to put this with ease.  This is used in the 2nd edition of the Chapman Hall text. It will be available in `astsa` version 2.2+ and beyond.  It's based on `summary.lm` but it prints AIC, AICc, and BIC and it can include VIFs if appropriate and it goes like this: 
 
 ```r
 fit = lm( mpg~ cyl + disp + hp + drat + wt + qsec, data=mtcars) 
@@ -402,7 +406,7 @@ ttable(fit, vif=TRUE)
               Estimate      SE  t.value  p.value       VIF
   (Intercept)  26.3074 14.6299   1.7982   0.0842          
   cyl          -0.8186  0.8116  -1.0086   0.3228    9.9590
-  disp          0.0132  0.0120   1.0971   0.2831   10.5506
+  disp          0.0132  0.0120   1.0971   0.2831   10.5506  <- engine size
   hp           -0.0179  0.0155  -1.1564   0.2585    5.3578
   drat          1.3204  1.4795   0.8925   0.3806    2.9665
   wt           -4.1908  1.2579  -3.3316   0.0027    7.1817
