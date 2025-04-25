@@ -36,7 +36,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 - and after beautifying `mvspec`, the multivariate auto/cross- correlation matrix plot `acfm` is now more beautiful than ever.
 
-- in `sarima`, the difference order `d` no long has to be specified if it's zero... so `sarima(x, p=2, q=1)` works now and you don't have to enter `sarima(x, 2,0,1)` if you don't want to (but it's less keystrokes)
+- in `sarima`, the difference order `d` no longer has to be specified if it's zero... so for example `sarima(x, p=2, q=1)` will work now [but `sarima(x, 2,0,1)`  still works and it's less keystrokes].
 
 <br/>
 
@@ -67,7 +67,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 - added `gtemp.month` (monthly global data 1975-2023) -- rows are month, columns are year to make it easy to plot as monthly functional data
 
 ---
- 
+
 
 ####   Version 2.1 - Jan 2024    
 
@@ -168,13 +168,13 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
     
 ---
 #### Version 1.15 - May 2022
- 
+
    + Added two new scripts `detrend()` and `trend()`.  The first one returns a detrended series using a polynomial regression (default is linear) or lowess (with the default span).  The second script fits a trend (same options as detrend) and produces a graphic of the series with the trend and error bounds superimposed.  The trend and error bounds are returned invisibly.
 
 ---
 #### Version 1.14 - Sept 2021
 
-  
+
    + Added sleep state and movement data (`sleep1` and `sleep2`) - more details in the help files. 
 
    + Added option to specify a kernel in `specenv` and if `spans` and `kernel` are both `NULL`, the spectral envelope will be based on the periodogram.  Also changed the way it checks if `section` is a proper sequence and added option to taper the data prior to estimating spectra.  
@@ -184,7 +184,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
      - In `matrixpwr` changed `isSymmetric(A)` to `isSymmetric(unname(A))`  because a symmetric matrix is not taken as such if the column and row names are not the same.  
      
      - In `arma.spec` if there is near parameter redundancy, `ylim` is now adjusted so the figure will be close to the white noise (uniform) density.
-   
+
 
 ---
 #### Version 1.13 - May 2021
@@ -249,7 +249,7 @@ on the axis - it's still there in the CI if the plot is on log-scale and it's st
 
 
 + `sarima.sim` output used to start at time `0` - now the start
-time is up to the user (with default `t0=0`).
+  time is up to the user (with default `t0=0`).
   
 
 
@@ -401,7 +401,7 @@ seasonal, you'll see at least 4 seasons by default ... I got tired of typing
 	 the commands I used to get it were correct... now I'm sure).
    + made `details=FALSE` also shut off the diagnostic plot, so if you run<br/>
 	 `dog <- sarima(cmort, 1,1,1, details=FALSE)`  <br/>
-	 then everything (except the graphic) is stored in `dog` and you won't see any output.
+	  then everything (except the graphic) is stored in `dog` and you won't see any output.
 
 
 + fixed `x0n` and `P0n` in `Ksmooth0` and `Ksmooth1` (minor fix) 
