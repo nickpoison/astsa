@@ -35,6 +35,9 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 - `mvspec` can now handle coherency and phase plots in the multivariate (3 or more series) case without having to use `plot.spec` from the stats package.
 
 - and after beautifying `mvspec`, the multivariate auto/cross- correlation matrix plot `acfm` is now more beautiful than ever.
+
+- in `sarima`, the difference order `d` no long has to be specified if it's zero... so `sarima(x, p=2, q=1)` works now and you don't have to enter `sarima(x, 2,0,1)` if you don't want to (but it's less keystrokes)
+
 <br/>
 
 ---

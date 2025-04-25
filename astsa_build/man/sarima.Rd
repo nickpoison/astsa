@@ -15,7 +15,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
   \item{p}{AR order (must be specified)
 }
-  \item{d}{difference order (must be specified)
+  \item{d}{difference order  
 }
   \item{q}{MA order (must be specified)
 }
@@ -68,7 +68,7 @@ The webpages for the texts and some help on using R for time series analysis can
 \examples{
 # easy to use 
 sarima(rec, 2,0,0)  # data, p, d, and q
-sarima(rec, 2,0,0, details=FALSE)  # minimal output
+sarima(rec, p=2, q=0, details=FALSE)  # minimal output, d unspecified
 
 dog <- sarima(log(AirPassengers), 0,1,1, 0,1,1,12)
 str(dog, vec.len=1) # dog has all the returned values
