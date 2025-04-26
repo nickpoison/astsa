@@ -36,7 +36,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 - and after beautifying `mvspec`, the multivariate auto/cross- correlation matrix plot `acfm` is now more beautiful than ever.
 
-- in `sarima`, the difference order `d` no longer has to be specified if it's zero... so for example `sarima(x, p=2, q=1)` will work now [but `sarima(x, 2,0,1)`  still works and it's less keystrokes].
+- in `sarima` and `sarima.for`, the orders `p, d, q` no longer have to be specified if they are zero... so for example `sarima(x, p=2, q=1)` and `sarima.for(x, 10, p=2)` will work now ... the original way still works: `sarima(x, 2,0,1)` and `sarima.for(x, 10, 2,0,0)` 
 
 <br/>
 

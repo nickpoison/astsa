@@ -3,7 +3,9 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
           fixed=NULL,tol=sqrt(.Machine$double.eps),no.constant=FALSE, col, ...)
 { 
    if (missing(col)) col=1
+   if (missing(p)) p=0      
    if (missing(d)) d=0
+   if (missing(q)) q=0
    trans = ifelse (is.null(fixed), TRUE, FALSE)
    trc   = ifelse(details, 1, 0)
    n     = length(xdata) 

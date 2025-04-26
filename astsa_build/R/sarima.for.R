@@ -2,11 +2,12 @@ sarima.for <-
 function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
          no.constant=FALSE, plot=TRUE, plot.all=FALSE, ylab=NULL,
          xreg = NULL, newxreg = NULL, fixed=NULL, ...){ 
-#
 
+  if (missing(p)) p=0
+  if (missing(d)) d=0
+  if (missing(q)) q=0
   trans = ifelse (is.null(fixed), TRUE, FALSE)
   if (is.null(ylab)) ylab = deparse(substitute(xdata))
-
 
   n = length(xdata)
   if (is.null(xreg)) {  

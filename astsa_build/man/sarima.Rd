@@ -13,11 +13,11 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 \arguments{
   \item{xdata}{univariate time series
 }
-  \item{p}{AR order (must be specified)
+  \item{p}{AR order  
 }
   \item{d}{difference order  
 }
-  \item{q}{MA order (must be specified)
+  \item{q}{MA order  
 }
   \item{P}{SAR order; use only for seasonal models 
 }
@@ -44,10 +44,14 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
   \item{...}{additional graphical arguments
 }
 }
-\details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. The values p,d,q, must be specified as there is no default. The results are the parameter estimates, standard errors, AIC, AICc, BIC (as defined in Chapter 2) and diagnostics. To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0)} will fit an ARIMA(2,1,0) model to the series in x, and \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0)*(0,1,1)_{12}} model to the series in x. The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they  differ by a scaling factor of the effective sample size.  
+\details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. As of version 2.3, the orders do not have to be specified if they are zero. For example, \code{sarima(x, p=1)} is the same as \code{sarima(x,1,0,0)}.
+
+To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0) \times (0,1,1)_{12}} model to the series in x. 
+
+The results are the parameter estimates, standard errors, AIC, AICc, BIC and diagnostics. The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they differ by a scaling factor of the effective sample size.  
 }
 \value{A t-table, the estimated noise variance, and AIC, AICc, BIC are printed. The following are returned invisibly:
-\item{fit }{the \code{arima} object}
+\item{fit }{an object of class \code{arima}}
 \item{sigma2 }{the estimate of the noise variance}
 \item{degrees_of_freedom }{error degrees of freedom}
 \item{ttable }{a little t-table with two-sided p-values}
@@ -68,7 +72,7 @@ The webpages for the texts and some help on using R for time series analysis can
 \examples{
 # easy to use 
 sarima(rec, 2,0,0)  # data, p, d, and q
-sarima(rec, p=2, q=0, details=FALSE)  # minimal output, d unspecified
+sarima(rec, p=2, details=FALSE)  # minimal output
 
 dog <- sarima(log(AirPassengers), 0,1,1, 0,1,1,12)
 str(dog, vec.len=1) # dog has all the returned values

@@ -48,7 +48,8 @@ sarima.for(xdata, n.ahead, p, d, q, P=0, D=0, Q=0, S=-1, tol = sqrt(.Machine$dou
   \item{...}{additional graphical arguments
 }
 }
-\details{For example, \code{sarima.for(x,5,1,0,1)} will forecast five time points ahead for an ARMA(1,1) fit to x. The output prints the forecasts and the standard errors of the forecasts, and supplies a graphic of the forecast with +/- 1 and 2 prediction error bounds.
+\details{For example, \code{sarima.for(x, 5, 1,0,1)} or \code{sarima.for(x, 5, p=1, q=1)}
+will forecast five time points ahead for an ARMA(1,1) fit to x. The output prints the forecasts and the standard errors of the forecasts, and supplies a graphic of the forecast with +/- 1 and 2 prediction error bounds.
 }
 \value{\item{pred }{the forecasts}
       \item{se }{the prediction (standard) errors}
