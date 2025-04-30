@@ -50,12 +50,12 @@ To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}.
 
 The results are the parameter estimates, standard errors, AIC, AICc, BIC and diagnostics. The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they differ by a scaling factor of the effective sample size.  
 }
-\value{A t-table, the estimated noise variance, and AIC, AICc, BIC are printed. The following are returned invisibly:
-\item{fit }{an object of class \code{arima}}
-\item{sigma2 }{the estimate of the noise variance}
-\item{degrees_of_freedom }{error degrees of freedom}
-\item{ttable }{a little t-table with two-sided p-values}
-\item{ICs }{AIC  -  AICc  -  BIC} 
+\value{A t-table, the estimated noise variance, and AIC, AICc, BIC are printed. The following are returned invisibly as a list:
+\item{fit }{[[1]] an object of class \code{Arima} with more information than you need}
+\item{sigma2 }{[[2]] the estimate of the noise variance}
+\item{degrees_of_freedom }{[[3]] error degrees of freedom}
+\item{ttable }{[[4]] a little t-table with two-sided p-values}
+\item{ICs }{[[5]] AIC  -  AICc  -  BIC} 
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
