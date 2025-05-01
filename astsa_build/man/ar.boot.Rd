@@ -38,10 +38,15 @@ prior to the bootstrap simulations.
 The script displays a number of quantiles of the bootstrapped estimates, the means, the biases, and the root mean squared errors.
 }
 \value{
-Returned invisibly:
- \item{phi.star }{bootstrapped AR parameters}
- \item{x.sim }{bootstrapped data}
+Returned invisibly as a list:
+ \item{phi.star }{[[1]] bootstrapped AR parameters}
+ \item{x.sim }{[[2]] bootstrapped data}
+ \item{mean.star }{[[3]] bootstrapped mean }
+ \item{var.star }{[[4]] bootstrapped noise variance}
+ \item{yw.fit }{[[5]] results of Yule-Walker fit to the data}
 }
+
+
 \references{You can find demonstrations of  astsa capabilities at 
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
