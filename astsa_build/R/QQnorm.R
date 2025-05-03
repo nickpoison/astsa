@@ -1,7 +1,9 @@
 QQnorm = 
 function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles', 
-         main="Normal Q-Q Plot", ylim=NULL, ci=TRUE, width.ci=99.995, qqlwd=1, ...){
+         main="Normal Q-Q Plot", ylim=NULL, ci=TRUE, qqlwd=1, ...){
 
+
+  if (ci < 0) stop('ci should be greater than 0')
   xdata = c(xdata)
   scat  = stats::qqnorm(xdata, plot.it=FALSE)
   if (length(col) < 2) col= rep(col,2)
@@ -17,12 +19,11 @@ function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles
    SE   = (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
    qqfit = a + b*z
  
-  if (ci){
+  if (ci>0){
    # check CI width is valid
-   if (width.ci <=0) stop('width.ci should be greater than 0')
-   if (width.ci <= 1) width.ci = 100*width.ci
-   if (width.ci >= 100) width.ci = 99.995
-   wde   = stats::qnorm(width.ci/100)
+   if (ci <= 1)   ci = 100*ci
+   if (ci >= 100) ci = 99.995
+   wde   = stats::qnorm(ci/100)
    U     = qqfit + wde*SE   # default puts .00005 in tails
    L     = qqfit - wde*SE
    if (is.null(ylim)) ylim=c(min(xord[1],L[1],na.rm=TRUE), max(xord[num],U[num],na.rm=TRUE))

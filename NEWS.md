@@ -40,6 +40,8 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 - `ar.boot` added more output ... the bootstrapped mean and noise variance values and the results of the initial estimation of the data.
 
+- `QQnorm` argument change ... the width of the CI is now controlled by `ci`, which can be `TRUE` (default width), `FALSE` (no CI band), or a percentage (e.g., `ci=99`)... and `width.ci` is gone.
+
 <br/>
 
 ---

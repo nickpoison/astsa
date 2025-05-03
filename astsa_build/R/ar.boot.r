@@ -19,8 +19,6 @@ x.star   = series                # initialize x*
 phi      = matrix(phi)           # p x 1
 phi.star = matrix(0, arp, nboot)
 x.sim    = matrix(0, num, nboot)
-mean.star = c()
-var.star  = c()
 
 pb = txtProgressBar(min = 0, max = nboot, initial = 0, style=3)  # progress bar
 
@@ -34,13 +32,14 @@ for (i in 1:nboot) {
  x.sim[,i]    = matrix(x.star) 
  u = ar.yw(x.star, order=arp, aic=FALSE)
  phi.star[,i] = u$ar
- mean.star[i] = u$x.mean
- var.star[i] = u$var.pred
 }
 close(pb)
+
 x.sim = ts(x.sim, start=tspar[1], frequency=tspar[3])
 phi.star = t(phi.star)
-colnames(phi.star) =  paste('ar', 1:arp, sep="")
+ colnames(phi.star) =  paste('ar', 1:arp, sep="")
+mean.star = unname(apply(x.sim, 2, mean))
+var.star  = unname(apply(x.sim, 2, var))
 
 
 cat('Quantiles:', "\n")

@@ -9,8 +9,7 @@ Produces a normal QQ plot with a line of equality and a confidence band (by defa
 }
 \usage{
 QQnorm(xdata, col = c(4, 6), ylab = "Sample Quantiles", xlab = "Theoretical Quantiles", 
-        main = "Normal Q-Q Plot", ylim = NULL, ci = TRUE, width.ci = 99.995, 
-        qqlwd = 1, ...)
+        main = "Normal Q-Q Plot", ylim = NULL, ci = TRUE, qqlwd = 1, ...)
 }
 \arguments{
   \item{xdata}{
@@ -32,10 +31,9 @@ plot title (default is 'Normal Q-Q Plot')
 limits on y-axis (default is the most beautiful limits ever).
 }
   \item{ci}{
-logical; if TRUE (default) draws pointwise CIs as a band.
-}
-  \item{width.ci}{
-width of the CI in terms of percent (default is 99.995).
+if TRUE (default) draws pointwise 99.995\% CIs as a band.
+If FALSE or 0, no CI is drawn, otherwise enter a percentage
+(e.g., \code{ci=99}).
 }
   \item{qqlwd}{
 line width of the qqline (default is 1).
