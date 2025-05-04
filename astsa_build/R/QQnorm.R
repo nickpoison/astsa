@@ -23,7 +23,7 @@ function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles
    # check CI width is valid
    if (ci <= 1)   ci = 100*ci
    if (ci >= 100) ci = 99.995
-   wde   = stats::qnorm(ci/100)
+   wde   = stats::qnorm(ci/100, lower.tail=(ci>50))
    U     = qqfit + wde*SE   # default puts .00005 in tails
    L     = qqfit - wde*SE
    if (is.null(ylim)) ylim=c(min(xord[1],L[1],na.rm=TRUE), max(xord[num],U[num],na.rm=TRUE))

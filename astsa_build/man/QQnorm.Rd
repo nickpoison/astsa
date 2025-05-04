@@ -32,8 +32,9 @@ limits on y-axis (default is the most beautiful limits ever).
 }
   \item{ci}{
 if TRUE (default) draws pointwise 99.995\% CIs as a band.
-If FALSE or 0, no CI is drawn, otherwise enter a percentage
-(e.g., \code{ci=99}).
+If FALSE or 0, no CI is drawn. Alternately, enter a percentage
+(e.g., \code{ci=99}) in which case if \code{ci} is less than 50\%, 
+the value is changed to \code{1-ci}.
 }
   \item{qqlwd}{
 line width of the qqline (default is 1).
