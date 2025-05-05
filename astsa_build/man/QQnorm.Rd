@@ -31,10 +31,9 @@ plot title (default is 'Normal Q-Q Plot')
 limits on y-axis (default is the most beautiful limits ever).
 }
   \item{ci}{
-if TRUE (default) draws pointwise 99.995\% CIs as a band.
+if TRUE (default) draws pointwise 99.99\% CIs as a band.
 If FALSE or 0, no CI is drawn. Alternately, enter a percentage
-(e.g., \code{ci=99}) in which case if \code{ci} is less than 50\%, 
-the value is changed to \code{1-ci}.
+(e.g., either \code{ci=95} or \code{ci=.95} will work).
 }
   \item{qqlwd}{
 line width of the qqline (default is 1).
@@ -45,6 +44,8 @@ other graphical parameters sent to \code{\link{tsplot}}.
 }
 \details{
 If you want a graphic to check normality of your data in \code{xdata}, just enter \code{QQnorm(xdata)} and sit back and enjoy the beauty of this script (you may want to wear sunglasses).
+
+For confidence levels, various values are allowed. For example, 95\% limits can be obtained as \code{ci=95} or \code{ci=.95}, both of which are conventional. However, \code{ci=5}, or \code{ci=.05} will also work. If you ask for a confidence level of 100\% or larger, you will get the default and maybe you are unconventional.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

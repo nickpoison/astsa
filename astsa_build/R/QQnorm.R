@@ -21,10 +21,13 @@ function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles
  
   if (ci>0){
    # check CI width is valid
-   if (ci <= 1)   ci = 100*ci
-   if (ci >= 100) ci = 99.995
+   if (ci < 1)     ci = 100*ci
+   if (ci >= 100)  ci = 99.99    # default
+   if (isTRUE(ci)) ci = 99.99    # default
+   if (ci == 1)    ci = 99
+   ci    = ifelse(ci > 50, (100 - ci)/2, ci/2)
    wde   = stats::qnorm(ci/100, lower.tail=(ci>50))
-   U     = qqfit + wde*SE   # default puts .00005 in tails
+   U     = qqfit + wde*SE   
    L     = qqfit - wde*SE
    if (is.null(ylim)) ylim=c(min(xord[1],L[1],na.rm=TRUE), max(xord[num],U[num],na.rm=TRUE))
    tsplot(scat$x, scat$y, type='p', col=col[1], ylab=ylab, xlab=xlab, main=main, ylim=ylim, ...)
