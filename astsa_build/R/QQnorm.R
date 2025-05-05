@@ -21,10 +21,9 @@ function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles
  
   if (ci>0){
    # check CI width is valid
-   if (ci < 1)     ci = 100*ci
-   if (ci >= 100)  ci = 99.99    # default
-   if (isTRUE(ci)) ci = 99.99    # default
-   if (ci == 1)    ci = 99
+   if (ci < 1) ci = 100*ci
+   if (ci >= 100 | ci)  ci = 99.99    # default
+   if (ci == 1) ci = 99
    ci    = ifelse(ci > 50, (100 - ci)/2, ci/2)
    wde   = stats::qnorm(ci/100, lower.tail=(ci>50))
    U     = qqfit + wde*SE   
