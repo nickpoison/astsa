@@ -1,6 +1,5 @@
 \name{QQnorm}
 \alias{QQnorm}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Normal Quantile-Quantile Plot
 }
@@ -45,7 +44,7 @@ other graphical parameters sent to \code{\link{tsplot}}.
 \details{
 If you want a graphic to check normality of your data in \code{xdata}, just enter \code{QQnorm(xdata)} and sit back and enjoy the beauty of this script (you may want to wear sunglasses).
 
-For confidence levels, various values are allowed. For example, 95\% limits can be obtained as \code{ci=95} or \code{ci=.95}, both of which are conventional. However, \code{ci=5}, or \code{ci=.05} will also work. If you ask for a confidence level of 100\% or larger, you will get the default and maybe you are unconventional.
+For confidence levels, various values are allowed. For example, 95\% limits can be obtained as \code{ci=95} or \code{ci=.95}, both of which are conventional. However, \code{ci=5}, or \code{ci=.05} will also work for 95\% intervals (so you can not go below 50\%). If you ask for a confidence level of 100\% or larger, you will get the default without a warning and maybe you are unconventional.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

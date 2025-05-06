@@ -3,7 +3,8 @@ function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles
          main="Normal Q-Q Plot", ylim=NULL, ci=TRUE, qqlwd=1, ...){
 
 
-  if (ci < 0) stop('ci should be greater than 0')
+  if (ci < 0) { ci=FALSE 
+     cat('Really? You want a negative confidence level? \nIn that case, you get no CI at all!\n') }
   xdata = c(xdata)
   scat  = stats::qqnorm(xdata, plot.it=FALSE)
   if (length(col) < 2) col= rep(col,2)
