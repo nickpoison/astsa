@@ -20,7 +20,7 @@ We do not always push the latest version of the package to CRAN, but [the latest
 
 ---
 
-* __WARNING:__  If loaded, the package `dplyr` may (and probably will) corrupt the base scripts `filter` and `lag` that a time series analyst uses often. An easy fix if you’re analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is going being used:
+&#9940; __WARNING:__  If loaded, the package `dplyr` may (and probably will) corrupt the base scripts `filter` and `lag` that a time series analyst uses often. An easy fix if you’re analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is going being used:
 
 ```r
 # [1] either detach it if it's loaded but no longer needed
@@ -29,18 +29,17 @@ detach(package:dplyr)
 # [2] or fix it yourself when loading dplyr 
 # this is a great idea from  https://stackoverflow.com/a/65186251
 library(dplyr, exclude = c("filter", "lag"))  # remove the culprits
-Lag <- dplyr::lag            # and do what the dplyr ... 
-Filter <- dplyr::filter      # ... maintainer refuses to do
-# then use `Lag` and `Filter` in dplyr scripts and
+Lag <- dplyr::lag                             # then correct ... 
+Filter <- dplyr::filter                       # ... the mistake 
+#  Now use `Lag` and `Filter` in dplyr scripts and
 # `lag` and `filter` can be use as originally intended
 
 # [3] or just take back the commands
 filter = stats::filter
-lag = stats::lag
-
+lag    = stats::lag
 # in this case, you can still use these for dplyr
-Lag <- dplyr::lag     
-Filter <- dplyr::filter 
+Lag    = dplyr::lag     
+Filter = dplyr::filter 
 ```
 
 ---
@@ -51,7 +50,7 @@ Filter <- dplyr::filter
 
 * The [code for the graduate level text](https://github.com/nickpoison/tsa5/blob/master/textRcode.md) is here: [TSA5](https://github.com/nickpoison/tsa5/blob/master/textRcode.md).
 
-* The updated [code for the data science text](https://github.com/nickpoison/tsda/blob/master/Rcode.md) is here: [TSDA](https://github.com/nickpoison/tsda/blob/master/Rcode.md).
+* The updated [code for the data science text](https://github.com/nickpoison/tsda2/blob/master/Rcode.md) is here: [TSDA2](https://github.com/nickpoison/tsda2/blob/master/Rcode.md).
 
 * Python
 

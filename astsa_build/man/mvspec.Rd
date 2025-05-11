@@ -121,5 +121,7 @@ mvspec(deth, spans=c(3,3), taper=.1, plot.type='coh')  # coherence
 
 # multivariate example
 mvspec(diff(log(econ5)), spans=c(5,5), col=5, lwd=2, ci=NA, gg=TRUE, minor=FALSE, plot.type='coh')   
+
+mvspec(diff(log(econ5)), spans=c(5,5), col=5, lwd=2, ci=NA, gg=TRUE, minor=FALSE, plot.type='coh', addLegend=FALSE)   
 }
 \keyword{ ts }

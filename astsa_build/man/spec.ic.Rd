@@ -77,10 +77,11 @@ spec.ic(soi)
 spec.ic(sunspotz, method='burg', col=4)   
 
 # BIC after detrending on log scale
-spec.ic(soi, BIC=TRUE, detrend=TRUE, log='y')  
+dog <- spec.ic(soi, BIC=TRUE, detrend=TRUE, log='y')  
 
-# plot AIC and BIC without spectral estimate
-tsplot(0:30, spec.ic(soi, plot=FALSE)[[1]][,2:3], type='o', xlab='order', nxm=5)  
+# plot AIC and BIC  (dog from previous example)
+tsplot(dog[[1]][,1], dog[[1]][,2:3], col=2*1:2, type='o', pch=1:2, xlab='order',
+        spag=TRUE, addLegend=TRUE)  
 }
 }
 \keyword{ ts }

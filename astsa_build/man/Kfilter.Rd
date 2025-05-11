@@ -132,8 +132,11 @@ for (t in 2:n){
   }
 # run and plot the filter  
 run = Kfilter(y, A=1, mu0, Sigma0, Phi=1, sQ, sR)
-tsplot(cbind(y,run$Xf), spaghetti=TRUE, type='o', col=c(4,6), pch=c(1,NA), margins=1)
-# CRAN tests need extra white space :( so margins=1 above is not necessary otherwise
-legend('topleft', legend=c("y(t)","Xf(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,NA))
+
+tsplot(cbind(x, y, Xf=run$Xf), spaghetti=TRUE, type='o', col=c(3,4,6), pch=c(NA,1,NA),
+       addLegend=TRUE, location='topleft', lwd=c(2,1,2),  margins=1)
+
+# NOTE: CRAN tests need extra white space :( so margins=1 not necessary nor desired
+
 }
 \keyword{ ts }

@@ -53,7 +53,7 @@ D.S. Stoffer
 \examples{
 acfm(diff(log(econ5)), gg=TRUE)
 
-( acfm(diff(log(econ5)), 2, plot=FALSE) )
+acfm(diff(log(econ5)), 2, plot=FALSE) 
 }
 \seealso{\code{\link{acf1}}, \code{\link{acf2}}, \code{\link{ccf2}} }
 \keyword{ts}
