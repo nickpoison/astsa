@@ -13,7 +13,7 @@ ccf2(x, y, max.lag = NULL, main = NULL, ylab = "CCF", plot = TRUE,
   \item{x, y}{univariate time series
 }
   \item{max.lag}{
-maximum lag for which to calculate the CCF
+maximum lag for which to calculate the CCF. Can be omitted. Unless \eqn{n < 50}, defaults to \eqn{\sqrt{n} + 10} or at least 3 seasons if the series is seasonal.  
 }
   \item{main}{
 plot title - if NULL, uses x and y names

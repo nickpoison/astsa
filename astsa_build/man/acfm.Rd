@@ -11,10 +11,10 @@ acfm(series, max.lag = NULL,  na.action = na.pass, ylim = NULL,
       acf.highlight = TRUE, plot = TRUE, ...)
 }
 \arguments{
-  \item{series}{Multiple time series (at least 2 columns of time series)
+  \item{series}{Multiple time series (at least 2 columns of time series with more than 3 observations).
 }
   \item{max.lag}{
-Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60}.  If the series is seasonal, this will be at least 4 seasons by default.
+Maximum lag.  Can be omitted.  Unless \eqn{n < 60}, defaults to \eqn{\sqrt{n} + 10} or at least 4 seasons if the series is seasonal.  
 }
   \item{na.action}{How to handle missing data; default is \code{na.pass}
 }

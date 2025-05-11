@@ -10,10 +10,10 @@ acf1(series, max.lag = NULL, plot = TRUE, main = NULL, ylim = NULL, pacf = FALSE
       ylab = NULL, xlab = NULL, na.action = na.pass, ...)
 }
 \arguments{
-  \item{series}{The data.  Does not have to be a time series object.
+  \item{series}{The data (must be more than 2 observations). Does not have to be a time series object.
 }
   \item{max.lag}{
-Maximum lag.  Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60}.  If the series is seasonal, this will be at least 4 seasons by default.
+Maximum lag.  Can be omitted. Unless \eqn{n < 60}, defaults to \eqn{\sqrt{n} + 10} or at least 4 seasons if the series is seasonal.  
 }
   \item{plot}{If TRUE (default), a graph is produced and the values are rounded and listed. If FALSE, no graph is produced and the values are listed but not rounded by the script.
 }
