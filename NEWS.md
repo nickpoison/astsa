@@ -62,7 +62,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 - `arma.spec` gets better default title and `sarima.for` gets a `ylab` option.
 - added `lap.xts` (an xts object), which contains the original daily observations from the LA Pollution-Mortality study.  How to easily get weekly averages is given in the examples section of the man page.
 - for `trend`, if `results=TRUE` a summary of the regression (if used) results is printed  
-- the scripts and data sets that were marked 'x' have been removed to [here](https://github.com/nickpoison/astsa/tree/master/xBox) ... they won't be included in the next version.
+- the scripts and data sets that were marked 'x' have been removed to [here](https://github.com/nickpoison/astsa/tree/master/xBox).
 - `dna2vector` was updated (&#128545; due to change in a base R script) - previous versions might not work 
 - in `mvspec` 
 
