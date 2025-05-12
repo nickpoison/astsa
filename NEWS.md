@@ -42,6 +42,8 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 - `QQnorm` argument change ... the width of the CI is now controlled by `ci`, which can be `TRUE` (default width), `FALSE` (no CI band), or a percentage (e.g., `ci=99` or `ci=.99` both work the same)... and `width.ci` is gone.
 
+- the correlation scripts `acf1` `acf2` `ccf2` and `acfm` no longer stop if the requested number of lags exceeds the number of observations ... now, the number of lags is reset to a small value and, without warning, a nonfatal electrical shock is sent to the keyboard.
+
 <br/>
 
 ---
