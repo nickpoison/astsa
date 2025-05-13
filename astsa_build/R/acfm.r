@@ -11,7 +11,7 @@ num = nrow(series)
   if (num < 3) stop("More than 2 observations per series are needed")
   if (num > 59 & is.null(max.lag))  max.lag = max(ceiling(10 + sqrt(num)), 4*xfreq)
   if (num < 60 & is.null(max.lag))  max.lag =  floor(6*log10(num))
-  if (max.lag > (num-1)) max.lag = floor(6*log10(num))
+  if (max.lag > (num-1)) max.lag = floor(6*log10(num)*(num<60) + (10+sqrt(num))*(num>59))
 
 u = stats::acf(series, lag.max=max.lag, plot=FALSE, na.action=na.action)
 ACF = u

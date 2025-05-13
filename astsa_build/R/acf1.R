@@ -9,14 +9,14 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
   if (num < 3) stop("More than 2 observations are needed")
   if (num > 59 & is.null(max.lag))  max.lag = max(ceiling(10+sqrt(num)), 4*xfreq) 
   if (num < 60 & is.null(max.lag))  max.lag =  floor(6*log10(num))
-  if (max.lag > (num-1)) max.lag = floor(6*log10(num))
+  if (max.lag > (num-1)) max.lag = floor(6*log10(num)*(num<60) + (10+sqrt(num))*(num>59))
   if (is.null(main)) main = paste("Series: ",deparse(substitute(series)))
 
   if (pacf) {
-   ACF = stats::pacf(series, max.lag, plot=FALSE, na.action = na.action, ...)$acf
+   ACF = stats::pacf(series, lag.max=max.lag, plot=FALSE, na.action = na.action, ...)$acf
    ACF = as.numeric(ACF)
    } else {
-   ACF = acf(series, max.lag, plot=FALSE, na.action = na.action, ...)$acf[-1]
+   ACF = acf(series, lag.max=max.lag, plot=FALSE, na.action = na.action, ...)$acf[-1]
   }
 
   LAG = (1:max.lag)/xfreq
