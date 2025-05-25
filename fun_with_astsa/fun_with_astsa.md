@@ -1,6 +1,6 @@
 # fun with astsa &#x1F388;&#x1F388;&#x1F388;
 
-[![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current version of `astsa`</sup>
+[![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>
 
 #### We'll demonstrate some of the capabilities of the latest version of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
 
@@ -10,8 +10,9 @@ Remember to load `astsa` at the start of a session.
 
 > **`library(astsa)`**
 
-it's more than just data ... it's a palindrome 
+it's more than just data ... it's a palindrome ... and a patch:
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="figs/astsa_patch.jpg" alt="astsa patch"  width="20%">
 
 -----
 -----
@@ -97,7 +98,7 @@ And you can get more information on any individual set using the `help()` comman
 |Lynx                             |  Canadian Lynx (not the same as R dataset `lynx` )                            |
 |MEI                              | Multivariate El Ni&ntilde;o/Southern Oscillation Index (version 1)            |
 |PLT                              |  Platelet Levels                                                              |
-|USpop                            |  U.S. Population - 1900 to 2010                                               |
+|USpop / USpop20                            |  U.S. Population - 1900 to 2010 / 2020   (2 different files)               |
 |UnempRate                        |  U.S. Unemployment Rate                                                       |
 |WBC                              |  White Blood Cell Levels                                                      |
 |ar1miss                          |  AR with Missing Values                                                       |
