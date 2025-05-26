@@ -10,9 +10,8 @@ Remember to load `astsa` at the start of a session.
 
 > **`library(astsa)`**
 
-it's more than just data ... it's a palindrome ... and a patch:
+it's more than just data ... it's a palindrome
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="figs/astsa_patch.jpg" alt="astsa patch"  width="20%">
 
 -----
 -----
