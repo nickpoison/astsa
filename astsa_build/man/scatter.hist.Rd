@@ -11,7 +11,6 @@ scatter.hist(x, y, xlab = NULL, ylab = NULL, title = NULL, pt.size = 1,
               hist.col = gray(0.82), pt.col = gray(0.1, 0.25), pch = 19, 
               reset.par = TRUE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 vector of x-values
@@ -44,7 +43,7 @@ scatterplot point character
 reset graphics - default is TRUE; set to FALSE to add on to scatterplot
 }
   \item{\dots}{
-other graphical parameters
+addtional graphical parameters sent to \code{Grid}
 }
 }
 \references{You can find demonstrations of  astsa capabilities at  

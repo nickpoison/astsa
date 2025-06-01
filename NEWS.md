@@ -46,6 +46,8 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 - added `USpop20` which is an update to `USpop` to include the 2020 census... it's used in the upcoming 2nd edition of _Time Series: A Data Analysis Approach..._ because it's not fun to forecast the past and time keeps on slippin' into the future.
 
+- in `scatter.hist`, the &hellip; (optional settings) now work on the `Grid`  - like `scatter.hist(tempr, cmort, col=6, lwd=2)` changes the grid - other things still have their own setting  like point color and histogram color.
+
 <br/>
 
 ---

@@ -37,13 +37,15 @@ function(x, y, xlab = NULL, ylab = NULL, title = NULL,
   # fig 
   par(mar = c(2,0,1,1))
   barplot(yc, axes = FALSE, xlim = c(0, top), 
-          space = 0, horiz = TRUE, col=hist.col)                     
+          space = 0, horiz = TRUE, col=hist.col)
   # fig 
   par(mar = c(0,2,1,1))
   barplot(xc, axes = FALSE, ylim = c(0, top), space = 0, col=hist.col)
   # fig 
   par(mar = c(2,2,.5,.5), xaxt="s", yaxt="s", bty="n")
-  plot(x, y, pch=pch, col=pt.col, cex=pt.size, panel.first=Grid(), ...)
+  plot(x, y, type='n')
+  Grid(...)
+  points(x, y, pch=pch, col=pt.col, cex=pt.size)
   # reset the graphics, if desired 
   if(reset.par) {par(old.par)}
 }

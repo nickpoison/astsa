@@ -88,7 +88,7 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
   QQnorm(stdres, col=col, main="Normal Q-Q Plot of Std Residuals", ...)
 
 # [4] 
-    nlag = ifelse(S<7, 20, 3*S)
+    nlag = ifelse(S<7, 20, 3*S); nlag = min(nlag, 52)
     ppq  = p+q+P+Q - sum(!is.na(fixed))   # decrease by number of fixed parameters
     if (nlag < ppq + 8) { nlag = ppq + 8 }
     pval = numeric(nlag)

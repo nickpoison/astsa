@@ -29,11 +29,11 @@ David Stoffer <stoffer@pitt.edu>
 
 (2) If you want to use \code{dplyr}, fix it: 
 \verb{
-   library(dplyr, exclude = c("filter", "lag"))   # load it but remove the culprits 
-   Lag <- dplyr::lag            # and do what the dplyr ... 
-   Filter <- dplyr::filter      # ... maintainer refuses to do}\cr
+   library(dplyr, exclude = c("filter", "lag"))   # load it without the culprits 
+   Lag <- dplyr::lag            # and fix ... 
+   Filter <- dplyr::filter      # ... the mistakes}\cr
 then use \code{Lag} and \code{Filter} for \code{dplyr} scripts \cr
-and \code{lag} and \code{filter} can be use as originally intended
+and \code{lag} and \code{filter} can be use as originally intended.
 
 
 (3) Or just take back the commands:\cr
