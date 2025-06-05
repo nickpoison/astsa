@@ -29,17 +29,17 @@ detach(package:dplyr)
 # [2] or fix it yourself when loading dplyr 
 # this is a great idea from  https://stackoverflow.com/a/65186251
 library(dplyr, exclude = c("filter", "lag"))  # remove the culprits
-Lag <- dplyr::lag                             # then correct ... 
-Filter <- dplyr::filter                       # ... the mistake 
-#  Now use `Lag` and `Filter` in dplyr scripts and
+dlag <- dplyr::lag                             # then correct ... 
+dfilter <- dplyr::filter                       # ... the blunders
+#  Now use `dlag` and `dfilter` in dplyr scripts and
 # `lag` and `filter` can be use as originally intended
 
 # [3] or just take back the commands
 filter = stats::filter
 lag    = stats::lag
 # in this case, you can still use these for dplyr
-Lag    = dplyr::lag     
-Filter = dplyr::filter 
+dlag    = dplyr::lag     
+dfilter = dplyr::filter 
 ```
 
 ---

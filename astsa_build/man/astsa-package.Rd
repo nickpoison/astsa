@@ -12,7 +12,7 @@ Contains data sets and scripts for analyzing time series in both the frequency a
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 2.2+\cr
+Version: \tab 2.3\cr
 Date: \tab 2026-01-01\cr
 License: \tab GPL (>= 2) \cr
 LazyLoad: \tab yes\cr
@@ -30,9 +30,9 @@ David Stoffer <stoffer@pitt.edu>
 (2) If you want to use \code{dplyr}, fix it: 
 \verb{
    library(dplyr, exclude = c("filter", "lag"))   # load it without the culprits 
-   Lag <- dplyr::lag            # and fix ... 
-   Filter <- dplyr::filter      # ... the mistakes}\cr
-then use \code{Lag} and \code{Filter} for \code{dplyr} scripts \cr
+   dlag = dplyr::lag            # and fix ... 
+   dfilter = dplyr::filter      # ... the blunders}\cr
+then use \code{dlag} and \code{dfilter} for \code{dplyr} scripts \cr
 and \code{lag} and \code{filter} can be use as originally intended.
 
 
@@ -41,9 +41,9 @@ and \code{lag} and \code{filter} can be use as originally intended.
 \verb{   lag = stats::lag }\cr
 
 In this case you can still use \cr 
-\verb{  Lag <- dplyr::lag} \cr 
+\verb{  dlag = dplyr::lag} \cr 
 and \cr 
-\verb{  Filter <- dplyr::filter} \cr
+\verb{  dfilter = dplyr::filter} \cr
 for \code{dpylr}.
 }
 
