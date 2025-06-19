@@ -8,7 +8,7 @@
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
         demean = FALSE, detrend = TRUE, lowess = FALSE, log = 'n', plot = TRUE, 
         gg = FALSE, type = NULL, na.action = na.fail, nxm = 2, nym = 1, 
-        main = NULL, xlab=NULL, cex.main=NULL, ci.col=4,  plot.type, ...) 
+        main = NULL, xlab = NULL, cex.main = NULL, ci = .95, ci.col = 4, plot.type, ...) 
 }
 \arguments{
   \item{x }{univariate or multivariate time series (i.e., the p columns of x are time series)
@@ -48,6 +48,9 @@ the number of minor tick mark divisions on x-axis, y-axis; the default is one mi
 }
  \item{cex.main }{
 magnification for main title; default is 1.
+}
+ \item{ci }{
+confidence level if one is drawn.
 }
  \item{ci.col }{
 color of the confidence interval if one is drawn.
@@ -120,8 +123,10 @@ dog$df          # degrees of freedom
 mvspec(deth, spans=c(3,3), taper=.1, plot.type='coh')  # coherence
 
 # multivariate example
-mvspec(diff(log(econ5)), spans=c(5,5), col=5, lwd=2, ci=NA, gg=TRUE, minor=FALSE, plot.type='coh')   
+mvspec(diff(log(econ5)), spans=c(5,5), col=5, lwd=2, ci=NA, gg=TRUE, minor=FALSE, 
+         plot.type='coh')   
 
-mvspec(diff(log(econ5)), spans=c(5,5), col=5, lwd=2, ci=NA, gg=TRUE, minor=FALSE, plot.type='coh', addLegend=FALSE)   
+mvspec(diff(log(econ5)), spans=c(5,5), col=5, lwd=2, ci=NA, gg=TRUE, minor=FALSE, 
+         plot.type='coh', addLegend=FALSE)   
 }
 \keyword{ ts }

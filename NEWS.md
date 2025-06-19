@@ -9,7 +9,7 @@
 
 ---
 
-&#x1F4A1; The GitHub version is updated before the CRAN version.   To get the most recent working version,  install `astsa` from the archive  [astsa_2.2+.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.2+.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
+&#x1F4A1; The GitHub version is updated before the CRAN version.   To get the most recent working version,  install `astsa` from the archive  [astsa_2.3.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.3.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
 
 In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` and just give the path to the `tar.gz` file.
 
@@ -26,7 +26,9 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 ---
 ---
 
-#### &#128700; v2.2+ &hellip; Beyond Version 2.2 (GitHub only)
+#### &#128700; v2.3 (GitHub only) 
+
+> It's version 2.3 now, but it's not going on CRAN until the 2nd edition of the data analysis book is out (no date yet).
 
 - `ttable` is new (but it's not a time series thing) ... it works like `summmary` for an `lm` object but it's a little cleaner and includes AIC, AICc, and BIC.  There is also the option to get VIFs (if appropriate).
 

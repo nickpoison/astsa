@@ -5,7 +5,7 @@
 \title{Applied Statistical Time Series Analysis (more than just data)
 } 
 \description{
-Contains data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the texts \href{https://link.springer.com/book/9783031705830}{Time Series Analysis and Its Applications: With R Examples (5th ed, 2025)}  and \href{https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096}{Time Series: A Data Analysis Approach Using R, (1st ed, 2019)}.
+Contains data sets and scripts for analyzing time series in both the frequency and time domains including state space modeling as well as supporting the texts \href{https://link.springer.com/book/10.1007/978-3-031-70584-7}{Time Series Analysis and Its Applications: With R Examples (5th ed, 2025)}  and \href{https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096}{Time Series: A Data Analysis Approach Using R, (1st ed, 2019)}.
 
 }
 \details{
