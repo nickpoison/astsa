@@ -1,6 +1,6 @@
 ttable<-
 function (obj, digits = 4, vif = FALSE, ...){
-   x = stats::summary.lm(obj)
+   x = summary.lm(obj)
    resid <- x$residuals
    num = length(resid)
    df <- x$df

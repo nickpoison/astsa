@@ -1,8 +1,8 @@
 acf2 <-
 function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action=na.pass, ...){
-  acf       = stats::acf
-  pacf      = stats::pacf
-  frequency = stats::frequency
+#  acf       = stats::acf
+#  pacf      = stats::pacf
+#  frequency = stats::frequency
   num       = length(series)
   xfreq     = frequency(series)
 
@@ -17,7 +17,7 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action=na.pas
   LAG  = (1:max.lag)/xfreq
 
  if(plot){
-   abline = graphics::abline
+#   abline = graphics::abline
    par = graphics::par
    U = (-1/num) + (2/sqrt(num))
    L = (-1/num) - (2/sqrt(num))

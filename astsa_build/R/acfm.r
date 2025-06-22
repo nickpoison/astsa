@@ -13,7 +13,7 @@ num = nrow(series)
   if (num < 60 & is.null(max.lag))  max.lag =  floor(6*log10(num))
   if (max.lag > (num-1)) max.lag = floor(6*log10(num)*(num<60) + (10+sqrt(num))*(num>59))
 
-u = stats::acf(series, lag.max=max.lag, plot=FALSE, na.action=na.action)
+u = acf(series, lag.max=max.lag, plot=FALSE, na.action=na.action)
 ACF = u
 for (i in 1:nser){ u$acf[1,i,i] = NA }  # remove 0 lag on acfs
 

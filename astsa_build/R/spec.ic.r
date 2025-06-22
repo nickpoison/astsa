@@ -10,7 +10,7 @@ function(xdata, BIC=FALSE, order.max=NULL, main=NULL, plot=TRUE, detrend=TRUE,
         } else { dmean = TRUE } 
   if (is.null(order.max)) order.max = min(100, ceiling(.1*length(xdata)))
   
-  u    = stats::ar(xdata, order=order.max, aic=TRUE, method=method, demean=dmean) 
+  u    = ar(xdata, order.max=order.max, aic=TRUE, method=method, demean=dmean) 
   aic  = as.vector(u$aic) 
   bic  = aic - 2*(0L:order.max) + (0L:order.max)*log(length(xdata)) 
   bic  = bic - min(bic)  
@@ -27,7 +27,7 @@ function(xdata, BIC=FALSE, order.max=NULL, main=NULL, plot=TRUE, detrend=TRUE,
            main=main, cex.axis=.85, las=0, cex.lab=.9, cex.main=cex.main,...)
      } 
    } else {
-    u2   = stats::spec.ar(xdata, order=kmin, plot=FALSE)
+    u2   = spec.ar(xdata, order=kmin, plot=FALSE)
     out2 = cbind(freq=u2$freq, spec=c(u2$spec)) 
      if(plot){
       xfreq <- frequency(xdata)

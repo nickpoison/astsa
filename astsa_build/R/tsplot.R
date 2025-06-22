@@ -124,5 +124,5 @@ par(cex=.9*scale)
   }
     if (gg) { box(col=gray(1)) } else { box(col=gray(.62)) }
 }
-return(invisible(grDevices::recordPlot()))
+return(invisible(recordPlot()))
 }

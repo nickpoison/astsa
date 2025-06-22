@@ -88,9 +88,9 @@ cat(b.neg, fill=TRUE,"\n\n")
 
 old.par <- graphics::par(no.readonly = TRUE)
 
-graphics::par(mfrow=c(3,1))
+par(mfrow=c(3,1))
 tsplot(S, b, type = "h", xlab = "s", ylab = "beta(s)", main = "coefficients beta(s)")
-graphics::abline(h=0)
+abline(h=0)
 ccf2(output, input, max.lag = M/2-1) 
 
 ######################################################
@@ -173,7 +173,7 @@ cat("\n", "The prediction equation is", "\n",
 name.out,"(t) = alpha + sum_s[ beta(s)*",name.in,"(t+s) ], where alpha = ",alpha, "\n",
 "MSE = ",MSE, "\n", sep="") 
                }
-on.exit(graphics::par(old.par)) 
+on.exit(par(old.par)) 
 
 list(betas = cbind(S,b), fit=cbind(output=y, fit=yhat, resids=y-yhat) )            
 }

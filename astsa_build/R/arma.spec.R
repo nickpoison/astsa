@@ -5,11 +5,11 @@ function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL,
      check <- 0
     # check causality
      ar.poly <- c(1, -ar)
-     z.ar <- base::polyroot(ar.poly)
+     z.ar <- polyroot(ar.poly)
      if(any(abs(z.ar) <= 1)) {cat("WARNING: Model Not Causal", "\n"); check <- check + 1}  
     # check invertibility
      ma.poly <- c(1, ma)
-     z.ma <- base::polyroot(ma.poly)
+     z.ma <- polyroot(ma.poly)
      if(any(abs(z.ma) <= 1)) {cat("WARNING: Model Not Invertible", "\n"); check <- check + 1}
      if (check > 0) stop("Try Again")
     #

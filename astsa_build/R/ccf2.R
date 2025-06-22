@@ -2,12 +2,12 @@ ccf2 <-
 function (x, y, max.lag = NULL, main = NULL, ylab = "CCF", plot = TRUE,
           na.action = na.pass, type = c("correlation", "covariance"), ...)
 {
-  par = graphics::par
-  acf = stats::acf
-  abline = graphics::abline
-  frequency = stats::frequency
-  ts.intersect = stats::ts.intersect
-  as.ts = stats::as.ts
+#  par = graphics::par
+#  acf = stats::acf
+#  abline = graphics::abline
+#  frequency = stats::frequency
+#  ts.intersect = stats::ts.intersect
+#  as.ts = stats::as.ts
   lag.max = max.lag
   type =  match.arg(type)
   if (is.matrix(x) || is.matrix(y)) { stop("univariate time series only") }

@@ -11,10 +11,10 @@ function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles
  
    num  = length(xdata)
    xord = xdata[order(xdata)]
-   PP   = stats::ppoints(num)
-   z    = stats::qnorm(PP)
-   y    = stats::quantile(xord, c(.25,.75), names=FALSE, type=7, na.rm=TRUE)
-   x    = stats::qnorm(c(.25,.75))
+   PP   = ppoints(num)
+   z    = qnorm(PP)
+   y    = quantile(xord, c(.25,.75), names=FALSE, type=7, na.rm=TRUE)
+   x    = qnorm(c(.25,.75))
    b    = diff(y)/diff(x)
    a    = y[1] - b*x[1]
    SE   = (b/dnorm(z))*sqrt(PP*(1-PP)/num)     
@@ -25,7 +25,7 @@ function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles
    if (ci < 1) ci = 100*ci
    if (ci >= 100 | isTRUE(ci))  ci = 99.99    # default
    ci    = ifelse(ci > 50, (100 - ci)/2, ci/2)
-   wde   = stats::qnorm(ci/100, lower.tail=FALSE)
+   wde   = qnorm(ci/100, lower.tail=FALSE)
    U     = qqfit + wde*SE   
    L     = qqfit - wde*SE
    if (is.null(ylim)) ylim=c(min(xord[1],L[1],na.rm=TRUE), max(xord[num],U[num],na.rm=TRUE))

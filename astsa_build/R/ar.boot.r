@@ -1,11 +1,11 @@
 ar.boot = function(series, order.ar, nboot=500, seed=NULL, plot=TRUE, ...){
 
-ar.yw   = stats::ar.yw
-na.omit = stats::na.omit
+#ar.yw   = stats::ar.yw
+#na.omit = stats::na.omit
 num     = length(series)
 
 # estimate parameters
-tspar  = stats::tsp(series)
+tspar  = tsp(series)
 arp    = order.ar
 fit    = ar.yw(series, order=arp, aic=FALSE) 
 m      = fit$x.mean               # estimate of mean
@@ -48,7 +48,7 @@ cat('\n')
 cat('Mean:', "\n") 
 print(colMeans(phi.star), digits=4)
 cat('\n')
-bias =  t( colMeans(phi.star)-phi)
+bias =  t(colMeans(phi.star)-phi)
 colnames(bias) = paste('ar', 1:arp, sep="")
 cat('Bias:', "\n") 
 print(bias, digits=4)

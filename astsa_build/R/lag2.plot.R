@@ -10,7 +10,7 @@ function(series1, series2, max.lag=0, corr=TRUE, smooth=TRUE, col=gray(.1), bg=N
   m1      = max.lag + 1
   prow    = ceiling(sqrt(m1))
   pcol    = ceiling(m1/prow)
-  a       = stats::ccf(series1,series2,max.lag,plot=FALSE)$acf
+  a       = ccf(series1,series2,max.lag,plot=FALSE)$acf
   old.par <- par(no.readonly = TRUE)
  if (is.null(box.col)) { 
   box.col = ifelse(gg, gray(1,.7), gray(.62,.7)) 
@@ -24,12 +24,12 @@ function(series1, series2, max.lag=0, corr=TRUE, smooth=TRUE, col=gray(.1), bg=N
  par(mfrow = c(prow,pcol))
  if (par('cex') < .9) par(cex =.9)
  for(h in 0:max.lag){       
-   u = ts.intersect(stats::lag(series1,-h), series2)            
+   u = ts.intersect(lag(series1,-h), series2)   
    Xlab = ifelse(h==0, name10, paste(name1,h,")",sep="")) 
   tsplot(u[,1], u[,2], type='p', xy.labels=FALSE, xy.lines=FALSE, xlab=Xlab, 
           ylab=name2, col=col, cex=cex, gg=gg, bg=bg, ...) 
   if (smooth) 
-   lines(stats::lowess(u[,1], u[,2]), col=lwc, lwd=lwl)
+   lines(lowess(u[,1], u[,2]), col=lwc, lwd=lwl)
   if (corr){ 
    legend("topright", legend=format(round(a[m1-h], digits=2),nsmall=2), 
            text.col=ltcol, bg=bgl, adj=.25, box.col=box.col, cex=.8)

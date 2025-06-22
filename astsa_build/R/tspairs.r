@@ -18,7 +18,7 @@ tspairs <-
           xh <- hist(x[,i], plot = FALSE) 
           tsplot(xh$counts, ylab=NA, xlab=NA, type='n', gg=gg, main=NA, minor=FALSE, 
                   xlim=range(xh$breaks), ylim=c(0, max(xh$counts)), ...)
-         hist(x[,i], col=grDevices::adjustcolor(col.diag,.5), border=col.diag, axes=FALSE, add=TRUE)
+         hist(x[,i], col=adjustcolor(col.diag,.5), border=col.diag, axes=FALSE, add=TRUE)
                    if (gg) box(col=gray(1))
          } else {
         tsplot(x[,i], ylab=NA, xlab=NA, col=col.diag, gg=gg, main=NA, ...)
@@ -27,7 +27,7 @@ tspairs <-
        par(bty='o')
        tsplot(x[,i], x[,j], type='p', xlab=NA, ylab=NA, 
               margins=c(0,0,-.8,0)+.2, col=pt.col, cex=pt.size, gg=gg, ...) 
-      if (smooth) { lines(stats::lowess(x[,i], x[,j]), col=lwc, lwd=lwl) }
+      if (smooth) { lines(lowess(x[,i], x[,j]), col=lwc, lwd=lwl) }
       if (corr) {
        if (gg) { bgc=gray(.92,.3) } else { bgc=gray(1,.3) }
         legend("topright", legend=format(round(Corr[i,j], digits=2), nsmall=2),  

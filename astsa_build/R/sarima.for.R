@@ -14,35 +14,35 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
     constant=1:n
     xmean = rep(1,n);  if(no.constant==TRUE) xmean=NULL
     if (d==0 & D==0) {
-      fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
+      fitit=arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
               xreg=xmean,include.mean=FALSE,fixed=fixed,transform.pars=trans,optim.control=list(reltol=tol));
       nureg=matrix(1,n.ahead,1);  if(no.constant==TRUE) nureg=NULL
     } else if (xor(d==1, D==1) & no.constant==FALSE) {
-      fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
+      fitit=arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
               xreg=constant,fixed=fixed,transform.pars=trans,optim.control=list(reltol=tol));
       nureg=(n+1):(n+n.ahead)       
-    } else { fitit=stats::arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
+    } else { fitit=arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S), 
               fixed=fixed,transform.pars=trans,optim.control=list(reltol=tol))
       nureg=NULL   
     }
   } else {
-      fitit = stats::arima(xdata, order = c(p, d, q), seasonal = list(order = c(P, 
+      fitit = arima(xdata, order = c(p, d, q), seasonal = list(order = c(P, 
               D, Q), period = S), xreg = xreg, fixed=fixed, transform.pars=trans)
       nureg = newxreg 
   }
 
 
 ##--##
-fore <- stats::predict(fitit, n.ahead, newxreg=nureg)
+fore <- predict(fitit, n.ahead, newxreg=nureg)
 ##--##
 
 ##-- graph:
   if (plot){
-    lines = graphics::lines
-    polygon = graphics::polygon
-    xy.coords = grDevices::xy.coords
-    time = stats::time
-    tsp  = stats::tsp
+#    lines = graphics::lines
+#    polygon = graphics::polygon
+#    xy.coords = grDevices::xy.coords
+#    time = stats::time
+#    tsp  = stats::tsp
     U  = fore$pred + 2*fore$se
     L  = fore$pred - 2*fore$se
     U1 = fore$pred + fore$se

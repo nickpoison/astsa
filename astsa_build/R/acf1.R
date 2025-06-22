@@ -1,8 +1,8 @@
 acf1 <-
 function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE, 
           ylab=NULL, xlab=NULL, na.action = na.pass, ...){
-  frequency = stats::frequency
-  acf       = stats::acf
+#  frequency = stats::frequency
+#  acf       = stats::acf
   xfreq     = frequency(series)
   num       = length(series)
 
@@ -13,7 +13,7 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
   if (is.null(main)) main = paste("Series: ",deparse(substitute(series)))
 
   if (pacf) {
-   ACF = stats::pacf(series, lag.max=max.lag, plot=FALSE, na.action = na.action, ...)$acf
+   ACF = pacf(series, lag.max=max.lag, plot=FALSE, na.action = na.action, ...)$acf
    ACF = as.numeric(ACF)
    } else {
    ACF = acf(series, lag.max=max.lag, plot=FALSE, na.action = na.action, ...)$acf[-1]
@@ -22,7 +22,7 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
   LAG = (1:max.lag)/xfreq
 
  if(plot){ 
-  abline = graphics::abline
+#  abline = graphics::abline
   U = (-1/num) + (2/sqrt(num))
   L = (-1/num) - (2/sqrt(num))
   if (is.null(ylim)) { 

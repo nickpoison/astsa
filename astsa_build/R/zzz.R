@@ -6,8 +6,8 @@
 		 palette("default")
 		 }
 
-# these were used for `stats::pairs` in `ar.boot` and `ar.mcmc` and
-#    maybe elsewhere, but `tspairs` has replaced these in v2.2+
+# below were used for `stats::pairs` in `ar.boot` and `ar.mcmc` and
+#    maybe elsewhere, but `tspairs` has replaced these in v2.3
 #
 # .panelcor is in the printed 5th edition of tsa5 for something else
 #   as astsa:::.panelcor so it has to remain, but

@@ -78,7 +78,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    if (is.null(innov)) innov = rand.gen(num, ...)
    x = .arima_sim(model=list(order=c(arorder,d,maorder), ar=arnew, ma=manew), n=num, innov=innov, ...)
   if (D > 0){
-   x = stats::diffinv(x, lag=S, differences=D)
+   x = diffinv(x, lag=S, differences=D)
    }
   } 
 ###
@@ -92,7 +92,7 @@ return(x)
 .arima_sim <-
 function(model, n, innov, ...)
 {
-    filter = stats::filter
+#    filter = stats::filter
     if (length(innov) < n)
       warning(paste("the number of innovations should be at least 'n + burnin' = ", n))
     if (n <= 0L) 

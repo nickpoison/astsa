@@ -40,11 +40,11 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
    n       = fitit$nobs  # effective sample size
    dfree   = n-k 
    t.value = coefs/sqrt(diag(fitit$var.coef)) 
-   p.two   = stats::pf(t.value^2, df1=1, df2=dfree, lower.tail = FALSE)   
+   p.two   = pf(t.value^2, df1=1, df2=dfree, lower.tail = FALSE)   
    ttable  = cbind(Estimate=coefs, SE=sqrt(diag(fitit$var.coef)), t.value, p.value=p.two)
    ttable  = round(ttable,4)
-   BIC     = stats::BIC(fitit)/n
-   AIC     = stats::AIC(fitit)/n
+   BIC     = BIC(fitit)/n
+   AIC     = AIC(fitit)/n
    AICc    = (n*AIC + ( (2*k^2+2*k)/(n-k-1) ))/n
 
 
@@ -91,10 +91,10 @@ function(xdata,p,d,q,P=0,D=0,Q=0,S=-1,details=TRUE,xreg=NULL,Model=TRUE,
     nlag = ifelse(S<7, 20, 3*S); nlag = min(nlag, 52)
     ppq  = p+q+P+Q - sum(!is.na(fixed))   # decrease by number of fixed parameters
     if (nlag < ppq + 8) { nlag = ppq + 8 }
-    pval = numeric(nlag)
+    pval = c()
     for (i in (ppq+1):nlag) {
-     u   = stats::Box.test(rs, i, type = "Ljung-Box")$statistic
-     pval[i] = stats::pchisq(u, i-ppq, lower.tail=FALSE)
+     u   = Box.test(rs, i, type = "Ljung-Box")$statistic
+     pval[i] =  pchisq(u, i-ppq, lower.tail=FALSE)
     } 
   tsplot( (ppq+1):nlag, pval[(ppq+1):nlag], type='p', xlab = "LAG (H)", ylab = "p value", 
           ylim = c(-.14, 1), main = "p values for Ljung-Box Statistic", col=col, minor=FALSE, ...)
