@@ -5,7 +5,7 @@ frq  = tsp(as.ts(y))[3]
 num = length(y)
 if (num < 20) { stop("This script requires at least 20 observations") }
 x00 = mean(y[1:5])
-P00 = stats::var(jitter(y[1:5])) 
+P00 = var(jitter(y[1:5])) 
 # function to calc likelihood
 Linn=function(para){
   if (fixphi){ phi=phi; alpha = para[1]; sigw = para[2];  sigv = para[3] 

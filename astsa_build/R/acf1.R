@@ -1,8 +1,7 @@
 acf1 <-
 function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE, 
           ylab=NULL, xlab=NULL, na.action = na.pass, ...){
-#  frequency = stats::frequency
-#  acf       = stats::acf
+
   xfreq     = frequency(series)
   num       = length(series)
 
@@ -22,7 +21,6 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
   LAG = (1:max.lag)/xfreq
 
  if(plot){ 
-#  abline = graphics::abline
   U = (-1/num) + (2/sqrt(num))
   L = (-1/num) - (2/sqrt(num))
   if (is.null(ylim)) { 

@@ -38,11 +38,6 @@ fore <- predict(fitit, n.ahead, newxreg=nureg)
 
 ##-- graph:
   if (plot){
-#    lines = graphics::lines
-#    polygon = graphics::polygon
-#    xy.coords = grDevices::xy.coords
-#    time = stats::time
-#    tsp  = stats::tsp
     U  = fore$pred + 2*fore$se
     L  = fore$pred - 2*fore$se
     U1 = fore$pred + fore$se

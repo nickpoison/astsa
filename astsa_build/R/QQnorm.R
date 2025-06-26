@@ -6,7 +6,7 @@ function(xdata, col=c(4,6), ylab='Sample Quantiles', xlab='Theoretical Quantiles
   if (ci < 0) { ci=FALSE 
      cat('Really? You want a negative confidence level? \nIn that case, you get no CI at all!\n') }
   xdata = c(xdata)
-  scat  = stats::qqnorm(xdata, plot.it=FALSE)
+  scat  = qqnorm(xdata, plot.it=FALSE)
   if (length(col) < 2) col= rep(col,2)
  
    num  = length(xdata)

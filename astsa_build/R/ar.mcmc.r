@@ -22,17 +22,17 @@ sigbp    = prior_sig_b
 
 
 for (i in 2:niter){
-   # Drawing the phis
-     var_phi   = solve((1/sigma[i-1])*(t(x)%*%x+(1/sigphi)*diag(1,lagp1)))
-     mu_phi    = (1/sigma[i-1])*var_phi%*%t(x)%*%y
-     Z         = as.matrix(rnorm(lagp1))
-     eV        = eigen(var_phi, symmetric=TRUE)
-     phi[,i]   = mu_phi + eV$vectors%*%diag(sqrt(pmax(eV$values,0)),lagp1)%*%Z
-   # Drawing sigma^2
-     siga       = (nobs-lagp)/2 + sigap
-     sigb       = 1/(sum((y-x%*%phi[,i])^2)/2 + sigbp + (1/(2*sigphi))*(t(phi[,i])%*%phi[,i]))
-     sigma[i]   = 1/rgamma(1, shape=siga, scale=sigb)
-   } 
+ # Drawing the phis
+   var_phi   = solve((1/sigma[i-1])*(t(x)%*%x+(1/sigphi)*diag(1,lagp1)))
+   mu_phi    = (1/sigma[i-1])*var_phi%*%t(x)%*%y
+   Z         = as.matrix(rnorm(lagp1))
+   eV        = eigen(var_phi, symmetric=TRUE)
+   phi[,i]   = mu_phi + eV$vectors%*%diag(sqrt(pmax(eV$values,0)),lagp1)%*%Z
+ # Drawing sigma^2
+   siga       = (nobs-lagp)/2 + sigap
+   sigb       = 1/(sum((y-x%*%phi[,i])^2)/2 + sigbp + (1/(2*sigphi))*(t(phi[,i])%*%phi[,i]))
+   sigma[i]   = 1/rgamma(1, shape=siga, scale=sigb)
+ } 
    
 # print - plot results 
 indx  = (n.warmup+1):niter
@@ -51,15 +51,3 @@ if (plot){
 }
 return(invisible(u))
 }
-
-
-# the old v2.2 and below `if (plot)`:
-
-# old.par = par(no.readonly = TRUE)
-# ncols   = floor(sqrt(porder + 2))
-# tsplot(u, main="sample traces", xlab="Iteration", col=col, ncolm=ncols)
-# cat("Press [Enter] or [Left Mouse] on the active graphic device", "\n")
-# par(ask=TRUE)
-# pairs(u, col=astsa.col(col,.4), lower.panel=.panelcor,  diag.panel=.panelhist, ...)
-# par(old.par)
-

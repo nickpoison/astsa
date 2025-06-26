@@ -27,8 +27,8 @@ We do not always push the latest version of the package to CRAN, but [the latest
 detach(package:dplyr)  
 
 # [2] or fix it yourself when loading dplyr 
-# this is a great idea from  https://stackoverflow.com/a/65186251
-library(dplyr, exclude = c("filter", "lag"))  # remove the culprits
+# this is a great idea from https://stackoverflow.com/a/65186251
+library(dplyr, exclude = c("filter", "lag"))   # remove the culprits
 dlag <- dplyr::lag                             # then correct ... 
 dfilter <- dplyr::filter                       # ... the blunders
 #  Now use `dlag` and `dfilter` in dplyr scripts and

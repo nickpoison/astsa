@@ -2,30 +2,30 @@ acfm <-
 function(series, max.lag = NULL,  na.action = na.pass, ylim=NULL, 
          acf.highlight = TRUE, plot = TRUE, ...)
 {
-nser = NCOL(series)
+  nser = NCOL(series)
   if (nser < 2) {stop("Multivariate time series only")} 
 
-xfreq = tsp(as.ts(series))[3]  
+  xfreq = tsp(as.ts(series))[3]  
 
-num = nrow(series)
+  num = nrow(series)
   if (num < 3) stop("More than 2 observations per series are needed")
   if (num > 59 & is.null(max.lag))  max.lag = max(ceiling(10 + sqrt(num)), 4*xfreq)
   if (num < 60 & is.null(max.lag))  max.lag =  floor(6*log10(num))
   if (max.lag > (num-1)) max.lag = floor(6*log10(num)*(num<60) + (10+sqrt(num))*(num>59))
 
-u = acf(series, lag.max=max.lag, plot=FALSE, na.action=na.action)
-ACF = u
-for (i in 1:nser){ u$acf[1,i,i] = NA }  # remove 0 lag on acfs
+ u = acf(series, lag.max=max.lag, plot=FALSE, na.action=na.action)
+ ACF = u
+ for (i in 1:nser){ u$acf[1,i,i] = NA }  # remove 0 lag on acfs
 
-lowr = min(as.vector(u$acf), na.rm = TRUE) - .01
-lowr = max(lowr, -1)
-uppr = max(as.vector(u$acf), na.rm = TRUE) + .05
-uppr = min(uppr, 1)
+  lowr = min(as.vector(u$acf), na.rm = TRUE) - .01
+  lowr = max(lowr, -1)
+  uppr = max(as.vector(u$acf), na.rm = TRUE) + .05
+  uppr = min(uppr, 1)
 
 
-if (plot){
- old.par <- par(no.readonly = TRUE)
- par(mfrow=c(nser,nser), oma=c(0,2,2,0), cex.main=1, bty='L')
+ if (plot){
+  old.par <- par(no.readonly = TRUE)
+  par(mfrow=c(nser,nser), oma=c(0,2,2,0), cex.main=1, bty='L')
   Xlab = ifelse(xfreq>1, paste('LAG \u00F7', xfreq), 'LAG')
   for (i in 1:nser){ 
    for (j in 1:nser){ 

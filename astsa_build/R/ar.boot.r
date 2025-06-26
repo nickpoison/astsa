@@ -1,8 +1,7 @@
 ar.boot = function(series, order.ar, nboot=500, seed=NULL, plot=TRUE, ...){
 
-#ar.yw   = stats::ar.yw
-#na.omit = stats::na.omit
-num     = length(series)
+
+num = length(series)
 
 # estimate parameters
 tspar  = tsp(series)
@@ -43,7 +42,7 @@ var.star  = unname(apply(x.sim, 2, var))
 
 
 cat('Quantiles:', "\n")
-print(apply(phi.star, 2, stats::quantile, c(.01,.025,.05,.1,.25,.50,.75,.9,.95,.975,.99)), digits=4 )
+print(apply(phi.star, 2, quantile, c(.01,.025,.05,.1,.25,.50,.75,.9,.95,.975,.99)), digits=4 )
 cat('\n')
 cat('Mean:', "\n") 
 print(colMeans(phi.star), digits=4)
@@ -75,20 +74,3 @@ return(invisible(out))
 
 }
 
-# the old if plot:
-  # old.par = par(no.readonly = TRUE)
-  # pairs(phi.star, col=astsa.col(col,.4), pch=19, diag.panel=.panhist, oma=rep(2,4), horOdd = TRUE, verOdd = FALSE)
-  # par(old.par)
-
-# with:
-
-# .panhist <- function(x, ...){
-#     usr <- par("usr") 
-#     par(usr = c(usr[1:2], 0, 1.5) )
-#     h <- hist(x, plot = FALSE, breaks='FD')
-#     breaks <- h$breaks; nB <- length(breaks)
-#     y <- h$counts; y <- y/max(y)
-#     rect(breaks[-nB], 0, breaks[-1], y, ...)
-#     u = stats::quantile(x, c(.025,.50,.975))
-#     abline(v=u, col=6, lty=2)
-# }

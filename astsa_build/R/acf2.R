@@ -1,10 +1,8 @@
 acf2 <-
 function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action=na.pass, ...){
-#  acf       = stats::acf
-#  pacf      = stats::pacf
-#  frequency = stats::frequency
-  num       = length(series)
-  xfreq     = frequency(series)
+
+  num   = length(series)
+  xfreq = frequency(series)
 
   if (num < 3) stop("More than 2 observations are needed")
   if (num > 59 & is.null(max.lag))  max.lag = max(ceiling(10+sqrt(num)), 4*xfreq) 
@@ -17,8 +15,6 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action=na.pas
   LAG  = (1:max.lag)/xfreq
 
  if(plot){
-#   abline = graphics::abline
-   par = graphics::par
    U = (-1/num) + (2/sqrt(num))
    L = (-1/num) - (2/sqrt(num))
    old.par <- par(no.readonly = TRUE)

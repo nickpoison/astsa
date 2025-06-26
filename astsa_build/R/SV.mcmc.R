@@ -136,9 +136,6 @@ SV.mcmc = function(y, nmcmc=1000, burnin=100, init=NULL, hyper=NULL, tuning=NULL
  
 
 # plots
-legend  = graphics::legend
-par     = graphics::par
-abline  = graphics::abline
 old.par = par(no.readonly = TRUE)
 parms   = cbind(phi, sigma, beta)
 names   = c(expression(phi), expression(sigma), expression(beta))
@@ -157,7 +154,7 @@ for (i in 1:3){
    legend("topright", legend=paste('ESS = ', round(ess, digits=1)), adj=.1, 
            bg=gray(1,.65), inset=c(.01,.02), box.col=gray(.8))
   hist(parms[,i],   main='', xlab='', col=astsa.col(culer[i], .4))
-  abline(v=c(stats::quantile(parms[,i], probs=c(.025,.5,.975))), col=8)
+  abline(v=c(quantile(parms[,i], probs=c(.025,.5,.975))), col=8)
 }  
 
 cat("Press [Enter] or [Left Mouse] on the active graphic device", "\n")
@@ -191,10 +188,10 @@ par(old.par)
   #   beta - state noise scale
   
   T = length(y)
-  x = matrix(0, N, T); # Particles
-  a = matrix(0, N, T); # Ancestor indices
-  w = matrix(0, N, T); # Weights
-  x[,1] = 0; # Deterministic initial condition
+  x = matrix(0, N, T) # Particles
+  a = matrix(0, N, T) # Ancestor indices
+  w = matrix(0, N, T) # Weights
+  x[,1] = 0 # Deterministic initial condition
   x[N,1] = X[1] 
   
   for (t in 1:T){
@@ -221,16 +218,16 @@ par(old.par)
     exp_now = exp(x[,t])
     temp = (y[t]/beta)^2
     logweights = -sum(log(beta)) - (1/2)*x[,t] - 0.5*(sum(temp)/exp_now) # (up to an additive constant)
-    const = max(logweights); # Subtract the maximum value for numerical stability
+    const = max(logweights) # Subtract the maximum value for numerical stability
     weights = exp(logweights-const)
     w[,t] = weights/sum(weights) # Save the normalized weights
   }#end FOR
   
   # Generate the trajectories from ancestor indices
-  ind = a[,T];
+  ind = a[,T]
   for(t in (T-1):1){
-    x[,t] = x[ind,t];
-    ind = a[ind,t];
+    x[,t] = x[ind,t]
+    ind = a[ind,t]
   }#end
   list(x=x, w=w)
 }#end

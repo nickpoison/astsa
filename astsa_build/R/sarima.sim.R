@@ -92,7 +92,6 @@ return(x)
 .arima_sim <-
 function(model, n, innov, ...)
 {
-#    filter = stats::filter
     if (length(innov) < n)
       warning(paste("the number of innovations should be at least 'n + burnin' = ", n))
     if (n <= 0L) 

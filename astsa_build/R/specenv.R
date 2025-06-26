@@ -10,7 +10,7 @@ function(xdata, section=NULL, spans=NULL, kernel=NULL, taper=0,
      x = xdata[section,] 
     }	 
   } else {
-   if ( !is.matrix(xdata) || !all(xdata %in% c(0,1)) || !all(base::rowSums(xdata)==1) ) 
+   if ( !is.matrix(xdata) || !all(xdata %in% c(0,1)) || !all(rowSums(xdata)==1) ) 
      stop("Input must be indicators, use 'dna2vector' to preprocess the data.")
    if  (is.null(section)) { x = xdata[,-ncol(xdata)] 
     } else {
@@ -21,7 +21,7 @@ function(xdata, section=NULL, spans=NULL, kernel=NULL, taper=0,
    }  	
 xspec = mvspec(x, spans=spans, kernel=kernel, taper=taper, detrend=FALSE, plot=FALSE)  
 fxxr  = Re(xspec$fxx)  # fxxr is real(fxx) 
-Var   = stats::var(x)  # var-cov matrix 
+Var   = var(x)  # var-cov matrix 
 Q     = Var %^% -.5
 
 # compute spec env and scale vectors     
