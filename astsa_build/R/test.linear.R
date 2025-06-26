@@ -1,15 +1,13 @@
 test.linear <-
 function(series, color=TRUE, detrend=FALSE, main=NULL){
+
   if (NCOL(series)>1){stop("univariate series only")}
-  x = series - mean(series)
+  if (detrend) { x = detrend(series) 
+        } else { x = series - mean(series) 
+  }
   N = length(x)       #  data length
   L = floor(N^.49)    # block width
   P = floor(N/L)      # number of blocks
-  if (detrend) {
-     t     <- 1:N - (N + 1)/2
-     sumt2 <- N * (N^2 - 1)/12
-     x     <- x - sum(x*t)*t/sumt2
-      }
 
  #  dft for each block
   X = matrix(NA, L, P)
