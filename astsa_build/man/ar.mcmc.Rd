@@ -57,7 +57,8 @@ Springer text.
 }
 \value{In addition to the graphics (if plot is TRUE), 
 the  draws of each parameter (\code{phi0, phi1, ..., sigma})
- are returned invisibly and various quantiles are displayed.  
+are returned invisibly and means, standard deviations, and
+various quantiles are displayed.  
 }
 \author{
 D.S. Stoffer

@@ -42,9 +42,14 @@ numer = 0:porder
 colnames(phit) = paste('phi', numer, sep="")
 u     = cbind(phit, sigma)
 
-cat('Quantiles:', "\n")
+cat('\nMeans:', "\n")
+print(apply(u,2,mean), digits=4)
+cat('\nStd.Devs:', "\n")
+print(apply(u,2,sd), digits=4)
+cat('\nQuantiles:', "\n")
 print(apply(u, 2, quantile, c(.01,.025,.05,.1,.25,.50,.75,.9,.95,.975,.99)), digits=4 )
 cat('\n')
+
 
 if (plot){
   tspairs(u, smooth=FALSE, ...)

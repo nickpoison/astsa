@@ -12,11 +12,11 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action=na.pas
 
   ACF  = acf(series, lag.max=max.lag, plot=FALSE, na.action = na.action,...)$acf[-1]
   PACF = pacf(series, lag.max=max.lag, plot=FALSE, na.action = na.action, ...)$acf
-  LAG  = (1:max.lag)/xfreq
 
  if(plot){
    U = (-1/num) + (2/sqrt(num))
    L = (-1/num) - (2/sqrt(num))
+   LAG  = (1:max.lag)/xfreq
    old.par <- par(no.readonly = TRUE)
    if (is.null(ylim)) { 
     minA=min(ACF)  

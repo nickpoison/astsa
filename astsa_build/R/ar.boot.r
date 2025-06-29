@@ -1,12 +1,11 @@
 ar.boot = function(series, order.ar, nboot=500, seed=NULL, plot=TRUE, ...){
 
-
 num = length(series)
 
 # estimate parameters
 tspar  = tsp(series)
 arp    = order.ar
-fit    = ar.yw(series, order=arp, aic=FALSE) 
+fit    = ar.yw(series, aic=FALSE, order.max=arp) 
 m      = fit$x.mean               # estimate of mean
 phi    = fit$ar                   # estimate of phis
 resids = na.omit(fit$resid)       # the residuals

@@ -4,8 +4,8 @@ importFrom("grDevices", "adjustcolor", "cm.colors", "dev.flush", "dev.hold",
               "dev.new", "gray", "palette", "recordPlot", "rgb", "xy.coords")
 importFrom("graphics", "abline", "axis", "axTicks", "barplot", "box", 
               "filled.contour", "grid", "hist", "layout", "legend", "lines", 
-              "mtext", "pairs", "par", "plot", "plot.new", "points", "polygon",
-              "rect", "text", "title") 
+              "mtext", "pairs", "par", "pie", "plot", "plot.new", "points", 
+              "polygon", "rect", "text", "title") 
 importFrom("stats", "acf", "AIC", "ar", "ar.yw", "arima", "ARMAtoMA", "as.ts", 
               "BIC", "Box.test", "ccf", "coef", "cor", "cov2cor", "df.kernel", 
               "diffinv", "dnorm", "fft", "filter", "frequency", "is.ts", 

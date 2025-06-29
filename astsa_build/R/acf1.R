@@ -18,8 +18,6 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
    ACF = acf(series, lag.max=max.lag, plot=FALSE, na.action = na.action, ...)$acf[-1]
   }
 
-  LAG = (1:max.lag)/xfreq
-
  if(plot){ 
   U = (-1/num) + (2/sqrt(num))
   L = (-1/num) - (2/sqrt(num))
@@ -34,6 +32,7 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
   Ylab = ifelse(pacf, 'PACF', 'ACF')  
   if (!is.null(ylab)) Ylab=ylab
   if (!is.null(xlab)) Xlab=xlab
+  LAG = (1:max.lag)/xfreq
   tsplot(LAG, ACF, ylim=ylim, main=main, xlab=Xlab, ylab=Ylab, type='h', ...)
   abline(h=c(0,L,U), lty=c(1,2,2), col=c(8,4,4))
   return(round(ACF, 2)) 
