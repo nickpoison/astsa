@@ -191,6 +191,20 @@ barplot(rep(1,8), col=astsa.col(3:6, .5), names=rep(3:6, 2), add=TRUE)
 **Notice each color display has diagonal lines behind it to demonstrate opacity.**
 
 <img src="figs/palette.png" alt="palette"  width="70%">
+<br/><br/>
+
+###  Color Wheel
+
+&#127752; NEW &#127752;: `astsa.col` now can create a _color wheel_ with a user specified number of colors based on a chosen color.  Also included is the option to show a pie chart of the colors for inspection before use.  Here's some examples (with bells and whistles):
+
+```r
+par(mfrow=2:1, mar=rep(0,4))
+astsa.col(4, wheel=TRUE, pie=TRUE, num=10) -> u
+ legend('topright', legend=u, fill=u, title='Hex Color Code')
+x = replicate(6, 15+sarima.sim(ar=c(1.5,-.75), n=100))
+tsplot(x, ylab='Xs', main='six slick sick series', spag=TRUE, col=astsa.col(4, alpha=.7, wheel=TRUE, num=6), lwd=3)
+```
+<img src="figs/wheel.png" alt="color wheel"  width="70%"> <br/>
 
 
 
