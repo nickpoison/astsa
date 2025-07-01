@@ -13,7 +13,7 @@ astsa.col <- function(col=1, alpha=1, wheel=FALSE, pie=FALSE, num) {
     s   = hsv[2]
     v   = hsv[3]
    hues = seq(h, h + 1, by=1/num)[1:num] %% 1
-   culers = adjustcolor(hsv(hues, s, v, alpha=alpha))
+   culers =  hsv(hues, s, v, alpha=alpha)
    if (pie){ pie(rep(1,num), col=culers) }
    return(culers)
   }
