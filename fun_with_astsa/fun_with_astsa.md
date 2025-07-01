@@ -27,6 +27,7 @@ it's more than just data ... it's a palindrome
   * [1. Data](#1-data)
   * [2. Plotting](#2-plotting)
      * [astsa Color Palette](#colors)
+     * [Color Wheels](#color-wheel)
      * [Time Series Plots](#tsplot)
      * [Lag Plots](#lag-plots)
      * [Time Series Scatterplots](#scatterplots)
