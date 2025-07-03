@@ -54,7 +54,7 @@ The results are the parameter estimates, standard errors, AIC, AICc, BIC and dia
 \item{fit }{[[1]] an object of class \code{Arima} with more information than you need}
 \item{sigma2 }{[[2]] the estimate of the noise variance}
 \item{degrees_of_freedom }{[[3]] error degrees of freedom}
-\item{ttable }{[[4]] a little t-table with two-sided p-values}
+\item{t.table }{[[4]] a little t-table with two-sided p-values}
 \item{ICs }{[[5]] AIC  -  AICc  -  BIC} 
 }
 \references{You can find demonstrations of  astsa capabilities at  
