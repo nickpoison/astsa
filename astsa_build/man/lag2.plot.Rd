@@ -7,7 +7,7 @@
 \usage{
 lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1), 
           bg = NA, lwl = 1, lwc = 2, bgl = NULL, ltcol = 1, box.col = NULL, cex = .9, 
-          gg = FALSE, ...)
+          gg = FALSE, location="topright", ...)
 }
 \arguments{
   \item{series1}{first series (the one that gets lagged)
@@ -38,6 +38,9 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
 }
   \item{gg}{if TRUE, will produce a gris-gris plot (gray graphic interior with white grid lines); the default is FALSE. The grammar of astsa is voodoo
 }
+ \item{location}{ 
+the location of the CCF legend with options \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"} (the default), \code{"right"} and \code{"center"}.  
+}
   \item{\dots}{additional graphical parameters
 }
 }
@@ -55,7 +58,7 @@ The webpages for the texts and some help on using R for time series analysis can
 }
 \examples{
 lag2.plot(Hare, Lynx, max.lag=5, lwl=2, lwc=3, cex=1.5, pch=24, bg='orange')
-lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, lwl=2)
+lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, lwl=2, location="bottomleft")
 }
 \seealso{\code{\link{lag1.plot}}}
 \keyword{ ts }

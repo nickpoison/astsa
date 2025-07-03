@@ -7,7 +7,7 @@
 \usage{
 lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1), 
            bg = NA, lwl = 1, lwc = 2, bgl = NULL, ltcol = 1, box.col = NULL, 
-           cex = .9, gg = FALSE, ...)
+           cex = .9, gg = FALSE, location="topright", ...)
 }
 \arguments{
   \item{series}{the data
@@ -36,6 +36,9 @@ lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1),
 }
   \item{gg}{if TRUE, will produce a gris-gris plot (gray graphic interior with white grid lines); the default is FALSE. The grammar of astsa is voodoo
 }
+ \item{location}{ 
+the location of the ACF legend with options \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"} (the default), \code{"right"} and \code{"center"}.  
+}
   \item{...}{additional graphical arguments
 }
 }
@@ -53,6 +56,7 @@ The webpages for the texts and some help on using R for time series analysis can
 }
 \examples{
 lag1.plot(log(varve), max.lag=9)
+lag1.plot(log(varve), max.lag=9, location='bottomright', col=5)
 lag1.plot(soi, 12, cex=1, pch=19, col=astsa.col(4, .3), gg=TRUE)
 }
 \seealso{\code{\link{lag2.plot}}}

@@ -1,6 +1,7 @@
 lag2.plot <-
 function(series1, series2, max.lag=0, corr=TRUE, smooth=TRUE, col=gray(.1), bg=NA,
-         lwl=1, lwc=2, bgl=NULL, ltcol=1, box.col=NULL, cex=.9, gg=FALSE, ...){ 
+         lwl=1, lwc=2, bgl=NULL, ltcol=1, box.col=NULL, cex=.9, gg=FALSE, 
+         location="topright", ...){ 
 #
   name1  = paste(deparse(substitute(series1)),"(t-",sep="")
   name10 = paste(deparse(substitute(series1)),"(t)",sep="")
@@ -31,7 +32,7 @@ function(series1, series2, max.lag=0, corr=TRUE, smooth=TRUE, col=gray(.1), bg=N
   if (smooth) 
    lines(lowess(u[,1], u[,2]), col=lwc, lwd=lwl)
   if (corr){ 
-   legend("topright", legend=format(round(a[m1-h], digits=2),nsmall=2), 
+   legend(location, legend=format(round(a[m1-h], digits=2),nsmall=2), 
            text.col=ltcol, bg=bgl, adj=.25, box.col=box.col, cex=.8)
   if (gg) { box(col=gray(1)) } else { box(col=gray(.62)) }
  }

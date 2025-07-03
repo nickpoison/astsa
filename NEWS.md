@@ -30,6 +30,8 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 > It's version 2.3 now, but it's not going on CRAN until the 2nd edition of the data analysis book is out (no date yet).
 
+- `lag1.plot` and `lag2.plot` now have an option to change the `location` of the correlation display.
+
 - `astsa.col`  gets an expansion to include making "color wheel" of arbitrary length... details in the help file (obviously).
 
 - `ttable` is new (but it's not a time series thing) ... it works like `summmary` for an `lm` object but it's a little cleaner and includes AIC, AICc, and BIC.  There is also the option to get VIFs (if appropriate).
