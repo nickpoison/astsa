@@ -7,7 +7,7 @@
 \usage{
 sarima.for(xdata, n.ahead, p, d, q, P=0, D=0, Q=0, S=-1, tol = sqrt(.Machine$double.eps),
          no.constant = FALSE, plot = TRUE, plot.all = FALSE,  ylab = NULL,
-         xreg = NULL, newxreg = NULL, fixed = NULL, ...)
+         xreg = NULL, newxreg = NULL, fixed = NULL, pcol = 2, ...)
 }
 \arguments{
   \item{xdata}{univariate time series
@@ -45,6 +45,8 @@ sarima.for(xdata, n.ahead, p, d, q, P=0, D=0, Q=0, S=-1, tol = sqrt(.Machine$dou
 }
   \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
 }
+  \item{pcol}{color of the predictions in the graphic.
+}
   \item{...}{additional graphical arguments
 }
 }
@@ -67,10 +69,9 @@ The webpages for the texts and some help on using R for time series analysis can
 
 \seealso{\code{\link{sarima}}}
 \examples{
-sarima.for(log(AirPassengers),12,0,1,1,0,1,1,12) 
 
-# fun with the graphic 
-sarima.for(log(AirPassengers),12,0,1,1,0,1,1,12, gg=TRUE, col=4, main='arf') 
+sarima.for(gtemp_both, 6, d=1, q=1, col=6, pcol=4, gg=TRUE)
+
 
 # with regressors 
 nummy   = length(soi)

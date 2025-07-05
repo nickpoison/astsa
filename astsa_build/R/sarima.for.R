@@ -1,7 +1,7 @@
 sarima.for <-
 function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
          no.constant=FALSE, plot=TRUE, plot.all=FALSE, ylab=NULL,
-         xreg = NULL, newxreg = NULL, fixed=NULL, ...){ 
+         xreg = NULL, newxreg = NULL, fixed=NULL, pcol=2, ...){ 
 
   if (missing(p)) p=0
   if (missing(d)) d=0
@@ -17,7 +17,7 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
    fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
             xreg=xmean,include.mean=FALSE,fixed=fixed,transform.pars=trans,
             optim.control=list(reltol=tol))
-    nureg=matrix(1,n.ahead,1); if(no.constant) nureg=NULL
+    if (no.constant) nureg=NULL else nureg=rep(1,n.ahead)
   } else if (xor(d==1, D==1) & no.constant==FALSE) {
    fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
             xreg=constant,fixed=fixed,transform.pars=trans,
@@ -33,7 +33,6 @@ function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
               D, Q), period = S), xreg = xreg, fixed=fixed, transform.pars=trans)
       nureg = newxreg 
   }
-
 
 
 ##--##
@@ -63,7 +62,7 @@ fore <- predict(fitit, n.ahead, newxreg=nureg)
      polygon(xx, yy, border=8, col=gray(.6, alpha=.2) ) 
       yy1 = c(L1, rev(U1))
      polygon(xx, yy1, border=8, col=gray(.6, alpha=.2) ) 
-     lines(fore$pred, col=2, type="o")
+     lines(fore$pred, col=pcol, type="o")
   } 
   return(fore)
 }
