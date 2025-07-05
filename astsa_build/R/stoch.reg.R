@@ -2,6 +2,12 @@ stoch.reg <-
 function(xdata, cols.full, cols.red=NULL, alpha, L, M, plot.which, col.resp=NULL, ...)  {
 #
 ##############################################################################
+## This is based on code contributed by:
+##  Professor Douglas P. Wiens 
+##  Department of Mathematical and Statistical Sciences
+##  University of Alberta         
+##  https://sites.ualberta.ca/~dwiens/    
+#
 # This function computes the spectral matrix, F statistics and coherences, and plots them.
 # Returned as well are the coefficients in the impulse response function.
 #

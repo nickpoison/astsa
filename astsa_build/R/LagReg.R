@@ -5,7 +5,7 @@ function(input, output, L=c(3,3), M=40, threshold=0, inverse=FALSE){
 ##  Professor Douglas P. Wiens 
 ##  Department of Mathematical and Statistical Sciences
 ##  University of Alberta         
-##  http://www.stat.ualberta.ca/%7Ewiens/wiens.html    
+##  https://sites.ualberta.ca/~dwiens/    
 ######################################
 
 L = 2*floor((L-1)/2)+1     # make sure L is odd (can be vector)
