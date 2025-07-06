@@ -1,7 +1,7 @@
 tspairs <-
     function(x, main=NA, pt.col=astsa.col(4,.6), pt.size=1.1, lab.size=1.25, 
              title.size=1.5, scale=1, corr=TRUE, smooth=TRUE, lwl=1, lwc=2, gg=FALSE, 
-             hist.diag=TRUE, col.diag=4, ...)
+             hist.diag=TRUE, col.diag=4, location='topright', ...)
 {
     nser <- NCOL(x)
     if (nser < 2) stop('need at least 2 series')
@@ -30,7 +30,7 @@ tspairs <-
       if (smooth) { lines(lowess(x[,i], x[,j]), col=lwc, lwd=lwl) }
       if (corr) {
        if (gg) { bgc=gray(.92,.3) } else { bgc=gray(1,.3) }
-        legend("topright", legend=format(round(Corr[i,j], digits=2), nsmall=2),  
+        legend(location, legend=format(round(Corr[i,j], digits=2), nsmall=2),  
                 box.col=gray(1,0), bg=bgc, adj=.25)
       }
       if (gg) { box(col=gray(.8)) } else { box(col=gray(.62)) } 

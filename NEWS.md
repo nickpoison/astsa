@@ -42,7 +42,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 - and after beautifying `mvspec`, the multivariate auto/cross- correlation matrix plot `acfm` is now more beautiful than ever.
 
-- in `sarima` and `sarima.for`, the orders `p, d, q` no longer have to be specified if they are zero... so for example `sarima(x, p=2, q=1)` and `sarima.for(x, 10, p=2)` will work now ... the original way still works: `sarima(x, 2,0,1)` and `sarima.for(x, 10, 2,0,0)` 
+- in `sarima` and `sarima.for`, the orders `p, d, q` no longer have to be specified if they are zero... so for example `sarima(x, p=2, q=1)` and `sarima.for(x, 10, p=2)` will work now ... the original way still works: `sarima(x, 2,0,1)` and `sarima.for(x, 10, 2,0,0)`. Also, `sarima.for` now has an option to change the color of the forecasts (default red) in the graphic.
 
 - `ar.boot` added more output ... the bootstrapped mean and noise variance values and the results of the initial estimation of the data.
 

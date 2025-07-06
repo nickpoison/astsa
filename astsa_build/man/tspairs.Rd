@@ -8,8 +8,8 @@ Produces a matrix of scatterplots with the time series (or a histogram) plotted 
 }
 \usage{
 tspairs(x, main = NA, pt.col = astsa.col(4, 0.6), pt.size = 1.1, lab.size = 1.25, 
-        title.size = 1.5, scale = 1, corr = TRUE, smooth = TRUE, lwl = 1, 
-        lwc = 2, gg = FALSE, hist.diag = TRUE, col.diag = 4, ...)
+        title.size = 1.5, scale = 1, corr = TRUE, smooth = TRUE, lwl = 1, lwc = 2, 
+        gg = FALSE, hist.diag = TRUE, col.diag = 4, location='topright', ...)
 }
 \arguments{
   \item{x}{
@@ -53,6 +53,9 @@ if TRUE (default), will plot histograms on the diagonal; if FALSE, time plots of
 }
   \item{col.diag}{
 color for the diagonal plots.
+}
+ \item{location}{ 
+the location of the ACF legend with options \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"} (the default), \code{"right"} and \code{"center"}.  
 }
   \item{\dots}{
 additional graphic parameters.
