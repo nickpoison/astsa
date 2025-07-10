@@ -20,6 +20,7 @@ pre.white = function(series1, series2, diff=FALSE, max.lag=NULL, main=NULL,
  x2 = filter(series2, filter=c(1, -u$ar), sides=1)
 
  both = ts.intersect(as.ts(x1), as.ts(x2))   # line them up
+ colnames(both) = c(nam1, nam2)
 
  if (is.null(main)) main=paste(nam1, " & ", nam2)
 
