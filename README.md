@@ -36,12 +36,4 @@ We won't always push the latest version of the package to CRAN, but the latest w
 <br/>
 
 
-[![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp; 
-[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) &nbsp;
-
-
-<br/>
-
- ![](https://komarev.com/ghpvc/?username=nickpoison&color=blueviolet&base=66666&label=GUESTS )
-
-<!-- <sup> ＧＵＥＳＴＳ: </sup> ![Visitor Count](https://profile-counter.glitch.me/nickpoison/count.svg)-->
+[![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) &nbsp; ![](https://komarev.com/ghpvc/?username=nickpoison&color=blueviolet&base=66666&label=Guests )
