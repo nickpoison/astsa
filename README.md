@@ -42,5 +42,6 @@ We won't always push the latest version of the package to CRAN, but the latest w
 
 <br/>
 
-<sup> ＧＵＥＳＴＳ: </sup>  ![Visitor Count](https://profile-counter.glitch.me/nickpoison/count.svg)
+ ![](https://komarev.com/ghpvc/?username=nickpoison&color=blueviolet&base=66666&label=GUESTS )
 
+<!-- <sup> ＧＵＥＳＴＳ: </sup> ![Visitor Count](https://profile-counter.glitch.me/nickpoison/count.svg)-->
