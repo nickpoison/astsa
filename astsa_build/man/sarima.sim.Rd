@@ -39,7 +39,9 @@ optional; a function to generate the innovations (defaults to normal)
   \item{innov}{	
 an optional times series of innovations. If not provided, rand.gen is used.
 }
-  \item{burnin}{length of burn-in (a non-negative integer). If \code{NA} (the default) a reasonable value is selected.
+  \item{burnin}{
+length of burn-in (a non-negative integer). If \code{NA}, or not a positive
+integer, or a vector, a reasonable value is selected.  
 }
   \item{t0}{
 start time (defaults to 0)

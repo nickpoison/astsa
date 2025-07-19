@@ -2,6 +2,7 @@ sarima.sim <-
 function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
           n=500, rand.gen=rnorm, innov=NULL, burnin=NA, t0=0, ...)
 { 
+  if (length(burnin) > 1) burnin = burnin[1]
   if (length(ar)==1 && ar==0) ar=NULL
   if (length(ma)==1 && ma==0) ma=NULL  
   po = length(ar)
@@ -19,7 +20,8 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
        { stop("the seasonal period 'S' is not specified") }
   if (is.na(burnin)) burnin = 50 + po + qo + d 	   
   if (burnin != round(burnin) || burnin < 0) { 	 
-       stop("'burnin' must be a non-negative integer")        
+      burnin = 50 + po + qo + d  # goes to default
+      # stop("'burnin' must be a non-negative integer")        
    }
 
   num = n + burnin   
@@ -72,7 +74,8 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    maorder = length(manew)
    if (is.na(burnin))  burnin = 50 + (D + Po + Qo)*S + d + po + qo
    if (burnin != round(burnin) || burnin < 0) {  
-       stop("'burnin' must be a non-negative integer")         
+        burnin = 50 + (D + Po + Qo)*S + d + po + qo  # default
+        # stop("'burnin' must be a non-negative integer")         
    }
    num = n + burnin
    if (is.null(innov)) innov = rand.gen(num, ...)
