@@ -15,7 +15,7 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 > If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  After successful installation, the best thing to do is to restart R and load the new `astsa`.
 
- &#128038; __Right now,  the 2 versions are NOT the same.__
+ &#128038; __Right now,  the 2 versions (GitHub and CRAN) are NOT the same.__
 
 ---
 
@@ -52,7 +52,9 @@ In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I
 
 - added &#127381; `USpop20` &#127381; which is an update to `USpop` to include the 2020 census... it's used in the upcoming 2nd edition of _Time Series: A Data Analysis Approach..._ because it's not fun to forecast the past and time keeps on slippin' into the future.
 
-- in `scatter.hist`, the &hellip; (optional settings) now work on the `Grid`  - like `scatter.hist(tempr, cmort, col=6, lwd=2)` changes the grid - other things still have their own setting  like point color and histogram color.
+- in `scatter.hist`, the &hellip; (optional settings) now work on the `Grid`  - like `scatter.hist(tempr, cmort, nxm=5)` adds more minor x-axis ticks/lines to the grid - other things still have their own setting  like point color and histogram color.
+
+- in `ESS`, added an argument to control the number of `digits` printed by `round` (2 is now the default but -1, 0, or 1 might be better).
 
 <br/>
 

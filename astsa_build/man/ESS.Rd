@@ -7,7 +7,7 @@ Effective Sample Size (ESS)
 Estimates the ESS of a given vector of samples.
 }
 \usage{
-ESS(trace, tol = 1e-08, BIC = TRUE)
+ESS(trace, tol = 1e-08, BIC = TRUE, digits=2)
 }
 \arguments{
   \item{trace}{
@@ -20,10 +20,14 @@ ESS is returned as zero if the estimated spectrum at frequency zero is less than
 if TRUE (default), \code{spec0} is obtained using BIC;
 otherwise, AIC is used.  See the details.
 }
+  \item{digits}{
+integer indicating the approximate number of decimal places to be used
+}
 }
 \details{
-Uses \code{\link{spec.ic}} to estimate the spectrum of the input at frequency zero (\code{spec0}). Then, ESS is estimated as
-\code{ESS = length(trace)*var(trace)/spec0}.  
+Uses \code{\link{spec.ic}} to estimate the spectrum of the input at frequency zero (\code{spec0}). Then, ESS is estimated as \code{ESS = length(trace)*var(trace)/spec0}.  See Examples for multivariate case. 
+
+ESS is discussed in detail in Example 6.31 of \href{https://link.springer.com/book/10.1007/978-3-031-70584-7}{Time Series Analysis and Its Applications: With R Examples (5th ed, 2025)}. 
 }
 \value{
 Returns the estimated ESS of the input.
@@ -42,10 +46,12 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \examples{
-# Fit an AR(2) to the Recruitment series
-u = ar.mcmc(rec, porder=2, n.iter=1000, plot=FALSE) 
-# then calculate the ESSs 
-apply(u, 2, ESS)
+# How autocorrelation affects ESS
+x   = matrix(NA, 500, 3)  # sample size is 500
+phi = c(0,.3,.9)          # no, low, high
+for (i in 1:3) x[,i] = sarima.sim(ar=phi[i])
+apply(x, 2, ESS, digits=-1)
+
 }
 \keyword{ ts }
 

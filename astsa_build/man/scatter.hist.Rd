@@ -61,5 +61,10 @@ The webpages for the texts and some help on using R for time series analysis can
 \examples{
 scatter.hist(tempr, cmort, hist.col=astsa.col(5,.4), pt.col=5, pt.size=1.5, reset=FALSE)
 lines(lowess(tempr, cmort), col=6)
+
+
+scatter.hist(diff(log(econ5[,'gnp'])), diff(log(econ5[,'unemp'])), nxm=5, pt.size=2, 
+    col=astsa.col(6,.1), pt.col=astsa.col(4, alpha=.6, wheel=TRUE, num=25), hist='green3')
+
 }
  
