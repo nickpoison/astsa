@@ -5,7 +5,7 @@ function(col=1, alpha=1, wheel=FALSE, pie=FALSE, num, sat=NULL, val=NULL){
    culers = u[(col+7)%%8 + 1]
    culers = adjustcolor(culers, alpha.f=alpha)
    if (pie){ pie(rep(1,length(col)), col=culers) }
-   return(culers)
+   invisible(culers)
   } else {  # make wheel
    if (missing(num)) num = readline(prompt="How many colors do you want? ")
    num = as.integer(num)
@@ -16,7 +16,7 @@ function(col=1, alpha=1, wheel=FALSE, pie=FALSE, num, sat=NULL, val=NULL){
    hues = seq(h, h + 1, by=1/num)[1:num] %% 1
    culers =  hsv(hues, s, v, alpha=alpha)
    if (pie){ pie(rep(1,num), col=culers) }
-   return(culers)
+   invisible(culers)
   }
 }
 
