@@ -9,7 +9,7 @@ The script does one of two things.
 [2] Create a color wheel of a chosen number of colors from a base color.
 }
 \usage{
-astsa.col(col=1, alpha=1, wheel=FALSE, pie=FALSE, num, sat=NULL, val=NULL)
+astsa.col(col=1, alpha=1, wheel=FALSE, pie=FALSE, num, sat=NULL, val=NULL, ...)
 }
 \arguments{
   \item{col}{
@@ -37,6 +37,9 @@ from the base color is used.
   \item{val}{
 factor in [0, 1] setting the 'value' (brightness) of the colors.  If NULL, the value
 from the base color is used. 
+}
+  \item{\dots}{
+other graphical parameters for the pie chart; see \code{\link{pie}}.
 }
 }
 \value{
@@ -87,9 +90,11 @@ rgb2hsv(col2rgb(4))
 
 # Wheels of fortune
 vanna = par(no.readonly = TRUE)
-par(mfrow=1:2)
+par(mar=rep(0, 4))
+layout( matrix(c(1,3,2,3), 2) )
 astsa.col(4, wheel=TRUE, num=8, pie=TRUE)
-astsa.col(4, wheel=TRUE, num=8, pie=TRUE, sat=.5)
+astsa.col(4, wheel=TRUE, num=8, pie=TRUE, sat=.6, val=.9)
+astsa.col(2, wheel=TRUE, num=100, pie=TRUE, border=FALSE, labels=NA)
 
 
 # I'd like to solve the puzzle
