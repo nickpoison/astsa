@@ -63,8 +63,9 @@ D.S. Stoffer
 \examples{
 \dontrun{
 
-ar.boot(rec, 2, hist=FALSE)  # traces on the diagonal
-u = ar.boot(rec, 2)          # histogram on the diagonal
+u = ar.boot(rec, 2)
+dev.new()
+tspairs(u[[1]], hist=FALSE)   # another view of results
 head(u[[1]])       # some booted AR parameters
 head(u[[2]][,1:5]) # some booted data
 }
