@@ -34,7 +34,7 @@ Maximum lag.  Can be omitted. Unless \eqn{n < 60}, defaults to \eqn{\sqrt{n} + 1
 }
 \value{\item{ACF}{The sample ACF or PACF}
 }
-\details{Will print and/or plot the sample ACF or PACF (if \code{pacf=TRUE}). The zero lag of the ACF (which is always 1) has been removed. If \code{plot=TRUE}, a graph is produced and the values are rounded and listed. If FALSE, no graph is produced and the values are listed but not rounded by the script. The error bounds are approximate white noise bounds, \eqn{-1/n  \pm 2/\sqrt{n}}; no other option is given.
+\details{Will print and/or plot the sample ACF or PACF (if \code{pacf=TRUE}). The zero lag of the ACF (which is always 1) has been removed. If \code{plot=TRUE}, a graph is produced and the values are rounded and listed. If \code{plot=FALSE}, no graph is produced and the values are listed but not rounded by the script. The error bounds are approximate white noise bounds, \eqn{-1/n  \pm 2/\sqrt{n}}; no other option is given.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

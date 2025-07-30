@@ -4,9 +4,7 @@
 Quick Kalman Smoother
 } 
 \description{
-Returns the smoother values for various linear  state space models. The predicted and filtered values and
- the likelihood at the given parameter values are also returned (via \code{Kfilter}). 
- This script replaces \code{Ksmooth0}, \code{Ksmooth1}, and \code{Ksmooth2}.
+Returns the smoother values for various linear  state space models. The predicted and filtered values and  the likelihood at the given parameter values are also returned (via \code{Kfilter}). 
 }
 \usage{
 Ksmooth(y, A, mu0, Sigma0, Phi, sQ, sR, Ups = NULL, Gam = NULL, 
@@ -54,11 +52,7 @@ covariance matrix between state and observation errors; not necessary to specify
 either 1 (default) or 2; version 2 allows for correlated errors
 }
 }
-\details{This script replaces \code{Ksmooth0}, \code{Ksmooth1}, and \code{Ksmooth2} by combining all
-cases. The major difference is how to specify the covariance matrices; in particular, 
-\code{sQ = t(cQ)} and \code{sR = t(cR)} where \code{cQ} and \code{cR} were used in \code{Kfilter0-1-2} scripts.
-
-The states \eqn{x_t} are p-dimensional, the data \eqn{y_t} are q-dimensional, and 
+\details{The states \eqn{x_t} are p-dimensional, the data \eqn{y_t} are q-dimensional, and 
 the inputs \eqn{u_t} are r-dimensional for \eqn{t=1, \dots, n}. The initial state is \eqn{x_0 \sim N(\mu_0, \Sigma_0)}.
 
 The measurement matrices \eqn{A_t} can be constant or time varying.  If   time varying, they should be entered as an array of dimension \code{dim = c(q,p,n)}.  Otherwise, just enter the constant value making sure it has the appropriate \eqn{q \times p} dimension.
@@ -82,8 +76,7 @@ where \eqn{S = {\rm Cov}(w_t, v_t)}, and NOT  \eqn{{\rm Cov}(sQ\, w_t, sR\, v_t)
 \emph{NOTE:} If it is easier to model in terms of \eqn{Q} and \eqn{R}, simply input the square root matrices
 \code{sQ = Q \%^\% .5} and \code{sR = R \%^\% .5}.
 
-Note that in either version, \eqn{sQ\, w_t}  has to be p-dimensional, but  \eqn{w_t} does not, and
- \eqn{sR\, v_t}  has to be q-dimensional, but  \eqn{v_t} does not.
+Note that in either version, \eqn{sQ\, w_t}  has to be p-dimensional, but  \eqn{w_t} does not, and  \eqn{sR\, v_t}  has to be q-dimensional, but  \eqn{v_t} does not.
  }
 
  \value{ 
@@ -113,10 +106,6 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}.   
-}
-\note{Note that \code{Ksmooth} is similar to \code{Ksmooth-0-1-2} except that only the essential values need to be entered (and come first in the statement); the optional values such as 
-   \code{input} are set to \code{NULL} by default if they are not needed. This version is faster
-   than the older versions. The biggest change was to how the covarainces are specified. For example, if you have code that used \code{Ksmooth1}, just use \code{sQ = t(cQ)} and \code{sR = t(cR)} here.
 }
 \author{D.S. Stoffer
 }

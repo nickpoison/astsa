@@ -15,7 +15,8 @@ The data are in  units of one  thousand.
 }
 \source{From Odum's "Fundamentals of Ecology",  p. 191.
 Data listed at:\cr
-\kbd{people.whitman.edu/~hundledr/courses/M250F03/LynxHare.txt}.
+\kbd{people.whitman.edu/~hundledr/courses/M250F03/LynxHare.txt}\cr
+scroll down to: Chapter 6, Difference Equations
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

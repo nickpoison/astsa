@@ -111,7 +111,7 @@ mvspec(soi)
 mvspec(soi, log='y')  # on a log scale
 
 # smooth and some details printed
-mvspec(soi, spans=c(7,7), taper=.5)$details[1:45,]
+mvspec(soi, spans=c(7,7), taper=.1)$details[1:45,]
 
 # bivariate example
 deth = cbind(mdeaths, fdeaths)    # two R data sets, male/female monthly deaths ...

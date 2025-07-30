@@ -12,10 +12,11 @@ The script does one of two things.
 astsa.col(col=1, alpha=1, wheel=FALSE, pie=FALSE, num, sat=NULL, val=NULL, ...)
 }
 \arguments{
-  \item{col}{
-[1] a numerical vector representing the colors to change transparency level or
-[2] a color used as a base (if a vector, the first color is chosen) 
-- see Examples
+  \item{col}{Either
+    \enumerate{
+      \item  a numerical vector representing the colors to change transparency level -OR-
+      \item  a color used as a base for a wheel (if a vector, the first color is chosen) 
+   } - see Examples
 }  
   \item{alpha}{
 factor in [0, 1] setting the opacity of all colors. Smaller values are more transparent. 
@@ -43,8 +44,8 @@ other graphical parameters for the pie chart; see \code{\link{pie}}.
 }
 }
 \value{
-[1] a \emph{color vector} using the astsa color palette at the chosen transparency level
-- OR -
+[1] a \emph{color vector} using the astsa color palette at the chosen transparency level\cr
+- OR - \cr
 [2] a \emph{color wheel} of a chosen number \code{num} of colors from a base color
 }
 \details{The astsa color palette is attached when the package is attached. 
