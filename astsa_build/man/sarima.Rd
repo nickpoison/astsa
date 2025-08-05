@@ -57,6 +57,10 @@ The results are the parameter estimates, standard errors, AIC, AICc, BIC and dia
 \item{t.table }{[[4]] a little t-table with two-sided p-values}
 \item{ICs }{[[5]] AIC  -  AICc  -  BIC} 
 }
+
+\note{Missing Data: Yes it's ok if input as \code{NA} and the observations are vector or \code{ts} objects (meaning equally spaced).
+}
+
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
@@ -75,20 +79,20 @@ sarima(rec, 2,0,0)  # data, p, d, and q
 sarima(rec, p=2, details=FALSE)  # minimal output
 
 dog <- sarima(log(AirPassengers), 0,1,1, 0,1,1,12)
-str(dog, vec.len=1) # dog has all the returned values
-tsplot(resid(dog$fit))  # plot the innovations (residuals) 
+tsplot(resid(dog[[1]]))  # plot the innovations (residuals) 
 dog$ICs # view the 3 ICs
 
 # fixed parameters
 x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
 sarima(x, 2,0,0, fixed=c(0,NA,NA))  # phi1 fixed, phi2 and mean free
 
-# fun with diagnostics
-sarima(log(AirPassengers), 0,1,1, 0,1,1,12, gg=TRUE, col=4)
-
 # regression with autocorrelated errors 
 pp = ts.intersect(L = Lynx, L1 = lag(Lynx,-1), H1 = lag(Hare,-1), dframe=TRUE)
 sarima(pp$L, 2,0,0, xreg = cbind(L1=pp$L1, LH1=pp$L1*pp$H1))
+
+# missing data (color and gris-gris added for fun)
+sarima(ar1miss, p=1, col=4, gg=TRUE)
+
 }
 \seealso{\code{\link{sarima.for}}, \code{\link{sarima.sim}} }
 \keyword{ ts }

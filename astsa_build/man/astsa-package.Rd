@@ -23,10 +23,10 @@ David Stoffer <stoffer@pitt.edu>
 }
 \section{Warning}{If loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
 
-(1) Detach it:\cr 
+(1) Detach it if it's loaded but not being used:\cr 
 \verb{   detach(package:dplyr)} 
 
-(2) If you want to use \code{dplyr}, fix it: 
+(2) If you want to use it, fix it: 
 \verb{
    library(dplyr, exclude = c("filter", "lag"))   # load it without the culprits 
    dlag = dplyr::lag            # and fix ... 

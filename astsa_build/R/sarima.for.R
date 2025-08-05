@@ -46,8 +46,8 @@ fore <- predict(fitit, n.ahead, newxreg=nureg)
     U1 = fore$pred + fore$se
     L1 = fore$pred - fore$se
     a  = ifelse(plot.all, 1, max(1,n-100))
-    minx = min(xdata[a:n],L)
-    maxx = max(xdata[a:n],U)
+    minx = min(xdata[a:n],L, na.rm=TRUE)
+    maxx = max(xdata[a:n],U, na.rm=TRUE)
      t1 = xy.coords(xdata, y = NULL)$x 
      if(length(t1)<101) strt=t1[1] else strt=t1[length(t1)-100]
      t2=xy.coords(fore$pred, y = NULL)$x 
