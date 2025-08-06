@@ -68,10 +68,10 @@ function(xdata, p,d,q, P=0,D=0,Q=0,S=-1, details=TRUE, xreg=NULL, Model=TRUE,
    par(cex=.85)
    rs     = fitit$residuals 
    stdres = rs/sqrt(fitit$sigma2)
-   num    = sum(!is.na(rs))
 
 # [1] 
-  tsplot(stdres, main = "Standardized Residuals", ylab = "", col=col, ...)
+    lt = ifelse(any(is.na(xdata)), 'o', 'l') 
+  tsplot(stdres, main = "Standardized Residuals", ylab = "", col=col, type=lt, ...)
     if(Model){
      if (S<0) {
       title(bquote('Model: ('~.(p)*','*.(d)*','*.(q)~')'), adj=0, cex.main=.95) 

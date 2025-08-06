@@ -79,7 +79,7 @@ sarima.for(gtemp_both, 6, d=1, q=1, col=6, pcol=4, gg=TRUE)
 nummy   = length(soi)
 n.ahead = 24 
 nureg   = time(soi)[nummy] + seq(1,n.ahead)/12
-sarima.for(soi,n.ahead,2,0,0,2,0,0,12, xreg=time(soi), newxreg=nureg) 
+sarima.for(soi, n.ahead, 2,0,0, 2,0,0,12, xreg=time(soi), newxreg=nureg) 
 
 # missing data
 sarima.for(ar1miss, n.ahead=5, p=1)

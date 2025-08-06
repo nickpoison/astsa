@@ -74,13 +74,19 @@ The webpages for the texts and some help on using R for time series analysis can
 \source{This is an enhancement of \code{arima} from the \code{stats} package.
 }
 \examples{
+
 # easy to use 
 sarima(rec, 2,0,0)  # data, p, d, and q
-sarima(rec, p=2, details=FALSE)  # minimal output
+# redux - minimal output
+sarima(rec, p=2, details=FALSE)
 
-dog <- sarima(log(AirPassengers), 0,1,1, 0,1,1,12)
-tsplot(resid(dog[[1]]))  # plot the innovations (residuals) 
-dog$ICs # view the 3 ICs
+# fun for the whole family
+dog = sarima(log(AirPassengers), 0,1,1, 0,1,1,12)
+# 1-step ahead predictors
+pred = log(AirPassengers) - resid(dog[[1]])
+tsplot(cbind(log(AirPassengers), pred), col=2*2:1, lwd=c(3,2), spag=TRUE, 
+         addLegend=TRUE, location='topleft')  
+
 
 # fixed parameters
 x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 

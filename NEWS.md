@@ -51,7 +51,9 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - in `sarima` and `sarima.for`,  &#127381; the orders `p, d, q` _no longer have to be specified if they are zero_ &#127381; ... so for example &#129518; `sarima(x, p=2, q=1)` and `sarima.for(x, 10, p=2)` &#129518;  will work now ... the original way still works: `sarima(x, 2,0,1)` and `sarima.for(x, 10, 2,0,0)`. Also, `sarima.for` now has an option to &#127381; change the color of the forecasts (default red) in the graphic.
 
-    - also fixed `sarima.for` so the graphic works when there is missing data (the plot failed because `ylim` had NAs). 
+    - in `sarima` residual diagnostics, the residual plot now has points if missing observations (otherwise, you can't see lone points)
+    - also fixed `sarima.for` so the graphic works when there are missing observations (the plot failed because `ylim` had NAs). 
+
 
 - `ar.boot` added more output ... the bootstrapped mean and noise variance values and the results of the initial estimation of the data.
 
