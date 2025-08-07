@@ -67,9 +67,8 @@ The webpages for the texts and some help on using R for time series analysis can
  \url{https://nickpoison.github.io/}.   
 }
 
-\note{Missing Data: Yes it's ok if input as \code{NA} and the observations are vector or \code{ts} objects (meaning equally spaced).
+\section{Missing Data}{Yes it's ok if input as \code{NA} and the observations are vector or \code{ts} objects (meaning equally spaced).
 }
-
 \seealso{\code{\link{sarima}}}
 \examples{
 

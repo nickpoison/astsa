@@ -58,7 +58,7 @@ The results are the parameter estimates, standard errors, AIC, AICc, BIC and dia
 \item{ICs }{[[5]] AIC  -  AICc  -  BIC} 
 }
 
-\note{Missing Data: Yes it's ok if input as \code{NA} and the observations are vector or \code{ts} objects (meaning equally spaced).
+\section{Missing Data}{Yes it's ok if input as \code{NA} and the observations are vector or \code{ts} objects (meaning equally spaced).
 }
 
 \references{You can find demonstrations of  astsa capabilities at  
