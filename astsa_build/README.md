@@ -4,7 +4,7 @@
 
 <img src="https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/figs/astsa.gif" alt="&nbsp; &nbsp; ASTSA ..."  height="100">
 
-... more than just data ... it's a palindrome
+... more than just data ... it's also a palindrome
 
 ---
 
@@ -29,8 +29,8 @@ detach(package:dplyr)
 # [2] or fix it yourself when loading dplyr 
 # this is a great idea from https://stackoverflow.com/a/65186251
 library(dplyr, exclude = c("filter", "lag"))   # remove the culprits
-dlag <- dplyr::lag                             # then correct ... 
-dfilter <- dplyr::filter                       # ... the blunders
+dlag    = dplyr::lag                           # then correct ... 
+dfilter = dplyr::filter                        # ... the blunders
 #  Now use `dlag` and `dfilter` in dplyr scripts and
 # `lag` and `filter` can be use as originally intended
 

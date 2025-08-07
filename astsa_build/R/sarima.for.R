@@ -1,7 +1,7 @@
 sarima.for <-
 function(xdata,n.ahead,p,d,q,P=0,D=0,Q=0,S=-1,tol=sqrt(.Machine$double.eps),
-         no.constant=FALSE, plot=TRUE, plot.all=FALSE, ylab=NULL,
-         xreg = NULL, newxreg = NULL, fixed=NULL, pcol=2, ...){ 
+         no.constant=FALSE, plot=TRUE, plot.all=FALSE, ylab=NULL, xreg = NULL, 
+         newxreg = NULL, fixed=NULL, pcol=2, pch=1, ...){ 
 
   if (missing(p)) p=0
   if (missing(d)) d=0
@@ -55,14 +55,15 @@ fore <- predict(fitit, n.ahead, newxreg=nureg)
      if(plot.all)  {strt=time(xdata)[1]} 
      xllim=c(strt,endd)
      typel = ifelse(plot.all, 'l', 'o')
+     typel = ifelse(any(is.na(xdata)), 'o', typel) 
      xdatanew = ts(c(xdata,fore$pred), start=tsp(xdata)[1], frequency=tsp(xdata)[3]) 
-    tsplot(xdatanew, type=typel, xlim=xllim, ylim=c(minx,maxx), ylab=ylab, ...)    
+    tsplot(xdatanew, type=typel, xlim=xllim, ylim=c(minx,maxx), ylab=ylab, pch=pch, ...)    
       xx = c(time(U), rev(time(U)))
       yy = c(L, rev(U))
      polygon(xx, yy, border=8, col=gray(.6, alpha=.2) ) 
       yy1 = c(L1, rev(U1))
      polygon(xx, yy1, border=8, col=gray(.6, alpha=.2) ) 
-     lines(fore$pred, col=pcol, type="o")
+    lines(fore$pred, col=pcol, type="o", pch=pch)
   } 
   return(fore)
 }

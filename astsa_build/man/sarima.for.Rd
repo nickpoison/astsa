@@ -6,8 +6,8 @@
 }
 \usage{
 sarima.for(xdata, n.ahead, p, d, q, P=0, D=0, Q=0, S=-1, tol = sqrt(.Machine$double.eps),
-         no.constant = FALSE, plot = TRUE, plot.all = FALSE,  ylab = NULL,
-         xreg = NULL, newxreg = NULL, fixed = NULL, pcol = 2, ...)
+         no.constant = FALSE, plot = TRUE, plot.all = FALSE,  ylab = NULL, xreg = NULL, 
+         newxreg = NULL, fixed = NULL, pcol = 2, pch = 1, ...)
 }
 \arguments{
   \item{xdata}{univariate time series
@@ -46,6 +46,8 @@ sarima.for(xdata, n.ahead, p, d, q, P=0, D=0, Q=0, S=-1, tol = sqrt(.Machine$dou
   \item{fixed}{optional numeric vector of the same length as the total number of parameters. If supplied, only parameters corresponding to NA entries will be estimated. 
 }
   \item{pcol}{color of the predictions in the graphic.
+}
+  \item{pch}{plot character for the predictions in the graphic.
 }
   \item{...}{additional graphical arguments
 }
