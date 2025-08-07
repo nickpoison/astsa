@@ -857,7 +857,23 @@ sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 ```
 <img src="figs/foreCO2.png" alt="foreCO2" width="70%"><br/>
 
+<br/>
 
+### Missing Data
+
+Because ARIMA models are put into state space form for estimation, missing data can be handled easily.  There is a data file in `astsa` called `ar1miss` that has missing data (it's used in Chapter 6 Problems &ndash; you'll see the data in the forecast plot):
+
+```r
+sarima(ar1miss, p=1, col=4, pch=19, gg=TRUE)
+```
+
+<img src="figs/miss1.png" alt="miss1" width="70%"><br/>
+
+```r
+sarima.for(ar1miss, n.ahead=5, p=1, col=3, pcol=6, pch=19, gg=TRUE)
+```
+
+<img src="figs/miss2.png" alt="miss2" width="70%"><br/>
 
 
 
