@@ -47,7 +47,7 @@ sarima.for(xdata, n.ahead, p, d, q, P=0, D=0, Q=0, S=-1, tol = sqrt(.Machine$dou
 }
   \item{pcol}{color of the predictions in the graphic.
 }
-  \item{pch}{plot character for the predictions in the graphic.
+  \item{pch}{plot character for the graphic. If \code{plot.all=TRUE}, this only applies to the forecasts.
 }
   \item{...}{additional graphical arguments
 }
@@ -69,12 +69,21 @@ The webpages for the texts and some help on using R for time series analysis can
  \url{https://nickpoison.github.io/}.   
 }
 
-\section{Missing Data}{Yes it's ok if input as \code{NA} and the observations are vector or \code{ts} objects (meaning equally spaced).
+\note{If \code{plot.all=TRUE}, the data are displayed as a line only unless there are missing observations; see the Missing Data section. Points (and more) can be added to the graphic as long as the device stays open.  For example:
+\preformatted{
+sarima.for(gtemp_land, 10, d=1, q=1, plot.all=TRUE, pch=19)
+points(gtemp_land, pch=20, col=4)
+abline(v=2024, col=6, lty=5)
+text(2000, 2.2, "it's getting hot in here", font=2, col=6, srt=45)
+}
+}
+
+\section{Missing Data}{Yes it's ok if input as \code{NA} and the observations are vector or \code{ts} objects (meaning equally spaced).  In this case, the graphic includes a line with points. Otherwise, lone observations would not be visible.
 }
 \seealso{\code{\link{sarima}}}
 \examples{
 
-sarima.for(gtemp_both, 6, d=1, q=1, col=6, pcol=4, gg=TRUE)
+sarima.for(gtemp_both, n.ahead=6, d=1, q=1, col=6, pcol=4, gg=TRUE)
 
 # with regressors 
 nummy   = length(soi)
@@ -83,6 +92,6 @@ nureg   = time(soi)[nummy] + seq(1,n.ahead)/12
 sarima.for(soi, n.ahead, 2,0,0, 2,0,0,12, xreg=time(soi), newxreg=nureg) 
 
 # missing data
-sarima.for(ar1miss, n.ahead=5, p=1)
+sarima.for(ar1miss, n.ahead=5, p=1, pch=19)
 }
 \keyword{ ts }

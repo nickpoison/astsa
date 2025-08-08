@@ -46,7 +46,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
 \details{If your time series is in x and you want to fit an ARIMA(p,d,q) model to the data, the basic call is \code{sarima(x,p,d,q)}. As of version 2.3, the orders do not have to be specified if they are zero. For example, \code{sarima(x, p=1)} is the same as \code{sarima(x,1,0,0)}.
 
-To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x,2,1,0,0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0) \times (0,1,1)_{12}} model to the series in x. 
+To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x, 2,1,0, 0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0) \times (0,1,1)_{12}} model to the series in x. The orders do not have to be specified if they are zero; e.g., \code{sarima(x, d=1,q=1, D=1,Q=1,S=4)} works.
 
 The results are the parameter estimates, standard errors, AIC, AICc, BIC and diagnostics. The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they differ by a scaling factor of the effective sample size.  
 }
@@ -81,23 +81,20 @@ sarima(rec, 2,0,0)  # data, p, d, and q
 sarima(rec, p=2, details=FALSE)
 
 # fun for the whole family
-dog = sarima(log(AirPassengers), 0,1,1, 0,1,1,12)
-# 1-step ahead predictors
-pred = log(AirPassengers) - resid(dog[[1]])
-tsplot(cbind(log(AirPassengers), pred), col=2*2:1, lwd=c(3,2), spag=TRUE, 
-         addLegend=TRUE, location='topleft')  
+dog = sarima(log(AirPassengers), 0,1,1, 0,1,1,12, details=FALSE)
+# dog[[1]] has most of the results ...
+tsplot(resid(dog[[1]]))
 
 
 # fixed parameters
 x = sarima.sim( ar=c(0,-.9), n=200 ) + 50 
-sarima(x, 2,0,0, fixed=c(0,NA,NA))  # phi1 fixed, phi2 and mean free
+sarima(x, p=2, fixed=c(0,NA,NA))  # phi1 fixed, phi2 and mean free
 
-# regression with autocorrelated errors 
-pp = ts.intersect(L = Lynx, L1 = lag(Lynx,-1), H1 = lag(Hare,-1), dframe=TRUE)
-sarima(pp$L, 2,0,0, xreg = cbind(L1=pp$L1, LH1=pp$L1*pp$H1))
+# regression with autocorrelated errors  
+sarima(log(cpg), p=1, xreg=time(cpg))
 
-# missing data (color and gris-gris added for fun)
-sarima(ar1miss, p=1, col=4, gg=TRUE)
+# missing data (color, gris-gris, and pch, added for fun)
+sarima(ar1miss, p=1, col=4, gg=TRUE, pch=19)
 
 }
 \seealso{\code{\link{sarima.for}}, \code{\link{sarima.sim}} }
