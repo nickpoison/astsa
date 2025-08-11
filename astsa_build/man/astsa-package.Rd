@@ -23,26 +23,30 @@ David Stoffer <stoffer@pitt.edu>
 }
 \section{Warning}{If loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
 
-(1) Detach it if it's loaded but not being used:\cr 
-\verb{   detach(package:dplyr)} 
+(1) Detach it if it's loaded but not being used: 
+\preformatted{   detach(package:dplyr)
+} 
 
 (2) If you want to use it, fix it: 
-\verb{
+\preformatted{
    library(dplyr, exclude = c("filter", "lag"))   # load it without the culprits 
-   dlag = dplyr::lag            # and fix ... 
-   dfilter = dplyr::filter      # ... the blunders}\cr
+   dlag    = dplyr::lag         # and fix ... 
+   dfilter = dplyr::filter      # ... the blunders
+}
 then use \code{dlag} and \code{dfilter} for \code{dplyr} scripts \cr
 and \code{lag} and \code{filter} can be use as originally intended.
 
 
-(3) Or just take back the commands:\cr
-\verb{   filter = stats::filter} \cr 
-\verb{   lag = stats::lag }\cr
-
-In this case you can still use \cr 
-\verb{  dlag = dplyr::lag} \cr 
-and \cr 
-\verb{  dfilter = dplyr::filter} \cr
+(3) Or just take back the commands:
+\preformatted{
+   filter = stats::filter
+   lag    = stats::lag 
+}
+In this case you can still use  
+\preformatted{
+   dlag   = dplyr::lag
+  dfilter = dplyr::filter
+} 
 for \code{dpylr}.
 }
 
