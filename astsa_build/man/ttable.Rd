@@ -10,7 +10,8 @@ Works like \code{summary} for an \code{lm} object but adds AIC, AICc, and BIC to
 ttable(obj, digits = 4, vif = FALSE, ...)
 }
 \arguments{
-  \item{obj}{an object of class "lm" as a result of a call to \code{\link{lm}}.
+  \item{obj}{
+an object of class "lm" as a result of a call to \code{\link{lm}}.
 }
   \item{digits}{
 the (approximate) number of significant digits to use when printing. 
@@ -23,14 +24,22 @@ further arguments passed to or from other methods.
 }
 }
 \details{
-Produces a t-table for an \code{lm} object much like \code{\link{print.summary.lm}} 
-with added information including AIC, AICc, BIC, and VIF (if requested and if applicable), to the output. 
-The output is rounded and there are no significance stars. In fact, there are no stars at all.
+Produces a t-table for an \code{lm} object much like \code{\link{print.summary.lm}} with added information including AIC, AICc, BIC, and VIF (if requested and if applicable), to the output. The output is rounded and there are no significance stars. In fact, there are no stars at all.
+
+TO REPEAT THE WARNING ON USING 'lm' FOR TIME SERIES: Considerable care must be taken:\cr
+\itemize{
+\item Include \code{na.action = NULL} in the \code{lm} call to avoid stripping the time series attributes  from the variables before the regression is done. 
+\item If any lagged or differenced variables are used in 'lm', the series must be lined up first. In this case, prepare a data frame using \code{ts.intersect(..., dframe = TRUE)}; e.g.,
+\preformatted{
+mydata = ts.intersect(M = cmort, P4 = lag(part,-4), dframe=TRUE)
+fit    = lm(M ~ P4, na.action=NULL, data=mydata)
+ttable(fit)
+} 
+}
 }
 \value{
 Prints a typical t-table with additional information as mentioned in the details.
-The p-values are two-sided. 
-Also silently returns the same values as described in \code{\link{summary.lm}}.
+The p-values are two-sided.  Also silently returns the same values as described in \code{\link{summary.lm}}.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
@@ -46,7 +55,7 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \source{
-Built from \code{print.summary.lm}, \code{AIC}, and \code{BIC}, almost 'as is' from the "stats" package but with minor changes to the aesthetics of the output and with the ability to include VIFs. 
+Built using \code{print.summary.lm} from the 'stats' package. 
 }
 \seealso{
 \code{\link{summary.lm}}, \code{\link{print.summary.lm}}, \code{\link{lm}}

@@ -22,8 +22,10 @@ SigExtract(series, L = c(3, 3), M = 50, max.freq = 0.05, col = 4)
 }
 }
 \details{The basic function of the script, and the default setting, is to remove frequencies above 1/20 (and, in particular, the seasonal frequency of 1 cycle every 12 time points). The  sampling frequency of the time series is set to unity prior to the analysis. 
+
+See Example 4.29, 'Estimating the El Ni\enc{ñ}{n}o Signal via Optimal Filters' for an example.
 }
-\value{Returns plots of (1) the original and filtered series, (2) the estiamted spectra of each series, (3)  the filter coefficients and the desired and attained frequency response function.  The filtered series is returned invisibly.
+\value{Returns plots of (1) the original and filtered series, (2) the estimated spectra of each series, (3)  the filter coefficients and the desired and attained frequency response function.  The filtered series is returned invisibly.
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

@@ -3,7 +3,7 @@
 \title{Estimate Trend
 } 
 \description{
-Estimates the trend (polynomial or lowess) of a time series and returns a graphic of the series with the trend and error bounds superimposed.
+Estimates the trend (polynomial or lowess) of a time series and returns a graphic of the series with the trend and error bounds (returned invisibly) superimposed.
 }
 \usage{
 trend(series, order = 1, lowess = FALSE, lowspan = .75, robust = TRUE,
@@ -45,8 +45,7 @@ Other graphical parameters.
 Produces a graphic of the time series with the trend and a .95 pointwise confidence interval superimposed. The trend estimate and the error bounds are returned invisibly.
 }
 \value{
-Produces a graphic and returns the trend estimate \code{fit} and error bounds  \code{lwr} and \code{upr} invisibly
- (see details) and with the same time series attributes as the input \code{series}.
+Produces a graphic and returns the trend estimate \code{fit} and error bounds  \code{lwr} and \code{upr} invisibly  (see details) and with the same time series attributes as the input \code{series}.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

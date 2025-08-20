@@ -34,7 +34,7 @@ containing the model parameters. Use \code{log='y'} if you want the plot on
 a log scale. If the model is not causal or invertible an error message is given. If
 there are approximate common zeros, a spectrum will be displayed and a warning will be given;
 e.g., \code{arma.spec(ar= .9, ma= -.9)} will yield a warning and the plot will be the
-spectrum of white noise.
+spectrum of white noise.  Note for example that \code{arma.spec(ar=1, ma=1)} will bring up an error with warnings that the model is not causal and not invertible.
 }
 \value{ \item{freq }{frequencies - returned invisibly}
  \item{spec }{ spectral ordinates - returned invisibly }
@@ -56,7 +56,7 @@ arma.spec(ar = c(1, -.9), ma = .8)
 
 arma.spec(ar = c(1, -.9), log='y')
 
-arma.spec(ar = c(1, -.9), main='AR(2)', gg=TRUE, col=5, lwd=2)
+arma.spec(ar = -.9, ma=.89, gg=TRUE)  # almost white noise
 
 arma.spec(ar=c(rep(0,11),.4), ma=.5, col=5, lwd=3, frequency=12)
 }

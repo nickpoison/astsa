@@ -103,10 +103,12 @@ The webpages for the texts and some help on using R for time series analysis can
 # x[t] = Ups + Phi x[t-1] + w[t]
 # y[t] = x[t] + v[t]
 y = gtemp_land  
-A = 1; Phi = 1; Ups = 0.01
-Q = 0.001; R = 0.01
-mu0 = -0.6; Sigma0 = 0.02
+A = 1; Phi = 1.03; Ups = 0.01
+Q = 0.0001; R = 0.1
+mu0 = -0.5; Sigma0 = 0.001
 input = rep(1, length(y))
 ( em = EM(y, A, mu0, Sigma0, Phi, Q, R, Ups, Gam=NULL, input) ) 
 }
 \keyword{ ts }
+
+

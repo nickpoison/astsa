@@ -10,7 +10,7 @@
   The format is:
  Time-Series [1:91] from 1 to 91: 2.33 1.89 2.08 1.82 1.82 ...
 }
-\details{See Examples 6.1 amd 6.9 for more details.
+\details{See Examples 6.1 and 6.9 for more details.
 }
 \source{Jones, R.H. (1984). Fitting multivariate models to unequally spaced data. In \emph{Time Series Analysis of Irregularly Observed Data}, pp. 158-188. E. Parzen, ed. Lecture Notes in Statistics, 25, New York: Springer-Verlag.
 }
