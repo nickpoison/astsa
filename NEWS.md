@@ -35,7 +35,9 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 #### &#128260; v2.3 (GitHub only) 
 
-> It's version 2.3 now, but it's not going on CRAN until the 2nd edition of the data analysis book is out (no date yet).
+> It's version 2.3 now, but it's not going on CRAN until the 2nd edition of the data analysis has a definite publish date.
+
+- not sure if this stays, but when `astsa` is first loaded, the user is asked if they want to install `xts` (and consequently `zoo`) if they are not already installed... the packages are not necessary, but there are some `xts` data files and we thought this might be helpful for new users.
 
 - `lag1.plot` and `lag2.plot` now have an &#127381; option to change the `location` of the correlation display.
 
