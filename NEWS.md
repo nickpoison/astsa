@@ -78,7 +78,7 @@ just in time for the new skool year ...
 
 ---
 
-#### Version 2.2 - Jan 2025 (on CRAN)  
+####    Version 2.2 - Jan 2025 (on CRAN)  
 
 - added `QQnorm` - a much nicer version of `qqnorm` from the `stats` package because the importance of appearance extends well beyond the pleasant experiences we have when we look at attractive plots. 
 - `lag1.plot` and `lag2.plot` got little facelifts including increasing the character expansion (`cex`) a bit to prevent characters from getting too small.
