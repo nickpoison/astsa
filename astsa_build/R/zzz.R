@@ -20,15 +20,15 @@
 
       # Install if the user chooses 'Yes'
       if (response == 1) {
-        message(paste0("Installing '", suggested_package, "'..."))
+        packageStartupMessage(paste0("Installing '", suggested_package, "'..."))
         tryCatch({
           install.packages(suggested_package)
-          message(paste0("'", suggested_package, "' installed successfully."))
+          packageStartupMessage(paste0("'", suggested_package, "' installed successfully."))
         }, error = function(e) {
           warning(paste0("Failed to install '", suggested_package, "': ", e$message))
         })
       } else {
-        message(paste0("Skipping installation of '", suggested_package, "'."))
+        packageStartupMessage(paste0("Skipping installation of '", suggested_package, "'."))
       }
     }
   }

@@ -7,6 +7,9 @@
 
 ... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](https://link.springer.com/book/9783031705830)  and  [Time Series A Data Analysis Approach using R](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642).
 
+
+ &#128038; __Right now,  the 2 versions (GitHub and CRAN) are   the same.__
+
 ---
 &#x1F4A1; The GitHub version is updated before the CRAN version.  For installation, just follow the bouncing ball <sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup>:   
 
@@ -22,7 +25,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 > If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  After successful installation, the best thing to do is to restart R and load the new `astsa`.
 
- &#128038; __Right now,  the 2 versions (GitHub and CRAN) are NOT the same.__
+
 
 ---
 
@@ -33,11 +36,13 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ---
 ---
 
-#### &#128260; v2.3 (GitHub only) 
+###  &#9654; v2.3 &ndash; Sept 2025 (on CRAN and GitHub) 
 
-> It's version 2.3 now, but it's not going on CRAN until the 2nd edition of the data analysis has a definite publish date.
+just in time for the new skool year ...
 
-- not sure if this stays, but when `astsa` is first loaded, the user is asked if they want to install `xts` (and consequently `zoo`) if they are not already installed... the packages are not necessary, but there are some `xts` data files and we thought this might be helpful for new users.
+<br/>
+
+-  &#127381; not sure if this will stay, but if `xts`  is not installed, the user is asked if they want to install it ... `astsa` does not need it, but there are some `xts` data files and we thought this might be helpful for new users.
 
 - `lag1.plot` and `lag2.plot` now have an &#127381; option to change the `location` of the correlation display.
 
@@ -73,7 +78,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ---
 
-### &#9654; Version 2.2 - Jan 2025 (on CRAN)  
+#### Version 2.2 - Jan 2025 (on CRAN)  
 
 - added `QQnorm` - a much nicer version of `qqnorm` from the `stats` package because the importance of appearance extends well beyond the pleasant experiences we have when we look at attractive plots. 
 - `lag1.plot` and `lag2.plot` got little facelifts including increasing the character expansion (`cex`) a bit to prevent characters from getting too small.
