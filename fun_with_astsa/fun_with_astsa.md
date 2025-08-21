@@ -12,6 +12,15 @@ Remember to load `astsa` at the start of a session.
 
 it's more than just data ... it's a palindrome
 
+ &#127381;  When `astsa` is loaded (as of version 2.3), the user is asked if they want to install the package `xts`.  It is beneficial to answer YES because we  use the  package  throughout the text.
+
+
+To suppress asking about loading `xts` you can use
+```r
+suppressPackageStartupMessages(library(astsa))
+```
+BUT the message is displayed only  if `xts` is not installed... so installing it is another way to avoid being asked.  And if you're doing time series analysis, `xts` is an important package.
+
 
 -----
 -----

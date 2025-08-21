@@ -9,11 +9,27 @@
 ... `astsa` is the R package to accompany the [Springer](https://link.springer.com/book/9783031705830) text, [Time Series Analysis and Its Applications: With R Examples](https://github.com/nickpoison/tsa5/blob/main/textRcode.md)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9780367221096) text  [Time Series: A Data Analysis Approach using R](https://github.com/nickpoison/tsda2/blob/main/Rcode.md). 
 
 
+
+
+
 #### &#10024;  [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) has further details about the state of the package and the changelog.
 
 #### &#10024; Here is [A Road Map](https://nickpoison.github.io/) if you want a broad view of what is available.
 
-<br/>
+
+---
+
+ &#127381;  When `astsa` is loaded (as of version 2.3), the user is asked if they want to install the package `xts`.  It is beneficial to answer YES because we  use the  package  throughout the text.
+
+
+To suppress asking about loading `xts` you can use
+```r
+suppressPackageStartupMessages(library(astsa))
+```
+BUT the message is displayed only  if `xts` is not installed... so installing it is another way to avoid being asked.  And if you're doing time series analysis, `xts` is an important package.
+
+
+---
 
 
 We won't always push the latest version of the package to CRAN, but the latest working version of the package will always be at Github.
