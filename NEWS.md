@@ -42,8 +42,7 @@ just in time for the new skool year ...
 
 <br/>
 
--  &#127381; not sure if this will stay, but if `xts` is not installed, the user is asked if they want to install it when `astsa` is loaded ... it does not need it, but there are some `xts` data files and it's an important package (along with `zoo`) if you are doing time series analysis. 
-
+-  &#127381; not sure if this will stay, but if `xts` is not installed, the user is asked if they want to install it when `astsa` is loaded.  
 
 - `lag1.plot` and `lag2.plot` now have an &#127381; option to change the `location` of the correlation display.
 
