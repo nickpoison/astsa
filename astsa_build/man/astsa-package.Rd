@@ -11,7 +11,7 @@ Contains data sets and scripts for analyzing time series in both the frequency a
 \tabular{ll}{
 Package: \tab astsa\cr
 Type: \tab Package\cr
-Version: \tab 2.3\cr
+Version: \tab 2.4\cr
 Date: \tab 2026-01-01\cr
 License: \tab GPL (>= 2) \cr
 LazyLoad: \tab yes\cr

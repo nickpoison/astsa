@@ -1,6 +1,6 @@
 # fun with astsa &#x1F388;&#x1F388;&#x1F388;
 
-[![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp;&nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp;&nbsp; ![](https://img.shields.io/badge/GitHub-2.3-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
+[![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp;&nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp;&nbsp; ![](https://img.shields.io/badge/GitHub-2.4-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
 
 #### We'll demonstrate some of the capabilities of the latest version of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
 
@@ -14,7 +14,7 @@ it's more than just data ... it's a palindrome
 
 ⭐⭐⭐⭐⭐ 
 
- &#127381;  When `astsa` is loaded (as of version 2.3), the user is asked if they want to install the package `xts`.  It is beneficial to answer YES because we  use the  package  throughout the text. 
+ When `astsa`  version 2.3 is loaded, the user is asked if they want to install the package `xts`.  It is beneficial to answer YES because we  use the  package  throughout the text. 
 
 To suppress asking about loading `xts` you can use
 ```r
@@ -22,6 +22,8 @@ suppressPackageStartupMessages(library(astsa))
 ```
 
 BUT the message is displayed only  if `xts` is not installed... so installing it is another way to avoid being asked.  And if you're doing time series analysis, `xts`  is an important package. 
+
+__This has been removed in version 2.4.__
 
 ⭐⭐⭐⭐⭐ 
 

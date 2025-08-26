@@ -7,15 +7,18 @@
 
 ... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](https://link.springer.com/book/9783031705830)  and  [Time Series A Data Analysis Approach using R](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642).
 
+ &#128038; _Right now,  the 2 versions (GitHub and CRAN) are NOT  the same._
 
- &#128038; __Right now,  the 2 versions (GitHub and CRAN) are   the same.__
+[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp;&nbsp; ![](https://img.shields.io/badge/GitHub-2.4-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
+
+
 
 ---
 &#x1F4A1; The GitHub version is updated before the CRAN version.  For installation, just follow the bouncing ball <sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup>:   
 
-&#9917; To get the most recent working version,  install `astsa` from the archive  [astsa_2.3.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.3.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
+&#9917; To get the most recent working version,  install `astsa` from the archive  [astsa_2.4.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.3.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
 
-&#9917;In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` and just give the path to the `tar.gz` file.
+&#9917;In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` in R and just give the path to the `tar.gz` file.
 
 &#9917; Finally, if you want to install a package to do one thing, try `remotes` &hellip; then you can use this method:
 ```
@@ -36,9 +39,18 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ---
 ---
 
-###  &#9654; v2.3 &ndash; Sept 2025 (on CRAN and GitHub) 
+#### &#127381; Version 2.4 &ndash;  in the works (on GitHub only)
 
-just in time for the new skool year ...
+- removed asking if the user wants `xts` to be installed at startup ... _apologies_ for doing what we said we would never do - it's  why there is an update so soon 
+
+- in the meantime, &#127381; added script `timex()` that, with or without `xts` being loaded, will convert the dates in an `xts` data file to decimal dates so the data can be plotted easily using `tsplot` 
+
+  
+
+
+###  &#9654; v2.3 &ndash; Aug 2025 (on CRAN)) 
+
+just in time for the new skool year ...       
 
 <br/>
 

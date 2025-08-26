@@ -17,26 +17,12 @@
 #### &#10024; Here is [A Road Map](https://nickpoison.github.io/) if you want a broad view of what is available.
 
 
----
-
- &#127381;  When `astsa` is loaded (as of version 2.3), the user is asked if they want to install the package `xts`.  It is beneficial to answer YES because we  use the  package  throughout the text.
-
-
-To suppress asking about loading `xts` you can use
-```r
-suppressPackageStartupMessages(library(astsa))
-```
-BUT the message is displayed only  if `xts` is not installed... so installing it is another way to avoid being asked.  And if you're doing time series analysis, `xts` is an important package.
-
-
----
 
 
 We won't always push the latest version of the package to CRAN, but the latest working version of the package will always be at Github.
 
 
-* A demonstration of the capabilities of `astsa` can be found here at
-[FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
+* A demonstration of the capabilities of `astsa` can be found here at [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
 
 
 * The  [code for the graduate level text](https://github.com/nickpoison/tsa5/blob/master/textRcode.md) is here: [TSA5](https://github.com/nickpoison/tsa5/blob/master/textRcode.md).
