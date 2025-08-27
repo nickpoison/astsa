@@ -8,6 +8,6 @@ timex <- function(xts.object){
   day     = as.numeric(format(dates, "%j"))
   leap    = ifelse(year%%100==0, year%%400==0, year%%4==0)
   tot     = ifelse(leap, 366, 365)
-  Time    = year + (day-1) / tot
+  Time    = year + day / tot
   invisible(Time)
 }

@@ -15,7 +15,7 @@ an 'xts' data object
 }
 }
 \details{
-For a data file made using the 'xts' package, this will produce a vector of decimal dates corresponding to the date of each observation even if 'xts' is not loaded. The script is a converter from 'unix time stamp' to decimal dates. For example, the date 2016-04-20 will be converted to 2016.301.
+For a data file made using the 'xts' package, this will produce a vector of decimal dates corresponding to the date of each observation even if 'xts' is not loaded. The script is a converter from 'unix time stamp' to decimal dates. For example, the date 2016-04-20 will be converted to 2016.303 because 2016 was a leap year and April 20 is day 111 of the year. Thus its decimal date is 2016 + (111/366). 
 
 The input object must be an 'xts' object. Note that if \code{dog} is an 'xts' data file with columns of time series, \code{dog[,2]} is NOT unless 'xts' is loaded. Thus, \code{t <- timex(dog)} will work but  \code{t <- timex(dog[,2])} may not.
 }
