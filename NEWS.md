@@ -18,7 +18,7 @@
 
 &#9917; To get the most recent working version,  install `astsa` from the archive  [astsa_2.4.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.4.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
 
-&#9917;In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` in R and just give the path to the `tar.gz` file.
+&#9917; In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` in R and just give the path to the `tar.gz` file.
 
 &#9917; Finally, if you want to install a package to do one thing, try `remotes` &hellip; then you can use this method:
 ```
@@ -39,7 +39,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ---
 ---
 
-#### &#127381; Version 2.4 &ndash;  in the works (on GitHub only)
+#### &#127514; Version 2.4 &ndash;  in the works (on GitHub only)
 
 - removed asking if the user wants `xts` to be installed at startup ... _apologies_ for doing what we said we would never do - it's  why there is an update so soon 
 

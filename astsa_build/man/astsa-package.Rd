@@ -44,8 +44,8 @@ and \code{lag} and \code{filter} can be use as originally intended.
 }
 In this case you can still use  
 \preformatted{
-   dlag   = dplyr::lag
-  dfilter = dplyr::filter
+   dlag    = dplyr::lag
+   dfilter = dplyr::filter
 } 
 for \code{dpylr}.
 }
