@@ -52,23 +52,21 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 just in time for the new skool year ...       
 
-<br/>
+-   not sure if this will stay, but if `xts` is not installed, the user is asked if they want to install it when `astsa` is loaded.  
 
--  &#127381; not sure if this will stay, but if `xts` is not installed, the user is asked if they want to install it when `astsa` is loaded.  
+- `lag1.plot` and `lag2.plot` now have an option to change the `location` of the correlation display.
 
-- `lag1.plot` and `lag2.plot` now have an &#127381; option to change the `location` of the correlation display.
+- `astsa.col`  gets an expansion to include making a &#127381; color wheel  of arbitrary length... details in the help file (obviously).
 
-- `astsa.col`  gets an expansion to include making a &#127381; color wheel &#127381; of arbitrary length... details in the help file (obviously).
+- &#127381; `ttable`  is new (but it's not a time series thing) ... it works like `summmary` for an `lm` object but it's a little cleaner and includes AIC, AICc, and BIC.  There is also the option to get VIFs (if appropriate).
 
-- &#127381; `ttable` &#127381; is new (but it's not a time series thing) ... it works like `summmary` for an `lm` object but it's a little cleaner and includes AIC, AICc, and BIC.  There is also the option to get VIFs (if appropriate).
-
-- &#127381; `tspairs` &#127381; is new ... it's sort of `pairs` (scatterplot matrix) for time series... the diagonals can be a time plot or a histogram (default). Also, `ar.boot` and `ar.mcmc` now use `tspairs` instead of `pairs`. 
+- &#127381; `tspairs` is new ... it's sort of `pairs` (scatterplot matrix) for time series... the diagonals can be a time plot or a histogram (default). Also, `ar.boot` and `ar.mcmc` now use `tspairs` instead of `pairs`. 
 
 - `mvspec` can now handle coherency and phase plots in the multivariate (3 or more series) case without having to use `plot.spec` from the stats package.
 
 - and after beautifying `mvspec`, the multivariate auto/cross- correlation matrix plot `acfm` is now more beautiful than ever.
 
-- in `sarima` and `sarima.for`,  &#127381; the orders `p, d, q` _no longer have to be specified if they are zero_ &#127381; ... so for example &#129518; `sarima(x, p=2, q=1)` and `sarima.for(x, 10, p=2)` &#129518;  will work now ... the original way still works: `sarima(x, 2,0,1)` and `sarima.for(x, 10, 2,0,0)`. Also, `sarima.for` now has an option to &#127381; change the color of the forecasts (default red) in the graphic.
+- in `sarima` and `sarima.for`,  &#127381; the orders `p, d, q` _no longer have to be specified if they are zero_  ... so for example `sarima(x, p=2, q=1)` and `sarima.for(x, 10, p=2)`   will work now ... the original way still works: `sarima(x, 2,0,1)` and `sarima.for(x, 10, 2,0,0)`. Also, `sarima.for` now has an option to &#127381; change the color of the forecasts (default red) in the graphic.
 
     - in `sarima` residual diagnostics, the residual plot now has points if missing observations (otherwise, you can't see lone points)
     - also fixed `sarima.for` so the graphic works when there are missing observations (the plot failed because `ylim` had NAs). 
@@ -76,11 +74,11 @@ just in time for the new skool year ...
 
 - `ar.boot` added more output ... the bootstrapped mean and noise variance values and the results of the initial estimation of the data.
 
-- `QQnorm` argument change ... &#127381; the width of the CI is now controlled by `ci` &#127381;, which can be `TRUE` (default width), `FALSE` (no CI band), or a percentage (e.g., `ci=99` or `ci=.99` both work the same)... and `width.ci` is gone.
+- `QQnorm` argument change ... &#127381; the width of the CI is now controlled by `ci`, which can be `TRUE` (default width), `FALSE` (no CI band), or a percentage (e.g., `ci=99` or `ci=.99` both work the same)... and `width.ci` is gone.
 
 - the correlation scripts `acf1` `acf2` `ccf2` and `acfm` no longer stop if the requested number of lags exceeds the number of observations ... now, the number of lags is reset to a small value and, without warning, a nonfatal electrical shock is sent to the keyboard.
 
-- added &#127381; `USpop20` &#127381; which is an update to `USpop` to include the 2020 census... it's used in the upcoming 2nd edition of _Time Series: A Data Analysis Approach..._ because it's not fun to forecast the past and time keeps on slippin' into the future.
+- added &#127381; `USpop20` which is an update to `USpop` to include the 2020 census... it's used in the upcoming 2nd edition of _Time Series: A Data Analysis Approach..._ because it's not fun to forecast the past and time keeps on slippin' into the future.
 
 - in `scatter.hist`, the &hellip; (optional settings) now work on the `Grid`  - like `scatter.hist(tempr, cmort, nxm=5)` adds more minor x-axis ticks/lines to the grid - other things still have their own setting  like point color and histogram color.
 
