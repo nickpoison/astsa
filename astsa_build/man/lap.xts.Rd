@@ -6,7 +6,7 @@
 \description{
 Original data from a study of the effects of pollution and weather on mortality, LA, 
 1970-1979. These are 3652 daily observations for the 10 year period. The data set is
-an xts object indexed by Date.
+an 'xts' object indexed by Date.
 }
 \format{
   The format is:
@@ -55,6 +55,10 @@ The webpages for the texts and some help on using R for time series analysis can
 \seealso{\code{\link{lap}}
 }
 \examples{
+
+# if 'xts' is not installed you can still do this
+tsplot(timex(lap.xts), lap.xts, ncolm=3, col=astsa.col(4,wheel=TRUE,num=11))
+
 \dontrun{
 
 library(xts)   # assumes package has been installed

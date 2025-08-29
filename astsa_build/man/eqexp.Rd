@@ -52,7 +52,37 @@ No.\tab Type\tab Date\tab Array \tab Magnitude \tab   Latitude \tab   Longitude 
 # first 2 rows EQs - second 2 rows EXs
 # 5th row NZ event 
 
-tsplot(eqexp, ncol=4, col=1:8)
+tsplot(eqexp, ncol=4, col=c(rep(6,8),rep(4,8),2), scale=.75)
+
+# for a nice map, use the 'leaflet' package
+
+lat = c(
+65.5,65.7,64.5,67.8,59.2,51.4,59.5,66.9,
+69.2,61.8,67.6,67.6,67.1,59.5,69.4,64.7,
+73.6)
+
+long = c(
+22.9,32.1,21.3,15.1,10.9,6.1,5.9,13.7,
+34.3,30.7,33.9,30.6,21.0,24.1,30.8,30.8,
+55.2)
+
+event = c(
+"EQ","EQ","EQ","EQ","EQ","EQ","EQ","EQ",
+"EX","EX","EX","EX","EX","EX","EX","EX",
+"NZ")
+
+library(leaflet)
+
+eventmap = data.frame(
+  longitude = long,
+  latitude = lat,
+  event = event )
+
+leaflet(eventmap) \%>\%
+  addTiles() \%>\% 
+  addMarkers(~longitude, ~latitude, label = ~event,
+    labelOptions = labelOptions(noHide = TRUE))
+
 }
 }
 \keyword{datasets}

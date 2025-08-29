@@ -25,4 +25,11 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}. 
 }
+\examples{
+
+# the file is an 'xts' data file
+# if 'xts' is not installed you can still do this
+tsplot(timex(djia), djia, ncolm=2, col=2:6)
+
+}
 \keyword{datasets}
