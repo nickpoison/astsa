@@ -47,11 +47,11 @@ D.S. Stoffer
 \examples{
 acf2(rnorm(100))
 
-acf2(rnorm(100), 25, main='')  # no title
+acf2(rnorm(100), 25, main=NA)   # no title
 
-acf2(rnorm(100), plot=FALSE)[,'ACF']  # print only ACF
+acf2(rnorm(100), max.lag=5, plot=FALSE)  # print only
 
-acf2(soi, col=2:7, lwd=4, gg=TRUE)  # mother's day present
+acf2(soi, col=2:7, lwd=4, gg=TRUE) 
 }
 \seealso{\code{\link{acf1}}, \code{\link{acfm}}, \code{\link{ccf2}} }
 \keyword{ts}

@@ -19,4 +19,11 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}.   
 }
+\examples{
+
+par(mfrow=2:1)
+tsplot(arf, col=4, main='ARFIMA')
+acf1(arf, col=4, main=NA)
+
+}
 \keyword{datasets}

@@ -22,4 +22,7 @@ The webpages for the texts and some help on using R for time series analysis can
  \url{https://nickpoison.github.io/}.   
 }
 \seealso{\code{\link{fmri}}}
+\examples{
+tsplot(fmri1[,2:9], ncolm=4, gg=TRUE, col=c(rep(4,4),rep(3,2),rep(6,2)))
+}
 \keyword{datasets}

@@ -34,9 +34,9 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    prow = ceiling(nser/ncolm)
    culer = rep(col, nser)
    if(byrow){
-   par(mfrow = c(prow, ncolm),  cex.lab=1.1, oma = c(0,0,3*topper,0))
+   par(mfrow = c(prow, ncolm),  cex.lab=1.1, oma = c(0,0,3*topper,0)+margins)
    } else {
-   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0) )
+   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+margins )
    }
 par(cex=.9*scale)
    if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}

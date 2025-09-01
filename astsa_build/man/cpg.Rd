@@ -11,6 +11,9 @@
 }
 \source{The data are retail prices per GB taken from a sample of manufacturers listed at \kbd{https://mkomo.com/cost-per-gigabyte}. From there, the median cost per GB was computed by year.
 }
+\note{
+This is a good data set for a first exercise on regression with autocorrelated errors. 
+}
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 

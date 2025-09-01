@@ -15,7 +15,7 @@
 \kbd{http://people.whitman.edu/~hundledr/courses/M250F03/M250.html}\cr 
 scroll down to: Chapter 6, Difference Equations
 
-NB: For some reason, there is not a secure link to the site above.
+NB: For some reason, there is not a secure and encrypted version of the site above.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

@@ -29,6 +29,5 @@ The webpages for the texts and some help on using R for time series analysis can
 a = 1:3  # 1 + 2x + 3x^2
 b = 1:2  # 1 + 2x
 polyMul(a, b)
-# [1] 1 4 7 6
 # 1 + 4x + 7x^2 + 6x^3
 }

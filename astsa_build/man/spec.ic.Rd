@@ -73,10 +73,9 @@ D.S. Stoffer
 \examples{
 \dontrun{
 # AIC
-spec.ic(soi)  
-spec.ic(sunspotz, method='burg', col=4)   
+spec.ic(soi) 
 
-# BIC after detrending on log scale
+# BIC after detrending and on log scale
 dog <- spec.ic(soi, BIC=TRUE, detrend=TRUE, log='y')  
 
 # plot AIC and BIC  (dog from previous example)

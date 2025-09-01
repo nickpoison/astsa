@@ -20,4 +20,8 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}. 
 }
+\examples{
+head(bnrf1ebv)
+head(dna2vector(bnrf1ebv))
+}
 \keyword{datasets}

@@ -54,7 +54,7 @@ No.\tab Type\tab Date\tab Array \tab Magnitude \tab   Latitude \tab   Longitude 
 
 tsplot(eqexp, ncol=4, col=c(rep(6,8),rep(4,8),2), scale=.75)
 
-# for a nice map, use the 'leaflet' package
+# for a nice html map, use the 'leaflet' package
 
 lat = c(
 65.5,65.7,64.5,67.8,59.2,51.4,59.5,66.9,

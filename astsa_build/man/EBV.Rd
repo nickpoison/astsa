@@ -25,4 +25,9 @@ The webpages for the texts and some help on using R for time series analysis can
 }
 \seealso{\code{\link{dna2vector}}
 }
+\examples{
+
+substr(EBV, start=1, stop=25)
+head(dna2vector(EBV))
+}
 \keyword{datasets}

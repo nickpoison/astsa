@@ -27,6 +27,7 @@ The webpages for the texts and some help on using R for time series analysis can
 }
 \seealso{\code{\link{HCT}}, \code{\link{PLT}}, \code{\link{WBC}}}
 \examples{
+# use type='o' when plotting series with missing data
 tsplot(blood, type='o', pch=19, cex=1.1, col=2:4, gg=TRUE, xlab='day')
 }
 \keyword{datasets}

@@ -88,7 +88,6 @@ tspairs(u, hist=FALSE, col.diag=6)  # another view
 dev.new()
 tsplot(u, ncol=2, col=4, xlab='Index')  # traces only
 
-apply(u, 2, ESS)    # effective sample sizes
 }
 }
 \keyword{ts}

@@ -57,7 +57,7 @@ The webpages for the texts and some help on using R for time series analysis can
 \examples{
 lag1.plot(log(varve), max.lag=9, lwl=3, lwc=6, col=5, location='topleft')
 
-lag1.plot(soi, 12, cex=1, pch=19, col=astsa.col(4, .3), gg=TRUE)
+lag1.plot(soi, 12, pch=19, col=astsa.col(4, .3), gg=TRUE)
 }
 \seealso{\code{\link{lag2.plot}}}
 \keyword{ ts }

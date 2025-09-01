@@ -128,9 +128,7 @@ for (t in 2:n){
 run = Kfilter(y, A=1, mu0, Sigma0, Phi=1, sQ, sR)
 
 tsplot(cbind(x, y, Xf=run$Xf), spaghetti=TRUE, type='o', col=c(3,4,6), pch=c(NA,1,NA),
-       addLegend=TRUE, location='topleft', lwd=c(2,1,2),  margins=1)
-
-# NOTE: CRAN tests need extra white space :( so margins=1 not necessary nor desired
+       addLegend=TRUE, location='topleft', lwd=c(2,1,2))
 
 }
 \keyword{ ts }

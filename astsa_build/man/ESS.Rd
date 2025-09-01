@@ -47,10 +47,11 @@ D.S. Stoffer
 }
 \examples{
 # How autocorrelation affects ESS
+# get a few Markov chains
 x   = matrix(NA, 500, 3)  # sample size is 500
 phi = c(0,.3,.9)          # no, low, high
 for (i in 1:3) x[,i] = sarima.sim(ar=phi[i])
-apply(x, 2, ESS, digits=-1)
+apply(x, 2, ESS, digits=0)
 
 }
 \keyword{ ts }

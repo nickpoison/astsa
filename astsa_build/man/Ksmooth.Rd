@@ -128,8 +128,7 @@ for (t in 2:n){
 run = Ksmooth(y, A=1, mu0, Sigma0, Phi=1, sQ, sR)
 
 tsplot(cbind(x, y, Xs=run$Xs), spaghetti=TRUE, type='o', col=c(3,4,6), pch=c(NA,1,NA),
-       addLegend=TRUE, location='bottomright', lwd=c(2,1,2), gg=TRUE, margins=1)
+       addLegend=TRUE, location='topleft', lwd=c(2,1,2), gg=TRUE)
 
-# NOTE: CRAN tests need extra white space :( so margins=1 not necessary nor desired
 }
 \keyword{ ts }
