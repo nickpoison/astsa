@@ -10,7 +10,7 @@ tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,  margins=.25,
         ncolm=1, byrow=TRUE, nx=NULL, ny=nx, minor=TRUE, nxm=2, nym=1, 
         xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, pch=NULL, 
         lty=1, lwd=1, mgpp=0, topper=NULL, addLegend=FALSE, location='topright', 
-        boxit=TRUE, horiz=FALSE, legend=NULL, llwd=NULL, scale=1, ...)
+        boxit=TRUE, horiz=FALSE, legend=NULL, llwd=NULL, scale=1, reset.par = TRUE, ...)
 }
 \arguments{
   \item{x, y}{
@@ -93,6 +93,9 @@ non-negative value to add to the top outer margin; if NULL (default) a suitable 
  \item{scale}{
  for multiple series, the scale for character expansion (cex = .9*scale).
 }
+ \item{reset.par}{
+ logical; for multiple series, should the graphics parameters be reset after plotting.
+}
  \item{\dots}{
 other graphical parameters; see \link[graphics]{par}.
 }
@@ -102,6 +105,8 @@ Produces a graphic and returns it invisibly so it can be saved in an R variable 
 see \code{\link{recordPlot}}.
 }
 \note{A legend can be added using \code{addLegend=TRUE} for spaghetti plots only. Spaghetti plots work if \code{spaghetti=TRUE} and there is more than one series being plotted.
+
+For multiple series, the default for \code{reset.par} is \code{TRUE} so that the graphic parameters are reset at the end.  For example, if there are 5 plots and \code{ncol = 2}, the layout will be 3 rows, 2 columns, with an empty spot where a 6th plot would be.  If you want to add something in the empty space, set this to \code{FALSE}, otherwise the graphic parameters are reset and the graphic is finished.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
@@ -117,28 +122,30 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \examples{
-\dontrun{
+
 
 # minimal
 tsplot(soi)
 # prettified
-tsplot(soi, col=4, main="Southern Oscillation Index")
+tsplot(soi, col=4, gg=TRUE, main="Southern Oscillation Index")
 
 # gris-gris multiple plot 
-tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2)  
+tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2, las=0)  
+
+
+# quick legend with spaghetti
+tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, addLegend=TRUE)
+# and a little more control
+tsplot(cbind(gtemp_land, gtemp_ocean), spaghetti=TRUE, lwd=2, col=astsa.col(c(4,2),.7), 
+  ylab="\u00B0C", main="Global Temperature Anomalies", addLegend=TRUE, location='topleft', 
+  horiz=TRUE, legend=c("Land Surface","Sea Surface"))
+
+\dontrun{
 
 # spaghetti (and store it in an object - ?recordPlot for details)
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
 u <- tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
 u   #  plot on demand
-
-# quick legend with spaghetti
-tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, addLegend=TRUE)
-# ... and a little more control
-tsplot(cbind(gtemp_land, gtemp_ocean), spaghetti=TRUE, lwd=2, col=astsa.col(c(4,2),.7), 
-  ylab="\u00B0C", main="Global Temperature Anomalies", addLegend=TRUE, location='topleft', 
-  horiz=TRUE, legend=c("Land Surface","Sea Surface"))
-
 
 # compare these
 par(mfrow=2:1)

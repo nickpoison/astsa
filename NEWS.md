@@ -48,7 +48,8 @@ remotes::install_github("nickpoison/astsa/astsa_build")
   ```r
   tsplot(timex(djia), djia, col=2:6, ncol=2, main='DJIA')
   ```
-  
+
+- for `tsplot`, added option `reset.par` so for multiple plots, the graphics are reset at the end by default (`TRUE`) unless this is set to `FALSE`.   For example, if there are 5 plots and `ncolm=2` , the layout will be 3 rows, 2 columns with an empty spot for a 6th plot.  If you want to add something in the empty space, set this to `FALSE`, otherwise the graphic is finished.
   
 
 

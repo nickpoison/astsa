@@ -61,12 +61,11 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \examples{
-\dontrun{
 
 par(mfrow=2:1)
-trend(soi)
+trend(soi, results=TRUE)
 trend(soi, lowess=TRUE)
-}
+
 }
 \seealso{\code{\link{detrend}}}
 \keyword{ts}

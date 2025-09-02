@@ -3,8 +3,9 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
                     minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
                     gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, lwd=1, mgpp=0, 
                     topper=NULL, addLegend=FALSE, location='topright', boxit=TRUE,
-                    horiz=FALSE, legend=NULL, llwd=NULL, scale=1, ...)
+                    horiz=FALSE, legend=NULL, llwd=NULL, scale=1, reset.par = TRUE, ...)
 {
+  old.par <- par(no.readonly = TRUE)    # orig parameters
   nser   = max(NCOL(x), NCOL(y))
   if (is.null(topper)){
   topper = ifelse(is.null(main), 0, .5) } 
@@ -38,7 +39,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    } else {
    par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+margins )
    }
-par(cex=.9*scale)
+  par(cex=.9*scale)
    if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
    if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
    for (h in 1:nser) {
@@ -50,6 +51,7 @@ par(cex=.9*scale)
     }
     }  
    mtext(text=main, line=-.5, outer=TRUE, font=2) 
+   if(reset.par) {par(old.par)}
    }    
 } else {                   # gris-gris ya ya 
   if (nser == 1) {         # single series
@@ -87,7 +89,8 @@ par(cex=.9*scale)
              minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
     }
     }
-   mtext(text=main, line=-.5, outer=TRUE, font=2)   
+   mtext(text=main, line=-.5, outer=TRUE, font=2)  
+   if(reset.par) {par(old.par)} 
   }
 }   
 } else {  # when spaghetti is TRUE and nser > 1

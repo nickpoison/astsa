@@ -29,7 +29,13 @@ The webpages for the texts and some help on using R for time series analysis can
 
 # the file is an 'xts' data file
 # if 'xts' is not installed you can still do this
-tsplot(timex(djia), djia, ncolm=2, col=2:6)
+
+tsplot(djia, ncolm=2, col=2:6)               # no dates
+tsplot(timex(djia), djia, ncolm=2, col=2:6)  # dates 
+
+# differencing (on its own) loses an obs 
+return = diff(log(djia[,'Close']))
+tsplot(timex(djia)[-1], return, col=4, gg=TRUE, main='DJIA')
 
 }
 \keyword{datasets}

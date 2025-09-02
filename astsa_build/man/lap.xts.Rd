@@ -59,6 +59,13 @@ The webpages for the texts and some help on using R for time series analysis can
 # if 'xts' is not installed you can still do this
 tsplot(timex(lap.xts), lap.xts, ncolm=3, col=astsa.col(4,wheel=TRUE,num=11))
 
+# differencing (on its own) loses an obs 
+dCmort = diff(log(lap.xts[,'Cmort']))
+tsplot(timex(lap.xts)[-1], dCmort, col=4, gg=TRUE)
+
+# classic IMA(1,1)
+acf2(dCmort, col=2:7, lwd=4)
+
 \dontrun{
 
 library(xts)   # assumes package has been installed

@@ -21,6 +21,8 @@ The webpages for the texts and some help on using R for time series analysis can
 \examples{
 
 # if 'xts' is not loaded, you can do this
-tsplot(timex(sp500w), sp500w, col=4, lwd=2)
+tsplot(sp500w, col=4, lwd=2)                 # no dates
+tsplot(timex(sp500w), sp500w, col=4, lwd=2)  # dates
+
 }
 \keyword{datasets}
