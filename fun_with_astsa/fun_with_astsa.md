@@ -14,7 +14,10 @@ it's more than just data ... it's a palindrome
 
 ⭐⭐⭐⭐⭐ 
 
- When `astsa`  version 2.3 is loaded, the user is asked if they want to install the package `xts`.  It is beneficial to answer YES because we  use the  package  throughout the text. 
+__&#127881;&#127881; This has been removed in version 2.4. &#127881;&#127881;__ 
+
+
+This is totally messed up, but when `astsa`  version 2.3 is loaded, the user is asked if they want to install the package `xts`.  It is beneficial to answer YES because we  use the  package  throughout the text. 
 
 To suppress asking about loading `xts` you can use
 ```r
@@ -23,7 +26,7 @@ suppressPackageStartupMessages(library(astsa))
 
 BUT the message is displayed only  if `xts` is not installed... so installing it is another way to avoid being asked.  And if you're doing time series analysis, `xts`  is an important package. 
 
-__This has been removed in version 2.4.__
+__&#127881;&#127881; This has been removed in version 2.4. &#127881;&#127881;__ 
 
 ⭐⭐⭐⭐⭐ 
 
