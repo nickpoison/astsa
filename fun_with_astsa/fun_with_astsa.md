@@ -324,7 +324,7 @@ tsplot(timex(djia), djia[,'Close'], col=4, ylab='DJIA Close')
 
 <img src="figs/timex.png" alt="tsplot easy legend"  width="70%">
 
-Notice that in the first case the dates on the time axis are missing. The script `timex` takes the 'unix time stamp' dates from the `xts` data file and converts them to decimal time; e.g., September 1, 2010 is approximately 2010.668.
+Notice that in the first case the dates on the time axis are missing. The script `timex` takes the 'unix time stamp' dates from the `xts` data file and converts them to decimal time; e.g., September 1, 2010 is approximately 2010.666 because it is the 243th of that year (Jan 1 being day zero).
 
 <br/><br/>
 
