@@ -307,6 +307,25 @@ tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE,
 
 <img src="figs/legend.png" alt="tsplot easy legend"  width="70%">
 
+<br/>
+
+
+&#127378; `timex` ... keeps on ticking
+
+ There are a few `xts` data files in `astsa` and we recommend installing the package (and consequently `zoo`) if you are analyzing time series.  But, in case `xts` is not available, you can still plot the series using the actual times as of `astsa` version 2.4.
+
+Here's an example using `djia`.  
+
+```r
+par(mfrow=2:1)
+tsplot(djia[,'Close'], col=4, ylab='DJIA Close')
+tsplot(timex(djia), djia[,'Close'], col=4, ylab='DJIA Close')
+```
+
+<img src="figs/timex.png" alt="tsplot easy legend"  width="70%">
+
+Notice that in the first case the dates on the time axis are missing. The script `timex` takes the 'unix time stamp' dates from the `xts` data file and converts them to decimal time; e.g., September 1, 2010 is approximately 2010.668.
+
 <br/><br/>
 
 
