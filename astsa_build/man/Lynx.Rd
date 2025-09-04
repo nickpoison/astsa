@@ -3,7 +3,9 @@
 \docType{data}
 \title{Canadian Lynx
 }
-\description{This is one of the classic studies of predator-prey interactions, the 90-year data set is the number, in thousands, of  lynx  pelts  purchased by the Hudson's Bay Company of Canada. While this is an indirect measure of predation, the assumption is that there is a direct relationship between the number of pelts collected and the number of hare and lynx in the wild.
+\description{This is one of the classic studies of predator-prey interactions, the 90-year data set is the number, in thousands, of  lynx  pelts  purchased by the Hudson's Bay Company (HBC) of Canada. While this is an indirect measure of predation, the assumption is that there is a direct relationship between the number of pelts collected and the number of hare and lynx in the wild.
+
+If you are interested in the brutal story of HBC, see the video \kbd{https://www.nfb.ca/film/other_side_of_the_ledger} or read the article \kbd{https://canadiangeographic.ca/articles/the-untold-story-of-the-hudsons-bay-company}.
 } 
 \format{
   The format is:

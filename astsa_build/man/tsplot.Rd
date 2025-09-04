@@ -122,12 +122,13 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \examples{
-
-
 # minimal
 tsplot(soi)
 # prettified
 tsplot(soi, col=4, gg=TRUE, main="Southern Oscillation Index")
+# spaces
+tsplot(soi, ylab='SOI', xlab='Month', margins=c(2,3,4,5), las=1, mgpp=c(1.4,.4,0))
+
 
 # gris-gris multiple plot 
 tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2, las=0)  
@@ -140,19 +141,6 @@ tsplot(cbind(gtemp_land, gtemp_ocean), spaghetti=TRUE, lwd=2, col=astsa.col(c(4,
   ylab="\u00B0C", main="Global Temperature Anomalies", addLegend=TRUE, location='topleft', 
   horiz=TRUE, legend=c("Land Surface","Sea Surface"))
 
-\dontrun{
-
-# spaghetti (and store it in an object - ?recordPlot for details)
-x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
-u <- tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
-u   #  plot on demand
-
-# compare these
-par(mfrow=2:1)
-tsplot(1:453, soi, ylab='SOI', xlab='Month')
-# now recklessly add to the margins and add to mgp to get to the default
-tsplot(1:453, soi, ylab='SOI', xlab='Month', margins=c(2,3,4,5), las=1, mgpp=c(1.4,.4,0))
-
 
 # cex (and scale)
 par(mfrow=c(3,1))  # cex gets small with mf plots 
@@ -163,6 +151,13 @@ par(mfrow=c(3,1), cex=.9)  # so fix it
 # it's rescaled here for your pleasure
 tsplot(cbind(big=rnorm(100), bad=rnorm(100), john=rnorm(100)))  # default scale=1
 tsplot(cbind(big=rnorm(100), bad=rnorm(100), john=rnorm(100)), scale=1.5)  # big
+
+\dontrun{
+
+# spaghetti (and store it in an object - ?recordPlot for details)
+x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
+u <- tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
+u   #  plot on demand
 }
 }
 \keyword{ ts }
