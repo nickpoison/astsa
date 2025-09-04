@@ -310,7 +310,7 @@ tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE,
 <br/>
 
 
-&#127378; `timex` ... keeps on ticking
+ &#127381; `timex` ... keeps on ticking
 
  There are a few `xts` data files in `astsa` and we recommend installing the package (and consequently `zoo`) if you are analyzing time series.  But, in case `xts` is not available, you can still plot the series using the actual times as of `astsa` version 2.4.
 
@@ -442,7 +442,7 @@ QQnorm(log(varve), main='log(varve)')
 
 ### Regression t-table with VIFs
 
-&#128045; It's not a graphic thing, but there was no other place to put this with ease.  This is used in the 2nd edition of the Chapman Hall text. It will be available in `astsa` version 2.2+ and beyond.  It's based on `summary.lm` but it prints AIC, AICc, and BIC and it can include VIFs if appropriate and it goes like this: 
+&#128045; It's not a graphic thing, but there was no other place to put this with ease.  This is used in the 2nd edition of the Chapman Hall text. It is available in `astsa` version 2.3 and beyond.  It's based on `summary.lm` but it prints AIC, AICc, and BIC and it can include VIFs if appropriate and it goes like this: 
 
 ```r
 fit = lm( mpg~ cyl + disp + hp + drat + wt + qsec, data=mtcars) 
@@ -465,7 +465,7 @@ ttable(fit, vif=TRUE)
  F-statistic: 24.53 on 6 and 25 DF,  p-value: 2.45e-09
  AIC =  3.1309    AICc =  3.2768    BIC =  3.4974 
 ```
-`mtcars` is an R data set of gas consumption (`mpg`) and various design aspects. The design aspects are   related, thus the high VIFs.  Also notice that the engine size (`disp`) coefficient has the wrong sign because bigger engines don't get better gas mileage.  Also, nothing but weight (`wt`) is significant because the SEs are inflated.  How's that for a picture?
+`mtcars` is a data set in R gas consumption (`mpg`) and various design aspects (the 'mt' refers to 'motor trend' magazine). The design aspects of cars are related, thus the high VIFs.  Also notice that the engine size (`disp`) coefficient has the wrong sign because bigger engines don't get better gas mileage.  Also, nothing but weight (`wt`) is significant because the SEs are inflated.  How's that for a picture?
 
 <br/>
 
