@@ -251,20 +251,33 @@ tsplot(soi, col=4, lwd=2, gg=TRUE)   # gg => gris-gris plot - the grammar of ast
 &#x1F535; Many in one swell foop:
 
 ```r
-tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2)  # another gris-gris plot
-```
-<img src="figs/climhyd.png" alt="climhyd"  width="70%"> 
+tsplot(climhyd, ncol=2)   # a quick simple plot (3 rows - 2 columns)
 
-Actually that figure has a little more to it ... in version 2.2, you can use `scale` to control the character expansion (`cex`) of the plot so the axis values don't get too small if there are many series being plotted.
-So what you see is from this:
-```r
+# but with some bells and whistles and  gris-gris:
 climhyd[,5:6] = sqrt(climhyd[,5:6])
 tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2, scale=.9) 
 ```
+<img src="figs/climhyd.png" alt="climhyd"  width="70%"> 
+
+In version 2.2 and beyond, you can use `scale` to control the character expansion (`cex`) of the plot so the axis values don't get too small if there are many series being plotted. 
+
 <br/>
 
 &#x1F535; Do you like `spaghetti` (you can shorten it to `spag`):
 
+
+&#10004; In version 2.2 and beyond, you can use `addLegend` in `tsplot` with spaghetti plots (more than 1 series on the same plate).
+
+```r
+tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),ylab='Number', spaghetti=TRUE, addLegend=TRUE)
+mtext('\u00D7 1000', side=2, adj=1, line=1.5, cex=.8)
+```
+
+<img src="figs/lynxhare.png" alt="lynxhare"  width="70%">
+
+<br/>
+
+If you need more control, you can still use `legend`:
 
 ```r
 tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2), ylab='Number',  spaghetti=TRUE)
@@ -274,23 +287,25 @@ legend("topright", legend=c("Hare","Lynx"), col=c(2,4), lty=1, pch=c(0,2), bty="
 
 <br/>
 
-&#10004; In version 2.2 and beyond, this can be done with `addLegend` in `tsplot` (and a few more examples below)
+&#127378; And another easy-add legend for spaghetti plots:
 
 ```r
-tsplot(cbind(Hare,Lynx), col=astsa.col(c(2,4),.5), lwd=2, type="o", pch=c(0,2),ylab='Number', spaghetti=TRUE, addLegend=TRUE)
-mtext('\u00D7 1000', side=2, adj=1, line=1.5, cex=.8)
+# quick and easy legend
+tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, addLegend=TRUE, llwd=2)
 ```
 
-<img src="figs/lynxhare.png" alt="lynxhare"  width="70%">
-
-
+<img src="figs/legend.png" alt="tsplot easy legend"  width="70%">
 
 <br/>
 
 
 
 
-&#128148; And the land where the LLN ceases to exist:
+
+
+
+
+&#128148; And you can still have spaghetti in the land where the LLN ceases to exist:
 
 ```r
 x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
@@ -300,16 +315,6 @@ tsplot(x, col=1:8, main='not happening', spaghetti=TRUE, gg=TRUE, ylab="sample m
 <img src="figs/tsplot2.png" alt="tsplot"  width="70%">
 
 <br/>
-
-&#127378; And another easy-add legend for spaghetti plots (for more control you can still use `legend`)
-
-```r
-# quick and easy legend
-tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, addLegend=TRUE, llwd=2)
-```
-
-<img src="figs/legend.png" alt="tsplot easy legend"  width="70%">
-
 <br/>
 
 
@@ -327,7 +332,7 @@ tsplot(timex(djia), djia[,'Close'], col=4, ylab='DJIA Close')  # yes dates
 
 <img src="figs/timex.png" alt="tsplot easy legend"  width="70%">
 
-Notice that in the first case the dates on the time axis are missing. The script `timex` takes the 'unix time stamp' dates from the `xts` data file and converts them to decimal time; e.g., September 1, 2010 is approximately 2010.666 because it is day 243 of that 365-day year (Jan 1 being day zero).
+In the top plot, the dates on the time axis are missing. The script `timex` takes the 'unix time stamp' dates from the `xts` data file and converts them to decimal time; e.g., September 1, 2010 is approximately 2010.666 because it is day 243 of that 365-day year (Jan 1 being day zero).
 
 <br/><br/>
 
@@ -363,6 +368,24 @@ lag2.plot(soi, rec, 8, pch=19, col=5, lwl=2, gg=TRUE)
 <img src="figs/lag2plot.png" alt="lag2plot"  width="70%">
 
 <br/>
+
+As of version 2.3, you can change the location of the ACF values:
+
+```r
+lag2.plot(soi, rec, 8, pch=19, col=astsa.col(4,.3), gg=TRUE, location='bottomleft')
+```
+
+
+<img src="figs/lag2loc.png" alt="lag2plot"  width="70%">
+
+<br/>
+
+
+&#128045; As previously mentioned, you can turn off the correlation or smooth displays by setting those things to `FALSE` (in either script); e.g.,
+
+```r
+lag1.plot(diff(log(GDP)), 4, corr=FALSE, smooth=FALSE)  # not shown
+```
 
 
 ### Scatterplots

@@ -7,7 +7,7 @@
 \usage{
 lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(.1), 
           bg = NA, lwl = 1, lwc = 2, bgl = NULL, ltcol = 1, box.col = NULL, cex = .9, 
-          gg = FALSE, location="topright", ...)
+          gg = FALSE, location="topright", xname=NULL, yname=NULL, main=NULL, ...)
 }
 \arguments{
   \item{series1}{first series (the one that gets lagged)
@@ -41,6 +41,10 @@ lag2.plot(series1, series2, max.lag = 0, corr = TRUE, smooth = TRUE, col = gray(
  \item{location}{ 
 the location of the CCF legend with options \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"} (the default), \code{"right"} and \code{"center"}.  
 }
+  \item{xname, yname}{strings for the names of the series to be used for axis labels. If NULL, the name of the series as input is used.
+}
+  \item{main}{a string for the title if desired, otherwise there is no title.
+}
   \item{\dots}{additional graphical parameters
 }
 }
@@ -61,7 +65,8 @@ lag2.plot(Hare, Lynx, max.lag=5, lwl=2, lwc=3, cex=1.5, pch=24, bg='orange')
 
 lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, lwl=2, location="bottomleft")
 
-lag2.plot(diff(lead), diff(sales), 5, corr=FALSE, gg=TRUE, pch=8, col=6, lwc=4)
+lag2.plot(diff(lead), diff(sales), 5, corr=FALSE, gg=TRUE, pch=8, col=6, lwc=4,
+          xname='dL', yname='dS', main='BJ Sales')
 }
 \seealso{\code{\link{lag1.plot}}}
 \keyword{ ts }

@@ -1,10 +1,13 @@
 lag1.plot <-
 function(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1), bg=NA,
          lwl=1, lwc=2, bgl=NULL, ltcol=1, box.col=NULL, cex=.9, gg=FALSE,
-         location="topright", ...){ 
+         location="topright", xname=NULL, main=NULL, ...){ 
 
-  name1   = paste(deparse(substitute(series)),"(t-",sep="")
-  name2   = paste(deparse(substitute(series)),"(t)",sep="")
+  if (is.null(xname)) xname = deparse(substitute(series))
+  name1   = paste(xname, "(t-", sep="")
+  name2   = paste(xname, "(t)", sep="")
+
+
   max.lag = as.integer(max.lag)
   prow    = ceiling(sqrt(max.lag))
   pcol    = ceiling(max.lag/prow)
@@ -19,7 +22,8 @@ function(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1), bg=NA,
 
  series = as.ts(series)
  par(mfrow = c(prow, pcol))
- if (par('cex') < .9) par(cex =.9)
+ if (par('cex') < .8) par(cex=.8)
+ if (!is.null(main)) par(oma=c(0,0,.75,0)+.1)
  for(h in 1:max.lag){ 
    u = ts.intersect(lag(series,-h), series)
   tsplot(u[,1], u[,2], type='p', xy.labels=FALSE, xy.lines=FALSE, gg=gg,
@@ -31,6 +35,7 @@ function(series, max.lag=1, corr=TRUE, smooth=TRUE, col=gray(.1), bg=NA,
            text.col=ltcol, bg=bgl, adj=.25, box.col=box.col, cex=.8)
    if (gg) { box(col=gray(1)) } else { box(col=gray(.62)) }
  }
+  if (!is.null(main))  title(main, outer=TRUE, line=-.10)
  on.exit(par(old.par))
 }
 }

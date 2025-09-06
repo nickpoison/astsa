@@ -5,9 +5,9 @@
 \description{Produces a grid of scatterplots of a series versus lagged values of the series.
 }
 \usage{
-lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1), 
-           bg = NA, lwl = 1, lwc = 2, bgl = NULL, ltcol = 1, box.col = NULL, 
-           cex = .9, gg = FALSE, location="topright", ...)
+lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1), bg = NA, 
+           lwl = 1, lwc = 2, bgl = NULL, ltcol = 1, box.col = NULL, cex = .9, 
+           gg = FALSE, location="topright", xname = NULL, main = NULL, ...)
 }
 \arguments{
   \item{series}{the data
@@ -39,6 +39,10 @@ lag1.plot(series, max.lag = 1, corr = TRUE, smooth = TRUE, col = gray(.1),
  \item{location}{ 
 the location of the ACF legend with options \code{"bottomright"}, \code{"bottom"}, \code{"bottomleft"}, \code{"left"}, \code{"topleft"}, \code{"top"}, \code{"topright"} (the default), \code{"right"} and \code{"center"}.  
 }
+  \item{xname}{a string; name of the series to be used for axis labels. If NULL, the name of the series as input is used.
+}
+  \item{main}{a string for the title if desired, otherwise there is no title.
+}
   \item{...}{additional graphical arguments
 }
 }
@@ -58,6 +62,8 @@ The webpages for the texts and some help on using R for time series analysis can
 lag1.plot(log(varve), max.lag=9, lwl=3, lwc=6, col=5, location='topleft')
 
 lag1.plot(soi, 12, pch=19, col=astsa.col(4, .3), gg=TRUE)
+
+lag1.plot(diff(log(varve)), 4, xname='V', main=bquote(V==nabla(log(varve))))  # change axis name
 }
 \seealso{\code{\link{lag2.plot}}}
 \keyword{ ts }
