@@ -65,7 +65,7 @@ lag2.plot(Hare, Lynx, max.lag=5, lwl=2, lwc=3, cex=1.5, pch=24, bg='orange')
 
 lag2.plot(soi, rec, 8, cex=1.1, pch=19, col=5, lwl=2, location="bottomleft")
 
-lag2.plot(diff(lead), diff(sales), 5, corr=FALSE, gg=TRUE, pch=8, col=6, lwc=4,
+lag2.plot(diff(lead), diff(sales), 5, smooth=FALSE, gg=TRUE, pch=8, col=6, lwc=4,
           xname='dL', yname='dS', main='BJ Sales')
 }
 \seealso{\code{\link{lag1.plot}}}

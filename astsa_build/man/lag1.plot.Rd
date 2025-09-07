@@ -63,7 +63,7 @@ lag1.plot(log(varve), max.lag=9, lwl=3, lwc=6, col=5, location='topleft')
 
 lag1.plot(soi, 12, pch=19, col=astsa.col(4, .3), gg=TRUE)
 
-lag1.plot(diff(log(varve)), 4, xname='V', main=bquote(V==nabla(log(varve))))  # change axis name
+lag1.plot(diff(log(varve)), 4, xname='V', main=bquote(V(t)==nabla*log(varve[t])))  # change axis name
 }
 \seealso{\code{\link{lag2.plot}}}
 \keyword{ ts }
