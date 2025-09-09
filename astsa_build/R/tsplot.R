@@ -39,7 +39,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    } else {
    par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+margins )
    }
-  par(cex=.9*scale)
+  par(cex=.85*scale)
    if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
    if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
    for (h in 1:nser) {
@@ -78,7 +78,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,.25,3*topper,0)+margins, tcl=-.2, 
          cex.axis=.9, cex=.9*scale)
    }
-par(cex=.9*scale)
+par(cex=.85*scale)
    if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
    if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
    for (h in 1:nser) {
