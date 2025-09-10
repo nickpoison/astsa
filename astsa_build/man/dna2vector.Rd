@@ -55,6 +55,7 @@ D.S. Stoffer
 }
 \examples{
 # Epstein-Barr virus (entire sequence included in astsa)
+substr(EBV, start=1, stop=25)
 xdata = dna2vector(EBV)
 head(xdata)
 

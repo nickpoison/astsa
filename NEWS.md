@@ -48,7 +48,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
   tsplot(timex(djia), djia, col=2:6, ncol=2, main='DJIA')
   ```
 
-- for `tsplot`, added logical option `reset.par`. For multiple plots, the graphic is reset by default (`TRUE`) unless this is set to `FALSE`.   For example, if there are 5 plots and `ncolm=2`, the layout will be 3 by 2 with an empty spot.  If you want to add something in the empty space, set this to `FALSE`, otherwise the graphic is finished.
+- for `tsplot`, added logical option `reset.par`. For multiple plots, the graphic is reset by default (`TRUE`) unless this is set to `FALSE`.   For example, if there are 5 plots and `ncolm=2`, the layout will be 3 by 2 with an empty spot.  If you want to add something in the empty space, set this to `FALSE`, otherwise the graphic is finished.  Also `las` (orientation of axis labels) is a user option for every kind of plot with the default being 0 - it used to be 1 for gris-gris plots by default.
 
 - `lag1.plot` and `lag2.plot` have additional arguments where you can change the name(s) of the series on the plots.  The defaults are the name of the series, but it can get messy if you do something like `lag1.plot(x <- diff(log(varve)), 4)`, so now you can do this: `lag1.plot(x <- diff(log(varve)), 4, xname='V')`.
 

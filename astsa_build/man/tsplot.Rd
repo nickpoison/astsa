@@ -132,11 +132,12 @@ tsplot(soi, ylab='SOI', xlab='Month', margins=c(2,3,4,5), las=1, mgpp=c(1.4,.4,0
 
 
 # gris-gris multiple plot 
-tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2, las=0)  
+tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2)  
 
 
 # quick legend with spaghetti
-tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, spaghetti=TRUE, addLegend=TRUE)
+tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, las=1, spaghetti=TRUE, 
+        addLegend=TRUE)
 # and a little more control
 tsplot(cbind(gtemp_land, gtemp_ocean), spaghetti=TRUE, lwd=2, col=astsa.col(c(4,2),.7), 
   ylab="\u00B0C", main="Global Temperature Anomalies", addLegend=TRUE, location='topleft', 

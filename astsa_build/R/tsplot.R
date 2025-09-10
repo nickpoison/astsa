@@ -65,7 +65,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    Grid(nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, xm.grid=xm.grid, ym.grid=ym.grid, col='white')
    par(new=TRUE)
    plot(x, y, type=type1, main=main, ylab=ylab, xlab=xlab, col=col, pch=pch, 
-         lty=lty, lwd=lwd, las=1, ... ) 
+         lty=lty, lwd=lwd, ... ) 
    box(col='white', lwd=2)
   } else {                 # multiple series
    if(!is.null(ylab)){ ylab = rep(ylab, ceiling(nser/length(ylab))) } 

@@ -82,10 +82,8 @@ The webpages for the texts and some help on using R for time series analysis can
 
 u = ar.mcmc(rec, 2)
 
-dev.new()
 tspairs(u, hist=FALSE, col.diag=6)  # another view 
 
-dev.new()
 tsplot(u, ncol=2, col=4, xlab='Index')  # traces only
 
 }

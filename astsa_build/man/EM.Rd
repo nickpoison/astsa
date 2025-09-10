@@ -99,15 +99,22 @@ The webpages for the texts and some help on using R for time series analysis can
 \code{\link{Kfilter}, \link{Ksmooth} }
 }
 \examples{
-# example used for ssm() 
-# x[t] = Ups + Phi x[t-1] + w[t]
-# y[t] = x[t] + v[t]
-y = gtemp_land  
-A = 1; Phi = 1.03; Ups = 0.01
-Q = 0.0001; R = 0.1
-mu0 = -0.5; Sigma0 = 0.001
+y = ar1miss   # an 'astsa' data set with missing values
+A = 1; Phi = .1; Ups = 1
+Q = 0.1; R = 0.1; Gam=1
+mu0 = 0; Sigma0 = 1
 input = rep(1, length(y))
-( em = EM(y, A, mu0, Sigma0, Phi, Q, R, Ups, Gam=NULL, input) ) 
+( em = EM(y, A, mu0, Sigma0, Phi, Q, R, Ups, Gam, input) ) 
+
+# run Kalman smoother at the final estimates
+ks = Ksmooth(y, A=1, em$mu0, em$Sigma0, em$Phi, sQ=sqrt(em$Q), sR=sqrt(em$R),
+              Ups=em$Ups, Gam=em$Gam, input=input) 
+
+# admire your work
+tsplot(cbind(y, drop(ks$Xs)), type='o', pch=c(19,NA), col=2*2:3, lwd=1:2, 
+        gg=TRUE, spag=TRUE, addLegend=TRUE, legend=c('data', 'smooth'))
+miss = cbind(which(is.na(y)), min(y, na.rm=TRUE)-.2)   # show yourself
+points(miss, pch=18)
 }
 \keyword{ ts }
 
