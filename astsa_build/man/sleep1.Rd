@@ -40,13 +40,12 @@ The webpages for the texts and some help on using R for time series analysis can
  \url{https://nickpoison.github.io/}. 
 }
 \examples{
-\dontrun{
-
 # spectral analysis
-x = dna2vector(sleep1[[1]]$state[1:115], alphabet=c('1','2','3','4','5'))  # never awake
-specenv(x, spans=c(3,3))
+x = dna2vector(sleep1[[1]]$state, alphabet=c('1','2','3','4','5'))  # never awake
+specenv(na.omit(x), spans=c(3,3), col=5)  # not all babies make it to 120 minutes
 abline(v=1/60, lty=2, col=8)
-}
+mtext(side=1, '1/60', at=1/60, cex=.75)
+
 }
 \seealso{\code{\link{sleep2}}}
 \keyword{datasets}

@@ -7,33 +7,6 @@
 		 }
 
 
-## .onAttach <- function(libname, pkgname) {  # ask if want to install xts
-##   # Check if in an interactive session
-##   if (interactive()) {
-##     # Define the package to suggest
-##     suggested_package <- "xts"
-## 
-##     # Check if the suggested package is already installed
-##     if (!requireNamespace(suggested_package, quietly = TRUE)) {
-##       # Prompt the user
-##       response <- menu(c("Yes", "No"), title = paste0("Would you like to install the '", suggested_package, "' package?"))
-## 
-##       # Install if the user chooses 'Yes'
-##       if (response == 1) {
-##         packageStartupMessage(paste0("Installing '", suggested_package, "'..."))
-##         tryCatch({
-##           install.packages(suggested_package)
-##           packageStartupMessage(paste0("'", suggested_package, "' installed successfully."))
-##         }, error = function(e) {
-##           warning(paste0("Failed to install '", suggested_package, "': ", e$message))
-##         })
-##       } else {
-##         packageStartupMessage(paste0("Skipping installation of '", suggested_package, "'."))
-##       }
-##     }
-##   }
-## }
-
 
 
 # below were used for `stats::pairs` in `ar.boot` and `ar.mcmc` and
@@ -60,3 +33,33 @@ text(0.5, 0.5, r, cex = 1.5)
     y <- h$counts; y <- y/max(y)
     rect(breaks[-nB], 0, breaks[-1], y, ...)
 }
+
+##########################
+##-- this was in v2.3 and out in v2.4 --##
+##########################
+## .onAttach <- function(libname, pkgname) {  # ask if want to install xts
+##   # Check if in an interactive session
+##   if (interactive()) {
+##     # Define the package to suggest
+##     suggested_package <- "xts"
+## 
+##     # Check if the suggested package is already installed
+##     if (!requireNamespace(suggested_package, quietly = TRUE)) {
+##       # Prompt the user
+##       response <- menu(c("Yes", "No"), title = paste0("Would you like to install the '", suggested_package, "' package?"))
+## 
+##       # Install if the user chooses 'Yes'
+##       if (response == 1) {
+##         packageStartupMessage(paste0("Installing '", suggested_package, "'..."))
+##         tryCatch({
+##           install.packages(suggested_package)
+##           packageStartupMessage(paste0("'", suggested_package, "' installed successfully."))
+##         }, error = function(e) {
+##           warning(paste0("Failed to install '", suggested_package, "': ", e$message))
+##         })
+##       } else {
+##         packageStartupMessage(paste0("Skipping installation of '", suggested_package, "'."))
+##       }
+##     }
+##   }
+## }

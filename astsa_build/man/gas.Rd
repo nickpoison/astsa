@@ -23,5 +23,9 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}. 
 }
+\examples{
+tsplot(cbind(gas,oil), spag=TRUE, col=2*1:2, addLegend=TRUE)
+
+}
 \seealso{\code{\link{oil}}}
 \keyword{datasets}

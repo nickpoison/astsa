@@ -64,7 +64,7 @@ D.S. Stoffer
 
 par(mfrow=2:1)
 trend(soi, results=TRUE)
-trend(soi, lowess=TRUE)
+trend(soi, lowess=TRUE, gg=TRUE)
 
 }
 \seealso{\code{\link{detrend}}}

@@ -3,7 +3,7 @@
 \docType{data}
 \title{Biannual Sunspot Numbers
 } 
-\description{Biannual smoothed (12-month moving average) number of sunspots from June 1749 to December 1978; n = 459. The "z" on the end is to distinguish this series from the one included with R (called \code{sunspots}).
+\description{Biannual smoothed (12-month moving average) number of sunspots from June 1749 to December 1978; n = 459. 
 }
 \format{
 The format is: 
@@ -21,5 +21,8 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}.   
+}
+\note{
+The "z" on the end of \code{sunspotz} is to distinguish this series from the ones included with R (see \code{\link{sunspots}}).
 }
 \keyword{datasets}

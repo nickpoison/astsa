@@ -40,13 +40,9 @@ The webpages for the texts and some help on using R for time series analysis can
  \url{https://nickpoison.github.io/}. 
 }
 \examples{
-\dontrun{
+tsplot(sleep2[[1]][,1], sleep2[[1]][,2:3], type='s', col=2*2:3, xlab='minute')
+title('Baby Goo from Group 2', outer=TRUE, line=-1, cex.main=1)
 
-# spectral analysis
-x = dna2vector(sleep1[[1]]$state[1:115], alphabet=c('1','2','3','4','5'))  # never awake
-specenv(x, spans=c(3,3))
-abline(v=1/60, lty=2, col=8)
-}
 }
 \seealso{\code{\link{sleep1}}}
 \keyword{datasets}

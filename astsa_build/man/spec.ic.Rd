@@ -79,7 +79,7 @@ spec.ic(soi)
 dog <- spec.ic(soi, BIC=TRUE, detrend=TRUE, log='y')  
 
 # plot AIC and BIC  (dog from previous example)
-tsplot(dog[[1]][,1], dog[[1]][,2:3], col=2*1:2, type='o', pch=1:2, xlab='order',
+tsplot(dog[[1]][-1,1], dog[[1]][-1,2:3], col=2*1:2, type='o', pch=1:2, xlab='order',
         spag=TRUE, addLegend=TRUE)  
 }
 }

@@ -82,25 +82,25 @@ D.S. Stoffer
 \code{\link{dna2vector}}
 }
 \examples{
-\dontrun{
 # a DNA sequence
 data  = bnrf1ebv
 xdata = dna2vector(data)
 u = specenv(xdata, section=1:1000, spans=c(7,7))
 head(u)  # scalings are for A, C, G, and last one T=0 always
 
-# a real-valued series (nyse returns)
-x = astsa::nyse
+# a real-valued series
+x     = astsa::nyse
 xdata = cbind(x, abs(x), x^2)
-u = specenv(xdata, real=TRUE,  spans=c(3,3))
+u     = specenv(xdata, real=TRUE, spans=c(3,3))
 # plot optimal transform at freq = .001
-beta = u[2, 3:5]
-b = beta/beta[2]  # makes abs(x) coef=1
-gopt = function(x) { b[1]*x+b[2]*abs(x)+b[3]*x^2 }
-curve(gopt, -.2, .2, col=4, lwd=2, panel.first=Grid())
-g2 = function(x) { b[2]*abs(x) } # corresponding to |x|
-curve(g2, -.2,.2, add=TRUE, col=6)
-}
+beta  = u[2, 3:5]
+( b   = beta/beta[2] )  # makes abs(x) coef=1
+gopt  = function(z) { b[1]*z + b[2]*abs(z) + b[3]*z^2 }
+gabs  = function(z) { abs(z) } 
+z     = -20:20/100
+tsplot(z, cbind(gopt(z), gabs(z)), spag=TRUE, col=5:6, addLegend=TRUE, lwd=2, 
+        xlab='return', legend = c('optimal','absolute value' ), gg=TRUE)
+title('transformations')
 }
 \keyword{ ts }
 

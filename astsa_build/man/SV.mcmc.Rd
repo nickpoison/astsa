@@ -54,12 +54,12 @@ their ACFs [with effective sample sizes (ESS)], and their histograms with the .0
 and (2) the log-volatility posterior mean along with corresponding .95 credible intervals.
 }
 \value{
-Returned invisibly:
- \item{phi }{vector of sampled state AR parameter}
- \item{sigma }{vector of sampled state error stnd deviation}
- \item{beta }{vector of sampled observation error scale}
- \item{log.vol }{matrix of sampled log-volatility} 
- \item{options }{values of the input arguments}   
+Returned invisibly as a list:
+ \item{phi }{[[1]] vector of sampled state AR parameter}
+ \item{sigma }{[[2]] vector of sampled state error stnd deviation}
+ \item{beta }{[[3]] vector of sampled observation error scale}
+ \item{log.vol }{[[4]] matrix of sampled log-volatility} 
+ \item{options }{[[5]] values of the input arguments}   
 }
 \source{Gong & Stoffer (2021). A note on efficient fitting of stochastic volatility models. \emph{Journal of Time Series Analysis}, 42(2), 186-200.  \url{https://github.com/nickpoison/Stochastic-Volatility-Models}
 

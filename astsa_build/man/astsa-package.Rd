@@ -42,12 +42,11 @@ and \code{lag} and \code{filter} can be use as originally intended.
    filter = stats::filter
    lag    = stats::lag 
 }
-In this case you can still use  
+and you can still use these for \code{dpylr}: 
 \preformatted{
    dlag    = dplyr::lag
    dfilter = dplyr::filter
 } 
-for \code{dpylr}.
 }
 
 \references{You can find demonstrations of  astsa capabilities at

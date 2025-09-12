@@ -35,9 +35,7 @@ The webpages for the texts and some help on using R for time series analysis can
     Hinich, M. and Wolinsky, M. (2005). Normalizing bispectra. \emph{Journal of Statistical Planning and Inference}, 130, 405--411.
 }
 \examples{
-\dontrun{
 test.linear(nyse)  # :(
 test.linear(soi)   # :)
-}
 }
 \keyword{ ts }   

@@ -49,9 +49,12 @@ The webpages for the texts and some help on using R for time series analysis can
 D.S. Stoffer
 }
 \examples{
-# 2-state Markov transition matrix to steady state
+# 2-state Markov transition matrix 
 ( P = matrix(c(.7,.4,.3,.6), 2) )
-P \%^\% 50
+# moving to steady state
+P \%^\% 5
+P \%^\% 10
+
 
 # surround with parentheses if used in an expression
 c(.2, .8) \%*\% (P \%^\% 50)

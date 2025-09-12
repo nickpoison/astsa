@@ -23,6 +23,7 @@ The webpages for the texts and some help on using R for time series analysis can
 Bazza, M., Shumway, R. H., & Nielsen, D. R. (1988). Two-dimensional spectral analysis of soil surface temperature. \emph{Hilgardia: A Journal of Agricultural Science}, 56, 1-28.
 }
 \examples{
+par(mar = rep(1,4))
 persp(1:64, 1:36, soiltemp, phi=25, theta=25, scale=FALSE, expand=4, 
        col='lightblue', border=4, ticktype="detailed", xlab="rows", 
        ylab="columns", zlab="temperature")

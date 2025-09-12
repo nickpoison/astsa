@@ -18,6 +18,9 @@ Due to the eruption of the Mauna Loa Volcano, measurements from Mauna Loa Observ
 }
 \source{\kbd{https://gml.noaa.gov/ccgg/trends/}
 }
+\note{
+The reason this data file is called \code{cardox} is because R has two datasets called \code{CO2} and \code{co2}, which doesn't leave many options if you don't want to create potential problems like the \code{dplyr} people. Anyway, \code{cardox} sounds like the name of a cool character in some SciFi movie.
+}
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
