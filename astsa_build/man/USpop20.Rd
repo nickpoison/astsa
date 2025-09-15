@@ -42,6 +42,6 @@ points(time(USpop20), USpop20, pch=21, bg=rainbow(13), cex=1.25)
 mtext(bquote('\u00D7'~10^6), side=2, line=1.5, adj=1, cex=.8)
 
 }
-}
+
 \seealso{\code{\link{USpop}} }
 \keyword{datasets}

@@ -14,19 +14,24 @@
 
 
 ---
-&#x1F4A1; The GitHub version is updated before the CRAN version.  For installation, just follow the bouncing ball <sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup>:   
+&#x1F4A1; The GitHub version is updated before the CRAN version.  For installation, just follow the bouncing ball <sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup>: 
 
-&#9917; To get the most recent working version,  install `astsa` from the archive  [astsa_2.4.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.4.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
+>  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  After successful installation, the best thing to do is to restart R and load the new `astsa`:
 
-&#9917; In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` in R and just give the path to the `tar.gz` file.
-
-&#9917; Finally, if you want to install a package to do one thing, try `remotes` &hellip; then you can use this method:
+&#9917; Install the package `remotes`  and use this method:
 ```
 install.packages("remotes")   # if you don't have the package already
 remotes::install_github("nickpoison/astsa/astsa_build")
 ```
 
-> If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  After successful installation, the best thing to do is to restart R and load the new `astsa`.
+&#9917; Alternately, you can  install `astsa` from the archive  [astsa_2.4.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.4.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
+
+&#9917; In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` in R and just give the path to the `tar.gz` file.
+
+
+
+
+
 
 
 ---
