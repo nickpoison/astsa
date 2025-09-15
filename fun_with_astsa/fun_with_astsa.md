@@ -1134,7 +1134,7 @@ tsplot(0:30, u[[1]][,2:3], type='o', col=2:3, xlab='ORDER', nxm=5, lwd=2, gg=TRU
 ```r
 gr = diff(log(econ5))
 gr = scale(gr)  # for comparable spectra
-tsplot(gr, ncol=2, col=2:6, lwd=2, byrow=FALSE)
+tsplot(gr, ncol=2, col=2:6, lwd=2, byrow=FALSE, reset=FALSE)
 gr.spec = mvspec(gr, spans=c(7,7), detrend=FALSE, taper=.25, col=2:6, lwd=2, main='spectra')
 round(gr.spec$fxx, 2)
 ```

@@ -30,19 +30,17 @@ The webpages for the texts and some help on using R for time series analysis can
  \url{https://nickpoison.github.io/}. 
 }
 \examples{
-\dontrun{
-
-# This is from the 2nd edition of Time Series: A Data Analysis Approach ...
 t   = time(USpop20) - 1960
 reg = lm( USpop20~ poly(t, 10, raw=TRUE) )
 b   = as.vector(coef(reg))
 g   = function(s){b[1] + b[2]*s + b[3]*s^2 + b[4]*s^3 + b[5]*s^4 + b[6]*s^5 + b[7]*s^6 + 
                    b[8]*s^7 + b[9]*s^8 +b[10]*s^9 + b[11]*s^10 }
 t   = 1900:2044
-tsplot(t, g(t-1960), ylab="Population", xlab='Year',cex.main=1, col=4,
+tsplot(t, g(t-1960), ylab="Population", xlab='Year', cex.main=1, col=4,
         main="U.S. Population by Official Census")
 points(time(USpop20), USpop20, pch=21, bg=rainbow(13), cex=1.25)
 mtext(bquote('\u00D7'~10^6), side=2, line=1.5, adj=1, cex=.8)
+
 }
 }
 \seealso{\code{\link{USpop}} }
