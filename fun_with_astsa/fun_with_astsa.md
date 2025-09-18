@@ -6,7 +6,7 @@
 
 
 
-Remember to load `astsa` at the start of a session.  
+Remember to load `astsa` at the start of a session...  
 
 > **`library(astsa)`**
 
