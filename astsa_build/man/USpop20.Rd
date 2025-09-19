@@ -30,12 +30,17 @@ The webpages for the texts and some help on using R for time series analysis can
  \url{https://nickpoison.github.io/}. 
 }
 \examples{
+# the regression
 t    = time(USpop20) - 1960
 reg  = lm( USpop20~ poly(t, 10, raw=TRUE) )
+
+# the prediction curve
 b    = as.vector(coef(reg))
 t    = 1900:2044
 X    = outer(t - 1960, 0:10, FUN = "^")
 pred = X \%*\% b
+
+# the plot
 tsplot(t, pred, ylab="Population", xlab='Year', cex.main=1, col=4,
         main="U.S. Population by Official Census")
 points(time(USpop20), USpop20, pch=21, bg=rainbow(13), cex=1.25)

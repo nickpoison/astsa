@@ -46,15 +46,17 @@ No.\tab Type\tab Date\tab Array \tab Magnitude \tab   Latitude \tab   Longitude 
 }
 }
 \examples{
-\dontrun{
-
 # view all series 
-# first 2 rows EQs - second 2 rows EXs
+# first 2 rows EQs - next 2 rows EXs
 # 5th row NZ event 
 
 tsplot(eqexp, ncol=4, col=c(rep(6,8),rep(4,8),2), scale=.75)
 
+\dontrun{
+
 # for a nice html map, use the 'leaflet' package
+
+library(leaflet)   # install if you don't have it
 
 lat = c(
 65.5,65.7,64.5,67.8,59.2,51.4,59.5,66.9,
@@ -71,7 +73,6 @@ event = c(
 "EX","EX","EX","EX","EX","EX","EX","EX",
 "NZ")
 
-library(leaflet)
 
 eventmap = data.frame(
   longitude = long,

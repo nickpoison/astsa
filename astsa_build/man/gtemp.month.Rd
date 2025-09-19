@@ -27,9 +27,7 @@ The webpages for the texts and some help on using R for time series analysis can
  \url{https://nickpoison.github.io/}. 
 }
 \examples{
-\dontrun{
-
-# functional data plot showing warming trend
+# functional data plot showing global warming
 tsplot(gtemp.month, spaghetti=TRUE, col=rainbow(49, start=.2, v=.8, rev=TRUE), ylab='\u00b0C', 
         xlab='Month', xaxt='n', main='Mean Monthly Global Temperature', lwd=c(3,rep(1,47),3))
 axis(1, labels=Months, at=1:12)

@@ -40,7 +40,7 @@ if TRUE (default), adds grid lines at minor x-axis, y-axis ticks.
 other graphical parameters;
 }
 }
-\source{The code for \code{grid()} in R graphics and \code{minor.tick()} from the Hmisc package were combined.
+\source{The code for \code{grid()} in R 'graphics' and \code{minor.tick()} from the 'Hmisc' package were combined and then washed, polished, and coated with a subtle metallic finish. The grid now sparkles in the sunlight.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

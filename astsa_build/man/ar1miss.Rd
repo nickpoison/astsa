@@ -33,13 +33,10 @@ The webpages for the texts and some help on using R for time series analysis can
  \url{https://nickpoison.github.io/}. 
 }
 \examples{
-\dontrun{
-
 # use type='o' when plotting a series with missing data
 par(mfrow=2:1)
 tsplot(ar1miss, col=4)
 tsplot(ar1miss, col=4, type='o', pch=19)
 
-}
 }
 \keyword{datasets}

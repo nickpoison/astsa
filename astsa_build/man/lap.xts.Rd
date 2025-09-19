@@ -57,7 +57,7 @@ The webpages for the texts and some help on using R for time series analysis can
 \examples{
 
 # if 'xts' is not installed you can still do this
-tsplot(timex(lap.xts), lap.xts, ncolm=3, col=astsa.col(4,wheel=TRUE,num=11))
+tsplot(timex(lap.xts), lap.xts, ncolm=3, col=astsa.col(4,wheel=TRUE,num=11), scale=.9)
 
 # differencing (on its own) loses an obs 
 dCmort = diff(log(lap.xts[,'Cmort']))

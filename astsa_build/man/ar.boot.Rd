@@ -32,8 +32,7 @@ if \code{plot=TRUE} and order.ar > 1, graphical parameters sent to \code{tspairs
 For a specified \code{series}, finds the bootstrap distribution of the
 Yule-Walker estimates of \eqn{\phi_1,\dots,\phi_p} in the AR model specified by \code{order.ar},
 \deqn{x_t = \mu + \phi_1 (x_{t-1}-\mu) + \dots + \phi_p (x_{t-p}-\mu) + w_t ,}
-where \eqn{w_t} is white noise. The data are centered by the estimate of \eqn{\mu} 
-prior to the bootstrap simulations.
+where \eqn{w_t} is white noise. The data are centered by the sample mean prior to the bootstrap simulations.
 
 The script displays a number of quantiles of the bootstrapped estimates, the means, the biases, and the root mean squared errors.
 }
