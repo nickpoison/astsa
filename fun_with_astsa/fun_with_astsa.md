@@ -113,9 +113,10 @@ And you can get more information on any individual set using the `help()` comman
 |HCT                              |  Hematocrit Levels                                                            |
 |Hare                             |  Snowshoe Hare                                                                |
 |Lynx                             |  Canadian Lynx (not the same as R dataset `lynx` )                            |
-|MEI                              | Multivariate El Ni&ntilde;o/Southern Oscillation Index (version 1)            |
+|MEI                              |  Multivariate ENSO Index (version 1)  1950 - 2019                             |
+|MEI2                             |  Multivariate ENSO Index (version 2)  1979 - 2025                             |
 |PLT                              |  Platelet Levels                                                              |
-|USpop / USpop20                            |  U.S. Population - 1900 to 2010 / 2020   (2 different files)               |
+|USpop / USpop20                  |  U.S. Population - 1900 to 2010 / 2020   (2 different files)                  |
 |UnempRate                        |  U.S. Unemployment Rate                                                       |
 |WBC                              |  White Blood Cell Levels                                                      |
 |ar1miss                          |  AR with Missing Values                                                       |
