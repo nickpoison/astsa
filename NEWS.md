@@ -45,6 +45,8 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 #### &#127514; Version 2.4 &ndash;  in the works (on GitHub only)
 
+> We'll send this version to CRAN when the 2nd edition of [Time Series: A Data Analysis Approach ...](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642) is published. The planned publication date is Jan/Feb 2026.
+
 - removed asking if the user wants `xts` to be installed at startup ... _apologies_ for doing what we said we would never do - it's  why there is an update so soon 
 
 - in the meantime, &#127381; added script `timex()` that, with or without `xts` being loaded, will convert the dates in an `xts` data file to decimal dates so the data can be plotted easily using `tsplot` ... for example 
