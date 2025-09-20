@@ -30,6 +30,10 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}.  
 }
-\seealso{\code{\link{soi}, \link{ENSO}}
+\seealso{\code{\link{soi}, \link{ENSO}, \link{MEI2}}
+}
+\examples{
+tsplot(cbind(MEI,MEI2), spag=TRUE, col=astsa.col(2*2:1, .6), addLegend=TRUE, lwd=2)
+
 }
 \keyword{datasets}

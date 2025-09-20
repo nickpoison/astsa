@@ -59,6 +59,8 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - `lag1.plot` and `lag2.plot` have additional arguments where you can change the name(s) of the series on the plots.  The defaults are the name of the series, but it can get messy if you do something like `lag1.plot(x <- diff(log(varve)), 4)`, so now you can do this: `lag1.plot(x <- diff(log(varve)), 4, xname='V')`.
 
+- added `MEI2`, _Multivariate ENSO Index version 2_ (to complement `MEI`, which is version 1)
+
 <br/>
 
 
