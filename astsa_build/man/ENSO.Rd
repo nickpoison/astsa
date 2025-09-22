@@ -27,5 +27,16 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}.  
 }
-\seealso{\code{\link{soi}}}
+\seealso{\code{\link{soi}, \link{ENSO}, \link{MEI}, \link{MEI2}}
+}
+\examples{
+# ENSO is a standardized index based on the sea level pressure differences between 
+# Tahiti and Darwin, Australia.  MEI is a similar index based on multiple factors.
+# As opposed to ENSO (and SOI), positive values of MEI correspond to warmer temperatures.
+
+tsplot(cbind(-ENSO, MEI), col=astsa.col(2*2:1, .6), addLegend=TRUE, spag=TRUE, lwd=1:2)
+
+tspairs(ts.intersect(-ENSO, MEI), location='top')
+
+}
 \keyword{datasets}

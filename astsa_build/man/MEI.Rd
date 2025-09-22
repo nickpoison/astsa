@@ -33,7 +33,9 @@ The webpages for the texts and some help on using R for time series analysis can
 \seealso{\code{\link{soi}, \link{ENSO}, \link{MEI2}}
 }
 \examples{
-tsplot(cbind(MEI,MEI2), spag=TRUE, col=astsa.col(2*2:1, .6), addLegend=TRUE, lwd=2)
+tsplot(cbind(MEI, MEI2), spag=TRUE, col=astsa.col(2*2:1, .6), addLegend=TRUE, lwd=2)
+
+tspairs(ts.intersect(MEI, MEI2), location='top')
 
 }
 \keyword{datasets}
