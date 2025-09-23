@@ -1,9 +1,5 @@
 
-
-## astsa &mdash; applied statistical time series analysis
-
-<img src="https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/figs/astsa.gif" alt="&nbsp; &nbsp; ASTSA ..."  height="100">
-
+### &#x1D538; &#x1D54A; 	&#x1D54B; &#x1D54A; &#x1D538;  &#9889;   applied statistical time series analysis
 ... more than just data ... it's a palindrome
 
 ---
