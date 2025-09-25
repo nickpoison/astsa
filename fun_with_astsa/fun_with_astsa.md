@@ -1,8 +1,10 @@
-# fun with astsa &#x1F388;&#x1F388;&#x1F388;
+# fun with &#x1D538;&#x1D54A;&#x1D54B;&#x1D54A;&#x1D538; &#x1F388;&#x1F388;&#x1F388;
+
+<!-- fun with astsa -->
 
 [![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp;&nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp;&nbsp; ![](https://img.shields.io/badge/GitHub-2.4-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
 
-#### We'll demonstrate some of the capabilities of the latest version of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
+#### We'll demonstrate some of the capabilities of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
 
 
 
@@ -12,23 +14,7 @@ Remember to load `astsa` at the start of a session...
 
 it's more than just data ... it's a palindrome
 
-⭐⭐⭐⭐⭐ 
-
-__&#127881;&#127881; This has been removed in version 2.4. &#127881;&#127881;__ 
-
-
-This is totally messed up, but when `astsa`  version 2.3 is loaded, the user is asked if they want to install the package `xts`.  It is beneficial to answer YES because we  use the  package  throughout the text. 
-
-To suppress asking about loading `xts` you can use
-```r
-suppressPackageStartupMessages(library(astsa))
-```
-
-BUT the message is displayed only  if `xts` is not installed... so installing it is another way to avoid being asked.  And if you're doing time series analysis, `xts`  is an important package. 
-
-__&#127881;&#127881; This has been removed in version 2.4. &#127881;&#127881;__ 
-
-⭐⭐⭐⭐⭐ 
+⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 
 
 -----
 -----
@@ -535,8 +521,7 @@ acf1(soi)
 
 <br/>
 
-&#x1F4A1; Note the LAG axis label indicates the frequency of the data unless it is 1.  This way, you can see that the tick at LAG 1
-corresponds to 12 (months) and so on.
+&#x1F4A1; Note the LAG axis label indicates the frequency of the data unless it is 1.  This way, you can see that the tick at LAG 1 corresponds to 12 (months) and so on.
 
 ```r
 acf1(rec, pacf=TRUE, gg=TRUE, col=2:7, lwd=4)
