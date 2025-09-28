@@ -47,20 +47,20 @@ it's more than just data ... it's a palindrome
      * [Nonparametric](#nonparametric-spectral-analysis)
      * [Parametric](#parametric-spectral-analysis)
      * [Spectral Matrices](#more-multivariate-spectra)
-  * [6. Detecting Structural Breaks  &#128150; NEW &#128150;](#6-detecting-structural-breaks)
+  * [6. Detecting Structural Breaks](#6-detecting-structural-breaks)
     * [autoSpec - changepoint detection - nonparametric](#autospec) 
     * [autoParm - changepoint detection - parametric](#autoparm) 
   * [7. Testing for Linearity](#7-linearity-test)
   * [8. State Space Models and Kalman Filtering](#8-state-space-models)
-     * [Quick Kalman Filter and Smoother - 	&#128150; NEW &#128150;](#quick-kalman-filter-and-smoother)
+     * [Quick Kalman Filter and Smoother](#quick-kalman-filter-and-smoother)
      * [SSM - for beginners](#beginners-paradise)
-  * [9. EM Algorithm and Missing Data - &#128150; NEW &#128150;](#9-em-algorithm-and-missing-data)
+  * [9. EM Algorithm and Missing Data](#9-em-algorithm-and-missing-data)
      * [Parameter Constraints](#parameter-constraints)
-  * [10. Bayesian Techniques - &#128150; NEW &#128150;](#10-bayesian-techniques)
+  * [10. Bayesian Techniques](#10-bayesian-techniques)
       * [AR Models](#ar-models)
       * [Gibbs Sampling for State Space Models - the FFBS Algorithm](#gibbs-sampling-for-linear-state-space-models)
       * [Effective Sample Size (ESS)](#ess)
-  * [11. Stochastic Volatility Models - 	&#128150; NEW &#128150;](#11-stochastic-volatility-models)  
+  * [11. Stochastic Volatility Models](#11-stochastic-volatility-models)  
       * [Bayesian](#bayesian)
       * [Classical](#classical) 
   * [12. Arithmetic](#12-arithmetic)
@@ -478,7 +478,7 @@ ttable(fit, vif=TRUE)
  F-statistic: 24.53 on 6 and 25 DF,  p-value: 2.45e-09
  AIC =  3.1309    AICc =  3.2768    BIC =  3.4974 
 ```
-`mtcars` is an R data set on gas consumption (`mpg`) and various car design aspects (the 'mt' refers to 'motor trend' magazine). The design aspects are related, thus the high VIFs.  Also notice that the engine size (`disp`) coefficient has the wrong sign because bigger engines don't get better gas mileage.  Also, nothing but weight (`wt`) is significant because the SEs are inflated.  How's that for a picture?
+`mtcars` is an R data set on gas consumption (`mpg`) and various car design aspects (the 'mt' refers to 'motor trend' magazine). The design aspects are related [bigger engines have more horse power and weight more ...], thus the high VIFs.  Also notice that the engine size (`disp`) coefficient has the wrong sign because bigger engines don't get better gas mileage.  Also, nothing but weight (`wt`) is significant because the SEs are inflated.  How's that for a picture?
 
 <br/>
 
