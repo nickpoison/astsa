@@ -1,17 +1,19 @@
 sarima <-  
 function(xdata, p,d,q, P=0,D=0,Q=0,S=-1, details=TRUE, xreg=NULL, Model=TRUE,
-          fixed=NULL, tol=sqrt(.Machine$double.eps), no.constant=FALSE, col, ...)
+          fixed=NULL, tol=sqrt(.Machine$double.eps), no.constant=FALSE, col, fitdf, ...)
 { 
    if (missing(col)) col=1
    if (missing(p)) p=0      
    if (missing(d)) d=0
    if (missing(q)) q=0
+   if (missing(fitdf) | (p+q+P+Q) > 0) fitdf = NULL  # not a resid analysis
    trans = ifelse (is.null(fixed), TRUE, FALSE)
    trc   = ifelse(details, 1, 0)
    n     = length(xdata) 
   if (is.null(xreg)) {
    constant = 1:n 
-   if (no.constant)  xmean = NULL else xmean = rep(1,n)  
+   if (no.constant)  xmean = NULL else xmean = rep(1,n)
+   if (!is.null(fitdf)) xmean = NULL; constant=NULL; out=NA # if doing resid analysis, drop mean
    if (d==0 & D==0) {  
            fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
                   xreg=xmean, include.mean=FALSE, fixed=fixed, transform.pars=trans, 
@@ -48,6 +50,8 @@ function(xdata, p,d,q, P=0,D=0,Q=0,S=-1, details=TRUE, xreg=NULL, Model=TRUE,
 
 
 # print  results
+if (is.null(fitdf)) {  # not a resid analysis
+  fitdf = 0
   cat('<><><><><><><><><><><><><><>')
   cat('\n','\n')
   if (k > 0) {
@@ -59,6 +63,7 @@ function(xdata, p,d,q, P=0,D=0,Q=0,S=-1, details=TRUE, xreg=NULL, Model=TRUE,
   cat('AIC =', AIC, ' AICc =', AICc, ' BIC =', BIC, '\n', '\n')
   out = list(fit=fitit, sigma2=fitit$sigma2, degrees_of_freedom=dfree, t.table=ttabl, 
              ICs=c(AIC=AIC, AICc=AICc, BIC=BIC))
+}
 ############################
 
 #  replace tsdiag with a better version
@@ -88,11 +93,11 @@ function(xdata, p,d,q, P=0,D=0,Q=0,S=-1, details=TRUE, xreg=NULL, Model=TRUE,
 
 # [4] 
     nlag = ifelse(S<7, 20, 3*S); nlag = min(nlag, 52)
-    ppq  = p+q+P+Q - sum(!is.na(fixed))   # decrease by number of fixed parameters
+    ppq  = p+q+P+Q - sum(!is.na(fixed)) + abs(fitdf)   # decrease by number of fixed parameters
     if (nlag < ppq + 8) { nlag = ppq + 8 }
     pval = c()
     for (i in (ppq+1):nlag) {
-     u   = Box.test(rs, i, type = "Ljung-Box")$statistic
+     u   = Box.test(rs, i, type = "Ljung-Box", fitdf=fitdf)$statistic
      pval[i] =  pchisq(u, i-ppq, lower.tail=FALSE)
     } 
   tsplot( (ppq+1):nlag, pval[(ppq+1):nlag], type='p', xlab = "LAG (H)", ylab = "p value", 
