@@ -61,7 +61,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - added `MEI2`, _Multivariate ENSO Index version 2_ (to complement `MEI`, which is version 1)
 
-- we've found it useful in Chapter 6 to quickly look at the residuals from fitting a state space model... so we added `fitdf` to allow the user to keep track of the degrees of freedom. For example: `sarima(resids, fitdf=2)` will not fit a model to the `resids`, but will exhibit the residual analysis graphic... basically, `sarima` can be used as a residual diagnostic tool on its own.
+- we've found it useful in Chapter 6 to quickly look at the residuals from fitting a state space model... so we added an option to specify `fitdf` in `sarima` to allow the user to keep track of the degrees of freedom. For example: `sarima(resids, fitdf=2)` will not fit a model to the `resids`, but will exhibit the residual analysis graphic... basically, `sarima` can be used as a residual diagnostic tool on its own.
 <br/>
 
 
