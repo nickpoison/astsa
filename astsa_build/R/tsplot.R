@@ -76,10 +76,10 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL,
    prow  = ceiling(nser/ncolm)
    culer = rep(col, nser)
    if(byrow){
-   par(mfrow = c(prow, ncolm), cex.lab=1.1, oma = c(0,.25,3*topper,0)+margins, tcl=-.2, 
+   par(mfrow = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+margins, tcl=-.2, 
          cex.axis=.9, cex=.9*scale)
    } else {
-   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,.25,3*topper,0)+margins, tcl=-.2, 
+   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+margins, tcl=-.2, 
          cex.axis=.9, cex=.9*scale)
    }
 par(cex=.85*scale)

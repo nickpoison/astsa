@@ -140,6 +140,12 @@ tsplot(soi, ylab='SOI', xlab='Month', margins=c(2,3,4,5), las=1, mgpp=c(1.4,.4,0
 tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2)  
 
 
+# gris-gris multiple plot (alternate view) 
+# plotting is row-wise unless byrow=FALSE is included
+tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2, xlab=c(rep(NA,4), rep('Time',2)), 
+        scale=.85, ylab=NA, title=colnames(climhyd), las=1)
+
+
 # quick legend with spaghetti
 tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, las=1, spaghetti=TRUE, 
         addLegend=TRUE)
@@ -149,8 +155,8 @@ tsplot(cbind(gtemp_land, gtemp_ocean), spaghetti=TRUE, lwd=2, col=astsa.col(c(4,
   horiz=TRUE, legend=c("Land Surface","Sea Surface"))
 
 
-# missing data ( try this with ggplot :)
-tsplot(blood, type='o', col=c(4,6,3), pch=19, cex=1, scale=.8, gg=TRUE,
+# missing data 
+tsplot(blood, type='o', col=c(4,6,3), pch=19, scale=.95, gg=TRUE,
        title = colnames(blood),  xlab  = c(NA, NA,'day'),
        ylab  = c( 'log(cells/mcL)', 'log(mcL)', '\% red blood cells' ))
 
