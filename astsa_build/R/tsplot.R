@@ -1,5 +1,5 @@
-tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL, 
-                    margins=.25, ncolm=1, byrow=TRUE, nx = NULL, ny = nx, 
+tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL, 
+                    type=NULL, margins=.25, ncolm=1, byrow=TRUE, nx = NULL, ny = nx, 
                     minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
                     gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, lwd=1, mgpp=0, 
                     topper=NULL, addLegend=FALSE, location='topright', boxit=TRUE,
@@ -11,9 +11,11 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
   topper = ifelse(is.null(main), 0, .5) } 
   type0  = 'n' 
   type1  = ifelse(is.null(type), 'l', type)
+  ifelse(is.null(type), 'l', type)
   pch    = rep(pch, ceiling(nser/length(pch)))
   lty    = rep(lty, ceiling(nser/length(lty)))
   lwd    = rep(lwd, ceiling(nser/length(lwd)))
+  if (is.null(xlab)) xlab = 'Time'
   if (is.na(any(nx))) nxm=0
   if (is.na(any(ny))) nym=0
   
@@ -32,7 +34,8 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    box(col='gray62')
   } else {                   # multiple series
    if(!is.null(ylab)){ ylab = rep(ylab, ceiling(nser/length(ylab))) } 
-   prow = ceiling(nser/ncolm)
+   xlab  = rep(xlab, ceiling(nser/length(xlab)))  # xlab never null by this line 
+   prow  = ceiling(nser/ncolm)
    culer = rep(col, nser)
    if(byrow){
    par(mfrow = c(prow, ncolm),  cex.lab=1.1, oma = c(0,0,3*topper,0)+margins)
@@ -43,10 +46,10 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
    if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, 
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab[h], main=title[h],
                   nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
     } else {
-    tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, minor=minor, 
+    tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab[h], minor=minor, main=title[h],
                      nx=nx, ny=ny, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
     }
     }  
@@ -69,7 +72,8 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,
    box(col='white', lwd=2)
   } else {                 # multiple series
    if(!is.null(ylab)){ ylab = rep(ylab, ceiling(nser/length(ylab))) } 
-   prow = ceiling(nser/ncolm)
+   xlab  = rep(xlab, ceiling(nser/length(xlab)))  # xlab never null by this line
+   prow  = ceiling(nser/ncolm)
    culer = rep(col, nser)
    if(byrow){
    par(mfrow = c(prow, ncolm), cex.lab=1.1, oma = c(0,.25,3*topper,0)+margins, tcl=-.2, 
@@ -82,10 +86,10 @@ par(cex=.85*scale)
    if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
    if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
    for (h in 1:nser) {
-    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, 
+    if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab[h], main=title[h],
          gg=TRUE, nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
    } else {
-   tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab, gg=TRUE, nx=nx, ny=ny,
+   tsplot(x, y[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab[h], gg=TRUE, nx=nx, ny=ny, main=title[h],
              minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
     }
     }

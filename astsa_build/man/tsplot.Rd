@@ -6,8 +6,8 @@
 Produces a nice plot of univariate or multiple time series in one easy line.
 }
 \usage{
-tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,  margins=.25, 
-        ncolm=1, byrow=TRUE, nx=NULL, ny=nx, minor=TRUE, nxm=2, nym=1, 
+tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL, type=NULL,  
+        margins=.25, ncolm=1, byrow=TRUE, nx=NULL, ny=nx, minor=TRUE, nxm=2, nym=1, 
         xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, pch=NULL, 
         lty=1, lwd=1, mgpp=0, topper=NULL, addLegend=FALSE, location='topright', 
         boxit=TRUE, horiz=FALSE, legend=NULL, llwd=NULL, scale=1, reset.par = TRUE, ...)
@@ -17,13 +17,16 @@ tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab='Time', type=NULL,  margins=.25,
 time series to be plotted; if both present, x will be the time index.
 }
   \item{main}{
-add a plot title - the default is no title.
+add a main title - the default is no title.
 }
   \item{ylab}{
 y-axis label - the default is the name of the ts object.
 }
   \item{xlab}{
 x-axis label - the default is 'Time'.
+}
+  \item{title}{
+add an individual plot title for multiple plots - the default is no title.
 }
   \item{type}{
 type of plot - the default is line.
@@ -103,6 +106,8 @@ other graphical parameters; see \link[graphics]{par}.
 \value{
 Produces a graphic and returns it invisibly so it can be saved in an R variable with the ability to replay it; see \code{\link{recordPlot}}.
 }
+\source{This is simply base-R plotting of time series with some bells and whistles, and written so that a nice plot can be used in demonstrations (in class or otherwise) with minimal keystrokes.
+}
 \note{A legend can be added using \code{addLegend=TRUE} for spaghetti plots only. Spaghetti plots work if \code{spaghetti=TRUE} and there is more than one series being plotted.
 
 For multiple series, the default for \code{reset.par} is \code{TRUE} so that the graphic parameters are reset at the end.  For example, if there are 5 plots and \code{ncol = 2}, the layout will be 3 rows, 2 columns, with an empty spot where a 6th plot would be.  If you want to add something in the empty space, set this to \code{FALSE}, otherwise the graphic parameters are reset and the graphic is finished.
@@ -144,15 +149,11 @@ tsplot(cbind(gtemp_land, gtemp_ocean), spaghetti=TRUE, lwd=2, col=astsa.col(c(4,
   horiz=TRUE, legend=c("Land Surface","Sea Surface"))
 
 
-# cex (and scale)
-par(mfrow=c(3,1))  # cex gets small with mf plots 
-  tsplot(cmort); tsplot(tempr); tsplot(part)
-par(mfrow=c(3,1), cex=.9)  # so fix it 
-  tsplot(cmort); tsplot(tempr); tsplot(part)
+# missing data ( try this with ggplot :)
+tsplot(blood, type='o', col=c(4,6,3), pch=19, cex=1, scale=.8, gg=TRUE,
+       title = colnames(blood),  xlab  = c(NA, NA,'day'),
+       ylab  = c( 'log(cells/mcL)', 'log(mcL)', '\% red blood cells' ))
 
-# it's rescaled here for your pleasure
-tsplot(cbind(big=rnorm(100), bad=rnorm(100), john=rnorm(100)))  # default scale=1
-tsplot(cbind(big=rnorm(100), bad=rnorm(100), john=rnorm(100)), scale=1.5)  # big
 
 \dontrun{
 
