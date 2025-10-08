@@ -127,6 +127,10 @@ The webpages for the texts and some help on using R for time series analysis can
 \author{
 D.S. Stoffer
 }
+\seealso{
+ \link{lag1.plot}, \link{lag2.plot}, \link{tspairs}, \cr
+ \link{timex} for plotting xts data files when xts is not loaded 
+}
 \examples{
 # minimal
 tsplot(soi)

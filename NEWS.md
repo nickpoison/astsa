@@ -49,11 +49,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - removed asking if the user wants `xts` to be installed at startup ... _apologies_ for doing what we said we would never do - it's  why there is an update so soon 
 
-- in the meantime, &#127381; added script `timex()` that, with or without `xts` being loaded, will convert the dates in an `xts` data file to decimal dates so the data can be plotted easily using `tsplot` ... for example 
-
-  ```r
-  tsplot(timex(djia), djia, col=2:6, ncol=2, main='DJIA')
-  ```
+- in the meantime, &#127381; added script `timex()` that, with or without `xts` being loaded, will convert the dates in an `xts` data file to decimal dates so the data can be plotted easily using `tsplot` ... `?timex` for details (of course)
 
 - for `tsplot`, added logical option `reset.par`. For multiple plots, the graphic is reset by default (`TRUE`) unless this is set to `FALSE`.   For example, if there are 5 plots and `ncolm=2`, the layout will be 3 by 2 with an empty spot.  If you want to add something in the empty space, set this to `FALSE`, otherwise the graphic is finished.   
 
