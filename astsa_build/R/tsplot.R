@@ -1,6 +1,6 @@
 tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL, 
-                    type=NULL, margins=.25, ncolm=1, byrow=TRUE, nx = NULL, ny = nx, 
-                    minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
+                    type=NULL, margins=.25, omargins=0, ncolm=1, byrow=TRUE, nx = NULL, 
+                    ny = nx, minor=TRUE, nxm=2, nym=1, xm.grid=TRUE, ym.grid=TRUE, col=1, 
                     gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, lwd=1, mgpp=0, 
                     topper=NULL, addLegend=FALSE, location='topright', boxit=TRUE,
                     horiz=FALSE, legend=NULL, llwd=NULL, scale=1, reset.par = TRUE, ...)
@@ -38,9 +38,9 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL,
    prow  = ceiling(nser/ncolm)
    culer = rep(col, nser)
    if(byrow){
-   par(mfrow = c(prow, ncolm),  cex.lab=1.1, oma = c(0,0,3*topper,0)+margins)
+   par(mfrow = c(prow, ncolm),  cex.lab=1.1, oma = c(0,0,3*topper,0)+omargins)
    } else {
-   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+margins )
+   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+omargins )
    }
   par(cex=.85*scale)
    if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
@@ -76,10 +76,10 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL,
    prow  = ceiling(nser/ncolm)
    culer = rep(col, nser)
    if(byrow){
-   par(mfrow = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+margins, tcl=-.2, 
+   par(mfrow = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+omargins, tcl=-.2, 
          cex.axis=.9, cex=.9*scale)
    } else {
-   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+margins, tcl=-.2, 
+   par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+omargins, tcl=-.2, 
          cex.axis=.9, cex=.9*scale)
    }
 par(cex=.85*scale)

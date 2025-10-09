@@ -6,11 +6,11 @@
 Produces a nice plot of univariate or multiple time series in one easy line.
 }
 \usage{
-tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL, type=NULL,  
-        margins=.25, ncolm=1, byrow=TRUE, nx=NULL, ny=nx, minor=TRUE, nxm=2, nym=1, 
-        xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, pch=NULL, 
-        lty=1, lwd=1, mgpp=0, topper=NULL, addLegend=FALSE, location='topright', 
-        boxit=TRUE, horiz=FALSE, legend=NULL, llwd=NULL, scale=1, reset.par = TRUE, ...)
+tsplot(x, y=NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL, type=NULL, margins=.25, 
+        omargins=0, ncolm=1, byrow=TRUE, nx=NULL, ny=nx, minor=TRUE, nxm=2, nym=1, 
+        xm.grid=TRUE, ym.grid=TRUE, col=1, gg=FALSE, spaghetti=FALSE, pch=NULL, lty=1, 
+        lwd=1, mgpp=0, topper=NULL, addLegend=FALSE, location='topright', boxit=TRUE, 
+        horiz=FALSE, legend=NULL, llwd=NULL, scale=1, reset.par = TRUE, ...)
 }
 \arguments{
   \item{x, y}{
@@ -33,6 +33,9 @@ type of plot - the default is line.
 }
   \item{margins}{
 inches to add (or subtract) to the margins. Input one value to apply to all margins or a vector of length 4 to add (or subtract) to the (bottom, left, top, right) margins.
+}
+  \item{omargins}{
+inches to add to the outer margins. Input one value to apply to all margins or a vector of length 4 to add to the (bottom, left, top, right) outer margins.
 }
  \item{ncolm}{
 for multiple time series, the number of columns to plot.
