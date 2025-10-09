@@ -9,7 +9,7 @@
 
 <br/>
 
-__&#129351; The current [NEWS and ChangeLog can be found here](https://github.com/nickpoison/astsa/blob/master/NEWS.md).__
+#### &#129351; The current [NEWS and ChangeLog can be found here](https://github.com/nickpoison/astsa/blob/master/NEWS.md)
 
 <br/>
 
@@ -29,7 +29,7 @@ Additional links:
 
  &#10024; How to EASILY [Link Math Libraries (MKL) to R](https://nickpoison.github.io/mkl) on Windows and [Improve Performance](https://blog.revolutionanalytics.com/2010/06/performance-benefits-of-multithreaded-r.html)
 
- &#10024; The site for the R package [astsa](https://github.com/nickpoison/astsa/blob/master/README.md) is here too
+ &#10024; The site for the [astsa](https://github.com/nickpoison/astsa/blob/master/README.md) package
 
 
  &#10024;  [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) has many demonstrations of `astsa` capabilities
