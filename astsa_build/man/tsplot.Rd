@@ -139,15 +139,13 @@ D.S. Stoffer
 tsplot(soi)
 # prettified
 tsplot(soi, col=4, gg=TRUE, main="Southern Oscillation Index")
-# spaces
-tsplot(soi, ylab='SOI', xlab='Month', margins=c(2,3,4,5), las=1, mgpp=c(1.4,.4,0))
 
 
 # gris-gris multiple plot 
-tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2)  
+tsplot(diff(log(econ5)), ncolm=2, gg=TRUE, col=2:6, lwd=2, main='Growth Rates')  
 
 
-# gris-gris multiple plot (alternate view) 
+# another gris-gris multiple plot 
 # plotting is row-wise unless byrow=FALSE is included
 tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2, xlab=c(rep(NA,4), rep('Time',2)), 
         scale=.85, ylab=NA, title=colnames(climhyd), las=1)
