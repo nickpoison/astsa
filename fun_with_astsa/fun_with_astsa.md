@@ -42,6 +42,7 @@ it's more than just data ... it's a palindrome
      * [Simulation](#arima-simulation)
      * [Estimation](#arima-estimation)
      * [Forecasting](#forecasting)
+     * [Missing Data](#missing-data)
   * [5. Spectral Analysis](#5-spectral-analysis)
      * [ARMA Spectrum](#arma-spectral-density)
      * [Nonparametric](#nonparametric-spectral-analysis)
