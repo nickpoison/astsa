@@ -6,7 +6,16 @@
 		 palette("default")
 		 }
 
-
+# warn if dplyr is loaded
+.onAttach <- function(libname, pkgname) {
+ if ('package:dplyr' %in% search()) {
+warning("\nThe package `dplyr` is loaded and it most likely will corrupt 
+the base scripts `filter` and `lag` that a time series analyst 
+uses frequently. See `?astsa` or `help(astsa)` for remedies. 
+A simple one is to detach it: `detach(package:dplyr)`"
+)
+ }
+}
 
 
 # below were used for `stats::pairs` in `ar.boot` and `ar.mcmc` and

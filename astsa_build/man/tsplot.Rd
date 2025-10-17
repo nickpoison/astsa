@@ -160,10 +160,10 @@ tsplot(cbind(gtemp_land, gtemp_ocean), spaghetti=TRUE, lwd=2, col=astsa.col(c(4,
   horiz=TRUE, legend=c("Land Surface","Sea Surface"))
 
 
-# missing data 
+# missing data - try this with ggplot
 tsplot(blood, type='o', col=c(4,6,3), pch=19, scale=.95, gg=TRUE,
        title = colnames(blood),  xlab  = c(NA, NA,'day'),
-       ylab  = c( 'log(cells/mcL)', 'log(mcL)', '\% red blood cells' ))
+       ylab  = c( 'log(cells/\u03BCL)', 'log(\u03BCL)', '\% red blood cells' ))
 
 
 \dontrun{

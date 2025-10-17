@@ -41,7 +41,7 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
   \item{col}{ color of diagnostic plots; default is 1 (black)
 }
-  \item{fitdf}{ number of degrees of freedom to be subtracted for the Ljung-Box test if xdata is a series of residuals and all orders are zero (see details). 
+  \item{fitdf}{ number of degrees of freedom to be subtracted for the Ljung-Box test if xdata is a series of residuals and all orders are zero (see details).  Does not have to be specified if it is zero (0).
 }
   \item{...}{additional graphical arguments
 }

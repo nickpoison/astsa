@@ -46,7 +46,12 @@ and you can still use these for \code{dpylr}:
 \preformatted{
    dlag    = dplyr::lag
    dfilter = dplyr::filter
-} 
+}
+(4) Or avoid all of these problems and use 
+\href{https://CRAN.R-project.org/package=data.table}{data.table} instead of
+\code{dplyr}. If you are doing data manipulation, you should know that
+\code{dplyr} is inspired by \code{data.table}, but it
+is  much slower and weaker than \code{data.table}.  
 }
 
 \references{You can find demonstrations of  astsa capabilities at
