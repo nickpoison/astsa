@@ -27,7 +27,7 @@ We won't always push the latest version of the package to CRAN, but the latest w
 
 * The  [code for the graduate level text](https://github.com/nickpoison/tsa5/blob/master/textRcode.md) is here: [TSA5](https://github.com/nickpoison/tsa5/blob/master/textRcode.md).
 
-* The updated [code for the data science text](https://github.com/nickpoison/tsda/blob/master/Rcode.md) is here: [TSDA](https://github.com/nickpoison/tsda/blob/master/Rcode.md).
+* The updated [code for the data science text](https://github.com/nickpoison/tsda2/blob/master/Rcode.md) is here: [TSDA2](https://github.com/nickpoison/tsda2/blob/master/Rcode.md).
 
 * Python:
 
