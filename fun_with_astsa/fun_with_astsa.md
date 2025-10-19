@@ -652,7 +652,9 @@ x = sarima.sim(d=1, ma=-.4, D=1, sma=-.6, S=12, n=120) + 100
 tsplot(x, col=4, lwd=2, gg=TRUE, ylab='Number of Widgets')
 ```
 
-<img src="figs/sarima.sim.png" alt="sarima.sim"  width="70%">br/>
+<img src="figs/sarima.sim.png" alt="sarima.sim"  width="70%">
+
+<br/>
 
 <br/>
 
