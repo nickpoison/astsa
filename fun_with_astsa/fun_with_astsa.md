@@ -120,7 +120,7 @@ And you can get more information on any individual set using the `help()` comman
 |cpg                              |  Hard Drive Cost per GB                                                       |
 |djia                             |  Dow Jones Industrial Average                                                 |
 |econ5                            |  Five Quarterly Economic Series                                               |
-|eqexp                            |  Earthquake and Explosion Seismic Series                                      |
+|eqexp                            |  Earthquake and Explosion Series &mdash; <a href="figs/eqexp.png">the map</a> |
 |flu                              |  Monthly pneumonia and influenza deaths in the U.S., 1968 to 1978.            |
 |fmri                             |  fMRI - complete data set                                                     |
 |fmri1                            |  fMRI Data Used in Chapter 1                                                  |
