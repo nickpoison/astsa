@@ -1,5 +1,5 @@
 arma.spec <-
-function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL, 
+function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL, redundancy.tol=.1,
           frequency=1, ylim=NULL, plot=TRUE, ...)
 {  
    check <- 0
@@ -16,10 +16,16 @@ function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL,
    xfreq    <- frequency
    ar.order <- length(ar)
    ma.order <- length(ma)
-  # check (near) parameter redundancy [i.e. are any roots (approximately) equal]  
+  # check (near) parameter redundancy [i.e. are any roots (approximately) equal] 
+    if (redundancy.tol < 0) { 
+     redundancy.tol=.1
+     cat("\n'redundancy.tol' cannot be negative and has been reset to its default value\n\n")
+    }
+     red.count = 0
    for (i in 1:ar.order) {
     if ( (ar[1] == 0 && ar.order == 1) || (ma[1] == 0 && ma.order == 1) )  break
-    if(any(abs(z.ar[i]-z.ma[1:ma.order]) < 1e-01)) {cat("WARNING: Parameter Redundancy", "\n"); break}
+    if(any(abs(z.ar[i]-z.ma[1:ma.order]) < redundancy.tol)) 
+             {cat("WARNING: Parameter Redundancy", "\n"); red.count=1; break}
    }
 
   freq <- seq.int(0, 0.5, length.out = n.freq)
@@ -42,10 +48,14 @@ function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL,
   }
   Ylab = 'spectrum'
   Xlab = ifelse(xfreq>1, paste('frequency \u00D7', xfreq), 'frequency')
-   m1  = min(spec) 
-   m2  = max(spec) 
-   yspread =  (m2 - m1)/var.noise 
-   if (is.null(ylim) & yspread < 1) ylim = c(max(m1-2*var.noise, 0.1*var.noise), m2+2*var.noise)
+#   m1  = min(spec) 
+#   m2  = max(spec) 
+#   yspread =  (m2 - m1)/var.noise 
+#   if (is.null(ylim) & yspread < 1) ylim = c(max(m1-2*var.noise, 0.1*var.noise), m2+2*var.noise)
+   if (red.count > 0) { 
+       ylim = c(10e-6, 10*max(spec))
+       main = "White Noise (or close to it)"
+   }
  tsplot(freq*xfreq, spec, xlab=Xlab, ylab=Ylab, main=main, ylim=ylim, ...)
  }
  return(invisible(spg.out))

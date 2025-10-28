@@ -10,6 +10,9 @@ Multiple time series with 161 observations (rows) on the following 5 numeric var
 }
 \source{Young, P.C. and Pedregal, D.J. (1999). Macro-economic relativity: government spending, private investment and unemployment in the USA 1948-1998. \emph{Structural Change and Economic Dynamics}, 10, 359-380.
 }
+\note{
+\code{unemp} is in percentage (of the labor force), and the others are in 1982 Billions USD.
+}
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
 
@@ -21,6 +24,7 @@ The webpages for the texts and some help on using R for time series analysis can
  \url{https://nickpoison.github.io/}.  
 }
 \examples{
-tsplot(diff(log(econ5)), ncolm=2, col=2:6, lwd=2)
+tsplot(econ5, ncolm=2, col=2:6, lwd=2, title=colnames(econ5), 
+         ylab=c('\%', rep('Billions-USD', 4)))
 }
 \keyword{datasets}

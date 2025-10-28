@@ -16,6 +16,12 @@ temperatures (unlike \code{soi} and \code{ENSO}).
 }
 \details{For full details, see \kbd{https://psl.noaa.gov/enso/mei.old/mei.html}.
 Multivariate ENSO Index (MEI) is a combined score on the six main observed variables over the tropical Pacific. These six variables are: sea-level pressure (P), zonal (U) and meridional (V) components of the surface wind, sea surface temperature (S), surface air temperature (A), and total cloudiness fraction of the sky (C). These observations have been collected and published in ICOADS for many years. The MEI is computed separately for each of twelve sliding bi-monthly seasons (Dec/Jan, Jan/Feb,..., Nov/Dec). After spatially filtering the individual fields into clusters, the MEI is calculated as the first unrotated Principal Component (PC) of all six observed fields combined. This is accomplished by normalizing the total variance of each field first, and then performing the extraction of the first PC on the co-variance matrix of the combined fields. In order to keep the MEI comparable, all seasonal values are standardized with respect to each season and to the 1950-93 reference period.
+
+Weak El Niño: MEI is between +0.5 and +1.0.\cr
+Moderate El Niño: MEI is between +1.0 and +1.5.\cr
+Strong El Niño: MEI is between +1.5 and +2.0.\cr
+Very Strong El Niño: MEI is at or above +2.0.\cr
+Values below the negative of these indicate La Niña conditions. 
 }
 \source{
 \kbd{https://psl.noaa.gov/enso/mei.old/table.html}
@@ -33,7 +39,8 @@ The webpages for the texts and some help on using R for time series analysis can
 \seealso{\code{\link{soi}, \link{ENSO}, \link{MEI2}}
 }
 \examples{
-tsplot(cbind(MEI, MEI2), spag=TRUE, col=astsa.col(2*2:1, .6), addLegend=TRUE, lwd=2)
+tsplot(cbind(MEI, MEI2), spag=TRUE, col=2*2:1, addLegend=TRUE, nym=2, gg=TRUE)
+
 
 tspairs(ts.intersect(MEI, MEI2), location='top')
 

@@ -6,8 +6,8 @@
  common zeros.
 }
 \usage{
-arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL, 
-           frequency = 1, ylim = NULL, plot = TRUE, ...)
+arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL, redundancy.tol=.1,
+            frequency = 1, ylim = NULL, plot = TRUE, ...)
 }
 \arguments{
   \item{ar}{vector of AR parameters
@@ -20,6 +20,8 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL,
 }
   \item{main}{title of graphic; default is "ARMA" with orders "(p, q)"
 }
+  \item{redundancy.tol}{tolerance for reporting parameter redundancy
+}
   \item{frequency}{for seasonal models, adjusts the frequency scale
 }
   \item{ylim}{optional; specify limits for the y-axis
@@ -31,10 +33,17 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL,
 }
 \details{The basic call is \code{arma.spec(ar, ma)} where \code{ar} and \code{ma} are vectors
 containing the model parameters. Use \code{log='y'} if you want the plot on
-a log scale. If the model is not causal or invertible an error message is given. If
-there are approximate common zeros, a spectrum will be displayed and a warning will be given;
+a log scale. If the model is not causal or invertible an error message is given. 
+
+If there are approximate common zeros, a spectrum will be displayed and a warning will be given;
 e.g., \code{arma.spec(ar= .9, ma= -.9)} will yield a warning and the plot will be the
 spectrum of white noise.  Note for example that \code{arma.spec(ar=1, ma=1)} will bring up an error with warnings that the model is not causal and not invertible.
+
+To evaluate parameter redundancy, the roots of the AR and MA polynomials are examined for closeness, with \code{redundancy.tol} determining closeness.  For example, using the default (\code{.1}), \code{arma.spec(ar=.9, ma=-.85)} will report over-parameterization, whereas
+\code{arma.spec(ar=.9, ma=-.85, red=.05)} will not because the roots are \code{1/.9 = 1.111}
+and \code{1/.85 = 1.176}, which are about \code{.065} apart.
+
+
 }
 \value{ \item{freq }{frequencies - returned invisibly}
  \item{spec }{ spectral ordinates - returned invisibly }

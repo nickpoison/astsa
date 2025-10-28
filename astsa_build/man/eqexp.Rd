@@ -69,8 +69,8 @@ long = c(
 55.2)
 
 event = c(
-"EQ","EQ","EQ","EQ","EQ","EQ","EQ","EQ",
-"EX","EX","EX","EX","EX","EX","EX","EX",
+"EQ1","EQ2","EQ3","EQ4","EQ5","EQ6","EQ7","EQ8",
+"EX1","EX2","EX3","EX4","EX5","EX6","EX7","EX8",
 "NZ")
 
 
