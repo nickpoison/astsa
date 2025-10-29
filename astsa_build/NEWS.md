@@ -9,7 +9,9 @@
 
 <br/>
 
+⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 
 #### &#129351; The current [NEWS and ChangeLog can be found here](https://github.com/nickpoison/astsa/blob/master/NEWS.md)
+⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 
 
 <br/>
 
@@ -19,7 +21,7 @@ The package contains data sets and scripts for analyzing time series in both the
 
 
 
-<br/><br/>
+<br/>
 
 Additional links:
 

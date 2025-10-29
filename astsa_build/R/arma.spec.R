@@ -24,8 +24,8 @@ function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL, redundancy.tol=.1,
      red.count = 0
    for (i in 1:ar.order) {
     if ( (ar[1] == 0 && ar.order == 1) || (ma[1] == 0 && ma.order == 1) )  break
-    if(any(abs(z.ar[i]-z.ma[1:ma.order]) < redundancy.tol)) 
-             {cat("WARNING: Parameter Redundancy", "\n"); red.count=1; break}
+    if(any(abs(1/z.ar[i]-1/z.ma[1:ma.order]) < redundancy.tol)) 
+             {cat("WARNING: (Possible) Parameter Redundancy", "\n"); red.count=1; break}
    }
 
   freq <- seq.int(0, 0.5, length.out = n.freq)

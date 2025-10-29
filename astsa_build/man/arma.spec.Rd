@@ -2,8 +2,7 @@
 \alias{arma.spec}
 \title{Spectral Density of an ARMA Model
 } 
-\description{Gives the ARMA spectrum, tests for causality, invertibility, and
- common zeros.
+\description{Gives the ARMA model spectrum, but first tests for causality and invertibility, and then for parameter redundancy.
 }
 \usage{
 arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL, redundancy.tol=.1,
@@ -28,7 +27,7 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL, redundancy.t
 }
   \item{plot}{if TRUE (default), produces a graphic
 }
-  \item{\dots}{additional arguments
+  \item{\dots}{additional arguments for the graphic
 }
 }
 \details{The basic call is \code{arma.spec(ar, ma)} where \code{ar} and \code{ma} are vectors
@@ -37,13 +36,9 @@ a log scale. If the model is not causal or invertible an error message is given.
 
 If there are approximate common zeros, a spectrum will be displayed and a warning will be given;
 e.g., \code{arma.spec(ar= .9, ma= -.9)} will yield a warning and the plot will be the
-spectrum of white noise.  Note for example that \code{arma.spec(ar=1, ma=1)} will bring up an error with warnings that the model is not causal and not invertible.
+spectrum of white noise.  Note, for example, that \code{arma.spec(ar=1, ma=1)} will bring up an error stop with warnings that the model is not causal and not invertible.
 
-To evaluate parameter redundancy, the roots of the AR and MA polynomials are examined for closeness, with \code{redundancy.tol} determining closeness.  For example, using the default (\code{.1}), \code{arma.spec(ar=.9, ma=-.85)} will report over-parameterization, whereas
-\code{arma.spec(ar=.9, ma=-.85, red=.05)} will not because the roots are \code{1/.9 = 1.111}
-and \code{1/.85 = 1.176}, which are about \code{.065} apart.
-
-
+To evaluate parameter redundancy, the inverse roots of the AR and MA polynomials are examined for closeness with \code{redundancy.tol} determining closeness. For example, \code{arma.spec(ar= .9, ma= -.88)} will produce an over-parameterization warning using the default tolerance. The Fisher Information matrix for ARMA is singular for exact redundancy, and its closeness to singularity can be measured by the closeness of the inverse of those roots [e.g., Klein and Spreij (1997). On Fisher’s information matrix of an ARMA process. In \emph{Stochastic Differential and Difference Equations}, 273-284. Boston: Birkhauser.] 
 }
 \value{ \item{freq }{frequencies - returned invisibly}
  \item{spec }{ spectral ordinates - returned invisibly }
