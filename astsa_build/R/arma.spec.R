@@ -39,7 +39,7 @@ function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL, redundancy.tol=.1,
  if(plot){
   if (is.null(main)){
    if ((ar[1] == 0 && ar.order == 1) && (ma[1] == 0 && ma.order == 1)){
-     main = 'White Noise'
+     main = 'White1/.9 Noise'
      } else {
      pAR = ar.order - (ar[1]==0 && ar.order==1)
      qMA = ma.order - (ma[1]==0 && ma.order==1) 
@@ -48,13 +48,13 @@ function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL, redundancy.tol=.1,
   }
   Ylab = 'spectrum'
   Xlab = ifelse(xfreq>1, paste('frequency \u00D7', xfreq), 'frequency')
-#   m1  = min(spec) 
-#   m2  = max(spec) 
-#   yspread =  (m2 - m1)/var.noise 
-#   if (is.null(ylim) & yspread < 1) ylim = c(max(m1-2*var.noise, 0.1*var.noise), m2+2*var.noise)
+   m1  = min(spec) 
+   m2  = max(spec) 
    if (red.count > 0) { 
-       ylim = c(10e-6, 10*max(spec))
-       main = "White Noise (or close to it)"
+       ylim = c(10e-6, 10*m2)
+   } else {
+   yspread =  (m2 - m1)/var.noise 
+   if (is.null(ylim) & yspread < 1) ylim = c(max(m1-2*var.noise, 0.1*var.noise), m2+2*var.noise)
    }
  tsplot(freq*xfreq, spec, xlab=Xlab, ylab=Ylab, main=main, ylim=ylim, ...)
  }
