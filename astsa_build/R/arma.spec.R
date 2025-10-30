@@ -16,7 +16,7 @@ function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL, redundancy.tol=.1,
    xfreq    <- frequency
    ar.order <- length(ar)
    ma.order <- length(ma)
-  # check (near) parameter redundancy [i.e. are any roots (approximately) equal] 
+  # check (near) parameter redundancy [i.e. are any inverse roots (approximately) equal] 
     if (redundancy.tol < 0) { 
      redundancy.tol=.1
      cat("\n'redundancy.tol' cannot be negative and has been reset to its default value\n\n")
@@ -39,7 +39,7 @@ function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL, redundancy.tol=.1,
  if(plot){
   if (is.null(main)){
    if ((ar[1] == 0 && ar.order == 1) && (ma[1] == 0 && ma.order == 1)){
-     main = 'White1/.9 Noise'
+     main = 'White Noise'
      } else {
      pAR = ar.order - (ar[1]==0 && ar.order==1)
      qMA = ma.order - (ma[1]==0 && ma.order==1) 
@@ -51,7 +51,7 @@ function(ar=0, ma=0, var.noise=1, n.freq=500, main=NULL, redundancy.tol=.1,
    m1  = min(spec) 
    m2  = max(spec) 
    if (red.count > 0) { 
-       ylim = c(10e-6, 10*m2)
+       ylim = c(1e-6, 10*m2)
    } else {
    yspread =  (m2 - m1)/var.noise 
    if (is.null(ylim) & yspread < 1) ylim = c(max(m1-2*var.noise, 0.1*var.noise), m2+2*var.noise)
