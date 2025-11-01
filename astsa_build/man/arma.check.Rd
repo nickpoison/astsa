@@ -38,7 +38,7 @@ If the model is causal and invertible, a warning is given if there are (approxim
 To evaluate parameter redundancy, the inverse roots of the AR and MA polynomials are examined for closeness with \code{redundancy.tol} determining closeness. For example, \code{arma.spec(ar= .9, ma= -.88)} will produce an over-parameterization warning using the default tolerance. The Fisher Information matrix for ARMA is singular for exact redundancy, and its closeness to singularity can be measured by the closeness of the inverse of those roots [e.g., Klein and Spreij (1997). On Fisher’s information matrix of an ARMA process. In \emph{Stochastic Differential and Difference Equations}, 273-284. Boston: Birkhauser.] 
 }
 \value{
-See the details. If the model is causal and invertible and not over-parameterized, a nice message of validation is given.  Otherwise, the problems are reported (but the culprits are not specified).
+See the details. If the model is causal and invertible and not over-parameterized, a nice message of validation is given.  Otherwise, problems are reported but the specific culprits may not be specified.
 }
 \references{You can find demonstrations of  astsa capabilities at
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

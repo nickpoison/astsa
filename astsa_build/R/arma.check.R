@@ -26,13 +26,13 @@ arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1
     SAR = c(1, rep(0, Po*S))
     SAR[seq(S+1, Po*S+1, by=S)] = -sar
     minroots <- min(Mod(polyroot(SAR)))
-    if (minroots <= 1)  {cat("WARNING: Model Not Causal", "\n"); check.c <- check.c + 1}
+    if (minroots <= 1)  {cat("WARNING: Seasonal Part Not Causal", "\n"); check.c <- check.c + 1}
    } 
    if (Qo > 0){
     SMA = c(1, rep(0, Qo*S))
     SMA[seq(S+1, Qo*S+1, by=S)] = sma
     minroots <- min(Mod(polyroot(SMA)))
-    if (minroots <= 1) {cat("\nWARNING: Model Not Invertible", "\n"); check.i <- check.i + 1}
+    if (minroots <= 1) {cat("\nWARNING: Seasonal Part Not Invertible", "\n"); check.i <- check.i + 1}
    }
 
 
