@@ -713,10 +713,12 @@ It can do everything for you but you have to choose the model ... speaking of wh
 
 
 
+---
+
 &#x274C; Don't use black boxes like `auto.arima` from the `forecast` package because IT DOESN'T WORK well. If you know what you are doing, fitting an ARIMA model to linear time series data is easy.
 
 ---
-<blockquote> 
+
 <img src="figs/blackbox2.png" alt="blackbox"  width="70%"><br/>
 
 
@@ -741,8 +743,18 @@ forecast::auto.arima(x)  # BLACK BOX
      sigma^2 estimated as 0.9657:  log likelihood=-1400
      AIC=2808.01   AICc=2808.05   BIC=2827.64
 ````
-HA! ... an ARMA(2,1) ??  BUT, if you KNOW what you are doing, you realize the model is basically overparametrized white noise (because &nbsp;&nbsp;  -ar1 &approx; ma1 &nbsp;&nbsp; and &nbsp;&nbsp; ar2 &approx; 0)
 
+&#129315;&#129315;&#129315;  ... an ARMA(2,1) ??  BUT, if you KNOW what you are doing, you realize the model is basically overparametrized white noise ... CHECK IT OUT:
+
+```r
+arma.check(ar=c(-.9744, -.0477), ma=.9509)
+
+  WARNING: (Possible) Parameter Redundancy 
+
+  It looks like that ARMA model has (approximate) common factors.
+  This means that the model is (possibly) over-parameterized.
+  You might want to try again.
+```
 
 Here's another humorous example. Using the data `cmort` (cardiovascular mortality)
 
@@ -779,7 +791,6 @@ sarima(cmort, 1,1,0, no.constant=TRUE)
 Yep!! 1 parameter with a decent standard error and the residuals are perfect (white and normal).
 
 ---
-</blockquote>
 
 &#128125;  Ok - back to our regularly scheduled program, `sarima()`.  As with everything else, there are many examples on the help page (`?sarima`) and we'll do a couple here.
 
