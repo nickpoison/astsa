@@ -47,7 +47,9 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 > We'll send this version to CRAN when the 2nd edition of [Time Series: A Data Analysis Approach ...](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642) is published. The planned publication date is Jan/Feb 2026.
 
-- in `arma.spec`, added option (`redundancy.tol`) to specify how close the inverse roots have to be to report a warning of parameter redundancy or over-parameterization (default is .1).
+- added `arma.check` to check a given model (seasonal ok) for causality, invertibility, and parameter redundancy with option (`redundancy.tol`) to specify how close the inverse roots have to be to report a warning of parameter redundancy or over-parameterization (default is .1).
+
+  - in `arma.spec`, using ideas from `arma.check`, added user option `redundancy.tol`.
 
 
 - removed asking if the user wants `xts` to be installed at startup ... _apologies_ for doing what we said we would never do - it's  why there is an update so soon 
