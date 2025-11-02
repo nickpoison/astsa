@@ -24,18 +24,22 @@ vector of seasonal AR parameters (only specify for seasonal models)
 vector of seasonal MA parameters  (only specify for seasonal models)
 }
   \item{S}{
-seasonal period  (only specify for seasonal models)
+seasonal period  (only specify for seasonal models - default value is 12)
 }
   \item{redundancy.tol}{
 tolerance for reporting parameter redundancy
 }
 }
 \details{
-If the model is not causal or invertible, these are reported and checking is stopped if either condition is reported. 
+Causality and invertibility are checked first. If either one or both are reported, checking is stopped. 
 
-If the model is causal and invertible, a warning is given if there are (approximate) common zeros.
+If the model is causal and invertible, a warning for (possible) over-parameterization/redundancy is given if there are (approximate) common zeros.
 
-To evaluate parameter redundancy, the inverse roots of the AR and MA polynomials are examined for closeness with \code{redundancy.tol} determining closeness. For example, \code{arma.spec(ar= .9, ma= -.88)} will produce an over-parameterization warning using the default tolerance. The Fisher Information matrix for ARMA is singular for exact redundancy, and its closeness to singularity can be measured by the closeness of the inverse of those roots [e.g., Klein and Spreij (1997). On Fisher’s information matrix of an ARMA process. In \emph{Stochastic Differential and Difference Equations}, 273-284. Boston: Birkhauser.] 
+To evaluate parameter redundancy, the inverse roots of the AR and MA polynomials are examined for closeness with \code{redundancy.tol} determining closeness; see the note.
+}
+
+\note{
+The Fisher Information matrix for ARMA is singular for exact redundancy, and its closeness to singularity can be measured by the closeness of the inverse of those roots [e.g., Klein and Spreij (1997). On Fisher’s information matrix of an ARMA process. In \emph{Stochastic Differential and Difference Equations}, 273-284. Boston: Birkhauser.] 
 }
 \value{
 See the details. If the model is causal and invertible and not over-parameterized, a nice message of validation is given.  Otherwise, problems are reported but the specific culprits may not be specified.
@@ -58,10 +62,7 @@ arma.check(ar=.9, ma=-.88)
 
 arma.check(ar=c(1,-.9), sar=-.6, sma=-.4, S=4)
 
-arma.check(sar=1, S=12)
+arma.check(ar=.9, ma=c(-1,.9,.8), sar=1, S=12)
 
-arma.check(ar=.9, ma=c(-1,.9,.8))
-# check its pi weights
-ARMAtoAR(ar=.9, ma=c(-1,.9,.8)) 
 }
 \keyword{ts}

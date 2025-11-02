@@ -17,10 +17,17 @@ arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1
 
    Po = length(sar)
    Qo = length(sma)
-  # check if S is specified
-   if ( (Po + Qo > 0) & is.null(S)) {
-       stop("Seasonal orders are specified, but S is not\n")
-   } 
+  # check if S is specified, if not set it to 12
+   if ( (Po + Qo > 0) & is.null(S)) { 
+    S = 12
+    cat("No seasonal period was entered so it has been set to S = 12\n") 
+   }
+   
+  if (!is.null(S)){
+   if (S <= length(ar)) stop("AR order should be less than seasonal order 'S'") 
+   if (S <= length(ma)) stop("MA order should be less than seasonal order 'S'")  
+  }
+
 
    if (Po > 0){
     SAR = c(1, rep(0, Po*S))
