@@ -47,14 +47,14 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 > We'll send this version to CRAN when the 2nd edition of [Time Series: A Data Analysis Approach ...](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642) is published. The planned publication date is Jan/Feb 2026.
 
-- added `arma.check` to check a given model (seasonal ok) for causality, invertibility, and parameter redundancy with option (`redundancy.tol`) to specify how close the inverse roots have to be to report a warning of parameter redundancy or over-parameterization (default is .1).
+- added  &#127381; `arma.check`  &#127381;  to check a given model (seasonal ok) for causality, invertibility, and parameter redundancy with option (`redundancy.tol`) to specify how close the inverse roots have to be to report a warning of parameter redundancy or over-parameterization (default is .1).
 
   - in `arma.spec`, using ideas from `arma.check`, added user option `redundancy.tol`.
 
 
 - removed asking if the user wants `xts` to be installed at startup ... _apologies_ for doing what we said we would never do - it's  why there is an update so soon 
 
-- in the meantime, &#127381; added script `timex()` that, with or without `xts` being loaded, will convert the dates in an `xts` data file to decimal dates so the data can be plotted easily using `tsplot` ... `?timex` for details (of course)
+- in the meantime,  added script &#127381; `timex()` &#127381; that, with or without `xts` being loaded, will convert the dates in an `xts` data file to decimal dates so the data can be plotted easily using `tsplot` ... `?timex` for details (of course)
 
 - for `tsplot`, added logical option `reset.par`. For multiple plots, the graphic is reset by default (`TRUE`) unless this is set to `FALSE`.   For example, if there are 5 plots and `ncolm=2`, the layout will be 3 by 2 with an empty spot.  If you want to add something in the empty space, set this to `FALSE`, otherwise the graphic is finished.   
 
@@ -64,7 +64,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 - `lag1.plot` and `lag2.plot` have additional arguments where you can change the name(s) of the series on the plots.  The defaults are the name of the series, but it can get messy if you do something like `lag1.plot(x <- diff(log(varve)), 4)`, so now you can do this: `lag1.plot(x <- diff(log(varve)), 4, xname='V')`.
 
-- added `MEI2`, _Multivariate ENSO Index version 2_ (to complement `MEI`, which is version 1)
+- added &#127381; `MEI2` &#127381;, _Multivariate ENSO Index version 2_ (to complement `MEI`, which is version 1)
 
 - we've found it useful in Chapter 6 to quickly look at the residuals from fitting a state space model... so we added an option to specify `fitdf` in `sarima` to allow the user to keep track of the degrees of freedom. For example: `sarima(resids, fitdf=2)` will not fit a model to the `resids`, but will exhibit the residual analysis graphic... basically, `sarima` can be used as a residual diagnostic tool on its own.
 <br/>
