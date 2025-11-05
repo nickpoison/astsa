@@ -634,39 +634,39 @@ acfm(diff(log(econ5)), gg=TRUE, acf.highlight=FALSE)  # Gris-Gris Gumbo Ya Ya
 ```r
 arma.check(ar=.9, ma=-.88)
 
-   WARNING: (Possible) Parameter Redundancy 
-   
-   It looks like that ARMA model has (approximate) common factors.
-   This means that the model is (possibly) over-parameterized.
-   You might want to try again.
+#   WARNING: (Possible) Parameter Redundancy 
+#   
+#   It looks like that ARMA model has (approximate) common factors.
+#   This means that the model is (possibly) over-parameterized.
+#   You might want to try again.
 ```
 ```r
 arma.check(ar=c(1,-.9), sar=-.6, sma=-.4, S=4)
 
-   The model is causal.
-   The model is invertible.
-   That's a very nice ARMA model!
+#   The model is causal.
+#   The model is invertible.
+#   That's a very nice ARMA model!
 ```
 ```r
 arma.check(sar=1, S=12)
    
-   WARNING: Model Not Causal 
-   The model is invertible.
+#   WARNING: Seasonal Part Not Causal 
+#   The model is invertible.  
 ```
 ```r
 arma.check(ar=.9, ma=c(-1,.9,.8))
 
-   WARNING: Model Not Invertible 
-   The model is causal.
+#   WARNING: Model Not Invertible 
+#   The model is causal.
 ```
 ```r
 # check its pi weights
 ARMAtoAR(ar=.9, ma=c(-1,.9,.8))
 
- [1]   0.100000  -0.800000  -1.690000  -1.050000   1.111000   3.408000
- [7]   3.248100  -0.707900  -6.357590  -8.318960  -2.030809  10.542327
-[13]  19.025223  11.161776 -14.394786 -39.660563 -35.634676  11.575660
-[19]  75.375319  93.464966
+#   [1]   0.100000  -0.800000  -1.690000  -1.050000   1.111000
+#   [6]   3.408000   3.248100  -0.707900  -6.357590  -8.318960
+#  [11]  -2.030809  10.542327  19.025223  11.161776 -14.394786
+#  [16] -39.660563 -35.634676  11.575660  75.375319  93.464966
 ```
 
 <br/>
