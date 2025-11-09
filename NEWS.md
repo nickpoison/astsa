@@ -50,7 +50,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 - added  &#127381; `arma.check`  &#127381;  to check a given model (seasonal ok) for causality, invertibility, and parameter redundancy with option (`redundancy.tol`) to specify how close the inverse roots have to be to report a warning of parameter redundancy or over-parameterization (default is .1).
 
   - in `arma.spec`, using ideas from `arma.check`, added user option `redundancy.tol`.
-
+  - redundancy is now reported in `sarima.sim` (it just reports it but it doesn't stop the script and the check can be turned off) ... previously, it only checked causality and invertibility.  
 
 - removed asking if the user wants `xts` to be installed at startup ... _apologies_ for doing what we said we would never do - it's  why there is an update so soon 
 

@@ -1,6 +1,6 @@
 sarima.sim <-
-function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
-          n=500, rand.gen=rnorm, innov=NULL, burnin=NA, t0=0, ...)
+function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL, n=500, 
+           rand.gen=rnorm, innov=NULL, burnin=NA, t0=0, red.tol=.1, ...)
 { 
   if (length(burnin) > 1) burnin = burnin[1]
   if (length(ar)==1 && ar==0) ar=NULL
@@ -85,6 +85,10 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL,
    }
   } 
 ###
+if (red.tol > 0){ # check only if red.tol is positive
+ if (is.null(S)) Po=0; Qo=0; SAR=NULL; SMA=NULL
+.red_check(ar=ar, ma=ma, SAR=SAR, SMA=SMA, S=S, red.tol=red.tol, po=po, qo=qo, Po=Po, Qo=Qo)  # warn if parameter redundancy
+}
 frq = ifelse(is.null(S),1,S)
 x = ts(x[(burnin+1):(burnin+n)], start=t0, frequency=frq)
 return(x)
@@ -116,3 +120,23 @@ function(model, n, innov, ...)
     as.ts(x)
 }
 
+
+.red_check <-
+function(ar, ma, SAR, SMA, S, red.tol, po, qo, Po, Qo)
+{
+   if (po > 0 & qo > 0) {
+    arply = c(1,-ar)
+    maply = c(1, ma)
+    for (i in 1:po) {
+     if(any(abs(1/polyroot(arply)[i]-1/polyroot(maply)) < red.tol)) 
+        {cat("\nWARNING: (Possible) Parameter Redundancy", "\n")}
+    }
+   }
+
+   if (Po > 0 & Qo > 0) {
+    for (i in 1:Po) {
+     if(any(abs(1/polyroot(SAR)[i]-1/polyroot(SMA)) < red.tol)) 
+        {cat("\nWARNING: (Possible) Seasonal Parameter Redundancy", "\n")}
+    }
+   }
+}

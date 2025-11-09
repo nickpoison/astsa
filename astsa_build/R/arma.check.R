@@ -60,7 +60,7 @@ arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1
    for (i in 1:Po) {
     if ( is.null(sar) || is.null(sma) )  break
     if(any(abs(1/polyroot(SAR)[i]-1/polyroot(SMA)) < redundancy.tol)) 
-        {cat("\nWARNING: (Possible) Parameter Redundancy", "\n"); red.count=1; break}
+        {cat("\nWARNING: (Possible) Seasonal Parameter Redundancy", "\n"); red.count=1; break}
    }
 
 ## if no redundance, report causal & invertible
