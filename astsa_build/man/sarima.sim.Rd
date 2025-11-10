@@ -85,16 +85,16 @@ y = sarima.sim(ar=c(1.5,-.75)) + 50
 tsplot(y)
 
 ## ARIMA(0,1,1) with drift ['mean' refers to the innovations] 
-tsplot(sarima.sim(ma=-.8, d=1, mean=.1))
+tsplot(sarima.sim(ma=-.8, d=1, mean=.25))
 
 ## Overparameterized White Noise
 tsplot(sarima.sim(ar=.9, ma=-.9))
 
 ## SAR(1) example from text
-set.seed(666)   # not that 666
-sAR = sarima.sim(sar=.9, S=12, n=36)
-tsplot(sAR, type='c')
-points(sAR, pch=Months, cex=1.1, font=4, col=1:4)
+set.seed(10101010)
+x = sarima.sim(sar=.95, S=12, n=37) + 5
+tsplot(x, type='c')
+points(x, pch=Months, cex=1.5, font=2, col=1:12)
 
 ## SARIMA(0,1,1)x(0,1,1)_12 - B&J's favorite
 set.seed(101010)

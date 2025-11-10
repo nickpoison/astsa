@@ -48,13 +48,13 @@ arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1
    ma.order <- length(ma)
     if (redundancy.tol < 0) { 
       redundancy.tol=.1
-      cat("\n'redundancy.tol' cannot be negative and has been reset to its default value\n\n")
+      cat("\n'redundancy.tol' should not be negative and has been reset to its default value\n")
     }
 
    red.count = 0
    for (i in 1:ar.order) {
     if ( (ar[1] == 0 && ar.order == 1) || (ma[1] == 0 && ma.order == 1) )  break
-    if(any(abs(1/z.ar[i]-1/z.ma) < redundancy.tol)) 
+    if(any(abs(1/z.ar[i]-1/z.ma) <= redundancy.tol)) 
         {cat("\nWARNING: (Possible) Parameter Redundancy", "\n"); red.count=1; break}
    }
    for (i in 1:Po) {
@@ -70,15 +70,12 @@ arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1
     }
 
 #  responses for causal and invertible
-    stopit = FALSE
-    if (check.c + check.i > 0) {
-      stopit = TRUE 
-      invisible('')
-    }
-
+   stopit = ifelse( (check.c + check.i > 0), TRUE, FALSE)
    if (red.count > 0){ 
-       cat("\nIt looks like that ARMA model has (approximate) common factors.\nThis means that the model is (possibly) over-parameterized.\nYou might want to try again.\n")
-       } else { 
-       if (!stopit) cat("That's a very nice ARMA model!\n")
+      cat("\nIt looks like that ARMA model has (approximate) common factors.\nThis means that the model is (possibly) over-parameterized.\nYou might want to try again.\n")
+      } else  
+      if (!stopit & redundancy.tol >= .1)  { cat("That's a very nice ARMA model!\n")
+      } else  
+      if (!stopit & redundancy.tol < .1)  { cat("Since you lowered the redundancy tolerance, the model may be very nice,\nbut over-parameterization is still a possibility!\n")
     }
 }
