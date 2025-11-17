@@ -6,17 +6,18 @@
 		 palette("default")
 		 }
 
-# no need for below because filter and lag are in astsa as of v2.4
-# warn if dplyr is loaded
-#.onAttach <- function(libname, pkgname) {
-# if ('package:dplyr' %in% search()) {
-#warning("\nThe package `dplyr` is loaded and it most likely will corrupt 
-#the base scripts `filter` and `lag` that a time series analyst 
-#uses frequently. See `?astsa` or `help(astsa)` for remedies. 
-#A simple one is to detach it: `detach(package:dplyr)`"
-#)
-# }
-#}
+
+## warn if dplyr is loaded
+.onAttach <- function(libname, pkgname) {
+ if ('package:dplyr' %in% search()) {
+cat("\nWARNING: The package `dplyr` is loaded, and it has 
+most likely masked the base scripts `filter` and `lag` 
+that a time series analyst uses frequently.
+See `?astsa` or `help(astsa)` for remedies. 
+A simple one is to detach it: `detach(package:dplyr)`\n"
+)
+ }
+}
 
 
 # below were used for `stats::pairs` in `ar.boot` and `ar.mcmc` and
