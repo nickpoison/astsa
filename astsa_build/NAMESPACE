@@ -9,15 +9,14 @@ importFrom("grDevices", "adjustcolor", "col2rgb", "cm.colors", "dev.flush",
               "rgb2hsv", "xy.coords")
 importFrom("stats", "acf", "AIC", "ar", "ar.yw", "arima", "ARMAtoMA", "as.ts", 
               "BIC", "Box.test", "ccf", "coef", "cor", "cov2cor", "df.kernel", 
-              "diffinv", "dnorm", "fft", "frequency", "is.ts", 
-              "is.tskernel", "kernapply", "kernel", "lm", "loess", 
+              "diffinv", "dnorm", "fft", "frequency", "is.ts", "filter",
+              "is.tskernel", "kernapply", "kernel", "lm", "loess", "lag",
               "lowess", "mvfft", "na.fail", "na.omit", "na.pass", "naprint", 
               "nextn", "optim", "pacf", "pchisq", "pf", "plot.ts", "ppoints", 
               "predict", "qf", "qnorm", "qqnorm", "qt", "quantile", "resid", 
               "rgamma", "rnorm", "runif", "sd", "spec.ar", "spec.pgram", 
               "spec.taper", "summary.lm", "time", "ts", "ts.intersect", 
               "ts.plot", "tsp", "var", "vcov")   
-# `filter` and `lag` removed from above because they are now part of `astsa`  
 importFrom("utils", "setTxtProgressBar", "txtProgressBar")
 
 
