@@ -43,8 +43,8 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL,
    par(mfcol = c(prow, ncolm), cex.lab=1.1, oma = c(0,0,3*topper,0)+omargins )
    }
   par(cex=.85*scale)
-   if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
-   if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
+   if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x), do.NULL=FALSE, prefix="Series ")}
+   if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y), do.NULL=FALSE, prefix="Series ")} 
    for (h in 1:nser) {
     if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab[h], main=title[h],
                   nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)
@@ -83,8 +83,8 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL,
          cex.axis=.9, cex=.9*scale)
    }
 par(cex=.85*scale)
-   if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x))}
-   if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y))} 
+   if (is.null(y) & is.null(ylab) ) { ylab=colnames(as.matrix(x), do.NULL=FALSE, prefix="Series ")}
+   if (!is.null(y) & is.null(ylab) )  { ylab=colnames(as.matrix(y), do.NULL=FALSE, prefix="Series ")} 
    for (h in 1:nser) {
     if(is.null(y)) {tsplot(x[,h], ylab=ylab[h], col=culer[h], type=type, xlab=xlab[h], main=title[h],
          gg=TRUE, nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, pch=pch[h], lty=lty[h], lwd=lwd[h], ...)

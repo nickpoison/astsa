@@ -14,7 +14,7 @@
 
 
 ---
-&#x1F4A1; The GitHub version is updated before the CRAN version.  For installation, just follow the bouncing ball <sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup>: 
+&#x1F4A1; The GitHub version is updated before the CRAN version.  For installation, just follow the bouncing ball <sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup><sub>&#9917;</sub><sup>&#9917;</sup>: 
 
 >  If `astsa` is loaded, then detach it first: `detach(package:astsa)`.  After successful installation, the best thing to do is to restart R and load the new `astsa`:
 
