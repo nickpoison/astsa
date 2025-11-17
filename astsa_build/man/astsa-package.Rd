@@ -21,7 +21,7 @@ LazyData: \tab yes\cr
 \author{
 David Stoffer <stoffer@pitt.edu>
 }
-\section{Warning}{If loaded, the \code{dplyr} package corrupts the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
+\section{Warning}{If loaded after \code{astsa}, the package \code{dplyr} will mask the base scripts \code{filter} and \code{lag} among other things. In this case, whenever you analyze time series data, we suggest you either:
 
 (1) Detach it if it's loaded but not being used: 
 \preformatted{   detach(package:dplyr)

@@ -4,7 +4,7 @@
 Check an ARMA Model for Causality, Invertibility, and Parameter Redundancy
 }
 \description{
-For a give ARMA model (including seasonal models), reports whether the model is causal,
+For a given ARMA model (including seasonal models), reports whether the model is causal,
 invertible, or (approximately) over-parameterized.
 }
 \usage{

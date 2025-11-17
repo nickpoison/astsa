@@ -47,6 +47,8 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 > We'll send this version to CRAN when the 2nd edition of [Time Series: A Data Analysis Approach ...](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642) is published. The planned publication date is Jan/Feb 2026.
 
+- added `filter` and `lag` from the `stats` package to `astsa` ... this way, if `astsa` is loaded after `dplyr`, these scripts will work as originally intended. It just decreases the chance that `dplyr` is the _pain in the ass_ that it is (also, there is minimal chance `stats` is loaded after `dplyr`)
+
 - added  &#127381; `arma.check`  &#127381;  to check a given model (seasonal ok) for causality, invertibility, and parameter redundancy with option (`redundancy.tol`) to specify how close the inverse roots have to be to report a warning of parameter redundancy or over-parameterization (default is .1).
 
   - in `arma.spec`, using ideas from `arma.check`, added user option `redundancy.tol`.

@@ -28,7 +28,7 @@ We do not always push the latest version of the package to CRAN, but [the latest
 
 ---
 
-&#9940; __WARNING:__  If loaded, the package `dplyr` may (and probably will) corrupt the base scripts `filter` and `lag` that a time series analyst uses often. An easy fix if you’re analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is going being used:
+&#9940; __WARNING:__  If loaded, the package `dplyr` may (and probably will) mask the base scripts `filter` and `lag` that a time series analyst uses often. An easy fix if you’re analyzing time series (or teaching a class) is to (tell students to) do the following if `dplyr` is going being used:
 
 ```r
 # [1] either detach it if it's loaded but no longer needed
@@ -36,7 +36,7 @@ detach(package:dplyr)
 
 # [2] or fix it yourself when loading dplyr 
 # this is a great idea from https://stackoverflow.com/a/65186251
-library(dplyr, exclude = c("filter", "lag"))   # remove the culprits
+library(dplyr, exclude = c("filter", "lag"))   # load without the culprits
 dlag    = dplyr::lag                           # then correct ... 
 dfilter = dplyr::filter                        # ... the blunders
 #  Now use `dlag` and `dfilter` in dplyr scripts and
