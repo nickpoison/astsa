@@ -8,7 +8,8 @@ For a given ARMA model (including seasonal models), reports whether the model is
 invertible, or (approximately) over-parameterized.
 }
 \usage{
-arma.check(ar = 0, ma = 0, sar = NULL, sma = NULL, S = NULL, redundancy.tol = 0.1)
+arma.check(ar = 0, ma = 0, sar = NULL, sma = NULL, S = NULL, redundancy.tol = 0.1,
+           plot.it = FALSE, ...)
 }
 \arguments{
   \item{ar}{
@@ -29,6 +30,12 @@ seasonal period  (only specify for seasonal models - default value is 12)
   \item{redundancy.tol}{
 tolerance for reporting parameter redundancy
 }
+  \item{plot.it}{
+if TRUE -and- the model is causal and invertible, will plot the inverse roots and display the redundancy tolerance level, but ONLY for the AR and MA parts (seasonal parts are ignored)
+}
+  \item{\dots}{
+additional graphical parameters
+}
 }
 \details{
 Causality and invertibility are checked first. If either one or both are reported, checking is stopped. 
@@ -36,6 +43,8 @@ Causality and invertibility are checked first. If either one or both are reporte
 If the model is causal and invertible, a warning for (possible) over-parameterization/redundancy is given if there are (approximate) common zeros.
 
 To evaluate parameter redundancy, the inverse roots of the AR and MA polynomials are examined for closeness with \code{redundancy.tol} determining closeness; see the note.
+
+For fun, and IF the model is causal and invertible, setting \code{plot.it=TRUE} will display the complex plane with the inverse roots of the AR and MA polynomials displayed with colored arrows; the seasonal components are not included because it's too messy. The tolerance level for declaring over-parameterization is also displayed in the graphic.  
 }
 
 \note{
@@ -64,5 +73,7 @@ arma.check(ar=c(1,-.9), sar=-.6, sma=-.4, S=4)
 
 arma.check(ar=.9, ma=c(-1,.9,.8), sar=1, S=12)
 
+# oops
+arma.check(ar=c(1.5,-.75), ma=c(-.6,-.3,.45), plot.it=TRUE, gg=TRUE)
 }
 \keyword{ts}
