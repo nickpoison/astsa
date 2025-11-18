@@ -124,19 +124,24 @@ function(model, n, innov, ...)
 .red_check <-
 function(ar, ma, SAR, SMA, S, red.tol, po, qo, Po, Qo)
 {
+   chck = 0
    if (po > 0 & qo > 0) {
     arply = c(1,-ar)
     maply = c(1, ma)
     for (i in 1:po) {
      if(any(abs(1/polyroot(arply)[i]-1/polyroot(maply)) < red.tol)) 
-        {cat("\nWARNING: (Possible) Parameter Redundancy", "\n")}
+     chck = chck + 1
     }
    }
+   if (chck > 0) cat("\nWARNING: (Possible) Parameter Redundancy", "\n")
 
+   chck = 0
    if (Po > 0 & Qo > 0) {
     for (i in 1:Po) {
      if(any(abs(1/polyroot(SAR)[i]-1/polyroot(SMA)) < red.tol)) 
-        {cat("\nWARNING: (Possible) Seasonal Parameter Redundancy", "\n")}
+     chck = chck + 1
     }
    }
+   if (chck > 0) cat("\nWARNING: (Possible) Seasonal Parameter Redundancy", "\n")
 }
+
