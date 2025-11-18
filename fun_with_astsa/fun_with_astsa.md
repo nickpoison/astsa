@@ -14,7 +14,7 @@ Remember to load `astsa` at the start of a session...
 
 it's more than just data ... it's a palindrome
 
-⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 
+⭐⭐⭐⭐⭐⭐⭐⭐⭐
 
 -----
 -----
@@ -653,21 +653,20 @@ arma.check(sar=1, S=12)
 #   WARNING: Seasonal Part Not Causal 
 #   The model is invertible.  
 ```
-```r
-arma.check(ar=.9, ma=c(-1,.9,.8))
 
-#   WARNING: Model Not Invertible 
-#   The model is causal.
-```
-```r
-# check its pi weights
-ARMAtoAR(ar=.9, ma=c(-1,.9,.8))
+<br/>
 
-#   [1]   0.100000  -0.800000  -1.690000  -1.050000   1.111000
-#   [6]   3.408000   3.248100  -0.707900  -6.357590  -8.318960
-#  [11]  -2.030809  10.542327  19.025223  11.161776 -14.394786
-#  [16] -39.660563 -35.634676  11.575660  75.375319  93.464966
+You want a picture? Ok, but any seasonal stuff is ignored to avoid a messy graphic. It's the complex plane with the inverse roots and the little circles have the radius of the `redundancy tolerance`, which may be set by the user (`?arma.check` has details).  Also, the graphic is displayed ONLY for causal and invertible models (so all roots are within the unit circle).
+
+```r
+arma.check(ar=c(1.5,-.75), ma=c(-.6,-.3,.45), plot=TRUE, gg=TRUE)
+
+#   WARNING: (Possible) Parameter Redundancy ...
 ```
+
+<img src="figs/arma.check.png" alt="arma.check"  width="70%">
+
+<br/>
 
 <br/>
 
