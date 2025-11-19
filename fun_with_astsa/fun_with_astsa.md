@@ -656,12 +656,16 @@ arma.check(sar=1, S=12)
 
 <br/>
 
-You want a picture? Ok, but any seasonal stuff is ignored to avoid a messy graphic. It's the complex plane with the inverse roots and the little circles have the radius of the `redundancy tolerance`, which may be set by the user (`?arma.check` has details).  Also, the graphic is displayed ONLY for causal and invertible models (so all roots are within the unit circle).
+You want a picture? Ok, but any seasonal stuff is ignored to avoid a messy graphic. It's the complex plane with the inverse roots and the little circles have the radius of the `redundancy tolerance`, which may be set by the user (`?arma.check` has details).  Also, the graphic is displayed ONLY for causal and invertible models (so inverted roots are within the unit circle).
 
 ```r
 arma.check(ar=c(1.5,-.75), ma=c(-.6,-.3,.45), plot=TRUE, gg=TRUE)
 
 #   WARNING: (Possible) Parameter Redundancy ...
+
+##- this is not output... but just a little note that you can't
+##- always tell if a model is overparameterized just by looking
+##- at the parameters (unless you have extraordinary skills) 
 ```
 
 <img src="figs/arma.check.png" alt="arma.check"  width="50%">
