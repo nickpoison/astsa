@@ -664,7 +664,7 @@ arma.check(ar=c(1.5,-.75), ma=c(-.6,-.3,.45), plot=TRUE, gg=TRUE)
 #   WARNING: (Possible) Parameter Redundancy ...
 ```
 
-<img src="figs/arma.check.png" alt="arma.check"  width="70%">
+<img src="figs/arma.check.png" alt="arma.check"  width="50%">
 
 <br/>
 
