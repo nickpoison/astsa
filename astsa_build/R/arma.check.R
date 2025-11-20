@@ -38,9 +38,12 @@ arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1
     SMA = c(1, rep(0, Qo*S))
     SMA[seq(S+1, Qo*S+1, by=S)] = sma
     minroots <- min(Mod(polyroot(SMA)))
-    if (minroots <= 1) {cat("\nWARNING: Seasonal Part Not Invertible", "\n"); check.i <- check.i + 1}
+    if (minroots <= 1) {cat("WARNING: Seasonal Part Not Invertible", "\n"); check.i <- check.i + 1}
    }
 
+### end if not causal or invertible
+   if (check.c + check.i > 0) return(cat('NOTE: Redundancy checked only for causal and invertible models\n'))
+###
 
 #### now check redundancy  
    ar.order <- length(ar)

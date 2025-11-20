@@ -67,13 +67,11 @@ The webpages for the texts and some help on using R for time series analysis can
 }
 \seealso{\code{\link{arma.spec}}, \code{\link{sarima.sim}}, \code{\link{ARMAtoAR}}, \code{\link{ARMAtoMA}} }
 \examples{
-arma.check(ar=.9, ma=-.88)
-
 arma.check(ar=c(1,-.9), sar=-.6, sma=-.4, S=4)
 
-arma.check(ar=.9, ma=c(-1,.9,.8), sar=1, S=12)
+arma.check(ar=.9, ma=c(-.9,-.8), sar=1, S=12)
 
-# oops
+# hard to check from parameters alone ...
 arma.check(ar=c(1.5,-.75), ma=c(-.6,-.3,.45), plot.it=TRUE, gg=TRUE)
 }
 \keyword{ts}
