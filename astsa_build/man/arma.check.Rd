@@ -71,7 +71,7 @@ arma.check(ar=c(1,-.9), sar=-.6, sma=-.4, S=4)
 
 arma.check(ar=.9, ma=c(-.9,-.8), sar=1, S=12)
 
-# hard to check from parameters alone ...
+# hard to tell from parameters alone ...
 arma.check(ar=c(1.5,-.75), ma=c(-.6,-.3,.45), plot.it=TRUE, gg=TRUE)
 }
 \keyword{ts}
