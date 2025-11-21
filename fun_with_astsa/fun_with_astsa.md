@@ -648,15 +648,16 @@ arma.check(ar=c(1,-.9), sar=-.6, sma=-.4, S=4)
 #   That's a very nice ARMA model!
 ```
 ```r
-arma.check(sar=1, S=12)
-   
+arma.check(ma=1, sar=1, S=12)
+
+#   WARNING: Model Not Invertible 
 #   WARNING: Seasonal Part Not Causal 
-#   The model is invertible.  
+#   NOTE: Redundancy checked only for causal and invertible models 
 ```
 
 <br/>
 
-You want a picture? Ok, but any seasonal stuff is ignored to avoid a messy graphic. It's the complex plane with the inverse roots and the little circles have the radius of the `redundancy tolerance`, which may be set by the user (`?arma.check` has details).  Also, the graphic is displayed ONLY for causal and invertible models (so inverted roots are within the unit circle).
+You want a picture? Ok, but any seasonal stuff is ignored to avoid a messy graphic. It's the complex plane with the inverse roots and the little circles have the radius of the `redundancy tolerance`, which may be set by the user (`?arma.check` has details).  Also, the graphic is displayed ONLY for causal and invertible models (so all inverted roots are within the unit circle).
 
 ```r
 arma.check(ar=c(1.5,-.75), ma=c(-.6,-.3,.45), plot=TRUE, gg=TRUE)
@@ -671,7 +672,6 @@ arma.check(ar=c(1.5,-.75), ma=c(-.6,-.3,.45), plot=TRUE, gg=TRUE)
 <img src="figs/arma.check.png" alt="arma.check"  width="50%">
 
 <br/>
-
 <br/>
 
 ### ARIMA Simulation
