@@ -137,41 +137,21 @@ D.S. Stoffer
 \examples{
 # minimal
 tsplot(soi)
-# prettified
-tsplot(soi, col=4, gg=TRUE, main="Southern Oscillation Index")
 
+# gris-gris spaghetti
+tsplot(cbind(MEI, MEI2), spaghetti=TRUE, col=2*2:1, addLegend=TRUE, nym=2, gg=TRUE)
 
 # gris-gris multiple plot 
 tsplot(diff(log(econ5)), ncolm=2, gg=TRUE, col=2:6, lwd=2, main='Growth Rates')  
 
-
-# another gris-gris multiple plot 
 # plotting is row-wise unless byrow=FALSE is included
 tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2, xlab=c(rep(NA,4), rep('Time',2)), 
         scale=.85, ylab=NA, title=colnames(climhyd), las=1)
-
-
-# quick legend with spaghetti
-tsplot(cbind(Mortality=cmort, Pollution=part), col=5:6, gg=TRUE, las=1, spaghetti=TRUE, 
-        addLegend=TRUE)
-# and a little more control
-tsplot(cbind(gtemp_land, gtemp_ocean), spaghetti=TRUE, lwd=2, col=astsa.col(c(4,2),.7), 
-  ylab="\u00B0C", main="Global Temperature Anomalies", addLegend=TRUE, location='topleft', 
-  horiz=TRUE, legend=c("Land Surface","Sea Surface"))
-
 
 # missing data - try this with ggplot
 tsplot(blood, type='o', col=c(4,6,3), pch=19, scale=.95, gg=TRUE,
        title = colnames(blood),  xlab  = c(NA, NA,'day'),
        ylab  = c( 'log(cells/\u03BCL)', 'log(\u03BCL)', '\% red blood cells' ))
 
-
-\dontrun{
-
-# spaghetti (and store it in an object - ?recordPlot for details)
-x <- replicate(100, cumsum(rcauchy(1000))/1:1000)
-u <- tsplot(x, col=1:8, main='No LLN For You', spaghetti=TRUE)
-u   #  plot on demand
-}
 }
 \keyword{ ts }

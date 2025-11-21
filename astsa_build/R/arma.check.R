@@ -2,12 +2,12 @@ arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1
               plot.it=FALSE, ...)
 {
    check.c <- 0
-   check.i <-0 
+   check.i <- 0 
  # check causality
    ar.poly <- c(1, -ar)
    z.ar <- polyroot(ar.poly)
    if(any(abs(z.ar) <= 1)) {cat("WARNING: Model Not Causal", "\n"); check.c <- check.c + 1} 
-  # check invertibility
+ # check invertibility
    ma.poly <- c(1, ma)
    z.ma <- polyroot(ma.poly)
    if(any(abs(z.ma) <= 1)) {cat("WARNING: Model Not Invertible", "\n"); check.i <- check.i + 1} 
