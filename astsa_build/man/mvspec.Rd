@@ -7,8 +7,8 @@
 \usage{
 mvspec(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
         demean = FALSE, detrend = TRUE, lowess = FALSE, log = 'n', plot = TRUE, 
-        gg = FALSE, type = NULL, na.action = na.fail, nxm = 2, nym = 1, 
-        main = NULL, xlab = NULL, cex.main = NULL, ci = .95, ci.col = 4, plot.type, ...) 
+        gg = FALSE, type = NULL, na.action = na.fail, nxm = 2, nym = 1, main = NULL, 
+        xlab = NULL, cex.main = NULL, ci = .95, ci.col = 4, plot.type, report=TRUE, ...) 
 }
 \arguments{
   \item{x }{univariate or multivariate time series (i.e., the p columns of x are time series)
@@ -56,7 +56,9 @@ confidence level if one is drawn.
 color of the confidence interval if one is drawn.
 }
  \item{plot.type }{ plot type for multivariate time series; leave blank or specify 'marginal' if a marginal plot of the spectra is desired, or set \code{plot.type='coh'} for coherency plot(s), or \code{plot.type='phase'} for phase plot(s).
-.  
+}
+ \item{report }{
+if TRUE (default), prints bandwidth, degrees of freedom, and amount of tapering to screen
 }
  \item{\dots }{additional graphical arguments.
 }

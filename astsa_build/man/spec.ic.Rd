@@ -71,16 +71,13 @@ D.S. Stoffer
 }
 \seealso{ \code{\link{ar}}, \code{\link{spec.ar}}}
 \examples{
-\dontrun{
+
 # AIC
-spec.ic(soi) 
+dog <- spec.ic(soi)  # put results in dog
 
-# BIC after detrending and on log scale
-dog <- spec.ic(soi, BIC=TRUE, detrend=TRUE, log='y')  
-
-# plot AIC and BIC  (dog from previous example)
-tsplot(dog[[1]][-1,1], dog[[1]][-1,2:3], col=2*1:2, type='o', pch=1:2, xlab='order',
+# plot AIC and BIC 
+tsplot(dog[[1]][,2:3], col=2*1:2, type='o', pch=1:2, xlab='order',
         spag=TRUE, addLegend=TRUE)  
-}
+
 }
 \keyword{ ts }

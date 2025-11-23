@@ -13,8 +13,9 @@ ARMAtoAR(ar = 0, ma = 0, lag.max=20)
   \item{lag.max}{number of pi-weights desired}
 }
 \value{
-  A vector of coefficients. For an ARMA model \eqn{\phi(B) x_t = \theta(B) w_t}, returns the
-coefficients \eqn{\{\pi_j; \, j=1, 2, ...\} } in the invertible representation \eqn{w_t = \pi(B) x_t}.
+A vector of coefficients. For an ARMA model \eqn{\phi(B) x_t = \theta(B) w_t}, returns the
+coefficients \eqn{\{\pi_j; \, j=1, 2, ...\} } in the invertible representation 
+\eqn{w_t = \pi(B) x_t = \sum_{j=0}^\infty \pi_j x_{t-j}} where  \eqn{\pi_0=1}.
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

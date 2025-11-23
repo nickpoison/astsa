@@ -107,8 +107,8 @@ tsplot(series.filt, main = "Filtered series", col=col, cex.main=1)
 
 dev.new()
 par(mfrow=c(2,1))
-mvspec(series, spans=L, log="no", main = "Spectrum of original series", col=col, cex.main=1)
-mvspec(na.omit(series.filt), spans=L, main = "Spectrum of filtered series", col=col,cex.main=1)
+mvspec(series, spans=L, log="no", main = "Spectrum of original series", col=col, cex.main=1, report=FALSE)
+mvspec(na.omit(series.filt), spans=L, main = "Spectrum of filtered series", col=col,cex.main=1, report=FALSE)
 
 
 dev.new()

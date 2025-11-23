@@ -1,7 +1,7 @@
 mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TRUE, 
          demean = FALSE, detrend = TRUE, lowess=FALSE, log='n', plot = TRUE, gg=FALSE,
          type = NULL, na.action = na.fail, nxm=2, nym=1, main=NULL, xlab=NULL, 
-         cex.main=NULL, ci=.95, ci.col=4, plot.type, ...)  
+         cex.main=NULL, ci=.95, ci.col=4, plot.type, report=TRUE, ...)  
 {
 
     series <- deparse(substitute(x))
@@ -105,7 +105,9 @@ mvspec <- function(x, spans = NULL, kernel = NULL, taper = 0, pad = 0, fast = TR
     class(spg.out) <- "spec"
 #   
     if (plot & trigger < 1) {   #  for any univar or bivar plot
-        if (Lh > 1) {cat("Bandwidth:", round(bandwidth,3), "|", "Degrees of Freedom:", round(df,2),"|", "split taper:", paste(100*taper,"%",sep=''), '\n')}
+        if (Lh > 1 & report){
+          cat("Bandwidth:", round(bandwidth,3), "|", "Degrees of Freedom:", round(df,2),"|", "split taper:", paste(100*taper,"%",sep=''), '\n')
+        }
         if (is.null(cex.main)) cex.main=1
         if (is.null(main))  main <- paste("Series:", series,  " | ", spg.out$method) 
         topper = ifelse (is.na(main), 1, 0)

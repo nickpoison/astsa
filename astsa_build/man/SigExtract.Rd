@@ -41,8 +41,9 @@ The webpages for the texts and some help on using R for time series analysis can
 Department of Mathematical and Statistical Sciences, University of Alberta.
 }
 \examples{
-# where's el nino?
-SigExtract(detrend(soi))
+\dontrun{
 
+SigExtract(detrend(soi))
+}
 }
 \keyword{ ts }
