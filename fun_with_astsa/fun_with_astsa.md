@@ -480,7 +480,7 @@ ttable(fit, vif=TRUE)
  F-statistic: 24.53 on 6 and 25 DF,  p-value: 2.45e-09
  AIC =  3.1309    AICc =  3.2768    BIC =  3.4974 
 ```
-`mtcars` is an R data set on gas consumption (`mpg`) and various car design aspects (the 'mt' refers to 'motor trend' magazine). The design aspects are related [bigger engines have more horse power and weight more ...], thus the high VIFs.  Also notice that the engine size (`disp`) coefficient has the wrong sign because bigger engines don't get better gas mileage.  Also, nothing but weight (`wt`) is significant because the SEs are inflated.  How's that for a picture?
+`mtcars` is an R data set on gas consumption (`mpg`) and various car design aspects (the 'mt' refers to 'motor trend' magazine). The design aspects are related [bigger engines have more horse power and weight ...], thus the high VIFs.  Also notice that the engine size (`disp`) coefficient has the wrong sign because bigger engines don't get better gas mileage.  Also, nothing but weight (`wt`) is significant because the SEs are inflated.  How's that for a picture?
 
 <br/>
 
