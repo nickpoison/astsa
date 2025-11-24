@@ -240,15 +240,11 @@ tsplot(soi, col=4, lwd=2, gg=TRUE)   # gg => gris-gris plot - the grammar of ast
 &#x1F535; Many in one swell foop:
 
 ```r
-tsplot(climhyd, ncol=2)   # a quick simple plot (3 rows - 2 columns)
-
-# but with some bells and whistles and  gris-gris:
-climhyd[,5:6] = sqrt(climhyd[,5:6])
-tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2, scale=.9) 
+tsplot(climhyd, ncol=2, gg=TRUE, col=2:7, lwd=2) 
 ```
 <img src="figs/climhyd.png" alt="climhyd"  width="70%"> 
 
-In version 2.2 and beyond, you can use `scale` to control the character expansion (`cex`) of the plot so the axis values don't get too small if there are many series being plotted. 
+The number of columns (`ncolm`) is user specified and not automated in any way. 
 
 <br/>
 
@@ -758,6 +754,7 @@ arma.check(ar=c(-.9744, -.0477), ma=.9509)
   This means that the model is (possibly) over-parameterized.
   You might want to try again.
 ```
+
 
 Here's another humorous example. Using the data `cmort` (cardiovascular mortality)
 
