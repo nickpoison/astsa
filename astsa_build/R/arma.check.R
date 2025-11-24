@@ -41,8 +41,10 @@ arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1
     if (minroots <= 1) {cat("WARNING: Seasonal Part Not Invertible", "\n"); check.i <- check.i + 1}
    }
 
-### end if not causal or invertible
-   if (check.c + check.i > 0) return(cat('NOTE: Redundancy checked only for causal and invertible models\n'))
+### end if not causal and invertible
+    if (check.c < 1) cat("The model is causal.\n") 
+    if (check.i < 1) cat("The model is invertible.\n")
+    if (check.c + check.i > 0) return(cat('NOTE: Redundancy checked only for causal and invertible models\n'))
 ###
 
 #### now check redundancy  
@@ -66,27 +68,20 @@ arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1
         {cat("\nWARNING: (Possible) Seasonal Parameter Redundancy", "\n"); red.count=1; break}
    }
 
-
-## if ok, report causal & invertible
-    if (red.count < 1) {
-    if (check.c < 1)  cat("The model is causal.\n") 
-    if (check.i < 1)  cat("The model is invertible.\n")
-    }
-
-#  responses for causal and invertible
-   stopit = ifelse( (check.c + check.i > 0), TRUE, FALSE)
+#  responses for causal and invertible models
    if (red.count > 0){ 
       cat("\nIt looks like that ARMA model has (approximate) common factors.\nThis means that the model is (possibly) over-parameterized.\nYou might want to try again.\n")
       } else  
-      if (!stopit & redundancy.tol >= .1)  { cat("That's a very nice ARMA model!\n")
-      } else  
-      if (!stopit & redundancy.tol < .1)  { cat("Since you lowered the redundancy tolerance, the model may be very nice,\nbut over-parameterization is still a possibility!\n")
+      if (redundancy.tol >= .1) { cat("That's a very nice ARMA model!\n")
+      } else 
+      if (redundancy.tol <.1) { cat("Since you lowered the redundancy tolerance, the model may be very nice,\nbut over-parameterization is still a possibility!\n")
     }
 
-if (plot.it & (check.c + check.i < 1)) {
- .plotit(z.ar, z.ma, redundancy.tol, ...)
-}
-}
+   if (plot.it) {
+    if (!is.null(S)) cat('\nSeasonal roots are not graphed\n')
+   .plotit(z.ar, z.ma, redundancy.tol, ...)
+   }
+} # end
 
 .plotit <-
 function(z.ar=z.ar, z.ma=z.ma, red.tol=redundancy.tol, ...)

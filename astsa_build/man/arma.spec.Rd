@@ -21,7 +21,7 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL, redundancy.t
 }
   \item{redundancy.tol}{tolerance for reporting parameter redundancy
 }
-  \item{frequency}{for seasonal models, adjusts the frequency scale
+  \item{frequency}{for plotting, adjusts the frequency axis units
 }
   \item{ylim}{optional; specify limits for the y-axis
 }
@@ -31,16 +31,16 @@ arma.spec(ar = 0, ma = 0, var.noise = 1, n.freq = 500, main = NULL, redundancy.t
 }
 }
 \details{The basic call is \code{arma.spec(ar, ma)} where \code{ar} and \code{ma} are vectors
-containing the model parameters. Use \code{log='y'} if you want the plot on
-a log scale. If the model is not causal or invertible an error message is given. 
+containing the model parameters. Use \code{log='y'} if you want the plot on a log scale. 
 
-If there are approximate common zeros, a spectrum will be displayed and a warning will be given;
+If the model is not causal or invertible, a stop error with a message is given; e.g., \code{arma.spec(ar=1, ma=1)} will just produce warnings.
+
+If there are (approximate) common zeros, a spectrum will be displayed and a warning will be given;
 e.g., \code{arma.spec(ar= .9, ma= -.9)} will yield a warning and the plot will be the
-spectrum of white noise.  Note, for example, that \code{arma.spec(ar=1, ma=1)} will bring up an error stop with warnings that the model is not causal and not invertible.
-
-To evaluate parameter redundancy, the inverse roots of the AR and MA polynomials are examined for closeness with \code{redundancy.tol} determining closeness. For example, \code{arma.spec(ar= .9, ma= -.88)} will produce an over-parameterization warning using the default tolerance. The Fisher Information matrix for ARMA is singular for exact redundancy, and its closeness to singularity can be measured by the closeness of the inverse of those roots [e.g., Klein and Spreij (1997). On Fisher’s information matrix of an ARMA process. In \emph{Stochastic Differential and Difference Equations}, 273-284. Boston: Birkhauser.] 
+spectrum of white noise. See \code{\link{arma.check}} for details on the evaluation of parameter redundancy.
 }
-\value{ \item{freq }{frequencies - returned invisibly}
+\value{ 
+ \item{freq }{frequencies - returned invisibly}
  \item{spec }{ spectral ordinates - returned invisibly }
 }
 \references{You can find demonstrations of  astsa capabilities at
@@ -53,7 +53,11 @@ In addition, the News and ChangeLog files are at  \url{https://github.com/nickpo
 The webpages for the texts and some help on using R for time series analysis can be found at
  \url{https://nickpoison.github.io/}. 
 }
-\author{D.S. Stoffer
+\author{
+D.S. Stoffer
+}
+\seealso{
+\code{\link{arma.check}}
 }
 \examples{
 arma.spec(ar = c(1, -.9), ma = .8)
@@ -62,6 +66,7 @@ arma.spec(ar = c(1, -.9), log='y')
 
 arma.spec(ar = -.9, ma=.89, gg=TRUE)  # almost white noise
 
+# if you want a seasonal model, you have to be a little clever
 arma.spec(ar=c(rep(0,11),.4), ma=.5, col=5, lwd=3, frequency=12)
 }
 \keyword{ts}
