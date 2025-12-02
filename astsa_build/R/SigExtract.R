@@ -7,22 +7,9 @@ function(series, L=c(3,3), M=50, max.freq=.05, col=4){
 ##  University of Alberta         
 ##   http://www.stat.ualberta.ca/%7Ewiens/wiens.html     
 ##                               
-######################################
-#ts     = stats::ts
-#tsp    = stats::tsp
-#par    = graphics::par
-#plot   = graphics::plot
-#dev.new = grDevices::dev.new
-#abline = graphics::abline
-#ccf    = stats::ccf
-#ts.intersect = stats::ts.intersect 
-#ts.plot = stats::ts.plot
-#na.omit = stats::na.omit
-#lines = graphics::lines
-
-######## Smoothing parameter (L) is odd
-######## Number of estimates (M) is even
-######## Frequency response function A(nu) real and symmetric  
+### Smoothing parameter (L) is odd
+### Number of estimates (M) is even
+### Frequency response function A(nu) real and symmetric  
 
 L = 2*floor((L-1)/2)+1     # make sure L is odd
  if (max.freq < 0 || max.freq > .5) stop("max.freq must be between 0 and 1/2")
@@ -79,11 +66,11 @@ h = .5*(1+cos(2*pi*S/length(S)))
 a = a*h    # Comment out this line, to see the effect of NOT tapering
 
 
-cat("The filter coefficients are", "\n")
-qwe = cbind(S, a)
-colnames(qwe) = c("s", "a(s)")
-print(qwe[((length(S)+1)/2):1,])
-cat("for s >=0; and a(-s) = a(s).", "\n")
+#cat("The filter coefficients are", "\n")
+qwe = cbind(-S, a)
+colnames(qwe) = c("s", "a(\u00B1s)") # for display
+print(round(qwe[((length(S)+1)/2):1,],4))
+colnames(qwe) = c("s", "a(s)")       # for output
 
 
 # Compute the realized frequency response function, and the filtered series:
@@ -95,6 +82,7 @@ for(k in 1:length(fr.N)) {
 A.attained[k] = A.M(fr.N[k]) # The attained freq. resp.
 A.theoretical[k] = A(fr.N[k])
 }
+
 
 series.filt = stats::filter(series, a, sides = 2) # The filtered series
 old.par <- par(no.readonly = TRUE)
@@ -115,10 +103,11 @@ dev.new()
 fr.N = fr.N*tspar[3]  # for plotting
 par(mfrow=c(2,1))
 tsplot(S, a, xlab = "s", ylab = "a(s)", main = "Filter coefficients", type='o', col=col, cex.main=1)
-tsplot(fr.N, A.theoretical, col=2 , lty = 5, xlab = "freq", ylab = "freq. response", 
-    main = "Desired and attained frequency response functions", cex.main=1)
-lines(fr.N, A.attained, col=4)
+tsplot(fr.N, cbind(A.theoretical,A.attained), col=2*2:1 , lty = c(5,1), xlab = "freq", ylab = "freq. response", main = "Desired and attained frequency response functions", cex.main=1, spaghetti=TRUE)
+#lines(fr.N, A.attained, col=4)
 on.exit(par(old.par))
-return(invisible(series.filt))
+
+### output
+return(invisible(list(series.filt=series.filt, filter=qwe)))
 }
 
