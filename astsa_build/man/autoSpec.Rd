@@ -51,7 +51,7 @@ number if islands; default is 7.
 Does not need to be specified.
 }
   \item{taper}{
-half width of taper used in spectral estimate; .5 (default) is full taper
+half width of taper used in spectral estimate; .5 (default) is full taper.
 Does not need to be specified.
 }
   \item{min.freq, max.freq}{
