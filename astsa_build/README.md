@@ -20,6 +20,8 @@ We do not always push the latest version of the package to CRAN, but [the latest
 
 * Python
 
+  - A [python version of astsa may be found here](https://pypi.org/project/astsa/).
+
   - The [code in the first 3 chapters of the Springer text (ed 4) has been converted to Python here.](https://github.com/borisgarbuzov/tsa4-python/tree/master/src) 
   - And a [Python package that contains datasets from astsa is here.](https://pypi.org/project/astsadata/) 
 
@@ -50,7 +52,7 @@ dlag    = dplyr::lag
 dfilter = dplyr::filter 
 ```
 
-&#128526; Also, consider that `dplyr` is a MUCH SLOWER and weaker version of `data.table`. So  try [data.table](https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html) if you have to do data manipulation. AND, when you load `data.table`, there are ZERO masked warnings!!!  And maybe we can stop having to put warnings about `dplyr` everywhere for time series analysts who want to use R. 
+&#128526; Also, consider that `dplyr` is a MUCH SLOWER version of `data.table`. So  try `data.table` if you have to do data manipulation. AND, when you load `data.table`, there are ZERO masked warnings!!!  
 
 ---
 

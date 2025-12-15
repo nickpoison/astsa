@@ -7,7 +7,7 @@
 
 ... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](https://link.springer.com/book/9783031705830)  and  [Time Series A Data Analysis Approach using R](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642).
 
- &#128038; _Right now,  the 2 versions (GitHub and CRAN) are NOT  the same._
+ &#128038; _Right now,  the 2 versions (GitHub and CRAN) are   the same._
 
 [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp;&nbsp; ![](https://img.shields.io/badge/GitHub-2.4-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
 
@@ -43,12 +43,11 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ---
 ---
 
-#### &#127514; Version 2.4 &ndash;  in the works (on GitHub only)
-
-> We'll send this version to CRAN when the 2nd edition of [Time Series: A Data Analysis Approach ...](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642) is published. The planned publication date is Jan/Feb 2026.
+### &#127514; Version 2.4 &ndash; Jan 2026 (on CRAN & GitHub)
 
 
-- added  &#127381;  `arma.check`  &#127381;  to check a given model (seasonal ok) for causality, invertibility, and parameter redundancy with option (`redundancy.tol`) to specify how close the inverse roots have to be to report a warning of parameter redundancy or over-parameterization (default is .1).
+
+- added  &#127381;  `arma.check`  &#127381;  to check a given model (seasonal ok) for causality, invertibility, and parameter redundancy with option (`redtol`) to specify how close the inverse roots have to be to report a warning of parameter redundancy or over-parameterization (default is .1).
 
   - in `arma.spec`, using ideas from `arma.check`, added user option `redundancy.tol`.
   - redundancy is now reported in `sarima.sim` (it just reports it but it doesn't stop the script and the check can be turned off) ... previously, it only checked causality and invertibility.  
@@ -73,7 +72,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 <br/>
 
 
-###  &#9654; v2.3 &ndash; Aug 2025 (on CRAN)) 
+####  &#9654; v2.3 &ndash; Aug 2025 (on CRAN)) 
 
 just in time for the new skool year ...       
 

@@ -135,6 +135,8 @@ D.S. Stoffer
  \link{timex} for plotting xts data files when xts is not loaded 
 }
 \examples{
+\dontrun{
+
 # minimal
 tsplot(soi)
 
@@ -151,7 +153,8 @@ tsplot(climhyd, ncolm=2, gg=TRUE, col=2:7, lwd=2, xlab=c(rep(NA,4), rep('Time',2
 # missing data - try this with ggplot
 tsplot(blood, type='o', col=c(4,6,3), pch=19, scale=.95, gg=TRUE,
        title = colnames(blood),  xlab  = c(NA, NA,'day'),
-       ylab  = c( 'log(cells/\u03BCL)', 'log(\u03BCL)', '\% red blood cells' ))
+       ylab  = c( 'log(cells/\u03BCL)', 'log(\u03BCL)', '\u0025 red blood cells' ))
 
+}
 }
 \keyword{ ts }

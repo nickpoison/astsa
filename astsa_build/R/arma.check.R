@@ -1,4 +1,5 @@
-arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1, 
+arma.check <- 
+function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redtol=.1, 
               plot.it=FALSE, ...)
 {
    check.c <- 0
@@ -50,21 +51,21 @@ arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1
 #### now check redundancy  
    ar.order <- length(ar)
    ma.order <- length(ma)
-    if (redundancy.tol < 0) { 
-      redundancy.tol=.1
-      cat("\n'redundancy.tol' should not be negative and has been reset to its default value\n")
+    if (redtol < 0) { 
+      redtol=.1
+      cat("\n'redtol' should not be negative and has been reset to its default value\n")
     }
 
    red.count = 0
    for (i in 1:ar.order) {
     if ( (ar[1] == 0 && ar.order == 1) || (ma[1] == 0 && ma.order == 1) )  break
-    if(any(abs(1/z.ar[i]-1/z.ma) <= redundancy.tol)) 
+    if(any(abs(1/z.ar[i]-1/z.ma) <= redtol)) 
         {cat("\nWARNING: (Possible) Parameter Redundancy", "\n"); red.count=1; break}
    }
 
    for (i in 1:Po) {
     if ( is.null(sar) || is.null(sma) )  break
-    if(any(abs(1/polyroot(SAR)[i]-1/polyroot(SMA)) <= redundancy.tol)) 
+    if(any(abs(1/polyroot(SAR)[i]-1/polyroot(SMA)) <= redtol)) 
         {cat("\nWARNING: (Possible) Seasonal Parameter Redundancy", "\n"); red.count=1; break}
    }
 
@@ -72,19 +73,19 @@ arma.check <- function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redundancy.tol=.1
    if (red.count > 0){ 
       cat("\nIt looks like that ARMA model has (approximate) common factors.\nThis means that the model is (possibly) over-parameterized.\nYou might want to try again.\n")
       } else  
-      if (redundancy.tol >= .1) { cat("That's a very nice ARMA model!\n")
+      if (redtol >= .1) { cat("That's a very nice ARMA model!\n")
       } else 
-      if (redundancy.tol <.1) { cat("Since you lowered the redundancy tolerance, the model may be very nice,\nbut over-parameterization is still a possibility!\n")
+      if (redtol <.1) { cat("Since you lowered the redundancy tolerance, the model may be very nice,\nbut over-parameterization is still a possibility!\n")
     }
 
    if (plot.it) {
     if (!is.null(S)) cat('\nSeasonal roots are not graphed\n')
-   .plotit(z.ar, z.ma, redundancy.tol, ...)
+   .plotit(z.ar, z.ma, redtol, ...)
    }
 } # end
 
 .plotit <-
-function(z.ar=z.ar, z.ma=z.ma, red.tol=redundancy.tol, ...)
+function(z.ar=z.ar, z.ma=z.ma, redtol=redtol, ...)
 {
   if (length(z.ar) < 1) z.ar=NULL
   if (length(z.ma) < 1) z.ma=NULL
@@ -116,11 +117,11 @@ legend('topright', pch=15, legend=c(leg1,leg2), col=culer, pt.cex=1.5, bty='n')
 # plot redundancy tolerance
   for (i in 1:length(z.ar)){
    if (is.null(z.ar)) break
-   symbols(Re(1/z.ar[i]), Im(1/z.ar[i]), circles=red.tol, add=TRUE, inches=FALSE, fg=culer[1])
+   symbols(Re(1/z.ar[i]), Im(1/z.ar[i]), circles=redtol, add=TRUE, inches=FALSE, fg=culer[1])
   }
   for (i in 1:length(z.ma)) {
    if (is.null(z.ma)) break
-   symbols(Re(1/z.ma[i]), Im(1/z.ma[i]), circles=red.tol, add=TRUE, inches=FALSE, fg=culer[2])
+   symbols(Re(1/z.ma[i]), Im(1/z.ma[i]), circles=redtol, add=TRUE, inches=FALSE, fg=culer[2])
   }
 
 }  # end

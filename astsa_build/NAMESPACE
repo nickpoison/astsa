@@ -3,7 +3,7 @@
 importFrom("graphics", "abline", "axis", "axTicks", "barplot", "box", 
               "filled.contour", "grid", "hist", "layout", "legend", "lines", 
               "mtext", "pairs", "par", "pie", "plot", "plot.new", "points", 
-              "polygon", "rect", "text", "title") 
+              "polygon", "rect", "text", "title", "arrows", "clip", "symbols") 
 importFrom("grDevices", "adjustcolor", "col2rgb", "cm.colors", "dev.flush", 
               "dev.hold", "dev.new", "gray", "palette", "recordPlot", "rgb", 
               "rgb2hsv", "xy.coords")

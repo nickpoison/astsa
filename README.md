@@ -6,7 +6,7 @@
 
 > The package is now in the folder [astsa_build](https://github.com/nickpoison/astsa/tree/master/astsa_build) 
 
-... `astsa` is the R package to accompany the [Springer](https://link.springer.com/book/9783031705830) text, [Time Series Analysis and Its Applications: With R Examples](https://github.com/nickpoison/tsa5/blob/main/textRcode.md)  and the [Chapman & Hall](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642) text  [Time Series: A Data Analysis Approach using R](https://github.com/nickpoison/tsda2/blob/main/Rcode.md). 
+... `astsa` is the R package to accompany the [Springer](https://link.springer.com/book/9783031705830) text, [Time Series Analysis and Its Applications: With R Examples](https://github.com/nickpoison/tsa5/blob/main/textRcode.md)  and the [Chapman & Hall](https://www.routledge.com/9781041031611) text  [Time Series: A Data Analysis Approach using R](https://github.com/nickpoison/tsda2/blob/main/Rcode.md). 
 
 
 
@@ -30,6 +30,8 @@ We won't always push the latest version of the package to CRAN, but the latest w
 * The updated [code for the data science text](https://github.com/nickpoison/tsda2/blob/master/Rcode.md) is here: [TSDA2](https://github.com/nickpoison/tsda2/blob/master/Rcode.md).
 
 * Python:
+
+   - A [python version of astsa may be found here](https://pypi.org/project/astsa/).
 
     - The [code in the first 3 chapters of the Springer text (edition 4) has been converted to Python here.](https://github.com/borisgarbuzov/tsa4-python/tree/master/src) 
 

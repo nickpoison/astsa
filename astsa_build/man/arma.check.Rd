@@ -8,7 +8,7 @@ For a given ARMA model (including seasonal models), reports whether the model is
 invertible, or (approximately) over-parameterized.
 }
 \usage{
-arma.check(ar = 0, ma = 0, sar = NULL, sma = NULL, S = NULL, redundancy.tol = 0.1,
+arma.check(ar = 0, ma = 0, sar = NULL, sma = NULL, S = NULL, redtol = 0.1,
            plot.it = FALSE, ...)
 }
 \arguments{
@@ -27,7 +27,7 @@ vector of seasonal MA parameters  (only specify for seasonal models)
   \item{S}{
 seasonal period  (only specify for seasonal models - default value is 12)
 }
-  \item{redundancy.tol}{
+  \item{redtol}{
 tolerance for reporting parameter redundancy
 }
   \item{plot.it}{
@@ -42,13 +42,13 @@ Causality and invertibility are checked first. If either one or both are reporte
 
 If the model is causal and invertible, a warning for (possible) over-parameterization/redundancy is given if there are (approximate) common zeros.
 
-To evaluate parameter redundancy, the inverse roots of the AR and MA polynomials are examined for closeness with \code{redundancy.tol} determining closeness; see the note.
+To evaluate parameter redundancy, the inverse roots of the AR and MA polynomials are examined for closeness with \code{redtol} determining closeness; see the note.
 
 For fun, and IF the model is causal and invertible, setting \code{plot.it=TRUE} will display the complex plane with the inverse roots of the AR and MA polynomials displayed with colored arrows; the seasonal components are not included because it's too messy. The tolerance level for declaring over-parameterization is also displayed in the graphic.  
 }
 
 \note{
-The Fisher Information matrix for ARMA is singular for exact redundancy, and its closeness to singularity can be measured by the closeness of the inverse of those roots [e.g., Klein and Spreij (1997). On Fisher’s information matrix of an ARMA process. In \emph{Stochastic Differential and Difference Equations}, 273-284. Boston: Birkhauser.] 
+The Fisher Information matrix for ARMA is singular for exact redundancy, and its closeness to singularity can be measured by the closeness of the inverse of those roots [e.g., Klein and Spreij (1997). On Fisher's information matrix of an ARMA process. In \emph{Stochastic Differential and Difference Equations}, 273-284. Boston: Birkhauser.] 
 }
 \value{
 See the details. If the model is causal and invertible and not over-parameterized, a nice message of validation is given.  Otherwise, problems are reported but the specific culprits may not be specified.

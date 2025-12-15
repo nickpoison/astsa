@@ -7,18 +7,6 @@
 		 }
 
 
-## warn if dplyr is loaded
-.onAttach <- function(libname, pkgname) {
- if ('package:dplyr' %in% search()) {
-cat("\nWARNING: The package `dplyr` is loaded, and it has 
-most likely masked the base scripts `filter` and `lag` 
-that a time series analyst uses frequently.
-See `?astsa` or `help(astsa)` for remedies. 
-A simple one is to detach it: `detach(package:dplyr)`\n"
-)
- }
-}
-
 
 # below were used for `stats::pairs` in `ar.boot` and `ar.mcmc` and
 #    maybe elsewhere, but `tspairs` has replaced these in v2.3
@@ -26,7 +14,6 @@ A simple one is to detach it: `detach(package:dplyr)`\n"
 # .panelcor is in the printed 5th edition of tsa5 for something else
 #   as astsa:::.panelcor so it has to remain, but
 # .panelhist is no longer used - it's here in case we missed something
-#   or is being used
 
 .panelcor <- function(x, y, ...){
 usr <- par("usr") 
@@ -45,32 +32,3 @@ text(0.5, 0.5, r, cex = 1.5)
     rect(breaks[-nB], 0, breaks[-1], y, ...)
 }
 
-##########################
-##-- this was in v2.3 and out in v2.4 --##
-##########################
-## .onAttach <- function(libname, pkgname) {  # ask if want to install xts
-##   # Check if in an interactive session
-##   if (interactive()) {
-##     # Define the package to suggest
-##     suggested_package <- "xts"
-## 
-##     # Check if the suggested package is already installed
-##     if (!requireNamespace(suggested_package, quietly = TRUE)) {
-##       # Prompt the user
-##       response <- menu(c("Yes", "No"), title = paste0("Would you like to install the '", suggested_package, "' package?"))
-## 
-##       # Install if the user chooses 'Yes'
-##       if (response == 1) {
-##         packageStartupMessage(paste0("Installing '", suggested_package, "'..."))
-##         tryCatch({
-##           install.packages(suggested_package)
-##           packageStartupMessage(paste0("'", suggested_package, "' installed successfully."))
-##         }, error = function(e) {
-##           warning(paste0("Failed to install '", suggested_package, "': ", e$message))
-##         })
-##       } else {
-##         packageStartupMessage(paste0("Skipping installation of '", suggested_package, "'."))
-##       }
-##     }
-##   }
-## }
