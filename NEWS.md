@@ -72,7 +72,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 <br/>
 
 
-####  &#9654; v2.3 &ndash; Aug 2025 (on CRAN)) 
+####   v2.3 &ndash; Aug 2025 (on CRAN)) 
 
 just in time for the new skool year ...       
 
