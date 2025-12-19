@@ -51,7 +51,7 @@ cat("iteration","   -loglikelihood", "\n")
 for(iter in 1:max.iter){ 
  ks = Ksmooth(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=NULL,Gam=NULL,input=NULL,version=1)
   like[iter] = ks$like
-  cat("   ",iter, "        ", ks$like, "\n")     
+  cat("   ",iter-1, "        ", ks$like, "\n")     
   if(iter > 1)  cvg = (like[iter-1] - like[iter])/abs(like[iter-1])
   if(cvg  < 0)  stop("Likelihood Not Increasing")
   if(abs(cvg) < tol) break
@@ -120,7 +120,7 @@ for(iter in 1:max.iter){
 for(iter in 1:max.iter){ 
  ks = Ksmooth(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=NULL,Gam=NULL,input=NULL,version=1)
   like[iter]=ks$like
-  cat("   ",iter, "        ", ks$like, "\n")     
+  cat("   ",iter-1, "        ", ks$like, "\n")     
   if(iter>1) cvg=(like[iter-1]-like[iter])/abs(like[iter-1])
   if(cvg<0) stop("Likelihood Not Increasing")
   if(abs(cvg)<tol) break
@@ -218,7 +218,7 @@ Gam = as.matrix(Gam)
 for(iter in 1:max.iter){ 
  ks = Ksmooth(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=NULL,Gam=Gam,input=input,version=1)
   like[iter]=ks$like
-  cat("   ",iter, "        ", ks$like, "\n")     
+  cat("   ",iter-1, "        ", ks$like, "\n")     
   if(iter>1) cvg=(like[iter-1]-like[iter])/abs(like[iter-1])
   if(cvg<0) stop("Likelihood Not Increasing")
   if(abs(cvg)<tol) break
@@ -282,7 +282,7 @@ list(Phi=Phi,Q=Q,R=R,Ups=NULL,Gam=Gam,mu0=mu0,Sigma0=Sigma0,like=like[1:iter],ni
 for(iter in 1:max.iter){ 
  ks = Ksmooth(y,A,mu0,Sigma0,Phi,sQ,sR,Ups=Ups,Gam=Gam,input=input,version=1)
   like[iter]=ks$like
-  cat("   ",iter, "        ", ks$like, "\n")     
+  cat("   ",iter-1, "        ", ks$like, "\n")     
   if(iter>1) cvg=(like[iter-1]-like[iter])/abs(like[iter-1])
   if(cvg<0) stop("Likelihood Not Increasing")
   if(abs(cvg)<tol) break

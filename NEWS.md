@@ -45,7 +45,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### &#127514; Version 2.4 &ndash; Jan 2026 (on CRAN & GitHub)
 
-
+- after this version was on CRAN, we decided to change `EM()` so that the output started the iteration number at 0 instead of 1, because the first evaluation of the likelihood is at the initial values. It's this way on GitHub now.  It's not a big deal- it only changes the way the output looks.
 
 - added  &#127381;  `arma.check`  &#127381;  to check a given model (seasonal ok) for causality, invertibility, and parameter redundancy with option (`redtol`) to specify how close the inverse roots have to be to report a warning of parameter redundancy or over-parameterization (default is .1).
 
@@ -71,6 +71,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
    - NOTE: you don't have to use `fitdf` when fitting ARMA models via `sarima` because that is taken care of automatically ... the argument works only if all orders are zero so that it's truly for an analysis of the residuals from another (i.e., not `sarima`) script  
 <br/>
 
+---
 
 ####   v2.3 &ndash; Aug 2025 (on CRAN)) 
 

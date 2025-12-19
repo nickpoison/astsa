@@ -1709,22 +1709,22 @@ R     = diag(c(.01,.01,1), 3)
 # Run  EM
 (em = EM(y, A, mu0, Sigma0, Phi, Q, R))
 ```
-The (partial) output is
+The (partial) output is (NOTE: the output used to start at iteration 0, but after version 2.4 was published, we decided to start at 0 because the first evaluation of the likelihood is at the initial values ... right now, it's only this way on GitHub)
 
 ```r
 iteration    -loglikelihood 
-    1            68.28328 
-    2           -183.9361 
-    3           -194.2051 
-    4           -197.5444 
-    5           -199.7442 
- 
-    60          -233.2111 
-    61          -233.2501 
-    62          -233.2837 
-    63          -233.3121 
-    64          -233.3357 
-    65          -233.3545 
+    0          68.28328 
+    1          -183.9361 
+    2          -194.2051 
+    3          -197.5444 
+    4          -199.7442 
+    5          -201.6431 
+    .              .
+    60          -233.2501 
+    61          -233.2837 
+    62          -233.3121 
+    63          -233.3357 
+    64          -233.3545  
 
 # estimates below
 
@@ -1873,26 +1873,29 @@ R = em$R
 }
 
 # ### some output ###
+# Note that the iteration output used to start at 1, 
+# but now it more precisely starts at 0
+#
 #iteration    -loglikelihood 
-#    1          1485.486 
+#    0          1485.486 
 #iteration    -loglikelihood 
-#    1          95.26131 
+#    0          95.26131 
 #iteration    -loglikelihood 
-#    1          73.45769 
+#    0          73.45769 
 #iteration    -loglikelihood 
-#    1          63.83681 
+#    0          63.83681 
 #iteration    -loglikelihood 
-#    1          58.44693 
+#    0          58.44693 
 #    .            .
 #    .            .
 #iteration    -loglikelihood 
-#    1          48.69579 
+#    0          48.69579 
 #iteration    -loglikelihood 
-#    1          48.69518 
+#    0          48.69518 
 #iteration    -loglikelihood 
-#    1          48.6946 
+#    0          48.6946 
 #iteration    -loglikelihood 
-#    1          48.69405 
+#    0          48.69405 
 ############################
 
 ## Results
