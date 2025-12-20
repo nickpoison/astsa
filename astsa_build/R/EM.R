@@ -165,7 +165,7 @@ for(iter in 1:max.iter){
   Sigma0 = ks$P0n
 }
 }
-list(Phi=Phi,Q=Q,R=R,mu0=mu0,Sigma0=Sigma0,like=like[1:iter],niter=iter,cvg=cvg)
+list(Phi=Phi,Q=Q,R=R,mu0=mu0,Sigma0=Sigma0,like=like[1:iter],niter=iter-1,cvg=cvg)
 } # end no input
 
 
@@ -350,7 +350,7 @@ for(iter in 1:max.iter){
   if(Gid > 0) { Gam = Sgg%*%solve(Suu) } else { Gam=matrix(0, nrow=qdim, ncol=rdim) }
 }
 if (Gid < 1) Gam=NULL  
-list(Phi=Phi,Q=Q,R=R,Ups=Ups,Gam=Gam,mu0=mu0,Sigma0=Sigma0,like=like[1:iter],niter=iter,cvg=cvg)
+list(Phi=Phi,Q=Q,R=R,Ups=Ups,Gam=Gam,mu0=mu0,Sigma0=Sigma0,like=like[1:iter],niter=iter-1,cvg=cvg)
 }  # end with Ups
 }  # end in  
 
