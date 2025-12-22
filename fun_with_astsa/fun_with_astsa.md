@@ -478,6 +478,10 @@ ttable(fit, vif=TRUE)
 ```
 `mtcars` is an R data set on gas consumption (`mpg`) and various car design aspects (the 'mt' refers to 'motor trend' magazine). The design aspects are related [bigger engines have more horse power and weight ...], thus the high VIFs.  Also notice that the engine size (`disp`) coefficient has the wrong sign because bigger engines don't get better gas mileage.  Also, nothing but weight (`wt`) is significant because the SEs are inflated.  How's that for a picture?
 
+&#x1F608; Well- since this is the part with a lot of pictures, and this regression example doesn't come with any, we decided to put up this nice picture ... enjoy:
+
+<img src="figs/regression.jpg" alt="regression"  width="50%">
+
 <br/>
 
 [<sub>top</sub>](#table-of-contents)
