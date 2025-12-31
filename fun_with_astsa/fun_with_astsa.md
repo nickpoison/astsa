@@ -973,6 +973,20 @@ Because ARIMA models are put into state space form for estimation, missing data 
 
 ```r
 sarima(ar1miss, p=1, col=4, pch=19, gg=TRUE)
+
+###- some output -###
+#  iter   2 value 0.174072
+#    .     .    .
+#  iter  10 value 0.136904
+#  converged
+#  <><><><><><><><><><><><><><>
+#  
+#  Coefficients: 
+#        Estimate     SE t.value p.value
+#  ar1     0.7684 0.0641 11.9848  0.0000
+#  xmean  -0.2259 0.4588 -0.4923  0.6238
+# sigma^2 estimated as 1.198931 on 83 degrees of freedom 
+# AIC = 3.182273  AICc = 3.183995  BIC = 3.268484 
 ```
 
 <img src="figs/miss1.png" alt="miss1" width="70%"><br/>
@@ -1713,7 +1727,7 @@ R     = diag(c(.01,.01,1), 3)
 # Run  EM
 (em = EM(y, A, mu0, Sigma0, Phi, Q, R))
 ```
-The (partial) output is (NOTE: the output used to start at iteration 0, but after version 2.4 was published, we decided to start at 0 because the first evaluation of the likelihood is at the initial values ... right now, it's only this way on GitHub)
+The (partial) output is (NOTE: the output used to start at iteration 1, but after version 2.4 was published, we decided to start at 0 because the first evaluation of the likelihood is at the initial values ... right now, it's only this way on GitHub)
 
 ```r
 iteration    -loglikelihood 
@@ -1774,7 +1788,7 @@ $like
 [65] -233.35454
 
 $niter
-[1] 65
+[1] 64
 
 $cvg
 [1] 8.086056e-05   # relative tolerance of -loglikelihood at convergence
