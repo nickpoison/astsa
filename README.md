@@ -24,6 +24,7 @@ We won't always push the latest version of the package to CRAN, but the latest w
 
 * A demonstration of the capabilities of `astsa` can be found here at [FUN WITH ASTSA](https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md) .
 
+* An [html reference manual](https://cran.r-project.org/web/packages/astsa/refman/astsa.html) can be found at CRAN ... _sorry, but CRAN still uses frames, which are deprecated in HTML5 and have not been recommended for modern web development for at least this century- but someone at CRAN loves these awful things_
 
 * The  [code for the graduate level text](https://github.com/nickpoison/tsa5/blob/master/textRcode.md) is here: [TSA5](https://github.com/nickpoison/tsa5/blob/master/textRcode.md).
 
