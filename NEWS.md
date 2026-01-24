@@ -7,9 +7,9 @@
 
 ... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](https://link.springer.com/book/9783031705830)  and  [Time Series A Data Analysis Approach using R](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642).
 
- &#128038; _Right now,  the 2 versions (GitHub and CRAN) are   the same._
+ &#128038; _Right now,  the 2 versions (GitHub and CRAN) are (almost)  the same._
 
-[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp;&nbsp; ![](https://img.shields.io/badge/GitHub-2.4-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
+[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp; &nbsp; ![](https://img.shields.io/badge/GitHub-2.4-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
 
 
 
@@ -45,7 +45,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### &#127514; Version 2.4 &ndash; Jan 2026 (on CRAN & GitHub)
 
-- after this version was on CRAN, we decided to change `EM()` so that the output started the iteration number at 0 instead of 1, because the first evaluation of the likelihood is at the initial values. It's this way on GitHub now.  It's not a big deal- it only changes the way the output looks.
+- &#10133; after this version was on CRAN, we decided to change `EM()` so that the output started the iteration number at 0 instead of 1, because the first evaluation of the likelihood is at the initial values. It's this way on GitHub now.  It's not a big deal- it only changes the way the output looks.
 
 - added  &#127381;  `arma.check`  &#127381;  to check a given model (seasonal ok) for causality, invertibility, and parameter redundancy with option (`redtol`) to specify how close the inverse roots have to be to report a warning of parameter redundancy or over-parameterization (default is .1).
 

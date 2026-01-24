@@ -2703,4 +2703,4 @@ legend('bottomright', lty=1, col=c(4,6), legend=c('optimal', 'absolute value'), 
 
 ----
 
-![Visitor Count](https://profile-counter.glitch.me/nickpoison/count.svg)
+![](https://komarev.com/ghpvc/?username=nickpoison&color=blueviolet&base=66666&label=Guests)
