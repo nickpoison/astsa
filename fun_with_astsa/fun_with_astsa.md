@@ -974,9 +974,14 @@ Because ARIMA models are put into state space form for estimation, missing data 
 ```r
 # as long as there aren't too many NAs, you can
 # use acf2() to check an AR(1) is appropriate
-acf2(ar1miss, na.action=na.contiguous)   # not shown
+acf2(ar1miss, na.action=na.contiguous)   
+```
 
+<img src="figs/acfmiss.png" alt="miss2" width="70%"><br/>
+
+```r
 sarima(ar1miss, p=1, col=4, pch=19, gg=TRUE)
+
 ###- some output -###
 #  iter   2 value 0.174072
 #    .     .    .
