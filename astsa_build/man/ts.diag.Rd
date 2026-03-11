@@ -28,7 +28,7 @@ additional graphical arguments
 }
 }
 \details{
-This is essentially the diagnostic plot from \link{\code{sarima}} that can be used for other types of model fitting aside from ARMA.  This is not needed for ARMA models because \link{\code{sarima}} includes this diagnostic of the residulas from the fit (unless it has been shut off).
+This is essentially the diagnostic plot from \code{\link{sarima}} that can be used for other types of model fitting aside from ARMA.  This is not needed for ARMA models because \code{\link{sarima}} includes this diagnostic of the residulas from the fit (unless it has been shut off).
 
 The script may be used for a generic residual analysis or to check if a series is white noise. In this case, it may be necessary to specify \code{fitdf} to get the correct degrees of freedom such as in fitting a state space model.  
 }
@@ -60,6 +60,6 @@ resids = gtemp_both - u$Xp
 ts.diag(resids, fitdf=2, col=4, gg=TRUE)
 
 }
-\seealso{\link{\code{sarima}}
+\seealso{\code{\link{sarima}}
 }
 \keyword{ts}
