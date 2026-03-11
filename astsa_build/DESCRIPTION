@@ -1,8 +1,8 @@
 Package: astsa
 Type: Package
 Title: Applied Statistical Time Series Analysis
-Version: 2.5
-Date: 2026-03-113
+Version: 2.5.1 
+Date: 2026-03-13
 Depends: R (>= 3.5)
 Author: David Stoffer [aut, cre],  Nicky Poison [ctb, mus, spy]
 Authors@R: c(person(given = "David",

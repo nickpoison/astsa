@@ -8,7 +8,7 @@
 sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1, 
        details = TRUE, xreg = NULL, Model = TRUE,
        fixed = NULL, tol = sqrt(.Machine$double.eps), 
-       no.constant = FALSE, col, fitdf, ...)
+       no.constant = FALSE, col, ...)
 }
 \arguments{
   \item{xdata}{univariate time series
@@ -41,8 +41,6 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 }
   \item{col}{ color of diagnostic plots; default is 1 (black)
 }
-  \item{fitdf}{ number of degrees of freedom to be subtracted for the Ljung-Box test if xdata is a series of residuals and all orders are zero (see details).  Does not have to be specified if it is zero (0).
-}
   \item{...}{additional graphical arguments
 }
 }
@@ -51,11 +49,8 @@ sarima(xdata, p, d, q, P = 0, D = 0, Q = 0, S = -1,
 To fit a seasonal ARIMA model, the basic call is \code{sarima(x,p,d,q,P,D,Q,S)}. For example, \code{sarima(x, 2,1,0, 0,1,1,12)} will fit a seasonal ARIMA\eqn{(2,1,0) \times (0,1,1)_{12}} model to the series in x. The orders do not have to be specified if they are zero; e.g., \code{sarima(x, d=1,q=1, D=1,Q=1,S=4)} works.
 
 The results are the parameter estimates, standard errors, AIC, AICc, BIC and diagnostics. The difference between the information criteria given by \code{sarima()} and  \code{arima()} is that they differ by a scaling factor of the effective sample size. 
-
-The script may be used for a residual analysis by running it without specifying any orders. In this case, it may be necessary to specify \code{fitdf} to get the correct degrees of freedom such as in fitting a state space model.
- 
 }
-\value{A t-table, the estimated noise variance, and AIC, AICc, BIC are printed. The following are returned invisibly as a list:
+\value{A t-table, the estimated noise variance, and AIC, AICc, BIC are printed and a residual diagnostic graphic is displayed unless details are turned off. The following are returned invisibly as a list:
 \item{fit }{[[1]] an object of class \code{Arima} with more information than you need}
 \item{sigma2 }{[[2]] the estimate of the noise variance}
 \item{degrees_of_freedom }{[[3]] error degrees of freedom}
