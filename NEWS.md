@@ -45,9 +45,9 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### &#127514; Version 2.5&ndash; March 2026 (on CRAN & GitHub)
 
-> In updating `sarima` for v2.4, we left off some brackets so certain objects were being changed when they should not have been.  This blooper did not effect any examples in the text because it was introduced after the books had gone to the publishers.  We thank Dr. Nazim Ekinci for pointing out the problem.
+> &#127917; In updating `sarima` for v2.4, we left off some brackets so certain objects were being changed when they should not have been.  This blooper did not affect any examples in the text because it was introduced after the books had gone to the publishers.  We thank Dr. Nazim Ekinci for pointing out the problem.
 
- - Version 2.5 fixes `sarima` (and don't use the one from version 2.4 ... `sarima` in versions 2.3 and lower are ok)
+ - Version 2.5 fixes `sarima` (and &#128226; __don't use the one from version 2.4__ ... `sarima` in versions 2.3 and lower are ok)
 
  - We decided to change `EM()` so that the output started the iteration number at 0 instead of 1, because the first evaluation of the likelihood is at the initial values.  It's not a big deal- it only changes the way the output looks.
 
