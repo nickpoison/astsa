@@ -1,4 +1,4 @@
-# astsa 2.4 (2026-01-01)
+# astsa 2.5 (2026-03-13)
 
 
 * the NEWS and changelog is at GitHub: [https://github.com/nickpoison/astsa/blob/master/NEWS.md](https://github.com/nickpoison/astsa/blob/master/NEWS.md)
