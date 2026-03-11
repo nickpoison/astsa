@@ -7,9 +7,9 @@
 
 ... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](https://link.springer.com/book/9783031705830)  and  [Time Series A Data Analysis Approach using R](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642).
 
- &#128038; _Right now,  the 2 versions (GitHub and CRAN) are (almost)  the same._
+ &#128038; _By Friday the 13th of March 2026,  the 2 versions (GitHub and CRAN) will  the same._
 
-[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp; &nbsp; ![](https://img.shields.io/badge/GitHub-2.4-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
+[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp; &nbsp; ![](https://img.shields.io/badge/GitHub-2.5-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
 
 
 
@@ -24,7 +24,7 @@ install.packages("remotes")   # if you don't have the package already
 remotes::install_github("nickpoison/astsa/astsa_build")
 ```
 
-&#9917; Alternately, you can  install `astsa` from the archive  [astsa_2.4.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.4.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
+&#9917; Alternately, you can  install `astsa` from the archive  [astsa_2.5.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.5.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
 
 &#9917; In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` in R and just give the path to the `tar.gz` file.
 
@@ -43,9 +43,20 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ---
 ---
 
-### &#127514; Version 2.4 &ndash; Jan 2026 (on CRAN & GitHub)
+### &#127514; Version 2.5&ndash; March 2026 (on CRAN & GitHub)
 
-- &#10133; after this version was on CRAN, we decided to change `EM()` so that the output started the iteration number at 0 instead of 1, because the first evaluation of the likelihood is at the initial values. It's this way on GitHub now.  It's not a big deal- it only changes the way the output looks.
+> In updating `sarima` for v2.4, we left off some brackets so certain objects were being changed when they should not have been.  This blooper did not effect any examples in the text because it was introduced after the books had gone to the publishers.  We thank Dr. Nazim Ekinci for pointing out the problem.
+
+ - Version 2.5 fixes `sarima` (and don't use the one from version 2.4 ... `sarima` in versions 2.3 and lower are ok)
+
+ - We decided to change `EM()` so that the output started the iteration number at 0 instead of 1, because the first evaluation of the likelihood is at the initial values.  It's not a big deal- it only changes the way the output looks.
+
+<br/> 
+
+---
+___
+
+####  Version 2.4 &ndash; Jan 2026  
 
 - added  &#127381;  `arma.check`  &#127381;  to check a given model (seasonal ok) for causality, invertibility, and parameter redundancy with option (`redtol`) to specify how close the inverse roots have to be to report a warning of parameter redundancy or over-parameterization (default is .1).
 

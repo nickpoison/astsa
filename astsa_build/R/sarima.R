@@ -1,19 +1,19 @@
 sarima <-  
 function(xdata, p,d,q, P=0,D=0,Q=0,S=-1, details=TRUE, xreg=NULL, Model=TRUE,
-          fixed=NULL, tol=sqrt(.Machine$double.eps), no.constant=FALSE, col, fitdf, ...)
+          fixed=NULL, tol=sqrt(.Machine$double.eps), no.constant=FALSE, col, fitdf, ...) 
 { 
    if (missing(col)) col=1
    if (missing(p)) p=0      
    if (missing(d)) d=0
    if (missing(q)) q=0
-   if (missing(fitdf) | (p+q+P+Q) > 0) fitdf = NULL  # not a resid analysis
+    if (missing(fitdf) | (p+q+P+Q) > 0) fitdf = NULL  # not a resid analysis
    trans = ifelse (is.null(fixed), TRUE, FALSE)
    trc   = ifelse(details, 1, 0)
    n     = length(xdata) 
   if (is.null(xreg)) {
    constant = 1:n 
    if (no.constant)  xmean = NULL else xmean = rep(1,n)
-   if (!is.null(fitdf)) xmean = NULL; constant=NULL; out=NA # if doing resid analysis, drop mean
+   if (!is.null(fitdf)) { xmean = NULL; constant=NULL; out=NA } # if doing resid analysis, drop mean
    if (d==0 & D==0) {  
            fitit = arima(xdata, order=c(p,d,q), seasonal=list(order=c(P,D,Q), period=S),
                   xreg=xmean, include.mean=FALSE, fixed=fixed, transform.pars=trans, 
