@@ -24,7 +24,7 @@ install.packages("remotes")   # if you don't have the package already
 remotes::install_github("nickpoison/astsa/astsa_build")
 ```
 
-&#9917; Alternately, you can  install `astsa` from the archive  [astsa_2.5.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.5.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
+&#9917; Alternately, you can  install `astsa` from the archive  [astsa_2.5.1.tar.gz](https://github.com/nickpoison/astsa/blob/master/astsa_2.5.1.tar.gz). Download it (there's a download  &#8681;  button) and in R, use _Install package(s) from local files..._ from the Packages tab.  
 
 &#9917; In Linux, I just do this: `sudo R CMD INSTALL -l /usr/lib/R/library astsa` but I think you can use `install.packages()` in R and just give the path to the `tar.gz` file.
 

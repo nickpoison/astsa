@@ -60,6 +60,6 @@ resids = gtemp_both - u$Xp
 ts.diag(resids, fitdf=2, col=4, gg=TRUE)
 
 }
-\seealso{\code{\link{sarima}}
+\seealso{\link{\code{sarima}}
 }
 \keyword{ts}
