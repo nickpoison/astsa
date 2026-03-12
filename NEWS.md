@@ -45,13 +45,13 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### &#127514; Version 2.5&ndash; March 2026 (on CRAN)  & v2.5.1 (on GitHub)
 
-> &#127917; In updating `sarima` for v2.4, we left off some brackets so certain objects were being changed when they should not have been.  This blooper did not affect any examples in the text because it was introduced after the books had gone to the publishers.  We thank Dr. Nazim Ekinci for pointing out the problem.
+> &#127917; In updating `sarima` for v2.4, we left off some brackets so certain objects were being changed when they should not have been.  This blooper does not affect any examples in the text because it was introduced after the books had gone to the publishers.  We thank Dr. Nazim Ekinci for pointing out the problem.
 
  - Version 2.5 fixes `sarima` (and &#128226; __don't use the one from version 2.4__ ... `sarima` in versions 2.3 and lower are ok)
 
- - We decided to change `EM()` so that the output started the iteration number at 0 instead of 1, because the first evaluation of the likelihood is at the initial values.  It's not a big deal- it only changes the way the output looks.
+ - __v2.5.1__: Version 2.5 is essentially a version 2.4 patch that was quickly distributed to avoid problems.  Version 2.5.1 (on GitHub) goes back to `sarima` from `astsa` version 2.3 and introduces a separate script, &#127381;  `ts.diag` &#127381;  that can be used for generic residual diagnostics.  It's basically an improved version of `stats::tsdiag`.
 
- - __v2.5.1__: Version 2.5 is essentially a version 2.4 patch that was quickly distributed to avoid problems.  The version on GitHub is, we hope, a better fix.  We removed the `fitdf` stuff (which cause the error in v2.4) that allowed `sarima` to be used as a general diagnostic tool. And then we wrote a new script &#127381;  `ts.diag` &#127381;  that can be used for generic residual diagnostics.  It's basically an improved version of `stats::tsdiag`.
+ - We changed `EM()` so that the output starts the iteration number at 0 instead of 1, because the first evaluation of the likelihood is at the initial values.  It's not a big deal- it only changes the way the output looks.
 
 <br/> 
 
