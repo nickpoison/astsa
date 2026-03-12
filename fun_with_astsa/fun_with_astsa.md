@@ -2,7 +2,7 @@
 
 <!-- fun with astsa -->
 
-[![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp;&nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp;&nbsp; ![](https://img.shields.io/badge/GitHub-2.5-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
+[![](https://cranlogs.r-pkg.org/badges/grand-total/astsa)](https://cran.r-project.org/package=astsa) &nbsp;&nbsp; [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp;&nbsp; ![](https://img.shields.io/badge/GitHub-2.5.1-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
 
 #### We'll demonstrate some of the capabilities of `astsa` ... the [NEWS](https://github.com/nickpoison/astsa/blob/master/NEWS.md) page  has additional installation information.
 
