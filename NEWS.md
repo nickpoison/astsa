@@ -7,7 +7,7 @@
 
 ... `astsa` is the R package to accompany  [Time Series Analysis and Its Applications: With R Examples](https://link.springer.com/book/9783031705830)  and  [Time Series A Data Analysis Approach using R](https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642).
 
- &#128038; _By Friday the 13th of March 2026,  the 2 versions (GitHub and CRAN) are nearly  the same._
+ &#128038; _The 2 versions (GitHub and CRAN) are nearly the same._
 
 [![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp; &nbsp; ![](https://img.shields.io/badge/GitHub-2.5.1-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
 
