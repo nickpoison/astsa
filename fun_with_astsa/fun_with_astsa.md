@@ -56,6 +56,7 @@ it's more than just data ... it's a palindrome
   * [8. State Space Models and Kalman Filtering](#8-state-space-models)
      * [Quick Kalman Filter and Smoother](#quick-kalman-filter-and-smoother)
      * [SSM - for beginners](#beginners-paradise)
+     * [time series diagnostics if it ain't ARMA](#residual-diagnostics)
   * [9. EM Algorithm and Missing Data](#9-em-algorithm-and-missing-data)
      * [Parameter Constraints](#parameter-constraints)
   * [10. Bayesian Techniques](#10-bayesian-techniques)
@@ -1616,7 +1617,8 @@ $ Ps: Time-Series [1:174] from 1850 to 2023: 0.00225 0.00211 0.00201 0.00194 0.0
 
 <br/>
 
-&#128125; And residual diagnostics using `ts.diag`, which is available from `astsa` version 2.5.1 (and beyond)
+## residual diagnostics
+&#128125; And now, let's check the residuals from the fit above using `ts.diag`, which is available from `astsa` version 2.5.1 (and beyond)
 
 ```r
 # get resids (obs - pred)
