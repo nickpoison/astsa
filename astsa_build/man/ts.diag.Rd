@@ -11,7 +11,7 @@ ts.diag(resids, col = 1, fitdf = 0, nlag = 20, ...)
 }
 \arguments{
   \item{resids}{
-residuals from a time series fit
+residuals from a time series fit (univariate only)
 }
   \item{col}{
 color used in the plots (default is black)
@@ -21,7 +21,8 @@ number of degrees of freedom to be subtracted for the portmanteau
 goodness-of-fit test
 }
   \item{nlag}{
-the maximum number of lags for a portmanteau goodness-of-fit test
+the maximum number of lags for a portmanteau goodness-of-fit test 
+(unless it is small relative to \code{fitdf})
 }
   \item{\dots}{
 additional graphical arguments

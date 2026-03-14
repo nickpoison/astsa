@@ -2,6 +2,9 @@ ts.diag <-
 function(resids, col=1, fitdf=0, nlag=20, ...) 
 { 
 
+   if (NCOL(resids) > 1){ stop('\nUnivariate Input Only \n')}
+   if (nlag < fitdf + 8) { nlag = fitdf + 8 }
+
    old.par  <- par(no.readonly = TRUE)
    layout(matrix(c(1,2,4, 1,3,4), ncol=2))
    par(cex=.85)
