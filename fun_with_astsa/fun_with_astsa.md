@@ -1568,22 +1568,25 @@ legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,
 &#x1F535; We'll fit the model to one of the global temperature series. To use the script, you have to give initial estimates and then the script fits the model via MLE. The initial values of &mu;<sub>0</sub> and &sigma;<sub>0</sub> are chosen automatically. In this example, we hold &phi; fixed at 1.
 
 ```r
-u = ssm(gtemp_land, A=1, phi=1, alpha=.01, sigw=.01, sigv=.1, fixphi=TRUE)
+# fit state space model to global temps
+u = ssm(gtemp_both, A=1, alpha=0, phi=1, sigw=.05, sigv=.15)
 ```
-(remove the `fixphi=TRUE` to estimate &phi;) with output:
+
 
 ```r
-          estimate          SE
-  alpha 0.01428210 0.005138887
-  sigw  0.06643393 0.013368981
-  sigv  0.29494720 0.017370440
+# partial output
+           estimate          SE
+  phi   1.022093006 0.006561387
+  alpha 0.006717434 0.002076500
+  sigw  0.026351695 0.008568179
+  sigv  0.138605305 0.008634126
 ```
 
 and a nice picture - the data [_y<sub>t</sub>_], the smoothers [ E(_x<sub>t</sub>_ | _y<sub>1</sub> ,..., y<sub>n</sub>_) ] and  &#177;2 root MSPEs.  The smoothers are
 in `Xs` and the MSPEs are in `Ps`:
 
 ```r
-tsplot(gtemp_land, col=4, type="o", pch=20, ylab="Temperature Deviations")
+tsplot(gtemp_both, col=4, type="o", pch=20, ylab="Temperature Deviations")
 lines(u$Xs, col=6, lwd=2)
  xx = c(time(u$Xs), rev(time(u$Xs)))
  yy = c(u$Xs-2*sqrt(u$Ps), rev(u$Xs+2*sqrt(u$Ps)))
@@ -1597,26 +1600,38 @@ polygon(xx, yy, border=8, col=gray(.6, alpha=.25) )
 
 <br/>
 
-&#x1F535; The output of `ssm()` gives the predictors  [`Xp`] and MSPE [`Pp`], the
-filtered values [`Xf` and `Pf`]  and the smoothers [`Xs` and `Ps`]:
+&#x1F535; The output of `ssm()` gives the predictors  [`Xp`] and MSPE [`Pp`], the filtered values [`Xf` and `Pf`]  and the smoothers [`Xs` and `Ps`]:
 
 ```r
 str(u)
 
 List of 6
- $ Xp: Time-Series [1:174] from 1850 to 2023: -0.446 -0.445 -0.467 -0.46 -0.454 ...
- $ Pp: Time-Series [1:174] from 1850 to 2023: 0.0292 0.0263 0.0246 0.0236 0.023 ...
- $ Xf: Time-Series [1:174] from 1850 to 2023: -0.459 -0.481 -0.474 -0.468 -0.401 ...
- $ Pf: Time-Series [1:174] from 1850 to 2023: 0.0218 0.0202 0.0192 0.0186 0.0182 ...
- $ Xs: Time-Series [1:174] from 1850 to 2023: -0.503 -0.497 -0.487 -0.475 -0.463 ...
- $ Ps: Time-Series [1:174] from 1850 to 2023: 0.01094 0.01051 0.01023 0.01005 0.00994 ...
+$ Xp: Time-Series [1:174] from 1850 to 2023: -0.19 -0.204 -0.215 -0.227 -0.207 ...
+$ Pp: Time-Series [1:174] from 1850 to 2023: 0.00948 0.00733 0.00624 0.00561 0.0052 ...
+$ Xf: Time-Series [1:174] from 1850 to 2023: -0.206 -0.217 -0.228 -0.209 -0.174 ...
+$ Pf: Time-Series [1:174] from 1850 to 2023: 0.00635 0.0053 0.00471 0.00434 0.00411 ...
+$ Xs: Time-Series [1:174] from 1850 to 2023: -0.209 -0.207 -0.204 -0.198 -0.194 ...
+$ Ps: Time-Series [1:174] from 1850 to 2023: 0.00225 0.00211 0.00201 0.00194 0.00189 ...
 ```
 
 <br/>
 
+&#128125; And residual diagnostics using `ts.diag`, which is available from `astsa` version 2.5.1 (and beyond)
+
+```r
+# get resids (obs - pred)
+resids = gtemp_both - u$Xp
+
+# check fit [the model is essentially an explosive ARMA(1,1)]
+ts.diag(resids, fitdf=2, col=4, gg=TRUE)
+```
+
+<img src="figs/tsdiag.png" alt="ssm"  width="70%">
+
+looking good!
 
 
-
+<br/>
 
 [<sub>top</sub>](#table-of-contents)
 
