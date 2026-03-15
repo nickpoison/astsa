@@ -1566,13 +1566,14 @@ legend('topleft', legend=c("y(t)","Xs(t)"), lty=1, col=c(4,6), bty="n", pch=c(1,
 
 $$ x_t =\alpha+\phi x_{t-1} +w_t \quad \text{and} \quad y_t = A x_t + v_t $$
 
-where $w_t \sim    iid \,  N(0, \sigma_w^2) \perp v_t  \sim    iid \,  N(0, \sigma_v^2)  \perp x_0 \sim  N(0, \sigma_0^2$.
+where $w_t \sim    iid \\,  N(0, \sigma_w^2) \perp v_t  \sim    iid \\,  N(0, \sigma_v^2)  \perp x_0 \sim  N(0, \sigma_0^2$.
 
 
-&#x1F535; We'll fit the model to one of the global temperature series. To use the script, you have to give initial estimates and then the script fits the model via MLE. The initial values of &mu;<sub>0</sub> and &sigma;<sub>0</sub> are chosen automatically. In this example, we hold &phi; fixed at 1.
+&#x1F535; We'll fit the model to one of the global temperature series. To use the script, you have to give initial estimates and then the script fits the model via MLE. The initial values of &mu;<sub>0</sub> and &sigma;<sub>0</sub> are chosen automatically. 
 
 ```r
 # fit state space model to global temps
+# ... below, phi can be fixed by setting `fixphi=TRUE`
 u = ssm(gtemp_both, A=1, alpha=0, phi=1, sigw=.05, sigv=.15)
 ```
 
