@@ -1633,7 +1633,7 @@ ts.diag(resids, fitdf=2, col=4, gg=TRUE)
 
 <img src="figs/tsdiag.png" alt="ssm"  width="70%">
 
-looking good!
+looking good! (and remember to take the results of the Ljung-Box-Pierce statistic with _a grain of salt_ ... i.e., view the information with skepticism)
 
 
 <br/>
