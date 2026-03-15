@@ -973,7 +973,7 @@ sarima.for(cardox, 60, 1,1,1, 0,1,1,12)
 Because ARIMA models are put into state space form for estimation, missing data can be handled easily.  There is a data file in `astsa` called `ar1miss` that has missing data (it's used in Chapter 6 Problems &ndash; you'll see the data in the forecast plot):
 
 ```r
-# as long as there aren't too many NAs, you can
+# as long as there are long enough stretches without NAs
 # use acf2() to check an AR(1) is appropriate
 acf2(ar1miss, na.action=na.contiguous)   
 ```
