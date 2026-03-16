@@ -1633,7 +1633,7 @@ ts.diag(resids, fitdf=2, col=4, gg=TRUE)
 
 <img src="figs/tsdiag.png" alt="ssm"  width="70%">
 
-looking good! (and remember to take the results of the Ljung-Box-Pierce statistic with _a grain of salt_ ... i.e., view the information with skepticism)
+looking good! 
 
 
 <br/>
@@ -1644,8 +1644,7 @@ looking good! (and remember to take the results of the Ljung-Box-Pierce statisti
 
 ## 9. EM Algorithm and Missing Data
 
-&#x1F4A1;  To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) and discussed in detail in Chapter 6 of the
-text [Time Series Analysis and Its Applications: With R Examples](https://link.springer.com/book/9783031705830), use the script 
+&#x1F4A1;  To use the EM algorithm presented in [Shumway & Stoffer (1982)](https://www.stat.pitt.edu/stoffer/dss_files/em.pdf) and discussed in detail in Chapter 6 of the text [Time Series Analysis and Its Applications: With R Examples](https://link.springer.com/book/9783031705830), use the script 
 
 
 > **`EM()`**
