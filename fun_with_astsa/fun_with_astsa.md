@@ -1579,7 +1579,21 @@ u = ssm(gtemp_both, A=1, alpha=0, phi=1, sigw=.05, sigv=.15)
 
 
 ```r
-# partial output
+# output
+  initial  value -231.325638 
+  iter   2 value -234.133675
+  iter   3 value -237.446442
+  iter   4 value -238.173221
+  iter   5 value -238.344032
+  iter   6 value -238.487971
+  iter   7 value -238.570429
+  iter   8 value -238.612488
+  iter   9 value -238.615124
+  iter  10 value -238.615180
+  iter  10 value -238.615183
+  final  value -238.615183 
+  converged
+
            estimate          SE
   phi   1.022093006 0.006561387
   alpha 0.006717434 0.002076500
@@ -1587,7 +1601,7 @@ u = ssm(gtemp_both, A=1, alpha=0, phi=1, sigw=.05, sigv=.15)
   sigv  0.138605305 0.008634126
 ```
 
-and a nice picture - the data [ $y_t$ ], the smoothers [ $E( x_t | y_1, \dots, y_n)$ ] and  &#177;2 root MSPEs.  The smoothers are in `Xs` and the MSPEs are in `Ps`:
+and a nice picture - the data [ $y_t$ ], the estimated smoothers  $[\hat E( x_t \mid y_1, \dots, y_n) ]$ and  &#177;2 root MSPEs.  The smoothers are in `Xs` and the MSPEs are in `Ps`:
 
 ```r
 tsplot(gtemp_both, col=4, type="o", pch=20, ylab="Temperature Deviations")
