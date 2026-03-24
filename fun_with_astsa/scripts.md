@@ -92,3 +92,5 @@
 | -- misc --   |                                                                            |
 |              |                                                                            |
 | %^%          | Powers of a Square Matrix                                                  |
+
+<br/>[&#127882;&#127882;&#127882; back to the fun &#127882;&#127882;&#127882;](fun_with_astsa.md)
