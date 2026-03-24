@@ -45,7 +45,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 ### &#127514; Version 2.5&ndash; March 2026 (on CRAN)  & v2.5.1 (on GitHub)
 
-> &#127917; In updating `sarima` for v2.4, we left off some brackets so certain objects were being changed when they should not have been.  This blooper does not affect any examples in the text because it was introduced after the books had gone to the publishers.  We thank Dr. Nazim Ekinci for pointing out the problem.
+> &#127917; In updating `sarima` for v2.4, we left off some brackets so certain objects were being changed when they should not have been.  This blooper does not affect any text examples  because it was introduced after the books had gone to the publishers.  We thank Dr. Nazim Ekinci for pointing out the problem.
 
  - Version 2.5 fixes `sarima` (and &#128226; __don't use the one from version 2.4__ ... `sarima` in versions 2.3 and lower are ok)
 

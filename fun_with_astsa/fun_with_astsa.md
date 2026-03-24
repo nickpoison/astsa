@@ -26,7 +26,8 @@ it's more than just data ... it's a palindrome
  
 
 ### Table of Contents
-
+  
+  * [&#129488; A list of scripts in `astsa` may be found here](scripts.md) (a separate page)
   * [1. Data](#1-data)
   * [2. Plotting](#2-plotting)
      * [astsa Color Palette](#colors)
@@ -163,6 +164,9 @@ And you can get more information on any individual set using the `help()` comman
 |tempr                            |  Temperatures from the LA pollution study                                     |
 |unemp                            |  U.S. Unemployment                                                            |
 |varve                            |  Annual Varve Series                                                          |
+
+
+<br/> 
 
 
 
