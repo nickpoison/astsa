@@ -57,8 +57,6 @@ The webpages for the texts and some help on using R for time series analysis can
 
 ### Examples
 
-[Run examples](../Example/ts.diag)
-
     
     # fit state space model to global temps
     u = ssm(gtemp_both, A=1, alpha=0, phi=1, sigw=.05, sigv=.15)
