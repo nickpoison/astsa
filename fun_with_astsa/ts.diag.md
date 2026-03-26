@@ -12,19 +12,19 @@ Diagnostic plots of the residuals from a time series fit.
 
 ### Arguments
 
-`resids` 
+`resids` <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; residuals from a time series fit (univariate only)
 
-`col`
+`col` <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; color used in the plots (default is black)
 
-`fitdf`
+`fitdf` <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number of degrees of freedom to be subtracted for the portmanteau goodness-of-fit test
 
-`nlag`
+`nlag` <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; the maximum number of lags for a portmanteau goodness-of-fit test (unless it is small relative to `fitdf`)
 
-`...`
+`...` <br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; additional graphical arguments
 
 ### Details
