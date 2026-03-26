@@ -84,7 +84,7 @@
 | [test.linear](https://cran.r-project.org/web/packages/astsa/refman/astsa.html#test.linear)  | Test Linearity of a Time Series via Normalized Bispectrum                  |
 | [timex](https://cran.r-project.org/web/packages/astsa/refman/astsa.html#timex)        | Convert eXtensible Time Series Dates to Decimal Dates                      |
 | [trend](https://cran.r-project.org/web/packages/astsa/refman/astsa.html#trend)        | Estimate Trend                                                             |
-| [ts.diag](ts.diag.html)     | Diagnostic Plots for Time Series (in `astsa` v2.5.1, but not v2.5)                                           |
+| [ts.diag](ts.diag.md)     | Diagnostic Plots for Time Series (in `astsa` v2.5.1, but not v2.5)                                           |
 | [tspairs](https://cran.r-project.org/web/packages/astsa/refman/astsa.html#tspairs)      | Scatterplot Matrix for Time Series                                         |
 | [tsplot](https://cran.r-project.org/web/packages/astsa/refman/astsa.html#tsplot)       | Time Series Plot                                                           |
 | [ttable](https://cran.r-project.org/web/packages/astsa/refman/astsa.html#ttable)       | t-table summary for an 'lm' object                                         |
