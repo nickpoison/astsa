@@ -7,8 +7,9 @@ Diagnostic plots of the residuals from a time series fit.
 
 ### Usage
 
-    ts.diag(resids, col = 1, fitdf = 0, nlag = 20, ...)
-    
+```r
+ ts.diag(resids, col = 1, fitdf = 0, nlag = 20, ...)
+```    
 
 ### Arguments
 
@@ -57,7 +58,7 @@ The webpages for the texts and some help on using R for time series analysis can
 
 ### Examples
 
-    
+```r    
     # fit state space model to global temps
     u = ssm(gtemp_both, A=1, alpha=0, phi=1, sigw=.05, sigv=.15)
     
@@ -66,7 +67,7 @@ The webpages for the texts and some help on using R for time series analysis can
     
     # check fit [the model is essentially an explosive ARMA(1,1)]
     ts.diag(resids, fitdf=2, col=4, gg=TRUE)
-    
+```    
     
 
 * * *
