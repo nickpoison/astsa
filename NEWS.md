@@ -49,10 +49,12 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
  - Version 2.5 fixes `sarima` (and &#128226; __don't use the one from version 2.4__ ... `sarima` in versions 2.3 and lower are ok)
 
- - __v2.5.1__: Version 2.5 is essentially a version 2.4 patch that was quickly distributed to avoid problems.  Version 2.5.1 (on GitHub) goes back to `sarima` from `astsa` version 2.3 and introduces a separate script, &#127381;  `ts.diag` &#127381;  that can be used for generic residual diagnostics.  It's basically an improved version of `stats::tsdiag`.
-
  - We changed `EM()` so that the output starts the iteration number at 0 instead of 1, because the first evaluation of the likelihood is at the initial values.  It's not a big deal- it only changes the way the output looks.
 
+
+ - __v2.5.1__: Version 2.5 is essentially a version 2.4 patch that was quickly distributed to avoid problems.  Version 2.5.1 (on GitHub) goes back to `sarima` from `astsa` version 2.3 and introduces a separate script, &#127381;  `ts.diag` &#127381;  that can be used for generic residual diagnostics.  It's basically an improved version of `stats::tsdiag`.
+
+- __v2.5.1__: Update `tsplot` so it takes the argument `axes=FALSE` (before you had to use `xaxt=FALSE` and `yaxt=FALSE` instead)
 <br/> 
 
 ---

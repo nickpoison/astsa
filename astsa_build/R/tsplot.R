@@ -25,11 +25,11 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL,
                       deparse(substitute(y)))}
    par(mar=c(2.5,2.5,1+topper,.5)+margins, mgp=c(1.6,.3,0)+mgpp, cex.main=1.2,
               tcl=-.2, cex.axis=.9)
-   plot(x, y, type = type0, axes=FALSE, ann=FALSE, main=NULL, ... )
+   plot(x, y, type = type0, ann=FALSE, main=NULL, ... )
    Grid(nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, xm.grid=xm.grid, ym.grid=ym.grid)
    par(new=TRUE)
    plot(x, y, type=type1, main=main, ylab=ylab, xlab=xlab, col=col, pch=pch, 
-        lty=lty, lwd=lwd, ... ) 
+        lty=lty, lwd=lwd,  ... ) 
    box(col='gray62')
   } else {                   # multiple series
    if(!is.null(ylab)){ ylab = rep(ylab, ceiling(nser/length(ylab))) } 
@@ -61,7 +61,7 @@ tsplot <- function(x, y = NULL, main=NULL, ylab=NULL, xlab=NULL, title=NULL,
                       deparse(substitute(y)))}
    par(mar=c(2.5,2.5,1+topper,.5)+margins, mgp=c(1.6,.3,0)+mgpp, cex.main=1.2,  
               tcl=-.2, cex.axis=.8)    
-   plot(x, y, type = type0, axes=FALSE, ann=FALSE, main=NULL, ... )
+   plot(x, y, type = type0, ann=FALSE, main=NULL, ... )
    brdr = par("usr")        
    rect(brdr[1], brdr[3], brdr[2], brdr[4], col=gray(.92), border='white')         
    Grid(nx=nx, ny=ny, minor=minor, nxm=nxm, nym=nym, xm.grid=xm.grid, ym.grid=ym.grid, col='white')
