@@ -140,6 +140,9 @@ D.S. Stoffer
 # minimal
 tsplot(soi)
 
+# no grid or tick marks
+tsplot(soi, axes=FALSE, nx=NA)
+
 # gris-gris spaghetti
 tsplot(cbind(MEI, MEI2), spaghetti=TRUE, col=2*2:1, addLegend=TRUE, nym=2, gg=TRUE)
 
