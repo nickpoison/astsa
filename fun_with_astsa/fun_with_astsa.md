@@ -98,8 +98,8 @@ And you can get more information on any individual set using the `help()` comman
 |EQ5                              |  Seismic Trace of Earthquake number 5                                         |
 |EQcount                          |  Earthquake Counts                                                            |
 |EXP6                             |  Seismic Trace of Explosion number 6                                          |
-|GDP (GDP23)                      |  Quarterly U.S. GDP - updated to 2023                                         |
-|GNP (GNP23)                      |  Quarterly U.S. GNP - updated to 2023                                         |
+|GDP  /  GNP        |  Quarterly U.S. GDP/GNP - updated to 2023                                         |
+|GGBsuicide                       | Number of days between suicides on the Golden Gate Bridge from 1999 to 2009
 |HCT                              |  Hematocrit Levels                                                            |
 |Hare                             |  Snowshoe Hare                                                                |
 |Lynx                             |  Canadian Lynx (not the same as R dataset `lynx` )                            |
