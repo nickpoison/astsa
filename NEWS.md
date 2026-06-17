@@ -55,7 +55,7 @@ __v2.5.1__:
 
  - Version 2.5 is essentially a version 2.4 patch that was quickly distributed to avoid problems.  Version 2.5.1 (on GitHub)  updates `sarima` and introduces a separate script, &#127381;  `ts.diag` &#127381;  that can be used for generic residual diagnostics.  It's basically an improved version of `stats::tsdiag`.
 
- - Various updates and efficiency improvements to `tsplot` and `sarima` (calls are the same)
+ - Various efficiency improvements to `tsparis`, `tsplot`, `sarima.for`, and `sarima` (calls are the same)
 
 
 - added data set `GGBsuicide`: Number of days between suicides on the Golden Gate Bridge from 1999 to 2009
