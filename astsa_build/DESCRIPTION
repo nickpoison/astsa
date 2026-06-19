@@ -3,6 +3,8 @@ Type: Package
 Title: Applied Statistical Time Series Analysis
 Version: 2.5.1
 Date: 2026-03-13
+Maintainer:	David Stoffer <stoffer@pitt.edu>
+Author:	David Stoffer [aut, cre], Nicky Poison [ctb, mus, spy]
 Authors@R: c(person(given = "David",
                     family = "Stoffer",
                     role = c("aut", "cre"),

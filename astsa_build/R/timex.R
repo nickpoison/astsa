@@ -1,7 +1,6 @@
 timex <- function(xts.object){
 
-  is.xts = ifelse("xts" %in% class(xts.object), TRUE, FALSE)
-  if (!is.xts) stop("object is not an 'xts' object")  
+  if (!inherits(xts.object, "xts")) stop("object is not an 'xts' object")  
 
   tzone  = attr(xts.object, 'tzone')
   dates  = as.POSIXct(attr(xts.object, 'index'), tz=tzone) 

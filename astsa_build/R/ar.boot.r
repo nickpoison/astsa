@@ -1,75 +1,69 @@
-ar.boot = function(series, order.ar, nboot=500, seed=NULL, plot=TRUE, ...){
+ar.boot <- function(series, order.ar, nboot=500, seed=NULL, plot=TRUE, ...) {
 
-num = length(series)
+  num   <- length(series)
+  tspar <- tsp(series)
+  arp   <- order.ar
 
-# estimate parameters
-tspar  = tsp(series)
-arp    = order.ar
-fit    = ar.yw(series, aic=FALSE, order.max=arp) 
-m      = fit$x.mean               # estimate of mean
-phi    = fit$ar                   # estimate of phis
-resids = na.omit(fit$resid)       # the residuals
+  fit    <- ar.yw(series, aic=FALSE, order.max=arp)
+  m      <- fit$x.mean
+  phi    <- as.numeric(fit$ar)
+  resids <- na.omit(fit$resid)
 
+  set.seed(seed)
 
-# start boots
-set.seed(seed)
-x.star   = series                # initialize x*
-phi      = matrix(phi)           # p x 1
-phi.star = matrix(0, arp, nboot)
-x.sim    = matrix(0, num, nboot)
+  phi.star <- matrix(0, nboot, arp)
+  x.sim    <- matrix(0, num, nboot)
 
-pb = txtProgressBar(min = 0, max = nboot, initial = 0, style=3)  # progress bar
+  # Center series
+  series.c <- as.numeric(series) - m
 
-for (i in 1:nboot) {
-  setTxtProgressBar(pb,i)
-  resid.star = c(rep(0,arp), sample(resids, replace=TRUE))
-  for (t in arp:(num-1)){
-    x0 = matrix(x.star[t:(t-arp+1)] - m)
-    x.star[t+1] = m + t(phi)%*%x0 + resid.star[t+1]
+  pb <- txtProgressBar(min=0, max=nboot, initial=0, style=3)
+
+  for (i in 1:nboot) {
+    setTxtProgressBar(pb, i)
+
+    # Bootstrap residuals: prepend arp zeros as burn-in
+    resid.star <- c(rep(0, arp), sample(resids, size=num - arp, replace=TRUE))
+
+    # Simulate centered series
+    xc <- series.c                         # centred x*
+    for (t in arp:(num - 1)) {
+      xc[t + 1] <- sum(phi * xc[t:(t - arp + 1)]) + resid.star[t + 1]
+    }
+
+    x.sim[, i]    <- xc + m                # un-center
+    phi.star[i, ] <- ar.yw(xc + m, order=arp, aic=FALSE)$ar
   }
- x.sim[,i]    = matrix(x.star) 
- u = ar.yw(x.star, order=arp, aic=FALSE)
- phi.star[,i] = u$ar
-}
-close(pb)
+  close(pb)
 
-x.sim = ts(x.sim, start=tspar[1], frequency=tspar[3])
-phi.star = t(phi.star)
- colnames(phi.star) =  paste('ar', 1:arp, sep="")
-mean.star = unname(apply(x.sim, 2, mean))
-var.star  = unname(apply(x.sim, 2, var))
+  x.sim    <- ts(x.sim, start=tspar[1], frequency=tspar[3])
+  colnames(phi.star) <- paste0('ar', seq_len(arp))
 
+  # Summary statistics
+  quants     <- apply(phi.star, 2, quantile,
+                      probs=c(.01,.025,.05,.1,.25,.5,.75,.9,.95,.975,.99))
+  phi.means  <- colMeans(phi.star)
+  bias       <- matrix(phi.means - phi, nrow=1,
+                       dimnames=list(NULL, paste0('ar', seq_len(arp))))
+  rmse       <- sqrt(diag(var(phi.star)) + drop(bias^2))
 
-cat('Quantiles:', "\n")
-print(apply(phi.star, 2, quantile, c(.01,.025,.05,.1,.25,.50,.75,.9,.95,.975,.99)), digits=4 )
-cat('\n')
-cat('Mean:', "\n") 
-print(colMeans(phi.star), digits=4)
-cat('\n')
-bias =  t(colMeans(phi.star)-phi)
-colnames(bias) = paste('ar', 1:arp, sep="")
-cat('Bias:', "\n") 
-print(bias, digits=4)
-cat('\n')
-u = diag(var(phi.star))
-cat('rMSE:', "\n")
-print(sqrt(u + bias^2), digits=4)
-cat('\n')
+  cat('Quantiles:\n');  print(quants,      digits=4)
+  cat('\nMean:\n');     print(phi.means,   digits=4)
+  cat('\nBias:\n');     print(bias,        digits=4)
+  cat('\nrMSE:\n');     print(rmse,        digits=4); cat('\n')
 
-
-
-
-if (plot){
-  if(arp>1){
-   tspairs(phi.star, smooth=FALSE,  ...)
-  } else {
-   hist(phi.star, main='', xlab=expression(phi^'*'), col=astsa.col(col, .4), breaks='FD', freq=FALSE)
-   abline(v=c(stats::quantile(phi.star, probs=c(.025,.5,.975))), col=6) 
+  if (plot) {
+    if (arp > 1) {
+      tspairs(phi.star, smooth=FALSE, ...)
+    } else {
+      hist(phi.star, main='', xlab=expression(phi^'*'),
+           col=astsa.col(col, .4), breaks='FD', freq=FALSE)
+      abline(v=quantile(phi.star, probs=c(.025, .5, .975)), col=6)
+    }
   }
+
+  invisible(list(phi.star=phi.star, x.sim=x.sim,
+                 mean.star=colMeans(x.sim),
+                 var.star=apply(x.sim, 2, var),
+                 yw.fit=fit))
 }
-
-out = list(phi.star, x.sim, mean.star=mean.star, var.star=var.star, yw.fit=fit)
-return(invisible(out))
-
-}
-

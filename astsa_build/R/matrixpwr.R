@@ -1,20 +1,25 @@
 matrixpwr <-
-function(A, power){
-   if (!is.numeric(power) || length(power) > 1 || 
-        !is.finite(power))  stop("power must be a single number") 
-   if (!is.matrix(A))  stop("object not a matrix") 
-   if (abs( nrow(A) - ncol(A) ) > 0 ) stop("matrix must be square") 
-   if (power == 0) return(diag(1, nrow(A)))
-   if (power == 1) return(A)
-   if (power < 0 ) {
-      singtest <- "matrix" %in% class(try(solve(A),silent=TRUE))
-      if (!singtest) stop("matrix singular")
-   }
-   if (isSymmetric(unname(A))) {
-    with(eigen(A), vectors %*% (values^power * t(vectors)))
-   } else {
-    with(eigen(A), vectors %*% (values^power * solve(vectors))) 
-   }
+function(A, power) {
+  if (!is.numeric(power) || length(power) != 1 || !is.finite(power))
+    stop("power must be a single finite number")
+  if (!is.matrix(A))
+    stop("object not a matrix")
+  if (nrow(A) != ncol(A))
+    stop("matrix must be square")
+  if (power == 0) return(diag(1, nrow(A)))
+  if (power == 1) return(A)
+
+  # For negative powers check near-singularity via condition number
+  if (power < 0 && rcond(A) < .Machine$double.eps)
+    stop("matrix is (near-)singular")
+
+  e <- eigen(A)
+
+  if (isSymmetric(unname(A))) {
+    tcrossprod(e$vectors * rep(e$values^power, each=nrow(A)), e$vectors)
+  } else {
+    e$vectors %*% (e$values^power * solve(e$vectors))
+  }
 }
 
-"%^%" <- function(A, power) matrixpwr(A, power)  
+"%^%" <- function(A, power) matrixpwr(A, power)
