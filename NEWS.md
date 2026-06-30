@@ -58,7 +58,7 @@ __v2.5.1__:
  - Efficiency improvements to numerous scripts (all calls are the same)
 
 
-- added data set `GGBsuicide`: Number of days between suicides on the Golden Gate Bridge from 1999 to 2009
+- added data set `GGBsuicide`: Number of days between suicides on the Golden Gate Bridge from 1999 to 2009 and `UnempRate2`: an update to `UnempRate` up to Feb 2026.
 
 
 

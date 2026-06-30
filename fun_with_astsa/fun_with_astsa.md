@@ -107,7 +107,7 @@ And you can get more information on any individual set using the `help()` comman
 |MEI2                             |  Multivariate ENSO Index (version 2)  1979 - 2025                             |
 |PLT                              |  Platelet Levels                                                              |
 |USpop / USpop20                  |  U.S. Population - 1900 to 2010 / 2020   (2 different files)                  |
-|UnempRate                        |  U.S. Unemployment Rate                                                       |
+|UnempRate / UnempRate2           |  U.S. Unemployment Rate  1948-2016 / 2016-2026     |
 |WBC                              |  White Blood Cell Levels                                                      |
 |ar1miss                          |  AR with Missing Values                                                       |
 |arf                              |  Simulated ARFIMA                                                             |
