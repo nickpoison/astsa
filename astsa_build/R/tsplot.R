@@ -26,12 +26,16 @@ tsplot <- function(x, y = NULL, main = NULL, ylab = NULL, xlab = NULL, title = N
 
   # --- Helper: shared par() settings for single-series panels ---
   .set_par_single <- function() {
-    par(mar   = c(2.5, 2.5, 1 + topper, .5) + margins,
-        mgp   = c(1.6, .3, 0) + mgpp,
-        cex.main = 1.2,
-        tcl   = -.2,
-        cex.axis = if (gg) .8 else .9)
-  }
+  # calculate adjusted 'mar' and 'mgp'
+   c_mar <- c(2.5, 2.5, 1 + topper, .5) + margins
+   c_mgp <- c(1.6, .3, 0) + mgpp
+  # adjust any negative values and set other values
+   par(mar      = pmax(c_mar, 0),
+       mgp      = pmax(c_mgp, 0),
+       cex.main = 1.2,
+       tcl      = -.2,
+       cex.axis = if (gg) .8 else .9)
+}
 
   # --- Helper: shared Grid() call ---
   .draw_grid <- function(grid_col = NULL) {
@@ -47,8 +51,9 @@ tsplot <- function(x, y = NULL, main = NULL, ylab = NULL, xlab = NULL, title = N
     dims <- c(ceiling(nser / ncolm), ncolm)
     if (byrow) par(mfrow = dims) else par(mfcol = dims)
     extra <- if (gg) list(tcl = -.2, cex.axis = .9) else list()
+    c_oma <- c(0, 0, 3 * topper, 0) + omargins  # to check outer margins
     do.call(par, c(list(cex.lab = 1.1,
-                        oma     = c(0, 0, 3 * topper, 0) + omargins,
+                        oma     = pmax(c_oma, 0),
                         cex     = .85 * scale),
                    extra))
   }

@@ -6,6 +6,9 @@ function(A, power) {
     stop("object not a matrix")
   if (nrow(A) != ncol(A))
     stop("matrix must be square")
+
+  dn <- dimnames(A)   # save labels if there are any
+
   if (power == 0) return(diag(1, nrow(A)))
   if (power == 1) return(A)
 
@@ -16,10 +19,12 @@ function(A, power) {
   e <- eigen(A)
 
   if (isSymmetric(unname(A))) {
-    tcrossprod(e$vectors * rep(e$values^power, each=nrow(A)), e$vectors)
+    R <- tcrossprod(e$vectors * rep(e$values^power, each=nrow(A)), e$vectors)
   } else {
-    e$vectors %*% (e$values^power * solve(e$vectors))
+    R <- e$vectors %*% (e$values^power * solve(e$vectors))
   }
+  dimnames(R) <- dn
+  return(R)
 }
 
 "%^%" <- function(A, power) matrixpwr(A, power)

@@ -55,7 +55,9 @@ __v2.5.1__:
 
  - Version 2.5 is essentially a version 2.4 patch that was quickly distributed to avoid problems.  Version 2.5.1 (on GitHub)  updates `sarima` and introduces a separate script, &#127381;  `ts.diag` &#127381;  that can be used for generic residual diagnostics.  It's basically an improved version of `stats::tsdiag`.
 
- - Efficiency improvements to numerous scripts (all calls are the same)
+ - Efficiency improvements to numerous scripts (all calls are the same), because many scripts had numerous addons; e.g., `tsplot` started as a simple script just to get decent graphics with minimal coding for demonstrations... but it evolved (via addons) for use in publications.
+
+ - `matrixpwr` now preserves the dimension names (`dimnames`)
 
 
 - added data set `GGBsuicide`: Number of days between suicides on the Golden Gate Bridge from 1999 to 2009 and `UnempRate2`: an update to `UnempRate` up to Feb 2026.

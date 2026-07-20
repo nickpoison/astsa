@@ -32,10 +32,10 @@ add an individual plot title for multiple plots - the default is no title.
 type of plot - the default is line.
 }
   \item{margins}{
-inches to add (or subtract) to the margins. Input one value to apply to all margins or a vector of length 4 to add (or subtract) to the (bottom, left, top, right) margins.
+inches to add (or subtract) to the margins. Input one value to apply to all margins or a vector of length 4 to add (or subtract) to the (bottom, left, top, right) margins. If this makes any value negative, the value is set to zero.
 }
   \item{omargins}{
-inches to add to the outer margins. Input one value to apply to all margins or a vector of length 4 to add to the (bottom, left, top, right) outer margins.
+inches to add (or subtract) to the outer margins. Input one value to apply to all margins or a vector of length 4 to add to the (bottom, left, top, right) outer margins. If this makes any value negative, the value is set to zero.
 }
  \item{ncolm}{
 for multiple time series, the number of columns to plot.

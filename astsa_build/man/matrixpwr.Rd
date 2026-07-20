@@ -24,7 +24,8 @@ single numeric
 }
 \details{
 Raises matrix to the specified power. The matrix must be square
-and if \code{power < 0}, the matrix must be nonsingular.
+and if \code{power < 0}, the matrix must be nonsingular. 
+The row and column names, if any, are preserved.
 
 Note that \code{\%^\%} is defined as
 \code{"\%^\%" <- function(A, power) matrixpwr(A, power) }
