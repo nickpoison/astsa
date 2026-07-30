@@ -7,7 +7,7 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action=na.pas
   if (num < 3) stop("More than 2 observations are needed")
   if (num > 59 & is.null(max.lag))  max.lag = max(ceiling(10+sqrt(num)), 4*xfreq) 
   if (num < 60 & is.null(max.lag))  max.lag =  floor(6*log10(num))
-  if (max.lag > (num-1)) max.lag = floor(6*log10(num)*(num<60) + (10+sqrt(num))*(num>59))
+   max.lag = min(max.lag, num - 1)  
   if (is.null(main)) main = paste("Series: ",deparse(substitute(series)))
 
   ACF  = acf(series, lag.max=max.lag, plot=FALSE, na.action = na.action,...)$acf[-1]
@@ -19,12 +19,12 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action=na.pas
    LAG  = (1:max.lag)/xfreq
    old.par <- par(no.readonly = TRUE)
    if (is.null(ylim)) { 
-    minA=min(ACF)  
-    maxA=max(ACF)
-    minP=min(PACF)
-    maxP=max(PACF)
-    minu=min(minA,minP,L)-.01
-    maxu=min(max(maxA+.1, maxP+.1), 1)
+    minA = min(ACF, na.rm = TRUE)
+    maxA = max(ACF, na.rm = TRUE)
+    minP = min(PACF)
+    maxP = max(PACF)
+    minu = min(minA,minP,L)-.01
+    maxu = min(max(maxA+.1, maxP+.1), 1)
     ylim = c(minu,maxu)
    }
   par(mfrow=c(2,1), cex.main=1) 

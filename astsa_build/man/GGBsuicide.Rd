@@ -15,7 +15,10 @@ Number of days between suicides on the Golden Gate Bridge from 1999 to 2009
 For the period 1999-2009, the time  (in units of days) between suicides from the Golden Gate Bridge in California as documented by the medical examiner's office in Marin County. There were 224 suicides during this 11 year period.  
 }
 \source{
-Mackenzie, D. W., Lester, D., Manson, R.,  Yeh, C. (2016). Do suicides from the golden gate bridge cluster? Psychological Reports, 118(1), 70-73.
+Kindly provided by David Lester, Distinguished Professor of Psychology, Emeritus, Stockton University, in a private communication. 
+    
+The data are used in:\cr
+Mackenzie, D. W., Lester, D., Manson, R., Yeh, C. (2016). Do suicides from the golden gate bridge cluster? Psychological Reports, 118(1), 70-73.
 }
 \references{You can find demonstrations of  astsa capabilities at  
 \href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.

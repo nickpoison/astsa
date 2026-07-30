@@ -2,6 +2,11 @@ arma.check <-
 function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redtol=.1, 
               plot.it=FALSE, ...)
 {
+ # normalize sentinels: accept NULL as well as 0 for "no AR/MA terms",
+ # so ar/ma behave consistently with sar/sma
+   if (is.null(ar)) ar <- 0
+   if (is.null(ma)) ma <- 0
+
    check.c <- 0
    check.i <- 0 
  # check causality
@@ -19,7 +24,7 @@ function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redtol=.1,
    Po = length(sar)
    Qo = length(sma)
  # check if S is specified, if not set it to 12
-   if ( (Po + Qo > 0) & is.null(S)) { 
+   if ( (Po + Qo > 0) && is.null(S)) { 
     S = 12
     cat("No seasonal period was entered so it has been set to S = 12\n") 
    }
@@ -45,7 +50,10 @@ function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redtol=.1,
 ### end if not causal and invertible
     if (check.c < 1) cat("The model is causal.\n") 
     if (check.i < 1) cat("The model is invertible.\n")
-    if (check.c + check.i > 0) return(cat('NOTE: Redundancy checked only for causal and invertible models\n'))
+    if (check.c + check.i > 0) {
+      cat('NOTE: Redundancy checked only for causal and invertible models\n')
+      return(invisible(NULL))
+    }
 ###
 
 #### now check redundancy  
@@ -57,13 +65,13 @@ function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redtol=.1,
     }
 
    red.count = 0
-   for (i in 1:ar.order) {
+   for (i in seq_len(ar.order)) {
     if ( (ar[1] == 0 && ar.order == 1) || (ma[1] == 0 && ma.order == 1) )  break
     if(any(abs(1/z.ar[i]-1/z.ma) <= redtol)) 
         {cat("\nWARNING: (Possible) Parameter Redundancy", "\n"); red.count=1; break}
    }
 
-   for (i in 1:Po) {
+   for (i in seq_len(Po)) {
     if ( is.null(sar) || is.null(sma) )  break
     if(any(abs(1/polyroot(SAR)[i]-1/polyroot(SMA)) <= redtol)) 
         {cat("\nWARNING: (Possible) Seasonal Parameter Redundancy", "\n"); red.count=1; break}
@@ -74,8 +82,8 @@ function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redtol=.1,
       cat("\nIt looks like that ARMA model has (approximate) common factors.\nThis means that the model is (possibly) over-parameterized.\nYou might want to try again.\n")
       } else  
       if (redtol >= .1) { cat("That's a very nice ARMA model!\n")
-      } else 
-      if (redtol <.1) { cat("Since you lowered the redundancy tolerance, the model may be very nice,\nbut over-parameterization is still a possibility!\n")
+      } else { 
+        cat("Since you lowered the redundancy tolerance, the model may be very nice,\nbut over-parameterization is still a possibility!\n")
     }
 
    if (plot.it) {
@@ -85,7 +93,7 @@ function(ar=0, ma=0, sar=NULL, sma=NULL, S=NULL, redtol=.1,
 } # end
 
 .plotit <-
-function(z.ar=z.ar, z.ma=z.ma, redtol=redtol, ...)
+function(z.ar, z.ma, redtol, ...)
 {
   if (length(z.ar) < 1) z.ar=NULL
   if (length(z.ma) < 1) z.ma=NULL
@@ -103,7 +111,7 @@ function(z.ar=z.ar, z.ma=z.ma, redtol=redtol, ...)
 
 # 1/roots
   culer = astsa.col(c(4,2), .5)
-  NULL -> leg1 -> leg2
+  leg1 <- leg2 <- NULL
   if (!is.null(z.ar)) {
    arrows(x0 = 0, y0 = 0, x1 = Re(1/z.ar), y1 = Im(1/z.ar), col = culer[1], lwd=3, length=.12)
    leg1 = 'AR'}
@@ -115,15 +123,11 @@ function(z.ar=z.ar, z.ma=z.ma, redtol=redtol, ...)
 legend('topright', pch=15, legend=c(leg1,leg2), col=culer, pt.cex=1.5, bty='n')
 
 # plot redundancy tolerance
-  for (i in 1:length(z.ar)){
-   if (is.null(z.ar)) break
+  for (i in seq_along(z.ar)){
    symbols(Re(1/z.ar[i]), Im(1/z.ar[i]), circles=redtol, add=TRUE, inches=FALSE, fg=culer[1])
   }
-  for (i in 1:length(z.ma)) {
-   if (is.null(z.ma)) break
+  for (i in seq_along(z.ma)) {
    symbols(Re(1/z.ma[i]), Im(1/z.ma[i]), circles=redtol, add=TRUE, inches=FALSE, fg=culer[2])
   }
 
 }  # end
-
-

@@ -6,9 +6,9 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
   num       = length(series)
 
   if (num < 3) stop("More than 2 observations are needed")
-  if (num > 59 & is.null(max.lag))  max.lag = max(ceiling(10+sqrt(num)), 4*xfreq) 
-  if (num < 60 & is.null(max.lag))  max.lag =  floor(6*log10(num))
-  if (max.lag > (num-1)) max.lag = floor(6*log10(num)*(num<60) + (10+sqrt(num))*(num>59))
+  if (num > 59 & is.null(max.lag)) max.lag = max(ceiling(10 + sqrt(num)), 4*xfreq)
+  if (num < 60 & is.null(max.lag)) max.lag = floor(6*log10(num))
+   max.lag = min(max.lag, num - 1)   
   if (is.null(main)) main = paste("Series: ",deparse(substitute(series)))
 
   if (pacf) {
@@ -22,8 +22,8 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, pacf=FALSE,
   U = (-1/num) + (2/sqrt(num))
   L = (-1/num) - (2/sqrt(num))
   if (is.null(ylim)) { 
-   minA = min(ACF)
-   maxA = max(ACF)
+   minA = min(ACF, na.rm = TRUE)
+   maxA = max(ACF, na.rm = TRUE)
    minu = min(minA, L)-.01
    maxu = min(maxA+.2, 1)
    ylim = c(minu,maxu) 
