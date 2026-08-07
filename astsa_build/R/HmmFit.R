@@ -1,13 +1,13 @@
 ## ================================================================
 ## HmmFit.R
 ##
-## Poisson and Normal Hidden Markov Models for a count or
+## Poisson- and Normal-emission Hidden Markov Models for a count or
 ## continuous time series, fit by EM with k-means-based automatic
 ## initialization, randomized-restart perturbations, and optional
 ## parametric bootstrap or Hessian-based SEs. Also includes
 ## AIC/BIC (fit$AIC, fit$BIC) for comparing across m.
 ##
-## usage
+## Public entry point:
 ##   HmmFit(y, m, family = c("pois", "norm"), ...)
 ## ================================================================
 
@@ -51,8 +51,8 @@
 
 
 ## ------------------------------------------------------------
-## .central_diff_jacobian: finite-difference Jacobian of a
-## VECTOR-valued function.
+## .central_diff_jacobian: Used for the delta-method step in
+## se = "hessian" 
 ## ------------------------------------------------------------
 .central_diff_jacobian <- function(f, x, h = 1e-4) {
   fx <- f(x)
@@ -75,7 +75,7 @@
   if (is.null(strength)) strength <- runif(1, 0.1, 0.7)
   Gnew <- matrix(0, m, m)
   for (i in 1:m) {
-    rand_row  <- rgamma(m, shape = 1)          # a draw from Dirichlet(1,...,1), i.e. uniform on the simplex
+    rand_row  <- rgamma(m, shape = 1)      # a draw from Dirichlet(1,...,1), i.e. uniform on the simplex
     rand_row  <- rand_row / sum(rand_row)
     Gnew[i, ] <- (1 - strength) * Gamma0[i, ] + strength * rand_row
     Gnew[i, ] <- Gnew[i, ] / sum(Gnew[i, ])    # renormalize defensively against floating-point drift
@@ -84,12 +84,9 @@
 }
 
 
-## ================================================================
-## Dispatcher
-## ================================================================
 
 ## ------------------------------------------------------------
-## HmmFit: the single public entry point.
+## HmmFit: (entry point)
 ## y      : time series (counts for "pois", continuous for "norm")
 ## m      : number of states
 ## family : "pois" (default) or "norm"
@@ -103,16 +100,35 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 }
 
 
+## ================================================================
+## Poisson HMM  (unchanged from the original HmmPois.R, aside from
+## renaming the entry point to .HmmPois -- see HmmFit() below)
+## ================================================================
+
 ## ------------------------------------------------------------
-.HmmPois <- function(y, m = 2, n_perturb = 5,
+## .HmmPois
+## Automatically initializes lambda0/Gamma0/delta0 via k-means,
+## fits by EM, and tries a few perturbations of the starting
+## point in case the k-means partition was slightly awkward.
+## ------------------------------------------------------------
+.HmmPois <- function(y, m = 2, n_perturb = 5, start = NULL,
                           se = c("hessian", "boot", "none"), B = 200,
                           boot_n_perturb = 1, ...) {
 
   se <- match.arg(se)
   y <- as.numeric(y)       # strip any ts attributes if there
-  init <- .auto_init_pois_hmm(y, m)
 
-  ## fit at the automatic starting point
+  if (!is.null(start)) {
+    if (is.null(start$lambda0) || is.null(start$Gamma0)) {
+      stop("start must include lambda0 and Gamma0")
+    }
+    init <- list(lambda0 = start$lambda0, Gamma0 = start$Gamma0,
+                 delta0  = if (is.null(start$delta0)) rep(1 / m, m) else start$delta0)
+  } else {
+    init <- .auto_init_pois_hmm(y, m)
+  }
+
+  ## fit at the starting point
   best <- .pois_hmm_em(y, m,
                         lambda0 = init$lambda0,
                         Gamma0  = init$Gamma0,
@@ -133,7 +149,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
   best$init <- init
 
-  ## AIC/BIC 
+  ## AIC/BIC
   n <- length(y)
   best$npar <- m + m * (m - 1) + (m - 1)
   best$AIC  <- -2 * best$loglik + 2 * best$npar
@@ -152,12 +168,6 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
 ## ------------------------------------------------------------
 ## .pois_hmm_em: core EM engine for an m-state Poisson HMM
-##
-## y        : count time series
-## m        : number of states
-## lambda0  : starting rates (length m)
-## Gamma0   : starting transition matrix (m x m, rows sum to 1)
-## delta0   : starting initial-state distribution (length m)
 ## ------------------------------------------------------------
 .pois_hmm_em <- function(y, m = 2,
                           lambda0 = NULL,
@@ -234,9 +244,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
 
 ## ------------------------------------------------------------
-## .auto_init_pois_hmm: data-driven starting values for lambda0,
-## Gamma0, and delta0 via k-means clustering of the counts
-## (quantile binning fallback for very small samples).
+## .auto_init_pois_hmm: data-driven starting values
 ## ------------------------------------------------------------
 .auto_init_pois_hmm <- function(y, m = 2) {
   n <- length(y)
@@ -287,8 +295,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
 
 ## ------------------------------------------------------------
-## .pois_hmm_hessian_se: asymptotic SEs/CIs for lambda (and, as a
-## bonus, for Gamma) from the observed information at convergence.
+## .pois_hmm_hessian_se: asymptotic SEs/CIs 
 ## ------------------------------------------------------------
 .pois_hmm_hessian_se <- function(fit, y, m = 2) {
   if (!requireNamespace("nlme", quietly = TRUE)) {
@@ -380,9 +387,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
                   ".auto_init_pois_hmm", ".statdist"),
       envir = environment(.pois_hmm_boot)
     )
-    ## independent, statistically sound RNG streams per worker (rather than
-    ## each worker's default time-seeded RNG, which risks correlated draws
-    ## if workers happen to start at close to the same instant)
+    ## independent, statistically sound RNG streams per worker 
     parallel::clusterSetRNGStream(cl)
   }
 
@@ -399,11 +404,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
   if (progress) pb <- txtProgressBar(min = 0, max = B, initial = 0, style = 3)
 
-  ## chunk size controls how often the progress bar updates: one at a time
-  ## when sequential (matches the old, informative per-replicate behavior),
-  ## or one "wave" of n_cores at a time when parallel -- pulling all B
-  ## replicates in a single mclapply/parLapply call would leave the bar
-  ## sitting at 0% until the entire run finishes, then jump straight to 100%
+  ## chunk size controls how often the progress bar updates:  
   chunk_size <- if (n_cores > 1) n_cores else 1
 
   results   <- list()
@@ -448,42 +449,9 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
 
 ## ================================================================
-## Normal HMM  (new -- mirrors the Poisson fitter above, but with
-## a state-specific mean AND standard deviation per state)
-## ================================================================
-
-## ------------------------------------------------------------
-## .HmmNorm
-## Tries two data-driven starting points -- one from clustering on
-## raw values (good when states differ in LEVEL), one from
-## clustering on local rolling variance (good when states differ
-## in SPREAD, e.g. calm/volatile regimes with similar means) --
-## fits by EM from each, and keeps whichever reaches the higher
-## log-likelihood. Also tries a few small perturbations around
-## the winner in case that partition was slightly awkward.
-##
-## y           : continuous time series
-## m           : number of states
-## n_perturb   : number of extra randomized restarts to try
-## order_by    : "mean" (default, state 1 = lowest mean) or "sd"
-##               (state 1 = lowest volatility -- more natural when
-##               means are all similar, e.g. financial regimes)
-## init_method : "auto" (default) tries both initializers below and
-##               keeps the winner. "location" or "volatility" skips
-##               straight to that one -- used internally by
-##               .norm_hmm_boot, which already knows (from the main
-##               fit) which one applies and shouldn't pay to re-discover
-##               it on every one of B replicates. Falls back to
-##               location if the requested one fails outright.
-## se          : "hessian" (default -- asymptotic SEs from the observed
-##               information at convergence, one Hessian evaluation,
-##               comparable to what depmixS4's standardError() reports;
-##               requires 'nlme', usually included with R by default),
-##               "boot" (parametric bootstrap -- slow, B refits), or
-##               "none".
-## ...         : passed through to .norm_hmm_em (e.g. maxiter, tol)
-## ------------------------------------------------------------
-.HmmNorm <- function(y, m = 2, n_perturb = 5,
+## Normal HMM   
+# ================================================================
+.HmmNorm <- function(y, m = 2, n_perturb = 5, start = NULL,
                           se = c("hessian", "boot", "none"), B = 200,
                           boot_n_perturb = 1,
                           order_by = c("mean", "sd"),
@@ -496,20 +464,32 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   y <- as.numeric(y)       # strip any ts attributes if there
   n <- length(y)
 
-  ## Two candidate initializers, because "state" can mean two different
-  ## things for real-valued data: a difference in LEVEL (the usual case --
-  ## e.g. low/medium/high readings) or a difference in SPREAD (e.g. calm
-  ## vs. volatile regimes in returns data, where every state has a mean
-  ## near zero). Clustering on raw values only detects the first kind.
-  ## By default (init_method = "auto") we fit from both and keep whichever
-  ## reaches the higher log-likelihood, so the right choice doesn't need
-  ## to be known ahead of time.
   best        <- NULL
   best_init   <- NULL
   best_method <- NA_character_
   init_loc    <- NULL
   init_vol    <- NULL
 
+  if (!is.null(start)) {
+    ## your own starting values -- skip both automatic initializers
+    if (is.null(start$mu0) || is.null(start$sigma0) || is.null(start$Gamma0)) {
+      stop("start must include mu0, sigma0, and Gamma0")
+    }
+    start_delta0 <- if (is.null(start$delta0)) rep(1 / m, m) else start$delta0
+    best <- .norm_hmm_em(y, m,
+                          mu0 = start$mu0, sigma0 = start$sigma0,
+                          Gamma0 = start$Gamma0, delta0 = start_delta0, ...)
+    best_init   <- list(mu0 = start$mu0, sigma0 = start$sigma0,
+                         Gamma0 = start$Gamma0, delta0 = start_delta0)
+    best_method <- "user"
+
+  } else {
+
+  ## Two candidate initializers, because "state" can mean two different
+  ## things for real-valued data: a difference in LEVEL (the usual case --
+  ## e.g. low/medium/high readings) or a difference in SPREAD (e.g. calm
+  ## vs. volatile regimes in returns data, where every state has a mean
+  ## near zero).  
   if (init_method != "volatility") {
     init_loc <- .auto_init_norm_hmm(y, m)
     fit_loc  <- tryCatch(
@@ -543,9 +523,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
     }
   }
 
-  ## safety net: the requested single method failed outright (e.g. data too
-  ## short for the volatility path, or that EM run errored) -- fall back to
-  ## the location initializer rather than returning nothing
+  ## safety net:  fall back to  the location initializer 
   if (is.null(best)) {
     init_loc <- .auto_init_norm_hmm(y, m)
     best <- .norm_hmm_em(y, m,
@@ -554,18 +532,10 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
     best_init <- init_loc; best_method <- "location"
   }
 
+  } # end of else (auto initializer search) -- skipped entirely if start was supplied
+
   ## a few small perturbations around whichever initializer is currently
-  ## winning, in case that partition was slightly awkward
-  ## (additive jitter for mu, since means can be zero/negative --
-  ## unlike Poisson rates, a multiplicative jitter isn't meaningful here)
-  ## Gamma0 is perturbed too, not just mu/sigma -- see .perturb_gamma for
-  ## why that matters: the clustering-based Gamma0 is always diagonal-
-  ## dominant by construction (volatility clusters in time), so without
-  ## this, restarts could never discover a qualitatively different
-  ## transition structure (e.g. a state that's rarely persistent, acting
-  ## as a brief bridge between two others) even if one exists with a
-  ## higher likelihood -- confirmed by direct test on simulated data with
-  ## exactly this kind of structure.
+  ## winning,  .
   jitter_scale <- 0.3 * sd(y)
   for (i in 1:n_perturb) {
     mu_p     <- best_init$mu0 + rnorm(m, 0, jitter_scale)
@@ -582,10 +552,8 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
   ## canonical relabeling: by default state 1 = lowest mean (matches
   ## .HmmPois's convention). If states differ mainly in spread rather
-  ## than level -- e.g. calm/volatile return regimes with near-identical
-  ## means -- ordering by mean is close to arbitrary; order_by = "sd"
-  ## gives state 1 = lowest volatility instead, which is usually the
-  ## more meaningful convention in that case.
+  ## than level ordering by mean is close to arbitrary; order_by = "sd"
+  ## gives state 1 = lowest volatility instead
   ord_final <- if (order_by == "sd") order(best$sigma) else order(best$mu)
   best$mu        <- best$mu[ord_final]
   best$sigma     <- best$sigma[ord_final]
@@ -597,13 +565,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   best$init        <- list(location = init_loc, volatility = init_vol)
   best$init_method <- best_method
 
-  ## AIC/BIC, for comparing different m (e.g. is a 3rd state actually
-  ## worth its extra parameters, or does a simpler m=2 model win once
-  ## you penalize for complexity). Free-parameter count follows the
-  ## usual HMM convention: 2m (mean & SD per state) + m*(m-1) transition
-  ## probabilities (each row sums to 1) + (m-1) initial-state
-  ## probabilities (delta also sums to 1). This matches what software
-  ## like depmixS4 counts.
+  ## AIC/BIC
   best$npar <- 2 * m + m * (m - 1) + (m - 1)
   best$AIC  <- -2 * best$loglik + 2 * best$npar
   best$BIC  <- -2 * best$loglik + log(n) * best$npar
@@ -623,13 +585,6 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 ## ------------------------------------------------------------
 ## .norm_hmm_em: core EM engine for an m-state Normal HMM with
 ## state-specific mean AND standard deviation
-##
-## y       : continuous time series
-## m       : number of states
-## mu0     : starting means (length m)
-## sigma0  : starting SDs (length m)
-## Gamma0  : starting transition matrix (m x m, rows sum to 1)
-## delta0  : starting initial-state distribution (length m)
 ## ------------------------------------------------------------
 .norm_hmm_em <- function(y, m = 2,
                           mu0     = NULL,
@@ -655,8 +610,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
   delta <- if (is.null(delta0)) rep(1 / m, m) else delta0
 
-  ## floor for sigma, scaled to the data rather than a fixed constant --
-  ## see note at the M-step below for why this matters for Gaussian emissions
+  ## floor for sigma, scaled to the data rather 
   sigma_floor <- max(1e-6, 1e-4 * sd(y))
 
   oldloglik <- -Inf
@@ -703,11 +657,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
     mu_new     <- colSums(gam * y) / colSums(gam)
     ## weighted per-state variance: sum_t gam[t,j]*(y_t - mu_j)^2 / sum_t gam[t,j]
     sigma_new  <- sqrt(colSums(gam * (outer(y, mu_new, "-"))^2) / colSums(gam))
-    ## floor scaled to the data (not a fixed constant): a Gaussian's density
-    ## spikes toward infinity as sigma -> 0, so on any data scale a single
-    ## near-duplicate point can make a state's sigma collapse and "win" via
-    ## an artificially inflated likelihood. sd(y) is computed once outside
-    ## the loop and passed in as sigma_floor.
+    ## floor scaled to the data (not a fixed constant)
     sigma_new  <- pmax(sigma_new, sigma_floor)
     delta_new  <- gam[1, ]
 
@@ -725,7 +675,6 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 ## ------------------------------------------------------------
 ## .auto_init_norm_hmm: data-driven starting values for mu0,
 ## sigma0, Gamma0, and delta0 via k-means clustering of y
-## (quantile binning fallback for very small samples).
 ## ------------------------------------------------------------
 .auto_init_norm_hmm <- function(y, m = 2) {
   n <- length(y)
@@ -769,11 +718,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
 ## ------------------------------------------------------------
 ## .auto_init_norm_hmm_vol: a SECOND initializer for cases where
-## states differ mainly in SPREAD rather than level -- e.g. calm
-## vs. volatile regimes in returns data, where all states have a
-## mean near zero. Clustering on the raw values (as
-## .auto_init_norm_hmm does) is nearly blind to this kind of
-## structure, since it only looks at location.
+## states differ mainly in SPREAD rather than level
 ## ------------------------------------------------------------
 .auto_init_norm_hmm_vol <- function(y, m = 2, w = NULL) {
   n <- length(y)
@@ -827,9 +772,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
 
 ## ------------------------------------------------------------
-## .norm_hmm_hessian_se: asymptotic SEs/CIs for mu and sigma (and,
-## as a bonus, for Gamma) from the observed information at
-## convergence.
+## .norm_hmm_hessian_se: asymptotic SEs/CIs for mu and sigma 
 ## ------------------------------------------------------------
 .norm_hmm_hessian_se <- function(fit, y, m = 2) {
   if (!requireNamespace("nlme", quietly = TRUE)) {
@@ -913,8 +856,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   dots$order_by <- order_by       # keep replicate fits in the same convention
 
   ## the main fit already determined whether states differ mainly in
-  ## level or in spread (fit$init_method) -- no need to re-discover that
-  ## on every one of B replicates, so lock replicates to the same method
+  ## level or in spread (fit$init_method) 
   if (!is.null(fit$init_method) && !is.na(fit$init_method)) {
     dots$init_method <- fit$init_method
   }

@@ -8,7 +8,7 @@ standard errors.
 }
 \usage{
 HmmFit(y, m = 2, family = c("pois", "norm"),
-       n_perturb = 5, se = c("hessian", "boot", "none"),
+       n_perturb = 5, start = NULL, se = c("hessian", "boot", "none"),
        B = 200, n_cores = 1, order_by = c("mean", "sd"), \dots)
 }
 \arguments{
@@ -17,7 +17,13 @@ HmmFit(y, m = 2, family = c("pois", "norm"),
   \item{m}{Number of states.}
   \item{family}{\code{"pois"} or \code{"norm"}.}
   \item{n_perturb}{Number of randomized restarts (both emission
-    parameters and the transition matrix are perturbed).}
+    parameters and the transition matrix are perturbed). Set to
+    \code{0} to fit \code{start} exactly, with no perturbation.}
+  \item{start}{Optional list of your own starting values, skipping
+    the automatic initializer. \code{family = "pois"}: needs
+    \code{lambda0}, \code{Gamma0} (\code{delta0} optional, defaults
+    to uniform). \code{family = "norm"}: needs \code{mu0},
+    \code{sigma0}, \code{Gamma0} (\code{delta0} optional).}
   \item{se}{\code{"hessian"} (default; asymptotic SEs from the
     observed information, requires \pkg{nlme}), \code{"boot"}
     (parametric bootstrap, slow), or \code{"none"}.}
@@ -43,13 +49,38 @@ A list with:
   \item{se}{If requested, a data frame of SEs/CIs.}
 }
 \examples{
-
 \dontrun{
+
+##-- Poisson --##
 fit <- HmmFit(EQcount, m = 2, family = "pois")
 fit$lambda; fit$Pmatrix; fit$se
+state <- apply(fit$posterior, 1, which.max)   # predicted state
+post  <- fit$posterior                        # n x 2 smoothed state probs  
+# graphics 
+pi1 <- fit$pis[1];  pi2 <- fit$pis[2]   # stationary probs
+layout(matrix(c(1, 2, 1, 3), 2, 2), heights = c(1.2, 1))
+tsplot(EQcount)
+points(EQcount, bg = 6 * state - 2, pch = 21, cex = 1.5)
+tsplot(ts(post[, 2], start = 1900), ylab = expression(hat(pi)[~2] * '(t | n)'))
+abline(h = .5, col = 2, lty = 6)
+hist(EQcount, breaks = 30, prob = TRUE, main = NA, col = gray(.9))
+xvals <- seq(1, 45)
+u1 <- pi1 * dpois(xvals, fit$lambda[1])
+u2 <- pi2 * dpois(xvals, fit$lambda[2])
+lines(xvals, u1, col = 4, lwd = 2)
+lines(xvals, u2, col = 2, lwd = 2)
 
+#-- Normal --##
 fit <- HmmFit(sp500w, m = 2, family = "norm", order_by = "sd")
 fit$mu; fit$sigma; fit$se
+
+# use your own kind of starting values
+fit <- HmmFit(sp500w, m = 3, family = "norm", order_by = "sd", n_perturb = 0,
+            start = list(mu0 = c(.004, -.034, -.003),
+                        sigma0 = c(.014, .009, .044),
+                        Gamma0 = matrix(c(.945,.055,.000,
+                                          .739,.000,.261,
+                                          .032,.027,.942), 3, 3, byrow = TRUE)))
 }
 }
 \keyword{ts}
