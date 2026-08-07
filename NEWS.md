@@ -63,7 +63,7 @@ __v2.5.1__:
 
 - added data set `GGBsuicide`: Number of days between suicides on the Golden Gate Bridge from 1999 to 2009 and `UnempRate2`: an update to `UnempRate` up to Feb 2026.
 
-- added `HmmPois` to do hidden Markov models for count time series via Poisson mixtures - we used to use `depmix` but it is kaput. 
+- added `HmmFit` to do hidden Markov models for Poisson count time series or for Normal continuous-valued models. 
 
 <br/> 
 
