@@ -60,18 +60,19 @@ it's more than just data ... it's a palindrome
      * [time series diagnostics if it ain't ARMA](#residual-diagnostics)
   * [9. EM Algorithm and Missing Data](#9-em-algorithm-and-missing-data)
      * [Parameter Constraints](#parameter-constraints)
-  * [10. Bayesian Techniques](#10-bayesian-techniques)
+  * [10. Hidden Markov Models](#10-hidden-markov-models)   
+  * [11. Bayesian Techniques](#11-bayesian-techniques)
       * [AR Models](#ar-models)
       * [Gibbs Sampling for State Space Models - the FFBS Algorithm](#gibbs-sampling-for-linear-state-space-models)
       * [Effective Sample Size (ESS)](#ess)
-  * [11. Stochastic Volatility Models](#11-stochastic-volatility-models)  
+  * [12. Stochastic Volatility Models](#12-stochastic-volatility-models)  
       * [Bayesian](#bayesian)
       * [Classical](#classical) 
-  * [12. Arithmetic](#12-arithmetic)
+  * [13. Arithmetic](#13-arithmetic)
      * [ARMAtoAR](#armatoar)
      * [Matrix Powers](#matrix-powers)
      * [Polynomial Multiplication](#polynomial-multiplication)
-  * [13. The Spectral Envelope](#13-the-spectral-envelope)
+  * [14. The Spectral Envelope](#14-the-spectral-envelope)
      * [DNA and the Spectral Envelope](#dna-and-the-spectral-envelope)
      * [Real-Valued Series, Optimal Transformations, and the Spectral Envelope](#optimal-transformations-and-the-spectral-envelope)
 
@@ -1985,7 +1986,88 @@ R  # (actual .01)
 
 ---
 
-## 10. Bayesian Techniques
+## 10. Hidden Markov Models ###########################################
+
+#### &#127381;&#127381; NEW &#127381;&#127381;
+
+_There is now `HmmFit` to  fit an m-state Poisson or Normal HMM to a time series via EM - we did this because `depmixS4` is gone and there are HMM examples in Shumway & Stoffer_
+
+First a Poisson HMM (it's the default - starting values need not be specified)
+```r
+fit <- HmmFit(EQcount, m = 2, family = "pois")  
+
+fit$lambda  
+#  [1] 15.42082 26.01837
+fit$Pmatrix
+#            [,1]       [,2]
+#  [1,] 0.9283748 0.07162519
+#  [2,] 0.1190371 0.88096287
+fit$se
+#    state   lambda se_lambda  lower95  upper95
+#  1     1 15.42082 0.7171534 14.01520 16.82644
+#  2     2 26.01837 1.3824371 23.30879 28.72794
+ 
+state <- apply(fit$posterior, 1, which.max)   # predicted state
+post  <- fit$posterior                        # n x 2 smoothed state probs  
+pi1   <- fit$pis[1];  pi2 <- fit$pis[2]       # stationary probs
+
+# graphics 
+layout(matrix(c(1, 2, 1, 3), 2, 2), heights = c(1.2, 1))
+tsplot(EQcount)
+points(EQcount, bg = 6 * state - 2, pch = 21, cex = 1.5)
+tsplot(ts(post[, 2], start = 1900), ylab = expression(hat(pi)[~2] * '(t | n)'))
+abline(h = .5, col = 2, lty = 6)
+hist(EQcount, breaks = 30, prob = TRUE, main = NA, col = gray(.9))
+xvals <- seq(1, 45)
+u1 <- pi1 * dpois(xvals, fit$lambda[1])
+u2 <- pi2 * dpois(xvals, fit$lambda[2])
+lines(xvals, u1, col = 4, lwd = 2)
+lines(xvals, u2, col = 2, lwd = 2)
+```
+
+<img src="figs/hmmfitp.png" alt="blood2"  width="70%"><br/>
+
+<br/>
+
+Normal HMM
+
+```r
+fit <- HmmFit(sp500w, m = 2, family = "norm", order_by = "sd")
+fit$mu  fit$se
+#  [1]  0.002627499 -0.003921735 
+fit$sigma
+#  [1] 0.01596527 0.04369500   
+fit$se   
+#    state           mu        se_mu    mu_lower95  mu_upper95      sigma     se_sigma
+#  1     1  0.002627499 0.0008873151  0.0008883609 0.004366636 0.01596527 0.0008592816
+#  2     2 -0.003921735 0.0038169477 -0.0114029524 0.003559482 0.04369500 0.0038431007
+#    sigma_lower95 sigma_upper95
+#  1    0.01428108    0.01764946
+#  2    0.03616252    0.05122747
+state <- apply(fit$posterior, 1, which.max)   
+post  <- fit$posterior                        
+pi1   <- fit$pis[1];  pi2 <- fit$pis[2] 
+# graphics      
+layout(matrix(c(1, 2, 1, 3), 2, 2), heights = c(1.2, 1))
+y = sp500w
+t = timex(y)
+tsplot(t, y, col=8)
+text(t, y, col=state+2, labels=state, cex=1.2)
+tsplot(t, post[, 2], ylab = expression(hat(pi)[~2] * '(t | n)'))
+abline(h = .5, col = 2, lty = 6)
+hist(y, breaks = 30, prob = TRUE, main = NA, col = gray(.9))
+x = seq(-.15,.15, by=.001)
+lines(x, pi1*dnorm(x, fit$mu[1], fit$sigma[1]), col=3, lwd=2)
+lines(x, pi2*dnorm(x, fit$mu[2], fit$sigma[2]), col=4, lwd=2)
+```
+
+<img src="figs/hmmfitn.png" alt="blood2"  width="70%"><br/>
+
+[<sub>top</sub>](#table-of-contents)
+
+---
+
+## 11. Bayesian Techniques
 
 &#x1F4A1; We've added some scripts to handle Bayesian analysis. So far we have
 
@@ -2304,7 +2386,7 @@ apply(u, 2, ESS)
 ---
 
 
-## 11. Stochastic Volatility Models 
+## 12. Stochastic Volatility Models 
 
 ####  &nbsp;&nbsp; &#128111;`astsa` has classical and Bayesian versions ... 
 
@@ -2400,7 +2482,7 @@ and to ignore the feedback term, just leave it out of the call (but why would yo
 
 
 
-## 12. Arithmetic
+## 13. Arithmetic
 
 &#x1F4A1; The package has a few scripts to help with items related to time series and stochastic processes.
 
@@ -2565,7 +2647,7 @@ which is
 [<sub>top</sub>](#table-of-contents)
 
 ---
-## 13. The Spectral Envelope
+## 14. The Spectral Envelope
 
 <br/>
 
