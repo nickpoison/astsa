@@ -1,15 +1,27 @@
 ## ================================================================
 ## HmmFit.R
 ##
-## Poisson- and Normal-emission Hidden Markov Models for a count or
-## continuous time series, fit by EM with k-means-based automatic
-## initialization, randomized-restart perturbations, and optional
-## parametric bootstrap or Hessian-based SEs. Also includes
-## AIC/BIC (fit$AIC, fit$BIC) for comparing across m.
-##
-## Public entry point:
-##   HmmFit(y, m, family = c("pois", "norm"), ...)
+## Poisson and Normal Hidden Markov Models 
+## EM with k-means-based automatic initialization, 
+## randomized-restart perturbations, and optional
+## Hessian-based or parametric bootstrap  SEs. 
 ## ================================================================
+
+
+## ------------------------------------------------------------
+## HmmFit: (entry point)
+## y      : time series (counts for "pois", continuous for "norm")
+## m      : number of states
+## family : "pois" (default) or "norm"
+## ...    : passed through to .HmmPois()/.HmmNorm()
+## ------------------------------------------------------------
+HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
+  family <- match.arg(family)
+  switch(family,
+         pois = .HmmPois(y, m = m, ...),
+         norm = .HmmNorm(y, m = m, ...))
+}
+
 
 
 ## ------------------------------------------------------------
@@ -84,26 +96,6 @@
 }
 
 
-
-## ------------------------------------------------------------
-## HmmFit: (entry point)
-## y      : time series (counts for "pois", continuous for "norm")
-## m      : number of states
-## family : "pois" (default) or "norm"
-## ...    : passed through to .HmmPois()/.HmmNorm()
-## ------------------------------------------------------------
-HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
-  family <- match.arg(family)
-  switch(family,
-         pois = .HmmPois(y, m = m, ...),
-         norm = .HmmNorm(y, m = m, ...))
-}
-
-
-## ================================================================
-## Poisson HMM  (unchanged from the original HmmPois.R, aside from
-## renaming the entry point to .HmmPois -- see HmmFit() below)
-## ================================================================
 
 ## ------------------------------------------------------------
 ## .HmmPois

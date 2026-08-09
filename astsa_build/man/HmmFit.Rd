@@ -48,6 +48,34 @@ A list with:
   \item{AIC, BIC, npar}{Information criteria and parameter count.}
   \item{se}{If requested, a data frame of SEs/CIs.}
 }
+
+\section{Starting Values}{
+  Starting values are optional.  
+  When supplying \code{start} manually, the following elements are
+  used to initialize the EM algorithm:
+  \describe{
+    \item{\code{lambda0}}{(\code{family = "pois"}) Numeric vector of
+      length \code{m} giving starting values for the Poisson rate in
+      each state.}
+    \item{\code{mu0}}{(\code{family = "norm"}) Numeric vector of
+      length \code{m} giving starting values for the mean in each
+      state.}
+    \item{\code{sigma0}}{(\code{family = "norm"}) Numeric vector of
+      length \code{m} giving starting values for the standard
+      deviation in each state. Must be positive.}
+    \item{\code{Gamma0}}{An \code{m x m} matrix of starting
+      transition probabilities. Each row must sum to 1.}
+    \item{\code{delta0}}{Optional numeric vector of length \code{m}
+      giving the starting initial-state distribution. Must sum to 1.
+      If omitted, defaults to a uniform distribution,
+      \code{rep(1/m, m)}.}
+  }
+  These values are only a starting point for the EM iterations
+  (further randomized by \code{n_perturb}, unless it is set to
+  \code{0}); the fitted values are returned in the output list
+  (\code{lambda}/\code{mu}, \code{sigma}, \code{Pmatrix}, \code{delta}).
+}
+
 \examples{
 \dontrun{
 
