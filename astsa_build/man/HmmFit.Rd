@@ -9,7 +9,8 @@ standard errors.
 \usage{
 HmmFit(y, m = 2, family = c("pois", "norm"),
        n_perturb = 5, start = NULL, se = c("hessian", "boot", "none"),
-       B = 200, n_cores = 1, order_by = c("mean", "sd"), \dots)
+       B = 200, n_cores = 1, order_by = c("mean", "sd"),
+       init_method = c("auto", "location", "volatility"), \dots)
 }
 \arguments{
   \item{y}{Numeric vector. Counts for \code{family = "pois"},
@@ -33,8 +34,20 @@ HmmFit(y, m = 2, family = c("pois", "norm"),
   \item{order_by}{State ordering: \code{"mean"} (default) or
     \code{"sd"} (useful when states differ mainly in spread, e.g.
     volatility regimes).}
-  \item{\dots}{Passed to the EM engine (\code{maxiter}, \code{tol}) or,
-    for \code{family = "norm"}, \code{init_method}.}
+  \item{init_method}{\code{family = "norm"} only; if supplied with
+    \code{family = "pois"} a warning is issued and it is ignored
+    (there is only one automatic initializer for the Poisson case).
+    Also unused if \code{start} is supplied. Controls which automatic
+    starting-value
+    strategy is used -- see \strong{Automatic Initialization} below.
+    \code{"auto"} (default) tries both \code{"location"} and
+    \code{"volatility"} and keeps whichever converges to the higher
+    log-likelihood; \code{"location"} or \code{"volatility"} forces
+    one directly, which is faster and useful once you know which
+    kind of regime structure your series has.}
+  \item{\dots}{Passed to the EM engine: \code{maxiter} (default 500)
+    and \code{tol} (default \code{1e-8}), the iteration cap and
+    log-likelihood convergence tolerance.}
 }
 \value{
 A list with:
@@ -50,9 +63,11 @@ A list with:
 }
 
 \section{Starting Values}{
-  Starting values are optional.  
-  When supplying \code{start} manually, the following elements are
-  used to initialize the EM algorithm:
+  Starting values are optional -- if \code{start} is omitted,
+  \code{HmmFit} builds its own from the data (see
+  \strong{Automatic Initialization} below). When supplying
+  \code{start} manually, the following elements are used to
+  initialize the EM algorithm:
   \describe{
     \item{\code{lambda0}}{(\code{family = "pois"}) Numeric vector of
       length \code{m} giving starting values for the Poisson rate in
@@ -74,6 +89,94 @@ A list with:
   (further randomized by \code{n_perturb}, unless it is set to
   \code{0}); the fitted values are returned in the output list
   (\code{lambda}/\code{mu}, \code{sigma}, \code{Pmatrix}, \code{delta}).
+}
+
+\section{Automatic Initialization}{
+  When \code{start} is not supplied, \code{HmmFit} derives starting
+  values from \code{y} itself rather than using fixed defaults (e.g.
+  quantile-spaced means and a diagonal-heavy \code{Gamma}), because a
+  data-driven starting point lands EM much closer to a good local
+  maximum than an arbitrary one, particularly once \code{m > 2}.
+
+  \strong{Hard clustering step.} The core idea is the same for both
+  families: run \code{\link{kmeans}} on a 1-D summary of the series
+  with \code{centers = m} and \code{nstart = 25} (25 random starts of
+  k-means itself, to avoid a bad k-means initialization compounding
+  into a bad HMM initialization), producing a hard state label for
+  every time point. The cluster centers become the starting emission
+  parameters, and empirical transition counts between consecutive
+  hard labels (with a small \code{+0.5} pseudo-count added to every
+  cell, so no row of \code{Gamma0} is ever exactly zero) become
+  \code{Gamma0}; the marginal label frequencies become \code{delta0}.
+  Clusters are always relabeled by sorted center so that state 1 is
+  the lowest-rate/lowest-mean state, matching the package's
+  convention that \code{lambda}/\code{mu} come back sorted.
+
+  \strong{What is clustered differs by family/method}:
+  \describe{
+    \item{\code{family = "pois"}}{k-means runs directly on \code{y}.
+      There is only one initializer for the Poisson case, so
+      \code{init_method} does not apply here; passing it anyway
+      triggers a warning and is otherwise ignored.}
+    \item{\code{family = "norm"}, \code{init_method = "location"}}{
+      k-means runs directly on \code{y}, exactly as in the Poisson
+      case. This is the right choice when states differ mainly in
+      \emph{level} -- e.g. low/medium/high readings.}
+    \item{\code{family = "norm"}, \code{init_method = "volatility"}}{
+      k-means instead runs on the log of a rolling local variance of
+      \code{y} (window width \code{w = max(3, min(10, n / (2*m)))}).
+      This targets states that differ mainly in \emph{spread} rather
+      than level -- e.g. calm vs. turbulent regimes in a returns
+      series like \code{sp500w}, where every state has a mean near
+      zero and the log transform is used because variances are
+      skewed and strictly positive. This initializer is skipped
+      entirely if \code{n < 5*m} (too few points per state to
+      estimate a rolling variance sensibly).}
+    \item{\code{family = "norm"}, \code{init_method = "auto"}
+      (the default)}{both of the above are tried, each is run
+      through the EM engine, and whichever reaches the higher
+      log-likelihood is kept as the base starting point before
+      \code{n_perturb} restarts are layered on top. This costs one
+      extra EM run but removes the need to know in advance whether a
+      series' regimes differ in level or in spread.}
+  }
+
+  \strong{Small-sample fallback.} If \code{n < 5*m} (too few
+  observations per state for k-means to be trustworthy),
+  \code{HmmFit} instead bins \code{y} into \code{m} empirical
+  quantile groups via \code{\link{cut}} and uses the within-bin means
+  (and, for \code{family = "norm"}, within-bin SDs) as starting
+  values, with the same pseudo-count treatment for \code{Gamma0}.
+
+  \strong{Randomized restarts (\code{n_perturb}).} Because EM/Baum-Welch
+  only guarantees convergence to \emph{a} local maximum, not the
+  global one, \code{HmmFit} does not stop at the single k-means-based
+  starting point. It additionally fits \code{n_perturb} perturbed
+  variants (default 5) built by jittering the winning initializer:
+  emission parameters are jittered multiplicatively
+  (\code{lambda}/\code{sigma}, by a \code{runif(m, 0.7, 1.3)} factor)
+  or additively on the natural scale (\code{mu}, by mean-zero normal
+  noise scaled to \code{0.3 * sd(y)}), and each row of \code{Gamma0}
+  is mixed with a fresh random point on the simplex (a
+  \code{Dirichlet(1,...,1)} draw) at a random mixing strength between
+  \code{0.1} and \code{0.7} via the internal \code{.perturb_gamma()}
+  helper. Every perturbed fit that converges to a higher
+  log-likelihood than the current best replaces it, so the final
+  result is the best of \code{1 + n_perturb} EM runs (times 2 if
+  \code{init_method = "auto"}). Set \code{n_perturb = 0} to fit the
+  automatic (or user-supplied \code{start}) initializer exactly, with
+  no restarts -- useful for reproducing a specific fit or when you
+  already trust your starting point (e.g. an exact saddle point you
+  want to test EM's behavior at).
+
+  \strong{Practical guidance.} For quick exploratory fits, the
+  defaults are usually fine. For a final/reported fit, especially
+  with \code{m >= 3}, consider increasing \code{n_perturb}
+  (e.g. to 20-50) and checking that the reported \code{loglik} is
+  stable across re-runs; if it isn't, the likelihood surface likely
+  has multiple competing local maxima and it is worth also trying a
+  hand-chosen \code{start} informed by a plot of the data (as in the
+  three-state \code{sp500w} example below).
 }
 
 \examples{

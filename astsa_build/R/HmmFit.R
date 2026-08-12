@@ -17,9 +17,22 @@
 ## ------------------------------------------------------------
 HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   family <- match.arg(family)
+  dots <- list(...)
+
+  ## init_method only has meaning for family = "norm" (the Poisson case
+  ## has just one automatic initializer, plain k-means on y). Rather than
+  ## silently absorbing it into .pois_hmm_em's ... and doing nothing,
+  ## warn the caller and drop it before dispatching.
+  if (family == "pois" && "init_method" %in% names(dots)) {
+    warning("init_method is only used for family = \"norm\" (there is ",
+            "only one automatic initializer for family = \"pois\"); ",
+            "ignoring init_method for this fit.")
+    dots$init_method <- NULL
+  }
+
   switch(family,
-         pois = .HmmPois(y, m = m, ...),
-         norm = .HmmNorm(y, m = m, ...))
+         pois = do.call(.HmmPois, c(list(y = y, m = m), dots)),
+         norm = do.call(.HmmNorm, c(list(y = y, m = m), dots)))
 }
 
 
@@ -127,8 +140,11 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
                         delta0  = init$delta0, ...)
 
   ## a few small perturbations around it, in case kmeans landed
-  ## on a slightly awkward partition. 
-  for (i in 1:n_perturb) {
+  ## on a slightly awkward partition.
+  ## NOTE: seq_len(n_perturb), not 1:n_perturb -- 1:0 is c(1, 0) in R
+  ## (length 2!), so n_perturb = 0 would silently still run 2 perturbed
+  ## restarts instead of none. seq_len(0) is correctly empty.
+  for (i in seq_len(n_perturb)) {
     lam_p    <- pmax(init$lambda0 * runif(m, 0.7, 1.3), 0.1)
     Gamma0_p <- .perturb_gamma(init$Gamma0, m)
     fit <- tryCatch(
@@ -529,7 +545,12 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   ## a few small perturbations around whichever initializer is currently
   ## winning,  .
   jitter_scale <- 0.3 * sd(y)
-  for (i in 1:n_perturb) {
+  ## NOTE: seq_len(n_perturb), not 1:n_perturb -- 1:0 is c(1, 0) in R
+  ## (length 2!), so n_perturb = 0 would silently still run 2 perturbed
+  ## restarts instead of none. seq_len(0) is correctly empty, which
+  ## matters if you want to test a user-supplied start point (e.g. an
+  ## exact saddle point) with NO perturbation added around it.
+  for (i in seq_len(n_perturb)) {
     mu_p     <- best_init$mu0 + rnorm(m, 0, jitter_scale)
     ord_p    <- order(mu_p)
     sigma_p  <- pmax(best_init$sigma0 * runif(m, 0.7, 1.3), 1e-3)
