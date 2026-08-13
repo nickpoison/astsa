@@ -58,6 +58,12 @@ A list with:
   \item{pis}{Stationary distribution of \code{Pmatrix}.}
   \item{loglik}{Log-likelihood at convergence.}
   \item{posterior}{Smoothed state probabilities (n x m).}
+  \item{innovations}{Data frame of one-step-ahead prediction errors,
+    one row per time point: \code{y}, \code{fitted} (the predictive
+    mean \eqn{E(y_t \mid y_1,\dots,y_{t-1})}), \code{resid}
+    (\code{y - fitted}), \code{var} and \code{sd} (the predictive
+    variance/SD), and \code{std_resid} (\code{resid / sd}). See
+    \strong{Innovations} below.}
   \item{AIC, BIC, npar}{Information criteria and parameter count.}
   \item{se}{If requested, a data frame of SEs/CIs.}
 }
@@ -179,6 +185,36 @@ A list with:
   three-state \code{sp500w} example below).
 }
 
+\section{Innovations}{
+  Alongside the smoothed (in-sample) fit, \code{HmmFit} also reports
+  the \emph{one-step-ahead} prediction errors -- the innovations
+  \eqn{y_t - E(y_t \mid y_1,\dots,y_{t-1})} -- and their conditional
+  variances, in \code{fit$innovations}. These fall out of the same
+  scaled forward recursion used to compute the likelihood: let
+  \eqn{\eta_t = P(S_t \mid y_1,\dots,y_{t-1})} be the predictive state
+  distribution just before \eqn{y_t} is observed (\eqn{\eta_1 =
+  \delta}, and \eqn{\eta_{t+1} = \hat\alpha_t \Gamma} where
+  \eqn{\hat\alpha_t} is the filtered state distribution after
+  \eqn{y_t} has been absorbed). Mixing the state-conditional emission
+  distribution over \eqn{\eta_t} gives, by the law of total variance,
+  \deqn{E(y_t \mid \mathrm{past}) = \sum_j \eta_t(j)\,\mu_j, \qquad
+  \mathrm{Var}(y_t \mid \mathrm{past}) = \sum_j \eta_t(j)\,(\sigma_j^2
+  + \mu_j^2) - E(y_t \mid \mathrm{past})^2,}
+  with \eqn{\mu_j = \sigma_j^2 = \lambda_j} for \code{family =
+  "pois"}. Note \eqn{t = 1} uses \eqn{\eta_1 = \delta} since there is
+  no past yet.
+
+  These are useful as residual diagnostics in the usual time-series
+  sense: the standardized innovations \code{std_resid} should look
+  roughly like white noise (mean 0, unit variance, no
+  autocorrelation) if the fitted model describes the series well.
+  Systematic patterns -- runs, autocorrelation, or heavy tails in
+  \code{std_resid} -- suggest the number of states, family, or
+  transition structure may be misspecified. This is distinct from the
+  smoothed \code{posterior} probabilities, which use the \emph{whole}
+  series (past and future) rather than only the past.
+}
+
 \examples{
 \dontrun{
 
@@ -212,6 +248,14 @@ fit <- HmmFit(sp500w, m = 3, family = "norm", order_by = "sd", n_perturb = 0,
                         Gamma0 = matrix(c(.945,.055,.000,
                                           .739,.000,.261,
                                           .032,.027,.942), 3, 3, byrow = TRUE)))
+
+##-- Innovations / residual diagnostics --##
+fit <- HmmFit(EQcount, m = 2, family = "pois")
+innov <- fit$innovations
+par(mfrow=2:1)
+tsplot(ts(innov$std_resid, start = 1900), ylab=NA, main = "standardized innovations")
+abline(h = 0, col = 8, lty = 2)
+acf1(innov$std_resid, main =NA)
 }
 }
 \keyword{ts}

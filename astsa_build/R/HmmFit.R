@@ -246,8 +246,43 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
     oldloglik <- loglik
   }
   distout <- .statdist(Gamma)
+  innov   <- .pois_hmm_innovations(y, lambda, Gamma, delta)
   list(lambda = lambda, Pmatrix = Gamma, delta = delta, pis=distout,
-       loglik = loglik, posterior = gam, niter = iter)
+       loglik = loglik, posterior = gam, niter = iter, innovations = innov)
+}
+
+
+## ------------------------------------------------------------
+## .pois_hmm_innovations: one-step-ahead prediction errors
+## y_t - E(y_t | y_1,...,y_{t-1}) and their conditional variances,
+## computed from the predictive state distribution eta_t = P(S_t | past)
+## (eta_1 = delta). Since y_t | S_t=j ~ Poisson(lambda_j),
+##   E(y_t | past)   = sum_j eta_t(j) * lambda_j
+##   Var(y_t | past) = sum_j eta_t(j) * (lambda_j + lambda_j^2) - E(y_t|past)^2
+## (law of total variance; Var(y|S=j) = lambda_j for Poisson).
+## ------------------------------------------------------------
+.pois_hmm_innovations <- function(y, lambda, Gamma, delta) {
+  n <- length(y)
+  m <- length(lambda)
+  B <- sapply(1:m, function(j) dpois(y, lambda[j]))
+
+  eta    <- delta                 # eta = P(S_t | y_1,...,y_{t-1}), starts at t = 1
+  fitted <- numeric(n)
+  varhat <- numeric(n)
+
+  for (t in 1:n) {
+    fitted[t] <- sum(eta * lambda)
+    varhat[t] <- sum(eta * (lambda + lambda^2)) - fitted[t]^2
+
+    ## filter in y_t, then push forward one step to get eta for t + 1
+    a   <- eta * B[t, ]
+    a   <- a / sum(a)
+    eta <- as.numeric(a %*% Gamma)
+  }
+
+  resid <- y - fitted
+  data.frame(t = seq_len(n), y = y, fitted = fitted, resid = resid,
+             var = varhat, sd = sqrt(varhat), std_resid = resid / sqrt(varhat))
 }
 
 
@@ -680,8 +715,43 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
     oldloglik <- loglik
   }
   distout <- .statdist(Gamma)
+  innov   <- .norm_hmm_innovations(y, mu, sigma, Gamma, delta)
   list(mu = mu, sigma = sigma, Pmatrix = Gamma, delta = delta, pis = distout,
-       loglik = loglik, posterior = gam, niter = iter)
+       loglik = loglik, posterior = gam, niter = iter, innovations = innov)
+}
+
+
+## ------------------------------------------------------------
+## .norm_hmm_innovations: one-step-ahead prediction errors
+## y_t - E(y_t | y_1,...,y_{t-1}) and their conditional variances,
+## computed from the predictive state distribution eta_t = P(S_t | past)
+## (eta_1 = delta). Since y_t | S_t=j ~ N(mu_j, sigma_j^2),
+##   E(y_t | past)   = sum_j eta_t(j) * mu_j
+##   Var(y_t | past) = sum_j eta_t(j) * (sigma_j^2 + mu_j^2) - E(y_t|past)^2
+## (law of total variance).
+## ------------------------------------------------------------
+.norm_hmm_innovations <- function(y, mu, sigma, Gamma, delta) {
+  n <- length(y)
+  m <- length(mu)
+  B <- sapply(1:m, function(j) dnorm(y, mean = mu[j], sd = sigma[j]))
+
+  eta    <- delta                 # eta = P(S_t | y_1,...,y_{t-1}), starts at t = 1
+  fitted <- numeric(n)
+  varhat <- numeric(n)
+
+  for (t in 1:n) {
+    fitted[t] <- sum(eta * mu)
+    varhat[t] <- sum(eta * (sigma^2 + mu^2)) - fitted[t]^2
+
+    ## filter in y_t, then push forward one step to get eta for t + 1
+    a   <- eta * B[t, ]
+    a   <- a / sum(a)
+    eta <- as.numeric(a %*% Gamma)
+  }
+
+  resid <- y - fitted
+  data.frame(t = seq_len(n), y = y, fitted = fitted, resid = resid,
+             var = varhat, sd = sqrt(varhat), std_resid = resid / sqrt(varhat))
 }
 
 
