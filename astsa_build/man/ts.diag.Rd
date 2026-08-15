@@ -63,6 +63,12 @@ resids = gtemp_both - u$Xp
 # check fit [the model is essentially an explosive ARMA(1,1)]
 ts.diag(resids, fitdf=2, col=4, gg=TRUE)
 
+\dontrun{
+
+# an HMM where Q-statistic is not valid
+fit <- HmmFit(sp500w, m=2, famil ="norm", order_by="sd")
+ts.diag(fit$resid, Qstat=FALSE)
+}
 }
 \seealso{\code{\link{sarima}}
 }

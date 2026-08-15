@@ -53,7 +53,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 __v2.5.1__:
 
- - Version 2.5 is essentially a version 2.4 patch that was quickly distributed to avoid problems.  Version 2.5.1 (on GitHub)  updates `sarima` and introduces a separate script, &#127381;  `ts.diag` &#127381;  that can be used for generic residual diagnostics.  It's basically an improved version of `stats::tsdiag`.
+ - Version 2.5 is essentially a version 2.4 patch that was quickly distributed to avoid problems.  Version 2.5.1 (on GitHub)  updates `sarima` and introduces a separate script, &#127381;  `ts.diag` &#127381;  that can be used for generic residual diagnostics.   Also new is &#127381; `HmmFit` &#127381; that might have something to do with fitting HMMs.
 
  - Efficiency improvements to numerous scripts (all calls are the same), because many scripts evolved slowly over time; e.g., `tsplot` started as a simple script just to get decent graphics with minimal coding for demonstrations... but it evolved (via addons) for use in publications.
 
@@ -61,9 +61,9 @@ __v2.5.1__:
  - `matrixpwr` now preserves the dimension names (`dimnames`) and removes imaginary residues from floating point roundoff if necessary.
 
 
-- added data set `GGBsuicide`: Number of days between suicides on the Golden Gate Bridge from 1999 to 2009 and `UnempRate2`: an update to `UnempRate` up to Feb 2026.
+- added data set &#127381; `GGBsuicide` &#127381; - Number of days between suicides on the Golden Gate Bridge from 1999 to 2009 and `UnempRate2`: an update to `UnempRate` up to Feb 2026.
 
-- added `HmmFit` to do hidden Markov models for Poisson count time series or for Normal continuous-valued series. 
+-   `HmmFit` does hidden Markov models for Poisson count time series or for Normal continuous-valued series. 
 
 <br/> 
 
