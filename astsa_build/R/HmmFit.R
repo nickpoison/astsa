@@ -10,17 +10,17 @@
 
 ## ------------------------------------------------------------
 ## HmmFit: (entry point)
-## y      : time series (counts for "pois", continuous for "norm")
+## x      : time series (counts for "pois", continuous for "norm")
 ## m      : number of states
 ## family : "pois" (default) or "norm"
 ## ...    : passed through to .HmmPois()/.HmmNorm()
 ## ------------------------------------------------------------
-HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
+HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
   family <- match.arg(family)
   dots <- list(...)
 
   ## init_method only has meaning for family = "norm" (the Poisson case
-  ## has just one automatic initializer, plain k-means on y). Rather than
+  ## has just one automatic initializer, plain k-means on x). Rather than
   ## silently absorbing it into .pois_hmm_em's ... and doing nothing,
   ## warn the caller and drop it before dispatching.
   if (family == "pois" && "init_method" %in% names(dots)) {
@@ -31,8 +31,8 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   }
 
   switch(family,
-         pois = do.call(.HmmPois, c(list(y = y, m = m), dots)),
-         norm = do.call(.HmmNorm, c(list(y = y, m = m), dots)))
+         pois = do.call(.HmmPois, c(list(x = x, m = m), dots)),
+         norm = do.call(.HmmNorm, c(list(x = x, m = m), dots)))
 }
 
 
@@ -116,12 +116,12 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 ## fits by EM, and tries a few perturbations of the starting
 ## point in case the k-means partition was slightly awkward.
 ## ------------------------------------------------------------
-.HmmPois <- function(y, m = 2, n_perturb = 5, start = NULL,
+.HmmPois <- function(x, m = 2, n_perturb = 5, start = NULL,
                           se = c("hessian", "boot", "none"), B = 200,
                           boot_n_perturb = 1, ...) {
 
   se <- match.arg(se)
-  y <- as.numeric(y)       # strip any ts attributes if there
+  x <- as.numeric(x)       # strip any ts attributes if there
 
   if (!is.null(start)) {
     if (is.null(start$lambda0) || is.null(start$Gamma0)) {
@@ -130,11 +130,11 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
     init <- list(lambda0 = start$lambda0, Gamma0 = start$Gamma0,
                  delta0  = if (is.null(start$delta0)) rep(1 / m, m) else start$delta0)
   } else {
-    init <- .auto_init_pois_hmm(y, m)
+    init <- .auto_init_pois_hmm(x, m)
   }
 
   ## fit at the starting point
-  best <- .pois_hmm_em(y, m,
+  best <- .pois_hmm_em(x, m,
                         lambda0 = init$lambda0,
                         Gamma0  = init$Gamma0,
                         delta0  = init$delta0, ...)
@@ -145,29 +145,47 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   ## (length 2!), so n_perturb = 0 would silently still run 2 perturbed
   ## restarts instead of none. seq_len(0) is correctly empty.
   for (i in seq_len(n_perturb)) {
+    ## NOTE: do NOT sort lam_p here. init$lambda0 is already sorted, but
+    ## the independent runif(m, 0.7, 1.3) jitter can flip the order of
+    ## two close rates; sorting afterwards would silently relabel the
+    ## states without applying the same permutation to Gamma0_p/delta0
+    ## (which are still in the pre-jitter label order), handing EM an
+    ## internally inconsistent (emission, transition) pairing. EM's
+    ## likelihood doesn't depend on label order, so we just leave lam_p
+    ## as-is and canonically relabel the final winner once, below.
     lam_p    <- pmax(init$lambda0 * runif(m, 0.7, 1.3), 0.1)
     Gamma0_p <- .perturb_gamma(init$Gamma0, m)
     fit <- tryCatch(
-      .pois_hmm_em(y, m, lambda0 = sort(lam_p),
+      .pois_hmm_em(x, m, lambda0 = lam_p,
                    Gamma0 = Gamma0_p, delta0 = init$delta0, ...),
       error = function(e) NULL
     )
     if (!is.null(fit) && fit$loglik > best$loglik) best <- fit
   }
 
+  ## canonical relabeling: state 1 = lowest rate (mirrors .HmmNorm's
+  ## final relabel by mu). Needed because the winning fit could have
+  ## come from any restart, in any label order.
+  ord_final <- order(best$lambda)
+  best$lambda    <- best$lambda[ord_final]
+  best$delta     <- best$delta[ord_final]
+  best$pis       <- best$pis[ord_final]
+  best$Pmatrix   <- best$Pmatrix[ord_final, ord_final]
+  best$posterior <- best$posterior[, ord_final]
+
   best$init <- init
 
   ## AIC/BIC
-  n <- length(y)
+  n <- length(x)
   best$npar <- m + m * (m - 1) + (m - 1)
   best$AIC  <- -2 * best$loglik + 2 * best$npar
   best$BIC  <- -2 * best$loglik + log(n) * best$npar
 
   if (se == "boot") {
-    best$se <- .pois_hmm_boot(best, y, m = m, B = B,
+    best$se <- .pois_hmm_boot(best, x, m = m, B = B,
                                n_perturb = boot_n_perturb, ...)
   } else if (se == "hessian") {
-    best$se <- .pois_hmm_hessian_se(best, y, m = m)
+    best$se <- .pois_hmm_hessian_se(best, x, m = m)
   }
 
   best
@@ -177,16 +195,16 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 ## ------------------------------------------------------------
 ## .pois_hmm_em: core EM engine for an m-state Poisson HMM
 ## ------------------------------------------------------------
-.pois_hmm_em <- function(y, m = 2,
+.pois_hmm_em <- function(x, m = 2,
                           lambda0 = NULL,
                           Gamma0  = NULL,
                           delta0  = NULL,
                           maxiter = 500, tol = 1e-8, ...) {
 
-  n <- length(y)
+  n <- length(x)
 
   if (is.null(lambda0)) {
-    qs <- quantile(y, seq(0, 1, length.out = m + 2))[2:(m + 1)]
+    qs <- quantile(x, seq(0, 1, length.out = m + 2))[2:(m + 1)]
     lambda <- as.numeric(qs)
   } else lambda <- lambda0
 
@@ -201,7 +219,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   for (iter in 1:maxiter) {
 
     ## ---- emission probabilities: n x m ----
-    B <- sapply(1:m, function(j) dpois(y, lambda[j]))
+    B <- sapply(1:m, function(j) dpois(x, lambda[j]))
 
     ## ---- scaled forward pass ----
     alpha <- matrix(0, n, m)
@@ -237,7 +255,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
     ## ---- M-step ----
     Gamma_new  <- xi / rowSums(xi)
-    lambda_new <- colSums(gam * y) / colSums(gam)
+    lambda_new <- colSums(gam * x) / colSums(gam)
     delta_new  <- gam[1, ]
 
     diff <- abs(loglik - oldloglik)
@@ -246,64 +264,87 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
     oldloglik <- loglik
   }
   distout <- .statdist(Gamma)
-  innov   <- .pois_hmm_innovations(y, lambda, Gamma, delta)
+  qres    <- .pois_hmm_qresiduals(x, lambda, Gamma, delta)
   list(lambda = lambda, Pmatrix = Gamma, delta = delta, pis=distout,
-       loglik = loglik, posterior = gam, niter = iter, innovations = innov)
+       loglik = loglik, posterior = gam, niter = iter, resid = qres)
 }
 
 
 ## ------------------------------------------------------------
-## .pois_hmm_innovations: one-step-ahead prediction errors
-## y_t - E(y_t | y_1,...,y_{t-1}) and their conditional variances,
-## computed from the predictive state distribution eta_t = P(S_t | past)
-## (eta_1 = delta). Since y_t | S_t=j ~ Poisson(lambda_j),
-##   E(y_t | past)   = sum_j eta_t(j) * lambda_j
-##   Var(y_t | past) = sum_j eta_t(j) * (lambda_j + lambda_j^2) - E(y_t|past)^2
-## (law of total variance; Var(y|S=j) = lambda_j for Poisson).
+## .pois_hmm_qresiduals: one-step-ahead quantile (normal
+## pseudo-)residuals, computed from the predictive state
+## distribution eta_t = P(S_t | x_1,...,x_{t-1}) (eta_1 = delta).
+## Since x_t | S_t=j ~ Poisson(lambda_j), the one-step-ahead
+## predictive CDF is the mixture
+##   F_t(q) = sum_j eta_t(j) * ppois(q, lambda_j)
+## Because Poisson data are discrete, F_t has jumps; plugging in
+## F_t(x_t) directly would bias residuals near those jumps, so a
+## randomized (jittered) residual is used instead:
+##   u_t ~ Uniform(F_t(x_t - 1), F_t(x_t)),   resid_t = qnorm(u_t)
+## Under a correctly specified model, resid_t is i.i.d. N(0,1).
+## qres_seed: optional seed for reproducible jittering (NULL = no
+## fixed seed, i.e. residuals vary slightly run to run).
+## Returns a plain numeric vector (length n), one residual per x_t.
 ## ------------------------------------------------------------
-.pois_hmm_innovations <- function(y, lambda, Gamma, delta) {
-  n <- length(y)
+.pois_hmm_qresiduals <- function(x, lambda, Gamma, delta, qres_seed = NULL) {
+  n <- length(x)
   m <- length(lambda)
-  B <- sapply(1:m, function(j) dpois(y, lambda[j]))
+  B <- sapply(1:m, function(j) dpois(x, lambda[j]))
 
-  eta    <- delta                 # eta = P(S_t | y_1,...,y_{t-1}), starts at t = 1
-  fitted <- numeric(n)
-  varhat <- numeric(n)
+  eta <- delta                 # eta = P(S_t | x_1,...,x_{t-1}), starts at t = 1
+  Fu  <- numeric(n)
+  Fl  <- numeric(n)
 
   for (t in 1:n) {
-    fitted[t] <- sum(eta * lambda)
-    varhat[t] <- sum(eta * (lambda + lambda^2)) - fitted[t]^2
+    Fu[t] <- sum(eta * sapply(1:m, function(j) ppois(x[t],     lambda[j])))
+    Fl[t] <- sum(eta * sapply(1:m, function(j) ppois(x[t] - 1, lambda[j])))
 
-    ## filter in y_t, then push forward one step to get eta for t + 1
+    ## filter in x_t, then push forward one step to get eta for t + 1
     a   <- eta * B[t, ]
     a   <- a / sum(a)
     eta <- as.numeric(a %*% Gamma)
   }
 
-  resid <- y - fitted
-  data.frame(t = seq_len(n), y = y, fitted = fitted, resid = resid,
-             var = varhat, sd = sqrt(varhat), std_resid = resid / sqrt(varhat))
+  Fl <- pmin(Fl, Fu)            # guard tiny floating-point overshoot
+  if (!is.null(qres_seed)) set.seed(qres_seed)
+  u <- runif(n, min = Fl, max = Fu)
+
+  eps <- 1e-10                  # keep off the boundary so qnorm() isn't +-Inf
+  u <- pmin(pmax(u, eps), 1 - eps)
+
+  qnorm(u)
 }
 
 
 ## ------------------------------------------------------------
 ## .auto_init_pois_hmm: data-driven starting values
 ## ------------------------------------------------------------
-.auto_init_pois_hmm <- function(y, m = 2) {
-  n <- length(y)
+.auto_init_pois_hmm <- function(x, m = 2) {
+  n <- length(x)
 
   ## --- hard clustering step ---
   if (n >= 5 * m) {
-    km  <- kmeans(y, centers = m, nstart = 25)
+    km  <- kmeans(x, centers = m, nstart = 25)
     cl  <- km$cluster
     ord <- order(km$centers)              # relabel so state 1 = lowest rate
     map <- match(cl, ord)
     lambda0 <- sort(km$centers)
   } else {
-    ## fallback for tiny samples: quantile binning instead of kmeans
-    qs  <- quantile(y, seq(0, 1, length.out = m + 1))
-    map <- cut(y, breaks = qs, labels = FALSE, include.lowest = TRUE)
-    lambda0 <- sapply(1:m, function(j) mean(y[map == j]))
+    ## fallback for tiny samples: rank-based binning instead of kmeans.
+    ## NOTE: quantile()-derived breaks + cut() used to be used here, but
+    ## quantile() breaks aren't guaranteed unique when x has ties (the
+    ## norm for small Poisson samples), which either (a) crashes cut()
+    ## directly with "'breaks' are not unique", (b) leaves a bin empty
+    ## -> mean(x[map==j]) = NaN -> NaN propagates through dpois()/EM
+    ## silently, or (c) produces an NA map entry -> crashes the
+    ## Gamma0[map[t], map[t+1]] <- ... assignment below with "NAs are
+    ## not allowed in subscripted assignments". rank(ties.method =
+    ## "first") is always a permutation of 1:n regardless of ties, so
+    ## splitting into m contiguous rank-blocks guarantees every state
+    ## gets at least one point whenever n >= m.
+    rk  <- rank(x, ties.method = "first")
+    map <- pmin(pmax(ceiling(rk / n * m), 1), m)
+    lambda0 <- sapply(1:m, function(j) mean(x[map == j]))
   }
 
   ## --- empirical transition matrix from the hard-assigned state sequence ---
@@ -340,12 +381,12 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 ## ------------------------------------------------------------
 ## .pois_hmm_hessian_se: asymptotic SEs/CIs 
 ## ------------------------------------------------------------
-.pois_hmm_hessian_se <- function(fit, y, m = 2) {
+.pois_hmm_hessian_se <- function(fit, x, m = 2) {
   if (!requireNamespace("nlme", quietly = TRUE)) {
     stop("se = \"hessian\" requires the 'nlme' package (normally included ",
          "with R by default). Install it with install.packages(\"nlme\").")
   }
-  n <- length(y)
+  n <- length(x)
   delta <- fit$delta   # held fixed -- see note above .gamma_logit_pack
 
   pack <- function(lambda, Gamma) c(log(lambda), .gamma_logit_pack(Gamma))
@@ -356,7 +397,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   }
 
   loglik_fn <- function(lambda, Gamma) {
-    B <- sapply(1:m, function(j) dpois(y, lambda[j]))
+    B <- sapply(1:m, function(j) dpois(x, lambda[j]))
     a <- delta * B[1, ]; c1 <- sum(a); ll <- log(c1); a <- a / c1
     for (t in 2:n) {
       a  <- (a %*% Gamma) * B[t, ]
@@ -404,9 +445,9 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 ## ------------------------------------------------------------
 ## .pois_hmm_boot: parametric bootstrap SEs/CIs for lambda
 ## ------------------------------------------------------------
-.pois_hmm_boot <- function(fit, y, m = 2, B = 200, progress = TRUE,
+.pois_hmm_boot <- function(fit, x, m = 2, B = 200, progress = TRUE,
                             n_cores = 1, ...) {
-  n <- length(y)
+  n <- length(x)
 
   dots <- list(...)               # whatever n_perturb/maxiter/tol arrived with
   dots$m  <- NULL                 # guard against accidental collisions
@@ -435,9 +476,9 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   }
 
   one_rep <- function(i) {
-    y_sim <- .sim_pois_hmm(n, fit$lambda, fit$Pmatrix, fit$delta)
+    x_sim <- .sim_pois_hmm(n, fit$lambda, fit$Pmatrix, fit$delta)
     fit_b <- tryCatch(
-      do.call(.HmmPois, c(list(y = y_sim, m = m, se = "none"), dots)),
+      do.call(.HmmPois, c(list(x = x_sim, m = m, se = "none"), dots)),
       error = function(e) NULL
     )
     if (is.null(fit_b) || is.null(fit_b$lambda) || length(fit_b$lambda) != m ||
@@ -494,7 +535,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 ## ================================================================
 ## Normal HMM   
 # ================================================================
-.HmmNorm <- function(y, m = 2, n_perturb = 5, start = NULL,
+.HmmNorm <- function(x, m = 2, n_perturb = 5, start = NULL,
                           se = c("hessian", "boot", "none"), B = 200,
                           boot_n_perturb = 1,
                           order_by = c("mean", "sd"),
@@ -504,8 +545,8 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   se          <- match.arg(se)
   order_by    <- match.arg(order_by)
   init_method <- match.arg(init_method)
-  y <- as.numeric(y)       # strip any ts attributes if there
-  n <- length(y)
+  x <- as.numeric(x)       # strip any ts attributes if there
+  n <- length(x)
 
   best        <- NULL
   best_init   <- NULL
@@ -519,7 +560,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
       stop("start must include mu0, sigma0, and Gamma0")
     }
     start_delta0 <- if (is.null(start$delta0)) rep(1 / m, m) else start$delta0
-    best <- .norm_hmm_em(y, m,
+    best <- .norm_hmm_em(x, m,
                           mu0 = start$mu0, sigma0 = start$sigma0,
                           Gamma0 = start$Gamma0, delta0 = start_delta0, ...)
     best_init   <- list(mu0 = start$mu0, sigma0 = start$sigma0,
@@ -534,9 +575,9 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   ## vs. volatile regimes in returns data, where every state has a mean
   ## near zero).  
   if (init_method != "volatility") {
-    init_loc <- .auto_init_norm_hmm(y, m)
+    init_loc <- .auto_init_norm_hmm(x, m)
     fit_loc  <- tryCatch(
-      .norm_hmm_em(y, m,
+      .norm_hmm_em(x, m,
                     mu0    = init_loc$mu0,
                     sigma0 = init_loc$sigma0,
                     Gamma0 = init_loc$Gamma0,
@@ -549,10 +590,10 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   }
 
   if (init_method != "location" && n >= 5 * m) {
-    init_vol <- tryCatch(.auto_init_norm_hmm_vol(y, m), error = function(e) NULL)
+    init_vol <- tryCatch(.auto_init_norm_hmm_vol(x, m), error = function(e) NULL)
     if (!is.null(init_vol)) {
       fit_vol <- tryCatch(
-        .norm_hmm_em(y, m,
+        .norm_hmm_em(x, m,
                       mu0    = init_vol$mu0,
                       sigma0 = init_vol$sigma0,
                       Gamma0 = init_vol$Gamma0,
@@ -568,8 +609,8 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
   ## safety net:  fall back to  the location initializer 
   if (is.null(best)) {
-    init_loc <- .auto_init_norm_hmm(y, m)
-    best <- .norm_hmm_em(y, m,
+    init_loc <- .auto_init_norm_hmm(x, m)
+    best <- .norm_hmm_em(x, m,
                           mu0 = init_loc$mu0, sigma0 = init_loc$sigma0,
                           Gamma0 = init_loc$Gamma0, delta0 = init_loc$delta0, ...)
     best_init <- init_loc; best_method <- "location"
@@ -579,19 +620,24 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
   ## a few small perturbations around whichever initializer is currently
   ## winning,  .
-  jitter_scale <- 0.3 * sd(y)
+  jitter_scale <- 0.3 * sd(x)
   ## NOTE: seq_len(n_perturb), not 1:n_perturb -- 1:0 is c(1, 0) in R
   ## (length 2!), so n_perturb = 0 would silently still run 2 perturbed
   ## restarts instead of none. seq_len(0) is correctly empty, which
   ## matters if you want to test a user-supplied start point (e.g. an
   ## exact saddle point) with NO perturbation added around it.
   for (i in seq_len(n_perturb)) {
+    ## NOTE: mu_p/sigma_p used to be reordered by ord_p = order(mu_p)
+    ## while Gamma0_p/delta0 stayed in the pre-jitter label order --
+    ## an inconsistent (emission, transition) pairing at the start of
+    ## EM. EM's likelihood doesn't depend on label order, and the
+    ## canonical relabel below (ord_final) already fixes up whichever
+    ## fit wins, so no permutation is needed here.
     mu_p     <- best_init$mu0 + rnorm(m, 0, jitter_scale)
-    ord_p    <- order(mu_p)
     sigma_p  <- pmax(best_init$sigma0 * runif(m, 0.7, 1.3), 1e-3)
     Gamma0_p <- .perturb_gamma(best_init$Gamma0, m)
     fit <- tryCatch(
-      .norm_hmm_em(y, m, mu0 = mu_p[ord_p], sigma0 = sigma_p[ord_p],
+      .norm_hmm_em(x, m, mu0 = mu_p, sigma0 = sigma_p,
                    Gamma0 = Gamma0_p, delta0 = best_init$delta0, ...),
       error = function(e) NULL
     )
@@ -619,11 +665,11 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   best$BIC  <- -2 * best$loglik + log(n) * best$npar
 
   if (se == "boot") {
-    best$se <- .norm_hmm_boot(best, y, m = m, B = B,
+    best$se <- .norm_hmm_boot(best, x, m = m, B = B,
                                n_perturb = boot_n_perturb,
                                order_by = order_by, ...)
   } else if (se == "hessian") {
-    best$se <- .norm_hmm_hessian_se(best, y, m = m)
+    best$se <- .norm_hmm_hessian_se(best, x, m = m)
   }
 
   best
@@ -634,22 +680,22 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 ## .norm_hmm_em: core EM engine for an m-state Normal HMM with
 ## state-specific mean AND standard deviation
 ## ------------------------------------------------------------
-.norm_hmm_em <- function(y, m = 2,
+.norm_hmm_em <- function(x, m = 2,
                           mu0     = NULL,
                           sigma0  = NULL,
                           Gamma0  = NULL,
                           delta0  = NULL,
                           maxiter = 500, tol = 1e-8, ...) {
 
-  n <- length(y)
+  n <- length(x)
 
   if (is.null(mu0)) {
-    qs <- quantile(y, seq(0, 1, length.out = m + 2))[2:(m + 1)]
+    qs <- quantile(x, seq(0, 1, length.out = m + 2))[2:(m + 1)]
     mu <- as.numeric(qs)
   } else mu <- mu0
 
   if (is.null(sigma0)) {
-    sigma <- rep(sd(y), m)
+    sigma <- rep(sd(x), m)
   } else sigma <- sigma0
 
   if (is.null(Gamma0)) {
@@ -659,14 +705,14 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   delta <- if (is.null(delta0)) rep(1 / m, m) else delta0
 
   ## floor for sigma, scaled to the data rather 
-  sigma_floor <- max(1e-6, 1e-4 * sd(y))
+  sigma_floor <- max(1e-6, 1e-4 * sd(x))
 
   oldloglik <- -Inf
 
   for (iter in 1:maxiter) {
 
     ## ---- emission probabilities: n x m ----
-    B <- sapply(1:m, function(j) dnorm(y, mean = mu[j], sd = sigma[j]))
+    B <- sapply(1:m, function(j) dnorm(x, mean = mu[j], sd = sigma[j]))
 
     ## ---- scaled forward pass ----
     alpha <- matrix(0, n, m)
@@ -702,9 +748,9 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 
     ## ---- M-step ----
     Gamma_new  <- xi / rowSums(xi)
-    mu_new     <- colSums(gam * y) / colSums(gam)
-    ## weighted per-state variance: sum_t gam[t,j]*(y_t - mu_j)^2 / sum_t gam[t,j]
-    sigma_new  <- sqrt(colSums(gam * (outer(y, mu_new, "-"))^2) / colSums(gam))
+    mu_new     <- colSums(gam * x) / colSums(gam)
+    ## weighted per-state variance: sum_t gam[t,j]*(x_t - mu_j)^2 / sum_t gam[t,j]
+    sigma_new  <- sqrt(colSums(gam * (outer(x, mu_new, "-"))^2) / colSums(gam))
     ## floor scaled to the data (not a fixed constant)
     sigma_new  <- pmax(sigma_new, sigma_floor)
     delta_new  <- gam[1, ]
@@ -715,72 +761,81 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
     oldloglik <- loglik
   }
   distout <- .statdist(Gamma)
-  innov   <- .norm_hmm_innovations(y, mu, sigma, Gamma, delta)
+  qres    <- .norm_hmm_qresiduals(x, mu, sigma, Gamma, delta)
   list(mu = mu, sigma = sigma, Pmatrix = Gamma, delta = delta, pis = distout,
-       loglik = loglik, posterior = gam, niter = iter, innovations = innov)
+       loglik = loglik, posterior = gam, niter = iter, resid = qres)
 }
 
 
 ## ------------------------------------------------------------
-## .norm_hmm_innovations: one-step-ahead prediction errors
-## y_t - E(y_t | y_1,...,y_{t-1}) and their conditional variances,
-## computed from the predictive state distribution eta_t = P(S_t | past)
-## (eta_1 = delta). Since y_t | S_t=j ~ N(mu_j, sigma_j^2),
-##   E(y_t | past)   = sum_j eta_t(j) * mu_j
-##   Var(y_t | past) = sum_j eta_t(j) * (sigma_j^2 + mu_j^2) - E(y_t|past)^2
-## (law of total variance).
+## .norm_hmm_qresiduals: one-step-ahead quantile (normal
+## pseudo-)residuals, computed from the predictive state
+## distribution eta_t = P(S_t | x_1,...,x_{t-1}) (eta_1 = delta).
+## Since x_t | S_t=j ~ N(mu_j, sigma_j^2), the one-step-ahead
+## predictive CDF is the mixture
+##   F_t(q) = sum_j eta_t(j) * pnorm(q, mu_j, sigma_j)
+## x is continuous here, so no jittering is needed (unlike the
+## Poisson case): resid_t = qnorm(F_t(x_t)). Under a correctly
+## specified model, resid_t is i.i.d. N(0,1).
+## Returns a plain numeric vector (length n), one residual per x_t.
 ## ------------------------------------------------------------
-.norm_hmm_innovations <- function(y, mu, sigma, Gamma, delta) {
-  n <- length(y)
+.norm_hmm_qresiduals <- function(x, mu, sigma, Gamma, delta) {
+  n <- length(x)
   m <- length(mu)
-  B <- sapply(1:m, function(j) dnorm(y, mean = mu[j], sd = sigma[j]))
+  B <- sapply(1:m, function(j) dnorm(x, mean = mu[j], sd = sigma[j]))
 
-  eta    <- delta                 # eta = P(S_t | y_1,...,y_{t-1}), starts at t = 1
-  fitted <- numeric(n)
-  varhat <- numeric(n)
+  eta <- delta                 # eta = P(S_t | x_1,...,x_{t-1}), starts at t = 1
+  u   <- numeric(n)
 
   for (t in 1:n) {
-    fitted[t] <- sum(eta * mu)
-    varhat[t] <- sum(eta * (sigma^2 + mu^2)) - fitted[t]^2
+    u[t] <- sum(eta * sapply(1:m, function(j) pnorm(x[t], mean = mu[j], sd = sigma[j])))
 
-    ## filter in y_t, then push forward one step to get eta for t + 1
+    ## filter in x_t, then push forward one step to get eta for t + 1
     a   <- eta * B[t, ]
     a   <- a / sum(a)
     eta <- as.numeric(a %*% Gamma)
   }
 
-  resid <- y - fitted
-  data.frame(t = seq_len(n), y = y, fitted = fitted, resid = resid,
-             var = varhat, sd = sqrt(varhat), std_resid = resid / sqrt(varhat))
+  eps <- 1e-10                  # keep off the boundary so qnorm() isn't +-Inf
+  u <- pmin(pmax(u, eps), 1 - eps)
+
+  qnorm(u)
 }
 
 
 ## ------------------------------------------------------------
 ## .auto_init_norm_hmm: data-driven starting values for mu0,
-## sigma0, Gamma0, and delta0 via k-means clustering of y
+## sigma0, Gamma0, and delta0 via k-means clustering of x
 ## ------------------------------------------------------------
-.auto_init_norm_hmm <- function(y, m = 2) {
-  n <- length(y)
+.auto_init_norm_hmm <- function(x, m = 2) {
+  n <- length(x)
 
   ## --- hard clustering step ---
   if (n >= 5 * m) {
-    km  <- kmeans(y, centers = m, nstart = 25)
+    km  <- kmeans(x, centers = m, nstart = 25)
     cl  <- km$cluster
     ord <- order(km$centers)              # relabel so state 1 = lowest mean
     map <- match(cl, ord)
     mu0 <- sort(km$centers)
   } else {
-    ## fallback for tiny samples: quantile binning instead of kmeans
-    qs  <- quantile(y, seq(0, 1, length.out = m + 1))
-    map <- cut(y, breaks = qs, labels = FALSE, include.lowest = TRUE)
-    mu0 <- sapply(1:m, function(j) mean(y[map == j]))
+    ## fallback for tiny samples: rank-based binning instead of kmeans.
+    ## See .auto_init_pois_hmm for why quantile()+cut() is avoided here --
+    ## quantile() breaks aren't guaranteed unique (rounded/discretized
+    ## continuous data can tie too), which can crash cut(), leave a bin
+    ## empty (mean(x[map==j]) = NaN), or produce an NA map entry that
+    ## crashes the Gamma0 assignment below. rank(ties.method = "first")
+    ## is always a permutation of 1:n, so every bin is non-empty whenever
+    ## n >= m.
+    rk  <- rank(x, ties.method = "first")
+    map <- pmin(pmax(ceiling(rk / n * m), 1), m)
+    mu0 <- sapply(1:m, function(j) mean(x[map == j]))
   }
 
   ## --- per-state SD from the hard-assigned clusters (fallback to
-  ##     overall sd(y) if a cluster has <2 points, or zero spread) ---
+  ##     overall sd(x) if a cluster has <2 points, or zero spread) ---
   sigma0 <- sapply(1:m, function(j) {
-    s <- sd(y[map == j])
-    if (is.na(s) || s <= 0) sd(y) else s
+    s <- sd(x[map == j])
+    if (is.na(s) || s <= 0) sd(x) else s
   })
 
   ## --- empirical transition matrix from the hard-assigned state sequence ---
@@ -803,26 +858,26 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 ## .auto_init_norm_hmm_vol: a SECOND initializer for cases where
 ## states differ mainly in SPREAD rather than level
 ## ------------------------------------------------------------
-.auto_init_norm_hmm_vol <- function(y, m = 2, w = NULL) {
-  n <- length(y)
+.auto_init_norm_hmm_vol <- function(x, m = 2, w = NULL) {
+  n <- length(x)
   if (is.null(w)) w <- max(3, min(10, floor(n / (2 * m))))
 
-  dev2 <- (y - mean(y))^2
+  dev2 <- (x - mean(x))^2
   roll <- sapply(seq_len(n), function(t) {
     lo <- max(1, t - w + 1)
     mean(dev2[lo:t])
   })
-  logroll <- log(roll + 1e-8 * var(y))   # log-scale: variances are skewed/positive
+  logroll <- log(roll + 1e-8 * var(x))   # log-scale: variances are skewed/positive
 
   km  <- kmeans(logroll, centers = m, nstart = 25)
   cl  <- km$cluster
   ord <- order(km$centers)               # relabel so state 1 = lowest local variance
   map <- match(cl, ord)
 
-  mu0    <- sapply(1:m, function(j) mean(y[map == j]))
+  mu0    <- sapply(1:m, function(j) mean(x[map == j]))
   sigma0 <- sapply(1:m, function(j) {
-    s <- sd(y[map == j])
-    if (is.na(s) || s <= 0) sd(y) else s
+    s <- sd(x[map == j])
+    if (is.na(s) || s <= 0) sd(x) else s
   })
 
   Gamma0 <- matrix(0, m, m)
@@ -857,12 +912,12 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 ## ------------------------------------------------------------
 ## .norm_hmm_hessian_se: asymptotic SEs/CIs for mu and sigma 
 ## ------------------------------------------------------------
-.norm_hmm_hessian_se <- function(fit, y, m = 2) {
+.norm_hmm_hessian_se <- function(fit, x, m = 2) {
   if (!requireNamespace("nlme", quietly = TRUE)) {
     stop("se = \"hessian\" requires the 'nlme' package (normally included ",
          "with R by default). Install it with install.packages(\"nlme\").")
   }
-  n <- length(y)
+  n <- length(x)
   delta <- fit$delta   # held fixed -- see note above .gamma_logit_pack
 
   pack <- function(mu, sigma, Gamma) c(mu, log(sigma), .gamma_logit_pack(Gamma))
@@ -874,7 +929,7 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   }
 
   loglik_fn <- function(mu, sigma, Gamma) {
-    B <- sapply(1:m, function(j) dnorm(y, mean = mu[j], sd = sigma[j]))
+    B <- sapply(1:m, function(j) dnorm(x, mean = mu[j], sd = sigma[j]))
     a <- delta * B[1, ]; c1 <- sum(a); ll <- log(c1); a <- a / c1
     for (t in 2:n) {
       a  <- (a %*% Gamma) * B[t, ]
@@ -927,11 +982,11 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
 ## ------------------------------------------------------------
 ## .norm_hmm_boot: parametric bootstrap SEs/CIs for mu and sigma
 ## ------------------------------------------------------------
-.norm_hmm_boot <- function(fit, y, m = 2, B = 200,
+.norm_hmm_boot <- function(fit, x, m = 2, B = 200,
                             order_by = c("mean", "sd"), progress = TRUE,
                             n_cores = 1, ...) {
   order_by <- match.arg(order_by)
-  n <- length(y)
+  n <- length(x)
 
   dots <- list(...)               # whatever n_perturb/maxiter/tol arrived with
   dots$m  <- NULL                 # guard against accidental collisions
@@ -961,9 +1016,9 @@ HmmFit <- function(y, m = 2, family = c("pois", "norm"), ...) {
   }
 
   one_rep <- function(i) {
-    y_sim <- .sim_norm_hmm(n, fit$mu, fit$sigma, fit$Pmatrix, fit$delta)
+    x_sim <- .sim_norm_hmm(n, fit$mu, fit$sigma, fit$Pmatrix, fit$delta)
     fit_b <- tryCatch(
-      do.call(.HmmNorm, c(list(y = y_sim, m = m, se = "none"), dots)),
+      do.call(.HmmNorm, c(list(x = x_sim, m = m, se = "none"), dots)),
       error = function(e) NULL
     )
     if (is.null(fit_b) || is.null(fit_b$mu) || length(fit_b$mu) != m ||

@@ -7,7 +7,7 @@ Diagnostic Plots for Time Series
 Diagnostic plots of the residuals from a time series fit.
 }
 \usage{
-ts.diag(resids, col = 1, fitdf = 0, nlag = 20, ...)
+(resids, col=1, nlag=20, Qstat=TRUE, fitdf=0, ...) 
 }
 \arguments{
   \item{resids}{
@@ -16,13 +16,16 @@ residuals from a time series fit (univariate only)
   \item{col}{
 color used in the plots (default is black)
 }
-  \item{fitdf}{
-number of degrees of freedom to be subtracted for the portmanteau 
-goodness-of-fit test
-}
   \item{nlag}{
 the maximum number of lags for a portmanteau goodness-of-fit test 
 (unless it is small relative to \code{fitdf})
+}
+  \item{Qstat}{
+should a Ljung-Box Q-statistic be evaluated (default is TRUE)
+}
+  \item{fitdf}{
+number of degrees of freedom to be subtracted for the portmanteau 
+goodness-of-fit test if \code{Qstat = TRUE}
 }
   \item{\dots}{
 additional graphical arguments
@@ -31,7 +34,7 @@ additional graphical arguments
 \details{
 This is essentially the diagnostic plot from \code{\link{sarima}} that can be used for other types of model fitting aside from ARMA.  This is not needed for ARMA models because \code{\link{sarima}} includes this diagnostic of the residuals from the fit (unless it has been shut off).
 
-The script may be used for a generic residual analysis or to check if a series is white noise. In this case, it may be necessary to specify \code{fitdf} to get the correct degrees of freedom such as in fitting a state space model.  
+The script may be used for a generic residual analysis or to check if a series is white noise. In this case, it may be necessary to specify \code{fitdf} to get the correct degrees of freedom such as in fitting a state space model.  If the Q-statistic is not appropriate, then set \code{Qstat = FALSE}.
 }
 \value{
 A graphic is produced showing a plot of the residuals, the sample ACF, a normal QQ plot, and and the p-values of a portmanteau test for all lags up to \code{nlag}.

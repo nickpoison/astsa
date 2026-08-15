@@ -7,13 +7,13 @@ with automatic initialization, randomized restarts, and optional
 standard errors.
 }
 \usage{
-HmmFit(y, m = 2, family = c("pois", "norm"),
+HmmFit(x, m = 2, family = c("pois", "norm"),
        n_perturb = 5, start = NULL, se = c("hessian", "boot", "none"),
        B = 200, n_cores = 1, order_by = c("mean", "sd"),
        init_method = c("auto", "location", "volatility"), \dots)
 }
 \arguments{
-  \item{y}{Numeric vector. Counts for \code{family = "pois"},
+  \item{x}{Numeric vector. Counts for \code{family = "pois"},
     continuous values for \code{family = "norm"}.}
   \item{m}{Number of states.}
   \item{family}{\code{"pois"} or \code{"norm"}.}
@@ -47,7 +47,12 @@ HmmFit(y, m = 2, family = c("pois", "norm"),
     kind of regime structure your series has.}
   \item{\dots}{Passed to the EM engine: \code{maxiter} (default 500)
     and \code{tol} (default \code{1e-8}), the iteration cap and
-    log-likelihood convergence tolerance.}
+    log-likelihood convergence tolerance. Also accepts
+    \code{qres_seed} (\code{family = "pois"} only): an optional seed
+    for the randomized (jittered) quantile residuals -- see
+    \strong{Quantile Residuals} below. Default \code{NULL} means the
+    jitter is not fixed and will vary slightly between identical
+    calls.}
 }
 \value{
 A list with:
@@ -58,12 +63,9 @@ A list with:
   \item{pis}{Stationary distribution of \code{Pmatrix}.}
   \item{loglik}{Log-likelihood at convergence.}
   \item{posterior}{Smoothed state probabilities (n x m).}
-  \item{innovations}{Data frame of one-step-ahead prediction errors,
-    one row per time point: \code{y}, \code{fitted} (the predictive
-    mean \eqn{E(y_t \mid y_1,\dots,y_{t-1})}), \code{resid}
-    (\code{y - fitted}), \code{var} and \code{sd} (the predictive
-    variance/SD), and \code{std_resid} (\code{resid / sd}). See
-    \strong{Innovations} below.}
+  \item{resid}{Numeric vector (length \code{n}) of one-step-ahead
+    quantile (normal pseudo-)residuals, one entry per time point.
+    See \strong{Quantile Residuals} below.}
   \item{AIC, BIC, npar}{Information criteria and parameter count.}
   \item{se}{If requested, a data frame of SEs/CIs.}
 }
@@ -99,7 +101,7 @@ A list with:
 
 \section{Automatic Initialization}{
   When \code{start} is not supplied, \code{HmmFit} derives starting
-  values from \code{y} itself rather than using fixed defaults (e.g.
+  values from \code{x} itself rather than using fixed defaults (e.g.
   quantile-spaced means and a diagonal-heavy \code{Gamma}), because a
   data-driven starting point lands EM much closer to a good local
   maximum than an arbitrary one, particularly once \code{m > 2}.
@@ -120,17 +122,17 @@ A list with:
 
   \strong{What is clustered differs by family/method}:
   \describe{
-    \item{\code{family = "pois"}}{k-means runs directly on \code{y}.
+    \item{\code{family = "pois"}}{k-means runs directly on \code{x}.
       There is only one initializer for the Poisson case, so
       \code{init_method} does not apply here; passing it anyway
       triggers a warning and is otherwise ignored.}
     \item{\code{family = "norm"}, \code{init_method = "location"}}{
-      k-means runs directly on \code{y}, exactly as in the Poisson
+      k-means runs directly on \code{x}, exactly as in the Poisson
       case. This is the right choice when states differ mainly in
       \emph{level} -- e.g. low/medium/high readings.}
     \item{\code{family = "norm"}, \code{init_method = "volatility"}}{
       k-means instead runs on the log of a rolling local variance of
-      \code{y} (window width \code{w = max(3, min(10, n / (2*m)))}).
+      \code{x} (window width \code{w = max(3, min(10, n / (2*m)))}).
       This targets states that differ mainly in \emph{spread} rather
       than level -- e.g. calm vs. turbulent regimes in a returns
       series like \code{sp500w}, where every state has a mean near
@@ -149,10 +151,18 @@ A list with:
 
   \strong{Small-sample fallback.} If \code{n < 5*m} (too few
   observations per state for k-means to be trustworthy),
-  \code{HmmFit} instead bins \code{y} into \code{m} empirical
-  quantile groups via \code{\link{cut}} and uses the within-bin means
-  (and, for \code{family = "norm"}, within-bin SDs) as starting
-  values, with the same pseudo-count treatment for \code{Gamma0}.
+  \code{HmmFit} instead bins \code{x} into \code{m} contiguous groups
+  by \emph{rank} (via \code{\link{rank}(x, ties.method = "first")},
+  split into \code{m} roughly equal-sized contiguous blocks) and uses
+  the within-bin means (and, for \code{family = "norm"}, within-bin
+  SDs) as starting values, with the same pseudo-count treatment for
+  \code{Gamma0}. Rank-based binning is used rather than empirical
+  quantile cutpoints (e.g. via \code{\link{cut}}) because quantile
+  cutpoints are not guaranteed to be unique when \code{x} has ties --
+  the norm for small samples of count data -- which can otherwise
+  leave a bin empty or produce a non-unique-breaks error; ranks are
+  always unique regardless of ties, so every bin is guaranteed
+  non-empty whenever \code{n >= m}.
 
   \strong{Randomized restarts (\code{n_perturb}).} Because EM/Baum-Welch
   only guarantees convergence to \emph{a} local maximum, not the
@@ -162,12 +172,22 @@ A list with:
   emission parameters are jittered multiplicatively
   (\code{lambda}/\code{sigma}, by a \code{runif(m, 0.7, 1.3)} factor)
   or additively on the natural scale (\code{mu}, by mean-zero normal
-  noise scaled to \code{0.3 * sd(y)}), and each row of \code{Gamma0}
+  noise scaled to \code{0.3 * sd(x)}), and each row of \code{Gamma0}
   is mixed with a fresh random point on the simplex (a
   \code{Dirichlet(1,...,1)} draw) at a random mixing strength between
   \code{0.1} and \code{0.7} via the internal \code{.perturb_gamma()}
-  helper. Every perturbed fit that converges to a higher
-  log-likelihood than the current best replaces it, so the final
+  helper. Note that the jittered emission parameters are \emph{not}
+  individually re-sorted before each restart's EM run -- EM's
+  likelihood does not depend on state-label order, and re-sorting a
+  jittered emission vector without applying the same permutation to
+  its paired \code{Gamma0} would create an inconsistent starting
+  point. Instead, whichever restart wins is canonically relabeled
+  \emph{once}, by sorted rate/mean, after all restarts have been
+  compared -- so \code{lambda}/\code{mu} (and correspondingly
+  \code{Pmatrix}, \code{delta}, \code{pis}, \code{posterior}) always
+  come back in the package's usual sorted-state convention regardless
+  of which restart produced the best fit. Every perturbed fit that
+  converges to a higher log-likelihood than the current best replaces it, so the final
   result is the best of \code{1 + n_perturb} EM runs (times 2 if
   \code{init_method = "auto"}). Set \code{n_perturb = 0} to fit the
   automatic (or user-supplied \code{start}) initializer exactly, with
@@ -185,36 +205,15 @@ A list with:
   three-state \code{sp500w} example below).
 }
 
-\section{Innovations}{
-  Alongside the smoothed (in-sample) fit, \code{HmmFit} also reports
-  the \emph{one-step-ahead} prediction errors -- the innovations
-  \eqn{y_t - E(y_t \mid y_1,\dots,y_{t-1})} -- and their conditional
-  variances, in \code{fit$innovations}. These fall out of the same
-  scaled forward recursion used to compute the likelihood: let
-  \eqn{\eta_t = P(S_t \mid y_1,\dots,y_{t-1})} be the predictive state
-  distribution just before \eqn{y_t} is observed (\eqn{\eta_1 =
-  \delta}, and \eqn{\eta_{t+1} = \hat\alpha_t \Gamma} where
-  \eqn{\hat\alpha_t} is the filtered state distribution after
-  \eqn{y_t} has been absorbed). Mixing the state-conditional emission
-  distribution over \eqn{\eta_t} gives, by the law of total variance,
-  \deqn{E(y_t \mid \mathrm{past}) = \sum_j \eta_t(j)\,\mu_j, \qquad
-  \mathrm{Var}(y_t \mid \mathrm{past}) = \sum_j \eta_t(j)\,(\sigma_j^2
-  + \mu_j^2) - E(y_t \mid \mathrm{past})^2,}
-  with \eqn{\mu_j = \sigma_j^2 = \lambda_j} for \code{family =
-  "pois"}. Note \eqn{t = 1} uses \eqn{\eta_1 = \delta} since there is
-  no past yet.
-
-  These are useful as residual diagnostics in the usual time-series
-  sense: the standardized innovations \code{std_resid} should look
-  roughly like white noise (mean 0, unit variance, no
-  autocorrelation) if the fitted model describes the series well.
-  Systematic patterns -- runs, autocorrelation, or heavy tails in
-  \code{std_resid} -- suggest the number of states, family, or
-  transition structure may be misspecified. This is distinct from the
-  smoothed \code{posterior} probabilities, which use the \emph{whole}
-  series (past and future) rather than only the past.
+\section{Quantile Residuals}{
+  \code{HmmFit} also reports   \emph{one-step-ahead quantile residuals} 
+  in \code{resid} (a   plain numeric vector) , These transform each 
+  observation onto the scale of the standard normal distribution 
+  via its one-step-ahead predictive CDF, so that residual diagnostics 
+  can be read the same way regardless of whether \code{family} is \code{"pois"} or
+  \code{"norm"}.
 }
-
+  
 \examples{
 \dontrun{
 
@@ -236,8 +235,11 @@ u1 <- pi1 * dpois(xvals, fit$lambda[1])
 u2 <- pi2 * dpois(xvals, fit$lambda[2])
 lines(xvals, u1, col = 4, lwd = 2)
 lines(xvals, u2, col = 2, lwd = 2)
+# residuals diagnostics 
+ts.diag(fit$resid, col=4, Qstat=FALSE)
 
 #-- Normal --##
+# the graphics for these follow the Poisson example with appropriate name changes
 fit <- HmmFit(sp500w, m = 2, family = "norm", order_by = "sd")
 fit$mu; fit$sigma; fit$se
 
@@ -248,14 +250,6 @@ fit <- HmmFit(sp500w, m = 3, family = "norm", order_by = "sd", n_perturb = 0,
                         Gamma0 = matrix(c(.945,.055,.000,
                                           .739,.000,.261,
                                           .032,.027,.942), 3, 3, byrow = TRUE)))
-
-##-- Innovations / residual diagnostics --##
-fit <- HmmFit(EQcount, m = 2, family = "pois")
-innov <- fit$innovations
-par(mfrow=2:1)
-tsplot(ts(innov$std_resid, start = 1900), ylab=NA, main = "standardized innovations")
-abline(h = 0, col = 8, lty = 2)
-acf1(innov$std_resid, main =NA)
 }
 }
 \keyword{ts}
