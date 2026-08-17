@@ -53,17 +53,24 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
 __v2.5.1__:
 
- - Version 2.5 is essentially a version 2.4 patch that was quickly distributed to avoid problems.  Version 2.5.1 (on GitHub)  updates `sarima` and introduces a separate script, &#127381;  `ts.diag` &#127381;  that can be used for generic residual diagnostics.   Also new is &#127381; `HmmFit` &#127381; that might have something to do with fitting HMMs.
+ - Version 2.5 is essentially a version 2.4 patch that was quickly distributed to avoid problems.  Version 2.5.1 (on GitHub)  has a number of updates- so as of August 2026, $v2.5 \not\approx v2.5.1$... we kept the v2.5.1 because it gets annoying changing it with every update.   
+ 
+> There are a number of efficiency improvements to numerous scripts (all calls are the same), because many scripts evolved slowly over time; e.g., `tsplot` started as a simple script just to get decent graphics with minimal coding for demonstrations... but it evolved (via addons) for use in publications.
 
- - Efficiency improvements to numerous scripts (all calls are the same), because many scripts evolved slowly over time; e.g., `tsplot` started as a simple script just to get decent graphics with minimal coding for demonstrations... but it evolved (via addons) for use in publications.
 
+> A text on stochastic processes (with applications of course) is in the works ... so we're adding scripts slowly to help with the text... so far:
 
  - `matrixpwr` now preserves the dimension names (`dimnames`) and removes imaginary residues from floating point roundoff if necessary.
 
-
 - added data set &#127381; `GGBsuicide` &#127381; - Number of days between suicides on the Golden Gate Bridge from 1999 to 2009 and `UnempRate2`: an update to `UnempRate` up to Feb 2026.
 
--   `HmmFit` does hidden Markov models for Poisson count time series or for Normal continuous-valued series. 
+-  &#127381; `HmmFit`  &#127381; does hidden Markov models for Poisson count time series or for Normal continuous-valued series. 
+
+- &#127381; `Viterbi`  &#127381; to decode the single most likely hidden state path for a fitted HMM or Markov switching AR model.
+
+-  &#127381; `adjQstat`  &#127381; to replace any of the flawed Box/Ljung/Pierce statistic... it recenters and rescales the ordinary Box-Pierce statistic using  exact finite sample moments.
+
+   - and `sarima` diagnostics and `ts.diag` now use the adjusted Q-statistic
 
 <br/> 
 

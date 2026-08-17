@@ -3,7 +3,7 @@
 \docType{data}
 \title{Quarterly U.S. GNP - updated to 2023
 } 
-\description{Seasonally adjusted quarterly U.S. GNP from 1947(1) to 2003(1).
+\description{Seasonally adjusted quarterly U.S. GNP from 1947(1) to 2022(4).
 }
 \format{
   The format is:

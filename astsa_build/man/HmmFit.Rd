@@ -58,6 +58,9 @@ HmmFit(x, m = 2, family = c("pois", "norm"),
 A list with:
   \item{lambda}{(pois) fitted rates.}
   \item{mu, sigma}{(norm) fitted means and SDs.}
+  \item{x}{The (numeric-stripped) data originally passed in, stored so
+    that later calls -- e.g. \code{\link{Viterbi}} -- don't need it
+    supplied again separately.}
   \item{Pmatrix}{Fitted transition matrix.}
   \item{delta}{Fitted initial-state distribution.}
   \item{pis}{Stationary distribution of \code{Pmatrix}.}

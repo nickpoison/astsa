@@ -188,6 +188,8 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
     best$se <- .pois_hmm_hessian_se(best, x, m = m)
   }
 
+  best$x <- x   # store the (stripped) data so callers (e.g. Viterbi()) don't
+                # need to pass it back in separately
   best
 }
 
@@ -672,6 +674,8 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
     best$se <- .norm_hmm_hessian_se(best, x, m = m)
   }
 
+  best$x <- x   # store the (stripped) data so callers (e.g. Viterbi()) don't
+                # need to pass it back in separately
   best
 }
 

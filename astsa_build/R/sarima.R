@@ -94,8 +94,8 @@ sarima <- function(xdata, p = 0, d = 0, q = 0,
     old.par <- par(no.readonly = TRUE)
     on.exit(par(old.par), add = TRUE)
 
-    layout(matrix(c(1, 2, 4, 1, 3, 4), ncol = 2))
-    par(cex = 0.85)
+     layout(matrix(c(1, 2, 4, 1, 3, 4), ncol = 2))
+     par(cex = 0.85)
 
     rs     <- fitit$residuals
     stdres <- rs / sqrt(fitit$sigma2)
@@ -126,15 +126,16 @@ sarima <- function(xdata, p = 0, d = 0, q = 0,
     nlag <- max(nlag, ppq + 8)
 
     lags  <- (ppq + 1):nlag
-    stats <- vapply(lags,
-                    function(i) Box.test(rs, i, type = "Ljung-Box")$statistic,
+    pval <- vapply(lags,
+                    function(i) adjQstat(rs, lag=i, fitdf=ppq)$p.value,
+     # Box.test(rs, i, type = "Ljung-Box")$statistic,
                     numeric(1))
-    pval  <- pchisq(stats, lags - ppq, lower.tail = FALSE)
+     # pval  <- pchisq(stats, lags - ppq, lower.tail = FALSE)
 
     tsplot(lags, pval, type = "p",
            xlab = "LAG (H)", ylab = "p value",
            ylim = c(-0.14, 1),
-           main = "p values for Ljung-Box Statistic",
+           main = "p values for Adjusted Q-Statistic",
            col = col, minor = FALSE, ...)
     abline(h = 0.05, lty = 2, col = 4)
   }

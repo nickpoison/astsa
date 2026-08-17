@@ -6,7 +6,7 @@ function(resids, col=1, nlag=20, Qstat=TRUE, fitdf=0, ...)
    if (nlag < fitdf + 8) { nlag = fitdf + 8 }
 
    old.par  <- par(no.readonly = TRUE)
-   ## show_lb = FALSE drops the Ljung-Box p-value panel entirely (e.g. for
+   ## Qstat = FALSE drops the adjusted Qstat p-value panel entirely (e.g. for
    ## residuals where no justified degrees-of-freedom correction exists,
    ## such as HMM quantile residuals -- see note in HmmFit.Rd). Panels
    ## 1-3 (standardized residuals, ACF, QQ-plot) make no df assumption
@@ -31,11 +31,12 @@ function(resids, col=1, nlag=20, Qstat=TRUE, fitdf=0, ...)
   if (Qstat) {
     pval = c()
     for (i in (fitdf+1):nlag) {
-     u   = Box.test(rs, i, type = "Ljung-Box", fitdf=fitdf)$statistic
-     pval[i] =  pchisq(u, i-fitdf, lower.tail=FALSE)
+     pval[i] = adjQstat(rs, lag=i, fitdf=fitdf)$p.value
+     # u   = Box.test(rs, i, type = "Ljung-Box", fitdf=fitdf)$statistic
+     # pval[i] =  pchisq(u, i-fitdf, lower.tail=FALSE)
     } 
   tsplot( (fitdf+1):nlag, pval[(fitdf+1):nlag], type='p', xlab = "LAG (H)", ylab = "p value", 
-          ylim = c(-.14, 1), main = "p values for Ljung-Box Statistic", col=col, minor=FALSE, ...)
+          ylim = c(-.14, 1), main = "p values for Adjusted Q-Statistic", col=col, minor=FALSE, ...)
    abline(h = 0.05, lty = 2, col = 4)  
   }
    on.exit(par(old.par)) 
