@@ -79,7 +79,7 @@ comparing \eqn{Q^a_{BP}} to an ordinary \eqn{\chi^2_m} critical value,
 they inflate the rejection region itself, using a regression model
 fit to a large simulation study spanning many sample sizes and lags,
 to bring type I error rates even closer to nominal than \eqn{Q^a_{BP}}
-alone achieves. \code{adjBoxPierce} implements Kan and Wang's
+alone achieves. \code{adjQstat} implements Kan and Wang's
 \eqn{Q^a_{BP}} only; Danioko et al.'s additional rejection-region
 inflation is not implemented, as it depends on their fitted regression
 coefficients, which are not published in closed form.
@@ -116,11 +116,11 @@ x <- rnorm(200)
 ## compare against the ordinary Box-Pierce and Ljung-Box tests
 Box.test(x, lag = 10, type = "Box-Pierce")
 Box.test(x, lag = 10, type = "Ljung-Box")
-adjBoxPierce(x, lag = 10)
+adjQstat(x, lag = 10)
 
 ## p-values across a range of lags
 lags   <- 1:10
-res    <- lapply(lags, function(L) adjBoxPierce(x, lag = L))
+res    <- lapply(lags, function(L) adjQstat(x, lag = L))
 pvals  <- sapply(res, function(r) r$p.value)
 names(pvals) <- lags
 pvals
@@ -129,7 +129,7 @@ pvals
 ## on ARMA residuals (heuristic fitdf adjustment -- see Residuals and
 ## fitdf above)
 fit <- arima(x, order = c(1, 0, 0))
-adjBoxPierce(residuals(fit), lag = 10, fitdf = 1)
+adjQstat(residuals(fit), lag = 10, fitdf = 1)
 }
 }
 \keyword{ts}

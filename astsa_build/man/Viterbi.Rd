@@ -54,9 +54,9 @@ A list with:
     each time point (the single most likely joint path, not a pointwise
     argmax).}
   \item{logprob}{Log-probability of that best path.}
-  \item{delta}{\code{T x m} matrix of running best-path log-probabilities
+  \item{delta}{\code{n x m} matrix of running best-path log-probabilities
     (Viterbi's dynamic-programming table), kept for diagnostics.}
-  \item{psi}{\code{T x m} matrix of backpointers used to reconstruct
+  \item{psi}{\code{n x m} matrix of backpointers used to reconstruct
     \code{states}, kept for diagnostics.}
 
 For \code{type = "HmmFit"}, an additional \code{family} element records

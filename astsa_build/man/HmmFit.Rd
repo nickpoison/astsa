@@ -216,6 +216,9 @@ A list with:
   can be read the same way regardless of whether \code{family} is \code{"pois"} or
   \code{"norm"}.
 }
+
+\seealso{\code{\link{Viterbi}} 
+}
   
 \examples{
 \dontrun{

@@ -35,13 +35,27 @@
 
 
 ## ------------------------------------------------------------
-## adjBoxPierce: the actual test.
+## adjQstat: the actual test.
 ##   x   : numeric vector (a time series, or residuals -- see note below)
 ##   lag : number of lags, m
 ##
 ## Returns a list modeled on stats::Box.test()'s output: statistic
 ## (Q^a_BP), parameter (df = m), p.value, plus the raw Q_BP and its
 ## exact E[]/Var[] for reference.
+##
+## MISSING DATA: follows stats::Box.test()'s convention exactly --
+## acf() is called with na.action = na.pass (rather than the default
+## na.action = na.fail, which errors on any NA), and n is the count of
+## non-missing observations, sum(!is.na(x)), not length(x). NOTE,
+## however: Kan & Wang's exact moment formulas were derived for a
+## complete series of length n with no missing values. Passing NAs
+## through to acf() and simply substituting n = sum(!is.na(x)) into
+## those formulas -- which is exactly what Box.test() itself does for
+## the asymptotic chi^2_m reference -- is the same size of
+## approximation as the fitdf heuristic below: a plausible carryover
+## from the complete-data theory, not something either paper derives
+## or validates for incomplete series. Treat results on data with
+## missing values as approximate, same caveat weight as fitdf > 0.
 ##
 ## NOTE ON RESIDUALS / fitdf: Kan & Wang derive E[rho_hat(k)^s] and
 ## the joint moments under the assumption that x itself is an
@@ -202,7 +216,7 @@ adjQstat <- function(x, lag, fitdf = 0) {
 ## estimate under the null (iid N(0,1) series) for a few (n, m)
 ## combinations. If the "formula" and "MC" columns disagree by more
 ## than MC noise, something in the transcription above is wrong --
-## please flag it back rather than trusting adjBoxPierce() on real data.
+## please flag it back rather than trusting adjQstat() on real data.
 ## ================================================================
 .abp_selfcheck <- function(n_vals = c(60, 120, 300),
                             m_vals = c(5, 10, 20),
@@ -244,20 +258,20 @@ adjQstat <- function(x, lag, fitdf = 0) {
 if (FALSE) {
 
   ## 0. RUN THIS FIRST -- confirms the formulas above are transcribed
-  ##    correctly before you trust adjBoxPierce() on real data.
+  ##    correctly before you trust adjQstat() on real data.
   .abp_selfcheck()
 
   ## 1. On a raw series
   set.seed(1)
   x <- rnorm(200)
-  adjBoxPierce(x, lag = 10)
+  adjQstat(x, lag = 10)
 
   ## 2. Side-by-side with the ordinary Box-Pierce / Ljung-Box tests
   Box.test(x, lag = 10, type = "Box-Pierce")
   Box.test(x, lag = 10, type = "Ljung-Box")
-  adjBoxPierce(x, lag = 10)
+  adjQstat(x, lag = 10)
 
   ## 3. On ARMA residuals (heuristic fitdf adjustment -- see note above)
   fit <- arima(x, order = c(1, 0, 0))
-  adjBoxPierce(residuals(fit), lag = 10, fitdf = 1)
+  adjQstat(residuals(fit), lag = 10, fitdf = 1)
 }
