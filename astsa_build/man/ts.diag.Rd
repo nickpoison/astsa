@@ -17,7 +17,7 @@ residuals from a time series fit (univariate only)
 color used in the plots (default is black)
 }
   \item{nlag}{
-the maximum number of lags for a portmanteau goodness-of-fit test 
+the maximum number of lags for the adjusted goodness-of-fit test 
 (unless it is small relative to \code{fitdf})
 }
   \item{Qstat}{

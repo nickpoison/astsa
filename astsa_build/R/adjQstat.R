@@ -1,6 +1,13 @@
-## ================================================================
-## adjQstat
+## ------------------------------------------------------------
+## adjQstat: the actual test.
+##   x   : numeric vector (a time series, or residuals -- see note below)
+##   lag : number of lags, m
 ##
+## Returns a list modeled on stats::Box.test()'s output: statistic
+## (Q^a_BP), parameter (df = m), p.value, plus the raw Q_BP and its
+## exact E[]/Var[] for reference.
+##
+## ================================================================
 ## Implements the "Adjusted Box-Pierce" statistic of Kan & Wang (2010,
 ## "On the distribution of the sample autocorrelation coefficients",
 ## Journal of Econometrics 154(2), 101-121), eq. (67):
@@ -13,13 +20,6 @@
 ## distributed) series -- not the asymptotic chi^2_m approximation
 ## (mean m, variance 2m) that Q_BP itself only satisfies as n -> Inf.
 ##
-## This is the test that Danioko et al. (2022, Frontiers in Applied
-## Mathematics and Statistics 8:873746) build their further rejection-
-## region correction on top of; this script implements Kan & Wang's
-## Q^a_BP itself, not Danioko et al.'s additional simulation-calibrated
-## critical-value adjustment (which requires their fitted regression
-## coefficients, not published as a closed-form formula).
-##
 ## E[Q_BP] and Var[Q_BP] are built here from the exact per-lag moments
 ## rather than Kan & Wang's own further-simplified closed forms for
 ## E[Q_BP] and E[Q_BP^2] (their eqs. 60 and 62) -- summing the per-lag
@@ -27,27 +27,13 @@
 ## just before their eq. 62) and far less error-prone to transcribe by
 ## hand than their fully-expanded polynomials.
 ##
-## IMPORTANT: no R interpreter was available to execute/verify this
-## code before delivery. Run .abp_selfcheck() below FIRST and confirm
-## the Monte Carlo columns agree with the formula columns before
-## trusting this on real data.
 ## ================================================================
-
-
-## ------------------------------------------------------------
-## adjQstat: the actual test.
-##   x   : numeric vector (a time series, or residuals -- see note below)
-##   lag : number of lags, m
-##
-## Returns a list modeled on stats::Box.test()'s output: statistic
-## (Q^a_BP), parameter (df = m), p.value, plus the raw Q_BP and its
-## exact E[]/Var[] for reference.
 ##
 ## MISSING DATA: follows stats::Box.test()'s convention exactly --
 ## acf() is called with na.action = na.pass (rather than the default
 ## na.action = na.fail, which errors on any NA), and n is the count of
-## non-missing observations, sum(!is.na(x)), not length(x). NOTE,
-## however: Kan & Wang's exact moment formulas were derived for a
+## non-missing observations, sum(!is.na(x)), not length(x). 
+## Kan & Wang's exact moment formulas were derived for a
 ## complete series of length n with no missing values. Passing NAs
 ## through to acf() and simply substituting n = sum(!is.na(x)) into
 ## those formulas -- which is exactly what Box.test() itself does for
@@ -89,7 +75,7 @@ adjQstat <- function(x, lag, fitdf = 0) {
   Qadj  <- df + sqrt(2 * df / mom$VarQ) * (QBP - mom$EQ)
   pval  <- 1 - pchisq(Qadj, df = df)
 
-  list(statistic = Qadj, parameter = df, p.value = pval,
+  list(statistic = Qadj, df = df, p.value = pval,
        method = "Adjusted Box-Pierce (Kan & Wang, 2010, exact moments)",
        data.name = deparse(substitute(x)),
        QBP = QBP, E_QBP = mom$EQ, Var_QBP = mom$VarQ)
@@ -204,74 +190,4 @@ adjQstat <- function(x, lag, fitdf = 0) {
   VarQ <- EQ2 - EQ^2
 
   list(EQ = EQ, VarQ = VarQ)
-}
-
-
-
-
-## ================================================================
-## Self-check: run this FIRST.
-##
-## Compares the formula-based E[Q_BP]/Var[Q_BP] against a Monte Carlo
-## estimate under the null (iid N(0,1) series) for a few (n, m)
-## combinations. If the "formula" and "MC" columns disagree by more
-## than MC noise, something in the transcription above is wrong --
-## please flag it back rather than trusting adjQstat() on real data.
-## ================================================================
-.abp_selfcheck <- function(n_vals = c(60, 120, 300),
-                            m_vals = c(5, 10, 20),
-                            B = 20000, seed = 1) {
-  set.seed(seed)
-  out <- data.frame()
-
-  for (n in n_vals) {
-    for (m in m_vals) {
-      if (m >= n) next
-
-      form <- .QBP_moments(n, m)
-
-      QBP_sim <- numeric(B)
-      for (b in seq_len(B)) {
-        x <- rnorm(n)
-        rho <- as.numeric(acf(x, lag.max = m, plot = FALSE)$acf[-1])
-        QBP_sim[b] <- n * sum(rho^2)
-      }
-
-      out <- rbind(out, data.frame(
-        n = n, m = m,
-        E_formula   = form$EQ,
-        E_MC        = mean(QBP_sim),
-        Var_formula = form$VarQ,
-        Var_MC      = var(QBP_sim)
-      ))
-    }
-  }
-
-  print(out, row.names = FALSE)
-  invisible(out)
-}
-
-
-## ================================================================
-## Example usage
-## ================================================================
-if (FALSE) {
-
-  ## 0. RUN THIS FIRST -- confirms the formulas above are transcribed
-  ##    correctly before you trust adjQstat() on real data.
-  .abp_selfcheck()
-
-  ## 1. On a raw series
-  set.seed(1)
-  x <- rnorm(200)
-  adjQstat(x, lag = 10)
-
-  ## 2. Side-by-side with the ordinary Box-Pierce / Ljung-Box tests
-  Box.test(x, lag = 10, type = "Box-Pierce")
-  Box.test(x, lag = 10, type = "Ljung-Box")
-  adjQstat(x, lag = 10)
-
-  ## 3. On ARMA residuals (heuristic fitdf adjustment -- see note above)
-  fit <- arima(x, order = c(1, 0, 0))
-  adjQstat(residuals(fit), lag = 10, fitdf = 1)
 }

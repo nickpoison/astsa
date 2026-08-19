@@ -2,7 +2,7 @@ sarima <- function(xdata, p = 0, d = 0, q = 0,
                    P = 0, D = 0, Q = 0, S = -1,
                    details = TRUE, xreg = NULL, Model = TRUE,
                    fixed = NULL, tol = sqrt(.Machine$double.eps),
-                   no.constant = FALSE, col = 1, ...) {
+                   no.constant = FALSE, col = 1, Qlag = NULL, ...) {
 
   # Capture xreg name from the unevaluated call
   mc        <- match.call()
@@ -120,8 +120,10 @@ sarima <- function(xdata, p = 0, d = 0, q = 0,
     # [3] Normal Q-Q plot
     QQnorm(stdres, col = col, main = "Normal Q-Q Plot of Std Residuals", ...)
 
-    # [4] Ljung-Box p-values  
-    nlag <- min(ifelse(S < 7, 20, 3 * S), 52)
+    # [4] adj Qstat p-values
+    if (is.null(Qlag)){
+      nlag <- min(ifelse(S < 7, 20, 3 * S), 52)
+    } else { nlag = Qlag }
     ppq  <- p + q + P + Q - sum(!is.na(fixed))
     nlag <- max(nlag, ppq + 8)
 

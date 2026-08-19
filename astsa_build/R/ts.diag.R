@@ -6,11 +6,7 @@ function(resids, col=1, nlag=20, Qstat=TRUE, fitdf=0, ...)
    if (nlag < fitdf + 8) { nlag = fitdf + 8 }
 
    old.par  <- par(no.readonly = TRUE)
-   ## Qstat = FALSE drops the adjusted Qstat p-value panel entirely (e.g. for
-   ## residuals where no justified degrees-of-freedom correction exists,
-   ## such as HMM quantile residuals -- see note in HmmFit.Rd). Panels
-   ## 1-3 (standardized residuals, ACF, QQ-plot) make no df assumption
-   ## and are unaffected either way.
+   ## Qstat = FALSE drops the adjusted Qstat p-value panel entirely 
    layout(if (Qstat) matrix(c(1,2,4, 1,3,4), ncol=2)
           else          matrix(c(1,1, 2,3), ncol=2, byrow=TRUE))
    par(cex=.85)
@@ -30,6 +26,7 @@ function(resids, col=1, nlag=20, Qstat=TRUE, fitdf=0, ...)
 # [4] 
   if (Qstat) {
     pval = c()
+    if (nlag - fitdf < 8) nlag = fitdf + 8
     for (i in (fitdf+1):nlag) {
      pval[i] = adjQstat(rs, lag=i, fitdf=fitdf)$p.value
      # u   = Box.test(rs, i, type = "Ljung-Box", fitdf=fitdf)$statistic

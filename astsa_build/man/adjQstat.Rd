@@ -25,7 +25,7 @@ adjQstat(x, lag, fitdf = 0)
 \value{
 A list with:
   \item{statistic}{The adjusted Box-Pierce statistic, \eqn{Q^a_{BP}}.}
-  \item{parameter}{Degrees of freedom used for the reference
+  \item{df}{Degrees of freedom used for the reference
     \eqn{\chi^2} distribution, \code{lag - fitdf}.}
   \item{p.value}{The p-value, \code{1 - pchisq(statistic, parameter)}.}
   \item{method}{A character description of the test.}
@@ -108,7 +108,18 @@ autocorrelation coefficients. \emph{Journal of Econometrics}, 154(2),
 Danioko, S., Zheng, J., Anderson, K., Barrett, A., Rakovski, C. S.
 (2022). A Novel Correction for the Adjusted Box-Pierce Test.
 \emph{Frontiers in Applied Mathematics and Statistics}, 8:873746.
+
+You can find demonstrations of  astsa capabilities at
+\href{https://github.com/nickpoison/astsa/blob/master/fun_with_astsa/fun_with_astsa.md}{FUN WITH ASTSA}.
+
+The most recent version of the package can be found  at \url{https://github.com/nickpoison/astsa/}.
+
+In addition, the News and ChangeLog files are at  \url{https://github.com/nickpoison/astsa/blob/master/NEWS.md}.
+
+The webpages for the texts and some help on using R for time series analysis can be found at
+ \url{https://nickpoison.github.io/}. 
 }
+
 \examples{
 set.seed(1)
 x <- rnorm(200)
@@ -116,7 +127,7 @@ x <- rnorm(200)
 ## compare against the ordinary Box-Pierce and Ljung-Box tests
 Box.test(x, lag = 10, type = "Box-Pierce")
 Box.test(x, lag = 10, type = "Ljung-Box")
-adjQstat(x, lag = 10)
+adjQstat(x, lag = 10)[1:3]
 
 ## p-values across a range of lags
 lags   <- 1:10
@@ -125,12 +136,10 @@ pvals  <- sapply(res, function(r) r$p.value)
 names(pvals) <- lags
 pvals
 
-\dontrun{
-## on ARMA residuals (heuristic fitdf adjustment -- see Residuals and
-## fitdf above)
-fit <- arima(x, order = c(1, 0, 0))
-adjQstat(residuals(fit), lag = 10, fitdf = 1)
-}
+## ARMA residuals + infinite variance :) 
+x   <- sarima.sim(ar = c(1.5, -.75), rand.gen=function(n, ...) rt(n, df=2)) + 50
+sarima(x, p=2)  # resid diagnostics included in output
+sarima(x, p=1)  # wrong p
 }
 \keyword{ts}
 \keyword{htest}
