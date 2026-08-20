@@ -141,18 +141,7 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
 
   ## a few small perturbations around it, in case kmeans landed
   ## on a slightly awkward partition.
-  ## NOTE: seq_len(n_perturb), not 1:n_perturb -- 1:0 is c(1, 0) in R
-  ## (length 2!), so n_perturb = 0 would silently still run 2 perturbed
-  ## restarts instead of none. seq_len(0) is correctly empty.
   for (i in seq_len(n_perturb)) {
-    ## NOTE: do NOT sort lam_p here. init$lambda0 is already sorted, but
-    ## the independent runif(m, 0.7, 1.3) jitter can flip the order of
-    ## two close rates; sorting afterwards would silently relabel the
-    ## states without applying the same permutation to Gamma0_p/delta0
-    ## (which are still in the pre-jitter label order), handing EM an
-    ## internally inconsistent (emission, transition) pairing. EM's
-    ## likelihood doesn't depend on label order, so we just leave lam_p
-    ## as-is and canonically relabel the final winner once, below.
     lam_p    <- pmax(init$lambda0 * runif(m, 0.7, 1.3), 0.1)
     Gamma0_p <- .perturb_gamma(init$Gamma0, m)
     fit <- tryCatch(
@@ -276,16 +265,6 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
 ## .pois_hmm_qresiduals: one-step-ahead quantile (normal
 ## pseudo-)residuals, computed from the predictive state
 ## distribution eta_t = P(S_t | x_1,...,x_{t-1}) (eta_1 = delta).
-## Since x_t | S_t=j ~ Poisson(lambda_j), the one-step-ahead
-## predictive CDF is the mixture
-##   F_t(q) = sum_j eta_t(j) * ppois(q, lambda_j)
-## Because Poisson data are discrete, F_t has jumps; plugging in
-## F_t(x_t) directly would bias residuals near those jumps, so a
-## randomized (jittered) residual is used instead:
-##   u_t ~ Uniform(F_t(x_t - 1), F_t(x_t)),   resid_t = qnorm(u_t)
-## Under a correctly specified model, resid_t is i.i.d. N(0,1).
-## qres_seed: optional seed for reproducible jittering (NULL = no
-## fixed seed, i.e. residuals vary slightly run to run).
 ## Returns a plain numeric vector (length n), one residual per x_t.
 ## ------------------------------------------------------------
 .pois_hmm_qresiduals <- function(x, lambda, Gamma, delta, qres_seed = NULL) {
@@ -333,17 +312,6 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
     lambda0 <- sort(km$centers)
   } else {
     ## fallback for tiny samples: rank-based binning instead of kmeans.
-    ## NOTE: quantile()-derived breaks + cut() used to be used here, but
-    ## quantile() breaks aren't guaranteed unique when x has ties (the
-    ## norm for small Poisson samples), which either (a) crashes cut()
-    ## directly with "'breaks' are not unique", (b) leaves a bin empty
-    ## -> mean(x[map==j]) = NaN -> NaN propagates through dpois()/EM
-    ## silently, or (c) produces an NA map entry -> crashes the
-    ## Gamma0[map[t], map[t+1]] <- ... assignment below with "NAs are
-    ## not allowed in subscripted assignments". rank(ties.method =
-    ## "first") is always a permutation of 1:n regardless of ties, so
-    ## splitting into m contiguous rank-blocks guarantees every state
-    ## gets at least one point whenever n >= m.
     rk  <- rank(x, ties.method = "first")
     map <- pmin(pmax(ceiling(rk / n * m), 1), m)
     lambda0 <- sapply(1:m, function(j) mean(x[map == j]))
@@ -463,10 +431,7 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
     cl <- parallel::makeCluster(n_cores)
     on.exit(parallel::stopCluster(cl), add = TRUE)
     ## PSOCK workers are fresh R sessions -- they don't have this script's
-    ## functions loaded, so they have to be shipped over explicitly. envir
-    ## is the environment .pois_hmm_boot itself was defined in (wherever
-    ## the script was source()'d into), so this finds its sibling helpers
-    ## regardless of what that environment happens to be.
+    ## functions loaded, so they have to be shipped over explicitly.
     parallel::clusterExport(
       cl,
       varlist = c(".sim_pois_hmm", ".HmmPois", ".pois_hmm_em",
@@ -623,18 +588,10 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
   ## a few small perturbations around whichever initializer is currently
   ## winning,  .
   jitter_scale <- 0.3 * sd(x)
-  ## NOTE: seq_len(n_perturb), not 1:n_perturb -- 1:0 is c(1, 0) in R
-  ## (length 2!), so n_perturb = 0 would silently still run 2 perturbed
-  ## restarts instead of none. seq_len(0) is correctly empty, which
-  ## matters if you want to test a user-supplied start point (e.g. an
-  ## exact saddle point) with NO perturbation added around it.
   for (i in seq_len(n_perturb)) {
     ## NOTE: mu_p/sigma_p used to be reordered by ord_p = order(mu_p)
     ## while Gamma0_p/delta0 stayed in the pre-jitter label order --
-    ## an inconsistent (emission, transition) pairing at the start of
-    ## EM. EM's likelihood doesn't depend on label order, and the
-    ## canonical relabel below (ord_final) already fixes up whichever
-    ## fit wins, so no permutation is needed here.
+    ## an inconsistent (emission, transition) pairing at the start of EM
     mu_p     <- best_init$mu0 + rnorm(m, 0, jitter_scale)
     sigma_p  <- pmax(best_init$sigma0 * runif(m, 0.7, 1.3), 1e-3)
     Gamma0_p <- .perturb_gamma(best_init$Gamma0, m)
@@ -778,9 +735,6 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
 ## Since x_t | S_t=j ~ N(mu_j, sigma_j^2), the one-step-ahead
 ## predictive CDF is the mixture
 ##   F_t(q) = sum_j eta_t(j) * pnorm(q, mu_j, sigma_j)
-## x is continuous here, so no jittering is needed (unlike the
-## Poisson case): resid_t = qnorm(F_t(x_t)). Under a correctly
-## specified model, resid_t is i.i.d. N(0,1).
 ## Returns a plain numeric vector (length n), one residual per x_t.
 ## ------------------------------------------------------------
 .norm_hmm_qresiduals <- function(x, mu, sigma, Gamma, delta) {
@@ -800,7 +754,7 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
     eta <- as.numeric(a %*% Gamma)
   }
 
-  eps <- 1e-10                  # keep off the boundary so qnorm() isn't +-Inf
+  eps <- 1e-10            # keep off the boundary so qnorm() isn't +-Inf
   u <- pmin(pmax(u, eps), 1 - eps)
 
   qnorm(u)
@@ -823,13 +777,6 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
     mu0 <- sort(km$centers)
   } else {
     ## fallback for tiny samples: rank-based binning instead of kmeans.
-    ## See .auto_init_pois_hmm for why quantile()+cut() is avoided here --
-    ## quantile() breaks aren't guaranteed unique (rounded/discretized
-    ## continuous data can tie too), which can crash cut(), leave a bin
-    ## empty (mean(x[map==j]) = NaN), or produce an NA map entry that
-    ## crashes the Gamma0 assignment below. rank(ties.method = "first")
-    ## is always a permutation of 1:n, so every bin is non-empty whenever
-    ## n >= m.
     rk  <- rank(x, ties.method = "first")
     map <- pmin(pmax(ceiling(rk / n * m), 1), m)
     mu0 <- sapply(1:m, function(j) mean(x[map == j]))

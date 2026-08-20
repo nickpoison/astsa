@@ -11,51 +11,7 @@
 ## Implements the "Adjusted Box-Pierce" statistic of Kan & Wang (2010,
 ## "On the distribution of the sample autocorrelation coefficients",
 ## Journal of Econometrics 154(2), 101-121), eq. (67):
-##
-##   Q^a_BP = m + sqrt(2m / Var[Q_BP]) * (Q_BP - E[Q_BP])   ~ chi^2_m
-##
-## where Q_BP = n * sum_{k=1}^m rho_hat(k)^2 is the ordinary Box-Pierce
-## statistic, and E[Q_BP], Var[Q_BP] are its EXACT finite-sample mean
-## and variance under the null of an uncorrelated (elliptically
-## distributed) series -- not the asymptotic chi^2_m approximation
-## (mean m, variance 2m) that Q_BP itself only satisfies as n -> Inf.
-##
-## E[Q_BP] and Var[Q_BP] are built here from the exact per-lag moments
-## rather than Kan & Wang's own further-simplified closed forms for
-## E[Q_BP] and E[Q_BP^2] (their eqs. 60 and 62) -- summing the per-lag
-## moments directly is mathematically identical (they say so explicitly
-## just before their eq. 62) and far less error-prone to transcribe by
-## hand than their fully-expanded polynomials.
-##
-## ================================================================
-##
-## MISSING DATA: follows stats::Box.test()'s convention exactly --
-## acf() is called with na.action = na.pass (rather than the default
-## na.action = na.fail, which errors on any NA), and n is the count of
-## non-missing observations, sum(!is.na(x)), not length(x). 
-## Kan & Wang's exact moment formulas were derived for a
-## complete series of length n with no missing values. Passing NAs
-## through to acf() and simply substituting n = sum(!is.na(x)) into
-## those formulas -- which is exactly what Box.test() itself does for
-## the asymptotic chi^2_m reference -- is the same size of
-## approximation as the fitdf heuristic below: a plausible carryover
-## from the complete-data theory, not something either paper derives
-## or validates for incomplete series. Treat results on data with
-## missing values as approximate, same caveat weight as fitdf > 0.
-##
-## NOTE ON RESIDUALS / fitdf: Kan & Wang derive E[rho_hat(k)^s] and
-## the joint moments under the assumption that x itself is an
-## uncorrelated (elliptically distributed) series -- NOT under the
-## assumption that x is the residual series from a fitted ARMA(p,q)
-## model. The usual fitdf = p+q correction for Box.test() on residuals
-## is a heuristic large-sample df adjustment; nothing in Kan & Wang
-## (2010) or Danioko et al. (2022) establishes that subtracting fitdf
-## from m here (in the chi^2 reference distribution, while still using
-## the raw x for Q_BP/E[Q_BP]/Var[Q_BP]) preserves the near-exact size
-## properties they demonstrate for a genuinely raw, unfitted series.
-## Treat fitdf > 0 here as the same heuristic extension stats::Box.test()
-## uses, not as something this paper's derivation directly covers.
-## ------------------------------------------------------------
+
 
 adjQstat <- function(x, lag, fitdf = 0) {
   x <- as.numeric(x)
@@ -165,10 +121,6 @@ adjQstat <- function(x, lag, fitdf = 0) {
 ##   E[Q_BP]   = n   * sum_k E[rho(k)^2]
 ##   E[Q_BP^2] = n^2 * ( sum_k E[rho(k)^4] + 2 * sum_{j<k} E[rho(j)^2 rho(k)^2] )
 ##   Var[Q_BP] = E[Q_BP^2] - E[Q_BP]^2
-## (Kan & Wang state this decomposition explicitly, just before their
-## eq. 62, as the route to Var[Q_BP] -- their eq. 62 is only the fully
-## expanded/simplified closed form of the same double sum, kept for
-## computational speed in their own code, not a different quantity.)
 ## ------------------------------------------------------------
 .QBP_moments <- function(n, m) {
   ks <- 1:m
