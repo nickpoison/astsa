@@ -7,52 +7,70 @@ with automatic initialization, randomized restarts, and optional
 standard errors.
 }
 \usage{
-HmmFit(x, m = 2, family = c("pois", "norm"),
-       n_perturb = 5, start = NULL, se = c("hessian", "boot", "none"),
-       B = 200, n_cores = 1, order_by = c("mean", "sd"),
-       init_method = c("auto", "location", "volatility"), \dots)
+HmmFit(x, m = 2, family = c("pois", "norm"), \dots)
 }
 \arguments{
   \item{x}{Numeric vector. Counts for \code{family = "pois"},
     continuous values for \code{family = "norm"}.}
   \item{m}{Number of states.}
   \item{family}{\code{"pois"} or \code{"norm"}.}
-  \item{n_perturb}{Number of randomized restarts (both emission
-    parameters and the transition matrix are perturbed). Set to
-    \code{0} to fit \code{start} exactly, with no perturbation.}
-  \item{start}{Optional list of your own starting values, skipping
-    the automatic initializer. \code{family = "pois"}: needs
-    \code{lambda0}, \code{Gamma0} (\code{delta0} optional, defaults
-    to uniform). \code{family = "norm"}: needs \code{mu0},
-    \code{sigma0}, \code{Gamma0} (\code{delta0} optional).}
-  \item{se}{\code{"hessian"} (default; asymptotic SEs from the
-    observed information, requires \pkg{nlme}), \code{"boot"}
-    (parametric bootstrap, slow), or \code{"none"}.}
-  \item{B}{Bootstrap replicates, if \code{se = "boot"}.}
-  \item{n_cores}{Cores for the bootstrap. Fork-based on Unix; falls
-    back to a \code{PSOCK} cluster on Windows.}
-  \item{order_by}{State ordering: \code{"mean"} (default) or
-    \code{"sd"} (useful when states differ mainly in spread, e.g.
-    volatility regimes).}
-  \item{init_method}{\code{family = "norm"} only; if supplied with
-    \code{family = "pois"} a warning is issued and it is ignored
-    (there is only one automatic initializer for the Poisson case).
-    Also unused if \code{start} is supplied. Controls which automatic
-    starting-value
-    strategy is used -- see \strong{Automatic Initialization} below.
-    \code{"auto"} (default) tries both \code{"location"} and
-    \code{"volatility"} and keeps whichever converges to the higher
-    log-likelihood; \code{"location"} or \code{"volatility"} forces
-    one directly, which is faster and useful once you know which
-    kind of regime structure your series has.}
-  \item{\dots}{Passed to the EM engine: \code{maxiter} (default 500)
-    and \code{tol} (default \code{1e-8}), the iteration cap and
-    log-likelihood convergence tolerance. Also accepts
-    \code{qres_seed} (\code{family = "pois"} only): an optional seed
-    for the randomized (jittered) quantile residuals -- see
-    \strong{Quantile Residuals} below. Default \code{NULL} means the
-    jitter is not fixed and will vary slightly between identical
-    calls.}
+  \item{\dots}{\code{HmmFit} itself takes only \code{x}, \code{m},
+    and \code{family} as named formals; everything else below is
+    collected via \code{\dots} and dispatched internally, so all of
+    the following can be passed by name:
+    \describe{
+      \item{\code{n_perturb}}{Number of randomized restarts (both
+        emission parameters and the transition matrix are
+        perturbed). Default \code{5}. Set to \code{0} to fit
+        \code{start} (or the automatic initializer) exactly, with no
+        perturbation.}
+      \item{\code{start}}{Optional list of your own starting values,
+        skipping the automatic initializer. \code{family = "pois"}:
+        needs \code{lambda0}, \code{Gamma0} (\code{delta0} optional,
+        defaults to uniform). \code{family = "norm"}: needs
+        \code{mu0}, \code{sigma0}, \code{Gamma0} (\code{delta0}
+        optional). Default \code{NULL}.}
+      \item{\code{se}}{\code{"hessian"} (default; asymptotic SEs
+        from the observed information, requires \pkg{nlme}),
+        \code{"boot"} (parametric bootstrap, slow), or
+        \code{"none"}.}
+      \item{\code{B}}{Bootstrap replicates, if \code{se = "boot"}.
+        Default \code{200}.}
+      \item{\code{boot_n_perturb}}{\code{n_perturb} to use for each
+        bootstrap replicate's own fit, if \code{se = "boot"}. Default
+        \code{1} -- deliberately smaller than the main fit's
+        \code{n_perturb}, since \code{B} replicate fits each doing
+        many restarts is expensive; raise it if bootstrap replicates
+        are converging to visibly different log-likelihoods.}
+      \item{\code{n_cores}}{Cores for the bootstrap. Fork-based on
+        Unix; falls back to a \code{PSOCK} cluster on Windows.
+        Default \code{1}.}
+      \item{\code{order_by}}{State ordering: \code{"mean"} (default)
+        or \code{"sd"} (useful when states differ mainly in spread,
+        e.g. volatility regimes).}
+      \item{\code{init_method}}{\code{family = "norm"} only; if
+        supplied with \code{family = "pois"} a warning is issued and
+        it is ignored (there is only one automatic initializer for
+        the Poisson case). Also unused if \code{start} is supplied.
+        Controls which automatic starting-value strategy is used --
+        see \strong{Automatic Initialization} below. \code{"auto"}
+        (default) tries both \code{"location"} and
+        \code{"volatility"} and keeps whichever converges to the
+        higher log-likelihood; \code{"location"} or
+        \code{"volatility"} forces one directly, which is faster and
+        useful once you know which kind of regime structure your
+        series has.}
+      \item{\code{maxiter}}{Passed to the EM engine: iteration cap.
+        Default \code{500}.}
+      \item{\code{tol}}{Passed to the EM engine: log-likelihood
+        convergence tolerance. Default \code{1e-8}.}
+      \item{\code{qres_seed}}{\code{family = "pois"} only: an
+        optional seed for the randomized (jittered) quantile
+        residuals -- see \strong{Quantile Residuals} below. Default
+        \code{NULL} means the jitter is not fixed and will vary
+        slightly between identical calls.}
+    }
+  }
 }
 \value{
 A list with:

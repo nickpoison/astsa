@@ -1,16 +1,13 @@
 ## ------------------------------------------------------------
-## adjQstat: the actual test.
-##   x   : numeric vector (a time series, or residuals -- see note below)
+## adjQstat:
+##   x   : numeric vector 
 ##   lag : number of lags, m
 ##
 ## Returns a list modeled on stats::Box.test()'s output: statistic
-## (Q^a_BP), parameter (df = m), p.value, plus the raw Q_BP and its
+## (Q^a_BP), df, p.value, plus the raw Q_BP and its
 ## exact E[]/Var[] for reference.
 ##
-## ================================================================
-## Implements the "Adjusted Box-Pierce" statistic of Kan & Wang (2010,
-## "On the distribution of the sample autocorrelation coefficients",
-## Journal of Econometrics 154(2), 101-121), eq. (67):
+##--------------------------------------------------------------
 
 
 adjQstat <- function(x, lag, fitdf = 0) {
@@ -40,12 +37,8 @@ adjQstat <- function(x, lag, fitdf = 0) {
 
 
 
-
-
-
 ## ------------------------------------------------------------
-## .pp: positive-part operator, a+ = max(a, 0), used throughout
-## Kan & Wang's formulas.
+## .pp: positive-part operator, a+ = max(a, 0)
 ## ------------------------------------------------------------
 .pp <- function(a) pmax(a, 0)
 

@@ -1,28 +1,21 @@
 ## ================================================================
 ## HmmFit.R
+## x      : time series (counts for "pois", continuous for "norm")
+## m      : number of states
+## family : "pois" (default) or "norm"
 ##
 ## Poisson and Normal Hidden Markov Models 
 ## EM with k-means-based automatic initialization, 
 ## randomized-restart perturbations, and optional
 ## Hessian-based or parametric bootstrap  SEs. 
-## ================================================================
 
-
-## ------------------------------------------------------------
-## HmmFit: (entry point)
-## x      : time series (counts for "pois", continuous for "norm")
-## m      : number of states
-## family : "pois" (default) or "norm"
-## ...    : passed through to .HmmPois()/.HmmNorm()
 ## ------------------------------------------------------------
 HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
   family <- match.arg(family)
   dots <- list(...)
 
   ## init_method only has meaning for family = "norm" (the Poisson case
-  ## has just one automatic initializer, plain k-means on x). Rather than
-  ## silently absorbing it into .pois_hmm_em's ... and doing nothing,
-  ## warn the caller and drop it before dispatching.
+  ## has just one automatic initializer, plain k-means on x). 
   if (family == "pois" && "init_method" %in% names(dots)) {
     warning("init_method is only used for family = \"norm\" (there is ",
             "only one automatic initializer for family = \"pois\"); ",
@@ -192,6 +185,9 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
                           delta0  = NULL,
                           maxiter = 500, tol = 1e-8, ...) {
 
+  dots      <- list(...)
+  qres_seed <- dots$qres_seed   # optional seed for the jittered quantile residuals
+
   n <- length(x)
 
   if (is.null(lambda0)) {
@@ -255,7 +251,7 @@ HmmFit <- function(x, m = 2, family = c("pois", "norm"), ...) {
     oldloglik <- loglik
   }
   distout <- .statdist(Gamma)
-  qres    <- .pois_hmm_qresiduals(x, lambda, Gamma, delta)
+  qres    <- .pois_hmm_qresiduals(x, lambda, Gamma, delta, qres_seed = qres_seed)
   list(lambda = lambda, Pmatrix = Gamma, delta = delta, pis=distout,
        loglik = loglik, posterior = gam, niter = iter, resid = qres)
 }

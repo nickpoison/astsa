@@ -29,6 +29,7 @@ function(resids, col=1, nlag=20, Qstat=TRUE, fitdf=0, ...)
     if (nlag - fitdf < 8) nlag = fitdf + 8
     for (i in (fitdf+1):nlag) {
      pval[i] = adjQstat(rs, lag=i, fitdf=fitdf)$p.value
+     #-- old version
      # u   = Box.test(rs, i, type = "Ljung-Box", fitdf=fitdf)$statistic
      # pval[i] =  pchisq(u, i-fitdf, lower.tail=FALSE)
     } 
