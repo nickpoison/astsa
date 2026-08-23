@@ -19,7 +19,7 @@ sarima <- function(xdata, p = 0, d = 0, q = 0,
   trans    <- is.null(fixed)
   trc      <- as.integer(details)
   n        <- length(xdata)
-  constant <- 1:n
+  constant <- matrix(1:n, dimnames = list(NULL, "constant"))
   xmean    <- if (no.constant) NULL else matrix(rep(1, n), dimnames=list(NULL, 'xmean'))
 
   # --- Build common args  ---
