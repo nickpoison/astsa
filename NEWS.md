@@ -72,6 +72,8 @@ __v2.5.1__:
 
    - and `sarima` diagnostics and `ts.diag` now use the adjusted Q-statistic
 
+- in `sarima.sim`, added an option to turn off warnings - useful in simulations involving horrible ARMA models with nasty parameters.  
+
 <br/> 
 
 ---

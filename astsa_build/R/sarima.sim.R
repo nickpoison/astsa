@@ -1,6 +1,7 @@
 sarima.sim <-
 function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL, n=500,
-           rand.gen=rnorm, innov=NULL, burnin=NA, t0=0, red.tol=.1, ...)
+           rand.gen=rnorm, innov=NULL, burnin=NA, t0=0, red.tol=.1, 
+           warnings=TRUE, ...)
 {
   if (length(burnin) > 1) burnin <- burnin[1]
   if (length(ar) == 1 && ar == 0) ar <- NULL
@@ -8,10 +9,15 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL, n=500,
   po <- length(ar)
   qo <- length(ma)
 
+# deal with warnings
+  old_warn <- getOption("warn")
+  if (!warnings) options(warn = -1)
+
+
   if (po > 0 && min(Mod(polyroot(c(1, -ar)))) <= 1)
-      stop("AR side is not causal")
+      warning("AR not causal", call.=FALSE)
   if (qo > 0 && min(Mod(polyroot(c(1,  ma)))) <= 1)
-      stop("MA side is not invertible")
+      warning("MA not invertible", call.=FALSE)
 
   if (is.null(S)) {
     if (length(sar) > 0 || length(sma) > 0)
@@ -40,7 +46,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL, n=500,
     if (Po > 0) {
       SAR <- c(1, rep(0, Po * S))
       SAR[seq(S + 1, Po * S + 1, by = S)] <- -sar
-      if (min(Mod(polyroot(SAR))) <= 1) stop("AR side is not causal")
+      if (min(Mod(polyroot(SAR))) <= 1) warning("SAR not causal", call.=FALSE)
       arnew <- -polyMul(if (po > 0) c(1, -ar) else 1, SAR)[-1]
     } else {
       SAR   <- NULL
@@ -51,7 +57,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL, n=500,
     if (Qo > 0) {
       SMA <- c(1, rep(0, Qo * S))
       SMA[seq(S + 1, Qo * S + 1, by = S)] <- sma
-      if (min(Mod(polyroot(SMA))) <= 1) stop("MA side is not invertible")
+      if (min(Mod(polyroot(SMA))) <= 1) warning("SMA not invertible", call.=FALSE)
       manew <- polyMul(if (qo > 0) c(1, ma) else 1, SMA)[-1]
     } else {
       SMA   <- NULL
@@ -70,7 +76,9 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL, n=500,
                         n=num, innov=innov, ...)
     if (D > 0) x <- diffinv(x, lag=S, differences=D)
   }
-
+# reset warnings
+  options(warn = old_warn)
+#
   if (red.tol > 0)
     .red_check(ar=ar, ma=ma, SAR=SAR, SMA=SMA, S=S,
                red.tol=red.tol, po=po, qo=qo, Po=Po, Qo=Qo)
@@ -113,13 +121,13 @@ function(ar, ma, SAR, SMA, S, red.tol, po, qo, Po, Qo)
     ar_roots  <- 1 / polyroot(c(1, -ar))
     ma_roots  <- 1 / polyroot(c(1,  ma))
     redundant <- any(outer(ar_roots, ma_roots, function(a, b) Mod(a - b)) < red.tol)
-    if (redundant) cat("\nWARNING: (Possible) Parameter Redundancy\n")
+    if (redundant) warning("(Possible) Parameter Redundancy", call.=FALSE)
   }
 
   if (Po > 0 && Qo > 0) {
     sar_roots <- 1 / polyroot(SAR)
     sma_roots <- 1 / polyroot(SMA)
     redundant <- any(outer(sar_roots, sma_roots, function(a, b) Mod(a - b)) < red.tol)
-    if (redundant) cat("\nWARNING: (Possible) Seasonal Parameter Redundancy\n")
+    if (redundant) warning("(Possible) Seasonal Parameter Redundancy", call.=FALSE)
   }
 }
