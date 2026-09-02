@@ -1,5 +1,6 @@
 acf2 <-
-function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action=na.pass, ...){
+function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL,
+          byrow=TRUE, na.action=na.pass, ...){
 
   num   = length(series)
   xfreq = frequency(series)
@@ -27,12 +28,16 @@ function(series, max.lag=NULL, plot=TRUE, main=NULL, ylim=NULL, na.action=na.pas
     maxu = min(max(maxA+.1, maxP+.1), 1)
     ylim = c(minu,maxu)
    }
-  par(mfrow=c(2,1), cex.main=1) 
+   if (byrow) par(mfrow=c(2,1), cex.main=1)   
+     else { par(mfrow=c(1,2), cex.main=1); titl=main; main=NA }
    Xlab = ifelse(xfreq>1, paste('LAG \u00F7', xfreq), 'LAG')
    tsplot(LAG, ACF, ylim=ylim, main=main, xlab=Xlab, ylab='ACF', type='h', ...)
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(8,4,4))
-   tsplot(LAG, PACF, ylim=ylim, main=NULL, xlab=Xlab, ylab='PACF', type='h', ...)
+   tsplot(LAG, PACF, ylim=ylim, main=NA, xlab=Xlab, ylab='PACF', type='h', ...)
     abline(h=c(0,L,U), lty=c(1,2,2), col=c(8,4,4))
+    
+    if (!byrow) mtext(titl, font=2, outer=TRUE, line=-1.5, cex=1.2, adj=.5)
+
    on.exit(par(old.par))
    ACF  <- round(ACF,2) 
    PACF <- round(PACF,2)    

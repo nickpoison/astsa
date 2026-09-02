@@ -7,7 +7,7 @@ Produces a simultaneous plot (and a printout) of the sample ACF and PACF on the 
 }
 \usage{
 acf2(series, max.lag = NULL, plot = TRUE, main = NULL, ylim = NULL, 
-      na.action = na.pass, ...)
+       byrow=TRUE, na.action = na.pass, ...)
 }
 \arguments{
   \item{series}{The data (must be more than 2 observations).  Does not have to be a time series object.
@@ -20,6 +20,8 @@ Maximum lag. Can be omitted. Defaults to \eqn{\sqrt{n} + 10} unless \eqn{n < 60}
   \item{main}{Title of graphic; defaults to name of series.
 }
   \item{ylim}{Specify limits for the y-axis.
+}
+  \item{byrow}{logical; if TRUE (default) the graphic is 2 rows 1 column, if FALSE, the graphic is 1 row 2 columns.
 }
  \item{na.action}{How to handle missing data; default is \code{na.pass}
 }
@@ -46,6 +48,8 @@ D.S. Stoffer
 }
 \examples{
 acf2(rnorm(100))
+
+acf2(rec, byrow=FALSE)   # we'll travel along, singing a song, side by side
 
 acf2(rnorm(100), 25, main=NA)   # no title
 

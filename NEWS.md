@@ -74,6 +74,8 @@ __v2.5.1__:
 
 - in `sarima.sim`, added an option to turn off warnings - useful in simulations involving horrible ARMA models with nasty parameters.  
 
+- `acf2` now has a `byrow` option with default TRUE (2 rows &times; 1 col)... if FALSE then 1 row &times; 2 cols.  It's a festivus miracle!!! &#127873;
+
 <br/> 
 
 ---
