@@ -76,12 +76,13 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL, n=500,
                         n=num, innov=innov, ...)
     if (D > 0) x <- diffinv(x, lag=S, differences=D)
   }
-# reset warnings
-  options(warn = old_warn)
-#
+
   if (red.tol > 0)
     .red_check(ar=ar, ma=ma, SAR=SAR, SMA=SMA, S=S,
                red.tol=red.tol, po=po, qo=qo, Po=Po, Qo=Qo)
+
+# reset warnings
+  options(warn = old_warn)
 
   frq <- ifelse(is.null(S), 1, S)
   x   <- ts(x[(burnin + 1):(burnin + n)], start=t0, frequency=frq)
@@ -91,7 +92,7 @@ function(ar=NULL, d=0, ma=NULL, sar=NULL, D=0, sma=NULL, S=NULL, n=500,
 
 ##
 .arima_sim <-
-function(model, n, innov, ...)
+function(model, n, innov,  ...)
 {
   if (length(innov) < n)
     warning(paste("the number of innovations should be at least 'n + burnin' =", n))
