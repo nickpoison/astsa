@@ -32,11 +32,10 @@ We won't always push the latest version of the package to CRAN, but the latest w
 
 * Python:
 
-   - A [python version of astsa may be found here](https://pypi.org/project/astsa/).
 
     - The [code in the first 3 chapters of the Springer text (edition 4) has been converted to Python here.](https://github.com/borisgarbuzov/tsa4-python/tree/master/src) 
 
-    - And a [Python package that contains many of the datasets from astsa is here.](https://pypi.org/project/astsadata/)
+    - And a [Python package that contains many of the datasets from astsa is here](https://pypi.org/project/astsadata/) ... and there is another one [here:](https://pypi.org/project/astsa/).
 
 <br/>
 

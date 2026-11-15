@@ -43,7 +43,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 ---
 ---
 
-### &#127514; Version 2.5&ndash; March 2026 (on CRAN)  & v2.5.1 (on GitHub)
+### &#127514; Version 2.5&ndash; March 2026 (on CRAN)  & v2.5.11 (on GitHub)
 
 > &#127917; In updating `sarima` for v2.4, we left off some brackets so certain objects were being changed when they should not have been.  This blooper does not affect any text examples  because it was introduced after the books had gone to the publishers.  We thank Dr. Nazim Ekinci for pointing out the problem.
 
@@ -51,18 +51,23 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
  - We changed `EM()` so that the output starts the iteration number at 0 instead of 1, because the first evaluation of the likelihood is at the initial values.  It's not a big deal- it only changes the way the output looks.
 
-__v2.5.1__:
+__v2.5.11__:
 
- - Version 2.5 is essentially a version 2.4 patch that was quickly distributed to avoid problems.  Version 2.5.1 (on GitHub)  has a number of updates- so as of August 2026, $v2.5 \not\approx v2.5.1$... we kept the v2.5.1 because it gets annoying changing it with every update.   
+ - While v2.5 was essentially a v2.4 patch that was quickly distributed to avoid problems.  Version 2.5.11 (on GitHub)  has a number of updates and additions.   
  
 > There are a number of efficiency improvements to numerous scripts (all calls are the same), because many scripts evolved slowly over time; e.g., `tsplot` started as a simple script just to get decent graphics with minimal coding for demonstrations... but it evolved (via addons) for use in publications.
 
+> We've also added some new scripts for general time series analysis, and ...
 
-> A text on stochastic processes (with applications of course) is in the works ... so we're adding scripts slowly to help with the text... so far:
+> ... a text on stochastic processes (with applications of course) is in the works, so we're also adding scripts slowly to help with the text:
 
- - `matrixpwr` now preserves the dimension names (`dimnames`) and removes imaginary residues from floating point roundoff if necessary.
 
-- added data set &#127381; `GGBsuicide` &#127381; - Number of days between suicides on the Golden Gate Bridge from 1999 to 2009 and `UnempRate2`: an update to `UnempRate` up to Feb 2026.
+-  &#127381; `autoSpecDP`  &#127381; is similar to `autoSpec` but uses <b>D</b>ynamic <b>P</b>rogramming instead of a genetic algortihm.
+
+-  &#127381; `test2spec`  &#127381; test the equality of two spectral densities from two time series (different lengths ok if they are independent).
+
+
+- added data set &#127381; `GGBsuicide` &#127381; - Number of days between suicides on the Golden Gate Bridge from 1999 to 2009 and &#127381; `UnempRate2` &#127381;, an update to `UnempRate` up to Feb 2026.
 
 -  &#127381; `HmmFit`  &#127381; does hidden Markov models for Poisson count time series or for Normal continuous-valued series. 
 
@@ -75,6 +80,8 @@ __v2.5.1__:
 - in `sarima.sim`, added an option to turn off warnings - useful in simulations involving horrible ARMA models with nasty parameters.  
 
 - `acf2` now has a `byrow` option with default TRUE (2 rows &times; 1 col)... if FALSE then 1 row &times; 2 cols.  It's a festivus miracle!!! &#127873;
+
+ - `matrixpwr` now preserves the dimension names (`dimnames`) and removes imaginary residues from floating point roundoff if necessary.
 
 <br/> 
 

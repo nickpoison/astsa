@@ -12,7 +12,7 @@ Number of days between suicides on the Golden Gate Bridge from 1999 to 2009
  num [1:223] 30.6 37.48 2.67 9.08 4 ...
 }
 \details{
-For the period 1999-2009, the time  (in units of days) between suicides from the Golden Gate Bridge in California as documented by the medical examiner's office in Marin County. There were 224 suicides during this 11 year period.  
+For the period 1999-2009, the time  (in units of days) between suicides from the Golden Gate Bridge in California as documented by the medical examiner's office in Marin County. There were 223 suicides during this 11 year period.  
 }
 \source{
 Kindly provided by David Lester, Distinguished Professor of Psychology, Emeritus, Stockton University, in a private communication. 
@@ -34,16 +34,12 @@ The webpages for the texts and some help on using R for time series analysis can
 plot(ecdf(GGBsuicide))
 curve(pexp(x, rate = 1/mean(GGBsuicide)), add = TRUE, col = 2, lwd = 2)
 
-\dontrun{
-# To pull out the number of suicides per quarter using `xts`:
-library(xts)
-start_date  <- as.Date("1999-01-01")
-event_times <- cumsum(GGBsuicide)
-event_dates <- start_date + event_times
-event_xts   <- xts(rep(1, length(event_dates)), order.by=event_dates)
-Nevents     <- apply.quarterly(event_xts, sum)   
-plot(Nevents, col=4, main="GGBsuicides per Quarter")
-}
 
+# To pull out the number of suicides per quarter:
+d  = as.Date("1999-01-01") + cumsum(GGBsuicide)
+t  = table(cut(d, "quarter"))
+yr = substr(names(t), 1, 4)
+barplot(t, names.arg = ifelse(endsWith(names(t), "01-01"), yr, ""), las = 2, 
+        col = ifelse(yr \%in\% 2006:2007, 6, 4),  main='Suicides per Quarter')
 }
 \keyword{datasets}

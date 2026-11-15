@@ -1,8 +1,8 @@
 Package: astsa
 Type: Package
 Title: Applied Statistical Time Series Analysis
-Version: 2.5.1
-Date: 2026-03-13
+Version: 2.5.11
+Date: 2026-11-15
 Maintainer:	David Stoffer <stoffer@pitt.edu>
 Author:	David Stoffer [aut, cre], Nicky Poison [ctb, mus, spy]
 Authors@R: c(person(given = "David",
@@ -18,12 +18,13 @@ Description: Contains data sets and scripts for analyzing time series in both
     Examples (5th ed), by R.H. Shumway and D.S. Stoffer. Springer Texts in
     Statistics, 2025, <DOI:10.1007/978-3-031-70584-7>, and Time Series: A
     Data Analysis Approach Using R (2nd ed). Chapman-Hall, 2026,
-    <https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642>.
+ <https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642>.
     Most scripts are designed to require minimal input to produce aesthetically
     pleasing output for ease of use in live demonstrations and course work.
 License: GPL (>= 2)
 URL: https://dsstoffer.github.io/, https://nickpoison.github.io/
 BugReports: https://github.com/nickpoison/astsa/issues
 Depends: R (>= 3.5)
+Imports: graphics, grDevices, stats, utils
 LazyLoad: yes
 LazyData: yes

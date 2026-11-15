@@ -16,8 +16,8 @@ importFrom("stats", "acf", "AIC", "ar", "ar.yw", "arima", "ARMAtoMA", "as.ts",
               "predict", "qf", "qnorm", "qqnorm", "qt", "quantile", "resid", 
               "rgamma", "rnorm", "runif", "sd", "spec.ar", "spec.pgram", 
               "spec.taper", "summary.lm", "time", "ts", "ts.intersect", 
-              "ts.plot", "tsp", "var", "vcov")   
-importFrom("utils", "setTxtProgressBar", "txtProgressBar")
+              "ts.plot", "tsp", "var", "vcov", "median")   
+importFrom("utils", "setTxtProgressBar", "txtProgressBar", "tail")
 
 
 # Export all names that do not start with a period

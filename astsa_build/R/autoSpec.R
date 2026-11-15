@@ -83,7 +83,7 @@ return(list(breakpoints=u, number_of_segments=npts,segment_kernel_orders_m=bst))
  }
 
  #Generates the next generation
- pb = txtProgressBar(min=1, max=generation, style=2)  # progress bar - created once, not per-generation
+ pb = txtProgressBar(min=1, max=generation, style=2)  # progress bar 
  for(k in 1:generation){   #For each next generation
   for(i in 1:NI){      #For each island
     #.generate() is handed the already-computed parent fitness (S.parent[i,]) instead
