@@ -9,7 +9,7 @@
 
  &#128038; _The 2 versions (GitHub and CRAN) are __NOT__ nearly the same anymore._
 
-[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp; &nbsp; ![](https://img.shields.io/badge/GitHub-2.5.1-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
+[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp; &nbsp; ![](https://img.shields.io/badge/GitHub-2.5.11-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
 
 
 
