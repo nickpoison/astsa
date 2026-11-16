@@ -19,7 +19,7 @@ Description: Contains data sets and scripts for analyzing time series in both
     Statistics, 2025, <DOI:10.1007/978-3-031-70584-7>, and Time Series: A
     Data Analysis Approach Using R (2nd ed). Chapman-Hall, 2026,
  <https://www.routledge.com/Time-Series-A-Data-Analysis-Approach-Using-R/Shumway-Stoffer/p/book/9781041031642>.
-    Most scripts are designed to require minimal input to produce aesthetically
+    Many scripts are designed to require minimal input to produce aesthetically
     pleasing output for ease of use in live demonstrations and course work.
 License: GPL (>= 2)
 URL: https://dsstoffer.github.io/, https://nickpoison.github.io/

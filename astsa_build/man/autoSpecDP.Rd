@@ -31,7 +31,7 @@ For a partition into \eqn{m} segments of a series of length \eqn{n}, the criteri
 \deqn{\log m + m \log n + \sum_{j=1}^{m} C_j,}
 where each segment cost \eqn{C_j} contains the code length of the chosen kernel (\eqn{\log r} for a library of \eqn{r} kernels), the code length of the bandwidth, and the Whittle fit term, minimized over kernel and bandwidth. Because the criterion is additive over segments, dynamic programming finds the best partition among all those whose breakpoints lie on the candidate grid. A breakpoint between grid points cannot be found, which is why \code{grid.step} should be small relative to the shortest segment expected.
 
-An exact search does not make the criterion more reliable. On narrowband series the criterion can favour spurious breakpoints, and a small \code{min.span} makes this worse. Set \code{min.span} conservatively, check each breakpoint separately (for example by comparing the MDL with and without it), and calibrate any large MDL gain by simulation from a no-change model.
+An exact search does not make the criterion more reliable. On narrowband series the criterion can favor spurious breakpoints, and a small \code{min.span} makes this worse. Set \code{min.span} conservatively, check each breakpoint separately (for example by comparing the MDL with and without it), and calibrate any large MDL gain by simulation from a no-change model.
 }
 \value{
 A list with components
