@@ -9,7 +9,7 @@
 
  &#128038; _The 2 versions (GitHub and CRAN) are __NOT__ nearly the same anymore._
 
-[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp; &nbsp; ![](https://img.shields.io/badge/GitHub-2.5.11-ff69b4.svg?style=flat") <sup>&#9664; current GitHub version</sup>
+[![](https://www.r-pkg.org/badges/version/astsa)](https://www.r-pkg.org/badges/version/astsa) <sup>&#9664; current CRAN version</sup>&nbsp; &nbsp; ![](https://img.shields.io/badge/GitHub-2.5.11-83358F.svg?style=flat") <sup>&#9664; current GitHub version</sup>
 
 
 
@@ -51,7 +51,7 @@ remotes::install_github("nickpoison/astsa/astsa_build")
 
  - We changed `EM()` so that the output starts the iteration number at 0 instead of 1, because the first evaluation of the likelihood is at the initial values.  It's not a big deal- it only changes the way the output looks.
 
-__v2.5.11__:
+### v2.5.11:
 
  - While v2.5 was essentially a v2.4 patch that was quickly distributed to avoid problems.  Version 2.5.11 (on GitHub)  has a number of updates and additions.   
  
