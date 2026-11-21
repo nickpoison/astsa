@@ -8,9 +8,10 @@
 ## segment, the smoothing kernel and bandwidth.
 ##
 ## Requires astsa (mvspec, bart); stats::kernel() supplies the other kernel shapes.
-## Contents: Section 1 offline DP; Section 2 growing-stream DP (.dp.stream.*);
-## Section 3 sliding-window DP (.dp.wstream.*); Section 4 targeted monitor (.tg.*, tg_*);
-## Sections 5-6 simulation harnesses (research tools).
+## Contents: Section 1 offline DP (the main function); Section 2 growing-stream DP
+## (.dp.stream.*); Section 3 sliding-window DP (.dp.wstream.*); Section 4 targeted monitor
+## (.tg.*, tg_*). The simulation harnesses and regression tests used for the write-up are in
+## autoSpecDP_research.R, not needed for ordinary use.
 ##
 ## ---------------------------------------------------------------------------------------
 ## Criterion.  For m segments with breakpoints xi_0 = 0 < xi_1 < ... < xi_m = n,
@@ -63,6 +64,38 @@
 ##   verbose     : print progress and summary messages.
 ##   n.cores     : cores for building the segment-cost table (parallel::mclapply on
 ##                 Unix-like systems, a PSOCK cluster on Windows). Default 1.
+##   prune       : strength of backward pruning, a number in [0, 1]; 0 (default) = no pruning, 1 =
+##                 merge every interior break (single segment).  What it measures depends on
+##                 prune.method.
+##   prune.method: "spectral" (default) or "mdl".
+##                 "spectral": each interior break is tested against its two neighbours with the
+##                   segments compared at a COMMON frequency resolution (block periodograms of the
+##                   same length from both sides, F ratios, see .dp.breakP), so a short segment of
+##                   the same spectrum is not mistaken for a different one.  prune is a confidence
+##                   level: every surviving break must have p <= 1 - prune (prune = .95: p <= .05).
+##                   Breaks with the largest p are removed first and the rest re-tested.  With
+##                   null.reps > 0 the level is instead the (1 - prune) quantile, over no-change surrogates,
+##                   of the best bottleneck T along the pruning path (T = min over steps of the
+##                   largest break p-value), which corrects for the search over break locations
+##                   and matches the pruning decision exactly.
+##                 "mdl": the earlier rule.  The SUPPORT of a partition is min(weakest drop-one
+##                   MDL worth, gain over no split), in nats, penalty included; W is the largest
+##                   support along the pruning path.  Relative scale (null.reps = 0): survivors
+##                   need support >= prune * W.  Calibrated (null.reps > 0): the threshold is the
+##                   prune quantile of W over surrogates.
+##   null.reps   : number of null surrogates for calibration (default 0 = none). Each replicate is
+##                 a full fit, so cost is null.reps x one serial fit, spread over n.cores. Use 40
+##                 to 100; the resolution of the quantile is 1/null.reps.
+##   null.surrogate: "phase" (default; phase-randomised copy of the series, keeps its average
+##                 spectrum) or "ar" (AR fitted by AIC, Gaussian innovations).
+##   null.W      : null values from an earlier call (returned as `null.W`); reuse them to try
+##                 other prune levels without re-simulating. Same data and settings only.
+##   seed        : random seed for the surrogates.
+##   min.gain    : minimum number of nats by which the final partition must beat NO SPLIT (same
+##                 penalty convention); otherwise a single segment is returned. Default 0 = no
+##                 rule. Applied last, after refinement and pruning. Not calibrated: choose it by
+##                 simulation (the write-up's Section 14 found it adds little once pruning is
+##                 used). The gain of the returned fit is reported as `gain`.
 ##   fast        : if TRUE (default), use the cached segment cost, which gives the same
 ##                 costs, kernels and orders as the reference path (fast = FALSE) to
 ##                 floating-point precision at 3-7 times lower cost.
@@ -74,10 +107,17 @@
 ##   segment_kernel_type    : chosen kernel per segment; "none" if the order is 0 (no
 ##                            smoothing, so all kernels coincide)
 ##   mdl                    : total MDL of the returned model
+##   gain                   : MDL of NO SPLIT minus mdl, in nats (0 for a single segment); how far
+##                            the fit beats not splitting, under the same penalty convention
+##   prune.method           : "spectral" or "mdl"
+##   prune.alpha            : spectral pruning: the p-value level the breaks had to meet (NA if unused)
+##   break.p                : spectral pruning: p-values of the breaks that remain (NULL if unused)
+##   prune.nats             : "mdl" pruning: the nats threshold that `prune` implied (0 if unused)
+##   prune.p                : calibrated mode only: share of null surrogates at least as extreme as the
+##                            observed fit (smaller p, or larger W for "mdl"; +1 correction); NA otherwise
+##   null.W                 : calibrated mode only: the null values of W (reusable via null.W =)
 ##   elapsed.sec            : wall-clock time of the search
 #########################################################################################
-
-.dp.version <- "autoSpecDP 2026-11"  # comment this out once finalized
 
 ## ---------------------------------------------------------------------------------------
 ## ENTRY POINT.  autoSpecDP(x, ..., mode = ) dispatches to the parts of this file.  `mode` must be
@@ -139,8 +179,13 @@ autoSpecDP <- function(xdata, ..., mode = c("offline", "stream", "window", "moni
 function(xdata, m0 = 10, taper = .5, min.freq = 0, max.freq = .5,
          kernels = c("bartlett", "daniell", "modified.daniell", "dirichlet"),
          M = NULL, min.span = NULL, grid.step = NULL, refine = TRUE,
-         refine.window = NULL, expected.breaks = NULL, verbose = TRUE, n.cores = 1, fast = TRUE){
+         refine.window = NULL, expected.breaks = NULL, verbose = TRUE, n.cores = 1, fast = TRUE,
+         prune = 0, min.gain = 0,
+         null.reps = 0, null.surrogate = c("phase", "ar"), null.W = NULL, seed = NULL,
+         prune.method = c("spectral", "mdl"), .W.only = FALSE){
 
+  null.surrogate = match.arg(null.surrogate)
+  prune.method   = match.arg(prune.method)
   if (NCOL(xdata) > 1) stop("univariate time series only")
   xdata = c(xdata)                       # remove ts attributes if there
   n     = length(xdata)
@@ -268,6 +313,67 @@ function(xdata, m0 = 10, taper = .5, min.freq = 0, max.freq = .5,
                          cache = if (fast) .dp.newCache() else NULL, min.span = min.span)
   }
 
+  # backward pruning, strength `prune` in [0, 1]
+  if (!is.numeric(prune) || length(prune) != 1 || is.na(prune) || prune < 0 || prune > 1)
+    stop("prune must be a single number in [0, 1]")
+  prune.nats = 0; prune.alpha = NA_real_; prune.p = NA_real_; break.p = NULL
+  if (prune > 0 && length(starts) > 1){
+    spectral   = prune.method == "spectral"
+    calibrated = null.reps > 0 || !is.null(null.W)
+    if (calibrated && !is.null(null.W)){
+      nm = attr(null.W, "method"); if (is.null(nm)) nm = "mdl"    # older null.W had no label
+      if (nm != prune.method)
+        stop("null.W was built with prune.method = \"", nm, "\"; use prune.method = \"", nm, "\" or recompute it")
+      if (prune.method == "spectral" && is.null(attr(null.W, "stat")))
+        stop("this null.W used an earlier, inconsistent statistic; recompute it with null.reps")
+    }
+    if (calibrated && is.null(null.W)){
+      settings = list(m0 = m0, taper = taper, min.freq = min.freq, max.freq = max.freq,
+                      kernels = kernels, M = M, min.span = min.span, grid.step = grid.step,
+                      refine = refine, refine.window = refine.window, fast = fast)
+      null.W = .dp.nullW(xdata, null.reps, null.surrogate, seed, settings, n.cores, verbose,
+                         prune.method)
+    }
+    if (spectral){
+      # level every break must meet: 1 - prune, or the (1 - prune) quantile of the null
+      # distribution of the smallest break p-value when calibrated (corrects for the search)
+      alpha = if (prune >= 1) -1
+              else if (calibrated) as.numeric(quantile(null.W, 1 - prune, type = 1, names = FALSE))
+              else 1 - prune
+      pr = .dp.pruneSpectral(xdata, n, starts, min.freq, max.freq, alpha)
+      prune.alpha = alpha; break.p = pr$p
+      if (calibrated) prune.p = (1 + sum(null.W <= pr$T)) / (length(null.W) + 1)
+      if (verbose){
+        cat("break p-values before pruning (neighbours compared at common resolution): ",
+            paste(starts[-1], " p=", signif(pr$p0, 3), collapse = "; "), "\n", sep = "")
+        if (calibrated)
+          cat("prune = ", prune, " (calibrated on ", length(null.W), " surrogates): each break must have p <= ",
+              signif(alpha, 3), "; bottleneck statistic ", signif(pr$T, 3), ", null p-value ", round(prune.p, 3), "\n", sep = "")
+        else
+          cat("prune = ", prune, ": each break must have p <= ", signif(alpha, 3), "\n", sep = "")
+        if (length(pr$dropped)) cat("pruned break(s) at ", paste(pr$dropped, collapse = ", "), "\n", sep = "")
+      }
+      starts = pr$starts
+    } else {
+      pr = .dp.prune(xdata, n, starts, m0, taper, min.freq, max.freq, kernels, prune,
+                     null.W = if (calibrated) null.W else NULL,
+                     cache = if (fast) .dp.newCache() else NULL)
+      prune.nats = pr$tol
+      if (calibrated) prune.p = (1 + sum(null.W >= pr$W)) / (length(null.W) + 1)
+      if (verbose){
+        if (calibrated)
+          cat("prune = ", prune, " (null quantile of ", length(null.W), " surrogates): threshold ",
+              round(pr$tol, 2), " nats; observed support ", round(pr$W, 2),
+              " nats; null p-value ", round(prune.p, 3), "\n", sep = "")
+        else
+          cat("prune = ", prune, ": threshold ", round(pr$tol, 2), " nats (", round(prune, 2), " x ",
+              round(pr$W, 2), ", the largest support on the pruning path)\n", sep = "")
+        if (length(pr$dropped)) cat("pruned break(s) at ", paste(pr$dropped, collapse = ", "), "\n", sep = "")
+      }
+      starts = pr$starts
+    }
+  }
+
   # recompute the final per-segment kernel/order/MDL on the (possibly refined) partition
   u    = c(starts, n)
   npts = length(starts)
@@ -283,13 +389,25 @@ function(xdata, m0 = 10, taper = .5, min.freq = 0, max.freq = .5,
   }
   pen       = .dp.pen(npts, n, length(kernels))
   total.mdl = sum(kmdl) + pen
+  # gain over NO SPLIT, and the optional minimum-gain rule
+  ns       = .dp.segCostAny(xdata, m0, taper, min.freq, max.freq, kernels, fcache)
+  ns.mdl   = ns$mdl + .dp.pen(1, n, length(kernels))
+  gain     = ns.mdl - total.mdl
+  if (min.gain > 0 && npts > 1 && gain < min.gain){
+    if (verbose) cat("best partition beats no split by ", round(gain, 2), " nats (< min.gain = ",
+                     min.gain, "); returning a single segment\n", sep = "")
+    u = c(1, n); npts = 1; kord = ns$order; ktype = ns$kernel
+    total.mdl = ns.mdl; gain = 0
+  }
   elapsed   = as.numeric(difftime(Sys.time(), t0, units = "secs"))
 
   if (verbose) cat("returned breakpoints include the endpoints", "\n")
 
   return(list(breakpoints = u, number_of_segments = npts,
               segment_kernel_orders_m = kord, segment_kernel_type = ktype,
-              mdl = total.mdl, elapsed.sec = elapsed))
+              mdl = total.mdl, gain = gain, prune.method = prune.method, prune.alpha = prune.alpha,
+              break.p = break.p, prune.nats = prune.nats, prune.p = prune.p,
+              null.W = null.W, elapsed.sec = elapsed))
 }
 
 
@@ -674,6 +792,175 @@ function(xdata, m0 = 10, taper = .5, min.freq = 0, max.freq = .5,
   dp$cuts[path]
 }
 
+## Backward (drop-one) pruning.  For each interior break, MDL(partition without it) -
+## MDL(partition) is the number of nats that break buys (the merged piece is re-optimised over
+## kernel and order; the penalty change from m to m-1 segments is included).  The SUPPORT of a
+## partition is min(weakest drop-one worth, gain over NO SPLIT): the second term catches
+## breaks that are each strong only because the other is still in place (a pair that jointly
+## beats no split by less than either break seems worth alone).  The weakest break is removed,
+## everything is re-scored, and so on down to one segment, giving the "pruning path".
+## W = the largest support on the path.  A partition survives a threshold `tol` if its support
+## is >= tol; the largest surviving partition is returned.  tol is either prune * W (relative)
+## or a quantile of W over null surrogates (calibrated).
+.dp.prune.path = function(xdata, n, starts, m0, taper, min.freq, max.freq, kernels, cache = NULL){
+  r = length(kernels)
+  seg.cost = function(a, b) .dp.segCostAny(xdata[a:b], m0, taper, min.freq, max.freq, kernels, cache)$mdl
+  ns.mdl = seg.cost(starts[1], n) + .dp.pen(1, n, r)
+  steps = list(); cur = starts
+  while (length(cur) > 1){
+    m = length(cur); u = c(cur, n + 1)
+    cst = vapply(1:m, function(i) seg.cost(u[i], u[i+1] - 1), 0)
+    tot = sum(cst) + .dp.pen(m, n, r)
+    worth = rep(Inf, m)
+    for (i in 2:m){
+      merged = seg.cost(u[i-1], u[i+1] - 1)
+      worth[i] = (merged + (sum(cst) - cst[i-1] - cst[i]) + .dp.pen(m - 1, n, r)) - tot
+    }
+    w = which.min(worth)
+    steps[[length(steps) + 1]] = list(starts = cur, min.worth = worth[w], drop = cur[w],
+                                      total = tot, gain = ns.mdl - tot,
+                                      support = min(worth[w], ns.mdl - tot))
+    cur = cur[-w]
+  }
+  steps   # step k: the partition BEFORE the k-th removal, with its support
+}
+
+.dp.prune = function(xdata, n, starts, m0, taper, min.freq, max.freq, kernels, prune,
+                     null.W = NULL, cache = NULL){
+  steps = .dp.prune.path(xdata, n, starts, m0, taper, min.freq, max.freq, kernels, cache)
+  W     = max(vapply(steps, function(st) st$support, 0))
+  tol   = if (is.null(null.W)) prune * max(W, 0)
+          else as.numeric(quantile(null.W, prune, type = 1, names = FALSE))
+  single = function() list(starts = starts[1], dropped = setdiff(starts, starts[1]), tol = tol, W = W)
+  if (prune >= 1 || W <= 0) return(single())                 # nothing can survive
+  for (st in steps) if (st$support >= tol && st$support > 0)  # first (largest) partition that passes
+    return(list(starts = st$starts, dropped = setdiff(starts, st$starts), tol = tol, W = W))
+  single()
+}
+
+## Spectral test of ONE break against its two neighbouring segments xa | xb.  The segments are
+## compared at a COMMON resolution: with m = the shorter length, blocks of length L (a fraction of m)
+## are cut from both segments (50% overlap, split-cosine taper) and the block periodograms are
+## averaged on the same Fourier frequencies in (min.freq, max.freq].  At each frequency the ratio
+## of the two averaged periodograms is compared with an F distribution (df reduced for the
+## overlap); the smallest p-value over frequencies is Sidak-corrected.  The result is
+## min over three block lengths L = .5, .33, .25 * m (again Sidak): one block length alone is
+## erratic because lines fall on or between Fourier frequencies depending on L.  A short segment of
+## the same spectrum is NOT flagged (this is what the per-segment kernel/order costs get wrong): a
+## 105-point piece of a line seen at 389 points is compared with 105-point blocks of the 389.
+## Validated by simulation on line spectra (false alarm 1-3% at nominal 5%, power ~99% for a
+## two-lines -> one-line change at SNR of about 100 in the line); weaker for weak changes.
+.dp.breakP = function(xa, xb, min.freq, max.freq, fr = c(.5, .33, .25)){
+  m  = min(length(xa), length(xb))
+  sid = function(p, J) -expm1(J * log1p(-min(p, 1)))
+  welch = function(x, L){
+    w  = stats::spec.taper(rep(1, L), p = .25)
+    lo = max(1, ceiling(min.freq * L)); hi = floor(min(max.freq, .5) * L)
+    if (hi < lo) return(NULL)
+    st = seq(1, length(x) - L + 1, by = max(1, floor(L / 2)))
+    P  = vapply(st, function(s){
+           z = x[s:(s + L - 1)]; z = (z - mean(z)) * w
+           (Mod(fft(z))^2 / sum(w^2))[(lo + 1):(hi + 1)] }, numeric(hi - lo + 1))
+    P  = matrix(P, nrow = hi - lo + 1)
+    list(P = rowMeans(P), K = length(st))
+  }
+  ps = vapply(fr, function(f){
+    L = min(max(floor(m * f), 32), m)
+    A = welch(xa, L); B = welch(xb, L)
+    if (is.null(A) || is.null(B)) return(1)
+    R  = A$P / pmax(B$P, 1e-300)
+    cc = stats::pf(R, 2 * A$K * .85, 2 * B$K * .85)
+    sid(2 * pmin(cc, 1 - cc), length(R))
+  }, 0)
+  sid(ps, length(fr))
+}
+
+## Backward pruning by the spectral test: test every interior break against its two neighbours,
+## remove the one with the LARGEST p-value, re-test (neighbours changed), and continue down to a
+## single segment.  Step k of this path has a "worst p" (largest p among its breaks).  The partition
+## returned is the first (largest) one whose worst p is <= alpha, or a single segment if none is.
+## T = min over the path of the worst p is the statistic of the whole procedure: a break survives
+## at level alpha exactly when T <= alpha, so the null distribution of T (from surrogates)
+## calibrates alpha, searched locations and all.  p = p-values of the returned breaks, p0 = of the
+## partition handed in.  alpha < 0 returns a single segment.
+.dp.pruneSpectral = function(xdata, n, starts, min.freq, max.freq, alpha){
+  breakp = function(cur){
+    if (length(cur) < 2) return(numeric(0))
+    u = c(cur, n + 1)
+    vapply(2:length(cur), function(i)
+      .dp.breakP(xdata[u[i-1]:(u[i]-1)], xdata[u[i]:(u[i+1]-1)], min.freq, max.freq), 0)
+  }
+  cur = starts; p = breakp(cur); p0 = p; hist = list()
+  while (length(cur) > 1){
+    hist[[length(hist) + 1]] = list(starts = cur, p = p, worst = max(p))
+    cur = cur[-(which.max(p) + 1)]; p = breakp(cur)
+  }
+  worst = vapply(hist, function(h) h$worst, 0)
+  T     = if (length(worst)) min(worst) else 1
+  pick  = which(worst <= alpha)[1]
+  if (is.na(pick))
+    return(list(starts = starts[1], dropped = setdiff(starts, starts[1]), p = numeric(0), p0 = p0, T = T))
+  list(starts = hist[[pick]]$starts, dropped = setdiff(starts, hist[[pick]]$starts),
+       p = hist[[pick]]$p, p0 = p0, T = T)
+}
+
+## Null surrogate of the whole series: same mean, no change over time.
+##   "phase": phase-randomised Fourier transform (keeps the periodogram of the full series, so
+##            the average spectrum, but any change over time is scrambled away; Gaussian-like)
+##   "ar"   : AR(p) fitted by AIC to the full series, simulated with Gaussian innovations
+.dp.surrogate = function(x, type){
+  n = length(x); mu = mean(x)
+  if (type == "phase"){
+    z = fft(x - mu); h = floor((n - 1) / 2); idx = 2:(h + 1)
+    z[idx] = abs(z[idx]) * complex(modulus = 1, argument = runif(h, 0, 2*pi))
+    z[n - idx + 2] = Conj(z[idx])
+    return(Re(fft(z, inverse = TRUE)) / n + mu)
+  }
+  fit = ar(x, aic = TRUE, order.max = min(20, floor(n / 10)))
+  burn = 200; e = rnorm(n + burn, sd = sqrt(fit$var.pred))
+  y = if (length(fit$ar)) as.numeric(stats::filter(e, fit$ar, method = "recursive")) else e
+  y[(burn + 1):(burn + n)] + mu
+}
+
+## Null distribution of W: run the WHOLE procedure (same settings, no pruning) on B surrogates.
+## Surrogates are drawn here (so `seed` makes it reproducible whatever the core count) and the
+## replicates run in parallel, one serial fit per core (mclapply on Unix, PSOCK on Windows).
+.dp.nullW = function(xdata, B, surrogate, seed, settings, n.cores, verbose, prune.method){
+  if (!is.null(seed)) set.seed(seed)
+  Z = lapply(seq_len(B), function(b) .dp.surrogate(xdata, surrogate))
+  rep.fun = function(z)
+    suppressWarnings(do.call(.dp.offline, c(list(z), settings,
+      list(verbose = FALSE, n.cores = 1, prune = 0, null.reps = 0, prune.method = prune.method,
+           .W.only = TRUE))))
+  if (verbose) cat("null calibration: ", B, " ", surrogate, " surrogates",
+                   if (n.cores > 1) paste0(" on ", n.cores, " cores") else "", "\n", sep = "")
+  cl = NULL
+  if (n.cores > 1 && .Platform$OS.type != "unix"){
+    cl = parallel::makeCluster(n.cores)
+    on.exit(parallel::stopCluster(cl), add = TRUE)
+    parallel::clusterEvalQ(cl, library(astsa))
+    here = environment(sys.function())
+    fn.names = ls(here, all.names = TRUE, pattern = "^\\.dp\\.")
+    fe = new.env()
+    for (nm in fn.names) assign(nm, get(nm, envir = here, inherits = TRUE), envir = fe)
+    parallel::clusterExport(cl, varlist = fn.names, envir = fe)
+  }
+  W = numeric(B); step = max(1, n.cores)
+  for (s0 in seq(1, B, by = step)){
+    ids = s0:min(B, s0 + step - 1)
+    r = if (!is.null(cl)) parallel::parLapply(cl, Z[ids], rep.fun)
+        else if (n.cores > 1) parallel::mclapply(Z[ids], rep.fun, mc.cores = n.cores)
+        else lapply(Z[ids], rep.fun)
+    if (!all(vapply(r, is.numeric, TRUE))) stop("a null replicate failed: ", r[[which(!vapply(r, is.numeric, TRUE))[1]]])
+    W[ids] = unlist(r)
+    if (verbose) cat("  ", max(ids), "/", B, "\r", sep = "")
+  }
+  if (verbose) cat("\n")
+  attr(W, "method") = prune.method
+  if (prune.method == "spectral") attr(W, "stat") = "path"
+  W
+}
+
 ## local, full-resolution polish of the interior breakpoints found by the coarse DP.
 ## For each interior breakpoint in turn (left to right, a couple of sweeps), search
 ## +/- window around its coarse location, holding the neighboring breakpoints fixed,
@@ -720,8 +1007,8 @@ function(xdata, m0 = 10, taper = .5, min.freq = 0, max.freq = .5,
 ## Feed it data in blocks; after each block it returns the optimal segmentation of everything seen so
 ## far (on the grid), updating the cost table and DP matrices by ONE COLUMN per new cut point instead
 ## of rebuilding them. Uses Section 1 (.dp.segCostFast, .dp.newCache, .dp.chooseM, .dp.backtrack,
-## .dp.refine). Its recursion is a COPY of .dp.optimalPartition: keep .dp.stream.test() as the
-## regression test (it must print STREAM == BATCH).
+## .dp.refine). Its recursion is a COPY of .dp.optimalPartition: the regression test
+## .dp.stream.test() (in autoSpecDP_research.R) must print STREAM == BATCH after any change.
 ##
 ## What it does NOT do: decide when a break is real.  The returned segmentation is
 ## provisional (breaks can move or disappear as data arrive), repeated looks inflate
@@ -813,40 +1100,6 @@ function(xdata, m0 = 10, taper = .5, min.freq = 0, max.freq = .5,
                   segment_kernel_orders_m = kord, segment_kernel_type = kty,
                   mdl = sum(kmdl) + pen,
                   gain.vs.nosplit = (st$cost[1, K1] + .dp.pen(1, ne, length(st$kernels))) - (sum(kmdl) + pen)))
-}
-
-## ---------------------------------------------------------------------------
-## Test: (1) the incremental result after the last block must equal the batch
-## autoSpecDP() result on the same data (refine = FALSE, same grid);
-## (2) show how the provisional breaks evolve and what an update costs.
-##   .dp.stream.test(x)          # x = Example 2 series, n = 1000
-## ---------------------------------------------------------------------------
-.dp.stream.test = function(x, block = 10, grid.step = 10, min.span = 100, M = 6,
-                           max.freq = .1, kernels = "bartlett"){
-  n = length(x); stopifnot(n %% grid.step == 0, block %% grid.step == 0)
-  st = .dp.stream.init(max.n = n, max.freq = max.freq, kernels = kernels, M = M,
-                       min.span = min.span, grid.step = grid.step)
-  tm = numeric(0); shown = ""; last.fit = NULL
-  cat("  n   interior breaks (provisional)\n")
-  for (s in seq(block, n, by = block)){
-    tt = system.time(o <- .dp.stream.update(st, x[(s - block + 1):s]))["elapsed"]
-    st = o$state; tm = c(tm, tt); last.fit = o$fit
-    cur = if (is.null(o$fit)) "(not enough data)" else {
-            b = o$fit$breakpoints; if (length(b) > 2) paste(b[-c(1, length(b))], collapse = " ") else "none" }
-    if (cur != shown){ cat(sprintf("%5d   %s\n", s, cur)); shown = cur }
-  }
-  cat(sprintf("\nupdate time (s): median %.3f, max %.3f (last update, n = %d: %.3f)\n",
-              median(tm), max(tm), n, tail(tm, 1)))
-
-  bt = autoSpecDP(x, taper = .5, max.freq = max.freq, kernels = kernels, M = M,
-                  min.span = min.span, grid.step = grid.step, refine = FALSE, verbose = FALSE)
-  ok = isTRUE(all.equal(bt$breakpoints, last.fit$breakpoints)) &&
-       isTRUE(all.equal(bt$mdl, last.fit$mdl, tolerance = 1e-9)) &&
-       identical(bt$segment_kernel_orders_m, last.fit$segment_kernel_orders_m)
-  cat("\nbatch  :", bt$breakpoints, "  mdl", round(bt$mdl, 4),
-      "\nstream :", last.fit$breakpoints, "  mdl", round(last.fit$mdl, 4), "\n")
-  cat(if (ok) "STREAM == BATCH\n" else "STREAM DIFFERS FROM BATCH\n")
-  invisible(ok)
 }
 
 
@@ -973,53 +1226,6 @@ function(xdata, m0 = 10, taper = .5, min.freq = 0, max.freq = .5,
                   gain.vs.nosplit = (st$cost[1, K1] + .dp.pen(1, nw, length(st$kernels))) - (sum(kmdl) + pen)))
 }
 
-## ---------------------------------------------------------------------------
-## Tests.   .dp.wstream.test(x)    # x = the Example 2 series, n = 1000
-##  (1) window >= length of series: must reproduce the growing stream exactly
-##      (breaks and gain after every update).
-##  (2) window < series: the final fit must equal a batch autoSpecDP() run on the
-##      last window of data, aligned to the same grid.
-## ---------------------------------------------------------------------------
-.dp.wstream.test = function(x, window = 600, block = 10, grid.step = 10, min.span = 100,
-                            M = 6, max.freq = .1, kernels = "bartlett"){
-  n = length(x); stopifnot(n %% block == 0, block %% grid.step == 0)
-  mk.g = function() .dp.stream.init(max.n = n, max.freq = max.freq, kernels = kernels, M = M,
-                                    min.span = min.span, grid.step = grid.step)
-  mk.w = function(W) .dp.wstream.init(window = W, max.freq = max.freq, kernels = kernels, M = M,
-                                      min.span = min.span, grid.step = grid.step)
-
-  ## (1) window larger than the series -> identical to the growing stream
-  sg = mk.g(); sw = mk.w(n + 100); same = TRUE
-  for (s in seq(block, n, by = block)){
-    og = .dp.stream.update(sg, x[(s - block + 1):s]); sg = og$state
-    ow = .dp.wstream.update(sw, x[(s - block + 1):s]); sw = ow$state
-    fg = og$fit; fw = ow$fit
-    if (is.null(fg) != is.null(fw)) { same = FALSE; break }
-    if (!is.null(fg) && !(isTRUE(all.equal(fg$breakpoints, fw$breakpoints)) &&
-                          isTRUE(all.equal(fg$gain.vs.nosplit, fw$gain.vs.nosplit, tolerance = 1e-9)))){
-      same = FALSE; cat("differs at n =", s, "\n"); break }
-  }
-  cat(if (same) "(1) window >= n reproduces the growing stream: OK\n"
-      else "(1) MISMATCH vs growing stream\n")
-
-  ## (2) sliding: final fit vs batch on the last window
-  sw = mk.w(window); tm = numeric(0)
-  for (s in seq(block, n, by = block)){
-    t1 = system.time(o <- .dp.wstream.update(sw, x[(s - block + 1):s]))["elapsed"]
-    sw = o$state; tm = c(tm, t1)
-  }
-  f = o$fit; c1 = f$window.start
-  bt = autoSpecDP(x[(c1 + 1):n], max.freq = max.freq, kernels = kernels, M = M,
-                  min.span = min.span, grid.step = grid.step, refine = FALSE, verbose = FALSE)
-  ok = isTRUE(all.equal(bt$breakpoints + c1, f$breakpoints)) &&
-       isTRUE(all.equal(bt$mdl, f$mdl, tolerance = 1e-9))
-  cat("(2) window", window, "| window start", c1, "\n    batch :", bt$breakpoints + c1,
-      " mdl", round(bt$mdl, 4), "\n    stream:", f$breakpoints, " mdl", round(f$mdl, 4), "\n")
-  cat(if (ok) "    SLIDING == BATCH ON LAST WINDOW\n" else "    MISMATCH\n")
-  cat(sprintf("update time (s): median %.3f, max %.3f, last %.3f\n", median(tm), max(tm), tail(tm, 1)))
-  invisible(same && ok)
-}
-
 
 #########################################################################################
 ##-- SECTION 4: targeted spectral-change monitor
@@ -1055,7 +1261,7 @@ function(xdata, m0 = 10, taper = .5, min.freq = 0, max.freq = .5,
 # PUBLIC FUNCTIONS:  tg_calibrate(x, ...)  -> "tg_cal" object (threshold + settings)
 #                    tg_monitor(x, cal)    -> D trace, alarm flag and first alarm time
 #                    tg_reference_check(x) -> is the reference peak strong enough for the reference band?
-# INTERNAL (dot-prefixed, used by the simulation harness in Section 6):
+# INTERNAL (dot-prefixed, also used by the simulation harness in autoSpecDP_research.R):
 #   .tg.pgram .tg.ref .tg.fref .tg.trace .tg.runmin .tg.synth
 #
 # SCOPE. Built for and tested on tone / modulated-tone data with Gaussian noise and on one real
@@ -1244,364 +1450,4 @@ tg_reference_check <- function(x, Wref = 1200, Wc = 600, m = 1, taper = 0.2) {
        verdict = if (ratio < 4) "weak: peak not clearly above noise, reference band likely misplaced"
                  else if (ratio < 5.5) "marginal: reference band covers the signal in roughly 90-99% of simulated series"
                  else "clear: reference band reliable in simulation")
-}
-
-
-#########################################################################################
-##-- SECTION 5 (research harness): calibration of alarm rules for the growing / sliding stream.
-##   Not needed for ordinary use.
-##
-## Calibrates alarm rules for streaming autoSpecDP on the tone / modulated-tone problem.  Two steps:
-##   1. .dp.cal.collect()  runs the stream once per simulated series and stores the whole trace
-##      (provisional breaks + gain after every block).  Slow part.
-##   2. .dp.cal.table()    evaluates many alarm rules on the stored traces.  Instant, so rules can be
-##      explored and re-tuned without re-simulating.
-##
-## Models (all with the same noise draw per seed, so they are paired):
-##   "mod"      modulated tone forever          (null: monitoring starts in this regime)
-##   "tone"     pure tone forever               (null: monitoring starts in this regime)
-##   "mod2tone" modulated tone -> pure tone at tau    (Example 2)
-##   "tone2mod" pure tone -> modulated tone at tau    (reverse direction)
-## "Slightness" of the change is controlled by d (sideband separation: smaller d is a
-## subtler change) and sd (noise sd: larger is harder).  Defaults match Example 2.
-##
-## Alarm rule R(L, g, tol): at update u, alarm if the current fit has an interior break b
-##   with gain-vs-no-split >= g, AND each of the previous L-1 updates also had a break
-##   within +/- tol of b.   (L = 1: no persistence requirement.)
-##
-##
-## Uses Sections 1-3 of this file, which must be sourced into the global environment (the PSOCK
-## path exports every global function whose name starts with ".dp.").
-#########################################################################################
-
-.dp.cal.gen = function(model, N = 1000, tau = 500, w = 2*pi/25, d = 2*pi/150, sd = 1, phi = 0){
-  t = 1:N
-  sig = switch(model,
-    mod      = 2*cos(w*t)*cos(d*t + phi),
-    tone     = cos(w*t),
-    mod2tone = ifelse(t <= tau, 2*cos(w*t)*cos(d*t + phi), cos(w*t)),
-    tone2mod = { s = pmax(t - tau, 0)              # envelope restarts at the change
-                 ifelse(t <= tau, cos(w*t), 2*cos(w*t)*cos(d*s + phi)) },   # carrier on GLOBAL time (continuous phase for any tau); only the envelope restarts
-    stop("unknown model"))
-  sig + rnorm(N, sd = sd)
-}
-
-## one series -> trace: list of (n, breaks, gain) after every block
-.dp.cal.run1 = function(seed, model, N, tau, w, d, sd, taper, grid.step, min.span, M,
-                        max.freq, kernels, block, phi = 0, window = NULL){
-  set.seed(seed)
-  if (is.character(phi)) phi = runif(1, 0, 2*pi)   # phi = "random": drawn per series, same for every model with this seed
-  x  = .dp.cal.gen(model, N, tau, w, d, sd, phi)
-  upd = if (is.null(window)) .dp.stream.update else .dp.wstream.update
-  st = if (is.null(window))
-         .dp.stream.init(max.n = N, taper = taper, max.freq = max.freq, kernels = kernels,
-                         M = M, min.span = min.span, grid.step = grid.step)
-       else
-         .dp.wstream.init(window = window, taper = taper, max.freq = max.freq, kernels = kernels,
-                          M = M, min.span = min.span, grid.step = grid.step)
-  out = vector("list", N %/% block); k = 0
-  for (s in seq(block, N, by = block)){
-    o = upd(st, x[(s - block + 1):s]); st = o$state
-    k = k + 1
-    out[[k]] = if (is.null(o$fit)) list(n = s, breaks = numeric(0), gain = 0) else {
-      b = o$fit$breakpoints
-      list(n = o$fit$n.used, breaks = b[-c(1, length(b))], gain = o$fit$gain.vs.nosplit) }
-  }
-  attr(out, "phi") = phi      # recover with sapply(tr$mod2tone, attr, "phi")
-  out
-}
-
-.dp.cal.lapply = function(X, FUN, n.cores){
-  if (n.cores <= 1) return(lapply(X, FUN))
-  if (.Platform$OS.type == "unix") return(parallel::mclapply(X, FUN, mc.cores = n.cores))
-  cl = parallel::makeCluster(n.cores); on.exit(parallel::stopCluster(cl))
-  parallel::clusterEvalQ(cl, library(astsa))
-  fn = ls(globalenv(), all.names = TRUE, pattern = "^\\.dp\\.")
-  parallel::clusterExport(cl, fn, envir = globalenv())
-  parallel::parLapply(cl, X, FUN)
-}
-
-## Step 1.  Returns a named list (one element per model) of lists of traces.
-## Start with reps = 2 as a smoke test and to see the run time.
-.dp.cal.collect = function(reps = 50, models = c("mod", "tone", "mod2tone", "tone2mod"),
-                           seed0 = 1000, n.cores = 1, N = 1000, tau = 500,
-                           w = 2*pi/25, d = 2*pi/150, sd = 1, taper = .5,
-                           grid.step = 10, min.span = 100, M = 6, max.freq = .1,
-                           kernels = "bartlett", block = 10, phi = 0, window = NULL){
-  stopifnot(block %% grid.step == 0, N %% block == 0)
-  res = list()
-  for (md in models){
-    t0 = Sys.time()
-    res[[md]] = .dp.cal.lapply(seed0 + 1:reps, function(sd.i)
-      .dp.cal.run1(sd.i, md, N, tau, w, d, sd, taper, grid.step, min.span, M,
-                   max.freq, kernels, block, phi, window), n.cores)
-    cat(sprintf("%-9s %d series in %.1f min\n", md, reps,
-                as.numeric(difftime(Sys.time(), t0, units = "mins"))))
-  }
-  attr(res, "settings") = list(N = N, tau = tau, d = d, sd = sd, taper = taper,
-                               grid.step = grid.step, min.span = min.span, block = block, phi = phi, window = window)
-  res
-}
-
-## first alarm of rule (L, g, tol) on one trace; NULL if none
-.dp.cal.first.alarm = function(tr, L, g, tol = 10, after = 0){
-  for (u in seq_along(tr)){
-    e = tr[[u]]
-    if (e$n <= after || u < L || length(e$breaks) == 0 || e$gain < g) next   # `after`: ignore alarms until n > after (e.g. until the window is full)
-    for (b in e$breaks){
-      ok = TRUE
-      if (L > 1) for (v in (u - L + 1):(u - 1)){
-        bv = tr[[v]]$breaks
-        if (length(bv) == 0 || min(abs(bv - b)) > tol){ ok = FALSE; break }
-      }
-      if (ok) return(list(n = e$n, b = b))
-    }
-  }
-  NULL
-}
-
-## Step 2.  One row per rule.
-##   FA.*        : fraction of no-change series with >= 1 alarm during the whole horizon
-##   <alt>.false : first alarm came BEFORE the change (a false alarm in a changing series)
-##   <alt>.correct: first alarm after the change with a break within +/- loc.tol of tau+1
-##   <alt>.wrongloc: first alarm after the change but at the wrong location
-##   <alt>.never : no alarm at all;   <alt>.delay: median observations after tau (correct only)
-.dp.cal.table = function(traces, Ls = c(1, 3, 5, 10), gs = c(0, 3, 6, 10, 15),
-                         tol = 10, loc.tol = 30){
-  tau = attr(traces, "settings")$tau
-  rows = list()
-  for (L in Ls) for (g in gs){
-    row = c(L = L, g = g)
-    for (nm in intersect(c("mod", "tone"), names(traces)))
-      row[paste0("FA.", nm)] = mean(sapply(traces[[nm]],
-                                 function(tr) !is.null(.dp.cal.first.alarm(tr, L, g, tol))))
-    for (nm in intersect(c("mod2tone", "tone2mod"), names(traces))){
-      res = lapply(traces[[nm]], function(tr) .dp.cal.first.alarm(tr, L, g, tol))
-      cls = sapply(res, function(a)
-        if (is.null(a)) "never" else if (a$n <= tau) "false"
-        else if (abs(a$b - (tau + 1)) <= loc.tol) "correct" else "wrongloc")
-      dl = sapply(res[cls == "correct"], function(a) a$n - tau)
-      for (cl in c("correct", "false", "wrongloc", "never"))
-        row[paste0(nm, ".", cl)] = mean(cls == cl)
-      row[paste0(nm, ".delay")] = if (length(dl)) median(dl) else NA
-    }
-    rows[[length(rows) + 1]] = row
-  }
-  as.data.frame(do.call(rbind, rows))
-}
-
-## Hazard of the FIRST alarm in no-change series: percent of still-alarm-free series that
-## alarm per 100 observations, in windows of `width` observations.  For the growing stream
-## this rises with n; for the sliding window it should level off once n > window.
-## Use with .dp.cal.collect(models = c("mod","tone"), N = 3000, window = W).
-.dp.cal.hazard = function(traces, L = 10, g = 0, tol = 10, width = 300, from = 100){
-  N = attr(traces, "settings")$N
-  edges = seq(from, N, by = width)
-  out = list()
-  for (nm in intersect(c("mod", "tone"), names(traces))){
-    t1 = sapply(traces[[nm]], function(tr){
-           a = .dp.cal.first.alarm(tr, L, g, tol); if (is.null(a)) Inf else a$n })
-    lo = edges[-length(edges)]; hi = edges[-1]
-    risk = sapply(lo, function(e) sum(t1 > e))
-    ev   = mapply(function(a, b) sum(t1 > a & t1 <= b), lo, hi)
-    out[[nm]] = data.frame(model = nm, from = lo, to = hi, at.risk = risk, alarms = ev,
-                           pct.per100 = round(100 * ev / pmax(risk, 1) * 100 / width, 2))
-  }
-  do.call(rbind, out)
-}
-
-## Evaluate ONE pre-specified rule.  `after` = ignore alarms until n > after (use the window length W).
-##   no-change traces ("mod","tone"): how many series raised an alarm during the monitored stretch
-##   change traces ("mod2tone","tone2mod"): first-alarm classes within `horizon` observations of tau
-.dp.cal.eval = function(traces, L, tol, after, tau = 1500, horizon = 1000, loc.tol = 60, g = 0){
-  res = list()
-  for (nm in intersect(c("mod", "tone"), names(traces))){
-    a = lapply(traces[[nm]], .dp.cal.first.alarm, L = L, g = g, tol = tol, after = after)
-    N = max(sapply(traces[[nm]][[1]], function(e) e$n))
-    res[[nm]] = c(series = length(a), with.alarm = sum(!sapply(a, is.null)), obs.monitored = N - after)
-  }
-  for (nm in intersect(c("mod2tone", "tone2mod"), names(traces))){
-    a = lapply(traces[[nm]], .dp.cal.first.alarm, L = L, g = g, tol = tol, after = after)
-    cls = sapply(a, function(z)
-      if (is.null(z)) "never" else if (z$n <= tau) "false" else if (z$n > tau + horizon) "late"
-      else if (abs(z$b - (tau + 1)) <= loc.tol) "correct" else "wrongloc")
-    dl = sapply(a[cls == "correct"], function(z) z$n - tau)
-    res[[nm]] = c(table(factor(cls, c("correct", "false", "wrongloc", "late", "never"))),
-                  median.delay = if (length(dl)) median(dl) else NA)
-  }
-  res
-}
-
-
-#########################################################################################
-##-- SECTION 6 (research harness): simulation studies for the targeted monitor.
-##   Not needed for ordinary use.
-##   Generators .tg.gen (tone / modulated tone, optional AR(2) shifted-resonance pair), .tg.genar;
-##   known null .tg.study (threshold from true-model simulations; detection, false alarms, delays);
-##   estimated null .tg.estnull (threshold from each stream's own reference; paired with the known one).
-##   Uses Section 4. Parallel runs (cores > 1, Windows PSOCK) need this file sourced into the global
-##   environment so workers get the functions.
-#########################################################################################
-
-# ---------------------------------------------------------------------------
-# Generators
-#   mod  = 2 cos(w t) cos(d t + phi) (random phi),  tone = cos(w t),  w = 2*pi/25, d = 2*pi/150
-#   mod2tone / tone2mod switch at tau with the carrier kept on global time; amp scales the signal;
-#   ar0 / ar1 / ar0to1 / ar1to0: AR(2), pole radius r, peak at w (ar0) or w*(1 + shift) (ar1)
-# ---------------------------------------------------------------------------
-.tg.pre <- function(dr) switch(dr, mod2tone = "mod", tone2mod = "tone", ar0to1 = "ar0", ar1to0 = "ar1",
-                                stop("unknown direction"))
-
-
-# AR(2) pair: poles at radius r, angle theta. ar0 = theta0 = w; ar1 = theta0*(1 + shift).
-# ar0to1 / ar1to0 switch the coefficients at tau (state carried over); `amp` and `d` are ignored.
-.tg.genar <- function(type, n, tau, sd = 1, r = 0.95, shift = 0.1, w = 2*pi/25, burn = 500) {
-  co <- function(th) c(2*r*cos(th), -r^2)
-  c0 <- co(w); c1 <- co(w*(1 + shift))
-  first  <- switch(type, ar0 = c0, ar1 = c1, ar0to1 = c0, ar1to0 = c1)
-  second <- switch(type, ar0 = c0, ar1 = c1, ar0to1 = c1, ar1to0 = c0)
-  e <- rnorm(n + burn, 0, sd); k <- tau + burn
-  x1 <- as.numeric(stats::filter(e[1:k], first, method = "recursive"))
-  x <- if (k < length(e))
-    c(x1, as.numeric(stats::filter(e[(k + 1):length(e)], second, method = "recursive",
-                                   init = c(x1[k], x1[k - 1])))) else x1
-  x[(burn + 1):(n + burn)]
-}
-
-.tg.gen <- function(type, n, tau, d = 2*pi/150, w = 2*pi/25, sd = 1, phi = NULL, amp = 1,
-                    r = 0.95, shift = 0.1) {
-  if (grepl("^ar", type)) return(.tg.genar(type, n, tau, sd = sd, r = r, shift = shift, w = w))
-  if (is.null(phi)) phi <- runif(1, 0, 2*pi)          # random modulation phase
-  t <- 1:n
-  tone <- cos(w*t)
-  mod  <- 2*cos(w*t)*cos(d*t + phi)                    # carrier on global time
-  s <- switch(type, tone = tone, mod = mod,
-              mod2tone = ifelse(t <= tau, mod, tone),
-              tone2mod = ifelse(t <= tau, tone, mod))
-  amp*s + rnorm(n, 0, sd)                              # amp scales the signal (SNR)
-}
-
-# ---------------------------------------------------------------------------
-# Known-null study. One row per direction x L:
-#   thr (calibrated on Bcal null series), FA_null (alarms in Bnull independent null series),
-#   early_in_det (changed series alarmed before tau, not counted as detections), detected
-#   (first alarm in (tau, tau + horizon]), med_delay (median among detected), and, if `report`
-#   is given, det<h> = detections within h obs of the change from the same run.
-# ---------------------------------------------------------------------------
-# Full study for one or both directions.
-# Per direction: (1) Bcal null series -> thr = (1-alpha) quantile of max_j runmin_j;
-#                (2) Bnull independent null series -> realised false-alarm rate;
-#                (3) Bdet series with the change at tau -> detection within `horizon` obs.
-# Seeds: cal seed0+i, null-validation seed0+10000+i, detection seed0+20000+i (all distinct).
-.tg.study <- function(dir = c("mod2tone", "tone2mod"), Ls = c(1, 3, 6), alpha = 0.05,
-                      Bcal = 200, Bnull = 200, Bdet = 200, tau = 2400, horizon = 1000,
-                      d = 2*pi/150, sd = 1, amp = 1, r = 0.95, shift = 0.1, Wref = 1200, Wc = 600, stride = 25,
-                      m = 1, taper = 0.2, band = NULL, stat = "whittle", bw = NULL, seed0 = 1000,
-                      report = NULL) {
-  N <- tau + horizon; out <- list()
-  one <- function(type, seed, tau_) {
-    set.seed(seed)
-    .tg.trace(.tg.gen(type, N, tau_, d = d, sd = sd, amp = amp, r = r, shift = shift), Wref, Wc, stride, m, taper, band, stat, bw)
-  }
-  for (dr in dir) {
-    pre <- .tg.pre(dr)
-    tc <- lapply(seq_len(Bcal),  function(i) one(pre, seed0 + i, N))
-    tn <- lapply(seq_len(Bnull), function(i) one(pre, seed0 + 10000 + i, N))
-    td <- lapply(seq_len(Bdet),  function(i) one(dr,  seed0 + 20000 + i, tau))
-    ends <- tc[[1]]$ends
-    for (L in Ls) {
-      sc <- vapply(tc, function(z) max(.tg.runmin(z$D, L)), 0)
-      thr <- unname(quantile(sc, 1 - alpha))
-      fa <- sum(vapply(tn, function(z) max(.tg.runmin(z$D, L)) > thr, TRUE))
-      first <- vapply(td, function(z) {
-        j <- which(.tg.runmin(z$D, L) > thr)
-        if (length(j)) z$ends[j[1]] else NA_real_
-      }, 0)
-      early <- sum(!is.na(first) & first <= tau)            # alarms before the change
-      det <- !is.na(first) & first > tau & first <= tau + horizon
-      row <- data.frame(
-        dir = dr, L = L, thr = round(thr, 1), FA_null = fa, Bnull = Bnull,
-        early_in_det = early, detected = sum(det), Bdet = Bdet,
-        med_delay = if (any(det)) median(first[det] - tau) else NA)
-      # extra columns: detections within h observations of the change, from the same run
-      for (h in report) row[[paste0("det", h)]] <- sum(!is.na(first) & first > tau & first <= tau + h)
-      out[[length(out) + 1]] <- row
-    }
-  }
-  do.call(rbind, out)
-}
-
-# ---------------------------------------------------------------------------
-# Estimated-null study. One "deployment" = one simulated stream whose threshold is calibrated
-# from its first Wref observations only (Gaussian spectral synthesis), then applied to that
-# stream's own null and changed series (identical up to tau); the same deployments are also scored
-# with the KNOWN-null threshold, so the two calibrations are paired.
-# ---------------------------------------------------------------------------
-.tg.known1 <- function(i, P) {
-  set.seed(P$seed0 + i)
-  .tg.trace(.tg.gen(P$pre, P$N, P$N, d = P$d, sd = P$sd, amp = P$amp, r = P$r, shift = P$shift),
-            P$Wref, P$Wc, P$stride, P$m, P$taper, P$band, P$stat, P$bw)$D
-}
-
-.tg.deploy1 <- function(i, P) {
-  s <- P$seed0 + 30000 + i
-  tr <- function(x) .tg.trace(x, P$Wref, P$Wc, P$stride, P$m, P$taper, P$band, P$stat, P$bw)
-  set.seed(s); xn <- .tg.gen(P$pre, P$N, P$N,  d = P$d, sd = P$sd, amp = P$amp, r = P$r, shift = P$shift)  # null stream
-  set.seed(s); xa <- .tg.gen(P$dir, P$N, P$tau, d = P$d, sd = P$sd, amp = P$amp, r = P$r, shift = P$shift) # same, changes at tau
-  tn <- tr(xn); ta <- tr(xa)
-  fhat <- .tg.fref(xn[1:P$Wref], P$Wc, P$taper, P$m)       # the ONLY data the calibration sees
-  set.seed(s + 500000)
-  Ds <- lapply(seq_len(P$Bcal), function(j) tr(.tg.synth(fhat, P$Wc, P$N))$D)
-  do.call(rbind, lapply(P$Ls, function(L) {
-    sc <- vapply(Ds, function(D) max(.tg.runmin(D, L)), 0)
-    thr <- unname(quantile(sc, 1 - P$alpha))
-    thrk <- P$thr_known[[as.character(L)]]
-    first <- function(tt, th) {
-      j <- which(.tg.runmin(tt$D, L) > th)
-      if (length(j)) tt$ends[j[1]] else NA_real_
-    }
-    mx <- max(.tg.runmin(tn$D, L))
-    c(L = L, thr_est = thr, thr_known = thrk, fa_est = as.numeric(mx > thr),
-      fa_known = as.numeric(mx > thrk), first_est = first(ta, thr), first_known = first(ta, thrk))
-  }))
-}
-
-.tg.estnull <- function(dir = c("mod2tone", "tone2mod"), Ls = c(1, 3), alpha = 0.05,
-                        ndep = 400, Bcal = 300, Bknown = 1000, tau = 2400, horizon = 1000,
-                        d = 2*pi/150, sd = 1, amp = 1, r = 0.95, shift = 0.1, Wref = 1200, Wc = 600, stride = 25,
-                        m = 1, taper = 0.2, band = NULL, stat = "whittle", bw = NULL,
-                        seed0 = 20000, cores = 1) {
-  cl <- NULL
-  if (cores > 1) {                       # PSOCK; run after source() so the functions live in globalenv()
-    cl <- parallel::makeCluster(cores); on.exit(parallel::stopCluster(cl), add = TRUE)
-    parallel::clusterExport(cl, c(".tg.gen", ".tg.genar", ".tg.pgram", ".tg.ref", ".tg.trace", ".tg.runmin",
-                                  ".tg.fref", ".tg.synth", ".tg.known1", ".tg.deploy1"),
-                            envir = globalenv())
-  }
-  lap <- function(X, FUN, P) if (is.null(cl)) lapply(X, FUN, P = P) else parallel::parLapply(cl, X, FUN, P = P)
-  N <- tau + horizon
-  if (N %% 2 != 0) stop("tau + horizon must be even")
-  out <- list()
-  for (dr in dir) {
-    P <- list(dir = dr, pre = .tg.pre(dr), r = r, shift = shift, N = N, tau = tau, d = d,
-              sd = sd, amp = amp, Wref = Wref, Wc = Wc, stride = stride, m = m, taper = taper,
-              band = band, stat = stat, bw = bw, Ls = Ls, alpha = alpha, Bcal = Bcal, seed0 = seed0)
-    Dk <- lap(seq_len(Bknown), .tg.known1, P)
-    P$thr_known <- stats::setNames(lapply(Ls, function(L)
-      unname(quantile(vapply(Dk, function(D) max(.tg.runmin(D, L)), 0), 1 - alpha))), as.character(Ls))
-    M <- do.call(rbind, lap(seq_len(ndep), .tg.deploy1, P))
-    for (L in Ls) {
-      Ml <- M[M[, "L"] == L, , drop = FALSE]
-      summ <- function(nm, fa, first, thr) {
-        det <- !is.na(first) & first > tau & first <= tau + horizon
-        data.frame(dir = dr, L = L, null = nm, thr_mean = round(mean(thr), 1),
-                   thr_sd = round(sd(thr), 1), FA = sum(fa), ndep = nrow(Ml),
-                   early = sum(!is.na(first) & first <= tau), detected = sum(det),
-                   med_delay = if (any(det)) median(first[det] - tau) else NA)
-      }
-      out[[length(out) + 1]] <- summ("known", Ml[, "fa_known"], Ml[, "first_known"], Ml[, "thr_known"])
-      out[[length(out) + 1]] <- summ("estimated", Ml[, "fa_est"], Ml[, "first_est"], Ml[, "thr_est"])
-    }
-  }
-  do.call(rbind, out)
 }
